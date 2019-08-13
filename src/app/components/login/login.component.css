@@ -1,0 +1,38 @@
+.logo-empresa {
+    height: 100px;
+    width: 100px;
+    background: url(../../../assets/icones/chaves.png) no-repeat 0 0;
+    background-size: auto 100px;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.tela-login{
+    margin-top: 5%;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+
+.sign-in-title-greeting {
+    display: block;
+    font-size: 1.05882em;
+    font-weight: 500;
+    letter-spacing: normal;
+}
+
+.label{
+    color: #666;
+    font-weight: 575;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+.elemento {
+    width: auto;
+    margin: 0;
+   
+}
+
+
