@@ -1,5 +1,5 @@
 <form class="example-container mat-elevation-z1 tela-login" style="padding: 10px;">
-  
+        <mat-icon>person</mat-icon>
     <div fxLayout="column" fxLayoutAlign="space-around center" class="login-logo">
             <mat-icon class="logo-empresa"></mat-icon>
     </div>  
@@ -21,7 +21,10 @@
       </div>     
         
         <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center"  style=" padding-bottom: 20px;  padding-top: 20px;"> 
-                <button mat-raised-button style="width: 100%" color="primary">Acessar</button>
-        </div>     
+                <button mat-raised-button style="width: 100%" color="primary" (click)="acessar()">Acessar</button>
+        </div>  
+        <div fxLayout="column" fxLayoutAlign="space-around center" class="login-logo">
+                
+        </div>  
 
 </form>

@@ -12,4 +12,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  acessar(){
+    console.log("validar acesso");
+  }
+
 }

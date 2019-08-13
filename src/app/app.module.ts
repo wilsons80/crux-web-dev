@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './components/login/login.module';
+import { HomeModule } from './components/home/home.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { LoginModule } from './components/login/login.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    LoginModule
+    LoginModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
