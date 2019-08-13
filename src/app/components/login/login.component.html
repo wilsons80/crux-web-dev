@@ -18,9 +18,13 @@
             <input matInput name="senha" [(ngModel)]="usuario.senha" type="password" placeholder="Insira sua senha">
         </mat-form-field>
       </div>     
-        
+      
+      <div class="elemento " fxLayout="column" fxLayoutAlign="space-around start" >
+      <button mat-raised-button class="myButton" [routerLink]="['/path']" > Click me!</button>
+      </div>       
+
         <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center"  style=" padding-bottom: 20px;  padding-top: 20px;"> 
-                <button mat-raised-button style="width: 100%" color="primary" (click)="fazerLogin(usuario)">Acessar</button>
+                <button class="cdk-focused cdk-mouse-focused"  matbutton style="width: 100%" color="primary" (click)="fazerLogin(usuario)">Acessar</button>
         </div>  
         <div fxLayout="column" fxLayoutAlign="space-around center" class="login-logo">
                 

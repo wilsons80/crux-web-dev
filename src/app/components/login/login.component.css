@@ -35,4 +35,10 @@
    
 }
 
+.mat-button-focus-overlay { background-color: transparent!important; }
 
+.myButton:focus{
+    box-shadow: 0 0 rgba(255, 255, 255, 1) !important;
+    background-color: rgba(255, 255, 255, 1) !important;
+    -webkit-tap-highlight-color:rgba(255, 255, 255, 1) !important;
+}

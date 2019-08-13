@@ -21,4 +21,7 @@ export class LoginComponent implements OnInit {
     this.authService.fazerLogin(this.usuario);
   }
 
+  getRouterLink(){
+    return ['/trocarsenha'];
+  }
 }
