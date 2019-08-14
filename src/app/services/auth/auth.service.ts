@@ -1,6 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Usuario } from './../../components/login/usuario';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { tap, shareReplay } from 'rxjs/operators';
 

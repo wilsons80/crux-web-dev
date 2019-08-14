@@ -11,7 +11,7 @@ import { NovaSenhaComponent } from './components/nova-senha/nova-senha.component
 import { MatIconModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './components/common/auth-interceptor/auth-interceptor';
 
 
@@ -32,7 +32,8 @@ import { AuthInterceptor } from './components/common/auth-interceptor/auth-inter
     MatInputModule,
     FlexLayoutModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true,}
