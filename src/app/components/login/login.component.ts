@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Usuario } from './usuario';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,17 +12,21 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   usuario:Usuario = new Usuario();
-  constructor(private authService:AuthService) { }
+  error: any;
+
+  constructor(
+    private authService:AuthService,
+    private router:Router
+    ) { }
 
   ngOnInit() {
   }
 
-  fazerLogin(){
-    console.log("validar acesso");
-    this.authService.fazerLogin(this.usuario);
+  login(usuario: Usuario) {
+    this.authService.login(usuario).subscribe(
+      success => this.router.navigate(['home']),
+      error => this.error = error
+    );
   }
 
-  getRouterLink(){
-    return ['/trocarsenha'];
-  }
 }
