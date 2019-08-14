@@ -1,6 +1,6 @@
+import { AutenticadorService } from './../../services/autenticador/autenticador.service';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../services/auth/auth.service';
 import { Usuario } from './usuario';
 import { Component, OnInit } from '@angular/core';
 
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   error: any;
 
   constructor(
-    private authService:AuthService,
+    private autenticadorService:AutenticadorService,
     private router:Router
     ) { }
 
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(usuario: Usuario) {
-    this.authService.login(usuario).subscribe(
+    this.autenticadorService.login(usuario).subscribe(
       success => this.router.navigate(['home']),
       error => this.error = error
     );

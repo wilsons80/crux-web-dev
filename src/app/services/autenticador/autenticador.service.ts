@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from './../../components/login/usuario';
+
+import { Usuario } from '../../components/login/usuario';
 import { Injectable } from '@angular/core';
 
 import { tap, shareReplay } from 'rxjs/operators';
@@ -7,12 +8,12 @@ import { tap, shareReplay } from 'rxjs/operators';
 import * as jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 
-const autenticacaoRootPath = 'api/autenticador/';
+const autenticadorRootPath = 'api/autenticador/';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AutenticadorService {
 
   constructor(
     private http: HttpClient,
@@ -32,7 +33,7 @@ export class AuthService {
   }
 
   login(usuario:Usuario) {
-    return this.http.post(autenticacaoRootPath + `login`, usuario).pipe(
+    return this.http.post(autenticadorRootPath + `login`, usuario).pipe(
       tap(response => this.setSession(response)),
       shareReplay(),
     );  
@@ -46,7 +47,7 @@ export class AuthService {
 
   refreshToken() {
     if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
-      return this.http.post(autenticacaoRootPath + `refresh-token`, { token: this.token })
+      return this.http.post(autenticadorRootPath + `refresh-token`, { token: this.token })
       .pipe(
         tap(response => this.setSession(response)),
         shareReplay(),
