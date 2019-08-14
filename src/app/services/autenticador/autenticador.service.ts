@@ -34,7 +34,9 @@ export class AutenticadorService {
 
   login(usuario:Usuario) {
     return this.http.post(autenticadorRootPath + `login`, usuario).pipe(
-      tap(response => this.setSession(response)),
+      tap(response => 
+        this.setSession(response)
+        ),
       shareReplay(),
     );  
   }
