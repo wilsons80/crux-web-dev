@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './components/login/login.module';
 import { HomeModule } from './components/home/home.module';
 import { NovaSenhaComponent } from './components/nova-senha/nova-senha.component';
-import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule } from '@angular/material';
+import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -43,7 +43,8 @@ import { HttpMgmtModule } from './components/common/http-mgmt/http-mgmt.module';
     HttpClientModule,
     ExceptionHandlerModule,
     MatSnackBarModule,
-    HttpMgmtModule
+    HttpMgmtModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true,}
