@@ -1,4 +1,4 @@
-<form class="example-container mat-elevation-z1 tela-login" style="padding: 10px;">
+<form #formLogin="ngForm" class="example-container mat-elevation-z1 tela-login" style="padding: 10px;">
     <div fxLayout="column" fxLayoutAlign="space-around center" class="login-logo">
             <mat-icon class="logo-empresa"></mat-icon>
     </div>  
@@ -9,21 +9,31 @@
             
      <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center" >
          <mat-form-field style="width: 100%">
-            <input matInput name="userName" [(ngModel)]="usuario.userName" placeholder="Insira seu login" >
+            <input matInput name="userName" [(ngModel)]="usuario.userName" placeholder="Insira seu login" required>
         </mat-form-field>
      </div>     
       
       <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center" >
         <mat-form-field style="width: 100%">
-            <input matInput name="senha" [(ngModel)]="usuario.senha" type="password" placeholder="Insira sua senha">
+            <input matInput name="senha" [(ngModel)]="usuario.senha" type="password" placeholder="Insira sua senha" required>
         </mat-form-field>
       </div>     
       
         <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center"  style=" padding-bottom: 20px;  padding-top: 20px;"> 
-                <button mat-raised-button style="width: 100%" color="primary" (click)="login(usuario)">Acessar</button>
+                <button mat-raised-button 
+                        style="width: 100%" 
+                        color="primary" 
+                        (click)="login(usuario)"
+                        [disabled]="formLogin.invalid"
+                        >
+                Acessar</button>
         </div>  
         <div class="elemento " fxLayout="column" fxLayoutAlign="space-around center" >
-          <button mat-flat-button  style="padding: 0px" [routerLink]="['/novasenha']" > <mat-label class="label-senha">Deseja trocar a senha?</mat-label></button>
+          <button mat-flat-button  
+                  style="padding: 0px" 
+                  [routerLink]="['/novasenha']" > 
+                  <mat-label class="label-senha">Deseja trocar a senha?</mat-label>
+          </button>
         </div>       
        
 </form>
