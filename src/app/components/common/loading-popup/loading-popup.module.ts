@@ -7,15 +7,10 @@ import { MatProgressSpinnerModule, MatDialogModule, MatProgressBarModule, MatToo
 
 @NgModule({
   declarations: [LoadingPopupComponent],
+  entryComponents: [LoadingPopupComponent],
   imports: [
     CommonModule,
-    MatDialogModule,
-    MatProgressBarModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatProgressBarModule,
     MatProgressSpinnerModule,
-    
   ]
 })
 export class LoadingPopupModule { }

@@ -26,14 +26,10 @@ export class LoadingPopupService {
 
 
   private openDialog(): void {
-    dialogConfig.disableClose = true;
     this.dialogRef = this.dialog.open(LoadingPopupComponent, {
-      disableClose: true,
-      position: {
-        top: '40%'
-      },
-      width: '10%',
-    });
+      disableClose: true
+    }
+    );
   }
 
 
