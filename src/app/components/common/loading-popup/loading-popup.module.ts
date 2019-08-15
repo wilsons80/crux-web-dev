@@ -15,7 +15,6 @@ import { MatProgressSpinnerModule, MatDialogModule, MatProgressBarModule, MatToo
     MatTooltipModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-,
     
   ]
 })
