@@ -16,6 +16,7 @@ import { AuthInterceptor } from './components/common/auth-interceptor/auth-inter
 import { HttpErrorToastComponent } from './components/common/http-error-toast/http-error-toast.component';
 import { ExceptionHandlerModule } from './components/common/exception-handler/exception-handler.module';
 import { HttpMgmtModule } from './components/common/http-mgmt/http-mgmt.module';
+import { LoadingPopupModule } from './components/common/loading-popup/loading-popup.module';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { HttpMgmtModule } from './components/common/http-mgmt/http-mgmt.module';
     ExceptionHandlerModule,
     MatSnackBarModule,
     HttpMgmtModule,
-    MatDialogModule
+    MatDialogModule,
+    LoadingPopupModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true,}

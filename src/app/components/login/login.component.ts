@@ -1,8 +1,10 @@
+import { LoadingPopupService } from './../../services/loadingPopup/loading-popup.service';
 import { AutenticadorService } from './../../services/autenticador/autenticador.service';
 import { Router } from '@angular/router';
 
 import { Usuario } from './usuario';
 import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private autenticadorService:AutenticadorService,
     private router:Router,
+    private loadingPopupService:LoadingPopupService
     ) { }
 
   ngOnInit() {
@@ -26,7 +29,10 @@ export class LoginComponent implements OnInit {
   }
 
   login(usuario: Usuario) {
-    this.autenticadorService.login(usuario).subscribe(
+    this.loadingPopupService.mostrarDialog();
+    this.autenticadorService.login(usuario).pipe(
+      finalize(()=>  this.loadingPopupService.closeDialog())
+    ).subscribe(
       success => this.router.navigate(['home']),
       error => this.error = error
     );

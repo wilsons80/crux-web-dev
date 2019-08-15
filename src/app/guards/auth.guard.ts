@@ -14,7 +14,8 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
     if (this.autenticadorService.isLoggedIn()) {
-      this.autenticadorService.refreshToken();
+      //TODO Esperando o BackEnd se resolver
+      //this.autenticadorService.refreshToken();
 
       return true;
     } else {
