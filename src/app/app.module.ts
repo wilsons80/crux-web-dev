@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './components/login/login.module';
 import { HomeModule } from './components/home/home.module';
-import { NovaSenhaComponent } from './components/nova-senha/nova-senha.component';
 import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
@@ -18,6 +17,7 @@ import { ExceptionHandlerModule } from './components/common/exception-handler/ex
 import { HttpMgmtModule } from './components/common/http-mgmt/http-mgmt.module';
 import { LoadingPopupModule } from './components/common/loading-popup/loading-popup.module';
 import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { NovaSenhaModule } from './components/nova-senha/nova-senha.module';
 
 
 @NgModule({
@@ -26,7 +26,6 @@ import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-enc
   ],
   declarations: [
     AppComponent,
-    NovaSenhaComponent,
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
   ],
@@ -48,7 +47,9 @@ import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-enc
     MatSnackBarModule,
     HttpMgmtModule,
     MatDialogModule,
-    LoadingPopupModule
+    LoadingPopupModule,
+    NovaSenhaModule
+  
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true,}
