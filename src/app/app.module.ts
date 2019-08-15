@@ -17,6 +17,7 @@ import { HttpErrorToastComponent } from './components/common/http-error-toast/ht
 import { ExceptionHandlerModule } from './components/common/exception-handler/exception-handler.module';
 import { HttpMgmtModule } from './components/common/http-mgmt/http-mgmt.module';
 import { LoadingPopupModule } from './components/common/loading-popup/loading-popup.module';
+import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { LoadingPopupModule } from './components/common/loading-popup/loading-po
     AppComponent,
     NovaSenhaComponent,
     HttpErrorToastComponent,
+    PaginaNaoEncontradaComponent,
   ],
   imports: [
     BrowserModule,
