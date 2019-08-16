@@ -11,11 +11,11 @@ export class ToastService {
   constructor(private _snackBar: MatSnackBar) { }
 
   showAlerta(mensagem: string, id?: number) {
-    this.showToast(mensagem, 300000, id);
+    this.showToast(mensagem, 5000, id);
   }
 
   showSucesso(mensagem: string) {
-    this.showToast(mensagem, 60000);
+    this.showToast(mensagem, 5000);
   }
 
   private showToast(mensagem: string, duracao: number, id?: number) {
