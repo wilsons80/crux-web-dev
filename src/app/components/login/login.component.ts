@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario();
   error: any;
 
+ 
   constructor(
     private autenticadorService: AutenticadorService,
     private router: Router,

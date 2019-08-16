@@ -3,3 +3,18 @@
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
   }
+
+  .chaves {
+   height: 60px;
+   width: 60px;
+   background: url(../assets/icones/chaves.png) no-repeat 0 0;
+   background-size: auto 50px;
+   cursor: pointer;
+   border: none;
+   margin-top: '10px' !important
+}
+
+.aba{
+   cursor: pointer;
+   border: none;
+}
