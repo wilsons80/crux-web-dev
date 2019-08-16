@@ -1,20 +1,16 @@
-.example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox. 
-       Every toolbar row uses a flexbox row layout. */
-    flex: 1 1 auto;
-  }
 
-  .chaves {
-   height: 60px;
-   width: 60px;
-   background: url(../assets/icones/chaves.png) no-repeat 0 0;
-   background-size: auto 50px;
-   cursor: pointer;
-   border: none;
-   margin-top: '10px' !important
+.menu-principal-container {
+   width: 100%;
+   height: 1283px;
+   background-color:white
 }
+.sidenav {
+   padding-top: 20px;
+   
+ }
 
-.aba{
-   cursor: pointer;
-   border: none;
-}
+ .sidenav-content {
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+ }

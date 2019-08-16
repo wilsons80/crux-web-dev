@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+
+
+    <div fxLayout="column" fxLayoutAlign="center stretch" fxFill>
+        <div fxLayout="row" fxLayoutAlign="space-between stretch">
+            <div  fxLayout="row" fxLayoutAlign="start center">
+                <button mat-button (click)="menuPrincipalToggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <button mat-button routerLink="" routerLinkActive="router-link-active">
+                    <mat-icon>home</mat-icon>
+                    Home
+                </button>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <span class="example-fill-remaining-space">
+                    Crux Web
+                </span>
+            </div>
+
+            <div *ngIf="mostrarMenu" fxLayout="row" fxLayoutAlign="start center">
+                <button mat-button routerLink="" routerLinkActive="router-link-active" (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    Sair
+                </button>
+            </div>
+        </div>
+    </div>
+
+</mat-toolbar>

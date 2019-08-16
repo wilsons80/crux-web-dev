@@ -1,7 +1,6 @@
-import { Router } from '@angular/router';
-import { AutenticadorService } from 'src/app/services/autenticador/autenticador.service';
-import { Component } from '@angular/core';
-import { AuthGuard } from './guards/auth.guard';
+import { MenuPrincipalService } from './services/menuPrincipal/menu-principal.service';
+import { Component, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -11,20 +10,15 @@ import { AuthGuard } from './guards/auth.guard';
 export class AppComponent {
   title = 'crux-web-dev';
   
-  mostrarMenu = false;
+  @ViewChild('menuPrincipal',{static: false}) menuPrincipal: MatDrawer;
 
-  constructor(
-    private authGuard:AuthGuard,
-    private autenticadorService:AutenticadorService,
-    private router:Router
-    ){}
+  showFiller = false;
+  
+  constructor(private menuPrincipalService:MenuPrincipalService){}
 
   ngOnInit(): void {
-    this.authGuard.mostrarMenu.subscribe(resultado => this.mostrarMenu = resultado);
+    this.menuPrincipalService.toggle.subscribe(() => this.menuPrincipal.toggle());
   }
 
-  logout(){
-    this.autenticadorService.logout();
-    this.router.navigate(['login']);
-  }
+  
 }
