@@ -1,3 +1,4 @@
+import { AlunoModule } from './components/aluno/aluno.module';
 import { MenuPrincipalModule } from './components/menu-principal/menu-principal.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -56,7 +57,8 @@ import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar
     MatMenuModule,
     MatExpansionModule,
     MatDividerModule,
-    MenuPrincipalModule
+    MenuPrincipalModule,
+    AlunoModule
   
   ],
   providers: [

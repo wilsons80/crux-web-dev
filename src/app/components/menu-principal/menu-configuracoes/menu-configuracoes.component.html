@@ -11,7 +11,7 @@
     </a>
     <div [hidden]="!isMostrarSubMenu">
             <mat-action-list class="submenu" [@photoState]="currentState">
-                <button mat-list-item style="font-family: initial"> Alterar senha </button>
+                <button mat-list-item [routerLink]="['/novasenha']" routerLinkActive="router-link-active" style="font-family: initial"> Alterar senha </button>
             </mat-action-list>
         </div>
     

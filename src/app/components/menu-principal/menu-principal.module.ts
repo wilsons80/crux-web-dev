@@ -5,6 +5,7 @@ import { MenuPrincipalComponent } from './menu-principal.component';
 import { MatMenuModule, MatButtonModule, MatIconModule, MatExpansionModule, MatExpansionPanel, MatFormFieldModule, MatInputModule, MatRippleModule, MatDividerModule, MatListModule } from '@angular/material';
 import { MenuConfiguracoesComponent } from './menu-configuracoes/menu-configuracoes.component';
 import { MenuCadastroComponent } from './menu-cadastro/menu-cadastro.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -20,7 +21,8 @@ import { MenuCadastroComponent } from './menu-cadastro/menu-cadastro.component';
     MatButtonModule,
     MatInputModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    RouterModule
     
   ],
   exports:[MenuPrincipalComponent]
