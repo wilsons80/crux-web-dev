@@ -1,3 +1,4 @@
+import { MenuPrincipalModule } from './components/menu-principal/menu-principal.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,7 +20,6 @@ import { LoadingPopupModule } from './components/common/loading-popup/loading-po
 import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { NovaSenhaModule } from './components/nova-senha/nova-senha.module';
 import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar-principal.module';
-import { MenuPrincipalComponent } from './components/menu-principal/menu-principal.component';
 
 
 @NgModule({
@@ -30,7 +30,6 @@ import { MenuPrincipalComponent } from './components/menu-principal/menu-princip
     AppComponent,
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
-    MenuPrincipalComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +55,8 @@ import { MenuPrincipalComponent } from './components/menu-principal/menu-princip
     MatSidenavModule,
     MatMenuModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MenuPrincipalModule
   
   ],
   providers: [

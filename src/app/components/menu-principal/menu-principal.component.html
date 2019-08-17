@@ -1,32 +1,13 @@
 <div fxLayout="column" fxLayoutAlign="start none" fxFill>
-  <button  mat-button class="level-1">
-    <div fxLayout="row" fxLayoutAlign="space-between stretch">
-      <div fxLayout="row" fxLayoutAlign="start none">
-        Teste sem sub-menu
-      </div>
-    </div>
-  </button>
+    <mat-nav-list style="width: 260px">
+        <a mat-list-item >
+            <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
+        </a>
+        <menu-cadastro></menu-cadastro>
+        <mat-divider></mat-divider>
 
-  <button  mat-button class="level-1"  [matMenuTriggerFor]="testeSubMenu" >
-    <div fxLayout="row" fxLayoutAlign="space-between stretch">
-      <div fxLayout="row" fxLayoutAlign="start none">
-        Teste com sub-menu
-      </div>
-      <div fxLayout="row" fxLayoutAlign="start none">
-        <mat-icon style="padding-top: 5px">navigate_next</mat-icon>
-      </div>
-    </div>
-  </button>
-  
-  <mat-menu #testeSubMenu="matMenu">
-      <button mat-menu-item >
-        <mat-icon>description</mat-icon>
-        SubMenu
-      </button>
-      
-    </mat-menu>
-    
-
-  <mat-divider></mat-divider>
+        <menu-configuracoes></menu-configuracoes>
+        
+    </mat-nav-list>
 
 </div>

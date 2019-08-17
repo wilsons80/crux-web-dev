@@ -2,12 +2,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuPrincipalComponent } from './menu-principal.component';
-import { MatMenuModule, MatButtonModule, MatIconModule, MatExpansionModule, MatExpansionPanel, MatFormFieldModule, MatInputModule, MatRippleModule, MatDividerModule } from '@angular/material';
+import { MatMenuModule, MatButtonModule, MatIconModule, MatExpansionModule, MatExpansionPanel, MatFormFieldModule, MatInputModule, MatRippleModule, MatDividerModule, MatListModule } from '@angular/material';
+import { MenuConfiguracoesComponent } from './menu-configuracoes/menu-configuracoes.component';
+import { MenuCadastroComponent } from './menu-cadastro/menu-cadastro.component';
 
 
 
 @NgModule({
-  declarations: [MenuPrincipalComponent],
+  declarations: [MenuPrincipalComponent, MenuConfiguracoesComponent, MenuCadastroComponent],
   imports: [
     CommonModule,
     MatMenuModule,
@@ -17,8 +19,10 @@ import { MatMenuModule, MatButtonModule, MatIconModule, MatExpansionModule, MatE
     MatExpansionModule,
     MatButtonModule,
     MatInputModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule
     
-  ]
+  ],
+  exports:[MenuPrincipalComponent]
 })
 export class MenuPrincipalModule { }

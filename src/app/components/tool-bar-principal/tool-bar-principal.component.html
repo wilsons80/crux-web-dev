@@ -4,12 +4,8 @@
     <div fxLayout="column" fxLayoutAlign="center stretch" fxFill>
         <div fxLayout="row" fxLayoutAlign="space-between stretch">
             <div  fxLayout="row" fxLayoutAlign="start center">
-                <button mat-button (click)="menuPrincipalToggle()">
+                <button *ngIf="mostrarMenu" mat-button (click)="menuPrincipalToggle()">
                     <mat-icon>menu</mat-icon>
-                </button>
-                <button mat-button routerLink="" routerLinkActive="router-link-active">
-                    <mat-icon>home</mat-icon>
-                    Home
                 </button>
             </div>
             <div fxLayout="row" fxLayoutAlign="start center">

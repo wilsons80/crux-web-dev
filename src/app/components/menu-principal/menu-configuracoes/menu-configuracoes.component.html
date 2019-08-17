@@ -1,0 +1,17 @@
+<a mat-list-item (click)="toggle()">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
+            <div fxLayout="row" fxLayoutAlign="start stretch">
+                <mat-icon>settings</mat-icon>
+                <span class="nav-caption">Configurações</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start stretch">
+                <mat-icon style="padding-top: 2px">chevron_right</mat-icon>
+            </div>
+        </div>
+    </a>
+    <div [hidden]="!isMostrarSubMenu">
+            <mat-action-list class="submenu" [@photoState]="currentState">
+                <button mat-list-item style="font-family: initial"> Alterar senha </button>
+            </mat-action-list>
+        </div>
+    

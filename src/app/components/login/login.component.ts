@@ -34,7 +34,10 @@ export class LoginComponent implements OnInit {
     this.autenticadorService.login(this.usuario).pipe(
       finalize(() => this.loadingPopupService.closeDialog())
     ).subscribe(
-      success => this.router.navigate(['home']),
+      success => {
+        console.log(success)
+        this.router.navigate(['home'])
+      },
       error => this.error = error
     );
   }
