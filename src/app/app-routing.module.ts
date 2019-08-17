@@ -8,11 +8,11 @@ import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-enc
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'novasenha', component: NovaSenhaComponent},
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  { path: '', redirectTo: '/home', pathMatch:'full'},
-  { path: '**', component: PaginaNaoEncontradaComponent}
+  { path: 'novasenha', component: NovaSenhaComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  
 ];
 
 @NgModule({

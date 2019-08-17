@@ -11,7 +11,7 @@
     </a>
     <div [hidden]="!isMostrarSubMenu">
         <mat-action-list class="submenu" [@photoState]="currentState">
-            <button mat-list-item style="font-family: initial"> Cadastrar Aluno </button>
+            <button mat-list-item style="font-family: initial" [routerLink]="['/aluno']" routerLinkActive="router-link-active"> Cadastrar Aluno </button>
         </mat-action-list>
     </div>
     
