@@ -7,27 +7,15 @@
             <h1 class="sign-in-title-greeting">Alterar Senha</h1>
          </div>  
                 
-         <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center" >
-             <mat-form-field style="width: 100%">
-                <input matInput name="userName" [(ngModel)]="login" placeholder="Insira seu login" required>
-            </mat-form-field>
-         </div>     
-          
-          <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center" >
-            <mat-form-field style="width: 100%">
-                <input matInput name="senha" [(ngModel)]="senhaAtual" type="password" placeholder="Insira sua senha atual" required>
-            </mat-form-field>
-          </div>     
-          
-          <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center" >
                 <mat-form-field style="width: 100%">
                     <input matInput name="senha" [(ngModel)]="novaSenha" type="password" placeholder="Insira nova senha" required>
+                    <mat-icon matSuffix>lock</mat-icon>
                 </mat-form-field>
-           </div>     
 
            <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center" >
                 <mat-form-field style="width: 100%">
                     <input matInput name="senha" [(ngModel)]="confirmacaoNovaSenha" type="password" placeholder="Confirme a nova senha" required>
+                    <mat-icon matSuffix>lock</mat-icon>
                 </mat-form-field>
            </div>     
 

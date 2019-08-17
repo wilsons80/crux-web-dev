@@ -20,18 +20,12 @@ export class NovaSenhaComponent implements OnInit {
 
   alterarSenha(){
     
-    //TODO Ele deve ir la no back validar as credenciais do usuario
-    //verificarUsuario();
     
     if(this.novaSenha !== this.confirmacaoNovaSenha) {
       this.toastService.showAlerta("As novas senhas são diferentes.");
       return;
     }
 
-    if(this.senhaAtual === this.novaSenha) {
-      this.toastService.showAlerta("A nova senha deve ser diferente da atual.");
-      return;
-    }
     //TODO chamar o metodo do Backend
     this.toastService.showAlerta("Metodo não implementado no backend.");
     
