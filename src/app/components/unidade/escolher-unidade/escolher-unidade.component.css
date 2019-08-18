@@ -1,0 +1,44 @@
+.tela-escolher-unidade{
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+    
+}
+
+.chaves{
+    height: 100px;
+    width: 100px;
+    background: url(../../../../assets/icones/chaves.png) no-repeat 0 0;
+    background-size: auto 100px;
+    cursor: pointer;
+    border: none;
+    margin: auto;
+    vertical-align: middle;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.botao{
+    height: 200px;
+    width: 250px
+}
+
+.botoes{
+    padding-left: 50px;
+    padding-bottom: 50px;
+    padding-top: 30px;
+    padding-right: 50px;
+}
+
+.sign-in-title-greeting {
+    display: block;
+    font-size: 1.05882em;
+    font-weight: 500;
+    letter-spacing: normal;
+}
+
+.center {
+    margin-top: 20px;
+    text-align: center;
+  }

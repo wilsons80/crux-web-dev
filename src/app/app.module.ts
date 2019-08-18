@@ -21,6 +21,7 @@ import { LoadingPopupModule } from './components/common/loading-popup/loading-po
 import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { NovaSenhaModule } from './components/nova-senha/nova-senha.module';
 import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar-principal.module';
+import { UnidadeModule } from './components/unidade/unidade.module';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar
     MatExpansionModule,
     MatDividerModule,
     MenuPrincipalModule,
-    AlunoModule
+    AlunoModule,
+    UnidadeModule
   
   ],
   providers: [

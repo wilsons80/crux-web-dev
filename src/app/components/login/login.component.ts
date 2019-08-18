@@ -1,3 +1,4 @@
+import { ParamService } from './../../services/param/param.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private autenticadorService: AutenticadorService,
     private router: Router,
-    private loadingPopupService: LoadingPopupService
+    private loadingPopupService: LoadingPopupService,
+    private paramService:ParamService
   ) { }
 
   ngOnInit() {
@@ -33,10 +35,15 @@ export class LoginComponent implements OnInit {
     this.loadingPopupService.mostrarDialog();
     this.autenticadorService.login(this.usuario).pipe(
       finalize(() => this.loadingPopupService.closeDialog())
-    ).subscribe(
-      success => {
-        console.log(success)
-        this.router.navigate(['home'])
+    ).subscribe( (usuario:any) => {
+        
+      if(usuario.unidades.length === 1) this.router.navigate(['home'])
+      
+      if(usuario.unidades.length > 1) {
+        this.paramService.setObjeto(usuario.unidades);
+        this.router.navigate(['unidade/escolher']);
+      }
+
       },
       error => this.error = error
     );
