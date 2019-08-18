@@ -1,0 +1,4 @@
+export enum Modulos{
+    CADASTRO_CURSOS = "CADASTRO_CURSOS",
+    CADASTRO_ALUNOS = "CADASTRO_ALUNOS"
+}

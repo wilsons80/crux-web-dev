@@ -1,9 +1,14 @@
+{{modulosUsuarioService.acessos | json}}
 <div fxLayout="column" fxLayoutAlign="start none" fxFill>
     <mat-nav-list style="width: 260px">
         <a mat-list-item [routerLink]="">
             <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
         </a>
-        <menu-cadastro></menu-cadastro>
+        <menu-consultar></menu-consultar>
+        <menu-cadastrar></menu-cadastrar>
+        <menu-alterar></menu-alterar>
+        <menu-deletar></menu-deletar>
+
         <mat-divider></mat-divider>
 
         <menu-configuracoes></menu-configuracoes>

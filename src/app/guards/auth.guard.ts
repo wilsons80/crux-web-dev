@@ -1,7 +1,9 @@
+import { ModulosUsuarioService } from 'src/app/services/modulos/modulos-usuario.service';
 import { Injectable, EventEmitter } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AutenticadorService } from '../services/autenticador/autenticador.service';
 import { Observable } from 'rxjs';
+import { AcessoService } from '../services/acesso/acesso.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,10 @@ export class AuthGuard implements CanActivate {
 
   constructor(
     private autenticadorService: AutenticadorService,
-    private router: Router) { }
+    private router: Router,
+    private acessoService:AcessoService,
+    private modulosUsuarioService:ModulosUsuarioService
+    ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
     if (this.autenticadorService.isLoggedIn()) {
@@ -23,7 +28,13 @@ export class AuthGuard implements CanActivate {
       if(!route.routeConfig.path.includes('unidade/escolher')){
         this.mostrarMenu.emit(true);
       }
+
+      let idUnidade = route.params.idUnidade;
       
+       this.acessoService.getAllAcessos(idUnidade).subscribe(acessos => {
+        this.setarMenuConformeAcessos(acessos);
+       })
+
       return true;
     } else {
       this.autenticadorService.logout();
@@ -32,5 +43,10 @@ export class AuthGuard implements CanActivate {
 
       return false;
     }
+  }
+
+  
+  setarMenuConformeAcessos(acessos){
+    this.modulosUsuarioService.setAcessos(acessos);
   }
 }

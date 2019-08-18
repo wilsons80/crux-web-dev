@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
   error: any;
-
+  
+  //TODO enquanto nao ajusta o TO;
+  idUnidade = 1; 
  
   constructor(
     private autenticadorService: AutenticadorService,
@@ -27,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.autenticadorService.isLoggedIn) {
-      this.router.navigate(['home']);
+      this.router.navigate([`home/${this.idUnidade}`]);
     }
   }
 
@@ -37,7 +39,7 @@ export class LoginComponent implements OnInit {
       finalize(() => this.loadingPopupService.closeDialog())
     ).subscribe( (usuario:any) => {
         
-      if(usuario.unidades.length === 1) this.router.navigate(['home'])
+      if(usuario.unidades.length === 1) this.router.navigate([`home/${this.idUnidade}`])
       
       if(usuario.unidades.length > 1) {
         this.unidadesUsuarioService.setObjeto(usuario.unidades);

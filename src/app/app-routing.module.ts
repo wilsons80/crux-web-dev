@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'novasenha', component: NovaSenhaComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home/:idUnidade', component: HomeComponent, canActivate: [AuthGuard] },
   
 ];
 

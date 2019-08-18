@@ -1,0 +1,17 @@
+<a mat-list-item (click)="toggle()">
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-icon>delete_forever</mat-icon>
+            <span class="nav-caption">Deletar</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-icon style="padding-top: 2px">chevron_right</mat-icon>
+        </div>
+    </div>
+</a>
+<div [hidden]="!isMostrarSubMenu">
+    <mat-action-list class="submenu" *ngIf="possuiPermissaoCurso()" [@mostrarMenu]="currentState">
+        <button mat-list-item style="font-family: initial" [routerLink]="['/aluno']" routerLinkActive="router-link-active"> Deletar Curso </button>
+    </mat-action-list>
+</div>
+
