@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AutenticadorService } from '../services/autenticador/autenticador.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,15 @@ export class AuthGuard implements CanActivate {
     private autenticadorService: AutenticadorService,
     private router: Router) { }
 
-  canActivate() {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
     if (this.autenticadorService.isLoggedIn()) {
       //TODO Esperando o BackEnd se resolver
       //this.autenticadorService.refreshToken();
-      this.mostrarMenu.emit(true);
+      
+      if(!route.routeConfig.path.includes('unidade/escolher')){
+        this.mostrarMenu.emit(true);
+      }
+      
       return true;
     } else {
       this.autenticadorService.logout();

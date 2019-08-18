@@ -8,7 +8,7 @@
 
         <div fxLayout="column" fxLayoutAlign="space-around stretch" *ngFor="let item of unidades">
 
-            <button mat-raised-button class="botao">
+            <button mat-raised-button class="botao" (click)="getAllAcessos(item.id)"> 
                 <mat-icon class="chaves"></mat-icon>
             </button>
             <div class="center">{{item.nome}}</div>
