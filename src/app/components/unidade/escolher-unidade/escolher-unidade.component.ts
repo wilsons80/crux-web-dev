@@ -1,5 +1,5 @@
-import { ParamService } from './../../../services/param/param.service';
 import { Component, OnInit } from '@angular/core';
+import { UnidadesUsuarioService } from 'src/app/services/unidades-usuario/unidades-usuario.service';
 
 @Component({
   selector: 'app-escolher-unidade',
@@ -11,12 +11,11 @@ export class EscolherUnidadeComponent implements OnInit {
   unidades: any[];
 
   constructor(
-    private paramService:ParamService
+    private unidadesUsuarioService:UnidadesUsuarioService
   ) { }
 
   ngOnInit() {
-    this.unidades = this.paramService.getObjeto(); 
-    this.paramService.setObjeto(null);
+    this.unidades = this.unidadesUsuarioService.getObjeto(); 
   }
 
 }
