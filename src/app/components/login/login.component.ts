@@ -1,4 +1,3 @@
-import { ModulosUsuarioService } from 'src/app/services/modulos/modulos-usuario.service';
 import { UnidadesUsuarioService } from './../../services/unidades-usuario/unidades-usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -23,7 +22,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loadingPopupService: LoadingPopupService,
     private unidadesUsuarioService:UnidadesUsuarioService,
-    private modulosUsuarioService:ModulosUsuarioService
   ) { }
 
   ngOnInit() {

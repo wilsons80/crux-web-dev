@@ -1,4 +1,4 @@
-import { ModulosUsuarioService } from 'src/app/services/modulos/modulos-usuario.service';
+import { ControleMenuService } from './../services/controle-menu/controle-menu.service';
 import { Injectable, EventEmitter } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AutenticadorService } from '../services/autenticador/autenticador.service';
@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
     private autenticadorService: AutenticadorService,
     private router: Router,
     private acessoService:AcessoService,
-    private modulosUsuarioService:ModulosUsuarioService
+    private controleMenuService:ControleMenuService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate {
       
       if(idUnidade){
         this.acessoService.getAllAcessos(idUnidade).subscribe(acessos => {
-          this.modulosUsuarioService.setAcessos(acessos);
+          this.controleMenuService.setAcessos(acessos);
          })
       }
        

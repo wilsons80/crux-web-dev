@@ -4,9 +4,9 @@
             <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
         </a>
         
-        <menu-alunos></menu-alunos>
-        <menu-cursos></menu-cursos>
-        <menu-unidades></menu-unidades>
+        <menu-alunos *ngIf="mostrarMenu(alunos)"></menu-alunos>
+        <menu-cursos *ngIf="mostrarMenu(cursos)"></menu-cursos>
+        <menu-unidades *ngIf="mostrarMenu(unidades)"></menu-unidades>
 
         <mat-divider></mat-divider>
 

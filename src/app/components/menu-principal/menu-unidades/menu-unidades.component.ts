@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { ModulosUsuarioService } from 'src/app/services/modulos/modulos-usuario.service';
 import { Modulos } from 'src/app/core/modulos';
 
 @Component({

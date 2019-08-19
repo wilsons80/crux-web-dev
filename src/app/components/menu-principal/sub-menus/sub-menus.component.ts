@@ -1,7 +1,7 @@
+import { ControleMenuService } from './../../../services/controle-menu/controle-menu.service';
 import { Modulos } from './../../../core/modulos';
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { ModulosUsuarioService } from 'src/app/services/modulos/modulos-usuario.service';
 
 @Component({
   selector: 'sub-menus',
@@ -28,7 +28,7 @@ export class SubMenusComponent implements OnInit {
   @Input() rootRouterLink: String = "/";
 
 
-  constructor(private modulosUsuarioService:ModulosUsuarioService) { }
+  constructor(private controleMenuService:ControleMenuService) { }
 
   isMostrarSubMenu: boolean = false;
 
@@ -36,24 +36,21 @@ export class SubMenusComponent implements OnInit {
   
 
   possuiPermissaoCadastrar(){
-   return true;
-   // return this.modulosUsuarioService.acessoModulos[this.modulo].cadastra === 'S';
+    return this.controleMenuService.acessoModulos[this.modulo].insere === 'S';
   }
   
   possuiPermissaoAlterar(){
-    return true;
-    //  return this.modulosUsuarioService.acessoModulos[this.modulo].altera === 'S';
+    return this.controleMenuService.acessoModulos[this.modulo].altera === 'S';
   }
   
   possuiPermissaoDeletar(){
-    return true;
-    // return this.modulosUsuarioService.acessoModulos[this.modulo].deleta === 'S';
+    return this.controleMenuService.acessoModulos[this.modulo].deleta === 'S';
   }
   
   possuiPermissaoConsultar(){
-    return true;
-   // return this.modulosUsuarioService.acessoModulos[this.modulo].consulta === 'S';
+    return this.controleMenuService.acessoModulos[this.modulo].consulta === 'S';
   }
+
 
   getRouterLinkCadastrar(){
     return `${this.rootRouterLink}/cadastrar`;
