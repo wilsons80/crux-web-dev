@@ -31,9 +31,12 @@ export class AuthGuard implements CanActivate {
 
       let idUnidade = route.params.idUnidade;
       
-       this.acessoService.getAllAcessos(idUnidade).subscribe(acessos => {
-        this.setarMenuConformeAcessos(acessos);
-       })
+      if(idUnidade){
+        this.acessoService.getAllAcessos(idUnidade).subscribe(acessos => {
+          this.modulosUsuarioService.setAcessos(acessos);
+         })
+      }
+       
 
       return true;
     } else {
@@ -45,8 +48,4 @@ export class AuthGuard implements CanActivate {
     }
   }
 
-  
-  setarMenuConformeAcessos(acessos){
-   // this.modulosUsuarioService.setAcessos(acessos);
-  }
 }

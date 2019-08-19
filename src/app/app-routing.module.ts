@@ -5,13 +5,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NovaSenhaComponent } from './components/nova-senha/nova-senha.component';
 import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { EscolherUnidadeComponent } from './components/unidade/escolher-unidade/escolher-unidade.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'novasenha', component: NovaSenhaComponent, canActivate: [AuthGuard] },
-  { path: 'home/:idUnidade', component: HomeComponent, canActivate: [AuthGuard] },
+ 
   
 ];
 
