@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'crux-web-dev';
   
   @ViewChild('menuPrincipal',{static: false}) menuPrincipal: MatDrawer;
+  reason = '';
 
   showFiller = false;
   
@@ -20,5 +21,9 @@ export class AppComponent {
     this.menuPrincipalService.toggle.subscribe(() => this.menuPrincipal.toggle());
   }
 
+  close(reason: string) {
+    this.reason = reason;
+    this.menuPrincipal.close();
+  }
   
 }
