@@ -1,3 +1,4 @@
+import { ModulosUsuarioService } from 'src/app/services/modulos/modulos-usuario.service';
 import { UnidadesUsuarioService } from './../../services/unidades-usuario/unidades-usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -17,19 +18,17 @@ export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario();
   error: any;
   
-  //TODO enquanto nao ajusta o TO;
-  idUnidade = 1; 
- 
   constructor(
     private autenticadorService: AutenticadorService,
     private router: Router,
     private loadingPopupService: LoadingPopupService,
-    private unidadesUsuarioService:UnidadesUsuarioService
+    private unidadesUsuarioService:UnidadesUsuarioService,
+    private modulosUsuarioService:ModulosUsuarioService
   ) { }
 
   ngOnInit() {
     if (this.autenticadorService.isLoggedIn) {
-      this.router.navigate([`home/${this.idUnidade}`]);
+      this.router.navigate([`unidade/escolher/`]);
     }
   }
 
@@ -39,7 +38,10 @@ export class LoginComponent implements OnInit {
       finalize(() => this.loadingPopupService.closeDialog())
     ).subscribe( (usuario:any) => {
         
-      if(usuario.unidades.length === 1) this.router.navigate([`home/${this.idUnidade}`])
+      if(usuario.unidades.length === 1) {
+        this.router.navigate([`home/${usuario.unidades[0].id}`]);
+      }
+      
       
       if(usuario.unidades.length > 1) {
         this.unidadesUsuarioService.setObjeto(usuario.unidades);

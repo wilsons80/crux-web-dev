@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Modulos } from 'src/app/core/modulos';
 
-const cursos = Modulos.CADASTRO_CURSOS;
+
 
 @Component({
   selector: 'menu-cadastrar',
@@ -44,6 +44,6 @@ export class MenuCadastrarComponent implements OnInit {
   }
 
   possuiPermissaoCurso(){
-    return true;
+    return this.modulosUsuarioService.acessoModulos[Modulos.CURSOS].insere === 'N';
   }
 }

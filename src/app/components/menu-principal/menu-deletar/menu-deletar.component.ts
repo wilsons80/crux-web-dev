@@ -3,7 +3,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Modulos } from 'src/app/core/modulos';
 import { ModulosUsuarioService } from 'src/app/services/modulos/modulos-usuario.service';
 
-const cursos = Modulos.CADASTRO_CURSOS;
+const cursos = Modulos.CURSOS;
 
 @Component({
   selector: 'menu-deletar',

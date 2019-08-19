@@ -9,11 +9,15 @@ import { MenuConfiguracoesComponent } from './menu-configuracoes/menu-configurac
 import { MenuConsultarComponent } from './menu-consultar/menu-consultar.component';
 import { MenuDeletarComponent } from './menu-deletar/menu-deletar.component';
 import { MenuPrincipalComponent } from './menu-principal.component';
+import { MenuAlunosComponent } from './menu-alunos/menu-alunos.component';
+import { MenuUnidadesComponent } from './menu-unidades/menu-unidades.component';
+import { MenuCursosComponent } from './menu-cursos/menu-cursos.component';
+import { SubMenusComponent } from './sub-menus/sub-menus.component';
 
 
 
 @NgModule({
-  declarations: [MenuPrincipalComponent, MenuConfiguracoesComponent, MenuCadastrarComponent, MenuAlterarComponent, MenuDeletarComponent, MenuConsultarComponent],
+  declarations: [MenuPrincipalComponent, MenuConfiguracoesComponent, MenuCadastrarComponent, MenuAlterarComponent, MenuDeletarComponent, MenuConsultarComponent, MenuAlunosComponent, MenuUnidadesComponent, MenuCursosComponent, SubMenusComponent],
   imports: [
     CommonModule,
     MatMenuModule,
