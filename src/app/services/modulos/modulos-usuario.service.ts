@@ -5,20 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class ModulosUsuarioService {
 
-  acessos: [];
+  acessoModulos:any = {
+    CADASTRO_CURSOS : {
+      altera: 'S',
+      consulta: 'S',
+      deleta: 'S', 
+      insere: 'S'
+    },
+    
+  };
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-
-  setAcessos(acessos){
-    this.acessos = acessos;
-  }
-
-  getAcessos(){
-    return this.acessos;
   }
 
 }

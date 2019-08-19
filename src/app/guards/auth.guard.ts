@@ -47,6 +47,6 @@ export class AuthGuard implements CanActivate {
 
   
   setarMenuConformeAcessos(acessos){
-    this.modulosUsuarioService.setAcessos(acessos);
+   // this.modulosUsuarioService.setAcessos(acessos);
   }
 }
