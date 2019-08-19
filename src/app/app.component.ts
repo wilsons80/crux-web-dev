@@ -10,21 +10,25 @@ import { MatDrawer } from '@angular/material';
 })
 export class AppComponent {
   title = 'crux-web-dev';
-  
-  @ViewChild('menuPrincipal',{static: false}) menuPrincipal: MatDrawer;
+
+  @ViewChild('menuPrincipal', { static: false }) menuPrincipal: MatDrawer;
   reason = '';
 
   showFiller = false;
-  
-  constructor(private menuPrincipalService:MenuPrincipalService){}
+
+  constructor(private menuPrincipalService: MenuPrincipalService) { }
 
   ngOnInit(): void {
-    this.menuPrincipalService.toggle.subscribe(() => this.menuPrincipal.toggle());
+    this.menuPrincipalService.toggle.subscribe((resposta) => {
+      if (resposta && resposta.logout==true) {
+        this.close()
+      }else
+        this.menuPrincipal.toggle()
+    });
   }
 
-  close(reason: string) {
-    this.reason = reason;
+  close() {
     this.menuPrincipal.close();
   }
-  
+
 }

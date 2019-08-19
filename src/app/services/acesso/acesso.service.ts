@@ -12,7 +12,7 @@ export class AcessoService {
   constructor(private http: HttpClient) { }
   
   getAllAcessos(idUnidade:number){
-    return this.http.get(acessoRootPath + `usuario/2?idUnidade=${idUnidade}`);
+    return this.http.get(acessoRootPath + `usuario/3?idUnidade=${idUnidade}`);
   }
   
 }

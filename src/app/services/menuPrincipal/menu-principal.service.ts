@@ -12,4 +12,8 @@ export class MenuPrincipalService {
   alternar(){
     this.toggle.emit();
   }
+  
+  logout(){
+    this.toggle.emit({logout:true});
+  }
 }
