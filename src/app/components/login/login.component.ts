@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
     this.autenticadorService.login(this.usuario).pipe(
       finalize(() => this.loadingPopupService.closeDialog())
     ).subscribe( (usuario:any) => {
-      console.log("usuario", usuario);
         
       if(usuario.unidades.length === 1) {
         this.router.navigate([`home/${usuario.unidades[0].id}`]);
