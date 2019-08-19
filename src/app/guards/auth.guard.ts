@@ -1,3 +1,4 @@
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { ControleMenuService } from './../services/controle-menu/controle-menu.service';
 import { Injectable, EventEmitter } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
@@ -17,10 +18,13 @@ export class AuthGuard implements CanActivate {
     private autenticadorService: AutenticadorService,
     private router: Router,
     private acessoService:AcessoService,
-    private controleMenuService:ControleMenuService
+    private controleMenuService:ControleMenuService,
+    private unidadeService:UnidadeService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
+      console.log("debug", this.unidadeService.unidades, route);
+      
     if (this.autenticadorService.isLoggedIn()) {
       //TODO Esperando o BackEnd se resolver
       //this.autenticadorService.refreshToken();

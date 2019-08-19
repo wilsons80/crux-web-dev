@@ -1,3 +1,4 @@
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     private autenticadorService: AutenticadorService,
     private router: Router,
     private loadingPopupService: LoadingPopupService,
+    private unidadeService:UnidadeService
   ) { }
 
   ngOnInit() {
@@ -28,12 +30,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  private setarUnidade(unidades){
+    this.unidadeService.unidades = unidades;
+    if(this.unidadeService.unidades.length === 1){
+      this.unidadeService.unidadeSelecionada = this.unidadeService.unidades[0];
+    }
+  }
+
   login() {
     this.loadingPopupService.mostrarDialog();
     this.autenticadorService.login(this.usuario).pipe(
       finalize(() => this.loadingPopupService.closeDialog())
     ).subscribe( (usuario:any) => {
-        
+       this.setarUnidade(usuario.unidades);
       if(usuario.unidades.length === 1) {
         this.router.navigate([`home/${usuario.unidades[0].id}`]);
       }

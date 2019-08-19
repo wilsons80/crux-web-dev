@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private unidadeService:UnidadeService) { }
 
   ngOnInit() {
+    console.log("opa",this.unidadeService.unidades)
   }
 
 }

@@ -7,7 +7,18 @@
                 <button *ngIf="mostrarMenu" mat-button (click)="menuPrincipalToggle()">
                     <mat-icon>menu</mat-icon>
                 </button>
+                <mat-form-field *ngIf="mostrarMenu" style="width: 200px; padding-left: 20px" >
+                    <mat-select name="unidade"
+                                #unidade="ngModel"
+                                [(ngModel)]="unidadeService.unidadeSelecionada"  
+                                >
+                      <mat-option *ngFor="let u of unidadeService.unidades" [value]="u">
+                        {{u.nome}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
             </div>
+            
             <div fxLayout="row" fxLayoutAlign="start center">
                 <span class="example-fill-remaining-space">
                     Crux Web

@@ -15,7 +15,7 @@ export class MenuPrincipalComponent implements OnInit {
     alunos = Modulos.ALUNOS;
     unidades = Modulos.UNIDADES;
 
-  constructor(protected controleMenuService:ControleMenuService) { }
+  constructor(private controleMenuService:ControleMenuService) { }
 
 
   ngOnInit() {
