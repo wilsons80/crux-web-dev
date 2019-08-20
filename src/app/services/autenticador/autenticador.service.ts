@@ -1,4 +1,4 @@
-import { UnidadeService } from 'src/app/services/unidade/unidade.service';
+import { ToolbarPrincipalService } from './../toolbarPrincipal/toolbar-principal.service';
 import { Usuario } from './../../core/usuario';
 import { HttpClient } from '@angular/common/http';
 
@@ -19,7 +19,7 @@ export class AutenticadorService {
 
   constructor(
     private http: HttpClient,
-    private unidadeService:UnidadeService
+    private toolbarPrincipalService:ToolbarPrincipalService
     ) { }
 
   private setSession(authResult) {
@@ -56,7 +56,7 @@ export class AutenticadorService {
       .pipe(
         tap((response:any) => {
           this.setSession(response)
-          this.unidadeService.setarUnidades(response.unidades,idUnidade);
+          this.toolbarPrincipalService.setarUnidades(response.unidades,idUnidade);
         }),
         shareReplay(),
       ).subscribe();

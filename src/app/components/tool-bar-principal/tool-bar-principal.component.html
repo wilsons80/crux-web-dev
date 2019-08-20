@@ -8,10 +8,10 @@
                 <mat-form-field *ngIf="mostrarMenu" style="width: 300px; padding-left: 20px" >
                     <mat-select name="unidade"
                                 #unidade="ngModel"
-                                [(ngModel)]="unidadeService.unidadeSelecionada"  
+                                [(ngModel)]="toolbarPrincipalService.unidadeSelecionada"  
                                 (selectionChange)="mudarUnidade($event.value)"
                                 >
-                      <mat-option *ngFor="let u of unidadeService.unidades" [value]="u">
+                      <mat-option *ngFor="let u of toolbarPrincipalService.unidades" [value]="u">
                         {{u.nome}}
                       </mat-option>
                     </mat-select>

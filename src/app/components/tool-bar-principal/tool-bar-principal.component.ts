@@ -1,10 +1,9 @@
-import { UnidadeService } from 'src/app/services/unidade/unidade.service';
-import { UnidadeModule } from './../unidade/unidade.module';
 import { MenuPrincipalService } from './../../services/menuPrincipal/menu-principal.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { AutenticadorService } from 'src/app/services/autenticador/autenticador.service';
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 
 @Component({
   selector: 'tool-bar-principal',
@@ -21,7 +20,7 @@ export class ToolBarPrincipalComponent implements OnInit {
     private autenticadorService:AutenticadorService,
     private router:Router,
     private menuPrincipalService:MenuPrincipalService,
-    protected unidadeService:UnidadeService
+    protected toolbarPrincipalService:ToolbarPrincipalService
     ) { }
 
   ngOnInit(): void {

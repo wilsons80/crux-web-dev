@@ -9,18 +9,8 @@ const unidadeRootPath = 'api/unidade/';
 })
 export class UnidadeService {
 
-  unidades: any[] = [];
-  unidadeSelecionada: any;
-
   constructor(private http: HttpClient) { }
 
-  setarUnidades(unidades, idUnidade:number) {
-    if(this.unidades.length == 0){
-      this.unidades = unidades;
-    }
-      this.unidadeSelecionada = _.filter(this.unidades, unidade => unidade.id == idUnidade)[0];
-  }
- 
 
   getPorUsuario() {
     return this.http.get(unidadeRootPath + `usuario/`);

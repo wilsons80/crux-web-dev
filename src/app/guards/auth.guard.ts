@@ -2,7 +2,6 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
-import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { AcessoService } from '../services/acesso/acesso.service';
 import { AutenticadorService } from '../services/autenticador/autenticador.service';
 import { ControleMenuService } from './../services/controle-menu/controle-menu.service';
@@ -20,7 +19,6 @@ export class AuthGuard implements CanActivate {
     private router: Router,
     private acessoService: AcessoService,
     private controleMenuService: ControleMenuService,
-    private unidadeService: UnidadeService
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {

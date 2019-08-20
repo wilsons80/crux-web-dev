@@ -1,10 +1,10 @@
-import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { Usuario } from 'src/app/core/usuario';
 import { AutenticadorService } from './../../services/autenticador/autenticador.service';
 import { LoadingPopupService } from './../../services/loadingPopup/loading-popup.service';
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private autenticadorService: AutenticadorService,
     private router: Router,
     private loadingPopupService: LoadingPopupService,
-    private unidadeService:UnidadeService
+    private toolbarPrincipalService:ToolbarPrincipalService
   ) { }
 
   ngOnInit() {
@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
   }
 
   private setarUnidade(unidades){
-    this.unidadeService.unidades = unidades;
-    if(this.unidadeService.unidades.length === 1){
-      this.unidadeService.unidadeSelecionada = this.unidadeService.unidades[0];
+    this.toolbarPrincipalService.unidades = unidades;
+    if(this.toolbarPrincipalService.unidades.length === 1){
+      this.toolbarPrincipalService.unidadeSelecionada = this.toolbarPrincipalService.unidades[0];
     }
   }
 
