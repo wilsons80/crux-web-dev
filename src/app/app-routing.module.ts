@@ -11,7 +11,7 @@ import { EscolherUnidadeComponent } from './components/unidade/escolher-unidade/
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'novasenha', component: NovaSenhaComponent },
+  { path: 'novasenha', component: NovaSenhaComponent, canActivate: [AuthGuard]},
   
 ];
 

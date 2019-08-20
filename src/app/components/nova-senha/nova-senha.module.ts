@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { Usuario } from 'src/app/core/usuario';
 
 
 

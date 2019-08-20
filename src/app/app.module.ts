@@ -22,6 +22,7 @@ import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-enc
 import { NovaSenhaModule } from './components/nova-senha/nova-senha.module';
 import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar-principal.module';
 import { UnidadeModule } from './components/unidade/unidade.module';
+import { ConfirmDialogComponent } from './components/common/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { UnidadeModule } from './components/unidade/unidade.module';
     AppComponent,
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

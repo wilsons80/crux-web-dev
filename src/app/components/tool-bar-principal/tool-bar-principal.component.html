@@ -16,13 +16,15 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
+                  <span [ngClass]="{'centralizado': mostrarMenu }">
+                    Crux Web
+                </span>
             </div>
             
             <div  fxLayout="row" fxLayoutAlign="start center">
-                <span class="example-fill-remaining-space">
-                    Crux Web
+                <span *ngIf="mostrarMenu">
+                    {{toolbarPrincipalService.username}}
                 </span>
-
                 <button mat-button *ngIf="mostrarMenu"  routerLink="" routerLinkActive="router-link-active" (click)="logout()">
                     <mat-icon>exit_to_app</mat-icon>
                     Sair

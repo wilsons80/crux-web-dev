@@ -9,9 +9,11 @@ const unidadeRootPath = 'api/unidade/';
   providedIn: 'root'
 })
 export class ToolbarPrincipalService {
+  
 
   unidades: any[] = [];
   unidadeSelecionada: any;
+  username: string;
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +27,11 @@ export class ToolbarPrincipalService {
 
   getPorUsuario() {
     return this.http.get(unidadeRootPath + `usuario/`);
+  }
+
+  setarUsername(username: any) {
+    this.username = username;
+    
   }
 
 }
