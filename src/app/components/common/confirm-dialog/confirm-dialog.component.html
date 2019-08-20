@@ -1,3 +1,4 @@
+
 <h2 mat-dialog-title>{{pergunta}}</h2>
 
 <mat-dialog-content fxLayout="column">
@@ -6,7 +7,18 @@
     </div>
 </mat-dialog-content>
 
-<mat-dialog-actions>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px">
     <button mat-button (click)="cancela()"> {{textoCancela}}</button>
     <button mat-button (click)="confirma()">{{textoConfirma}}</button>
 </mat-dialog-actions>
+
+
+<!-- <div class="botoes" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px">
+     
+    <button mat-raised-button style="width: 80%" color="primary" routerLink="" routerLinkActive="router-link-active">
+        Cancelar</button>
+
+    <button mat-raised-button style="width: 80%" color="primary" (click)="alterarSenha()"
+        [disabled]="formLogin.invalid">
+        Alterar</button>
+</div> -->

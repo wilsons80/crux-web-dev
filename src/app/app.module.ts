@@ -1,7 +1,7 @@
 import { AlunoModule } from './components/aluno/aluno.module';
 import { MenuPrincipalModule } from './components/menu-principal/menu-principal.module';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './components/login/login.module';
 import { HomeModule } from './components/home/home.module';
-import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatSidenavModule, MatMenuModule, MatExpansionModule, MatDividerModule } from '@angular/material';
+import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatSidenavModule, MatMenuModule, MatExpansionModule, MatDividerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -22,18 +22,21 @@ import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-enc
 import { NovaSenhaModule } from './components/nova-senha/nova-senha.module';
 import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar-principal.module';
 import { UnidadeModule } from './components/unidade/unidade.module';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 import { ConfirmDialogComponent } from './components/common/confirm-dialog/confirm-dialog.component';
 
-
+registerLocaleData(localePt, 'pt-BR');
 @NgModule({
   entryComponents: [
     HttpErrorToastComponent,
+    ConfirmDialogComponent
   ],
   declarations: [
     AppComponent,
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
-    ConfirmDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,11 +65,16 @@ import { ConfirmDialogComponent } from './components/common/confirm-dialog/confi
     MatDividerModule,
     MenuPrincipalModule,
     AlunoModule,
-    UnidadeModule
+    UnidadeModule,
+    MatDialogModule,
+    MatToolbarModule,
+    
   
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true,}
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+
   ],
   bootstrap: [AppComponent]
 })

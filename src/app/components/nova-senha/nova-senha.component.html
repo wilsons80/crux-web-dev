@@ -8,18 +8,18 @@
     </div>
    
     <mat-form-field style="width: 100%">
-            <input matInput name="senha" [(ngModel)]="novaSenha" type="password" placeholder="Insira a senha atual" required>
+            <input matInput name="senhaAtual" [(ngModel)]="senhaAtual" type="password" placeholder="Insira a senha atual" required>
             <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
 
     <mat-form-field style="width: 100%">
-        <input matInput name="senha" [(ngModel)]="novaSenha" type="password" placeholder="Insira nova senha" required>
+        <input matInput name="novaSenha" [(ngModel)]="novaSenha" type="password" placeholder="Insira nova senha" required>
         <mat-icon matSuffix>lock</mat-icon>
     </mat-form-field>
 
     <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center">
         <mat-form-field style="width: 100%">
-            <input matInput name="senha" [(ngModel)]="confirmacaoNovaSenha" type="password"
+            <input matInput name="confirmacaoNovaSenha" [(ngModel)]="confirmacaoNovaSenha" type="password"
                 placeholder="Confirme a nova senha" required>
             <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
