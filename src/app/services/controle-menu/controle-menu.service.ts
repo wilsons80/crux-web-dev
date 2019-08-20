@@ -14,19 +14,26 @@ export class ControleMenuService {
   acessoModulos:any = {
     ALUNOS : {
       mostrarMenu: false,
-      altera: 'S',
-      consulta: 'S',
-      deleta: 'S', 
-      insere: 'S'
+      altera: 'N',
+      consulta: 'N',
+      deleta: 'N', 
+      insere: 'N'
     },
     CURSOS : {
       mostrarMenu: false,
-      altera: 'S',
-      consulta: 'S',
-      deleta: 'S', 
-      insere: 'S'
+      altera: 'N',
+      consulta: 'N',
+      deleta: 'N', 
+      insere: 'N'
     },
     UNIDADES : {
+      mostrarMenu: false,
+      altera: 'N',
+      consulta: 'N',
+      deleta: 'N', 
+      insere: 'N'
+    },
+    ACESSOS : {
       mostrarMenu: false,
       altera: 'S',
       consulta: 'S',
@@ -41,6 +48,7 @@ export class ControleMenuService {
     this.verificaAcessoModulo(acessos,Modulos.ALUNOS);
     this.verificaAcessoModulo(acessos,Modulos.CURSOS);
     this.verificaAcessoModulo(acessos,Modulos.UNIDADES);
+    this.verificaAcessoModulo(acessos,Modulos.ACESSOS);
   }
 
   verificaAcessoModulo(acessos:any, tipoModulo:Modulos){

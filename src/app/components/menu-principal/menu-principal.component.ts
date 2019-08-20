@@ -14,7 +14,7 @@ export class MenuPrincipalComponent implements OnInit {
     cursos = Modulos.CURSOS;
     alunos = Modulos.ALUNOS;
     unidades = Modulos.UNIDADES;
-    acesso = Modulos.ACESSOS;
+    acessos = Modulos.ACESSOS;
 
   constructor(private controleMenuService:ControleMenuService) { }
 

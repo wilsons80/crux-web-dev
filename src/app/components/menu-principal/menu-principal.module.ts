@@ -5,9 +5,6 @@ import { MatButtonModule, MatDividerModule, MatExpansionModule, MatIconModule, M
 import { RouterModule } from '@angular/router';
 import { MenuConfiguracoesComponent } from './menu-configuracoes/menu-configuracoes.component';
 import { MenuPrincipalComponent } from './menu-principal.component';
-import { MenuAlunosComponent } from './menu-alunos/menu-alunos.component';
-import { MenuUnidadesComponent } from './menu-unidades/menu-unidades.component';
-import { MenuCursosComponent } from './menu-cursos/menu-cursos.component';
 import { SubMenusComponent } from './sub-menus/sub-menus.component';
 import { MenuModulosComponent } from './menu-modulos/menu-modulos.component';
 
@@ -17,10 +14,8 @@ import { MenuModulosComponent } from './menu-modulos/menu-modulos.component';
   declarations: [
     MenuPrincipalComponent, 
     MenuConfiguracoesComponent, 
-    MenuAlunosComponent, 
-    MenuUnidadesComponent, 
-    MenuCursosComponent, 
-    SubMenusComponent, MenuModulosComponent],
+    SubMenusComponent, 
+    MenuModulosComponent],
   imports: [
     CommonModule,
     MatMenuModule,
