@@ -7,7 +7,7 @@
                 <button *ngIf="mostrarMenu" mat-button (click)="menuPrincipalToggle()">
                     <mat-icon>menu</mat-icon>
                 </button>
-                <mat-form-field *ngIf="mostrarMenu" style="width: 200px; padding-left: 20px" >
+                <mat-form-field *ngIf="mostrarMenu" style="width: 300px; padding-left: 20px" >
                     <mat-select name="unidade"
                                 #unidade="ngModel"
                                 [(ngModel)]="unidadeService.unidadeSelecionada"  
@@ -19,18 +19,16 @@
                   </mat-form-field>
             </div>
             
-            <div fxLayout="row" fxLayoutAlign="start center">
+            <div  fxLayout="row" fxLayoutAlign="start center">
                 <span class="example-fill-remaining-space">
                     Crux Web
                 </span>
-            </div>
 
-            <div *ngIf="mostrarMenu" fxLayout="row" fxLayoutAlign="start center">
-                <button mat-button routerLink="" routerLinkActive="router-link-active" (click)="logout()">
+                <button mat-button *ngIf="mostrarMenu"  routerLink="" routerLinkActive="router-link-active" (click)="logout()">
                     <mat-icon>exit_to_app</mat-icon>
                     Sair
                 </button>
-            </div>
+        </div>
         </div>
     </div>
 
