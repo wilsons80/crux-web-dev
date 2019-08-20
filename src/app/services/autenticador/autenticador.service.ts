@@ -1,3 +1,4 @@
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { Usuario } from './../../core/usuario';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,6 +10,7 @@ import * as jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 
 const autenticadorRootPath = 'api/autenticador/';
+const tokenRootPath = 'api/token/';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,7 @@ export class AutenticadorService {
 
   constructor(
     private http: HttpClient,
+    private unidadeService:UnidadeService
     ) { }
 
   private setSession(authResult) {
@@ -47,11 +50,14 @@ export class AutenticadorService {
     localStorage.removeItem('expires_at');
   }
 
-  refreshToken() {
+  refreshToken(idUnidade) {
     if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
-      return this.http.post(autenticadorRootPath + `refresh-token`, { token: this.token })
+      return this.http.get(tokenRootPath + `refresh-token`)
       .pipe(
-        tap(response => this.setSession(response)),
+        tap((response:any) => {
+          this.setSession(response)
+          this.unidadeService.setarUnidades(response.unidades,idUnidade);
+        }),
         shareReplay(),
       ).subscribe();
     }

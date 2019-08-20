@@ -1,10 +1,11 @@
-import { UnidadeService } from 'src/app/services/unidade/unidade.service';
-import { ControleMenuService } from './../services/controle-menu/controle-menu.service';
-import { Injectable, EventEmitter } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { AutenticadorService } from '../services/autenticador/autenticador.service';
+import { EventEmitter, Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import * as _ from 'lodash';
 import { Observable } from 'rxjs';
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { AcessoService } from '../services/acesso/acesso.service';
+import { AutenticadorService } from '../services/autenticador/autenticador.service';
+import { ControleMenuService } from './../services/controle-menu/controle-menu.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,30 +18,29 @@ export class AuthGuard implements CanActivate {
   constructor(
     private autenticadorService: AutenticadorService,
     private router: Router,
-    private acessoService:AcessoService,
-    private controleMenuService:ControleMenuService,
-    private unidadeService:UnidadeService
-    ) { }
+    private acessoService: AcessoService,
+    private controleMenuService: ControleMenuService,
+    private unidadeService: UnidadeService
+  ) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
-      console.log("debug", this.unidadeService.unidades, route);
-      
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
+
     if (this.autenticadorService.isLoggedIn()) {
-      //TODO Esperando o BackEnd se resolver
-      //this.autenticadorService.refreshToken();
-      
-      if(!route.routeConfig.path.includes('unidade/escolher')){
+      this.autenticadorService.refreshToken(route.params.idUnidade);
+
+      if (!route.routeConfig.path.includes('unidade/escolher')) {
         this.mostrarMenu.emit(true);
       }
 
       let idUnidade = route.params.idUnidade;
       
-      if(idUnidade){
+      if (idUnidade) {
+      
         this.acessoService.getAllAcessos(idUnidade).subscribe(acessos => {
           this.controleMenuService.setAcessos(acessos);
-         })
+        })
       }
-       
+
 
       return true;
     } else {

@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-
-const acessoRootPath = 'api/acesso/';
+const tokenRootPath = 'api/token/';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AcessoService {
+export class TokenService {
 
   constructor(private http: HttpClient) { }
-  
-  getAllAcessos(idUnidade:number){
-    return this.http.get(acessoRootPath + `usuario?idUnidade=${idUnidade}`);
+
+  refreshToken(){
+    return this.http.get(tokenRootPath + "refresh-token/");
   }
-  
 }

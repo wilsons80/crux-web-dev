@@ -26,9 +26,6 @@ export class ToolBarPrincipalComponent implements OnInit {
 
   ngOnInit(): void {
     this.authGuard.mostrarMenu.subscribe(resultado => this.mostrarMenu = resultado);
-    if(this.unidadeService.unidades.length === 1){
-      this.unidadeSelecionada = this.unidadeService.unidades[0];
-    }
   }
 
   logout(){

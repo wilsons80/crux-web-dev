@@ -18,7 +18,7 @@ export class EscolherUnidadeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-   this.unidadeService.getPorUsuario(3).subscribe((unidades:any[]) => {
+   this.unidadeService.getPorUsuario().subscribe((unidades:any[]) => {
      this.unidades = unidades;
    })
   }

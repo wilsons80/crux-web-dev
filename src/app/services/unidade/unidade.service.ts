@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as _ from 'lodash';
 
 const unidadeRootPath = 'api/unidade/';
 
@@ -8,32 +9,23 @@ const unidadeRootPath = 'api/unidade/';
 })
 export class UnidadeService {
 
-  
-  private _unidades: any[] =[];
-  private _unidadeSelecionada: any;
+  unidades: any[] = [];
+  unidadeSelecionada: any;
 
   constructor(private http: HttpClient) { }
 
-  get unidades(): any[] {
-    return this._unidades;
+  setarUnidades(unidades, idUnidade:number) {
+    if(this.unidades.length == 0){
+      this.unidades = unidades;
+    }
+      this.unidadeSelecionada = _.filter(this.unidades, unidade => unidade.id == idUnidade)[0];
   }
-  set unidades(value: any[]) {
-    this._unidades = value;
+ 
+
+  getPorUsuario() {
+    return this.http.get(unidadeRootPath + `usuario/`);
   }
 
-  get unidadeSelecionada(): any {
-    return this._unidadeSelecionada;
-  }
-  set unidadeSelecionada(value: any) {
-    this._unidadeSelecionada = value;
-  }
-
-
-
-  getPorUsuario(idUsuario:number){
-    return this.http.get(unidadeRootPath + `usuario/${idUsuario}`);
-  }
-  
 }
 
 

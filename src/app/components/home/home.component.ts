@@ -8,10 +8,10 @@ import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private unidadeService:UnidadeService) { }
+  constructor() { }
 
   ngOnInit() {
-    console.log("opa",this.unidadeService.unidades)
+    
   }
 
 }
