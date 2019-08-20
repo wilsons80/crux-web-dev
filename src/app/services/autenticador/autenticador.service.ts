@@ -9,6 +9,8 @@ import * as jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 
 const autenticadorRootPath = 'api/autenticador/';
+const tokenRootPath = 'api/token/';
+
 
 @Injectable({
   providedIn: 'root'
@@ -48,8 +50,8 @@ export class AutenticadorService {
   }
 
   refreshToken() {
-    if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
-      return this.http.post(autenticadorRootPath + `refresh-token`, { token: this.token })
+    if (moment().isBetween(this.getExpiration().subtract(3, 'minute'), this.getExpiration())) {
+      return this.http.get(tokenRootPath + `refresh-token`)
       .pipe(
         tap(response => this.setSession(response)),
         shareReplay(),

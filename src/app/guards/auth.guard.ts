@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
       
     if (this.autenticadorService.isLoggedIn()) {
       //TODO Esperando o BackEnd se resolver
-      //this.autenticadorService.refreshToken();
+      this.autenticadorService.refreshToken();
       
       if(!route.routeConfig.path.includes('unidade/escolher')){
         this.mostrarMenu.emit(true);
