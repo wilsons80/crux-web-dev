@@ -1,0 +1,15 @@
+<a mat-list-item (click)="toggle()">
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-icon>{{icone}}</mat-icon>
+            <span class="nav-caption">{{titulo}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-icon style="padding-top: 2px">chevron_right</mat-icon>
+        </div>
+    </div>
+</a>
+<div [hidden]="!isMostrarSubMenu">
+    <sub-menus [modulo]='modulo' [currentState]='currentState'></sub-menus>
+ </div>
+

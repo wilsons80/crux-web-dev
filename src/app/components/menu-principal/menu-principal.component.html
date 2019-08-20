@@ -10,6 +10,10 @@
         <menu-unidades *ngIf="mostrarMenu(unidades)"></menu-unidades>
 
         <mat-divider></mat-divider>
+        <menu-modulos *ngIf="mostrarMenu(alunos)" [modulo]='alunos' icone="person" titulo="Alunos"></menu-modulos>
+        <menu-modulos *ngIf="mostrarMenu(unidades)" [modulo]='unidades' icone="account_balance" titulo="Unidades"></menu-modulos>
+        <menu-modulos *ngIf="mostrarMenu(cursos)" [modulo]='cursos' icone="school" titulo="Cursos"></menu-modulos>
+        <mat-divider></mat-divider>
 
         <menu-configuracoes></menu-configuracoes>
         

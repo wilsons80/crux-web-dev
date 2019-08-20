@@ -9,6 +9,7 @@ import { MenuAlunosComponent } from './menu-alunos/menu-alunos.component';
 import { MenuUnidadesComponent } from './menu-unidades/menu-unidades.component';
 import { MenuCursosComponent } from './menu-cursos/menu-cursos.component';
 import { SubMenusComponent } from './sub-menus/sub-menus.component';
+import { MenuModulosComponent } from './menu-modulos/menu-modulos.component';
 
 
 
@@ -19,7 +20,7 @@ import { SubMenusComponent } from './sub-menus/sub-menus.component';
     MenuAlunosComponent, 
     MenuUnidadesComponent, 
     MenuCursosComponent, 
-    SubMenusComponent],
+    SubMenusComponent, MenuModulosComponent],
   imports: [
     CommonModule,
     MatMenuModule,
