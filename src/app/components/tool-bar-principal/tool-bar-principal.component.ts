@@ -38,4 +38,8 @@ export class ToolBarPrincipalComponent implements OnInit {
     this.menuPrincipalService.alternar();
   }
 
+  mudarUnidade(unidade){
+    console.log(unidade);
+    this.router.navigate(['home',unidade.id]);
+  }
 }
