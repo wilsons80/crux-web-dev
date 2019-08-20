@@ -51,7 +51,7 @@ export class AutenticadorService {
   }
 
   refreshToken(idUnidade) {
-    if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
+    if (moment().isBetween(this.getExpiration().subtract(3, 'minute'), this.getExpiration())) {
       return this.http.get(tokenRootPath + `refresh-token`)
       .pipe(
         tap((response:any) => {
