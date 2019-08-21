@@ -8,6 +8,6 @@
     <mat-action-list class="submenu" *ngIf="possuiPermissao('consulta')" [@mostrarSubMenu]="currentState">
         <button mat-list-item style="font-family: initial" [routerLink]="getRouterLink('consultar')" routerLinkActive="router-link-active"> Consultar </button>
     </mat-action-list>
-    <mat-action-list class="submenu" *ngIf="possuiPermissaoDeletar('deleta')" [@mostrarSubMenu]="currentState">
+    <mat-action-list class="submenu" *ngIf="possuiPermissao('deleta')" [@mostrarSubMenu]="currentState">
         <button mat-list-item style="font-family: initial" [routerLink]="getRouterLink('deletar')" routerLinkActive="router-link-active"> Deletar </button>
     </mat-action-list>
