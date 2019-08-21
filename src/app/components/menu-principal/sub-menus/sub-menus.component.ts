@@ -1,3 +1,4 @@
+import { ToolbarPrincipalService } from './../../../services/toolbarPrincipal/toolbar-principal.service';
 import { ControleMenuService } from './../../../services/controle-menu/controle-menu.service';
 import { Modulos } from './../../../core/modulos';
 import { Component, OnInit, Input } from '@angular/core';
@@ -25,44 +26,30 @@ export class SubMenusComponent implements OnInit {
 
   @Input() modulo: Modulos;
   @Input() currentState: String = "hidden";
-  @Input() rootRouterLink: String = "/";
+  @Input() pathRootRouter:String;
 
 
-  constructor(private controleMenuService:ControleMenuService) { }
+  constructor(
+    private controleMenuService:ControleMenuService,
+    private toolbarPrincipalService:ToolbarPrincipalService
+    ) { }
 
   isMostrarSubMenu: boolean = false;
 
   ngOnInit() {}
   
 
-  possuiPermissaoCadastrar(){
-    return this.controleMenuService.acessoModulos[this.modulo].insere === 'S';
+  possuiPermissao(acao){
+    return this.controleMenuService.acessoModulos[this.modulo][acao] === 'S';
   }
   
-  possuiPermissaoAlterar(){
-    return this.controleMenuService.acessoModulos[this.modulo].altera === 'S';
+  getRouterLink(acao){
+    let idUnidadeAtualSelecionada: number;
+    if(this.toolbarPrincipalService.unidadeSelecionada){
+      idUnidadeAtualSelecionada = this.toolbarPrincipalService.unidadeSelecionada.id;
+    }
+    return `${this.pathRootRouter}/${idUnidadeAtualSelecionada}/${acao}`;
   }
   
-  possuiPermissaoDeletar(){
-    return this.controleMenuService.acessoModulos[this.modulo].deleta === 'S';
-  }
-  
-  possuiPermissaoConsultar(){
-    return this.controleMenuService.acessoModulos[this.modulo].consulta === 'S';
-  }
-
-
-  getRouterLinkCadastrar(){
-    return `${this.rootRouterLink}/cadastrar`;
-  }
-  getRouterLinkAlterar(){
-    return `${this.rootRouterLink}/alterar`;
-  }
-  getRouterLinkDeletar(){
-    return `${this.rootRouterLink}/deletar`;
-  }
-  getRouterLinkConsultar(){
-    return `${this.rootRouterLink}/consultar`;
-  }
 
 }

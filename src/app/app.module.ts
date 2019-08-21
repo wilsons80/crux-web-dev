@@ -1,3 +1,4 @@
+import { AcessoModule } from './components/acesso/acesso.module';
 import { AlunoModule } from './components/aluno/aluno.module';
 import { MenuPrincipalModule } from './components/menu-principal/menu-principal.module';
 import { FormsModule } from '@angular/forms';
@@ -68,6 +69,7 @@ registerLocaleData(localePt, 'pt-BR');
     UnidadeModule,
     MatDialogModule,
     MatToolbarModule,
+    AcessoModule
     
   
   ],

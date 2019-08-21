@@ -11,6 +11,7 @@ export class MenuModulosComponent implements OnInit {
   @Input() modulo:Modulos;
   @Input() icone:String;
   @Input() titulo:String;
+  @Input() pathRootRouter:String;
 
   currentState = "hidden";
   isMostrarSubMenu: boolean = false;

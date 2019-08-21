@@ -5,13 +5,44 @@
             <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
         </a>
         
-        <menu-modulos *ngIf="mostrarMenu(alunos)" [modulo]='alunos' icone="person" titulo="Alunos"></menu-modulos>
-        <menu-modulos *ngIf="mostrarMenu(unidades)" [modulo]='unidades' icone="account_balance" titulo="Unidades"></menu-modulos>
-        <menu-modulos *ngIf="mostrarMenu(cursos)" [modulo]='cursos' icone="school" titulo="Cursos"></menu-modulos>
-        <menu-modulos [modulo]='acessos' icone="no_encryption" titulo="Acessos"></menu-modulos>
+        <!-- MENU ALUNO -->
+        <menu-modulos *ngIf="mostrarMenu(alunos)" 
+                      [modulo]='alunos' 
+                      icone="person" 
+                      titulo="Alunos"
+                      pathRootRouter='aluno'
+                      >
+        </menu-modulos>
+        
+        <!-- MENU UNIDADE -->
+        <menu-modulos *ngIf="mostrarMenu(unidades)" 
+                      [modulo]='unidades' 
+                      icone="account_balance" 
+                      titulo="Unidades"
+                      pathRootRouter='unidade'
+                      >
+        </menu-modulos>
+        
+        <!-- MENU CURSO -->
+        <menu-modulos *ngIf="mostrarMenu(cursos)" 
+                      [modulo]='cursos' 
+                      icone="school" 
+                      titulo="Cursos"
+                      pathRootRouter='curso'
+                      >
+        </menu-modulos>
+        
+        <!-- MENU ACESSO -->
+        <menu-modulos [modulo]='acessos' 
+                      icone="no_encryption" 
+                      titulo="Acessos"
+                      pathRootRouter='acesso'
+                      >
+        </menu-modulos>
 
         <mat-divider></mat-divider>
-
+        
+        <!-- MENU DE CONFIGURAÇOES -->
         <menu-configuracoes></menu-configuracoes>
         
     </mat-nav-list>
