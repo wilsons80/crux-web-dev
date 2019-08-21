@@ -1,1 +1,73 @@
-<p>cadastrar-acesso works!</p>
+<mat-toolbar>Cadastrar Acesso</mat-toolbar>
+
+<form #formCadastro="ngForm" class="mat-elevation-z1 tela-escolher-unidade" style="padding: 10px;">
+
+    <mat-card class="center">{{toolbarPrincipalService.unidadeSelecionada?.nome}}</mat-card>
+    <mat-form-field style="width: 100%; margin-bottom: 10px">
+            <mat-label>Selecione um usuário</mat-label>
+            <mat-select name="usuario" [(ngModel)]="cadastroAcessoTO.idUsuario" required>
+                <mat-option *ngFor="let u of usuarios" [value]="u.id">
+                {{u.nome}}
+            </mat-option>
+            </mat-select>
+    </mat-form-field>
+
+    <div class="botoes" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="70px">
+     
+            <mat-form-field style="width: 100%">
+                    <mat-label>Selecione o modulo</mat-label>
+                    <mat-select name="modulo" [(ngModel)]="cadastroAcessoTO.idModulo" required>
+                        <mat-option *ngFor="let m of modulos" [value]="m.id">
+                        {{m.nome}}
+                    </mat-option>
+                    </mat-select>
+             </mat-form-field>
+
+                <fieldset mat-raised-button 
+                    style="width: 80%" 
+                    color="primary">
+                        
+                    <legend>Acessos:</legend>
+                    <div fxLayout="column" fxLayoutAlign="space-around start" >
+                            <mat-slide-toggle name="cadastrar" [(ngModel)]="cadastroAcessoTO.cadastrar" labelPosition="before" color="primary">
+                                <span style="margin-right: 150px">Cadastrar</span>
+                            </mat-slide-toggle>
+                            <mat-slide-toggle name="alterar" [(ngModel)]="cadastroAcessoTO.alterar" labelPosition="before" color="primary">
+                                    <span style="margin-right: 175px">Alterar</span>
+                                </mat-slide-toggle>
+                            <mat-slide-toggle name="consultar" [(ngModel)]="cadastroAcessoTO.consultar" labelPosition="before" color="primary">
+                                    <span style="margin-right: 153px">Consultar</span>
+                                </mat-slide-toggle>
+                            <mat-slide-toggle name="deletar" [(ngModel)]="cadastroAcessoTO.deletar" labelPosition="before" color="primary">
+                                    <span style="margin-right: 171px">Deletar</span>
+                            </mat-slide-toggle>
+                    </div>
+                 </fieldset>
+
+        </div>
+
+
+    <div class="botoes" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px" style="margin-top: 40px; margin-bottom: 10px">
+     
+            <button mat-raised-button 
+                    style="width: 80%" 
+                    color="primary"
+                    (click)="cancelar()"
+                    >
+                Cancelar</button>
+    
+            <button mat-raised-button 
+                    style="width: 80%" 
+                    color="primary"
+                    (click)="limpar()"
+                    >
+                Limpar</button>
+
+                <button mat-raised-button 
+                    style="width: 80%" 
+                    color="primary"
+                    (click)="cadastrar()"
+                    [disabled]="formCadastro.invalid">
+                Cadastrar</button>
+        </div>
+</form>
