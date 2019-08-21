@@ -39,11 +39,11 @@ export class SubMenusComponent implements OnInit {
   ngOnInit() {}
   
 
-  possuiPermissao(acao){
+  possuiPermissao(acao:string){
     return this.controleMenuService.acessoModulos[this.modulo][acao] === 'S';
   }
   
-  getRouterLink(acao){
+  getRouterLink(acao:string){
     let idUnidadeAtualSelecionada: number;
     if(this.toolbarPrincipalService.unidadeSelecionada){
       idUnidadeAtualSelecionada = this.toolbarPrincipalService.unidadeSelecionada.id;
