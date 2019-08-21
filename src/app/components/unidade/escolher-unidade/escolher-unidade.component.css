@@ -20,7 +20,8 @@
 
 .botao{
     height: 200px;
-    width: 250px
+    width: 250px;
+    
 }
 
 .botoes{
@@ -39,5 +40,6 @@
 
 .center {
     margin-top: 20px;
+    margin-bottom: 20px;
     text-align: center;
   }
