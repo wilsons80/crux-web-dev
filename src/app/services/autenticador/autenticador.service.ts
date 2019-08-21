@@ -55,7 +55,6 @@ export class AutenticadorService {
       return this.http.get(tokenRootPath + `refresh-token`)
       .pipe(
         tap((response:any) => {
-          console.log(response);
           this.setSession(response)
           this.toolbarPrincipalService.setarUnidades(response.unidades,idUnidade);
           this.toolbarPrincipalService.setarUsername(response.username);

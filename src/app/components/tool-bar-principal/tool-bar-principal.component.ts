@@ -38,7 +38,6 @@ export class ToolBarPrincipalComponent implements OnInit {
   }
 
   mudarUnidade(unidade){
-    console.log(unidade);
     this.router.navigate(['home',unidade.id]);
   }
 }

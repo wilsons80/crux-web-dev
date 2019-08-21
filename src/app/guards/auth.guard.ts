@@ -35,6 +35,7 @@ export class AuthGuard implements CanActivate {
       if (idUnidade) {
       
         this.acessoService.getAllAcessos(idUnidade).subscribe(acessos => {
+          console.log("acessos", acessos);
           this.controleMenuService.setAcessos(acessos);
         })
       }

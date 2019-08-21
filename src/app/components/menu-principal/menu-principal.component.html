@@ -6,8 +6,8 @@
         </a>
         
         <!-- MENU ALUNO -->
-        <menu-modulos *ngIf="mostrarMenu(alunos)" 
-                      [modulo]='alunos' 
+        <menu-modulos *ngIf="mostrarMenu(enumModulos.ALUNOS)" 
+                      [modulo]='enumModulos.ALUNOS' 
                       icone="person" 
                       titulo="Alunos"
                       pathRootRouter='aluno'
@@ -15,8 +15,8 @@
         </menu-modulos>
         
         <!-- MENU UNIDADE -->
-        <menu-modulos *ngIf="mostrarMenu(unidades)" 
-                      [modulo]='unidades' 
+        <menu-modulos *ngIf="mostrarMenu(enumModulos.UNIDADES)" 
+                      [modulo]='enumModulos.UNIDADES' 
                       icone="account_balance" 
                       titulo="Unidades"
                       pathRootRouter='unidade'
@@ -24,8 +24,8 @@
         </menu-modulos>
         
         <!-- MENU CURSO -->
-        <menu-modulos *ngIf="mostrarMenu(cursos)" 
-                      [modulo]='cursos' 
+        <menu-modulos *ngIf="mostrarMenu(enumModulos.CURSOS)" 
+                      [modulo]='enumModulos.CURSOS' 
                       icone="school" 
                       titulo="Cursos"
                       pathRootRouter='curso'
@@ -33,7 +33,8 @@
         </menu-modulos>
         
         <!-- MENU ACESSO -->
-        <menu-modulos [modulo]='acessos' 
+        <menu-modulos *ngIf="mostrarMenu(enumModulos.ACESSOS)"
+                      [modulo]='enumModulos.ACESSOS' 
                       icone="no_encryption" 
                       titulo="Acessos"
                       pathRootRouter='acesso'

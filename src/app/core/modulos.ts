@@ -1,6 +1,6 @@
 export enum Modulos{
-    ACESSOS = "ACESSOS",
-    ALUNOS = "ALUNOS",
+    ACESSOS = "ACESSO",
+    ALUNOS = "ALUNO",
     CURSOS = "CURSOS",
-    UNIDADES = "UNIDADES"
+    UNIDADES = "UNIDADE"
 }

@@ -12,7 +12,7 @@ export class ControleMenuService {
   mostrarModuloUnidades = false;
 
   acessoModulos:any = {
-    ALUNOS : {
+    ALUNO : {
       mostrarMenu: false,
       altera: 'N',
       consulta: 'N',
@@ -26,14 +26,14 @@ export class ControleMenuService {
       deleta: 'N', 
       insere: 'N'
     },
-    UNIDADES : {
+    UNIDADE : {
       mostrarMenu: false,
       altera: 'N',
       consulta: 'N',
       deleta: 'N', 
       insere: 'N'
     },
-    ACESSOS : {
+    ACESSO : {
       mostrarMenu: false,
       altera: 'S',
       consulta: 'S',
@@ -59,7 +59,8 @@ export class ControleMenuService {
      this.acessoModulos[tipoModulo].consulta = modulo[0].consulta;
      this.acessoModulos[tipoModulo].deleta = modulo[0].deleta;
      this.acessoModulos[tipoModulo].insere = modulo[0].insere;
-    }
+    }else
+    this.acessoModulos[tipoModulo].mostrarMenu = false;
   }
 
 

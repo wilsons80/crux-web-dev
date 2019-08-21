@@ -11,10 +11,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class MenuPrincipalComponent implements OnInit {
 
-    cursos = Modulos.CURSOS;
-    alunos = Modulos.ALUNOS;
-    unidades = Modulos.UNIDADES;
-    acessos = Modulos.ACESSOS;
+    enumModulos = Modulos;
 
   constructor(private controleMenuService:ControleMenuService) { }
 
