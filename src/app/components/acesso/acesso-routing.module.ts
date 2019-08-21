@@ -8,7 +8,7 @@ import { DeletarAcessoComponent } from './deletar-acesso/deletar-acesso.componen
 
 
 const routes: Routes = [
-  { path: 'acesso/:idUnidade/cadastrar', component: CadastrarAcessoComponent},
+  { path: 'acesso/:idUnidade/cadastrar', component: CadastrarAcessoComponent, canActivate: [AuthGuard]},
   { path: 'acesso/:idUnidade/consultar', component: ConsultarAcessoComponent},
   { path: 'acesso/:idUnidade/deletar', component: DeletarAcessoComponent},
   { path: 'acesso/:idUnidade/alterar', component: AlterarAcessoComponent},
