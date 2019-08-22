@@ -1,3 +1,4 @@
+import { CadastroAcessoTO } from './../../core/cadastroAcessoTO';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,6 +14,10 @@ export class AcessoService {
   
   getAllAcessos(idUnidade:number){
     return this.http.get(acessoRootPath + `usuario?idUnidade=${idUnidade}`);
+  }
+
+  cadastrarAcesso(cadastroAcessoTO:CadastroAcessoTO){
+    return this.http.post(acessoRootPath + "/cadastrar", cadastroAcessoTO);
   }
   
 }

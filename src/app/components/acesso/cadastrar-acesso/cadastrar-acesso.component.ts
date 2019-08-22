@@ -1,3 +1,4 @@
+import { AcessoService } from './../../../services/acesso/acesso.service';
 import { Router } from '@angular/router';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { Component, OnInit } from '@angular/core';
@@ -25,18 +26,16 @@ export class CadastrarAcessoComponent implements OnInit {
 
   constructor(
     protected toolbarPrincipalService: ToolbarPrincipalService,
-    private router:Router
+    private router:Router,
+    private acessoService:AcessoService
     ) { }
 
   ngOnInit() { }
 
   cadastrar() {
-    this.cadastroAcessoTO.idUsuario = null;
-    this.cadastroAcessoTO.idModulo = null;
-    this.cadastroAcessoTO.cadastrar = false;
-    this.cadastroAcessoTO.alterar = false;
-    this.cadastroAcessoTO.consultar = false;
-    this.cadastroAcessoTO.deletar = false;
+
+    //TODO esperando o backend
+    //this.acessoService.cadastrarAcesso(this.cadastroAcessoTO).subscribe();
   }
 
   limpar() {
