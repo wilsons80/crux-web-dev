@@ -1,5 +1,8 @@
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { ModuloService } from './../../../services/modulo/modulo.service';
+import { UsuarioService } from './../../../services/usuario/usuario.service';
 import { AcessoService } from './../../../services/acesso/acesso.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { CadastroAcessoTO } from 'src/app/core/cadastroAcessoTO';
@@ -12,40 +15,53 @@ import { CadastroAcessoTO } from 'src/app/core/cadastroAcessoTO';
 export class CadastrarAcessoComponent implements OnInit {
 
 
-  usuarios: any[] = [
-    { id: 1, nome: 'Wilson son son' },
-    { id: 2, nome: 'Josué o cidadão de bem' },
-  ]
+  usuarios: any;
 
-  modulos: any[] = [
-    { id: 1, nome: 'Modulozao muito doido' },
-    { id: 2, nome: 'Modulo Lula ta preso babaca' },
-  ]
+  modulos: any;
 
   cadastroAcessoTO: CadastroAcessoTO = new CadastroAcessoTO();
 
   constructor(
     protected toolbarPrincipalService: ToolbarPrincipalService,
     private router:Router,
-    private acessoService:AcessoService
+    private acessoService:AcessoService,
+    private usuarioService:UsuarioService,
+    private activatedRoute: ActivatedRoute,
+    private moduloService:ModuloService,
+    private toastService:ToastService
     ) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.cadastroAcessoTO.idUnidade = this.activatedRoute.snapshot.params.idUnidade,
+    this.usuarioService.getUsuariosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(usuarios => {
+      console.log(usuarios)
+      this.usuarios = usuarios;
+    });
+
+    this.moduloService.getModulosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(modulos => {
+      console.log(modulos)
+      this.modulos = modulos;
+    });
+
+  }
 
   cadastrar() {
 
-    //TODO esperando o backend
-    //this.acessoService.cadastrarAcesso(this.cadastroAcessoTO).subscribe();
+    this.acessoService.cadastrarAcesso(this.cadastroAcessoTO).subscribe(() => {
+      this.toastService.showSucesso("Usuário Cadastrado com sucesso");
+      this.router.navigate(['home', this.cadastroAcessoTO.idUnidade ]);
+    });
   }
 
   limpar() {
     this.cadastroAcessoTO = {
+      idUnidade: this.activatedRoute.snapshot.params.idUnidade,
       idUsuario: null,
       idModulo: null,
-      cadastrar: false,
-      alterar: false,
-      consultar: false,
-      deletar: false,
+      insere: false,
+      altera: false,
+      consulta: false,
+      deleta: false,
     }
   }
 

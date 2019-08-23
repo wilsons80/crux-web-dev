@@ -13,11 +13,11 @@ export class AcessoService {
   constructor(private http: HttpClient) { }
   
   getAllAcessos(idUnidade:number){
-    return this.http.get(acessoRootPath + `usuario?idUnidade=${idUnidade}`);
+    return this.http.get(acessoRootPath + `usuario/unidade/${idUnidade}`);
   }
 
   cadastrarAcesso(cadastroAcessoTO:CadastroAcessoTO){
-    return this.http.post(acessoRootPath + "/cadastrar", cadastroAcessoTO);
+    return this.http.post(acessoRootPath , cadastroAcessoTO);
   }
   
 }

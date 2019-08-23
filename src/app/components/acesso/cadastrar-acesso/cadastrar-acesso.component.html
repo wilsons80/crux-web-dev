@@ -6,8 +6,8 @@
     <mat-form-field style="width: 100%; margin-bottom: 10px">
             <mat-label>Selecione um usuário</mat-label>
             <mat-select name="usuario" [(ngModel)]="cadastroAcessoTO.idUsuario" required>
-                <mat-option *ngFor="let u of usuarios" [value]="u.id">
-                {{u.nome}}
+                <mat-option *ngFor="let u of usuarios" [value]="u.idUsuario">
+                {{u.nomeCompleto}}
             </mat-option>
             </mat-select>
     </mat-form-field>
@@ -17,7 +17,7 @@
             <mat-form-field style="width: 100%">
                     <mat-label>Selecione o modulo</mat-label>
                     <mat-select name="modulo" [(ngModel)]="cadastroAcessoTO.idModulo" required>
-                        <mat-option *ngFor="let m of modulos" [value]="m.id">
+                        <mat-option *ngFor="let m of modulos" [value]="m.idModulo">
                         {{m.nome}}
                     </mat-option>
                     </mat-select>
@@ -29,16 +29,16 @@
                         
                     <legend>Acessos:</legend>
                     <div fxLayout="column" fxLayoutAlign="space-around start" >
-                            <mat-slide-toggle name="cadastrar" [(ngModel)]="cadastroAcessoTO.cadastrar" labelPosition="before" color="primary">
+                            <mat-slide-toggle name="cadastrar" [(ngModel)]="cadastroAcessoTO.insere" labelPosition="before" color="primary">
                                 <span style="margin-right: 150px">Cadastrar</span>
                             </mat-slide-toggle>
-                            <mat-slide-toggle name="alterar" [(ngModel)]="cadastroAcessoTO.alterar" labelPosition="before" color="primary">
+                            <mat-slide-toggle name="alterar" [(ngModel)]="cadastroAcessoTO.altera" labelPosition="before" color="primary">
                                     <span style="margin-right: 175px">Alterar</span>
                                 </mat-slide-toggle>
-                            <mat-slide-toggle name="consultar" [(ngModel)]="cadastroAcessoTO.consultar" labelPosition="before" color="primary">
+                            <mat-slide-toggle name="consultar" [(ngModel)]="cadastroAcessoTO.consulta" labelPosition="before" color="primary">
                                     <span style="margin-right: 153px">Consultar</span>
                                 </mat-slide-toggle>
-                            <mat-slide-toggle name="deletar" [(ngModel)]="cadastroAcessoTO.deletar" labelPosition="before" color="primary">
+                            <mat-slide-toggle name="deletar" [(ngModel)]="cadastroAcessoTO.deleta" labelPosition="before" color="primary">
                                     <span style="margin-right: 171px">Deletar</span>
                             </mat-slide-toggle>
                     </div>
