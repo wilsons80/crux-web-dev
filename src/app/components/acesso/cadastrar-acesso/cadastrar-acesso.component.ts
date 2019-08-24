@@ -19,6 +19,8 @@ export class CadastrarAcessoComponent implements OnInit {
   usuarios: any;
   modulos: any;
   perfis: any;
+  usuario: any;
+  isAtualizar: boolean;
 
   selecaoModulo: boolean = false;
 
@@ -28,7 +30,6 @@ export class CadastrarAcessoComponent implements OnInit {
 
   constructor(
     protected toolbarPrincipalService: ToolbarPrincipalService,
-    private router:Router,
     private acessoService:AcessoService,
     private activatedRoute: ActivatedRoute,
     private moduloService:ModuloService,
@@ -40,24 +41,54 @@ export class CadastrarAcessoComponent implements OnInit {
       this.modulos = data.modulos;
       this.usuarios = data.usuarios;
       this.labelBotao = data.labelBotao;
+      
+      if(data.atualizar){
+        this.isAtualizar = data.atualizar;
+        this.cadastroAcessoTO.idModulo = data.usuario.idModulo;
+        this.cadastroAcessoTO.idUsuario = data.usuario.idUsuario;
+      }
     }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(this.isAtualizar){
+      this.buscarPerfis();
+    }
+    
+  }
+
+
+  cadastrarAtualizar() {
+    if(this.isAtualizar){
+      this.atualizar();
+    } 
+    else {this.cadastrar();}
+  }
+  
+  atualizar() {
+    this.acessoService.alterar(this.cadastroAcessoTO).subscribe(() => {
+      this.toastService.showSucesso("Usuário atualizado com sucesso");
+      this.dialogRef.close();
+    });
+  }
 
   cadastrar() {
-
     this.acessoService.cadastrarAcesso(this.cadastroAcessoTO).subscribe(() => {
       this.toastService.showSucesso("Usuário Cadastrado com sucesso");
-      this.router.navigate(['home', this.cadastroAcessoTO.idUnidade ]);
+      this.dialogRef.close();
     });
   }
 
   limpar() {
-    this.cadastroAcessoTO = {
-      idUnidade: this.activatedRoute.snapshot.params.idUnidade,
-      idUsuario: null,
-      idModulo: null,
-      idGrupoModulo: null
+    if(this.isAtualizar){
+      this.cadastroAcessoTO.idGrupoModulo = null
+    }else {
+
+      this.cadastroAcessoTO = {
+        idUnidade: this.activatedRoute.snapshot.params.idUnidade,
+        idUsuario: null,
+        idModulo: null,
+        idGrupoModulo: null
+      }
     }
     this.selecaoModulo = false;
   }

@@ -13,6 +13,7 @@
             
             <mat-select name="usuario" 
                         [(ngModel)]="cadastroAcessoTO.idUsuario" 
+                        [disabled]="isAtualizar"
                         required>
                 <mat-option *ngFor="let u of usuarios" [value]="u.idUsuario">
                     {{u.nomeCompleto}}
@@ -33,7 +34,7 @@
             <mat-select name="modulo" 
                         [(ngModel)]="cadastroAcessoTO.idModulo" 
                         required 
-                        [disabled]="!cadastroAcessoTO.idUsuario" 
+                        [disabled]="!cadastroAcessoTO.idUsuario || isAtualizar" 
                         (selectionChange)="buscarPerfis()">
                 <mat-option *ngFor="let m of modulos" [value]="m.idModulo">
                     {{m.nome}}
@@ -72,7 +73,7 @@
         <button mat-raised-button style="width: 80%" color="primary" (click)="limpar()">
             Limpar</button>
 
-        <button mat-raised-button style="width: 80%" color="primary" (click)="cadastrar()"
+        <button mat-raised-button style="width: 80%" color="primary" (click)="cadastrarAtualizar()"
             [disabled]="formCadastro.invalid">
             {{labelBotao}}</button>
     </div>

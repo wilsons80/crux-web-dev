@@ -29,7 +29,13 @@ export class AcessoService {
   cadastrarAcesso(cadastroAcessoTO:CadastroAcessoTO){
     return this.http.post(acessoRootPath , cadastroAcessoTO);
   }
+
+  alterar(cadastroAcessoTO:CadastroAcessoTO){
+    return this.http.put(acessoRootPath , cadastroAcessoTO);
+  }
+  
+  excluir(idUsuarioGrupo:number){
+    return this.http.delete(acessoRootPath + `${idUsuarioGrupo}`);
+  }
   
 }
-
-
