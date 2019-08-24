@@ -23,7 +23,7 @@
         <mat-icon>view_module</mat-icon>
         <mat-form-field style="width: 100%">
             <mat-label>Selecione o modulo</mat-label>
-            <mat-select name="modulo" [(ngModel)]="cadastroAcessoTO.idModulo" required>
+            <mat-select name="modulo" [(ngModel)]="cadastroAcessoTO.idModulo" required disabled>
                 <mat-option *ngFor="let m of modulos" [value]="m.idModulo">
                     {{m.nome}}
                 </mat-option>

@@ -1,3 +1,4 @@
+import { ControleMenuService } from './../../services/controle-menu/controle-menu.service';
 import { ModuloService } from './../../services/modulo/modulo.service';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from './../../services/usuario/usuario.service';
@@ -5,11 +6,10 @@ import { CadastrarAcessoComponent } from './cadastrar-acesso/cadastrar-acesso.co
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { CadastroAcessoTO } from 'src/app/core/cadastroAcessoTO';
-import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
+import _ from 'lodash';
 
 const ELEMENT_DATA= [
-  {usuario: 'Josué, o cidade de bem', modulo: 'Curso', perfil: 'o fodão'},
-  {usuario: 'Josué, o cidade de bem', modulo: 'Aluno', perfil: 'oreia'},
+  {usuario: 'Josué, o cidade de bem', modulo: 'ACESSO', perfil: 'o fodão'},
 ];
 
 @Component({
@@ -34,11 +34,12 @@ export class AcessoComponent implements OnInit {
     private dialog: MatDialog,
     private usuarioService:UsuarioService,
     private moduloService:ModuloService,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    protected controleMenuService:ControleMenuService
     ) { }
 
   ngOnInit() {
-    console.log(this.activatedRoute);
+    console.log("controle",this.controleMenuService);
     
     this.cadastroAcessoTO.idUnidade = this.activatedRoute.snapshot.params.idUnidade,
     this.usuarioService.getUsuariosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(usuarios => {
@@ -49,6 +50,7 @@ export class AcessoComponent implements OnInit {
     this.moduloService.getModulosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(modulos => {
       console.log(modulos)
       this.modulos = modulos;
+      this.cadastroAcessoTO.idModulo = _.filter(modulos, modulo => modulo.nome == 'ACESSO')[0].idModulo
     });
     
   }
@@ -62,7 +64,8 @@ export class AcessoComponent implements OnInit {
         usuarios: this.usuarios,
         modulos: this.modulos,
         labelBotao: labelBotao,
-        usuario: usuario
+        usuario: usuario,
+        idModulo:  this.cadastroAcessoTO.idModulo
       }
     });
 
@@ -79,6 +82,9 @@ export class AcessoComponent implements OnInit {
     
   }
 
+  mostrarAcao(acao:string){
+    return this.controleMenuService.acessoModulos['ACESSO'][acao] == 'S'
+  }
   
 
 }

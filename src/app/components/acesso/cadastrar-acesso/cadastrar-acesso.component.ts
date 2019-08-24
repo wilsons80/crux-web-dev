@@ -39,6 +39,7 @@ export class CadastrarAcessoComponent implements OnInit {
       this.modulos = data.modulos;
       this.usuarios = data.usuarios;
       this.labelBotao = data.labelBotao;
+      this.cadastroAcessoTO.idModulo = data.idModulo
     }
 
   ngOnInit() {}
@@ -55,7 +56,7 @@ export class CadastrarAcessoComponent implements OnInit {
     this.cadastroAcessoTO = {
       idUnidade: this.activatedRoute.snapshot.params.idUnidade,
       idUsuario: null,
-      idModulo: null,
+      idModulo: this.cadastroAcessoTO.idModulo,
       idPerfil: null
     }
   }
