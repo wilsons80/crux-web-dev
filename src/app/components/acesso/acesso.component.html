@@ -1,0 +1,57 @@
+<mat-toolbar>Acesso</mat-toolbar>
+<div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="padding: 10px 10px 30px">
+        <div>
+            <button mat-fab color="primary" (click)="abrirDialogCadastrar()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div>Cadastrar novo acesso</div>
+    </div>
+
+
+
+    <form #formConsultarAcesso="ngForm" class="mat-elevation-z1 painel-consultar">
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px"
+            style="margin-top: 40px; margin-bottom: 10px">
+            <mat-icon>person</mat-icon>
+            <mat-form-field style="width: 80%; margin-left: 100px; margin-top: 20px">
+                <mat-label>Selecione um usuário</mat-label>
+                <mat-select name="usuario" required>
+                    <mat-option *ngFor="let u of usuarios" [value]="u.idUsuario">
+                        {{u.nomeCompleto}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px"
+            style="margin-top: 40px; margin-bottom: 10px">
+            <mat-icon>view_module</mat-icon>
+        <mat-form-field style="width: 80%; margin-left: 100px; margin-top: 20px">
+            <mat-label>Selecione modulo</mat-label>
+            <mat-select name="usuario">
+                <mat-option *ngFor="let m of modulos" [value]="m.idModulo">
+                    {{m.descricao}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+        <div class="botoes" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px"
+            style="margin-bottom: 10px; margin-right: 80px; padding-bottom: 30px">
+
+            <button mat-raised-button style="width: 25%; " color="primary" (click)="consultar()">
+                consultar</button>
+
+        </div>
+
+
+
+
+
+    </form>
+
+
+</div>

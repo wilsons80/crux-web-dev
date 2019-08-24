@@ -1,3 +1,5 @@
+import { ToolbarPrincipalService } from './../../../services/toolbarPrincipal/toolbar-principal.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { Modulos } from 'src/app/core/modulos';
 
@@ -16,17 +18,23 @@ export class MenuModulosComponent implements OnInit {
   currentState = "hidden";
   isMostrarSubMenu: boolean = false;
   
-  constructor() { }
+  constructor(
+    private router:Router,
+    private toolbarPrincipalService:ToolbarPrincipalService,
+    private activatedRoute:ActivatedRoute
+    ) { }
 
   ngOnInit() {
   }
 
-  toggle(){
-    this.isMostrarSubMenu = !this.isMostrarSubMenu;
-    if(this.isMostrarSubMenu){
-      this.currentState = 'show';
-    }else
-      this.currentState = 'hidden';
+  
+  getRouterLink(){
+    
+    let idUnidadeAtualSelecionada: number;
+    if(this.toolbarPrincipalService.unidadeSelecionada){
+      idUnidadeAtualSelecionada = this.toolbarPrincipalService.unidadeSelecionada.id;
+    }
+    return `${this.pathRootRouter}/${idUnidadeAtualSelecionada}/`;
   }
 
 }

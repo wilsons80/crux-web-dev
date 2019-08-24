@@ -4,8 +4,9 @@ import { UsuarioService } from './../../../services/usuario/usuario.service';
 import { AcessoService } from './../../../services/acesso/acesso.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CadastroAcessoTO } from 'src/app/core/cadastroAcessoTO';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-cadastrar-acesso',
@@ -28,22 +29,16 @@ export class CadastrarAcessoComponent implements OnInit {
     private usuarioService:UsuarioService,
     private activatedRoute: ActivatedRoute,
     private moduloService:ModuloService,
-    private toastService:ToastService
-    ) { }
+    private toastService:ToastService,
+    private dialogRef: MatDialogRef<CadastrarAcessoComponent>,
+    @Inject(MAT_DIALOG_DATA) data
+    ) {
+      this.cadastroAcessoTO.idUnidade = data.idUnidade;
+      this.modulos = data.modulos;
+      this.usuarios = data.usuarios;
+    }
 
-  ngOnInit() { 
-    this.cadastroAcessoTO.idUnidade = this.activatedRoute.snapshot.params.idUnidade,
-    this.usuarioService.getUsuariosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(usuarios => {
-      console.log(usuarios)
-      this.usuarios = usuarios;
-    });
-
-    this.moduloService.getModulosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(modulos => {
-      console.log(modulos)
-      this.modulos = modulos;
-    });
-
-  }
+  ngOnInit() {}
 
   cadastrar() {
 
@@ -58,15 +53,13 @@ export class CadastrarAcessoComponent implements OnInit {
       idUnidade: this.activatedRoute.snapshot.params.idUnidade,
       idUsuario: null,
       idModulo: null,
-      insere: false,
-      altera: false,
-      consulta: false,
-      deleta: false,
+      idPerfil: null
     }
   }
 
   cancelar(){
-    this.router.navigate(['home', this.toolbarPrincipalService.unidadeSelecionada.id ]);
+    this.dialogRef.close();
+    
   }
 
 }
