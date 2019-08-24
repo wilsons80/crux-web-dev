@@ -50,7 +50,6 @@ export class AcessoComponent implements OnInit {
     this.moduloService.getModulosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(modulos => {
       console.log(modulos)
       this.modulos = modulos;
-      this.cadastroAcessoTO.idModulo = _.filter(modulos, modulo => modulo.nome == 'ACESSO')[0].idModulo
     });
     
   }
@@ -65,7 +64,6 @@ export class AcessoComponent implements OnInit {
         modulos: this.modulos,
         labelBotao: labelBotao,
         usuario: usuario,
-        idModulo:  this.cadastroAcessoTO.idModulo
       }
     });
 

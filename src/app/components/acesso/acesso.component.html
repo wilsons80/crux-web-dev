@@ -7,7 +7,7 @@
                 <mat-icon>add</mat-icon>
             </button>
         </div>
-        <div>Cadastrar novo usuário ao módulo Acesso</div>
+        <div>Cadastrar novo acesso ao módulo</div>
     </div>
 
 
@@ -31,7 +31,7 @@
             <mat-icon>view_module</mat-icon>
         <mat-form-field style="width: 80%; margin-left: 100px; margin-top: 20px">
             <mat-label>Selecione modulo</mat-label>
-            <mat-select name="usuario" name='idModulo' [(ngModel)]="cadastroAcessoTO.idModulo" disabled>
+            <mat-select name="usuario" name='idModulo' [(ngModel)]="cadastroAcessoTO.idModulo" >
                 <mat-option *ngFor="let m of modulos"  [value]="m.idModulo">
                     {{m.descricao}}
                 </mat-option>
@@ -42,7 +42,7 @@
         <div class="botoes" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px"
             style="margin-bottom: 10px; margin-right: 80px; padding-bottom: 30px">
 
-            <button mat-raised-button style="width: 25%; " color="primary" (click)="consultar()">
+            <button mat-raised-button style="width: 25%; " color="primary" (click)="consultar()" [disabled]="formConsultarAcesso.invalid">
                 consultar</button>
 
         </div>
