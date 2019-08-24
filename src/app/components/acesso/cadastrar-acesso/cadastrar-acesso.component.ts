@@ -17,8 +17,10 @@ export class CadastrarAcessoComponent implements OnInit {
 
 
   usuarios: any;
-
   modulos: any;
+  perfis: any;
+
+  selecaoModulo: boolean = false;
 
   labelBotao: string;
 
@@ -28,7 +30,6 @@ export class CadastrarAcessoComponent implements OnInit {
     protected toolbarPrincipalService: ToolbarPrincipalService,
     private router:Router,
     private acessoService:AcessoService,
-    private usuarioService:UsuarioService,
     private activatedRoute: ActivatedRoute,
     private moduloService:ModuloService,
     private toastService:ToastService,
@@ -55,14 +56,20 @@ export class CadastrarAcessoComponent implements OnInit {
     this.cadastroAcessoTO = {
       idUnidade: this.activatedRoute.snapshot.params.idUnidade,
       idUsuario: null,
-      idModulo: this.cadastroAcessoTO.idModulo,
-      idPerfil: null
+      idModulo: null,
+      idGrupoModulo: null
     }
+    this.selecaoModulo = false;
   }
 
   cancelar(){
     this.dialogRef.close();
     
+  }
+  
+  buscarPerfis(){
+    this.moduloService.getGrupoModulo(this.cadastroAcessoTO.idUnidade, this.cadastroAcessoTO.idModulo)
+                      .subscribe(perfis =>  this.perfis = perfis);
   }
 
 }

@@ -14,6 +14,8 @@ export class ModuloService {
     return this.http.get(moduloRootPath + `/unidade/${idUnidade}`);
   }
 
+  getGrupoModulo(idUnidade:number,idModulo:number){
+    return this.http.get(moduloRootPath + `/${idModulo}/unidade/${idUnidade}`);
+  }
+
 }
-
-

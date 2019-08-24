@@ -1,6 +1,6 @@
 import { CadastroAcessoTO } from './../../core/cadastroAcessoTO';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 const acessoRootPath = 'api/acesso/';
@@ -16,8 +16,20 @@ export class AcessoService {
     return this.http.get(acessoRootPath + `usuario/unidade/${idUnidade}`);
   }
 
+  getPerfilAcesso(idUnidade:number, idUsuario:number|string, idModulo:number|string){
+    if(idUsuario == undefined) idUsuario = "";
+    if(idModulo == undefined) idModulo = "";
+
+    return this.http.get(acessoRootPath + `perfil/unidade/${idUnidade}`, {params: {
+       usuario: `${idUsuario}`,
+       modulo: `${idModulo}`
+    }});
+  }
+
   cadastrarAcesso(cadastroAcessoTO:CadastroAcessoTO){
     return this.http.post(acessoRootPath , cadastroAcessoTO);
   }
   
 }
+
+

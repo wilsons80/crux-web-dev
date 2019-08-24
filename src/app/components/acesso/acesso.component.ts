@@ -1,3 +1,4 @@
+import { AcessoService } from './../../services/acesso/acesso.service';
 import { ControleMenuService } from './../../services/controle-menu/controle-menu.service';
 import { ModuloService } from './../../services/modulo/modulo.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,9 +9,6 @@ import { MatDialog, MatTableDataSource } from '@angular/material';
 import { CadastroAcessoTO } from 'src/app/core/cadastroAcessoTO';
 import _ from 'lodash';
 
-const ELEMENT_DATA= [
-  {usuario: 'Josué, o cidade de bem', modulo: 'ACESSO', perfil: 'o fodão'},
-];
 
 @Component({
   selector: 'app-acesso',
@@ -35,7 +33,8 @@ export class AcessoComponent implements OnInit {
     private usuarioService:UsuarioService,
     private moduloService:ModuloService,
     private activatedRoute:ActivatedRoute,
-    protected controleMenuService:ControleMenuService
+    protected controleMenuService:ControleMenuService,
+    private acessoService:AcessoService
     ) { }
 
   ngOnInit() {
@@ -73,10 +72,16 @@ export class AcessoComponent implements OnInit {
   }
   
   consultar(){
-    this.mostrarTabela = true;
     this.dataSource = new MatTableDataSource();
-    this.dataSource.data = ELEMENT_DATA;
-    console.log("chamar o backend do consultar");
+    
+    this.acessoService.getPerfilAcesso(this.cadastroAcessoTO.idUnidade,this.cadastroAcessoTO.idUsuario,this.cadastroAcessoTO.idModulo)
+    .subscribe((resposta:any) => {
+      console.log("res", resposta);
+      
+      this.dataSource.data = resposta
+    })
+    
+    this.mostrarTabela = true;
     
   }
 
@@ -84,5 +89,8 @@ export class AcessoComponent implements OnInit {
     return this.controleMenuService.acessoModulos['ACESSO'][acao] == 'S'
   }
   
-
+limpar(){
+  this.cadastroAcessoTO.idUsuario = null;
+  this.cadastroAcessoTO.idModulo = null;
+}
 }

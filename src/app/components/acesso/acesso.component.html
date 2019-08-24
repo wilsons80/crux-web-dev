@@ -18,7 +18,7 @@
             <mat-icon>person</mat-icon>
             <mat-form-field style="width: 80%; margin-left: 100px; margin-top: 20px">
                 <mat-label>Selecione um usuário</mat-label>
-                <mat-select [(ngModel)]="cadastroAcessoTO.idUsuario" name="usuario" required>
+                <mat-select [(ngModel)]="cadastroAcessoTO.idUsuario" name="usuario">
                     <mat-option *ngFor="let u of usuarios" [value]="u.idUsuario">
                         {{u.nomeCompleto}}
                     </mat-option>
@@ -42,8 +42,11 @@
         <div class="botoes" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px"
             style="margin-bottom: 10px; margin-right: 80px; padding-bottom: 30px">
 
-            <button mat-raised-button style="width: 25%; " color="primary" (click)="consultar()" [disabled]="formConsultarAcesso.invalid">
-                consultar</button>
+            
+                <button mat-raised-button style="width: 20%; " color="primary" (click)="limpar()" >
+                        Limpar</button>
+                        <button mat-raised-button style="width: 20%; " color="primary" (click)="consultar()" >
+                                consultar</button>
 
         </div>
     </form>
@@ -53,17 +56,17 @@
           
             <ng-container matColumnDef="usuario">
               <th mat-header-cell *matHeaderCellDef> Usuário </th>
-              <td mat-cell *matCellDef="let element"> {{element.usuario}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.nomeUsuario}} </td>
             </ng-container>
           
             <ng-container matColumnDef="modulo">
               <th mat-header-cell *matHeaderCellDef> Módulo </th>
-              <td mat-cell *matCellDef="let element"> {{element.modulo}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.nomeModulo}} </td>
             </ng-container>
           
             <ng-container matColumnDef="perfil">
               <th mat-header-cell *matHeaderCellDef> Perfil </th>
-              <td mat-cell *matCellDef="let element"> {{element.perfil}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.nomeGrupoModulo}} </td>
             </ng-container>
           
             <ng-container matColumnDef="acoes">

@@ -1,7 +1,7 @@
 export class CadastroAcessoTO {
 
     idUsuario: number;
-    idModulo?: number;
+    idModulo: number;
     idUnidade: number;
-    idPerfil: number
+    idGrupoModulo: number
 }
