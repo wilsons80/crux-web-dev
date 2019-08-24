@@ -7,3 +7,7 @@
     margin-bottom: 20px;
     text-align: center;
   }
+
+  mat-card.center.mat-card{
+    background: rgb(213, 226, 253);
+}

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { AcessoRoutingModule } from './acesso-routing.module';
 import { CadastrarAcessoComponent } from './cadastrar-acesso/cadastrar-acesso.component';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSlideToggleModule, MatListModule, MatSelectModule, MatCardModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSlideToggleModule, MatListModule, MatSelectModule, MatCardModule, MatTableModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AcessoComponent } from './acesso.component';
@@ -26,7 +26,8 @@ import { AcessoComponent } from './acesso.component';
     MatSlideToggleModule,
     MatSelectModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ]
 })
 export class AcessoModule { }

@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+article.acompanhamento-intimacaoes mat-toolbar,
+article.minhas-tarefas mat-toolbar  {
+    background: rgb(255, 255, 255) !important;
+    vertical-align: middle;
+}
+
+article.minhas-tarefas {
+    margin-bottom: 1.3rem;
+}
