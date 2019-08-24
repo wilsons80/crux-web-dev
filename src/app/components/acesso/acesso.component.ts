@@ -34,7 +34,6 @@ export class AcessoComponent implements OnInit {
     private dialog: MatDialog,
     private usuarioService:UsuarioService,
     private moduloService:ModuloService,
-    private toolbarPrincipalService:ToolbarPrincipalService,
     private activatedRoute:ActivatedRoute
     ) { }
 
@@ -54,13 +53,16 @@ export class AcessoComponent implements OnInit {
     
   }
 
-  abrirDialogCadastrar(){
+  abrirDialogCadastrar(labelBotao:string, usuario){
+    console.log(usuario);
     const dialogRef = this.dialog.open(CadastrarAcessoComponent, {
       width: '500px',
       data: {
         idUnidade: this.cadastroAcessoTO.idUnidade,
         usuarios: this.usuarios,
-        modulos: this.modulos
+        modulos: this.modulos,
+        labelBotao: labelBotao,
+        usuario: usuario
       }
     });
 

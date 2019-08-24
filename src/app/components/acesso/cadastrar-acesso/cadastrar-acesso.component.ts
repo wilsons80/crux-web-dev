@@ -20,6 +20,8 @@ export class CadastrarAcessoComponent implements OnInit {
 
   modulos: any;
 
+  labelBotao: string;
+
   cadastroAcessoTO: CadastroAcessoTO = new CadastroAcessoTO();
 
   constructor(
@@ -36,6 +38,7 @@ export class CadastrarAcessoComponent implements OnInit {
       this.cadastroAcessoTO.idUnidade = data.idUnidade;
       this.modulos = data.modulos;
       this.usuarios = data.usuarios;
+      this.labelBotao = data.labelBotao;
     }
 
   ngOnInit() {}
