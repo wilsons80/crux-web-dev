@@ -18,7 +18,7 @@
             <mat-icon>person</mat-icon>
             <mat-form-field style="width: 80%; margin-left: 100px; margin-top: 20px">
                 <mat-label>Selecione um usuário</mat-label>
-                <mat-select name="usuario" required>
+                <mat-select [(ngModel)]="cadastroAcessoTO.idUsuario" name="usuario" required>
                     <mat-option *ngFor="let u of usuarios" [value]="u.idUsuario">
                         {{u.nomeCompleto}}
                     </mat-option>
