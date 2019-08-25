@@ -1,3 +1,4 @@
+import { UnidadeComponent } from './unidade.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from '../common/pagina-nao-encontrada/pagina-nao-encontrada.component';
@@ -6,6 +7,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 
 
 const routes: Routes = [
+  { path: 'unidade/:idUnidade', component: UnidadeComponent},
   { path: 'unidade/escolher', component: EscolherUnidadeComponent,canActivate: [AuthGuard]},
 ];
 
