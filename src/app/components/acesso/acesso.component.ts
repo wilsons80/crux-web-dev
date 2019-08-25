@@ -6,8 +6,9 @@ import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from './../../services/usuario/usuario.service';
 import { CadastrarAcessoComponent } from './cadastrar-acesso/cadastrar-acesso.component';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatTableDataSource, MatDialogConfig } from '@angular/material';
 import _ from 'lodash';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class AcessoComponent implements OnInit {
     private moduloService: ModuloService,
     private activatedRoute: ActivatedRoute,
     protected controleMenuService: ControleMenuService,
-    private acessoService: AcessoService
+    private acessoService: AcessoService,
   ) { }
 
   ngOnInit() {
@@ -51,9 +52,9 @@ export class AcessoComponent implements OnInit {
 
   }
 
-  abrirDialogCadastrar(usuario:any, atualizar: boolean) {
+  abrirDialogCadastrar(usuario: any, atualizar: boolean) {
     console.log("usuario", usuario);
-    
+
 
     const dialogRef = this.dialog.open(CadastrarAcessoComponent, {
       width: '500px',
@@ -91,14 +92,31 @@ export class AcessoComponent implements OnInit {
     this.cadastroAcessoTO.idUsuario = null;
     this.cadastroAcessoTO.idModulo = null;
     this.dataSource.data = null;
-    this.mostrarTabela= false;
+    this.mostrarTabela = false;
   }
 
-  deletar(element){
-    console.log(element);
+  deletar(element) {
+    this.chamaCaixaDialogo(element);
+  }
 
-    //TODO Fazer um pop-up, tirei para não excluir todos os acessos
-    // this.acessoService.excluir(element.idUsuarioGrupo)
-    // .subscribe();
+  chamaCaixaDialogo(element) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      pergunta: 'Certeza que desse excluir o acesso?',
+      textoConfirma: 'SIM',
+      textoCancela: 'NÃO'
+    };
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(confirma => {
+      if (confirma) {
+        this.acessoService.excluir(element.idUsuarioGrupo)
+          .subscribe();
+          dialogRef.close();
+      } else {
+        dialogRef.close();
+      }
+    }
+    );
   }
 }
