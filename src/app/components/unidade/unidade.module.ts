@@ -6,11 +6,12 @@ import { EscolherUnidadeComponent } from './escolher-unidade/escolher-unidade.co
 import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule, MatSelectModule, MatCardModule, MatTableModule } from '@angular/material';
 import { UnidadeComponent } from './unidade.component';
 import { FormsModule } from '@angular/forms';
+import { CadastrarUnidadeComponent } from './cadastrar-unidade/cadastrar-unidade.component';
 
 
 
 @NgModule({
-  declarations: [EscolherUnidadeComponent, UnidadeComponent],
+  declarations: [EscolherUnidadeComponent, UnidadeComponent, CadastrarUnidadeComponent],
   imports: [
     CommonModule,
     UnidadeRoutingModule,

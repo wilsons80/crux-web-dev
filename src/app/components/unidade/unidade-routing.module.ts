@@ -1,14 +1,15 @@
-import { UnidadeComponent } from './unidade.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PaginaNaoEncontradaComponent } from '../common/pagina-nao-encontrada/pagina-nao-encontrada.component';
-import { EscolherUnidadeComponent } from './escolher-unidade/escolher-unidade.component';
+import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { CadastrarUnidadeComponent } from './cadastrar-unidade/cadastrar-unidade.component';
+import { EscolherUnidadeComponent } from './escolher-unidade/escolher-unidade.component';
+import { UnidadeComponent } from './unidade.component';
 
 
 const routes: Routes = [
-  { path: 'unidade/:idUnidade', component: UnidadeComponent},
-  { path: 'unidade/escolher', component: EscolherUnidadeComponent,canActivate: [AuthGuard]},
+  { path: 'unidade/escolher', component: EscolherUnidadeComponent, canActivate: [AuthGuard] },
+  { path: 'unidade/cadastrar', component: CadastrarUnidadeComponent },
+  { path: 'unidade/:idUnidade', component: UnidadeComponent },
 ];
 
 @NgModule({
