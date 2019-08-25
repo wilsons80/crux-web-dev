@@ -5,6 +5,26 @@
     <mat-card class="center">{{toolbarPrincipalService.unidadeSelecionada?.nome}}</mat-card>
    
     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px"
+    style="margin-top: 40px; margin-bottom: 10px">
+            <mat-icon>person</mat-icon>
+        
+            <mat-form-field style="width: 100%; margin-bottom: 10px">
+                <mat-label>Selecione a Unidade</mat-label>
+                
+                <mat-select name="unidade" 
+                            [(ngModel)]="cadastroAcessoTO.idUnidade" 
+                            [disabled]="isAtualizar"
+                            required>
+                    <mat-option *ngFor="let u of unidades" [value]="u.id">
+                        {{u.nome}}
+                    </mat-option>
+                </mat-select>
+
+            </mat-form-field>
+    </div>
+
+    
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px"
         style="margin-top: 40px; margin-bottom: 10px">
         <mat-icon>person</mat-icon>
        
@@ -13,7 +33,7 @@
             
             <mat-select name="usuario" 
                         [(ngModel)]="cadastroAcessoTO.idUsuario" 
-                        [disabled]="isAtualizar"
+                        [disabled]="!cadastroAcessoTO.idUnidade || isAtualizar"
                         required>
                 <mat-option *ngFor="let u of usuarios" [value]="u.idUsuario">
                     {{u.nomeCompleto}}
@@ -75,6 +95,6 @@
 
         <button mat-raised-button style="width: 80%" color="primary" (click)="cadastrarAtualizar()"
             [disabled]="formCadastro.invalid">
-            {{labelBotao}}</button>
+            {{getNomeBotao()}}</button>
     </div>
 </form>

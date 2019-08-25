@@ -1,3 +1,4 @@
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { ModuloService } from './../../../services/modulo/modulo.service';
 import { UsuarioService } from './../../../services/usuario/usuario.service';
@@ -19,6 +20,7 @@ export class CadastrarAcessoComponent implements OnInit {
   usuarios: any;
   modulos: any;
   perfis: any;
+  unidades: boolean;
   usuario: any;
   isAtualizar: boolean;
 
@@ -30,40 +32,42 @@ export class CadastrarAcessoComponent implements OnInit {
 
   constructor(
     protected toolbarPrincipalService: ToolbarPrincipalService,
-    private acessoService:AcessoService,
+    private acessoService: AcessoService,
     private activatedRoute: ActivatedRoute,
-    private moduloService:ModuloService,
-    private toastService:ToastService,
+    private moduloService: ModuloService,
+    private toastService: ToastService,
     private dialogRef: MatDialogRef<CadastrarAcessoComponent>,
+    private unidadeService: UnidadeService,
     @Inject(MAT_DIALOG_DATA) data
-    ) {
-      this.cadastroAcessoTO.idUnidade = data.idUnidade;
-      this.modulos = data.modulos;
-      this.usuarios = data.usuarios;
-      this.labelBotao = data.labelBotao;
-      
-      if(data.atualizar){
-        this.isAtualizar = data.atualizar;
-        this.cadastroAcessoTO.idModulo = data.usuario.idModulo;
-        this.cadastroAcessoTO.idUsuario = data.usuario.idUsuario;
-      }
+  ) {
+    this.modulos = data.modulos;
+    this.usuarios = data.usuarios;
+    this.labelBotao = data.labelBotao;
+    
+    if (data.atualizar) {
+      this.cadastroAcessoTO.idUnidade = data.usuario.idUnidade;
+      this.isAtualizar = data.atualizar;
+      this.cadastroAcessoTO.idModulo = data.usuario.idModulo;
+      this.cadastroAcessoTO.idUsuario = data.usuario.idUsuario;
     }
+  }
 
   ngOnInit() {
-    if(this.isAtualizar){
+    this.unidadeService.getPorUsuario().subscribe((unidades: any) => this.unidades = unidades);
+    if (this.isAtualizar) {
       this.buscarPerfis();
     }
-    
+
   }
 
 
   cadastrarAtualizar() {
-    if(this.isAtualizar){
+    if (this.isAtualizar) {
       this.atualizar();
-    } 
-    else {this.cadastrar();}
+    }
+    else { this.cadastrar(); }
   }
-  
+
   atualizar() {
     this.acessoService.alterar(this.cadastroAcessoTO).subscribe(() => {
       this.toastService.showSucesso("Usuário atualizado com sucesso");
@@ -79,9 +83,9 @@ export class CadastrarAcessoComponent implements OnInit {
   }
 
   limpar() {
-    if(this.isAtualizar){
+    if (this.isAtualizar) {
       this.cadastroAcessoTO.idGrupoModulo = null
-    }else {
+    } else {
 
       this.cadastroAcessoTO = {
         idUnidade: this.activatedRoute.snapshot.params.idUnidade,
@@ -93,14 +97,18 @@ export class CadastrarAcessoComponent implements OnInit {
     this.selecaoModulo = false;
   }
 
-  cancelar(){
+  cancelar() {
     this.dialogRef.close();
-    
+
   }
-  
-  buscarPerfis(){
+
+  buscarPerfis() {
     this.moduloService.getGrupoModulo(this.cadastroAcessoTO.idUnidade, this.cadastroAcessoTO.idModulo)
-                      .subscribe(perfis =>  this.perfis = perfis);
+      .subscribe(perfis => this.perfis = perfis);
+  }
+
+  getNomeBotao() {
+    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
   }
 
 }

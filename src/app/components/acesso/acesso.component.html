@@ -3,7 +3,7 @@
 
     <div *ngIf="mostrarAcao('insere', 'ACESSO')" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="padding: 10px 10px 30px">
         <div>
-            <button mat-fab color="primary" (click)="abrirDialogCadastrar('Cadastrar')">
+            <button mat-fab color="primary" (click)="abrirDialogCadastrar()">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -75,7 +75,7 @@
                     <button *ngIf="mostrarAcao('deleta')" mat-button color="warn" (click)="deletar(element)">
                         <mat-icon>clear</mat-icon>
                     </button> 
-                    <button mat-button *ngIf="mostrarAcao('altera')" (click)="abrirDialogCadastrar('Atualizar', element,true)">
+                    <button mat-button *ngIf="mostrarAcao('altera')" (click)="abrirDialogCadastrar(element,true)">
                             <mat-icon>create</mat-icon>
                         </button> 
               </td>

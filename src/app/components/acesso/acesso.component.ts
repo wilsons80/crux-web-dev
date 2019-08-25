@@ -51,15 +51,15 @@ export class AcessoComponent implements OnInit {
 
   }
 
-  abrirDialogCadastrar(labelBotao: string, usuario, atualizar: boolean) {
+  abrirDialogCadastrar(usuario:any, atualizar: boolean) {
+    console.log("usuario", usuario);
+    
 
     const dialogRef = this.dialog.open(CadastrarAcessoComponent, {
       width: '500px',
       data: {
-        idUnidade: this.cadastroAcessoTO.idUnidade,
         usuarios: this.usuarios,
         modulos: this.modulos,
-        labelBotao: labelBotao,
         usuario: usuario,
         atualizar: atualizar
       }
@@ -68,6 +68,7 @@ export class AcessoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+
   }
 
   consultar() {
@@ -89,6 +90,8 @@ export class AcessoComponent implements OnInit {
   limpar() {
     this.cadastroAcessoTO.idUsuario = null;
     this.cadastroAcessoTO.idModulo = null;
+    this.dataSource.data = null;
+    this.mostrarTabela= false;
   }
 
   deletar(element){
