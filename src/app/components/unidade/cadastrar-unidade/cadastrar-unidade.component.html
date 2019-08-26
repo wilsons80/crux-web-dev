@@ -49,9 +49,14 @@
                 <input matInput name="endereco" placeholder="Endereço:" >
            </mat-form-field>
 
-           <mat-form-field fxFlex= "5%" >
-                <input matInput name="uf" placeholder="UF:" >
-           </mat-form-field>
+           <mat-form-field fxFlex= "5%" fxFlexOffset="20px">
+                <mat-label>UF: </mat-label>
+                <mat-select name="uf">
+                    <mat-option *ngFor="let e of estados" [value]="e">
+                        {{e}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
            
            <mat-form-field fxFlex= "30%" style="padding-right: 20px">
                 <input matInput name="bairro" placeholder="Bairro:" >
