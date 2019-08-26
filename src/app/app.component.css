@@ -15,7 +15,4 @@
    align-items: center;
    justify-content: center;
  }
- 
- .mat-drawer-backdrop.mat-drawer-shown{
-   background-color: transparent !important
- }
+

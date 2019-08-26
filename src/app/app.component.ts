@@ -1,12 +1,11 @@
 import { MenuPrincipalService } from './services/menuPrincipal/menu-principal.service';
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'crux-web-dev';

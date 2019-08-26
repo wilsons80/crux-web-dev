@@ -2,6 +2,7 @@ import { ToolbarPrincipalService } from './../../../services/toolbarPrincipal/to
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { Modulos } from 'src/app/core/modulos';
+import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 
 @Component({
   selector: 'menu-modulos',
@@ -19,9 +20,9 @@ export class MenuModulosComponent implements OnInit {
   isMostrarSubMenu: boolean = false;
   
   constructor(
-    private router:Router,
     private toolbarPrincipalService:ToolbarPrincipalService,
-    private activatedRoute:ActivatedRoute
+    private menuPrincipalService:MenuPrincipalService
+    
     ) { }
 
   ngOnInit() {
@@ -29,12 +30,15 @@ export class MenuModulosComponent implements OnInit {
 
   
   getRouterLink(){
-    
     let idUnidadeAtualSelecionada: number;
     if(this.toolbarPrincipalService.unidadeSelecionada){
       idUnidadeAtualSelecionada = this.toolbarPrincipalService.unidadeSelecionada.id;
     }
     return `${this.pathRootRouter}/${idUnidadeAtualSelecionada}/`;
+  }
+
+  fecharMenu(){
+    this.menuPrincipalService.alternar();
   }
 
 }

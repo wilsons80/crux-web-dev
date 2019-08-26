@@ -1,4 +1,4 @@
-<a mat-list-item [routerLink]="getRouterLink()" routerLinkActive="router-link-active">
+<a mat-list-item [routerLink]="getRouterLink()" routerLinkActive="router-link-active" (click)="fecharMenu()">
     <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
         <div fxLayout="row" fxLayoutAlign="start stretch">
             <mat-icon>{{icone}}</mat-icon>
