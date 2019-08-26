@@ -24,8 +24,6 @@ export class CadastrarAcessoComponent implements OnInit {
   usuario: any;
   isAtualizar: boolean;
 
-  selecaoModulo: boolean = false;
-
   labelBotao: string;
 
   cadastroAcessoTO: CadastroAcessoTO = new CadastroAcessoTO();
@@ -33,15 +31,16 @@ export class CadastrarAcessoComponent implements OnInit {
   constructor(
     protected toolbarPrincipalService: ToolbarPrincipalService,
     private acessoService: AcessoService,
-    private activatedRoute: ActivatedRoute,
     private moduloService: ModuloService,
     private toastService: ToastService,
     private dialogRef: MatDialogRef<CadastrarAcessoComponent>,
     private unidadeService: UnidadeService,
+    private usuarioService:UsuarioService,
+
     @Inject(MAT_DIALOG_DATA) data
   ) {
-    this.modulos = data.modulos;
-    this.usuarios = data.usuarios;
+    this.usuarios = data.usuarios,
+    this.modulos= data.modulos,
     this.labelBotao = data.labelBotao;
     
     if (data.atualizar) {
@@ -54,18 +53,33 @@ export class CadastrarAcessoComponent implements OnInit {
 
   ngOnInit() {
     this.unidadeService.getPorUsuario().subscribe((unidades: any) => this.unidades = unidades);
-    if (this.isAtualizar) {
+    if(this.isAtualizar){
       this.buscarPerfis();
     }
-
   }
 
+  unidadeSelecionada(){
+    if (!this.isAtualizar) {
+      this.limparCamposDependendentesUnidade();
+    }
+      this.usuarioService.getUsuariosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(usuarios => this.usuarios = usuarios);
+      this.moduloService.getModulosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(modulos => this.modulos = modulos);
+  }
+
+  limparCamposDependendentesUnidade() {
+    this.cadastroAcessoTO.idUsuario =  null,
+    this.cadastroAcessoTO.idModulo  =  null,
+    this.cadastroAcessoTO.idGrupoModulo=  null
+    
+  }
 
   cadastrarAtualizar() {
     if (this.isAtualizar) {
       this.atualizar();
     }
-    else { this.cadastrar(); }
+    else { 
+      this.cadastrar(); 
+    }
   }
 
   atualizar() {
@@ -84,17 +98,18 @@ export class CadastrarAcessoComponent implements OnInit {
 
   limpar() {
     if (this.isAtualizar) {
+      
       this.cadastroAcessoTO.idGrupoModulo = null
+
     } else {
 
       this.cadastroAcessoTO = {
-        idUnidade: this.activatedRoute.snapshot.params.idUnidade,
+        idUnidade: null,
         idUsuario: null,
         idModulo: null,
         idGrupoModulo: null
       }
     }
-    this.selecaoModulo = false;
   }
 
   cancelar() {

@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">Cadastrar novo acesso ao módulo</mat-toolbar>
+<mat-toolbar color="primary">Cadastrar novo acesso</mat-toolbar>
 
 <form #formCadastro="ngForm" class="mat-elevation-z1 painel-principal" style="padding: 10px;">
 
@@ -14,7 +14,9 @@
                 <mat-select name="unidade" 
                             [(ngModel)]="cadastroAcessoTO.idUnidade" 
                             [disabled]="isAtualizar"
-                            required>
+                            required
+                            (selectionChange)="unidadeSelecionada()"
+                            >
                     <mat-option *ngFor="let u of unidades" [value]="u.id">
                         {{u.nome}}
                     </mat-option>
@@ -76,7 +78,7 @@
                         [disabled]="!cadastroAcessoTO.idModulo" 
                         required >
                 <mat-option *ngFor="let p of perfis" [value]="p.idGrupo">
-                    {{p.nome}}
+                    {{p.descricao}}
                 </mat-option>
             </mat-select>
 

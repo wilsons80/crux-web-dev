@@ -39,7 +39,6 @@ export class AcessoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("controle", this.controleMenuService);
 
     this.cadastroAcessoTO.idUnidade = this.activatedRoute.snapshot.params.idUnidade,
       this.usuarioService.getUsuariosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(usuarios => {
@@ -57,7 +56,7 @@ export class AcessoComponent implements OnInit {
 
 
     const dialogRef = this.dialog.open(CadastrarAcessoComponent, {
-      width: '500px',
+      width: '700px',
       data: {
         usuarios: this.usuarios,
         modulos: this.modulos,
