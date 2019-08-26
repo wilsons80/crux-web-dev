@@ -1,3 +1,4 @@
+import { EnderecoService } from './../../../services/endereco/endereco.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastrarUnidadeComponent implements OnInit {
 
+
+  estados: any;
 
   unidades:any[] = [
     {nomeCompleto: 'Josue' , idUnidade: 1}
@@ -24,9 +27,13 @@ situacoesImovel:any[] = [
   {tipo: 'Outro'},
 ]
 
-  constructor() { }
+  constructor(private enderecoService:EnderecoService) { }
 
   ngOnInit() {
+    this.enderecoService.getAllEstados().subscribe(estados => {
+      console.log(estados)
+      this.estados = estados;
+    });
   }
 
 }

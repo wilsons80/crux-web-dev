@@ -8,7 +8,7 @@
         
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
-                        <input matInput name="codigoUnidade" placeholder="Código da Unidade:" required>
+                        <input matInput name="codigoUnidade" placeholder="Sigla:" required>
                </mat-form-field>
 
                <mat-form-field fxFlex= "72%"  >
@@ -20,7 +20,7 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlex= "20%" fxFlexOffset="20px">
                         <mat-label>Tipo: </mat-label>
-                        <mat-select name="tipoUnidades" required>
+                        <mat-select name="tipoUnidades">
                             <mat-option *ngFor="let t of tiposUnidade" [value]="t.tipo">
                                 {{t.tipo}}
                             </mat-option>
@@ -28,7 +28,7 @@
                     </mat-form-field>
 
                     <mat-form-field fxFlex= "72%" >
-                            <mat-label>Classificador da situação do Imóvel*</mat-label>
+                            <mat-label>Classificador da situação do Imóvel:</mat-label>
                             <mat-select name="situacoesImovel">
                                 <mat-option *ngFor="let s of situacoesImovel" [value]="s.tipo">
                                     {{s.tipo}}
@@ -42,19 +42,19 @@
         <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
             
            <mat-form-field fxFlex= "10%" fxFlexOffset="20px">
-               <input matInput name="cep" placeholder="CEP:" required>
+               <input matInput name="cep" placeholder="CEP:" >
            </mat-form-field>
                 
            <mat-form-field fxFlex= "50%" >
-                <input matInput name="endereco" placeholder="Endereço:" required>
+                <input matInput name="endereco" placeholder="Endereço:" >
            </mat-form-field>
 
            <mat-form-field fxFlex= "5%" >
-                <input matInput name="uf" placeholder="UF:" required>
+                <input matInput name="uf" placeholder="UF:" >
            </mat-form-field>
            
            <mat-form-field fxFlex= "30%" style="padding-right: 20px">
-                <input matInput name="bairro" placeholder="Bairro:" required>
+                <input matInput name="bairro" placeholder="Bairro:" >
            </mat-form-field>
         </div>
 
@@ -65,21 +65,21 @@
                     <!-- TELEFONES -->
                 <div fxLayout="column" fxFlex= "30%" fxFlexOffset="20px" style="border-color:transparent;">
                         <mat-form-field >
-                            <input matInput name="cep" placeholder="Telefone Fixo: " required>
+                            <input matInput name="cep" placeholder="Telefone Fixo: " >
                         </mat-form-field>
                              
                         <mat-form-field>
-                             <input matInput name="endereco" placeholder="Celular:" required>
+                             <input matInput name="endereco" placeholder="Celular:" >
                         </mat-form-field>
                 </div>
                     <!-- EMAIL -->
                     <div fxLayout="column" fxFlex= "62%" style="border-color:transparent;">
                                 <mat-form-field >
-                                    <input matInput name="cep" placeholder="Email: " required>
+                                    <input matInput name="cep" placeholder="Email: " >
                                 </mat-form-field>
                                      
                                 <mat-form-field>
-                                     <input matInput name="endereco" placeholder="Confirmação do email:" required>
+                                     <input matInput name="endereco" placeholder="Confirmação do email:" >
                                 </mat-form-field>
                      </div>
 
@@ -87,41 +87,35 @@
         <!-- DESCRIÇÃO -->
         <mat-toolbar class="titulopartes">Descrição</mat-toolbar>
         <mat-form-field  fxLayout="column" style="padding-left: 20px; padding-right: 20px">
-                <input matInput name="descricaoSituacaoImovel" placeholder="Situação do Imóvel: " required>
+                <input matInput name="descricaoSituacaoImovel" placeholder="Situação do Imóvel: " >
             </mat-form-field>
                  
             <mat-form-field fxLayout="column" style="padding-left: 20px; padding-right: 20px">
-                 <input matInput name="descricaoEstruturaFisicaImovel" placeholder="Estrutura FÍsica do Imóvel:" required>
+                 <input matInput name="descricaoEstruturaFisicaImovel" placeholder="Estrutura FÍsica do Imóvel:" >
             </mat-form-field>
 
         <!-- VALORES -->
         <mat-toolbar class="titulopartes">Valores</mat-toolbar>
         <mat-form-field  fxLayout="column" style="padding-left: 20px; padding-right: 20px; ">
-                <input matInput name="visao" placeholder="Visão: " required>
+                <input matInput name="visao" placeholder="Visão: " >
             </mat-form-field>
                  
             <mat-form-field fxLayout="column" style="padding-left: 20px; padding-right: 20px">
-                 <input matInput name="missão" placeholder="Missão:" required>
+                 <input matInput name="missão" placeholder="Missão:" >
             </mat-form-field>
 
             <!-- BOTÕES -->
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
 
-        <button mat-raised-button fxFlex= "20%" color="primary" >
-            Confirmar</button>
-        
-        <button mat-raised-button fxFlex= "20%" color="primary" >
-                    Limpar</button>
-        
-        <button mat-raised-button fxFlex= "20%" color="primary" >
-                Cancelar</button>
+                        <button mat-raised-button name="botaoConfirmar"  fxFlex= "20%" color="primary" [disabled]="formCadastroUnidade.invalid">
+                            Confirmar</button>
+                        
+                        <button mat-raised-button fxFlex= "20%" color="primary" >
+                            Limpar</button>
+                        
+                        <button mat-raised-button fxFlex= "20%" color="primary" >
+                            Cancelar</button>
 
-        <!-- <button mat-raised-button style="width: 80%" color="primary" >
-            Limpar</button>
-
-        <button mat-raised-button style="width: 80%" color="primary" 
-            [disabled]="formCadastroUnidade.invalid">
-            Cadastrar</button> -->
-    </div>
+            </div>
         </form>
 </div>
