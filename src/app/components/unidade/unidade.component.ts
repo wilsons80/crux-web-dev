@@ -1,3 +1,4 @@
+import { UnidadeService } from './../../services/unidade/unidade.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
@@ -16,9 +17,16 @@ mostrarTabela: boolean = false;
 
   displayedColumns: string[] = ['usuario', 'modulo', 'perfil', 'acoes'];
   dataSource: MatTableDataSource<any>;
-  constructor() { }
+  constructor(
+    private unidadeService:UnidadeService
+  ) { }
 
   ngOnInit() {
+    this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades:any) => {
+      console.log(unidades);
+      this.unidades = unidades;
+      
+    });
     this.dataSource = new MatTableDataSource();
   }
 

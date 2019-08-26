@@ -16,6 +16,11 @@ export class UnidadeService {
     return this.http.get(unidadeRootPath + `usuario/`);
   }
 
+  getUnidadePorId(idUnidade:number){
+    return this.http.get(unidadeRootPath + `${idUnidade}`);
+  }
+
+  getAllUnidadesUsuarioLogadoTemAcesso(){
+    return this.http.get(unidadeRootPath);
+  }
 }
-
-

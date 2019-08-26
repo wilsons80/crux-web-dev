@@ -7,7 +7,7 @@ import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, M
 import { UnidadeComponent } from './unidade.component';
 import { FormsModule } from '@angular/forms';
 import { CadastrarUnidadeComponent } from './cadastrar-unidade/cadastrar-unidade.component';
-
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 @NgModule({
@@ -24,7 +24,8 @@ import { CadastrarUnidadeComponent } from './cadastrar-unidade/cadastrar-unidade
     MatInputModule,
     MatSelectModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    TextMaskModule
     
   ]
 })
