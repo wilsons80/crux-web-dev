@@ -8,11 +8,11 @@
         
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
-                        <input matInput [(ngModel)]="unidade.siglaUnidade" name="siglaUnidade" placeholder="Sigla:" required>
+                        <input matInput [(ngModel)]="unidade.siglaUnidade" name="siglaUnidade" placeholder="Sigla:" required [disabled]="isAtualizar">
                </mat-form-field>
 
                <mat-form-field fxFlex= "72%"  >
-                    <input matInput [(ngModel)]="unidade.nomeUnidade" name="nomeUnidade" placeholder="Nome da Unidade:" required>
+                    <input matInput [(ngModel)]="unidade.nomeUnidade" name="nomeUnidade" placeholder="Nome da Unidade:" required [disabled]="isAtualizar"> 
                </mat-form-field>
         </div>
         
@@ -20,9 +20,9 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlex= "20%" fxFlexOffset="20px">
                         <mat-label>Tipo: </mat-label>
-                        <mat-select name="tipoUnidades" [(ngModel)]="unidade.tipoUnidade">
-                            <mat-option *ngFor="let t of tiposUnidade" [value]="t.tipo">
-                                {{t.tipo}}
+                        <mat-select name="tipoUnidades" [(ngModel)]="unidade.tipoUnidade" >
+                            <mat-option *ngFor="let t of tiposUnidade" [value]="t.tipoUnidade">
+                                {{t.tipoUnidade}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -113,7 +113,7 @@
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
 
                         <button mat-raised-button name="botaoConfirmar"  fxFlex= "20%" color="primary" [disabled]="formCadastroUnidade.invalid" (click)="cadastrar()">
-                            Cadastrar</button>
+                            {{getNomeBotao()}}</button>
                         
                         <button mat-raised-button fxFlex= "20%" color="primary" (click)="limpar()" >
                             Limpar</button>

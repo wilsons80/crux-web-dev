@@ -9,6 +9,7 @@ import { UnidadeComponent } from './unidade.component';
 const routes: Routes = [
   { path: 'unidade/escolher', component: EscolherUnidadeComponent, canActivate: [AuthGuard] },
   { path: 'unidade/cadastrar', component: CadastrarUnidadeComponent, canActivate: [AuthGuard] },
+  { path: 'unidade/atualizar/:idUnidade', component: CadastrarUnidadeComponent, canActivate: [AuthGuard] },
   { path: 'unidade/:idUnidade', component: UnidadeComponent, canActivate: [AuthGuard] },
 ];
 
