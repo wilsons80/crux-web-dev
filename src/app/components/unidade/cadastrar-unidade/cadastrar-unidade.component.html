@@ -115,7 +115,7 @@
                         <button mat-raised-button name="botaoConfirmar"  fxFlex= "20%" color="primary" [disabled]="formCadastroUnidade.invalid" (click)="cadastrar()">
                             {{getNomeBotao()}}</button>
                         
-                        <button mat-raised-button fxFlex= "20%" color="primary" (click)="limpar()" >
+                        <button mat-raised-button fxFlex= "20%" color="primary" (click)="limpar()" *ngIf="!isAtualizar">
                             Limpar</button>
                         
                         <button mat-raised-button fxFlex= "20%" color="primary" (click)="cancelar()">

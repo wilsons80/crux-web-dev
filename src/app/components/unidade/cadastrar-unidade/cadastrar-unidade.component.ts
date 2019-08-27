@@ -77,7 +77,6 @@ situacoesImovel:any[] = [
       this.unidade.celular = this.unidade.celular ? this.retiraMascara(this.unidade.celular): null;
       this.unidade.telefone = this.unidade.telefone ? this.retiraMascara(this.unidade.telefone) : null;
   
-      console.log(this.unidade);
   }
 
   retiraMascara(objeto) {

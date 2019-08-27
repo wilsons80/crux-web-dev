@@ -52,8 +52,6 @@ export class AcessoComponent implements OnInit {
   }
 
   abrirDialogCadastrar(usuario: any, atualizar: boolean) {
-    console.log("usuario", usuario);
-
 
     const dialogRef = this.dialog.open(CadastrarAcessoComponent, {
       width: '700px',

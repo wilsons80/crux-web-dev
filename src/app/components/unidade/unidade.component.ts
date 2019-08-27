@@ -27,9 +27,7 @@ export class UnidadeComponent implements OnInit {
 
   ngOnInit() {
     this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades:any) => {
-      console.log(unidades);
       this.unidades = unidades;
-      
     });
     this.dataSource = new MatTableDataSource();
   }
