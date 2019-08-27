@@ -23,4 +23,9 @@ export class UnidadeService {
   getAllUnidadesUsuarioLogadoTemAcesso(){
     return this.http.get(unidadeRootPath);
   }
+ 
+  excluir(idUnidade:number){
+    return this.http.delete(unidadeRootPath + `${idUnidade}`);
+  }
+  
 }
