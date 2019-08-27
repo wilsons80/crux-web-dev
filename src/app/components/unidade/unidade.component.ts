@@ -5,6 +5,7 @@ import { MatTableDataSource, MatDialogConfig, MatDialog } from '@angular/materia
 import { Unidade } from 'src/app/core/unidade';
 import { ifStmt } from '@angular/compiler/src/output/output_ast';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 
 @Component({
   selector: 'app-unidade',
@@ -25,7 +26,7 @@ export class UnidadeComponent implements OnInit {
     private unidadeService:UnidadeService,
     private router:Router,
     private dialog: MatDialog,
-
+    private controleMenuService:ControleMenuService
   ) { }
 
   ngOnInit() {
@@ -82,6 +83,10 @@ export class UnidadeComponent implements OnInit {
       }
     }
     );
+  }
+
+  mostrarAcao(acao: string) {
+    return this.controleMenuService.acessoModulos['UNIDADE'][acao] == 'S'
   }
   
 
