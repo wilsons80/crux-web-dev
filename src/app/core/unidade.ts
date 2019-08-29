@@ -15,7 +15,14 @@ export class Unidade {
 	cep: number
 	bairro: string
 	uf: string
+	cidade:string
 	celular: string
 	tipoUnidade: string
 	classificacaoSituacaoImovel: string
+	nomeFantasia: string
+	cnpj:string
+	numeroInscricaoEstadual:number
+	numeroInscricaoMunicipal:number
+	homePage:string
+	
 }

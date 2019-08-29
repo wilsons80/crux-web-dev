@@ -8,15 +8,28 @@
         
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
-                        <input matInput [(ngModel)]="unidade.siglaUnidade" name="siglaUnidade" placeholder="Sigla:" required [disabled]="isAtualizar">
+                        <input matInput maxlength="50" [(ngModel)]="unidade.siglaUnidade" name="siglaUnidade" placeholder="Sigla:" required [disabled]="isAtualizar">
                </mat-form-field>
 
                <mat-form-field fxFlex= "72%"  >
-                    <input matInput [(ngModel)]="unidade.nomeUnidade" name="nomeUnidade" placeholder="Nome da Unidade:" required [disabled]="isAtualizar"> 
+                    <input matInput maxlength="100" [(ngModel)]="unidade.nomeUnidade" name="nomeUnidade" placeholder="Nome da Unidade:" required [disabled]="isAtualizar"> 
                </mat-form-field>
         </div>
         
-        <!-- TIPO / SITUAÇÃO -->
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+           
+            <mat-form-field fxFlexOffset="20px" fxFlex= "20%"  >
+                <input matInput [(ngModel)]="unidade.cnpj" name="cnpj" placeholder="CNPJ:" [textMask]="{mask: maskCNJP}" > 
+           </mat-form-field>
+
+            <mat-form-field fxFlex= "72%"  >
+                    <input matInput maxlength="200" [(ngModel)]="unidade.nomeFantasia" name="nomeFantasia" placeholder="Nome Fantasia:"  >
+           </mat-form-field>
+
+          
+    </div>
+   
+    <!-- TIPO / SITUAÇÃO -->
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlex= "20%" fxFlexOffset="20px">
                         <mat-label>Tipo: </mat-label>
@@ -37,16 +50,31 @@
                         </mat-form-field>
         </div>
 
+        <!-- INSCRIÇÃO -->
+        <mat-toolbar class="titulopartes">Inscrição</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+            
+           <mat-form-field fxFlex= "40%" fxFlexOffset="20px">
+               <input type="text" matInput maxlength="20" [(ngModel)]="unidade.numeroInscricaoEstadual" name="numeroInscricaoEstadual" placeholder="Numero Inscrição Estadual:" [textMask]="{mask: maskCep}" />
+           </mat-form-field>
+
+           <mat-form-field fxFlex= "52%" fxFlexOffset="20px">
+            <input type="text" matInput maxlength="20" [(ngModel)]="unidade.numeroInscricaoMunicipal" name="numeroInscricaoMunicipal" placeholder="Numero Inscrição Municipal:" [textMask]="{mask: maskCep}" />
+        </mat-form-field>
+                
+        </div>
+
+
         <!-- ENDEREÇO -->
         <mat-toolbar class="titulopartes">Endereço</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
             
            <mat-form-field fxFlex= "10%" fxFlexOffset="20px">
-               <input type="text" matInput maxlength="11" [(ngModel)]="unidade.cep" name="cep" placeholder="CEP:" [textMask]="{mask: maskCep}" />
+               <input type="text" matInput  [(ngModel)]="unidade.cep" name="cep" placeholder="CEP:" [textMask]="{mask: maskCep}" />
            </mat-form-field>
                 
-           <mat-form-field fxFlex= "50%" >
-                <input matInput [(ngModel)]="unidade.endereco" name="endereco" placeholder="Endereço:" >
+           <mat-form-field fxFlex= "60%" >
+                <input matInput maxlength="200" [(ngModel)]="unidade.endereco" name="endereco" placeholder="Endereço:" >
            </mat-form-field>
 
            <mat-form-field fxFlex= "5%" fxFlexOffset="20px">
@@ -57,20 +85,25 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+
+            <mat-form-field fxFlex= "25%" >
+                <input matInput maxlength="200" [(ngModel)]="unidade.cidade" name="cidade" placeholder="Cidade:" >
+           </mat-form-field>
            
-           <mat-form-field fxFlex= "30%" style="padding-right: 20px">
-                <input matInput [(ngModel)]="unidade.bairro" name="bairro" placeholder="Bairro:" >
+           <mat-form-field fxFlex= "20%" style="padding-right: 20px">
+                <input matInput maxlength="200" [(ngModel)]="unidade.bairro" name="bairro" placeholder="Bairro:" >
            </mat-form-field>
         </div>
 
         <!-- CONTATO -->
         <mat-toolbar class="titulopartes">Contato</mat-toolbar>
+
         <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
                     
                     <!-- TELEFONES -->
                 <div fxLayout="column" fxFlex= "30%" fxFlexOffset="20px" style="border-color:transparent;">
                         <mat-form-field >
-                            <input matInput [(ngModel)]="unidade.telefone" name="telefoneFixo" placeholder="Telefone Fixo:" [textMask]="{mask: maskPhone}">
+                            <input matInput  [(ngModel)]="unidade.telefone" name="telefoneFixo" placeholder="Telefone Fixo:" [textMask]="{mask: maskPhone}">
                         </mat-form-field>
                              
                         <mat-form-field>
@@ -80,33 +113,38 @@
                     <!-- EMAIL -->
                     <div fxLayout="column" fxFlex= "62%" style="border-color:transparent;">
                                 <mat-form-field >
-                                    <input matInput [(ngModel)]="unidade.email" name="email" placeholder="Email:" >
+                                    <input matInput maxlength="100" [(ngModel)]="unidade.email" name="email" placeholder="Email:" >
                                 </mat-form-field>
                                      
                                 <mat-form-field>
-                                     <input matInput [(ngModel)]="confirmacaoEmail" name="confirmacaoEmail" placeholder="Confirmação do email:" [required]="unidade.email">
+                                     <input matInput maxlength="100" [(ngModel)]="confirmacaoEmail" name="confirmacaoEmail" placeholder="Confirmação do email:" [required]="unidade.email">
                                 </mat-form-field>
                      </div>
-
         </div>
+
+         <!-- HOME PAGE -->
+        <mat-form-field  fxLayout="column" style="padding-left: 20px; padding-right: 33px; " fxFlexFill>
+            <input matInput maxlength="200" [(ngModel)]="unidade.homePage" name="homePage" placeholder="Home Page: " >
+        </mat-form-field>
+
         <!-- DESCRIÇÃO -->
         <mat-toolbar class="titulopartes">Descrição</mat-toolbar>
         <mat-form-field  fxLayout="column" style="padding-left: 20px; padding-right: 20px">
-                <input matInput [(ngModel)]="unidade.descricaoSituacaoImovel" name="descricaoSituacaoImovel" placeholder="Situação do Imóvel: " >
+                <input matInput maxlength="200" [(ngModel)]="unidade.descricaoSituacaoImovel" name="descricaoSituacaoImovel" placeholder="Situação do Imóvel: " >
             </mat-form-field>
                  
             <mat-form-field fxLayout="column" style="padding-left: 20px; padding-right: 20px">
-                 <input matInput [(ngModel)]="unidade.descricaoEstruturaFisicaImovel" name="descricaoEstruturaFisicaImovel" placeholder="Estrutura FÍsica do Imóvel:" >
+                 <input matInput maxlength="200" [(ngModel)]="unidade.descricaoEstruturaFisicaImovel" name="descricaoEstruturaFisicaImovel" placeholder="Estrutura FÍsica do Imóvel:" >
             </mat-form-field>
 
         <!-- VALORES -->
         <mat-toolbar class="titulopartes">Valores</mat-toolbar>
         <mat-form-field  fxLayout="column" style="padding-left: 20px; padding-right: 20px; ">
-                <input matInput [(ngModel)]="unidade.visao" name="visao" placeholder="Visão: " >
+                <input matInput maxlength="1000" [(ngModel)]="unidade.visao" name="visao" placeholder="Visão: " >
             </mat-form-field>
                  
             <mat-form-field fxLayout="column" style="padding-left: 20px; padding-right: 20px">
-                 <input matInput [(ngModel)]="unidade.missao"  name="missao" placeholder="Missão:" >
+                 <input matInput maxlength="1000" [(ngModel)]="unidade.missao"  name="missao" placeholder="Missão:" >
             </mat-form-field>
 
             <!-- BOTÕES -->
