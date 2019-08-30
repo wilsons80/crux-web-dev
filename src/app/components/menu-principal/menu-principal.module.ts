@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MenuConfiguracoesComponent } from './menu-configuracoes/menu-configuracoes.component';
 import { MenuPrincipalComponent } from './menu-principal.component';
 import { SubMenusComponent } from './sub-menus/sub-menus.component';
-import { MenuModulosComponent } from './menu-modulos/menu-modulos.component';
+import { MenuSubModulosComponent } from './menu-sub-modulos/menu-sub-modulos.component';
 
 
 
@@ -15,7 +15,7 @@ import { MenuModulosComponent } from './menu-modulos/menu-modulos.component';
     MenuPrincipalComponent, 
     MenuConfiguracoesComponent, 
     SubMenusComponent, 
-    MenuModulosComponent],
+    MenuSubModulosComponent],
   imports: [
     CommonModule,
     MatMenuModule,

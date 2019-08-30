@@ -6,40 +6,40 @@
         </a>
         
         <!-- MENU ALUNO -->
-        <menu-modulos *ngIf="mostrarMenu(enumModulos.ALUNOS)" 
+        <menu-sub-modulos *ngIf="mostrarMenu(enumModulos.ALUNOS)" 
                       [modulo]='enumModulos.ALUNOS' 
                       icone="person" 
                       titulo="Alunos"
                       pathRootRouter='aluno'
                       >
-        </menu-modulos>
+        </menu-sub-modulos>
         
         <!-- MENU UNIDADE -->
-        <menu-modulos *ngIf="mostrarMenu(enumModulos.UNIDADES)" 
+        <menu-sub-modulos *ngIf="mostrarMenu(enumModulos.UNIDADES)" 
                       [modulo]='enumModulos.UNIDADES' 
                       icone="account_balance" 
                       titulo="Unidades"
                       pathRootRouter='unidade'
                       >
-        </menu-modulos>
+        </menu-sub-modulos>
         
         <!-- MENU CURSO -->
-        <menu-modulos *ngIf="mostrarMenu(enumModulos.CURSOS)" 
+        <menu-sub-modulos *ngIf="mostrarMenu(enumModulos.CURSOS)" 
                       [modulo]='enumModulos.CURSOS' 
                       icone="school" 
                       titulo="Cursos"
                       pathRootRouter='curso'
                       >
-        </menu-modulos>
+        </menu-sub-modulos>
         
         <!-- MENU ACESSO -->
-        <menu-modulos *ngIf="mostrarMenu(enumModulos.ACESSOS)"
+        <menu-sub-modulos *ngIf="mostrarMenu(enumModulos.ACESSOS)"
                       [modulo]='enumModulos.ACESSOS' 
                       icone="lock" 
                       titulo="Acessos"
                       pathRootRouter='acesso'
                       >
-        </menu-modulos>
+        </menu-sub-modulos>
 
         <mat-divider></mat-divider>
         

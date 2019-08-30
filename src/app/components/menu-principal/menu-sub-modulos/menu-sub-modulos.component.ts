@@ -1,15 +1,14 @@
-import { ToolbarPrincipalService } from './../../../services/toolbarPrincipal/toolbar-principal.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ToolbarPrincipalService } from '../../../services/toolbarPrincipal/toolbar-principal.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Modulos } from 'src/app/core/modulos';
 import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 
 @Component({
-  selector: 'menu-modulos',
-  templateUrl: './menu-modulos.component.html',
-  styleUrls: ['./menu-modulos.component.css']
+  selector: 'menu-sub-modulos',
+  templateUrl: './menu-sub-modulos.component.html',
+  styleUrls: ['./menu-sub-modulos.component.css']
 })
-export class MenuModulosComponent implements OnInit {
+export class MenuSubModulosComponent implements OnInit {
 
   @Input() modulo:Modulos;
   @Input() icone:String;
