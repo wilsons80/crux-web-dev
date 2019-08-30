@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './components/login/login.module';
 import { HomeModule } from './components/home/home.module';
-import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatSidenavModule, MatMenuModule, MatExpansionModule, MatDividerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
+import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatSidenavModule, MatMenuModule, MatExpansionModule, MatDividerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatCardModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -26,18 +26,22 @@ import { UnidadeModule } from './components/unidade/unidade.module';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { ConfirmDialogComponent } from './components/common/confirm-dialog/confirm-dialog.component';
+import { UploadFotoComponent } from './components/common/upload-foto/upload-foto.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
   entryComponents: [
     HttpErrorToastComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    UploadFotoComponent
   ],
   declarations: [
     AppComponent,
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    UploadFotoComponent
   ],
   imports: [
     BrowserModule,
@@ -69,9 +73,9 @@ registerLocaleData(localePt, 'pt-BR');
     UnidadeModule,
     MatDialogModule,
     MatToolbarModule,
-    AcessoModule
-    
-  
+    AcessoModule,
+    ImageCropperModule,
+    MatCardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

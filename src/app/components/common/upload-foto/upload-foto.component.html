@@ -1,0 +1,33 @@
+<div class="mat-elevation-z1 tela-upload">
+        <mat-toolbar>Unidade</mat-toolbar>
+        <div fxLayout="column" class="painel-foto" [ngClass]="{'nao-foto': croppedImage == ''}" fxLayoutAlign="center center" >
+                <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="4 / 3"
+                [resizeToWidth]="128"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+        </div>
+   
+        <div fxLayout="row" fxLayoutAlign="start start" style="padding-left: 20px; padding-bottom: 30px;">
+       
+        <button mat-button class="upload" for="uploadFile">
+            <mat-icon >add_photo_alternate</mat-icon> 
+            <label for="uploadFile" mat-button color="warn">
+              SELECIONE
+            </label>
+          </button>
+          <input type="file" id="uploadFile" name="uploadFile" style="display:none;" (change)="fileChangeEvent($event)"/>
+             <div style="padding-left: 15px; padding-top: 10px">
+                {{nomeArquivo == null ? "Nenhum arquivo selecionado" : nomeArquivo}}
+              </div>
+     </div>
+    
+</div>
+
+<img [src]="croppedImage" />

@@ -1,0 +1,37 @@
+ button.upload.mat-button {
+    background-color:rgb(63, 83, 177);
+    color: #FFFFFF;
+    font-size: small;
+    padding-left: 10px !important;
+} 
+
+.tela-upload{
+    margin-top: 5%;
+    margin-left: 25%;
+    margin-right: 25%;
+
+    width: 450px;
+    height: 600px;
+    margin: auto;
+    border: 3px solid #73AD21;
+}
+
+.painel-foto{
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+   
+    width: 350px;
+    height: 300px;
+    margin: auto;
+    border: 3px solid #73AD21;
+  }
+
+.nao-foto{
+    background: url(../../../../assets/img/no-foto.png) no-repeat 0 0;
+ 
+}
+
+mat-toolbar.mat-toolbar.mat-toolbar-single-row{
+    background: rgb(213, 226, 253);
+    
+}
