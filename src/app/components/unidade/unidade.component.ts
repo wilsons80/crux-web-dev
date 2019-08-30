@@ -6,6 +6,7 @@ import { Unidade } from 'src/app/core/unidade';
 import { ifStmt } from '@angular/compiler/src/output/output_ast';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
+import { UploadFotoComponent } from '../common/upload-foto/upload-foto.component';
 
 @Component({
   selector: 'app-unidade',
@@ -85,9 +86,30 @@ export class UnidadeComponent implements OnInit {
     );
   }
 
+
+  editarFoto(unidade:Unidade){
+    this.abrirDialogUploadFoto(unidade);
+  }
+
+
   mostrarAcao(acao: string) {
     return this.controleMenuService.acessoModulos['UNIDADE'][acao] == 'S'
   }
   
+  abrirDialogUploadFoto(unidade:Unidade) {
+
+    const dialogRef = this.dialog.open(UploadFotoComponent, {
+      
+      data: {
+        unidade: unidade,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+  }
+
 
 }

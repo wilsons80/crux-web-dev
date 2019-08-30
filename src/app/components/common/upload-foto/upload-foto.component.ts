@@ -38,4 +38,12 @@ export class UploadFotoComponent implements OnInit {
       // show message
   }
 
+  salvar(){
+
+  }
+
+  cancelar(){
+      
+  }
+
 }
