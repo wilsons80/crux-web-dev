@@ -1,0 +1,74 @@
+<mat-toolbar class="tituloprincipal">Cadastrar Unidade</mat-toolbar>
+
+<div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
+    
+    
+    <form #formCadastroDepartamento="ngForm" >
+            
+        <!-- DADOS INICIAIS -->
+        <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
+                        <input matInput maxlength="50"  name="cdUnidadeDepartamento" placeholder="Sigla:" [(ngModel)]="departamento.cdUnidadeDepartamento" required >
+               </mat-form-field>
+
+               <mat-form-field fxFlex= "72%"  >
+                    <input matInput maxlength="100"  name="nmDepartamento" placeholder="Nome do Departamento:" [(ngModel)]="departamento.nmDepartamento" required> 
+               </mat-form-field>
+        </div>
+
+         <!-- DEPARTAMENTO SUPERIOR / UNIDADE -->
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                        <mat-form-field fxFlex= "45%" fxFlexOffset="20px">
+                                <mat-label>Departamento Superior: </mat-label>
+                                <mat-select name="departamentoSuperior" [(ngModel)]="departamento.departamentoSuperior" >
+                                    <mat-option *ngFor="let d of departamentos" [value]="d.idDepartamento">
+                                        {{d.nomeDepartamento}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+        
+                            <mat-form-field fxFlex= "47%" >
+                                    <mat-label>Unidade:</mat-label>
+                                    <mat-select [(ngModel)]="departamento.unidade" name="unidade" required>
+                                        <mat-option *ngFor="let d of departamentos" [value]="d.idDepartamento">
+                                          {{d.nomeDepartamento}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                </div>
+
+        <!-- ENDEREÇO -->
+        <mat-toolbar class="titulopartes">Endereço </mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+           <mat-form-field fxFlex= "70%" fxFlexOffset="20px">
+               <input type="text" matInput  [(ngModel)]="departamento.dsEnderecoDepartamento" name="dsEnderecoDepartamento" placeholder="Endereço:" />
+           </mat-form-field>
+
+           <mat-form-field fxFlex= "24%">
+                <input matInput  [(ngModel)]="departamento.nrTelefoneDepartamento" name="nrTelefoneDepartamento" placeholder="Telefone:">
+        </mat-form-field>
+        </div>
+
+          <!-- BOTÕES -->
+          <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                        <button mat-raised-button name="botaoConfirmar"  fxFlex= "20%" color="primary" [disabled]="formCadastroDepartamento.invalid" (click)="cadastrar()">
+                            Cadastrar</button>
+                        <button mat-raised-button fxFlex= "20%" color="primary" (click)="limpar()">
+                            Limpar</button>
+                        <button mat-raised-button fxFlex= "20%" color="primary" (click)="cancelar()">
+                            Cancelar</button>
+
+            </div>
+    </form>
+</div>
+
+
+
+<!-- idDepartamento: number;
+cdUnidadeDepartamento:string;
+nmDepartamento:string;
+dsEnderecoDepartamento:string;
+nrTelefoneDepartamento:string;
+departamentoSuperior:Departamento;
+unidade:Unidade; -->

@@ -3,15 +3,16 @@ import { UnidadeRoutingModule } from './unidade-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EscolherUnidadeComponent } from './escolher-unidade/escolher-unidade.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule, MatSelectModule, MatCardModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSlideToggleModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule } from '@angular/material';
 import { UnidadeComponent } from './unidade.component';
 import { FormsModule } from '@angular/forms';
 import { CadastrarUnidadeComponent } from './cadastrar-unidade/cadastrar-unidade.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { SubMenuUnidadeComponent } from '../menu-principal/modulo-pedagogico/sub-menu-unidade/sub-menu-unidade.component';
 
 
 @NgModule({
-  declarations: [EscolherUnidadeComponent, UnidadeComponent, CadastrarUnidadeComponent],
+  declarations: [EscolherUnidadeComponent, UnidadeComponent, CadastrarUnidadeComponent, SubMenuUnidadeComponent],
   imports: [
     CommonModule,
     UnidadeRoutingModule,
@@ -25,8 +26,11 @@ import { TextMaskModule } from 'angular2-text-mask';
     MatSelectModule,
     MatCardModule,
     MatTableModule,
-    TextMaskModule
+    TextMaskModule,
+    MatListModule
     
-  ]
+  ],
+  exports: [SubMenuUnidadeComponent]
+
 })
 export class UnidadeModule { }

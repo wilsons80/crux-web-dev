@@ -5,17 +5,16 @@ import { MatButtonModule, MatDividerModule, MatExpansionModule, MatIconModule, M
 import { RouterModule } from '@angular/router';
 import { MenuConfiguracoesComponent } from './menu-configuracoes/menu-configuracoes.component';
 import { MenuPrincipalComponent } from './menu-principal.component';
-import { SubMenusComponent } from './sub-menus/sub-menus.component';
-import { MenuSubModulosComponent } from './menu-sub-modulos/menu-sub-modulos.component';
+import { ModuloAdministrativoModule } from './modulo-administrativo/modulo-administrativo.module';
+import { ModuloPedagogicoModule } from './modulo-pedagogico/modulo-pedagogico.module';
 
 
 
 @NgModule({
   declarations: [
-    MenuPrincipalComponent, 
-    MenuConfiguracoesComponent, 
-    SubMenusComponent, 
-    MenuSubModulosComponent],
+    MenuPrincipalComponent,
+    MenuConfiguracoesComponent,
+  ],
   imports: [
     CommonModule,
     MatMenuModule,
@@ -27,7 +26,9 @@ import { MenuSubModulosComponent } from './menu-sub-modulos/menu-sub-modulos.com
     MatInputModule,
     MatDividerModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    ModuloPedagogicoModule,
+    ModuloAdministrativoModule
 
   ],
   exports: [MenuPrincipalComponent]

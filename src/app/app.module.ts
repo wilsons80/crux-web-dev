@@ -1,3 +1,5 @@
+import { DepartamentoModule } from './components/departamento/departamento.module';
+import { ModuloAdministrativoModule } from './components/menu-principal/modulo-administrativo/modulo-administrativo.module';
 import { AcessoModule } from './components/acesso/acesso.module';
 import { AlunoModule } from './components/aluno/aluno.module';
 import { MenuPrincipalModule } from './components/menu-principal/menu-principal.module';
@@ -22,7 +24,6 @@ import { LoadingPopupModule } from './components/common/loading-popup/loading-po
 import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { NovaSenhaModule } from './components/nova-senha/nova-senha.module';
 import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar-principal.module';
-import { UnidadeModule } from './components/unidade/unidade.module';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { ConfirmDialogComponent } from './components/common/confirm-dialog/confirm-dialog.component';
@@ -70,12 +71,12 @@ registerLocaleData(localePt, 'pt-BR');
     MatDividerModule,
     MenuPrincipalModule,
     AlunoModule,
-    UnidadeModule,
     MatDialogModule,
     MatToolbarModule,
     AcessoModule,
     ImageCropperModule,
-    MatCardModule
+    MatCardModule,
+    DepartamentoModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

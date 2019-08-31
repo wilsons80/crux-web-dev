@@ -1,12 +1,12 @@
-import { Router } from '@angular/router';
-import { UnidadeService } from './../../services/unidade/unidade.service';
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource, MatDialogConfig, MatDialog } from '@angular/material';
 import { Unidade } from 'src/app/core/unidade';
-import { ifStmt } from '@angular/compiler/src/output/output_ast';
-import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
+import { Router } from '@angular/router';
 import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
-import { UploadFotoComponent } from '../common/upload-foto/upload-foto.component';
+import { ConfirmDialogComponent } from 'src/app/components/common/confirm-dialog/confirm-dialog.component';
+import { UploadFotoComponent } from 'src/app/components/common/upload-foto/upload-foto.component';
+
 
 @Component({
   selector: 'app-unidade',

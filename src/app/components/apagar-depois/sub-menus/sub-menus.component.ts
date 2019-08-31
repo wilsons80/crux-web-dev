@@ -1,6 +1,6 @@
-import { ToolbarPrincipalService } from './../../../services/toolbarPrincipal/toolbar-principal.service';
-import { ControleMenuService } from './../../../services/controle-menu/controle-menu.service';
-import { Modulos } from './../../../core/modulos';
+import { ToolbarPrincipalService } from '../../../services/toolbarPrincipal/toolbar-principal.service';
+import { ControleMenuService } from '../../../services/controle-menu/controle-menu.service';
+import { Modulos } from '../../../core/modulos';
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
