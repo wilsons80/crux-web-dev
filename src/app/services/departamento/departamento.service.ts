@@ -1,3 +1,4 @@
+import { Departamento } from './../../core/departamento';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,5 +14,8 @@ export class DepartamentoService {
   getDepartamentosPorUnidade(idUnidade:number){
     return this.http.get(departamentoRootPath + `unidade/${idUnidade}`);
   }
+  
+  cadastrar(departamento:Departamento){
+    return this.http.post(departamentoRootPath , departamento);
+  }
 }
-

@@ -9,7 +9,7 @@
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
-                        <input matInput maxlength="50"  name="cdUnidadeDepartamento" placeholder="Sigla:" [(ngModel)]="departamento.cdUnidadeDepartamento" required >
+                        <input  matInput maxlength="6"  name="cdUnidadeDepartamento" placeholder="Sigla:" [(ngModel)]="departamento.cdUnidadeDepartamento" required >
                </mat-form-field>
 
                <mat-form-field fxFlex= "72%"  >
@@ -19,30 +19,30 @@
 
          <!-- DEPARTAMENTO SUPERIOR / UNIDADE -->
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                        <mat-form-field fxFlex= "45%" fxFlexOffset="20px">
-                                <mat-label>Departamento Superior: </mat-label>
-                                <mat-select name="departamentoSuperior" [(ngModel)]="departamento.departamentoSuperior" >
-                                    <mat-option *ngFor="let d of departamentos" [value]="d.idDepartamento">
-                                        {{d.nomeDepartamento}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-        
-                            <mat-form-field fxFlex= "47%" >
+                            <mat-form-field fxFlexOffset="20px" fxFlex= "45%" >
                                     <mat-label>Unidade:</mat-label>
                                     <mat-select [(ngModel)]="departamento.unidade" name="unidade" required>
-                                        <mat-option *ngFor="let d of departamentos" [value]="d.idDepartamento">
-                                          {{d.nomeDepartamento}}
+                                        <mat-option *ngFor="let u of unidades" [value]="u" (onSelectionChange)="carregarDepartamento(u.idUnidade)">
+                                          {{u.nomeUnidade}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
+
+                                <mat-form-field fxFlex= "46%" fxFlexOffset="20px">
+                                        <mat-label>Departamento Superior: </mat-label>
+                                        <mat-select name="departamentoSuperior" [(ngModel)]="departamento.departamentoSuperior" [disabled]="!departamento.unidade">
+                                            <mat-option *ngFor="let d of departamentos" [value]="d">
+                                                {{d.nmDepartamento}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                 </div>
 
         <!-- ENDEREÇO -->
         <mat-toolbar class="titulopartes">Endereço </mat-toolbar>
         <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
            <mat-form-field fxFlex= "70%" fxFlexOffset="20px">
-               <input type="text" matInput  [(ngModel)]="departamento.dsEnderecoDepartamento" name="dsEnderecoDepartamento" placeholder="Endereço:" />
+               <input type="text" matInput  maxlength="200" [(ngModel)]="departamento.dsEnderecoDepartamento" name="dsEnderecoDepartamento" placeholder="Endereço:" />
            </mat-form-field>
 
            <mat-form-field fxFlex= "24%">
@@ -62,13 +62,3 @@
             </div>
     </form>
 </div>
-
-
-
-<!-- idDepartamento: number;
-cdUnidadeDepartamento:string;
-nmDepartamento:string;
-dsEnderecoDepartamento:string;
-nrTelefoneDepartamento:string;
-departamentoSuperior:Departamento;
-unidade:Unidade; -->

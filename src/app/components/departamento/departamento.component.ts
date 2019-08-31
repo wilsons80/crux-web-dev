@@ -1,3 +1,5 @@
+import { UnidadeService } from './../../services/unidade/unidade.service';
+import { Unidade } from 'src/app/core/unidade';
 import { DepartamentoService } from './../../services/departamento/departamento.service';
 import { Departamento } from './../../core/departamento';
 import { ConsultarCursoComponent } from './../curso/consultar-curso/consultar-curso.component';
@@ -12,27 +14,33 @@ import { MatTableDataSource } from '@angular/material';
 export class DepartamentoComponent implements OnInit {
 
   departamentos: Departamento[];
-
   mostrarTabela: boolean = false;
 
-  displayedColumns: string[] = ['sigla', 'nome', 'departamentoSuperior', 'unidade', 'acoes'];
+  displayedColumns: string[] = ['sigla', 'nome', 'unidade', 'acoes'];
   dataSource: MatTableDataSource<Departamento>;
 
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   
   constructor(
-    private departamentoService:DepartamentoService
+    private departamentoService:DepartamentoService,
     ) {}
 
   ngOnInit() {
+    this.dataSource = new MatTableDataSource();
     this.departamentoService.getDepartamentosPorUnidade(4).subscribe((departamentos:Departamento[]) => {
-      console.log("departamentos", departamentos);
       this.departamentos = departamentos
     })
+
   }
 
   limpar(){}
-  consultar(){}
+  consultar(){
+    this.departamentoService.getDepartamentosPorUnidade(4).subscribe((departamentos:Departamento[]) => {
+      this.mostrarTabela = true;
+      this.dataSource.data = departamentos;
+    })
+    
+  }
 }
 
 
