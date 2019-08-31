@@ -16,7 +16,7 @@
                     
                     <mat-icon fxFlexOffset="10px">business</mat-icon>
                     <mat-form-field fxFlex= "80%" fxFlexOffset="10px" >
-                        <mat-label>Selecione uma unidade</mat-label>
+                        <mat-label>Selecione um departamento</mat-label>
                         <mat-select [(ngModel)]="departamento" name="unidade">
                             <mat-option *ngFor="let d of departamentos" [value]="d">
                                 {{d.nmDepartamento}}
