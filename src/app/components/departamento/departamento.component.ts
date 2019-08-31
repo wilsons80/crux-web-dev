@@ -77,10 +77,11 @@ export class DepartamentoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        console.log("dsadsasd", departamento);
         
         this.departamentoService.excluir(departamento.idDepartamento).subscribe(() => {
-          this.ngOnInit();
+          console.log("voltei");
+          
+          this.consultar();
         })
 
       } else {

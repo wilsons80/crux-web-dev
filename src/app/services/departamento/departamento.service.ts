@@ -1,8 +1,14 @@
 import { Departamento } from './../../core/departamento';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const departamentoRootPath = 'api/departamento/';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +34,7 @@ export class DepartamentoService {
   }
  
   excluir(idDepartamento:number){
-    return this.http.delete(departamentoRootPath + `${idDepartamento}`);
+    return this.http.delete(departamentoRootPath + `${idDepartamento}`, httpOptions);
   }
   
 }
