@@ -1,7 +1,8 @@
-import { ToolbarPrincipalService } from '../../../services/toolbarPrincipal/toolbar-principal.service';
+import { Modulos } from './../../../core/modulos';
 import { Component, OnInit, Input } from '@angular/core';
-import { Modulos } from 'src/app/core/modulos';
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
+
 
 @Component({
   selector: 'menu-sub-modulos',

@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Unidade } from 'src/app/core/unidade';
+import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 import { ActivatedRoute } from '@angular/router';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
-import { EnderecoService } from 'src/app/services/endereco/endereco.service';
-
-
-
 
 @Component({
   selector: 'app-cadastrar-unidade',
@@ -46,10 +43,10 @@ export class CadastrarUnidadeComponent implements OnInit {
   ]
 
   constructor(
-    private enderecoService:EnderecoService,
-    // private location:Location,
-     private route: ActivatedRoute,
-     private unidadeService:UnidadeService
+    private enderecoService: EnderecoService,
+    private location: Location,
+    private route: ActivatedRoute,
+    private unidadeService: UnidadeService
   ) { }
 
   ngOnInit() {
@@ -66,7 +63,7 @@ export class CadastrarUnidadeComponent implements OnInit {
   }
 
   cancelar() {
-    // this.location.back();
+    
   }
 
   limpar() {

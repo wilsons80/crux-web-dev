@@ -22,7 +22,7 @@
                             <mat-form-field fxFlexOffset="20px" fxFlex= "45%" >
                                     <mat-label>Unidade:</mat-label>
                                     <mat-select [(ngModel)]="departamento.unidade" name="unidade" required>
-                                        <mat-option *ngFor="let u of unidades" [value]="u" (onSelectionChange)="carregarDepartamento(u.idUnidade)">
+                                        <mat-option *ngFor="let u of unidades" [value]="u" >
                                           {{u.nomeUnidade}}
                                         </mat-option>
                                     </mat-select>
@@ -52,9 +52,12 @@
 
           <!-- BOTÕES -->
           <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                        <button mat-raised-button name="botaoConfirmar"  fxFlex= "20%" color="primary" [disabled]="formCadastroDepartamento.invalid" (click)="cadastrar()">
-                            Cadastrar</button>
-                        <button mat-raised-button fxFlex= "20%" color="primary" (click)="limpar()">
+                        <button mat-raised-button name="botaoConfirmar"  
+                                fxFlex= "20%" color="primary" 
+                                [disabled]="formCadastroDepartamento.invalid" 
+                                (click)="isAtualizar ? atualizar() : cadastrar()">
+                                {{getNomeBotao()}}</button>
+                        <button *ngIf="!isAtualizar" mat-raised-button fxFlex= "20%" color="primary" (click)="limpar()">
                             Limpar</button>
                         <button mat-raised-button fxFlex= "20%" color="primary" (click)="cancelar()">
                             Cancelar</button>

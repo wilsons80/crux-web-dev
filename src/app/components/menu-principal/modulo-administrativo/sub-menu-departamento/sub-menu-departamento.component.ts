@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 
 @Component({
   selector: 'sub-menu-departamento',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubMenuDepartamentoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private menuPrincipalService:MenuPrincipalService
+  ) { }
 
   ngOnInit() {
+  }
+
+  fecharMenu(){
+    this.menuPrincipalService.alternar();
   }
 
 }

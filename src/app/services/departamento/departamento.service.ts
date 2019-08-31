@@ -18,4 +18,19 @@ export class DepartamentoService {
   cadastrar(departamento:Departamento){
     return this.http.post(departamentoRootPath , departamento);
   }
+ 
+  alterar(departamento:Departamento){
+    return this.http.put(departamentoRootPath , departamento);
+  }
+ 
+  getDepartamentoById(idDepartamento:number){
+    return this.http.get(departamentoRootPath + `${idDepartamento}`);
+  }
+ 
+  excluir(idDepartamento:number){
+    return this.http.delete(departamentoRootPath + `${idDepartamento}`);
+  }
+  
 }
+
+	
