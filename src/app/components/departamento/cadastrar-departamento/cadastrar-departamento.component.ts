@@ -26,7 +26,8 @@ export class CadastrarDepartamentoComponent implements OnInit {
     private departamentoService: DepartamentoService,
     private router: Router,
     private route: ActivatedRoute,
-    private location:Location
+    private location:Location,
+    
   ) { }
 
 
@@ -46,8 +47,9 @@ export class CadastrarDepartamentoComponent implements OnInit {
     
   }
   cadastrar() {
+
     this.departamentoService.cadastrar(this.departamento).subscribe(() => {
-      this.router.navigate(['/departamento/4']);
+      this.location.back();
     });
   }
 
