@@ -2,10 +2,9 @@ import { LoadingPopupService } from './services/loadingPopup/loading-popup.servi
 import { LoadingIndicatorService } from 'src/app/services/loadingIndicator/loading-indicator.service';
 import { MenuPrincipalService } from './services/menuPrincipal/menu-principal.service';
 import { Component, ViewChild } from '@angular/core';
-import { MatDrawer, MatDialogRef, MatDialog } from '@angular/material';
+import { MatDrawer } from '@angular/material';
 import { throttleTime } from 'rxjs/operators';
 import { asyncScheduler } from 'rxjs';
-import { LoadingPopupComponent } from './components/common/loading-popup/loading-popup.component';
 
 @Component({
   selector: 'app-root',
@@ -20,27 +19,21 @@ export class AppComponent {
 
   showFiller = false;
 
-  dialogRef: MatDialogRef<any,any>;
-
   constructor(
     private menuPrincipalService: MenuPrincipalService,
     loadingIndicatorService:LoadingIndicatorService,
-    public dialog: MatDialog
+    loadingPopupService:LoadingPopupService
     ) { 
+      
       const subs = loadingIndicatorService.onLoadingChanged
          .subscribe(loading => {
-           console.log(loading);
            if(loading){
-            this.dialogRef = this.dialog.open(LoadingPopupComponent, {
-              disableClose: true
-            })           
+            loadingPopupService.mostrarDialog();
            }
             if (!loading) {
-              this.dialogRef.close()
-              subs.unsubscribe();
+              loadingPopupService.closeDialog();
             }
-          },
-            () => subs.unsubscribe());
+          });
 
     
   }

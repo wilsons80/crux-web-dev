@@ -20,8 +20,7 @@ export class LoadingPopupService {
   }
 
   closeDialog() {
-    if (this.dialogRef)
-      this.dialogRef.close();
+    this.dialog.closeAll();
   }
 
 
