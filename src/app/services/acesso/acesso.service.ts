@@ -12,11 +12,11 @@ export class AcessoService {
 
   constructor(private http: HttpClient) { }
   
-  getAllAcessos(idUnidade:number){
+  getMenuPrincipal(idUnidade:number){
     return this.http.get(acessoRootPath + `usuario/unidade/${idUnidade}`);
   }
 
-  getPerfilAcesso(idUnidade:number, idUsuario:number|string, idModulo:number|string){
+  getAcessosDoUsurioNoModulo(idUnidade:number, idUsuario:number|string, idModulo:number|string){
     if(idUsuario == undefined) idUsuario = "";
     if(idModulo == undefined) idModulo = "";
 

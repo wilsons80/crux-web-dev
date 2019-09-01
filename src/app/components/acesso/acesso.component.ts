@@ -72,7 +72,7 @@ export class AcessoComponent implements OnInit {
   consultar() {
     this.dataSource = new MatTableDataSource();
 
-    this.acessoService.getPerfilAcesso(this.cadastroAcessoTO.idUnidade, this.cadastroAcessoTO.idUsuario, this.cadastroAcessoTO.idModulo)
+    this.acessoService.getAcessosDoUsurioNoModulo(this.cadastroAcessoTO.idUnidade, this.cadastroAcessoTO.idUsuario, this.cadastroAcessoTO.idModulo)
       .subscribe((resposta: any) => {
         this.dataSource.data = resposta
       })
