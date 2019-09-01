@@ -8,11 +8,11 @@
         
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
-                        <input matInput maxlength="50" [(ngModel)]="unidade.siglaUnidade" name="siglaUnidade" placeholder="Sigla:" required [disabled]="isAtualizar">
+                        <input matInput maxlength="50" [(ngModel)]="unidade.siglaUnidade" name="siglaUnidade" placeholder="Sigla:" required >
                </mat-form-field>
 
                <mat-form-field fxFlex= "72%"  >
-                    <input matInput maxlength="100" [(ngModel)]="unidade.nomeUnidade" name="nomeUnidade" placeholder="Nome da Unidade:" required [disabled]="isAtualizar"> 
+                    <input matInput maxlength="100" [(ngModel)]="unidade.nomeUnidade" name="nomeUnidade" placeholder="Nome da Unidade:" required > 
                </mat-form-field>
         </div>
         
@@ -55,11 +55,11 @@
         <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
             
            <mat-form-field fxFlex= "40%" fxFlexOffset="20px">
-               <input type="text" matInput maxlength="20" [(ngModel)]="unidade.numeroInscricaoEstadual" name="numeroInscricaoEstadual" placeholder="Numero Inscrição Estadual:" [textMask]="{mask: maskCep}" />
+               <input type="text" matInput maxlength="20" [(ngModel)]="unidade.numeroInscricaoEstadual" name="numeroInscricaoEstadual" placeholder="Numero Inscrição Estadual:"  />
            </mat-form-field>
 
            <mat-form-field fxFlex= "52%" fxFlexOffset="20px">
-            <input type="text" matInput maxlength="20" [(ngModel)]="unidade.numeroInscricaoMunicipal" name="numeroInscricaoMunicipal" placeholder="Numero Inscrição Municipal:" [textMask]="{mask: maskCep}" />
+            <input type="text" matInput maxlength="20" [(ngModel)]="unidade.numeroInscricaoMunicipal" name="numeroInscricaoMunicipal" placeholder="Numero Inscrição Municipal:"  />
         </mat-form-field>
                 
         </div>
