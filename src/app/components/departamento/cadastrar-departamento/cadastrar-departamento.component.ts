@@ -27,7 +27,6 @@ export class CadastrarDepartamentoComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private location:Location,
-    
   ) { }
 
 
