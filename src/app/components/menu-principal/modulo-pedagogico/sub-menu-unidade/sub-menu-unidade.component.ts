@@ -22,7 +22,7 @@ export class SubMenuUnidadeComponent implements OnInit {
     if(this.toolbarPrincipalService.unidadeSelecionada){
       idUnidadeAtualSelecionada = this.toolbarPrincipalService.unidadeSelecionada.id;
     }
-    return `unidade/4/`;
+    return `unidade/${idUnidadeAtualSelecionada}`;
   }
 
 }

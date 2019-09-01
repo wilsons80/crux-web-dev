@@ -12,10 +12,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError(respError => {
-          console.log(respError);
         let msgErro = 'Ocorreu um erro interno.';
-        if (respError.error && respError.error.msg) {
-          msgErro = respError.error.msg;
+        if (respError.error && respError.error.mensagem) {
+          msgErro = respError.error.mensagem;
         }
 
         let idErro = null;

@@ -1,8 +1,9 @@
 import { HTTP_INTERCEPTORS, HttpBackend, HttpClient, HttpHandler, HttpInterceptor, HttpRequest, HttpEvent } from '@angular/common/http';
 import { InjectionToken, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpErrorInterceptor } from './http-error.interceptor';
 
-export const bypassHttpErrorFactory = (backend: HttpBackend, injector: Injector) => getCustomHttpClient(backend, injector);
+export const bypassHttpErrorFactory = (backend: HttpBackend, injector: Injector) => getCustomHttpClient(backend, injector, { excludes: [HttpErrorInterceptor] });
 
 const getCustomHttpClient = (backend: HttpBackend, injector: Injector, options: { excludes: Function[] } = { excludes: [] }) =>
   new HttpClient(new HttpDynamicInterceptingHandler(backend, injector, options));
