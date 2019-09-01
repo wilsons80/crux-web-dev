@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 const acessoRootPath = 'api/acesso/';
+const menuRootPath = 'api/menu/';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AcessoService {
   constructor(private http: HttpClient) { }
   
   getMenuPrincipal(idUnidade:number){
-    return this.http.get(acessoRootPath + `usuario/unidade/${idUnidade}`);
+    return this.http.get(menuRootPath + `unidade/${idUnidade}`);
   }
 
   getAcessosDoUsurioNoModulo(idUnidade:number, idUsuario:number|string, idModulo:number|string){
