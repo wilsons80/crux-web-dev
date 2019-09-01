@@ -19,6 +19,8 @@ export class CadastrarDepartamentoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
   constructor(
     private unidadeService: UnidadeService,
     private departamentoService: DepartamentoService,

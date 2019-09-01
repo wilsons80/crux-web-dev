@@ -21,8 +21,6 @@ export class DepartamentoComponent implements OnInit {
   displayedColumns: string[] = ['sigla', 'nome', 'unidade', 'acoes'];
   dataSource: MatTableDataSource<Departamento> = new MatTableDataSource();
 
-  public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-
   constructor(
     private departamentoService: DepartamentoService,
     private router: Router,

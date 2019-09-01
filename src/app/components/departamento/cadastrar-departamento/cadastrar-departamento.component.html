@@ -46,7 +46,7 @@
            </mat-form-field>
 
            <mat-form-field fxFlex= "24%">
-                <input matInput  [(ngModel)]="departamento.nrTelefoneDepartamento" name="nrTelefoneDepartamento" placeholder="Telefone:">
+                <input matInput  [(ngModel)]="departamento.nrTelefoneDepartamento" name="nrTelefoneDepartamento" placeholder="Telefone:" [textMask]="{mask: maskPhone}">
         </mat-form-field>
         </div>
 
