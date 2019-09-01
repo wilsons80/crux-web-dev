@@ -1,10 +1,13 @@
 import {Injectable, EventEmitter} from '@angular/core';
 import {HttpRequest} from '@angular/common/http';
+import { LoadingPopupService } from '../loadingPopup/loading-popup.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadingIndicatorService {
+  
+  constructor(private loadingPopupService:LoadingPopupService){}
 
   onLoadingChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
