@@ -26,7 +26,7 @@ export class ModuloPedagogicoComponent implements OnInit {
     if(this.toolbarPrincipalService.unidadeSelecionada){
       idUnidadeAtualSelecionada = this.toolbarPrincipalService.unidadeSelecionada.id;
     }
-    return `${pathRootRouter}/4/`;
+    return `${pathRootRouter}/${idUnidadeAtualSelecionada}`;
   }
 
 }

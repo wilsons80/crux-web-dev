@@ -1,3 +1,4 @@
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 
@@ -9,7 +10,8 @@ import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-princi
 export class SubMenuDepartamentoComponent implements OnInit {
 
   constructor(
-    private menuPrincipalService:MenuPrincipalService
+    private menuPrincipalService:MenuPrincipalService,
+    private toolbarPrincipalService:ToolbarPrincipalService
   ) { }
 
   ngOnInit() {
@@ -17,6 +19,14 @@ export class SubMenuDepartamentoComponent implements OnInit {
 
   fecharMenu(){
     this.menuPrincipalService.alternar();
+  }
+
+  getRouterLink(){
+    let idUnidadeAtualSelecionada: number;
+    if(this.toolbarPrincipalService.unidadeSelecionada){
+      idUnidadeAtualSelecionada = this.toolbarPrincipalService.unidadeSelecionada.id;
+    }
+    return `departamento/${idUnidadeAtualSelecionada}`;
   }
 
 }
