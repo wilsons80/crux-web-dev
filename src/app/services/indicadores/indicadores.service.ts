@@ -16,8 +16,8 @@ export class IndicadoresService {
     return this.http.get(indicadoresRootPath + `unidade/${idUnidade}`);
   }
 
-  getIndicadoresById(idOjetivo:number) {
-    return this.http.get(indicadoresRootPath + `${idOjetivo}`);
+  getById(id:number) {
+    return this.http.get(indicadoresRootPath + `${id}`);
   }
  
   cadastrar(indicadores:Indicadores) {
