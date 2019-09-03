@@ -15,6 +15,7 @@ export class PerspectivaComponent implements OnInit {
   perspectivas: Perspectiva[];
   mostrarTabela: boolean = false;
   perspectiva: Perspectiva = new Perspectiva();
+  idUnidadeLogada:number;
 
 
   displayedColumns: string[] = ['nome', 'dtImplantacao', 'dtTermino','unidade', 'acoes'];
@@ -29,8 +30,8 @@ export class PerspectivaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let idUnidadeLogada = this.activatedRoute.snapshot.params.idUnidade;
-    this.perspectivaService.getAll(idUnidadeLogada).subscribe((perspectivas: Perspectiva[]) => {
+    this.idUnidadeLogada = this.activatedRoute.snapshot.params.idUnidade;
+    this.perspectivaService.getAll(this.idUnidadeLogada).subscribe((perspectivas: Perspectiva[]) => {
       this.perspectivas = perspectivas
     })
   }
@@ -48,9 +49,10 @@ export class PerspectivaComponent implements OnInit {
         array.push(perspectiva);
         this.dataSource.data = array
       })
-    } else {
+    } this.perspectivaService.getAll(this.idUnidadeLogada).subscribe((perspectivas: Perspectiva[]) => {
+      this.perspectivas = perspectivas;
       this.dataSource.data = this.perspectivas;
-    }
+    })
     this.mostrarTabela = true;
   }
 
