@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Departamento } from 'src/app/core/departamento';
-import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
-import { DepartamentoService } from 'src/app/services/departamento/departamento.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Perspectiva } from 'src/app/core/perspectiva';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerspectivaService } from './../../services/perspectiva/perspectiva.service';
 
 @Component({
   selector: 'app-perspectiva',
@@ -12,16 +12,16 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class PerspectivaComponent implements OnInit {
 
-  departamentos: Departamento[];
+  perspectivas: Perspectiva[];
   mostrarTabela: boolean = false;
-  departamento: Departamento = new Departamento();
+  perspectiva: Perspectiva = new Perspectiva();
 
 
-  displayedColumns: string[] = ['sigla', 'nome', 'unidade', 'acoes'];
-  dataSource: MatTableDataSource<Departamento> = new MatTableDataSource();
+  displayedColumns: string[] = ['nome', 'dtImplantacao', 'dtTermino','unidade', 'acoes'];
+  dataSource: MatTableDataSource<Perspectiva> = new MatTableDataSource();
 
   constructor(
-    private departamentoService: DepartamentoService,
+    private perspectivaService: PerspectivaService,
     private router: Router,
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
@@ -30,43 +30,43 @@ export class PerspectivaComponent implements OnInit {
 
   ngOnInit() {
     let idUnidadeLogada = this.activatedRoute.snapshot.params.idUnidade;
-    this.departamentoService.getDepartamentosPorUnidade(idUnidadeLogada).subscribe((departamentos: Departamento[]) => {
-      this.departamentos = departamentos
+    this.perspectivaService.getAll(idUnidadeLogada).subscribe((perspectivas: Perspectiva[]) => {
+      this.perspectivas = perspectivas
     })
   }
 
   limpar() {
     this.mostrarTabela = false;
-    this.departamento = new Departamento()
+    this.perspectiva = new Perspectiva();
     this.dataSource.data = null;
   }
 
   consultar() {
-    if (this.departamento.idDepartamento) {
-      this.departamentoService.getDepartamentoById(this.departamento.idDepartamento).subscribe((departamento: Departamento) => {
+    if (this.perspectiva.idPerspectiva) {
+      this.perspectivaService.getDepartamentoById(this.perspectiva.idPerspectiva).subscribe((perspectiva: Perspectiva) => {
         let array = [];
-        array.push(departamento);
+        array.push(perspectiva);
         this.dataSource.data = array
       })
     } else {
-      this.dataSource.data = this.departamentos;
+      this.dataSource.data = this.perspectivas;
     }
     this.mostrarTabela = true;
   }
 
 
-  atualizar(departamento: Departamento) {
-    this.router.navigate(['/departamento/cadastrar'], { queryParams: { idDepartamento: departamento.idDepartamento } });
+  atualizar(perspectiva: Perspectiva) {
+    this.router.navigate(['/perspectiva/cadastrar'], { queryParams: { idPerspectiva: perspectiva.idPerspectiva } });
   }
 
-  deletar(departamento: Departamento) {
-    this.chamaCaixaDialogo(departamento);
+  deletar(perspectiva: Perspectiva) {
+    this.chamaCaixaDialogo(perspectiva);
   }
 
-  chamaCaixaDialogo(departamento: Departamento) {
+  chamaCaixaDialogo(perspectiva: Perspectiva) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a unidade ${departamento.cdUnidadeDepartamento}?`,
+      pergunta: `Certeza que desse excluir a unidade ${perspectiva.nmPerspectiva}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };
@@ -74,10 +74,8 @@ export class PerspectivaComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        
-        this.departamentoService.excluir(departamento.idDepartamento).subscribe(() => {
-          console.log("voltei");
-          
+
+        this.perspectivaService.excluir(perspectiva.idPerspectiva).subscribe(() => {
           this.consultar();
         })
 
@@ -89,3 +87,4 @@ export class PerspectivaComponent implements OnInit {
   }
 
 }
+

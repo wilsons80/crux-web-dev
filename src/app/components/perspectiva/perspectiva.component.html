@@ -3,23 +3,23 @@
 
         <div  fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="padding: 10px 10px 30px">
                 <div>
-                        <button mat-fab color="primary" [routerLink]="['/departamento/cadastrar']" routerLinkActive="router-link-active">
+                        <button mat-fab color="primary" [routerLink]="['/perspectiva/cadastrar']" routerLinkActive="router-link-active">
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
-                    <div>Cadastrar novo Departamento</div>
+                    <div>Cadastrar nova Perspectiva</div>
                 </div>
 
             <form #formConsultarDepartamento="ngForm" class="mat-elevation-z1 painel-consultar" >
 
                 <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     
-                    <mat-icon fxFlexOffset="10px">business</mat-icon>
+                    <mat-icon fxFlexOffset="10px">calendar_view_day</mat-icon>
                     <mat-form-field fxFlex= "80%" fxFlexOffset="10px" >
                         <mat-label>Selecione um departamento</mat-label>
-                        <mat-select [(ngModel)]="departamento" name="unidade">
-                            <mat-option *ngFor="let d of departamentos" [value]="d">
-                                {{d.nmDepartamento}}
+                        <mat-select [(ngModel)]="perspectiva" name="perspectiva">
+                            <mat-option *ngFor="let p of perspectivas" [value]="p">
+                                {{p.nmPerspectiva}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -42,19 +42,24 @@
         <table *ngIf="mostrarTabela" mat-table [dataSource]="dataSource" class="mat-elevation-z1 minhas-tarefas">
 
           
-            <ng-container matColumnDef="sigla">
-              <th mat-header-cell *matHeaderCellDef> Sigla: </th>
-              <td mat-cell *matCellDef="let element"> {{element.cdUnidadeDepartamento}} </td>
-            </ng-container>
-          
             <ng-container matColumnDef="nome">
               <th mat-header-cell *matHeaderCellDef> Nome: </th>
-              <td mat-cell *matCellDef="let element"> {{element.nmDepartamento}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.nmPerspectiva}} </td>
             </ng-container>
           
+            <ng-container matColumnDef="dtImplantacao">
+              <th mat-header-cell *matHeaderCellDef> Implantação: </th>
+              <td mat-cell *matCellDef="let element"> {{element.dtImplantacao}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="dtTermino">
+              <th mat-header-cell *matHeaderCellDef> Término </th>
+              <td mat-cell *matCellDef="let element"> {{element.dtTermino}} </td>
+            </ng-container>
+         
             <ng-container matColumnDef="unidade">
               <th mat-header-cell *matHeaderCellDef> Unidade </th>
-              <td mat-cell *matCellDef="let element"> {{element.unidade.nomeUnidade}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.unidade.siglaUnidade}} </td>
             </ng-container>
           
             <ng-container matColumnDef="acoes">
@@ -73,3 +78,5 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
 </div>
+
+<!-- ['nome', 'dtImplantacao', 'dtTermino','unidade', 'acoes']; -->

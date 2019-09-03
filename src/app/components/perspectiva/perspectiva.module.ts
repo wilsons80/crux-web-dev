@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { PerspectivaRoutingModule } from './perspectiva-routing.module';
 import { PerspectivaComponent } from './perspectiva.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CadastrarPerspectivaComponent } from './cadastrar-perspectiva/cadastrar-perspectiva.component';
 
 
 @NgModule({
-  declarations: [PerspectivaComponent],
+  declarations: [PerspectivaComponent, CadastrarPerspectivaComponent],
   imports: [
     CommonModule,
     PerspectivaRoutingModule,
@@ -25,7 +26,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTableModule,
     TextMaskModule,
     MatListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class PerspectivaModule { }

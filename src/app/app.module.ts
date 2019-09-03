@@ -29,6 +29,7 @@ import localePt from '@angular/common/locales/pt';
 import { ConfirmDialogComponent } from './components/common/confirm-dialog/confirm-dialog.component';
 import { UploadFotoComponent } from './components/common/upload-foto/upload-foto.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { PerspectivaModule } from './components/perspectiva/perspectiva.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -76,7 +77,8 @@ registerLocaleData(localePt, 'pt-BR');
     AcessoModule,
     ImageCropperModule,
     MatCardModule,
-    DepartamentoModule
+    DepartamentoModule,
+    PerspectivaModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
