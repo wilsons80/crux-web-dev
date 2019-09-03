@@ -1,4 +1,4 @@
-import { CadastroAcessoTO } from './../../core/cadastroAcessoTO';
+import { CadastroAcesso } from '../../core/cadastro-acesso';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -27,12 +27,12 @@ export class AcessoService {
     }});
   }
 
-  cadastrarAcesso(cadastroAcessoTO:CadastroAcessoTO){
-    return this.http.post(acessoRootPath , cadastroAcessoTO);
+  cadastrarAcesso(cadastroAcesso:CadastroAcesso){
+    return this.http.post(acessoRootPath , cadastroAcesso);
   }
 
-  alterar(cadastroAcessoTO:CadastroAcessoTO){
-    return this.http.put(acessoRootPath , cadastroAcessoTO);
+  alterar(cadastroAcesso:CadastroAcesso){
+    return this.http.put(acessoRootPath , cadastroAcesso);
   }
   
   excluir(idUsuarioGrupo:number){

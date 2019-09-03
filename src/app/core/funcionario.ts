@@ -1,7 +1,7 @@
 import { ConclusaoParecer } from './conclusao-parecer';
 import { ParecerEntrevistador } from './parecer-entrevistador';
 import { Unidade } from './unidade';
-import { TipoFuncionario } from './tipoFuncionario';
+import { TipoFuncionario } from './tipo-funcionario';
 import { Cargo } from './cargo';
 import { PessoaFisica } from './pessoa-fisica';
 import { Empresa } from './empresa';

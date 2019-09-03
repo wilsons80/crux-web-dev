@@ -6,7 +6,7 @@ import { AcessoService } from './../../../services/acesso/acesso.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { Component, OnInit, Inject } from '@angular/core';
-import { CadastroAcessoTO } from 'src/app/core/cadastroAcessoTO';
+import { CadastroAcesso } from 'src/app/core/cadastro-acesso';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -26,7 +26,7 @@ export class CadastrarAcessoComponent implements OnInit {
 
   labelBotao: string;
 
-  cadastroAcessoTO: CadastroAcessoTO = new CadastroAcessoTO();
+  cadastroAcessoTO: CadastroAcesso = new CadastroAcesso();
 
   constructor(
     protected toolbarPrincipalService: ToolbarPrincipalService,

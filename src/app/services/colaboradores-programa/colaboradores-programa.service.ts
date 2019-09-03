@@ -1,13 +1,13 @@
+import { ColaboradoresPrograma } from './../../core/colaboradores-programa';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PlanosAcao } from 'src/app/core/planos-acao';
 
-const rootPath = 'api/planosacao/';
+const rootPath = 'api/colaboradoresprograma/';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PlanosAcaoService {
+export class ColaboradoresProgramaService {
 
   constructor(private http: HttpClient) { }
 
@@ -19,12 +19,12 @@ export class PlanosAcaoService {
     return this.http.get(rootPath + `${id}`);
   }
  
-  cadastrar(planosAcao:PlanosAcao) {
-    return this.http.post(rootPath, planosAcao);
+  cadastrar(colaboradoresPrograma:ColaboradoresPrograma) {
+    return this.http.post(rootPath, colaboradoresPrograma);
   }
 
-  alterar(planosAcao:PlanosAcao) {
-    return this.http.put(rootPath, planosAcao);
+  alterar(colaboradoresPrograma:ColaboradoresPrograma) {
+    return this.http.put(rootPath, colaboradoresPrograma);
   }
 
   excluir(id:number) {

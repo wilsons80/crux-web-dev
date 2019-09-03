@@ -1,4 +1,4 @@
-export class CadastroAcessoTO {
+export class CadastroAcesso {
 
     idUsuario: number;
     idModulo: number;

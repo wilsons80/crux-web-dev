@@ -1,4 +1,4 @@
-import { CadastroAcessoTO } from './../../core/cadastroAcessoTO';
+import { CadastroAcesso } from '../../core/cadastro-acesso';
 import { AcessoService } from './../../services/acesso/acesso.service';
 import { ControleMenuService } from './../../services/controle-menu/controle-menu.service';
 import { ModuloService } from './../../services/modulo/modulo.service';
@@ -19,7 +19,7 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 export class AcessoComponent implements OnInit {
 
 
-  cadastroAcessoTO: CadastroAcessoTO = new CadastroAcessoTO();
+  cadastroAcessoTO: CadastroAcesso = new CadastroAcesso();
 
   usuarios: any;
   modulos: any;
