@@ -6,6 +6,7 @@ export class Perspectiva {
 	dtImplantacao:Date;
 	dtTermino:Date;
 	unidade:Unidade;
+	usuariosAlteracao:number;
 }
 
 
