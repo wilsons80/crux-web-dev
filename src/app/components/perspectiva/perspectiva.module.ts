@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CadastrarPerspectivaComponent } from './cadastrar-perspectiva/cadastrar-perspectiva.component';
+import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { CadastrarPerspectivaComponent } from './cadastrar-perspectiva/cadastrar
     MatListModule,
     FlexLayoutModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    SharedPipesModule
   ]
 })
 export class PerspectivaModule { }

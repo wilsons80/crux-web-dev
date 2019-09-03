@@ -1,12 +1,3 @@
-
-<!-- idPerspectiva:number;
-nmPerspectiva: number;
-dtImplantacao:Date;
-dtTermino:Date;
-unidade:Unidade;
-MatNativeDateModule, MatMomentDateModule, 
-
--->
 <mat-toolbar class="tituloprincipal">Cadastrar Perspectiva</mat-toolbar>
 
 <div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
@@ -26,7 +17,7 @@ MatNativeDateModule, MatMomentDateModule,
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
             <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
-                    <input matInput name= "dtImplantacao" [matDatepicker]="dtImplantacao" placeholder="Data de Implatação" [(ngModel)]="perspectiva.dtImplantacao">
+                    <input matInput name= "dtImplantacao" [matDatepicker]="dtImplantacao" placeholder="Data de Implatação" [(ngModel)]="perspectiva.dtImplantacao" required>
                     <mat-datepicker-toggle matSuffix [for]="dtImplantacao"></mat-datepicker-toggle>
                     <mat-datepicker #dtImplantacao></mat-datepicker>
              </mat-form-field>

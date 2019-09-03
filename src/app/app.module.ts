@@ -43,7 +43,8 @@ registerLocaleData(localePt, 'pt-BR');
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
-    UploadFotoComponent
+    UploadFotoComponent,
+    
   ],
   imports: [
     BrowserModule,

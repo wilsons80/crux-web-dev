@@ -26,9 +26,7 @@ export class CadastrarUnidadeComponent implements OnInit {
   public maskCNJP = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]
 
 
-  unidades: any[] = [
-    { nomeCompleto: 'Josue', idUnidade: 1 }
-  ]
+  unidades: any[];
 
   tiposUnidade: any[] = [
     { tipoUnidade: 'MATRIZ' },
