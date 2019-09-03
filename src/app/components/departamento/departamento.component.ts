@@ -16,7 +16,7 @@ export class DepartamentoComponent implements OnInit {
   departamentos: Departamento[];
   mostrarTabela: boolean = false;
   departamento: Departamento = new Departamento();
-
+  idUnidadeLogada:number;
 
   displayedColumns: string[] = ['sigla', 'nome', 'unidade', 'acoes'];
   dataSource: MatTableDataSource<Departamento> = new MatTableDataSource();
@@ -30,8 +30,8 @@ export class DepartamentoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let idUnidadeLogada = this.activatedRoute.snapshot.params.idUnidade;
-    this.departamentoService.getDepartamentosPorUnidade(idUnidadeLogada).subscribe((departamentos: Departamento[]) => {
+    this.idUnidadeLogada = this.activatedRoute.snapshot.params.idUnidade;
+    this.departamentoService.getDepartamentosPorUnidade(this.idUnidadeLogada).subscribe((departamentos: Departamento[]) => {
       this.departamentos = departamentos
     })
   }
@@ -50,7 +50,10 @@ export class DepartamentoComponent implements OnInit {
         this.dataSource.data = array
       })
     } else {
-      this.dataSource.data = this.departamentos;
+      this.departamentoService.getDepartamentosPorUnidade(this.idUnidadeLogada).subscribe((departamentos: Departamento[]) => {
+        this.departamentos = departamentos
+        this.dataSource.data = departamentos;
+      })
     }
     this.mostrarTabela = true;
   }
