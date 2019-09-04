@@ -1,7 +1,9 @@
+import { AcessoUnidade } from './../../core/acesso-unidade';
 import { Injectable } from '@angular/core';
 
 import * as _ from 'lodash';
 import { HttpClient } from '@angular/common/http';
+import { UsuarioLogado } from 'src/app/core/usuario-logado';
 
 const unidadeRootPath = 'api/unidade/';
 
@@ -9,29 +11,21 @@ const unidadeRootPath = 'api/unidade/';
   providedIn: 'root'
 })
 export class ToolbarPrincipalService {
-  
 
-  unidades: any[] = [];
-  unidadeSelecionada: any;
+  
+  unidades: AcessoUnidade[] = [];
+  unidadeSelecionada: AcessoUnidade;
   username: string;
 
   constructor(private http: HttpClient) { }
-
-  setarUnidades(unidades, idUnidade:number) {
-    if(this.unidades.length == 0){
-      this.unidades = unidades;
-    }
-      this.unidadeSelecionada = _.filter(this.unidades, unidade => unidade.id == idUnidade)[0];
-  }
  
-
   getPorUsuario() {
     return this.http.get(unidadeRootPath + `usuario/`);
   }
-
-  setarUsername(username: any) {
-    this.username = username;
-    
+  setarPropriedadesUsuarioLogado(usuarioLogado: UsuarioLogado) {
+        this.unidades = usuarioLogado.unidades;
+        this.unidadeSelecionada = _.filter(this.unidades, unidade => unidade.id == usuarioLogado.unidadeLogada.id)[0];
+        this.username = usuarioLogado.username;
   }
 
 }

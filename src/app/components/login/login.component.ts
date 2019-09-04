@@ -1,10 +1,13 @@
+import { Menu } from './../../core/menu';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { finalize } from 'rxjs/operators';
-import { Usuario } from 'src/app/core/usuario';
-import { AutenticadorService } from './../../services/autenticador/autenticador.service';
-import { LoadingPopupService } from './../../services/loadingPopup/loading-popup.service';
+import { switchMap } from 'rxjs/operators';
+import { Login } from 'src/app/core/login';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
+import { UsuarioLogado } from './../../core/usuario-logado';
+import { AutenticadorService } from './../../services/autenticador/autenticador.service';
+import { MenuService } from 'src/app/services/menu/menu.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -14,14 +17,15 @@ import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolb
 })
 export class LoginComponent implements OnInit {
 
-  usuario: Usuario = new Usuario();
+  usuario: Login = new Login();
   error: any;
-  
+  usuarioLogado:UsuarioLogado;
+
   constructor(
     private autenticadorService: AutenticadorService,
+    private menuService: MenuService,
     private router: Router,
-    private loadingPopupService: LoadingPopupService,
-    private toolbarPrincipalService:ToolbarPrincipalService
+    private toolbarPrincipalService: ToolbarPrincipalService
   ) { }
 
   ngOnInit() {
@@ -30,28 +34,32 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  private setarUnidade(unidades){
-    this.toolbarPrincipalService.unidades = unidades;
-    if(this.toolbarPrincipalService.unidades.length === 1){
-      this.toolbarPrincipalService.unidadeSelecionada = this.toolbarPrincipalService.unidades[0];
-    }
+  private setarUnidades(unidades) {
+    // if (this.toolbarPrincipalService.unidades.length === 1) {
+    //   this.toolbarPrincipalService.unidadeSelecionada = this.toolbarPrincipalService.unidades[0];
+    // }
   }
 
   login() {
-    this.autenticadorService.login(this.usuario).subscribe( (usuario:any) => {
-      console.log("usuario", usuario);
-      
-       this.setarUnidade(usuario.unidades);
-      if(usuario.unidades.length === 1) {
-        this.router.navigate([`home/${usuario.unidades[0].id}`]);
-      }
-      
-      
-      if(usuario.unidades.length > 1) {
-        this.router.navigate(['unidade/escolher']);
-      }
+    this.autenticadorService.login(this.usuario).pipe(
+     
+      switchMap((usuarioLogado:UsuarioLogado) => {
+        this.usuarioLogado = usuarioLogado;
+        if(usuarioLogado.unidadeLogada){
+          return this.menuService.getMenuPrincipal();
+        }else
+           return new Observable(obs => obs.next())
+      })
 
-      },
+    ).subscribe((menu:Menu[]) => {
+        //  this.toolbarPrincipalService.unidades = this.usuarioLogado.unidades;
+
+         if(this.usuarioLogado.unidadeLogada){
+           //TODO implementar quando o Will resolver o problema com o login do REUL para ver como vou fazer essa aqui da melhor forma.. 
+         }else{
+          this.router.navigate(['unidade/escolher']);
+         }
+    },
       error => this.error = error
     );
   }

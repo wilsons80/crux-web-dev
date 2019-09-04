@@ -8,6 +8,7 @@ import { tap, shareReplay } from 'rxjs/operators';
 
 import * as jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
+import { UsuarioLogado } from 'src/app/core/usuario-logado';
 
 const autenticadorRootPath = 'api/autenticador/';
 const tokenRootPath = 'api/token/';
@@ -54,10 +55,10 @@ export class AutenticadorService {
     if (moment().isBetween(this.getExpiration().subtract(3, 'minute'), this.getExpiration())) {
       return this.http.get(tokenRootPath + `refresh-token`)
       .pipe(
-        tap((response:any) => {
-          this.setSession(response)
-          this.toolbarPrincipalService.setarUnidades(response.unidades,idUnidade);
-          this.toolbarPrincipalService.setarUsername(response.username);
+        tap((usuarioLogado:UsuarioLogado) => {
+          console.log("refresca token", usuarioLogado);
+          this.setSession(usuarioLogado)
+          this.toolbarPrincipalService.setarPropriedadesUsuarioLogado(usuarioLogado);
         }),
         shareReplay(),
       ).subscribe();

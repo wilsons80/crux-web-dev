@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
+import { Unidade } from 'src/app/core/unidade';
 
 @Component({
   selector: 'app-escolher-unidade',
@@ -23,7 +24,9 @@ export class EscolherUnidadeComponent implements OnInit {
   }
 
   escolherUnidade(idUnidade:number){
-    this.router.navigate([`home/${idUnidade}`]);
+    this.unidadeService.getUnidadePorId(idUnidade).subscribe((unidade:Unidade) => {
+      this.router.navigate([`home`]);
+    })
   }
      
 }

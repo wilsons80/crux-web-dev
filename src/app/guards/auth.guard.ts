@@ -24,6 +24,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
 
     if (this.autenticadorService.isLoggedIn()) {
+      
       this.autenticadorService.refreshToken(route.params.idUnidade);
 
       if (!route.routeConfig.path.includes('unidade/escolher')) {

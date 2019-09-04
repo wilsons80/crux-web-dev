@@ -7,8 +7,8 @@ import { EscolherUnidadeComponent } from '../unidade/escolher-unidade/escolher-u
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: EscolherUnidadeComponent, canActivate: [AuthGuard] },
-  { path: 'home/:idUnidade', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  //{ path: 'home/:idUnidade', component: HomeComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
