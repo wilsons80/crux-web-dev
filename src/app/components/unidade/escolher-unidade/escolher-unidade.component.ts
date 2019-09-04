@@ -1,7 +1,10 @@
+import { MenuService } from './../../../services/menu/menu.service';
+import { Menu } from 'src/app/core/menu';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { Unidade } from 'src/app/core/unidade';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-escolher-unidade',
@@ -14,6 +17,7 @@ export class EscolherUnidadeComponent implements OnInit {
 
   constructor(
     private unidadeService:UnidadeService,
+    private menuService:MenuService,
     private router:Router
   ) { }
 
@@ -24,9 +28,15 @@ export class EscolherUnidadeComponent implements OnInit {
   }
 
   escolherUnidade(idUnidade:number){
-    this.unidadeService.getUnidadePorId(idUnidade).subscribe((unidade:Unidade) => {
-      this.router.navigate([`home`]);
-    })
+    this.unidadeService.getUnidadePorId(idUnidade).subscribe(() => this.router.navigate([`home`]));
+
+    // this.unidadeService.getUnidadePorId(idUnidade).pipe(
+    //   switchMap((unidade:Unidade) => {return this.menuService.getMenuPrincipal()} )
+    // )
+    // .subscribe((menu) => {
+    //   console.log("menuzao da massa", menu);
+    //   this.router.navigate([`home`]);
+    // })
   }
      
 }
