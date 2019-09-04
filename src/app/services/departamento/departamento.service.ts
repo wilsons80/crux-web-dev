@@ -17,8 +17,8 @@ export class DepartamentoService {
 
   constructor(private http: HttpClient) { }
 
-  getDepartamentosPorUnidade(idUnidade:number){
-    return this.http.get(departamentoRootPath + `unidade/${idUnidade}`);
+  getAll(){
+    return this.http.get(departamentoRootPath);
   }
   
   cadastrar(departamento:Departamento){

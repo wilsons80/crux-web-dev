@@ -1,7 +1,5 @@
 import { DepartamentoModule } from './components/departamento/departamento.module';
-import { ModuloAdministrativoModule } from './components/menu-principal/modulo-administrativo/modulo-administrativo.module';
 import { AcessoModule } from './components/acesso/acesso.module';
-import { AlunoModule } from './components/aluno/aluno.module';
 import { MenuPrincipalModule } from './components/menu-principal/menu-principal.module';
 import { FormsModule } from '@angular/forms';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -72,7 +70,6 @@ registerLocaleData(localePt, 'pt-BR');
     MatExpansionModule,
     MatDividerModule,
     MenuPrincipalModule,
-    AlunoModule,
     MatDialogModule,
     MatToolbarModule,
     AcessoModule,

@@ -3,7 +3,7 @@ import { Perspectiva } from './perspectiva';
 export class Objetivo {
 	idObjetivo: number;
 	nome:string;
-	Perspectiva:Perspectiva;
+	perspectiva:Perspectiva;
 	usuarioAlteracao:string;
 
 }

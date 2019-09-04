@@ -11,12 +11,12 @@ export class ObjetivoService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(idUnidade:number) {
-    return this.http.get(objetivoRootPath + `unidade/${idUnidade}`);
+  getAll() {
+    return this.http.get(objetivoRootPath);
   }
 
-  getObjetivoById(idOjetivo:number) {
-    return this.http.get(objetivoRootPath + `${idOjetivo}`);
+  getById(id:number) {
+    return this.http.get(objetivoRootPath + `${id}`);
   }
  
   cadastrar(objetivo:Objetivo) {
@@ -27,8 +27,8 @@ export class ObjetivoService {
     return this.http.put(objetivoRootPath, objetivo);
   }
 
-  excluir(idOjetivo:number) {
-    return this.http.delete(objetivoRootPath+ `${idOjetivo}`);
+  excluir(id:number) {
+    return this.http.delete(objetivoRootPath+ `${id}`);
   }
   
 }
