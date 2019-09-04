@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Unidade } from 'src/app/core/unidade';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Departamento } from './../../core/departamento';
 import { DepartamentoService } from './../../services/departamento/departamento.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-departamento',
@@ -16,7 +16,6 @@ export class DepartamentoComponent implements OnInit {
   departamentos: Departamento[];
   mostrarTabela: boolean = false;
   departamento: Departamento = new Departamento();
-  idUnidadeLogada:number;
 
   displayedColumns: string[] = ['sigla', 'nome', 'unidade', 'acoes'];
   dataSource: MatTableDataSource<Departamento> = new MatTableDataSource();
@@ -25,13 +24,11 @@ export class DepartamentoComponent implements OnInit {
     private departamentoService: DepartamentoService,
     private router: Router,
     private dialog: MatDialog,
-    private activatedRoute: ActivatedRoute,
 
   ) { }
 
   ngOnInit() {
-    this.idUnidadeLogada = this.activatedRoute.snapshot.params.idUnidade;
-    this.departamentoService.getDepartamentosPorUnidade(this.idUnidadeLogada).subscribe((departamentos: Departamento[]) => {
+    this.departamentoService.getAll().subscribe((departamentos: Departamento[]) => {
       this.departamentos = departamentos
     })
   }
@@ -50,7 +47,7 @@ export class DepartamentoComponent implements OnInit {
         this.dataSource.data = array
       })
     } else {
-      this.departamentoService.getDepartamentosPorUnidade(this.idUnidadeLogada).subscribe((departamentos: Departamento[]) => {
+      this.departamentoService.getAll().subscribe((departamentos: Departamento[]) => {
         this.departamentos = departamentos
         this.dataSource.data = departamentos;
       })
@@ -70,7 +67,7 @@ export class DepartamentoComponent implements OnInit {
   chamaCaixaDialogo(departamento: Departamento) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a unidade ${departamento.cdUnidadeDepartamento}?`,
+      pergunta: `Certeza que desse excluir o departamento ${departamento.cdUnidadeDepartamento}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

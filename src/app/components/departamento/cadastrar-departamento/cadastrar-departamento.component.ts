@@ -58,12 +58,6 @@ export class CadastrarDepartamentoComponent implements OnInit {
     this.location.back();
   }
 
-  carregarDepartamento(idUnidade: number) {
-    this.departamentoService.getDepartamentosPorUnidade(idUnidade).subscribe((departamentos: Departamento[]) => {
-      this.departamentos = departamentos;
-    });
-  }
-
   getNomeBotao() {
     return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
   }
