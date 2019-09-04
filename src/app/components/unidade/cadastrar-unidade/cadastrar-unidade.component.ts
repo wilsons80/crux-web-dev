@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 
 @Component({
-  selector: 'app-cadastrar-unidade',
+  selector: 'cadastrar-unidade',
   templateUrl: './cadastrar-unidade.component.html',
   styleUrls: ['./cadastrar-unidade.component.css']
 })
@@ -23,7 +23,7 @@ export class CadastrarUnidadeComponent implements OnInit {
 
   public maskCep = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-  public maskCNJP = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]
+  public maskCNJP = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
 
   unidades: any[];
@@ -37,12 +37,11 @@ export class CadastrarUnidadeComponent implements OnInit {
     { tipo: 'Próprio' },
     { tipo: 'Concessão' },
     { tipo: 'Licença pra funcionamento' },
-    { tipo: 'Outro' },
+    { tipo: 'Outro' }
   ]
 
   constructor(
     private enderecoService: EnderecoService,
-    private location: Location,
     private route: ActivatedRoute,
     private unidadeService: UnidadeService
   ) { }

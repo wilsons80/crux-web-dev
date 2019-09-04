@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.autenticadorService.login(this.usuario).subscribe( (usuario:any) => {
+      console.log("usuario", usuario);
+      
        this.setarUnidade(usuario.unidades);
       if(usuario.unidades.length === 1) {
         this.router.navigate([`home/${usuario.unidades[0].id}`]);
