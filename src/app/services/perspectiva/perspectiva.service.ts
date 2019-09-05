@@ -11,12 +11,12 @@ export class PerspectivaService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(idUnidade:number) {
-    return this.http.get(perspectivaRootPath + `unidade/${idUnidade}`);
+  getAll() {
+    return this.http.get(perspectivaRootPath);
   }
 
-  getDepartamentoById(idDepartamento:number) {
-    return this.http.get(perspectivaRootPath + `${idDepartamento}`);
+  getById(idPerspectiva:number) {
+    return this.http.get(perspectivaRootPath + `${idPerspectiva}`);
   }
  
   cadastrar(perspectiva:Perspectiva) {
@@ -27,8 +27,8 @@ export class PerspectivaService {
     return this.http.put(perspectivaRootPath, perspectiva);
   }
 
-  excluir(idDepartamento:number) {
-    return this.http.delete(perspectivaRootPath+ `${idDepartamento}`);
+  excluir(idPerspectiva:number) {
+    return this.http.delete(perspectivaRootPath+ `${idPerspectiva}`);
   }
 
 }

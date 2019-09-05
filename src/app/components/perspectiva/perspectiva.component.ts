@@ -31,7 +31,7 @@ export class PerspectivaComponent implements OnInit {
 
   ngOnInit() {
     this.idUnidadeLogada = this.activatedRoute.snapshot.params.idUnidade;
-    this.perspectivaService.getAll(this.idUnidadeLogada).subscribe((perspectivas: Perspectiva[]) => {
+    this.perspectivaService.getAll().subscribe((perspectivas: Perspectiva[]) => {
       this.perspectivas = perspectivas
     })
   }
@@ -44,12 +44,12 @@ export class PerspectivaComponent implements OnInit {
 
   consultar() {
     if (this.perspectiva.idPerspectiva) {
-      this.perspectivaService.getDepartamentoById(this.perspectiva.idPerspectiva).subscribe((perspectiva: Perspectiva) => {
+      this.perspectivaService.getById(this.perspectiva.idPerspectiva).subscribe((perspectiva: Perspectiva) => {
         let array = [];
         array.push(perspectiva);
         this.dataSource.data = array
       })
-    } this.perspectivaService.getAll(this.idUnidadeLogada).subscribe((perspectivas: Perspectiva[]) => {
+    } this.perspectivaService.getAll().subscribe((perspectivas: Perspectiva[]) => {
       this.perspectivas = perspectivas;
       this.dataSource.data = this.perspectivas;
     })

@@ -5,5 +5,6 @@ export class Objetivo {
 	nome:string;
 	perspectiva:Perspectiva;
 	usuarioAlteracao:string;
-
+	dataImplantacao:Date;
+	dataTermino:Date;
 }

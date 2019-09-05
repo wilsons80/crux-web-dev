@@ -38,7 +38,7 @@ export class CadastrarPerspectivaComponent implements OnInit {
     idPerspectiva = this.route.snapshot.queryParams.idPerspectiva ? this.route.snapshot.queryParams.idPerspectiva : null;
     if (idPerspectiva) {
       this.isAtualizar = true;
-      this.perspectivaService.getDepartamentoById(idPerspectiva).subscribe((perspectiva: Perspectiva) => {
+      this.perspectivaService.getById(idPerspectiva).subscribe((perspectiva: Perspectiva) => {
         this.perspectiva = perspectiva
       });
     }

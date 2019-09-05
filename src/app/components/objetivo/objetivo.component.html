@@ -16,7 +16,7 @@
                     
                     <mat-icon fxFlexOffset="10px">business</mat-icon>
                     <mat-form-field fxFlex= "80%" fxFlexOffset="10px" >
-                        <mat-label>Selecione um departamento</mat-label>
+                        <mat-label>Selecione um objetivo</mat-label>
                         <mat-select [(ngModel)]="objetivo" name="objetivo">
                             <mat-option *ngFor="let o of objetivos" [value]="o">
                                 {{o.nome}}

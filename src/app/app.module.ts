@@ -1,3 +1,4 @@
+import { ObjetivoModule } from './components/objetivo/objetivo.module';
 import { DepartamentoModule } from './components/departamento/departamento.module';
 import { AcessoModule } from './components/acesso/acesso.module';
 import { MenuPrincipalModule } from './components/menu-principal/menu-principal.module';
@@ -28,6 +29,7 @@ import { ConfirmDialogComponent } from './components/common/confirm-dialog/confi
 import { UploadFotoComponent } from './components/common/upload-foto/upload-foto.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PerspectivaModule } from './components/perspectiva/perspectiva.module';
+import { PlanosAcaoComponent } from './components/planos-acao/planos-acao.component';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -42,6 +44,7 @@ registerLocaleData(localePt, 'pt-BR');
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
     UploadFotoComponent,
+    PlanosAcaoComponent,
     
   ],
   imports: [
@@ -76,7 +79,8 @@ registerLocaleData(localePt, 'pt-BR');
     ImageCropperModule,
     MatCardModule,
     DepartamentoModule,
-    PerspectivaModule
+    PerspectivaModule,
+    ObjetivoModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

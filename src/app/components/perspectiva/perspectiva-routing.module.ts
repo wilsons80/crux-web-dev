@@ -7,7 +7,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   { path: 'perspectiva/cadastrar', component: CadastrarPerspectivaComponent,canActivate: [AuthGuard]},
-  { path: 'perspectiva/:idUnidade', component: PerspectivaComponent,canActivate: [AuthGuard]},
+  { path: 'perspectiva', component: PerspectivaComponent,canActivate: [AuthGuard]},
 ];
 
 @NgModule({
