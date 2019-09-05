@@ -1,13 +1,10 @@
-import { IniciativaService } from './../../../services/iniciativa/iniciativa.service';
 import { Location } from '@angular/common';
-import { PlanosAcao } from './../../../core/planos-acao';
 import { Component, OnInit } from '@angular/core';
-import { Iniciativa } from 'src/app/core/iniciativa';
-import { IndicadoresService } from 'src/app/services/indicadores/indicadores.service';
-import { PlanosAcaoService } from 'src/app/services/planosAcao/planos-acao.service';
 import { ActivatedRoute } from '@angular/router';
-import { Indicadores } from 'src/app/core/indicadores';
-import { Metas } from 'src/app/core/metas';
+import { Iniciativa } from 'src/app/core/iniciativa';
+import { PlanosAcaoService } from 'src/app/services/planosAcao/planos-acao.service';
+import { PlanosAcao } from './../../../core/planos-acao';
+import { IniciativaService } from './../../../services/iniciativa/iniciativa.service';
 
 @Component({
   selector: 'app-cadastrar-planos-acao',

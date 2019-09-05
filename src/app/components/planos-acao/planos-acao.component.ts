@@ -16,7 +16,7 @@ export class PlanosAcaoComponent implements OnInit {
   mostrarTabela: boolean = false;
   planosAcao: PlanosAcao = new PlanosAcao();
 
-  displayedColumns: string[] = ['nome', 'perspectiva', 'usuarioAlteracao', 'acoes'];
+  displayedColumns: string[] = ['nome', 'iniciativa', 'dataInicio','dataFim', 'acoes'];
   dataSource: MatTableDataSource<PlanosAcao> = new MatTableDataSource();
 
   constructor(
