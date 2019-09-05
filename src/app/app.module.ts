@@ -30,6 +30,7 @@ import { UploadFotoComponent } from './components/common/upload-foto/upload-foto
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PerspectivaModule } from './components/perspectiva/perspectiva.module';
 import { PlanosAcaoComponent } from './components/planos-acao/planos-acao.component';
+import { IndicadoresModule } from './components/indicadores/indicadores.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -80,7 +81,8 @@ registerLocaleData(localePt, 'pt-BR');
     MatCardModule,
     DepartamentoModule,
     PerspectivaModule,
-    ObjetivoModule
+    ObjetivoModule,
+    IndicadoresModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

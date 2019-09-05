@@ -1,12 +1,10 @@
-import { Perspectiva } from 'src/app/core/perspectiva';
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Objetivo } from 'src/app/core/objetivo';
-import { PerspectivaService } from 'src/app/services/perspectiva/perspectiva.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Unidade } from 'src/app/core/unidade';
-import { Departamento } from 'src/app/core/departamento';
+import { Perspectiva } from 'src/app/core/perspectiva';
 import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
+import { PerspectivaService } from 'src/app/services/perspectiva/perspectiva.service';
 
 @Component({
   selector: 'app-cadastrar-objetivo',
@@ -25,7 +23,6 @@ export class CadastrarObjetivoComponent implements OnInit {
   constructor(
     private perspectivaService: PerspectivaService,
     private objetivoService: ObjetivoService,
-    private router: Router,
     private route: ActivatedRoute,
     private location:Location,
   ) { }
