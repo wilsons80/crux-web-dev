@@ -8,7 +8,7 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     
             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Nome da Iniciativa:" [(ngModel)]="iniciativa.nome" required> 
+                  <input matInput maxlength="200"  name="nome" placeholder="Nome da Meta:" [(ngModel)]="metas.nome" required> 
              </mat-form-field>
 
         </div>
@@ -17,27 +17,27 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
             <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
-                    <input matInput name= "dtImplantacao" [matDatepicker]="dtImplantacao" placeholder="Data de Início" [(ngModel)]="iniciativa.dataInicio" required>
+                    <input matInput name= "dtImplantacao" [matDatepicker]="dtImplantacao" placeholder="Data de Início" [(ngModel)]="metas.dataInicio" required>
                     <mat-datepicker-toggle matSuffix [for]="dtImplantacao"></mat-datepicker-toggle>
                     <mat-datepicker #dtImplantacao></mat-datepicker>
              </mat-form-field>
            
              <mat-form-field fxFlex= "50%">
-                    <input matInput name= "dtTermino" [matDatepicker]="dtTermino" placeholder="Data Fim" [(ngModel)]="iniciativa.dataFim">
+                    <input matInput name= "dtTermino" [matDatepicker]="dtTermino" placeholder="Data Fim" [(ngModel)]="metas.dataFim">
                     <mat-datepicker-toggle matSuffix [for]="dtTermino"></mat-datepicker-toggle>
                     <mat-datepicker #dtTermino></mat-datepicker>
              </mat-form-field>
 
         </div>
 
-         <!-- METAS -->
-         <mat-toolbar class="titulopartes">Metas</mat-toolbar>
+         <!-- OBJETIVO -->
+         <mat-toolbar class="titulopartes">Indicadores</mat-toolbar>
          <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
-                        <mat-label>Metas:</mat-label>
-                        <mat-select [(ngModel)]="iniciativa.metas" name="iniciativa" required>
-                            <mat-option *ngFor="let m of metas" [value]="m" >
-                              {{m.nome}}
+                        <mat-label>Indicadores:</mat-label>
+                        <mat-select [(ngModel)]="metas.indicadores" name="iniciativa" required>
+                            <mat-option *ngFor="let i of indicadores" [value]="i" >
+                              {{i.nome}}
                             </mat-option>
                         </mat-select>
                 </mat-form-field>

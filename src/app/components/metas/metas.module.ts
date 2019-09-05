@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { MetasRoutingModule } from './metas-routing.module';
 import { MetasComponent } from './metas.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatDatepickerModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
+import { CadastrarMetasComponent } from './cadastrar-metas/cadastrar-metas.component';
 
 
 @NgModule({
-  declarations: [MetasComponent],
+  declarations: [MetasComponent, CadastrarMetasComponent],
   imports: [
     CommonModule,
     MetasRoutingModule,
@@ -27,7 +28,8 @@ import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
     TextMaskModule,
     MatListModule,
     FlexLayoutModule,
-    SharedPipesModule
+    SharedPipesModule,
+    MatDatepickerModule
   ]
 })
 export class MetasModule { }
