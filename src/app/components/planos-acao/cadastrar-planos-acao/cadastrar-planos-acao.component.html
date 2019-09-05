@@ -30,11 +30,11 @@
 
         </div>
 
-         <!-- OBJETIVO -->
+         <!-- INICIATIVA -->
          <mat-toolbar class="titulopartes">Iniciativa</mat-toolbar>
          <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
-                        <mat-label>Indicadores:</mat-label>
+                        <mat-label>Iniciativa:</mat-label>
                         <mat-select [(ngModel)]="planosAcao.iniciativa" name="iniciativa" required>
                             <mat-option *ngFor="let i of iniciativas" [value]="i" >
                               {{i.nome}}
