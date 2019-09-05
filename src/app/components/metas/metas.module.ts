@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { IndicadoresRoutingModule } from './indicadores-routing.module';
-import { IndicadoresComponent } from './indicadores.component';
+import { MetasRoutingModule } from './metas-routing.module';
+import { MetasComponent } from './metas.component';
 import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -11,10 +11,10 @@ import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
 
 
 @NgModule({
-  declarations: [IndicadoresComponent],
+  declarations: [MetasComponent],
   imports: [
     CommonModule,
-    IndicadoresRoutingModule,
+    MetasRoutingModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
@@ -30,4 +30,4 @@ import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
     SharedPipesModule
   ]
 })
-export class IndicadoresModule { }
+export class MetasModule { }

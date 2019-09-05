@@ -11,8 +11,8 @@ export class MetasService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(idUnidade:number) {
-    return this.http.get(metasRootPath + `unidade/${idUnidade}`);
+  getAll() {
+    return this.http.get(metasRootPath);
   }
 
   getById(idMetas:number) {
