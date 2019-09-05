@@ -1,36 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { Iniciativa } from 'src/app/core/iniciativa';
-import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
-import { MetasService } from 'src/app/services/metas/metas.service';
+import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
+import { Iniciativa } from 'src/app/core/iniciativa';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { IniciativaService } from './../../services/iniciativa/iniciativa.service';
 
 @Component({
   selector: 'app-iniciativa',
-  templateUrl: './iniciativa.component.html',
-  styleUrls: ['./iniciativa.component.css']
+  templateUrl: './iniciativas.component.html',
+  styleUrls: ['./iniciativas.component.css']
 })
 export class IniciativasComponent implements OnInit {
 
-  listaIniciativa: Iniciativa[];
+  iniciativas: Iniciativa[];
   mostrarTabela: boolean = false;
   iniciativa: Iniciativa = new Iniciativa();
 
-  displayedColumns: string[] = ['nome', 'indicadores', 'dataInicio','dataFim', 'acoes'];
 
-  
+  displayedColumns: string[] = ['nome', 'metas', 'dataInicio', 'dataFim', 'acoes'];
+
+
   dataSource: MatTableDataSource<Iniciativa> = new MatTableDataSource();
 
   constructor(
-    private metasService: MetasService,
+    private iniciativaService: IniciativaService,
     private router: Router,
     private dialog: MatDialog,
 
   ) { }
 
   ngOnInit() {
-    this.metasService.getAll().subscribe((iniciativas: Iniciativa[]) => {
-      this.listaIniciativa = iniciativas
+    this.iniciativaService.getAll().subscribe((iniciativas: Iniciativa[]) => {
+      this.iniciativas = iniciativas
     })
   }
 
@@ -42,13 +43,13 @@ export class IniciativasComponent implements OnInit {
 
   consultar() {
     if (this.iniciativa.id) {
-      this.metasService.getById(this.iniciativa.id).subscribe((iniciativa: Iniciativa) => {
+      this.iniciativaService.getById(this.iniciativa.id).subscribe((iniciativa: Iniciativa) => {
         this.dataSource.data = [iniciativa];
       })
     } else {
-      this.metasService.getAll().subscribe((listaIniciativa: Iniciativa[]) => {
-        this.listaIniciativa = listaIniciativa
-        this.dataSource.data = listaIniciativa;
+      this.iniciativaService.getAll().subscribe((iniciativa: Iniciativa[]) => {
+        this.iniciativas = iniciativa
+        this.dataSource.data = iniciativa;
       })
     }
     this.mostrarTabela = true;
@@ -56,7 +57,7 @@ export class IniciativasComponent implements OnInit {
 
 
   atualizar(iniciativa: Iniciativa) {
-    this.router.navigate(['/iniciativa/cadastrar'], { queryParams: { idMetas: iniciativa.id } });
+    this.router.navigate(['/iniciativa/cadastrar'], { queryParams: { idIniciativa: iniciativa.id } });
   }
 
   deletar(iniciativa: Iniciativa) {
@@ -75,7 +76,7 @@ export class IniciativasComponent implements OnInit {
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
 
-        this.metasService.excluir(iniciativa.id).subscribe(() => {
+        this.iniciativaService.excluir(iniciativa.id).subscribe(() => {
 
           this.consultar();
         })

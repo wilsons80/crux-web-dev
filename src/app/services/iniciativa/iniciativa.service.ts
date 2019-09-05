@@ -12,8 +12,8 @@ export class IniciativaService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(idUnidade:number) {
-    return this.http.get(rootPath + `unidade/${idUnidade}`);
+  getAll() {
+    return this.http.get(rootPath);
   }
 
   getById(id:number) {

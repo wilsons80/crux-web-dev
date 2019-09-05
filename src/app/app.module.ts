@@ -1,3 +1,4 @@
+import { MetasModule } from './components/metas/metas.module';
 import { ObjetivoModule } from './components/objetivo/objetivo.module';
 import { DepartamentoModule } from './components/departamento/departamento.module';
 import { AcessoModule } from './components/acesso/acesso.module';
@@ -31,6 +32,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { PerspectivaModule } from './components/perspectiva/perspectiva.module';
 import { PlanosAcaoComponent } from './components/planos-acao/planos-acao.component';
 import { IndicadoresModule } from './components/indicadores/indicadores.module';
+import { IniciativasModule } from './components/iniciativas/iniciativas.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -82,7 +84,9 @@ registerLocaleData(localePt, 'pt-BR');
     DepartamentoModule,
     PerspectivaModule,
     ObjetivoModule,
-    IndicadoresModule
+    IndicadoresModule,
+    IniciativasModule,
+    MetasModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

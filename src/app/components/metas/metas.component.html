@@ -3,11 +3,11 @@
 
         <div  fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="padding: 10px 10px 30px">
                 <div>
-                        <button mat-fab color="primary" [routerLink]="['/indicadores/cadastrar']" routerLinkActive="router-link-active">
+                        <button mat-fab color="primary" [routerLink]="['/metas/cadastrar']" routerLinkActive="router-link-active">
                             <mat-icon>add</mat-icon>
                         </button>
                     </div>
-                    <div>Cadastrar novo Indicador</div>
+                    <div>Cadastrar nova Meta</div>
                 </div>
 
             <form #formConsultarDepartamento="ngForm" class="mat-elevation-z1 painel-consultar" >
@@ -16,8 +16,8 @@
                     
                     <mat-icon fxFlexOffset="10px">business</mat-icon>
                     <mat-form-field fxFlex= "80%" fxFlexOffset="10px" >
-                        <mat-label>Selecione um indicador</mat-label>
-                        <mat-select [(ngModel)]="metas" name="indicadores">
+                        <mat-label>Selecione uma meta</mat-label>
+                        <mat-select [(ngModel)]="metas" name="meta">
                             <mat-option *ngFor="let i of listaMetas" [value]="i">
                                 {{i.nome}}
                             </mat-option>
