@@ -54,7 +54,7 @@ export class PlanosAcaoComponent implements OnInit {
 
 
   atualizar(planosAcao: PlanosAcao) {
-    this.router.navigate(['/planosacao/cadastrar'], { queryParams: { idplanosAcao: planosAcao.id} });
+    this.router.navigate(['/planosacao/cadastrar'], { queryParams: { idPlanosAcao: planosAcao.id} });
   }
 
   deletar(planosAcao: PlanosAcao) {

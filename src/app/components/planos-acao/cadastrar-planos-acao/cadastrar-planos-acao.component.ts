@@ -31,11 +31,11 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
       this.iniciativas = iniciativas;
     })
 
-    let idMetas: number;
-    idMetas = this.route.snapshot.queryParams.idMetas ? this.route.snapshot.queryParams.idMetas : null;
-    if (idMetas) {
+    let idPlanosAcao: number;
+    idPlanosAcao = this.route.snapshot.queryParams.idPlanosAcao ? this.route.snapshot.queryParams.idPlanosAcao : null;
+    if (idPlanosAcao) {
       this.isAtualizar = true;
-      this.planosAcaoService.getById(idMetas).subscribe((planosAcao: PlanosAcao) => {
+      this.planosAcaoService.getById(idPlanosAcao).subscribe((planosAcao: PlanosAcao) => {
         this.planosAcao = planosAcao
       });
     }
