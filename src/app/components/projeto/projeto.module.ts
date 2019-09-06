@@ -8,10 +8,11 @@ import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, M
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
+import { CadastrarProjetoComponent } from './cadastrar-projeto/cadastrar-projeto.component';
 
 
 @NgModule({
-  declarations: [ProjetoComponent],
+  declarations: [ProjetoComponent, CadastrarProjetoComponent],
   imports: [
     CommonModule,
     ProjetoRoutingModule,
