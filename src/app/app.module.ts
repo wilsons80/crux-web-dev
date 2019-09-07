@@ -30,7 +30,6 @@ import { ConfirmDialogComponent } from './components/common/confirm-dialog/confi
 import { UploadFotoComponent } from './components/common/upload-foto/upload-foto.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PerspectivaModule } from './components/perspectiva/perspectiva.module';
-import { PlanosAcaoComponent } from './components/planos-acao/planos-acao.component';
 import { IndicadoresModule } from './components/indicadores/indicadores.module';
 import { IniciativasModule } from './components/iniciativas/iniciativas.module';
 
@@ -46,8 +45,7 @@ registerLocaleData(localePt, 'pt-BR');
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
-    UploadFotoComponent,
-    PlanosAcaoComponent,
+    UploadFotoComponent
     
   ],
   imports: [
