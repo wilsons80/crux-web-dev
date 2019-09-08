@@ -22,7 +22,7 @@
         </div>
 
         <!-- DIREITA -->
-        <div   fxLayout="row" fxLayoutAlign="space-around center" >
+        <div  *ngIf="mostrarMenu" fxLayout="row" fxLayoutAlign="space-around center" >
             <span>
                 {{toolbarPrincipalService.username}}
             </span>

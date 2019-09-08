@@ -43,7 +43,6 @@ export class ToolBarPrincipalComponent implements OnInit {
 
   mudarUnidade(unidade:AcessoUnidade){
     this.unidadeService.getUnidadePorId(unidade.id).subscribe((unidade:Unidade) => {
-      console.log("unidade", unidade);
       this.router.navigate([`home`]);
     })
   }
