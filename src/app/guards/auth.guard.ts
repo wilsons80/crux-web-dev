@@ -27,9 +27,8 @@ export class AuthGuard implements CanActivate {
       
       this.autenticadorService.refreshToken(route.params.idUnidade);
 
-      if (!route.routeConfig.path.includes('unidade/escolher')) {
         this.mostrarMenu.emit(true);
-      }
+      
 
       let idUnidade = route.params.idUnidade;
       
