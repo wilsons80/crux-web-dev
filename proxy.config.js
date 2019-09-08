@@ -1,11 +1,11 @@
 
 //Capturando a porta do Heroku => process.env.PORT
-const PORTA =  3000 || 8080;
+//const PORTA =  8080;
 
 //TODO rever essa linha em produção
-const targetDomain = `http://localhost:${PORTA}`;
+//const targetDomain = `http://localhost:${PORTA}`;
 
-//const targetDomain = process.env.PROXY_TARGET_DOMAIN ? `https://${process.env.PROXY_TARGET_DOMAIN}.mpdft.mp.br` : 'http://localhost:8080';
+const targetDomain = process.env.PROXY_TARGET_DOMAIN ? `http://${process.env.PROXY_TARGET_DOMAIN}` : 'http://localhost:8080';
 console.log(`Usando o endereço "${targetDomain}" para o proxy...\n`);
 
 const PROXY_CONFIG = {
