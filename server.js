@@ -3,6 +3,11 @@ const path = require('path');
 const nomeApp = process.env.npm_package_name;
 const app = express();
  
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Aplicação rodando na porta: ${ PORT }`);
+});
+
 app.use(express.static(`$/dist/$`));
  
 app.get('/*', (req, res) => {
