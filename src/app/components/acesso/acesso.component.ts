@@ -51,15 +51,15 @@ export class AcessoComponent implements OnInit {
 
   }
 
-  abrirDialogCadastrar() {
+  abrirDialogCadastrar(usuario: any, atualizar: boolean) {
 
     const dialogRef = this.dialog.open(CadastrarAcessoComponent, {
       width: '700px',
       data: {
         usuarios: this.usuarios,
         modulos: this.modulos,
-        usuario: this.usuarios[0],
-        atualizar: true
+        usuario: usuario,
+        atualizar: atualizar
       }
     });
 
