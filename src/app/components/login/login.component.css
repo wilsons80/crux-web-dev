@@ -5,9 +5,10 @@
     background-size: auto 100px;
     cursor: pointer;
     border: none;
-    margin-top: 20px;
+    /* margin-top: 20px;
     margin-right: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 20px; */
+    margin: auto;
 }
 
 .tela-login{
