@@ -1,0 +1,17 @@
+{
+  "root": "dist/",
+  "https_only": true,
+  "routes": {
+    "/**": "index.html"
+  },
+  "proxies": {
+    "/api": {
+      "target": "https://www.api.wcsinfo.com.br",
+      "secure": false,
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "changeOrigin": "true"
+    }    
+  }
+}
