@@ -31,7 +31,7 @@
             </div>
         </form>
 
-        <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource">
+        <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 20px">
 
 
                 <ng-container matColumnDef="sigla">
