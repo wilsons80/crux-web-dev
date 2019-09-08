@@ -1,1 +1,1 @@
-web: heroku local web
+web: npm start
