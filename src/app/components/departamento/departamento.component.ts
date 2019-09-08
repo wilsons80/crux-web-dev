@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Departamento } from './../../core/departamento';
 import { DepartamentoService } from './../../services/departamento/departamento.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-departamento',
@@ -16,6 +15,7 @@ export class DepartamentoComponent implements OnInit {
   departamentos: Departamento[];
   mostrarTabela: boolean = false;
   departamento: Departamento = new Departamento();
+  msg:string;
 
   displayedColumns: string[] = ['sigla', 'nome', 'unidade', 'acoes'];
   dataSource: MatTableDataSource<Departamento> = new MatTableDataSource();
@@ -28,10 +28,9 @@ export class DepartamentoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.departamentoService.getAll().subscribe((departamentos: Departamento[]) => {
-      this.departamentos = departamentos
-    })
+    this.getAll();
   }
+  
 
   limpar() {
     this.mostrarTabela = false;
@@ -42,17 +41,18 @@ export class DepartamentoComponent implements OnInit {
   consultar() {
     if (this.departamento.idDepartamento) {
       this.departamentoService.getDepartamentoById(this.departamento.idDepartamento).subscribe((departamento: Departamento) => {
-        let array = [];
-        array.push(departamento);
-        this.dataSource.data = array
+        if(!departamento){
+          this.mostrarTabela = false
+          this.msg = "Nenhum registro para a pesquisa selecionada"
+        }else {
+          this.dataSource.data = [departamento];
+          this.mostrarTabela = true;
+        }
       })
     } else {
-      this.departamentoService.getAll().subscribe((departamentos: Departamento[]) => {
-        this.departamentos = departamentos
-        this.dataSource.data = departamentos;
-      })
+      this.getAll();
     }
-    this.mostrarTabela = true;
+   
   }
 
 
@@ -77,8 +77,7 @@ export class DepartamentoComponent implements OnInit {
       if (confirma) {
         
         this.departamentoService.excluir(departamento.idDepartamento).subscribe(() => {
-          console.log("voltei");
-          
+          this.departamento.idDepartamento = null;
           this.consultar();
         })
 
@@ -87,6 +86,23 @@ export class DepartamentoComponent implements OnInit {
       }
     }
     );
+  }
+
+  getAll(){
+    this.departamentoService.getAll().subscribe((departamentos: Departamento[]) => {
+      this.departamentos = departamentos;
+      this.dataSource.data = departamentos;
+      this.verificaMostrarTabela(departamentos);
+    })
+  }
+
+  verificaMostrarTabela(departamentos) {
+    if(departamentos.length == 0) {
+      this.mostrarTabela = false; 
+      this.msg = "Nenhum departamento cadastrado."
+    }else{
+      this.mostrarTabela = true; 
+    }
   }
 
 }

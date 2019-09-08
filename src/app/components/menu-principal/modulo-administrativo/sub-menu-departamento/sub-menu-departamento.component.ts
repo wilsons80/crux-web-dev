@@ -22,11 +22,7 @@ export class SubMenuDepartamentoComponent implements OnInit {
   }
 
   getRouterLink(){
-    let idUnidadeAtualSelecionada: number;
-    if(this.toolbarPrincipalService.unidadeSelecionada){
-      idUnidadeAtualSelecionada = this.toolbarPrincipalService.unidadeSelecionada.id;
-    }
-    return `departamento/${idUnidadeAtualSelecionada}`;
+    return `departamento`;
   }
 
 }

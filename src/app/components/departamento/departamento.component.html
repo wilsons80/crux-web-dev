@@ -1,75 +1,86 @@
-<mat-toolbar>Departamentos</mat-toolbar>
-<div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
+<mat-toolbar class="subtitulo">Departamentos</mat-toolbar>
+<div class="painel-principal-consulta" style="padding: 10px;">
+    <div class="painel-consultar">
+        <form #formConsultarDepartamento="ngForm">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
 
-        <div  fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="padding: 10px 10px 30px">
-                <div>
-                        <button mat-fab color="primary" [routerLink]="['/departamento/cadastrar']" routerLinkActive="router-link-active">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                    <div>Cadastrar novo Departamento</div>
-                </div>
+                <mat-icon>business</mat-icon>
+                <mat-form-field fxFlex="100%" fxFlexOffset="10px">
+                    <mat-label>Selecione um departamento</mat-label>
+                    <mat-select [(ngModel)]="departamento" name="unidade">
+                        <mat-option *ngFor="let d of departamentos" [value]="d">
+                            {{d.nmDepartamento}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
 
-            <form #formConsultarDepartamento="ngForm" class="mat-elevation-z1 painel-consultar" >
 
-                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    
-                    <mat-icon fxFlexOffset="10px">business</mat-icon>
-                    <mat-form-field fxFlex= "80%" fxFlexOffset="10px" >
-                        <mat-label>Selecione um departamento</mat-label>
-                        <mat-select [(ngModel)]="departamento" name="unidade">
-                            <mat-option *ngFor="let d of departamentos" [value]="d">
-                                {{d.nmDepartamento}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                
+            <div dir="rtl" class="botoes" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 20px;"
+                fxFlexFill>
 
-            <div dir="rtl" class="botoes" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 20px; padding-right: 90px" fxFlexFill>
-                    
-                    <button mat-raised-button fxFlex= "20%"  color="primary"  (click)="consultar()">
-                        consultar
-                    </button>
+                <button mat-raised-button fxFlex="20%" color="primary" (click)="consultar()">
+                    CONSULTAR
+                </button>
 
-                    <button mat-raised-button fxFlex= "20%" style="padding-right: 20px" color="primary" (click)="limpar()" route>
-                         Limpar
-                    </button>
-                            
+                <button mat-raised-button fxFlex="20%" style="padding-right: 20px" color="primary" (click)="limpar()"
+                    route>
+                    LIMPAR
+                </button>
+
             </div>
         </form>
 
-        <table *ngIf="mostrarTabela" mat-table [dataSource]="dataSource" class="mat-elevation-z1 minhas-tarefas">
+        <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource">
 
-          
-            <ng-container matColumnDef="sigla">
-              <th mat-header-cell *matHeaderCellDef> Sigla: </th>
-              <td mat-cell *matCellDef="let element"> {{element.cdUnidadeDepartamento}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="nome">
-              <th mat-header-cell *matHeaderCellDef> Nome: </th>
-              <td mat-cell *matCellDef="let element"> {{element.nmDepartamento}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="unidade">
-              <th mat-header-cell *matHeaderCellDef> Unidade </th>
-              <td mat-cell *matCellDef="let element"> {{element.unidade.nomeUnidade}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="acoes">
+
+                <ng-container matColumnDef="sigla">
+                    <th mat-header-cell *matHeaderCellDef> Sigla: </th>
+                    <td mat-cell *matCellDef="let element"> {{element.cdUnidadeDepartamento}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="nome">
+                    <th mat-header-cell *matHeaderCellDef> Nome: </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nmDepartamento}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="unidade">
+                    <th mat-header-cell *matHeaderCellDef> Unidade </th>
+                    <td mat-cell *matCellDef="let element"> {{element.unidade.nomeUnidade}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="acoes">
                     <th mat-header-cell *matHeaderCellDef> Ações </th>
-                    <td mat-cell *matCellDef="let element"> 
-                          <button  mat-button color="warn" (click)="deletar(element)" >
-                              <mat-icon>clear</mat-icon>
-                          </button> 
-                          <button mat-button (click)="atualizar(element)">
-                                  <mat-icon>create</mat-icon>
-                              </button> 
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-button color="warn" (click)="deletar(element)">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                        <button mat-button (click)="atualizar(element)">
+                            <mat-icon>create</mat-icon>
+                        </button>
                     </td>
-                  </ng-container>
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <ng-template #tabelaSemDados>
+                    <div fxLayout="row" fxLayoutAlign="center center" style="padding-top: 20px">
+                        {{msg}}
+                    </div>
+                </ng-template>
+            
+                <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-top: 50px">
+                    <div>
+                        <button matTooltip="Adicionar novo departamento" mat-fab color="primary" [routerLink]="['/departamento/cadastrar']"
+                            routerLinkActive="router-link-active">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+    </div>
+
+       
+    
 </div>
