@@ -1,11 +1,4 @@
-
-//Capturando a porta do Heroku => process.env.PORT
-//const PORTA =  8080;
-
-//TODO rever essa linha em produção
-//const targetDomain = `http://localhost:${PORTA}`;
-
-const targetDomain = process.env.PROXY_TARGET_DOMAIN ? `http://${process.env.PROXY_TARGET_DOMAIN}` : 'http://localhost:8080';
+const targetDomain = process.env.NODE_ENV? `http://www.api.wcsinfo.com.br` : 'http://localhost:8080';
 console.log(`Usando o endereço "${targetDomain}" para o proxy...\n`);
 
 const PROXY_CONFIG = {
