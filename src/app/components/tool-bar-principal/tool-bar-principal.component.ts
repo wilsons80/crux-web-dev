@@ -24,7 +24,7 @@ export class ToolBarPrincipalComponent implements OnInit {
     private router:Router,
     private menuPrincipalService:MenuPrincipalService,
     private unidadeService:UnidadeService,
-    protected toolbarPrincipalService:ToolbarPrincipalService,
+    public toolbarPrincipalService:ToolbarPrincipalService,
     ) { }
 
   ngOnInit(): void {

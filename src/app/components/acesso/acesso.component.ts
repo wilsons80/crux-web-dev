@@ -34,7 +34,7 @@ export class AcessoComponent implements OnInit {
     private usuarioService: UsuarioService,
     private moduloService: ModuloService,
     private activatedRoute: ActivatedRoute,
-    protected controleMenuService: ControleMenuService,
+    public controleMenuService: ControleMenuService,
     private acessoService: AcessoService,
   ) { }
 

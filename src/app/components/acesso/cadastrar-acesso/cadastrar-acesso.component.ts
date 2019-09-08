@@ -29,7 +29,7 @@ export class CadastrarAcessoComponent implements OnInit {
   cadastroAcessoTO: CadastroAcesso = new CadastroAcesso();
 
   constructor(
-    protected toolbarPrincipalService: ToolbarPrincipalService,
+    public toolbarPrincipalService: ToolbarPrincipalService,
     private acessoService: AcessoService,
     private moduloService: ModuloService,
     private toastService: ToastService,
