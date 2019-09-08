@@ -1,18 +1,19 @@
-<div class="mat-elevation-z1 tela-escolher-unidade">
+<div class="tela-escolher-unidade" fxLayout="column">
 
-    <div fxLayout="column" fxLayoutAlign="space-around center" >
-        <h1 class="sign-in-title-greeting">Escolha a unidade que deseja acessar: </h1>
+    <div fxLayoutAlign="center">
+        <h2>Escolha a unidade que deseja acessar: </h2>
     </div>
-    
-    <div class="botoes" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="25px">
+
+    <div class="botoes" fxLayout="row wrap" fxLayoutGap="25px">
 
         <div fxLayout="column" fxLayoutAlign="space-around stretch" *ngFor="let item of unidades">
 
-            <button mat-raised-button class="botao" (click)="escolherUnidade(item.id)"> 
-                <mat-icon class="chaves"></mat-icon>
+            <button mat-raised-button class="botao" (click)="escolherUnidade(item.id)">
+                <mat-icon class="nao-foto"></mat-icon>
             </button>
             <div class="center">{{item.nome}}</div>
         </div>
 
-        
+
     </div>
+</div>

@@ -24,7 +24,9 @@ export class ToolbarPrincipalService {
   }
   setarPropriedadesUsuarioLogado(usuarioLogado: UsuarioLogado) {
         this.unidades = usuarioLogado.unidades;
-        this.unidadeSelecionada = _.filter(this.unidades, unidade => unidade.id == usuarioLogado.unidadeLogada.id)[0];
+        if(usuarioLogado.unidadeLogada){
+          this.unidadeSelecionada = _.filter(this.unidades, unidade => unidade.id == usuarioLogado.unidadeLogada.id)[0];
+        }
         this.username = usuarioLogado.username;
   }
 

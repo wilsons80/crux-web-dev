@@ -28,7 +28,6 @@ export class EscolherUnidadeComponent implements OnInit {
   }
 
   escolherUnidade(idUnidade:number){
-    // this.unidadeService.getUnidadePorId(idUnidade).subscribe(() => this.router.navigate([`home`]));
 
     this.unidadeService.getUnidadePorId(idUnidade).pipe(
       switchMap((unidade:Unidade) => {return this.menuService.getMenuPrincipal()} )
