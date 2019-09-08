@@ -1,6 +1,6 @@
 
-//Capturando a porta do Heroku
-const PORTA = process.env.PORT || 8080;
+//Capturando a porta do Heroku => process.env.PORT
+const PORTA =  3000 || 8080;
 
 //TODO rever essa linha em produção
 const targetDomain = `http://localhost:${PORTA}`;
