@@ -12,7 +12,7 @@
                         <input  matInput maxlength="6"  name="cdUnidadeDepartamento" placeholder="Sigla:" [(ngModel)]="departamento.cdUnidadeDepartamento" required >
                </mat-form-field>
 
-               <mat-form-field fxFlex= "80%"  >
+               <mat-form-field fxFlex= "72%"  >
                     <input matInput maxlength="100"  name="nmDepartamento" placeholder="Nome do Departamento:" [(ngModel)]="departamento.nmDepartamento" required> 
                </mat-form-field>
         </div>
@@ -45,7 +45,7 @@
                <input type="text" matInput  maxlength="200" [(ngModel)]="departamento.dsEnderecoDepartamento" name="dsEnderecoDepartamento" placeholder="Endereço:" />
            </mat-form-field>
 
-           <mat-form-field fxFlex= "30%">
+           <mat-form-field fxFlex= "24%">
                 <input matInput  [(ngModel)]="departamento.nrTelefoneDepartamento" name="nrTelefoneDepartamento" placeholder="Telefone:" [textMask]="{mask: maskPhone}">
         </mat-form-field>
         </div>
@@ -53,13 +53,13 @@
           <!-- BOTÕES -->
           <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
                         <button mat-raised-button name="botaoConfirmar"  
-                                fxFlex= "20%" color="primary" 
+                                fxFlex= "20%"  
                                 [disabled]="formCadastroDepartamento.invalid" 
                                 (click)="isAtualizar ? atualizar() : cadastrar()">
                                 {{getNomeBotao()}}</button>
-                        <button *ngIf="!isAtualizar" mat-raised-button fxFlex= "20%" color="primary" (click)="limpar()">
+                        <button *ngIf="!isAtualizar" mat-raised-button fxFlex= "20%"  (click)="limpar()">
                             Limpar</button>
-                        <button mat-raised-button fxFlex= "20%" color="primary" (click)="cancelar()">
+                        <button mat-raised-button fxFlex= "20%"  (click)="cancelar()">
                             Cancelar</button>
 
             </div>
