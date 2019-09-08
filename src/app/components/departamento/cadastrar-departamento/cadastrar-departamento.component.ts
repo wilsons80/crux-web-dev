@@ -35,6 +35,10 @@ export class CadastrarDepartamentoComponent implements OnInit {
       this.unidades = unidades;
     })
 
+    this.departamentoService.getAll().subscribe((departamentos:Departamento[]) => {
+      this.departamentos = departamentos;
+    })
+
     let idDepartamento: number;
     idDepartamento = this.route.snapshot.queryParams.idDepartamento ? this.route.snapshot.queryParams.idDepartamento : null;
     if (idDepartamento) {

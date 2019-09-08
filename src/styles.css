@@ -2,7 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 /* TELAS DE CONSULTA */
-.painel-principal-consulta {
+.painel-principal  {
     margin-top: 5%;
     margin-left: 15%;
     margin-right: 15%;

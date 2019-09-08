@@ -1,6 +1,6 @@
 <mat-toolbar class="subtitulo">Cadastrar Departamento</mat-toolbar>
 
-<div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
+<div class="painel-principal" style="padding: 10px;">
     
     
     <form #formCadastroDepartamento="ngForm" >
@@ -12,7 +12,7 @@
                         <input  matInput maxlength="6"  name="cdUnidadeDepartamento" placeholder="Sigla:" [(ngModel)]="departamento.cdUnidadeDepartamento" required >
                </mat-form-field>
 
-               <mat-form-field fxFlex= "72%"  >
+               <mat-form-field fxFlex= "80%"  >
                     <input matInput maxlength="100"  name="nmDepartamento" placeholder="Nome do Departamento:" [(ngModel)]="departamento.nmDepartamento" required> 
                </mat-form-field>
         </div>
@@ -45,7 +45,7 @@
                <input type="text" matInput  maxlength="200" [(ngModel)]="departamento.dsEnderecoDepartamento" name="dsEnderecoDepartamento" placeholder="Endereço:" />
            </mat-form-field>
 
-           <mat-form-field fxFlex= "24%">
+           <mat-form-field fxFlex= "30%">
                 <input matInput  [(ngModel)]="departamento.nrTelefoneDepartamento" name="nrTelefoneDepartamento" placeholder="Telefone:" [textMask]="{mask: maskPhone}">
         </mat-form-field>
         </div>
