@@ -32,6 +32,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { PerspectivaModule } from './components/perspectiva/perspectiva.module';
 import { IndicadoresModule } from './components/indicadores/indicadores.module';
 import { IniciativasModule } from './components/iniciativas/iniciativas.module';
+import { SharedPipesModule } from './pipes/shared-pipes.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -84,7 +85,8 @@ registerLocaleData(localePt, 'pt-BR');
     ObjetivoModule,
     IndicadoresModule,
     IniciativasModule,
-    MetasModule
+    MetasModule,
+    SharedPipesModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

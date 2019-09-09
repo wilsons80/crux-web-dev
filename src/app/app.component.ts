@@ -1,3 +1,4 @@
+import { ToolbarPrincipalService } from './services/toolbarPrincipal/toolbar-principal.service';
 import { LoadingPopupService } from './services/loadingPopup/loading-popup.service';
 import { LoadingIndicatorService } from 'src/app/services/loadingIndicator/loading-indicator.service';
 import { MenuPrincipalService } from './services/menuPrincipal/menu-principal.service';
@@ -14,6 +15,8 @@ import { asyncScheduler } from 'rxjs';
 export class AppComponent {
   title = 'crux-web-dev';
 
+  data = new Date();
+
   @ViewChild('menuPrincipal', { static: false }) menuPrincipal: MatDrawer;
   reason = '';
 
@@ -22,7 +25,8 @@ export class AppComponent {
   constructor(
     private menuPrincipalService: MenuPrincipalService,
     loadingIndicatorService:LoadingIndicatorService,
-    loadingPopupService:LoadingPopupService
+    loadingPopupService:LoadingPopupService,
+    public toolbarPrincipalService:ToolbarPrincipalService
     ) { 
       
       const subs = loadingIndicatorService.onLoadingChanged

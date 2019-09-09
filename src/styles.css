@@ -2,6 +2,21 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 
+#rodape {
+  align-self: flex-end;
+  padding: 1.5rem 2rem;
+  width: auto;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  margin-top: 3rem;
+  position: fixed;
+  width: 100%;
+}
+
+.cinza {
+  color: rgba(0,0,0,0.54);
+}
+
 /* BOTOES DA APP */
 button.mat-raised-button.mat-button-base{
   background-color: #0288D1;

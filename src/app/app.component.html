@@ -1,11 +1,24 @@
 <tool-bar-principal></tool-bar-principal>
-<mat-drawer-container  hasBackdrop (backdropClick)="close()" class="menu-principal-container" autosize>
-    <mat-drawer  #menuPrincipal class="sidenav mat-elevation-z4" mode="side">
-      <menu-principal></menu-principal>
-    </mat-drawer>
-  
-    <div class="sidenav-content">
-              <router-outlet></router-outlet>
-    </div>
-  
-  </mat-drawer-container>
+<mat-drawer-container hasBackdrop (backdropClick)="close()" class="menu-principal-container" autosize>
+  <mat-drawer #menuPrincipal class="sidenav mat-elevation-z4" mode="side">
+    <menu-principal></menu-principal>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <router-outlet></router-outlet>
+    <div id="rodape">
+        <div style="width: 100%;" class="cinza" fxLayout="row"  fxLayoutAlign="center center" fxLayoutGap="10px">
+          <mat-icon>person</mat-icon>
+          <label>{{toolbarPrincipalService.username}}</label>
+        </div>
+        <div class="cinza" style="text-align: center; font-size: small;">
+          <br>Versão: <b>1.0</b>
+          <br>Última atualização: <b>{{ data | dataSimples }}</b>
+        </div>
+      </div>
+  </div>
+
+</mat-drawer-container>
+
+<!-- <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px"
+            style="margin-top: 10px; margin-bottom: 10px"> -->
