@@ -9,7 +9,6 @@
   text-align: center;
   border-top: 1px solid #ddd;
   margin-top: 3rem;
-  position: fixed;
   width: 100%;
 }
 
@@ -59,7 +58,7 @@ article.minhas-tarefas {
   margin-bottom: 1.3rem;
 }
 mat-toolbar.mat-toolbar.mat-toolbar-single-row.subtitulo {
-  background: #e3f2fd;
+  background: #ECEFF1;
 }
 
 /* FONTE DE TODA A APLICAÇÃO */
@@ -77,6 +76,6 @@ table {
 tr.mat-header-row.ng-star-inserted,
 div.inserted {
   padding: 15px 0 15px 28px;
-  background: #e3f2fd;
+  background: #ECEFF1;
   justify-content: center;
 }
