@@ -77,7 +77,6 @@ export class DepartamentoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        
         this.departamentoService.excluir(departamento.idDepartamento).subscribe(() => {
           this.departamento.idDepartamento = null;
           this.consultar();
