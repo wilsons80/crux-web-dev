@@ -19,7 +19,7 @@ app.use(forceSSL());
 */
 
 // Serve only the static files form the dist directory
-app.use(express.static('./dist/crux-web-dev'));
+app.use(express.static(__dirname,'./dist/crux-web-dev'));
 
 app.get('/*', function(req,res) {
   res.sendFile(path.join(__dirname,'/dist/crux-web-dev/index.html'));
