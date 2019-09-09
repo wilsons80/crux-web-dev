@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.config.js --host 0.0.0.0 --disable-host-check",
-    "pretinstall": "node server.js",
-    "postinstall": "npm run build",
-    "build": "ng build --prod",
+    "start": "node server.js",
+    "postinstall": "ng build --aot --prod",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -17,9 +16,6 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-devkit/build-angular": "~0.802.1",
-    "@angular/cli": "~8.2.1",
-    "@angular/compiler-cli": "~8.2.0",
     "@angular/animations": "^8.2.2",
     "@angular/cdk": "^8.1.2",
     "@angular/common": "~8.2.0",
