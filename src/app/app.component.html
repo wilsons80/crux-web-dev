@@ -7,7 +7,7 @@
   <div class="sidenav-content">
     <router-outlet></router-outlet>
     <div id="rodape">
-        <div style="width: 100%;" class="cinza" fxLayout="row"  fxLayoutAlign="center center" fxLayoutGap="10px">
+        <div *ngIf="toolbarPrincipalService.username != undefined"  style="width: 100%;" class="cinza" fxLayout="row"  fxLayoutAlign="center center" fxLayoutGap="10px">
           <mat-icon>person</mat-icon>
           <label>{{toolbarPrincipalService.username}}</label>
         </div>
@@ -19,6 +19,3 @@
   </div>
 
 </mat-drawer-container>
-
-<!-- <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px"
-            style="margin-top: 10px; margin-bottom: 10px"> -->

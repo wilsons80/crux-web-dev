@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         //  this.toolbarPrincipalService.unidades = this.usuarioLogado.unidades;
 
          if(this.usuarioLogado.unidadeLogada){
-           //TODO implementar quando o Will resolver o problema com o login do REUL para ver como vou fazer essa aqui da melhor forma.. 
+           this.router.navigate(['home']); 
          }else{
           this.router.navigate(['unidade/escolher']);
          }
