@@ -1,6 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+
+/* BOTOES DA APP */
+button.mat-raised-button.mat-button-base{
+  background-color: #0288D1;
+  text-transform: uppercase;
+  color: white
+}
+
+
 /* TELAS DE CONSULTA */
 .painel-principal  {
     margin-top: 5%;
@@ -37,6 +46,7 @@ article.minhas-tarefas {
 mat-toolbar.mat-toolbar.mat-toolbar-single-row.subtitulo {
   background: #e3f2fd;
 }
+
 /* FONTE DE TODA A APLICAÇÃO */
 * {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,

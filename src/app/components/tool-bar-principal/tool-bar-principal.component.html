@@ -1,12 +1,23 @@
 <mat-toolbar color="primary">
 
-    <!-- ESQUERDA -->
     <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
-        <div *ngIf="mostrarMenu" fxLayout="row" fxLayoutAlign="space-around center" >
-            <button mat-button (click)="menuPrincipalToggle()">
+
+        <!-- ESQUERDA -->
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <button *ngIf="mostrarMenu" mat-button (click)="menuPrincipalToggle()">
                 <mat-icon>menu</mat-icon>
             </button>
-            <mat-form-field style="width: 300px">
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+                Crux Web
+            </div>
+        </div>
+
+        <!-- MEIO -->
+
+
+        <!-- DIREITA -->
+        <div *ngIf="mostrarMenu" fxLayout="row" fxLayoutAlign="space-around center">
+            <mat-form-field style="width: 300px" fxLayoutGap="20px">
                 <mat-select name="unidade" #unidade="ngModel" [(ngModel)]="toolbarPrincipalService.unidadeSelecionada"
                     (selectionChange)="mudarUnidade($event.value)">
                     <mat-option *ngFor="let u of toolbarPrincipalService.unidades" [value]="u">
@@ -14,23 +25,10 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
-
-        <!-- MEIO -->
-        <div fxLayout="row" fxLayoutAlign="space-around center" >
-            Crux Web
-        </div>
-
-        <!-- DIREITA -->
-        <div  *ngIf="mostrarMenu" fxLayout="row" fxLayoutAlign="space-around center" >
-            <span>
-                {{toolbarPrincipalService.username}}
-            </span>
-            <button mat-button routerLink="" routerLinkActive="router-link-active"
-                    (click)="logout()">
-                    <mat-icon>exit_to_app</mat-icon>
-                    Sair
-                </button>
+            <button mat-button routerLink="" routerLinkActive="router-link-active" (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                Sair
+            </button>
         </div>
     </div>
 
