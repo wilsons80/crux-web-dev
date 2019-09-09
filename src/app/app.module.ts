@@ -34,6 +34,7 @@ import { IndicadoresModule } from './components/indicadores/indicadores.module';
 import { IniciativasModule } from './components/iniciativas/iniciativas.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
+import { UnidadeModule } from './components/unidade/unidade.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -87,7 +88,8 @@ registerLocaleData(localePt, 'pt-BR');
     IndicadoresModule,
     IniciativasModule,
     MetasModule,
-    SharedPipesModule
+    SharedPipesModule,
+    UnidadeModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},

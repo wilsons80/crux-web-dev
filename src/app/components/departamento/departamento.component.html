@@ -63,12 +63,8 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <div>
-
-            <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-                (page)="pageEvent = $event">
-            </mat-paginator> -->
-                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <div [hidden]="!mostrarTabela">
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </div>
         <ng-template #tabelaSemDados>
             <div fxLayout="row" fxLayoutAlign="center center" style="padding-top: 20px">

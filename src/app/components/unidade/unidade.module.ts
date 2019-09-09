@@ -8,11 +8,14 @@ import { UnidadeComponent } from './unidade.component';
 import { FormsModule } from '@angular/forms';
 import { CadastrarUnidadeComponent } from './cadastrar-unidade/cadastrar-unidade.component';
 import { TextMaskModule } from 'angular2-text-mask';
-import { SubMenuUnidadeComponent } from '../menu-principal/modulo-pedagogico/sub-menu-unidade/sub-menu-unidade.component';
 
 
 @NgModule({
-  declarations: [EscolherUnidadeComponent, UnidadeComponent, CadastrarUnidadeComponent, SubMenuUnidadeComponent],
+  declarations: [
+      EscolherUnidadeComponent
+    , UnidadeComponent
+    , CadastrarUnidadeComponent
+  ],
   imports: [
     CommonModule,
     UnidadeRoutingModule,
@@ -28,9 +31,7 @@ import { SubMenuUnidadeComponent } from '../menu-principal/modulo-pedagogico/sub
     MatTableModule,
     TextMaskModule,
     MatListModule
-    
   ],
-  exports: [SubMenuUnidadeComponent]
 
 })
 export class UnidadeModule { }
