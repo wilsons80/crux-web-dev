@@ -35,6 +35,7 @@ import { IniciativasModule } from './components/iniciativas/iniciativas.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 import { UnidadeModule } from './components/unidade/unidade.module';
+import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -89,7 +90,8 @@ registerLocaleData(localePt, 'pt-BR');
     IniciativasModule,
     MetasModule,
     SharedPipesModule,
-    UnidadeModule
+    UnidadeModule,
+    PlanosAcaoModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},

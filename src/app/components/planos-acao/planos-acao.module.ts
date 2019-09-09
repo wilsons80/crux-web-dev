@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PlanosAcaoRoutingModule } from './planos-acao-routing.module';
 import { CadastrarPlanosAcaoComponent } from './cadastrar-planos-acao/cadastrar-planos-acao.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatDatepickerModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatDatepickerModule, MatPaginatorModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -29,7 +29,8 @@ import { PlanosAcaoComponent } from './planos-acao.component';
     MatListModule,
     FlexLayoutModule,
     SharedPipesModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatPaginatorModule
   ]
 })
 export class PlanosAcaoModule { }

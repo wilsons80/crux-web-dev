@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PlanosAcao } from 'src/app/core/planos-acao';
-import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatDialogConfig, MatPaginator } from '@angular/material';
 import { PlanosAcaoService } from 'src/app/services/planosAcao/planos-acao.service';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -12,9 +12,12 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class PlanosAcaoComponent implements OnInit {
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   listaPlanosAcao: PlanosAcao[];
   mostrarTabela: boolean = false;
   planosAcao: PlanosAcao = new PlanosAcao();
+  msg:string;
 
   displayedColumns: string[] = ['nome', 'iniciativa', 'dataInicio','dataFim', 'acoes'];
   dataSource: MatTableDataSource<PlanosAcao> = new MatTableDataSource();
@@ -27,29 +30,31 @@ export class PlanosAcaoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.planosAcaoService.getAll().subscribe((listaPlanosAcao: PlanosAcao[]) => {
-      this.listaPlanosAcao = listaPlanosAcao
-    })
+    this.dataSource.paginator = this.paginator;
+    this.getAll();
   }
 
   limpar() {
     this.mostrarTabela = false;
     this.planosAcao = new PlanosAcao()
-    this.dataSource.data = null;
+    this.dataSource.data = [];
   }
 
   consultar() {
     if (this.planosAcao.id) {
       this.planosAcaoService.getById(this.planosAcao.id).subscribe((planosAcao: PlanosAcao) => {
-        this.dataSource.data = [planosAcao];
+        if(!planosAcao){
+          this.mostrarTabela = false
+          this.msg = "Nenhum registro para a pesquisa selecionada"
+        }else {
+          this.dataSource.data = [planosAcao];
+          this.mostrarTabela = true;
+        }
       })
     } else {
-      this.planosAcaoService.getAll().subscribe((listaPlanosAcao: PlanosAcao[]) => {
-        this.listaPlanosAcao = listaPlanosAcao
-        this.dataSource.data = listaPlanosAcao;
-      })
+      this.getAll();
     }
-    this.mostrarTabela = true;
+   
   }
 
 
@@ -72,16 +77,33 @@ export class PlanosAcaoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        
         this.planosAcaoService.excluir(planosAcao.id).subscribe(() => {
-          
+          this.planosAcao.id = null;
           this.consultar();
         })
-
       } else {
         dialogRef.close();
       }
     }
     );
   }
+
+  getAll() {
+    this.planosAcaoService.getAll().subscribe((listaPlanosAcao: PlanosAcao[]) => {
+      this.listaPlanosAcao = listaPlanosAcao
+      this.dataSource.data = listaPlanosAcao ? listaPlanosAcao : [];
+      this.verificaMostrarTabela(listaPlanosAcao);
+    })
+  }
+
+  verificaMostrarTabela(listaPlanosAcao: PlanosAcao[]) {
+    if(!listaPlanosAcao ||listaPlanosAcao.length == 0) {
+      this.mostrarTabela = false; 
+      this.msg = "Nenhum plano de ação cadastrado."
+    }else{
+      this.mostrarTabela = true; 
+    }
+  }
+
+
 }
