@@ -52,7 +52,7 @@ export class AutenticadorService {
   }
 
   refreshToken() {
-    if (moment().isBetween(this.getExpiration().subtract(3, 'day'), this.getExpiration())) {
+    if (moment().isBetween(this.getExpiration().subtract(3, 'minutes'), this.getExpiration())) {
       return this.http.get(tokenRootPath + `refresh-token`)
       .pipe(
         tap((usuarioLogado:UsuarioLogado) => {
