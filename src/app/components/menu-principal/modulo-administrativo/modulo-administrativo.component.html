@@ -1,4 +1,4 @@
-<a mat-list-item >
+<a mat-list-item (click)="toggle()">
     <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
         <div fxLayout="row" fxLayoutAlign="start stretch">
             <mat-icon>supervisor_account</mat-icon>
@@ -10,37 +10,39 @@
     </div>
 </a>
 <mat-nav-list style="width: 260px">
-   
-<!-- DEPARTAMENTO -->
-<sub-menu icone="business" titulo="Departamento" rota="departamento"></sub-menu>
 
-<!-- PERSPECTIVA -->
-<sub-menu icone="pages" titulo="Perspectiva" rota="perspectiva"></sub-menu>
+    <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
+        <!-- DEPARTAMENTO -->
+        <sub-menu icone="business" titulo="Departamento" rota="departamento"></sub-menu>
 
-<!-- OBJETIVOS -->
-<sub-menu icone="my_location" titulo="Objetivos" rota="objetivo"></sub-menu>
+        <!-- PERSPECTIVA -->
+        <sub-menu icone="pages" titulo="Perspectiva" rota="perspectiva"></sub-menu>
 
-<!-- INDICADORES -->
-<sub-menu icone="trending_up" titulo="Indicadores" rota="indicadores"></sub-menu>
+        <!-- OBJETIVOS -->
+        <sub-menu icone="my_location" titulo="Objetivos" rota="objetivo"></sub-menu>
 
-<!-- METAS -->
-<sub-menu icone="account_tree" titulo="Metas" rota="metas"></sub-menu>
+        <!-- INDICADORES -->
+        <sub-menu icone="trending_up" titulo="Indicadores" rota="indicadores"></sub-menu>
 
-<!-- INICIATIVAS -->
-<sub-menu icone="highlight" titulo="Iniciativas" rota="iniciativas"></sub-menu>
+        <!-- METAS -->
+        <sub-menu icone="account_tree" titulo="Metas" rota="metas"></sub-menu>
 
-<!-- PLANOS DE ACAO -->
-<sub-menu icone="list_alt" titulo="Planos de Ação" rota="planosacao"></sub-menu>
+        <!-- INICIATIVAS -->
+        <sub-menu icone="highlight" titulo="Iniciativas" rota="iniciativas"></sub-menu>
 
-<!-- PROGRAMAS -->
-<sub-menu icone="apps" titulo="Programas" rota="programas"></sub-menu>
-<!-- FUNCIONARIOS DOS PROGRAMAS -->
+        <!-- PLANOS DE ACAO -->
+        <sub-menu icone="list_alt" titulo="Planos de Ação" rota="planosacao"></sub-menu>
 
-<!-- PROJETOS -->
-<sub-menu icone="folder" titulo="Projetos" rota="projetos"></sub-menu>
+        <!-- PROGRAMAS -->
+        <sub-menu icone="apps" titulo="Programas" rota="programas"></sub-menu>
+        <!-- FUNCIONARIOS DOS PROGRAMAS -->
 
-<!-- FUNCIONARIOS DOS PROJETOS -->
+        <!-- PROJETOS -->
+        <sub-menu icone="folder" titulo="Projetos" rota="projetos"></sub-menu>
 
-<!-- PRODUTOS -->
-<sub-menu icone="unarchive" titulo="Produtos" rota="produtos"></sub-menu>
+        <!-- FUNCIONARIOS DOS PROJETOS -->
+
+        <!-- PRODUTOS -->
+        <sub-menu icone="unarchive" titulo="Produtos" rota="produtos"></sub-menu>
+    </div>
 </mat-nav-list>

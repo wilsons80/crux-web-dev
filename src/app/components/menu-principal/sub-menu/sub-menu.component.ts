@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'sub-menu',
@@ -9,11 +10,10 @@ import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolb
 })
 export class SubMenuComponent implements OnInit {
 
- 
-    @Input() rota:string
-    @Input() icone:string
-    @Input() titulo:string
-
+  @Input() rota:string
+  @Input() icone:string
+  @Input() titulo:string
+  
     constructor(
       private menuPrincipalService:MenuPrincipalService,
       private toolbarPrincipalService:ToolbarPrincipalService
@@ -29,6 +29,5 @@ export class SubMenuComponent implements OnInit {
     getRouterLink(){
       return this.rota;
     }
-  
   
 }
