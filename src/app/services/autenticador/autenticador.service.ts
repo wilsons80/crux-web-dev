@@ -51,7 +51,7 @@ export class AutenticadorService {
     localStorage.removeItem('expires_at');
   }
 
-  refreshToken(idUnidade) {
+  refreshToken() {
     if (moment().isBetween(this.getExpiration().subtract(3, 'day'), this.getExpiration())) {
       return this.http.get(tokenRootPath + `refresh-token`)
       .pipe(

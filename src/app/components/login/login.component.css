@@ -1,8 +1,5 @@
 .tela-login{
-    margin-top: 5%;
-    margin-left: 35%;
-    margin-right: 35%;
-    /* border: 3px solid #73AD21; */
+    width: 30%
 }
 
 .logo{
@@ -16,4 +13,5 @@
     width: 265px;
     height: 100px;
     margin: auto;
+    
   }
