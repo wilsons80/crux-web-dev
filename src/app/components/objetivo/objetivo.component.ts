@@ -1,7 +1,7 @@
 import { ObjetivoService } from './../../services/objetivo/objetivo.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Objetivo } from 'src/app/core/objetivo';
-import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatDialogConfig, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Departamento } from 'src/app/core/departamento';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -13,9 +13,12 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class ObjetivoComponent implements OnInit {
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   objetivos: Objetivo[];
   mostrarTabela: boolean = false;
   objetivo: Objetivo = new Objetivo();
+  msg:string;
 
   displayedColumns: string[] = ['nome', 'perspectiva', 'usuarioAlteracao', 'acoes'];
   dataSource: MatTableDataSource<Objetivo> = new MatTableDataSource();
@@ -28,10 +31,11 @@ export class ObjetivoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.objetivoService.getAll().subscribe((objetivos: Objetivo[]) => {
-      this.objetivos = objetivos
-    })
+    this.dataSource.paginator = this.paginator;
+    this.getAll();
+    
   }
+ 
 
   limpar() {
     this.mostrarTabela = false;
@@ -84,5 +88,11 @@ export class ObjetivoComponent implements OnInit {
       }
     }
     );
+  }
+
+  getAll() {
+    this.objetivoService.getAll().subscribe((objetivos: Objetivo[]) => {
+      this.objetivos = objetivos
+    })
   }
 }

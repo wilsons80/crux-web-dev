@@ -12,11 +12,7 @@ import { DepartamentoService } from './../../services/departamento/departamento.
 })
 export class DepartamentoComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  
-  length = 100;
-  pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
-
+ 
   departamentos: Departamento[];
   mostrarTabela: boolean = false;
   departamento: Departamento = new Departamento();
@@ -102,8 +98,8 @@ export class DepartamentoComponent implements OnInit {
     })
   }
 
-  verificaMostrarTabela(departamentos) {
-    if(departamentos.length == 0) {
+  verificaMostrarTabela(departamentos: Departamento[]) {
+    if(!departamentos ||departamentos.length == 0) {
       this.mostrarTabela = false; 
       this.msg = "Nenhum departamento cadastrado."
     }else{
@@ -111,10 +107,6 @@ export class DepartamentoComponent implements OnInit {
     }
   }
 
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-  }
- 
 
 }
 

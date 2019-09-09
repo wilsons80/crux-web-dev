@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatTableDataSource, MatPaginator } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Perspectiva } from 'src/app/core/perspectiva';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -11,49 +11,49 @@ import { PerspectivaService } from './../../services/perspectiva/perspectiva.ser
   styleUrls: ['./perspectiva.component.css']
 })
 export class PerspectivaComponent implements OnInit {
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   perspectivas: Perspectiva[];
   mostrarTabela: boolean = false;
   perspectiva: Perspectiva = new Perspectiva();
-  idUnidadeLogada:number;
+  idUnidadeLogada: number;
+  msg: string;
 
-
-  displayedColumns: string[] = ['nome', 'dtImplantacao', 'dtTermino','unidade', 'acoes'];
+  displayedColumns: string[] = ['nome', 'dtImplantacao', 'dtTermino', 'unidade', 'acoes'];
   dataSource: MatTableDataSource<Perspectiva> = new MatTableDataSource();
 
   constructor(
     private perspectivaService: PerspectivaService,
     private router: Router,
     private dialog: MatDialog,
-    private activatedRoute: ActivatedRoute,
 
   ) { }
 
   ngOnInit() {
-    this.idUnidadeLogada = this.activatedRoute.snapshot.params.idUnidade;
-    this.perspectivaService.getAll().subscribe((perspectivas: Perspectiva[]) => {
-      this.perspectivas = perspectivas
-    })
+    this.dataSource.paginator = this.paginator;
+    this.getAll();
   }
 
   limpar() {
     this.mostrarTabela = false;
     this.perspectiva = new Perspectiva();
-    this.dataSource.data = null;
+    this.dataSource.data = [];
   }
 
   consultar() {
     if (this.perspectiva.idPerspectiva) {
       this.perspectivaService.getById(this.perspectiva.idPerspectiva).subscribe((perspectiva: Perspectiva) => {
-        let array = [];
-        array.push(perspectiva);
-        this.dataSource.data = array
+        if (!perspectiva) {
+          this.mostrarTabela = false
+          this.msg = "Nenhum registro para a pesquisa selecionada"
+        } else {
+          this.dataSource.data = [perspectiva];
+          this.mostrarTabela = true;
+        }
       })
-    } this.perspectivaService.getAll().subscribe((perspectivas: Perspectiva[]) => {
-      this.perspectivas = perspectivas;
-      this.dataSource.data = this.perspectivas;
-    })
-    this.mostrarTabela = true;
+    }else {
+      this.getAll();
+    }
   }
 
 
@@ -68,7 +68,7 @@ export class PerspectivaComponent implements OnInit {
   chamaCaixaDialogo(perspectiva: Perspectiva) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a unidade ${perspectiva.nmPerspectiva}?`,
+      pergunta: `Certeza que desse excluir a perspectiva ${perspectiva.nmPerspectiva}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };
@@ -78,6 +78,7 @@ export class PerspectivaComponent implements OnInit {
       if (confirma) {
 
         this.perspectivaService.excluir(perspectiva.idPerspectiva).subscribe(() => {
+          this.perspectiva.idPerspectiva = null;
           this.consultar();
         })
 
@@ -87,6 +88,25 @@ export class PerspectivaComponent implements OnInit {
     }
     );
   }
+  getAll() {
+    this.perspectivaService.getAll().subscribe((perspectivas: Perspectiva[]) => {
+      this.perspectivas = perspectivas
+      this.dataSource.data = perspectivas ? perspectivas : [];
+      this.verificaMostrarTabela(perspectivas);
+    })
+
+  }
+
+  verificaMostrarTabela(perspectivas: Perspectiva[]) {
+    if (!perspectivas || perspectivas.length == 0) {
+      this.mostrarTabela = false;
+      this.msg = "Nenhuma perspectiva cadastrada."
+    } else {
+      this.mostrarTabela = true;
+    }
+  }
+
+
 
 }
 

@@ -16,6 +16,20 @@
   color: rgba(0,0,0,0.54);
 }
 
+mat-toolbar.mat-toolbar.mat-toolbar-single-row.tituloprincipal{
+  background: rgb(213, 226, 253);
+  
+}
+
+mat-toolbar.mat-toolbar.mat-toolbar-single-row.titulopartes{
+  background: rgb(241, 241, 241);
+  height: auto;
+  font-size: large;
+  color: rgb(142,142,142)
+  
+}
+
+
 /* BOTOES DA APP */
 button.mat-raised-button.mat-button-base{
   background-color: #0288D1;
