@@ -1,4 +1,4 @@
-<mat-toolbar class="tituloprincipal">Cadastrar Objetivo</mat-toolbar>
+<mat-toolbar class="subtitulo">Cadastrar Objetivo</mat-toolbar>
 
 <div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
     <form #formCadastroPerspectiva="ngForm">
@@ -16,13 +16,13 @@
         <mat-toolbar class="titulopartes">Data</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
                     <input matInput name= "dtImplantacao" [matDatepicker]="dtImplantacao" placeholder="Data de Implatação" [(ngModel)]="objetivo.dataImplantacao" required>
                     <mat-datepicker-toggle matSuffix [for]="dtImplantacao"></mat-datepicker-toggle>
                     <mat-datepicker #dtImplantacao></mat-datepicker>
              </mat-form-field>
            
-             <mat-form-field fxFlex= "50%">
+             <mat-form-field fxFlex= "46%">
                     <input matInput name= "dtTermino" [matDatepicker]="dtTermino" placeholder="Data Término" [(ngModel)]="objetivo.dataTermino">
                     <mat-datepicker-toggle matSuffix [for]="dtTermino"></mat-datepicker-toggle>
                     <mat-datepicker #dtTermino></mat-datepicker>

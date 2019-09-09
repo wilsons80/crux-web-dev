@@ -18,7 +18,6 @@ export class CadastrarObjetivoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(
     private perspectivaService: PerspectivaService,

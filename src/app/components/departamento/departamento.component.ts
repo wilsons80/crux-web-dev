@@ -93,7 +93,7 @@ export class DepartamentoComponent implements OnInit {
   getAll(){
     this.departamentoService.getAll().subscribe((departamentos: Departamento[]) => {
       this.departamentos = departamentos;
-      this.dataSource.data = departamentos;
+      this.dataSource.data = departamentos ? departamentos : [];
       this.verificaMostrarTabela(departamentos);
     })
   }
