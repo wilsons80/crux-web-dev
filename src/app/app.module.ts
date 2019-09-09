@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './components/login/login.module';
 import { HomeModule } from './components/home/home.module';
-import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatSidenavModule, MatMenuModule, MatExpansionModule, MatDividerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatCardModule } from '@angular/material';
+import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatSidenavModule, MatMenuModule, MatExpansionModule, MatDividerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatCardModule, MatPaginatorIntl } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -33,6 +33,7 @@ import { PerspectivaModule } from './components/perspectiva/perspectiva.module';
 import { IndicadoresModule } from './components/indicadores/indicadores.module';
 import { IniciativasModule } from './components/iniciativas/iniciativas.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
+import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -89,6 +90,7 @@ registerLocaleData(localePt, 'pt-BR');
     SharedPipesModule
   ],
   providers: [
+    { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: LOCALE_ID, useValue: 'pt-BR' },
 

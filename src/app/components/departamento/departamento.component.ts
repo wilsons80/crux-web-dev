@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Departamento } from './../../core/departamento';
@@ -11,6 +11,11 @@ import { DepartamentoService } from './../../services/departamento/departamento.
   styleUrls: ['./departamento.component.css']
 })
 export class DepartamentoComponent implements OnInit {
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
 
   departamentos: Departamento[];
   mostrarTabela: boolean = false;
@@ -28,6 +33,7 @@ export class DepartamentoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.getAll();
   }
   
@@ -35,7 +41,7 @@ export class DepartamentoComponent implements OnInit {
   limpar() {
     this.mostrarTabela = false;
     this.departamento = new Departamento()
-    this.dataSource.data = null;
+    this.dataSource.data = [];
   }
 
   consultar() {
@@ -104,6 +110,11 @@ export class DepartamentoComponent implements OnInit {
       this.mostrarTabela = true; 
     }
   }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  }
+ 
 
 }
 
