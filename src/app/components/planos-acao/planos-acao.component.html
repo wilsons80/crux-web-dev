@@ -6,7 +6,7 @@
 
                 <mat-icon>business</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione um departamento</mat-label>
+                    <mat-label>Selecione um plano de ação</mat-label>
                     <mat-select [(ngModel)]="planosAcao" name="unidade">
                         <mat-option *ngFor="let d of listaPlanosAcao" [value]="d">
                             {{d.nome}}
