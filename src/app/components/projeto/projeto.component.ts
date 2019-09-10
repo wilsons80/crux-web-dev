@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Projeto } from 'src/app/core/projeto';
 import { ProjetoService } from 'src/app/services/projeto/projeto.service';
@@ -12,8 +12,11 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class ProjetoComponent implements OnInit {
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   projetos: Projeto[];
   projeto: Projeto = new Projeto();
+  msg:string;
 
   mostrarTabela = false;
 
@@ -28,28 +31,29 @@ export class ProjetoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.projetoService.getAll().subscribe((projetos: Projeto[]) => {
-      this.projetos = projetos;
-    })
+    this.dataSource.paginator = this.paginator;
+    this.getAll();
   }
-
   limpar() {
+    this.mostrarTabela = false;
     this.projeto = new Projeto()
-    this.dataSource.data = null;
+    this.dataSource.data = [];
   }
 
   consultar() {
     if (this.projeto.id) {
       this.projetoService.getById(this.projeto.id).subscribe((projeto: Projeto) => {
-        this.dataSource.data = [projeto];
+        if(!projeto){
+          this.mostrarTabela = false
+          this.msg = "Nenhum registro para a pesquisa selecionada"
+        }else {
+          this.dataSource.data = [projeto];
+          this.mostrarTabela = true;
+        }
       })
     } else {
-      this.projetoService.getAll().subscribe((projeto: Projeto[]) => {
-        this.projetos = projeto
-        this.dataSource.data = projeto;
-      })
+      this.getAll();
     }
-    this.mostrarTabela = true;
   }
 
 
@@ -72,12 +76,10 @@ export class ProjetoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-
         this.projetoService.excluir(projeto.id).subscribe(() => {
-
+          this.projeto.id = null;
           this.consultar();
         })
-
       } else {
         dialogRef.close();
       }
@@ -85,4 +87,19 @@ export class ProjetoComponent implements OnInit {
     );
   }
 
+  getAll() {
+    this.projetoService.getAll().subscribe((projetos: Projeto[]) => {
+      this.projetos = projetos;
+      this.dataSource.data = projetos ? projetos : [];
+      this.verificaMostrarTabela(projetos);
+    })
+  }
+  verificaMostrarTabela(projetos: Projeto[]) {
+    if(!projetos ||projetos.length == 0) {
+      this.mostrarTabela = false; 
+      this.msg = "Nenhum projeto cadastrado."
+    }else{
+      this.mostrarTabela = true; 
+    }
+  }
 }

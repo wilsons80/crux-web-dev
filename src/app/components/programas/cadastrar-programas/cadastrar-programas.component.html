@@ -1,32 +1,33 @@
-<mat-toolbar class="tituloprincipal">Cadastrar Programa</mat-toolbar>
+<mat-toolbar class="subtitulo">Cadastrar Programa</mat-toolbar>
 
 <div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
  
         <!-- DADOS INICIAIS -->
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    
-            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+        <div fxLayout="row" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+            <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
                   <input matInput maxlength="200"  name="nome" placeholder="Nome :" [(ngModel)]="programa.nome" required> 
              </mat-form-field>
-          
-             <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+        </div>
+        
+        <div fxLayout="row" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
                   <input matInput maxlength="200"  name="nome" placeholder="Descrição:" [(ngModel)]="programa.descricao" required> 
              </mat-form-field>
-
         </div>
 
+        <!-- DATA -->
         <mat-toolbar class="titulopartes">Data</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
                     <input matInput name= "dtImplantacao" [matDatepicker]="dtImplantacao" placeholder="Data de Início" [(ngModel)]="programa.dataInicio" required>
                     <mat-datepicker-toggle matSuffix [for]="dtImplantacao"></mat-datepicker-toggle>
                     <mat-datepicker #dtImplantacao></mat-datepicker>
              </mat-form-field>
            
-             <mat-form-field fxFlex= "50%">
+             <mat-form-field fxFlex= "46%">
                     <input matInput name= "dtTermino" [matDatepicker]="dtTermino" placeholder="Data Fim" [(ngModel)]="programa.dataFim">
                     <mat-datepicker-toggle matSuffix [for]="dtTermino"></mat-datepicker-toggle>
                     <mat-datepicker #dtTermino></mat-datepicker>
@@ -49,21 +50,21 @@
          </div>
 
            <!-- FAIXA ETÁRIA -->
-        <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
+        <mat-toolbar class="titulopartes">Faixa Etária</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     
-            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
                   <input matInput maxlength="200"  name="nome" placeholder="Faixa Etária Início :" [(ngModel)]="programa.faixaEtariaInicio" required> 
              </mat-form-field>
           
-             <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+             <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
                   <input matInput maxlength="200"  name="nome" placeholder="Faixa Etária Fim:" [(ngModel)]="programa.faixaEtariaFim" required> 
              </mat-form-field>
 
         </div>
         
          <!-- OBJETIVO -->
-         <mat-toolbar class="titulopartes">Iniciativa</mat-toolbar>
+         <mat-toolbar class="titulopartes">Objetivo</mat-toolbar>
          <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
                         <mat-label>Objetivo:</mat-label>

@@ -34,7 +34,7 @@ export class DepartamentoService {
   }
  
   excluir(idDepartamento:number){
-    return this.http.delete(departamentoRootPath + `${idDepartamento}`, httpOptions);
+    return this.http.delete(departamentoRootPath + `${idDepartamento}`);
   }
   
 }
