@@ -5,8 +5,6 @@ import { Iniciativa } from 'src/app/core/iniciativa';
 import { MetasService } from 'src/app/services/metas/metas.service';
 import { IniciativaService } from 'src/app/services/iniciativa/iniciativa.service';
 import { ActivatedRoute } from '@angular/router';
-import { Objetivo } from 'src/app/core/objetivo';
-import { Indicadores } from 'src/app/core/indicadores';
 
 @Component({
   selector: 'app-cadastrar-iniciativas',

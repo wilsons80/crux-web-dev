@@ -1,3 +1,4 @@
+import { ProdutoModule } from './components/produto/produto.module';
 import { MetasModule } from './components/metas/metas.module';
 import { ObjetivoModule } from './components/objetivo/objetivo.module';
 import { DepartamentoModule } from './components/departamento/departamento.module';
@@ -95,7 +96,8 @@ registerLocaleData(localePt, 'pt-BR');
     UnidadeModule,
     PlanosAcaoModule,
     ProgramasModule,
-    ProjetoModule
+    ProjetoModule,
+    ProdutoModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},
