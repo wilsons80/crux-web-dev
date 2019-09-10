@@ -13,7 +13,7 @@
         
         <div fxLayout="row" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
              <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Descrição:" [(ngModel)]="programa.descricao" required> 
+                  <input matInput maxlength="200"  name="descricao" placeholder="Descrição:" [(ngModel)]="programa.descricao" required> 
              </mat-form-field>
         </div>
 
@@ -54,11 +54,11 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     
             <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Faixa Etária Início :" [(ngModel)]="programa.faixaEtariaInicio" required> 
+                  <input matInput type="number" maxlength="2"  name="faixainicio" placeholder="Faixa Etária Início :" [(ngModel)]="programa.faixaEtariaInicio" required> 
              </mat-form-field>
           
              <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Faixa Etária Fim:" [(ngModel)]="programa.faixaEtariaFim" required> 
+                  <input matInput type="number" maxlength="2"  name="faixafim" placeholder="Faixa Etária Fim:" [(ngModel)]="programa.faixaEtariaFim" required> 
              </mat-form-field>
 
         </div>
