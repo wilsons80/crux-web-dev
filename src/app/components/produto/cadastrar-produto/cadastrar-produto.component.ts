@@ -1,4 +1,10 @@
+import { ProdutoService } from './../../../services/produto/produto.service';
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Produto } from 'src/app/core/produto';
+import { ActivatedRoute } from '@angular/router';
+import { Perspectiva } from 'src/app/core/perspectiva';
+import { Objetivo } from 'src/app/core/objetivo';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -7,9 +13,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastrarProdutoComponent implements OnInit {
 
-  constructor() { }
+  produto: Produto = new Produto();
+
+  isAtualizar: boolean = false;
+
+
+  constructor(
+    private route: ActivatedRoute,
+    private location:Location,
+    private produtoService:ProdutoService
+  ) { }
+
 
   ngOnInit() {
+
+    let idProduto: number;
+    idProduto = this.route.snapshot.queryParams.idProduto ? this.route.snapshot.queryParams.idProduto : null;
+    if (idProduto) {
+      this.isAtualizar = true;
+      this.produtoService.getById(idProduto).subscribe((produto: Produto) => {
+        this.produto = produto;
+      });
+    }
+    
+  }
+  cadastrar() {
+    this.produtoService.cadastrar(this.produto).subscribe(() => {
+      this.location.back();
+    });
+  }
+
+  limpar() { }
+
+  cancelar() { 
+    this.location.back();
+  }
+
+  getNomeBotao() {
+    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
+  }
+
+  atualizar(){
+    this.produtoService.alterar(this.produto).subscribe(()=>{
+      this.location.back();
+    });
+    
   }
 
 }
