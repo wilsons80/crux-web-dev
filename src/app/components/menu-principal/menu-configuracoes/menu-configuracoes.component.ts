@@ -6,7 +6,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   templateUrl: './menu-configuracoes.component.html',
   styleUrls: ['./menu-configuracoes.component.css'],
   animations: [
-    trigger('photoState', [
+    trigger('menuState', [
       state('hidden', style({
         visibility: 'hidden',
         opacity: 0

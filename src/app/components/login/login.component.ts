@@ -34,12 +34,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  private setarUnidades(unidades) {
-    // if (this.toolbarPrincipalService.unidades.length === 1) {
-    //   this.toolbarPrincipalService.unidadeSelecionada = this.toolbarPrincipalService.unidades[0];
-    // }
-  }
-
   login() {
     this.autenticadorService.login(this.usuario).pipe(
      
@@ -52,8 +46,6 @@ export class LoginComponent implements OnInit {
       })
 
     ).subscribe((menu:Menu[]) => {
-        //  this.toolbarPrincipalService.unidades = this.usuarioLogado.unidades;
-
          if(this.usuarioLogado.unidadeLogada){
            this.router.navigate(['home']); 
          }else{
