@@ -6,11 +6,11 @@
 
   <div class="sidenav-content">
     <router-outlet></router-outlet>
-  
+
     <div id="rodape">
-        <div *ngIf="toolbarPrincipalService.username != undefined"  style="width: 100%;" class="cinza" fxLayout="row"  fxLayoutAlign="center center" fxLayoutGap="10px">
+        <div *ngIf="toolbarPrincipalService.nomeUsuario != undefined"  style="width: 100%;" class="cinza" fxLayout="row"  fxLayoutAlign="center center" fxLayoutGap="10px">
           <mat-icon>person</mat-icon>
-          <label>{{toolbarPrincipalService.username}}</label>
+          <label>{{toolbarPrincipalService.nomeUsuario.toUpperCase()}}</label>
         </div>
         <div class="cinza" style="text-align: center; font-size: small;">
           <br>Versão: <b>1.0</b>
