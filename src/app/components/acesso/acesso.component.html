@@ -1,9 +1,12 @@
-<mat-toolbar>Acesso</mat-toolbar>
-<div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
+<mat-toolbar class="subtitulo">Acesso</mat-toolbar>
 
-    <div *ngIf="mostrarAcao('insere')" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="padding: 10px 10px 30px">
+
+
+<!-- <div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
+
+    <div  fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="padding: 10px 10px 30px">
         <div>
-            <button mat-fab color="primary" (click)="abrirDialogCadastrar(null, false)">
+            <button mat-fab color="primary" >
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -12,14 +15,14 @@
 
 
 
-    <form #formConsultarAcesso="ngForm" class="mat-elevation-z1 painel-consultar" *ngIf="mostrarAcao('consulta')">
+    <form #formConsultarAcesso="ngForm" class="painel-consultar" >
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px"
             style="margin-top: 10px; margin-bottom: 10px">
             <mat-icon>person</mat-icon>
             <mat-form-field style="width: 80%; margin-left: 100px; margin-top: 20px">
                 <mat-label>Selecione um usuário</mat-label>
-                <mat-select [(ngModel)]="cadastroAcessoTO.idUsuario" name="usuario">
-                    <mat-option *ngFor="let u of usuarios" [value]="u.idUsuario">
+                <mat-select [(ngModel)]="cadastroAcesso.idUsuario" name="usuario">
+                    <mat-option *ngFor="let u of usuarios" [value]="u.id">
                         {{u.nomeCompleto}}
                     </mat-option>
                 </mat-select>
@@ -31,7 +34,7 @@
             <mat-icon>view_module</mat-icon>
         <mat-form-field style="width: 80%; margin-left: 100px; margin-top: 20px">
             <mat-label>Selecione modulo</mat-label>
-            <mat-select name="usuario" name='idModulo' [(ngModel)]="cadastroAcessoTO.idModulo" >
+            <mat-select name="usuario" name='idModulo' [(ngModel)]="cadastroAcesso.idModulo" >
                 <mat-option *ngFor="let m of modulos"  [value]="m.idModulo">
                     {{m.descricao}}
                 </mat-option>
@@ -85,4 +88,4 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
 
-</div>
+</div> -->

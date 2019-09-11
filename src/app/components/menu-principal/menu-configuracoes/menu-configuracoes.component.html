@@ -1,17 +1,25 @@
 <a mat-list-item (click)="toggle()">
-        <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
-            <div fxLayout="row" fxLayoutAlign="start stretch">
-                <mat-icon>settings</mat-icon>
-                <span class="nav-caption">Configurações</span>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="start stretch">
-                <mat-icon style="padding-top: 2px">chevron_right</mat-icon>
-            </div>
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-icon>settings</mat-icon>
+            <span class="nav-caption">Configurações</span>
         </div>
-    </a>
-    <div [hidden]="!isMostrarSubMenu">
-            <mat-action-list class="submenu" [@photoState]="currentState">
-                <button mat-list-item [routerLink]="['/novasenha']" routerLinkActive="router-link-active" style="font-family: initial"> Alterar senha </button>
-            </mat-action-list>
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-icon style="padding-top: 2px">chevron_right</mat-icon>
         </div>
+    </div>
+</a>
+<mat-nav-list style="width: 260px">
+
+    <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
+       
+        <!-- ACESSO -->
+        <sub-menu icone="lock" titulo="Acesso" rota="acesso"></sub-menu>
+        
+        <!-- ALTERAR SENHA -->
+        <sub-menu icone="cached" titulo="Alterar Senha" rota="acesso"></sub-menu>
+
+      
+    </div>
+</mat-nav-list>
     

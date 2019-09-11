@@ -97,7 +97,7 @@ registerLocaleData(localePt, 'pt-BR');
     PlanosAcaoModule,
     ProgramasModule,
     ProjetoModule,
-    ProdutoModule
+    ProdutoModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},
