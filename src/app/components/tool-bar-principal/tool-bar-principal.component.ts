@@ -34,11 +34,13 @@ export class ToolBarPrincipalComponent implements OnInit {
     this.authGuard.mostrarMenu.subscribe(resultado => this.mostrarMenu = resultado);
   }
 
-  logout(){
-    this.logoutService.logout().subscribe(() => {});
-    this.autenticadorService.logout();
-    this.menuPrincipalService.logout();
-    this.router.navigate(['login']);
+  logout() {
+    this.logoutService.logout().subscribe(() => {
+      this.autenticadorService.logout();
+      this.menuPrincipalService.logout();
+      this.router.navigate(['login']);
+      this.toolbarPrincipalService.apagaPropriedadesdoUsuarioLogado();
+    });
   }
 
   menuPrincipalToggle(){
