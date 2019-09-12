@@ -1,3 +1,4 @@
+import { LogoutService } from './../../services/logout/logout.service';
 import { AcessoUnidade } from './../../core/acesso-unidade';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { MenuPrincipalService } from './../../services/menuPrincipal/menu-principal.service';
@@ -24,7 +25,9 @@ export class ToolBarPrincipalComponent implements OnInit {
     private router:Router,
     private menuPrincipalService:MenuPrincipalService,
     private unidadeService:UnidadeService,
+    private logoutService:LogoutService,
     public toolbarPrincipalService:ToolbarPrincipalService,
+
     ) { }
 
   ngOnInit(): void {
@@ -32,6 +35,9 @@ export class ToolBarPrincipalComponent implements OnInit {
   }
 
   logout(){
+    this.logoutService.logout().subscribe(() => {
+      console.log("logautado")
+    });
     this.autenticadorService.logout();
     this.menuPrincipalService.logout();
     this.router.navigate(['login']);

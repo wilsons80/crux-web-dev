@@ -21,7 +21,7 @@ export class UnidadeService {
     return this.http.get(unidadeRootPath + `classificadorimovel/`);
   }
   
-  getPorUsuario() {
+  getUnidadesComAcesso() {
     return this.http.get(unidadeRootPath + `usuario/`);
   }
 

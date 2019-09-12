@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { Unidade } from 'src/app/core/unidade';
 import { switchMap } from 'rxjs/operators';
+import { AcessoUnidade } from 'src/app/core/acesso-unidade';
 
 @Component({
   selector: 'app-escolher-unidade',
@@ -13,7 +14,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class EscolherUnidadeComponent implements OnInit {
 
-  unidades: any[];
+  unidades: AcessoUnidade[];
 
   constructor(
     private unidadeService:UnidadeService,
@@ -22,8 +23,8 @@ export class EscolherUnidadeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-   this.unidadeService.getPorUsuario().subscribe((unidades:any[]) => {
-     this.unidades = unidades;
+   this.unidadeService.getUnidadesComAcesso().subscribe((acessoUnidade: AcessoUnidade[]) => {
+     this.unidades = acessoUnidade;
    })
   }
 

@@ -8,6 +8,9 @@ import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolb
 import { Component, OnInit, Inject } from '@angular/core';
 import { CadastroAcesso } from 'src/app/core/cadastro-acesso';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { UsuarioUnidade } from 'src/app/core/usuario-unidade';
+import { Modulo } from 'src/app/core/modulo';
+import { AcessoUnidade } from 'src/app/core/acesso-unidade';
 
 @Component({
   selector: 'app-cadastrar-acesso',
@@ -17,10 +20,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class CadastrarAcessoComponent implements OnInit {
 
 
-  usuarios: any;
-  modulos: any;
+  usuarios: UsuarioUnidade[];
+  modulos: Modulo[];
   perfis: any;
-  unidades: boolean;
+  unidades: AcessoUnidade;
   usuario: any;
   isAtualizar: boolean;
 
@@ -36,23 +39,10 @@ export class CadastrarAcessoComponent implements OnInit {
     private dialogRef: MatDialogRef<CadastrarAcessoComponent>,
     private unidadeService: UnidadeService,
     private usuarioService:UsuarioService,
-
-    @Inject(MAT_DIALOG_DATA) data
-  ) {
-    this.usuarios = data.usuarios,
-    this.modulos= data.modulos,
-    this.labelBotao = data.labelBotao;
-    
-    if (data.atualizar) {
-      this.cadastroAcessoTO.idUnidade = data.usuario.idUnidade;
-      this.isAtualizar = data.atualizar;
-      this.cadastroAcessoTO.idModulo = data.usuario.idModulo;
-      this.cadastroAcessoTO.idUsuario = data.usuario.idUsuario;
-    }
-  }
+  ) {}
 
   ngOnInit() {
-    this.unidadeService.getPorUsuario().subscribe((unidades: any) => this.unidades = unidades);
+    this.unidadeService.getUnidadesComAcesso().subscribe((acessoUnidade: AcessoUnidade) => this.unidades = acessoUnidade);
     if(this.isAtualizar){
       this.buscarPerfis();
     }
@@ -62,8 +52,8 @@ export class CadastrarAcessoComponent implements OnInit {
     if (!this.isAtualizar) {
       this.limparCamposDependendentesUnidade();
     }
-      this.usuarioService.getUsuariosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(usuarios => this.usuarios = usuarios);
-      this.moduloService.getModulosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(modulos => this.modulos = modulos);
+      this.usuarioService.getUsuariosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe((usuarios:UsuarioUnidade[]) => this.usuarios = usuarios);
+      this.moduloService.getModulosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe((modulos:Modulo[]) => this.modulos = modulos);
   }
 
   limparCamposDependendentesUnidade() {

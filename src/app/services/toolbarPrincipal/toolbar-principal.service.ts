@@ -23,7 +23,7 @@ export class ToolbarPrincipalService {
               private unidadeService: UnidadeService) { }
 
   getPorUsuario() {
-    return this.unidadeService.getPorUsuario();
+    return this.unidadeService.getUnidadesComAcesso();
   }
   setarPropriedadesUsuarioLogado(usuarioLogado: UsuarioLogado) {
         this.unidades = usuarioLogado.unidades;
