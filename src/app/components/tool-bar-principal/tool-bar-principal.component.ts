@@ -18,8 +18,8 @@ export class ToolBarPrincipalComponent implements OnInit {
 
   mostrarMenu = false;
   unidadeSelecionada: any[]
- 
-  constructor( 
+
+  constructor(
     private authGuard:AuthGuard,
     private autenticadorService:AutenticadorService,
     private router:Router,
@@ -35,9 +35,7 @@ export class ToolBarPrincipalComponent implements OnInit {
   }
 
   logout(){
-    this.logoutService.logout().subscribe(() => {
-      console.log("logautado")
-    });
+    this.logoutService.logout().subscribe(() => {});
     this.autenticadorService.logout();
     this.menuPrincipalService.logout();
     this.router.navigate(['login']);
