@@ -6,6 +6,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Routes, Router } from '@angular/router';
+import { LogoutService } from 'src/app/services/logout/logout.service';
 @Component({
   selector: 'app-nova-senha',
   templateUrl: './nova-senha.component.html',
@@ -20,8 +21,8 @@ export class NovaSenhaComponent implements OnInit {
     private toastService: ToastService,
     private dialog: MatDialog,
     private location: Location,
-    private route:Router,
-    private autenticadorService:AutenticadorService
+    private autenticadorService:AutenticadorService,
+    private logoutService:LogoutService
   ) { }
 
   ngOnInit() {
@@ -40,8 +41,7 @@ export class NovaSenhaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
         this.autenticadorService.trocarSenha(this.trocaSenha).subscribe(() =>{
-          this.toastService.showSucesso("Senha alterada com sucesso");
-          this.route.navigate(['home']);
+          this.logoutService.logout();
         })
       } else {
         dialogRef.close();

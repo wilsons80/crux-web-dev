@@ -23,6 +23,7 @@ export class ModuloAdministrativoComponent implements OnInit {
 
   currentState = "hidden"
   isMostrarSubMenu: boolean = false;
+  
   constructor() { }
 
   ngOnInit() {

@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AutenticadorService } from '../autenticador/autenticador.service';
+import { MenuPrincipalService } from '../menuPrincipal/menu-principal.service';
+import { Router } from '@angular/router';
+import { ToolbarPrincipalService } from '../toolbarPrincipal/toolbar-principal.service';
 
 
 const rootPath = 'api/logout';
@@ -9,10 +13,25 @@ const rootPath = 'api/logout';
 })
 export class LogoutService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private autenticadorService:AutenticadorService,
+    private menuPrincipalService:MenuPrincipalService,
+    private router:Router,
+    private toolbarPrincipalService:ToolbarPrincipalService
+    ) { }
+
+  logoutService(){
+    return this.http.post(rootPath,{});
+  }
 
   logout(){
-    return this.http.post(rootPath,{});
+    this.logoutService().subscribe(() => {
+      this.autenticadorService.logout();
+      this.menuPrincipalService.logout();
+      this.router.navigate(['login']);
+      this.toolbarPrincipalService.apagaPropriedadesdoUsuarioLogado();
+    });
   }
 
 }

@@ -35,12 +35,7 @@ export class ToolBarPrincipalComponent implements OnInit {
   }
 
   logout() {
-    this.logoutService.logout().subscribe(() => {
-      this.autenticadorService.logout();
-      this.menuPrincipalService.logout();
-      this.router.navigate(['login']);
-      this.toolbarPrincipalService.apagaPropriedadesdoUsuarioLogado();
-    });
+    this.logoutService.logout();
   }
 
   menuPrincipalToggle(){
