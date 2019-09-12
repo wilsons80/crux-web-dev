@@ -1,41 +1,48 @@
-<form #formLogin="ngForm" class="example-container mat-elevation-z1 tela-login" style="padding: 10px; padding-bottom: 30px">
-    <div fxLayout="column" fxLayoutAlign="space-around center" class="login-logo">
-        <mat-icon class="logo-empresa"></mat-icon>
-    </div>
+<mat-toolbar class="subtitulo">Alterar Senha</mat-toolbar>
+<div class="painel-principal" style="padding: 10px;">
+    <form #formAlterarSenha="ngForm">
 
-    <div fxLayout="column" fxLayoutAlign="space-around center">
-        <h1 class="sign-in-title-greeting">Alterar Senha</h1>
-    </div>
-   
-    <mat-form-field style="width: 100%">
-            <input matInput name="senhaAtual" [(ngModel)]="senhaAtual" type="password" placeholder="Insira a senha atual" required>
-            <mat-icon matSuffix>lock</mat-icon>
-        </mat-form-field>
+        <!-- SENHA ATUAL -->
+        <mat-toolbar class="titulopartes">Senha Atual</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+            <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+                <input matInput maxlength="20" name="senhaAtual" [(ngModel)]="trocaSenha.senhaAtual" type="password"
+                    placeholder="Insira a senha atual" required>
+            </mat-form-field>
+        </div>
 
-    <mat-form-field style="width: 100%">
-        <input matInput name="novaSenha" [(ngModel)]="novaSenha" type="password" placeholder="Insira nova senha" required>
-        <mat-icon matSuffix>lock</mat-icon>
-    </mat-form-field>
-
-    <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center">
-        <mat-form-field style="width: 100%">
-            <input matInput name="confirmacaoNovaSenha" [(ngModel)]="confirmacaoNovaSenha" type="password"
+        <!-- NOVA SENHA -->
+        <mat-toolbar class="titulopartes">Nova Senha</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+            <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+                <input matInput maxlength="20" name="novaSenha" [(ngModel)]="trocaSenha.senhaNova" type="password" placeholder="Insira nova senha"
+                required>
+            </mat-form-field>
+            <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+                <input matInput maxlength="20" name="confirmacaoNovaSenha" [(ngModel)]="confirmacaoNovaSenha" type="password"
                 placeholder="Confirme a nova senha" required>
-            <mat-icon matSuffix>lock</mat-icon>
-        </mat-form-field>
-    </div>
+            </mat-form-field>
+        </div>
 
-    <div class="botoes" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px">
-     
-        <button mat-raised-button style="width: 80%" color="primary" routerLink="" routerLinkActive="router-link-active">
-            Cancelar</button>
-
-        <button mat-raised-button style="width: 80%" color="primary" (click)="alterarSenha()"
-            [disabled]="formLogin.invalid">
-            Alterar</button>
-    </div>
-    
+        <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+        fxFlexFill>
+        <button mat-raised-button 
+                name="botaoConfirmar" 
+                fxFlex="20%" 
+                color="primary"
+                [disabled]="formAlterarSenha.invalid" 
+                (click)="alterarSenha()">
+                Alterar
+        </button>
         
+        
+        <button mat-raised-button 
+                fxFlex="20%" 
+                color="primary" 
+                (click)="cancelar()">
+            Cancelar
+        </button>
 
-
-</form>
+    </div>
+    </form>
+</div>

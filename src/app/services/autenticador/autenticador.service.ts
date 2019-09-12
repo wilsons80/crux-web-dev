@@ -1,3 +1,4 @@
+import { TrocaSenha } from './../../core/troca-senha';
 import { ToolbarPrincipalService } from './../toolbarPrincipal/toolbar-principal.service';
 import { Usuario } from './../../core/usuario';
 import { HttpClient } from '@angular/common/http';
@@ -56,7 +57,6 @@ export class AutenticadorService {
       return this.http.get(tokenRootPath + `refresh-token`)
       .pipe(
         tap((usuarioLogado:UsuarioLogado) => {
-          console.log("refresca token", usuarioLogado);
           this.setSession(usuarioLogado)
           this.toolbarPrincipalService.setarPropriedadesUsuarioLogado(usuarioLogado);
         }),
@@ -80,5 +80,8 @@ export class AutenticadorService {
     return !this.isLoggedIn();
   }
 
+  trocarSenha(trocaSenha:TrocaSenha){
+    return this.http.post(autenticadorRootPath + `trocar-senha`,trocaSenha);
+  }
 
 }
