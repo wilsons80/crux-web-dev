@@ -1,3 +1,4 @@
+import { GrupoModulo } from './../../../core/grupo-modulo';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { ModuloService } from './../../../services/modulo/modulo.service';
@@ -19,24 +20,24 @@ import { AcessoUnidade } from 'src/app/core/acesso-unidade';
 })
 export class CadastrarAcessoComponent implements OnInit {
 
+  //TODO Fazendo ainda hein.. so pra lembrar.. meu cara é esse aqui oh perfilAcessoUsuario
 
   usuarios: UsuarioUnidade[];
   modulos: Modulo[];
-  perfis: any;
+  perfis: GrupoModulo[];
   unidades: AcessoUnidade;
-  usuario: any;
-  isAtualizar: boolean;
+  isAtualizar: boolean = false;
+
 
   labelBotao: string;
 
-  cadastroAcessoTO: CadastroAcesso = new CadastroAcesso();
+  cadastroAcesso: CadastroAcesso = new CadastroAcesso();
 
   constructor(
     public toolbarPrincipalService: ToolbarPrincipalService,
     private acessoService: AcessoService,
     private moduloService: ModuloService,
     private toastService: ToastService,
-    private dialogRef: MatDialogRef<CadastrarAcessoComponent>,
     private unidadeService: UnidadeService,
     private usuarioService:UsuarioService,
   ) {}
@@ -52,14 +53,14 @@ export class CadastrarAcessoComponent implements OnInit {
     if (!this.isAtualizar) {
       this.limparCamposDependendentesUnidade();
     }
-      this.usuarioService.getUsuariosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe((usuarios:UsuarioUnidade[]) => this.usuarios = usuarios);
-      this.moduloService.getModulosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe((modulos:Modulo[]) => this.modulos = modulos);
+      this.usuarioService.getUsuariosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((usuarios:UsuarioUnidade[]) => this.usuarios = usuarios);
+      this.moduloService.getModulosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((modulos:Modulo[]) => this.modulos = modulos);
   }
 
   limparCamposDependendentesUnidade() {
-    this.cadastroAcessoTO.idUsuario =  null,
-    this.cadastroAcessoTO.idModulo  =  null,
-    this.cadastroAcessoTO.idGrupoModulo=  null
+    this.cadastroAcesso.idUsuario =  null,
+    this.cadastroAcesso.idModulo  =  null,
+    this.cadastroAcesso.idGrupoModulo=  null
     
   }
 
@@ -73,27 +74,25 @@ export class CadastrarAcessoComponent implements OnInit {
   }
 
   atualizar() {
-    this.acessoService.alterar(this.cadastroAcessoTO).subscribe(() => {
+    this.acessoService.alterar(this.cadastroAcesso).subscribe(() => {
       this.toastService.showSucesso("Usuário atualizado com sucesso");
-      this.dialogRef.close();
     });
   }
 
   cadastrar() {
-    this.acessoService.cadastrarAcesso(this.cadastroAcessoTO).subscribe(() => {
+    this.acessoService.cadastrarAcesso(this.cadastroAcesso).subscribe(() => {
       this.toastService.showSucesso("Usuário Cadastrado com sucesso");
-      this.dialogRef.close();
     });
   }
 
   limpar() {
     if (this.isAtualizar) {
       
-      this.cadastroAcessoTO.idGrupoModulo = null
+      this.cadastroAcesso.idGrupoModulo = null
 
     } else {
 
-      this.cadastroAcessoTO = {
+      this.cadastroAcesso = {
         idUnidade: null,
         idUsuario: null,
         idModulo: null,
@@ -103,13 +102,12 @@ export class CadastrarAcessoComponent implements OnInit {
   }
 
   cancelar() {
-    this.dialogRef.close();
 
   }
 
   buscarPerfis() {
-    this.moduloService.getGrupoModulo(this.cadastroAcessoTO.idUnidade, this.cadastroAcessoTO.idModulo)
-      .subscribe(perfis => this.perfis = perfis);
+    this.moduloService.getGrupoModulo(this.cadastroAcesso.idUnidade, this.cadastroAcesso.idModulo)
+      .subscribe((perfis:GrupoModulo[]) => this.perfis = perfis);
   }
 
   getNomeBotao() {
