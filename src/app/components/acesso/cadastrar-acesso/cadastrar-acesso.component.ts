@@ -20,7 +20,6 @@ import { AcessoUnidade } from 'src/app/core/acesso-unidade';
 })
 export class CadastrarAcessoComponent implements OnInit {
 
-  //TODO Fazendo ainda hein.. so pra lembrar.. meu cara é esse aqui oh perfilAcessoUsuario
 
   usuarios: UsuarioUnidade[];
   modulos: Modulo[];
@@ -40,11 +39,18 @@ export class CadastrarAcessoComponent implements OnInit {
     private toastService: ToastService,
     private unidadeService: UnidadeService,
     private usuarioService:UsuarioService,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
     this.unidadeService.getUnidadesComAcesso().subscribe((acessoUnidade: AcessoUnidade) => this.unidades = acessoUnidade);
-    if(this.isAtualizar){
+
+    this.cadastroAcesso.idGrupoModulo = this.route.snapshot.queryParams.idGrupoModulo ? this.route.snapshot.queryParams.idGrupoModulo : null;
+    this.cadastroAcesso.idUnidade = this.route.snapshot.queryParams.idUnidade ? this.route.snapshot.queryParams.idUnidade : null;
+    this.cadastroAcesso.idModulo = this.route.snapshot.queryParams.idModulo ? this.route.snapshot.queryParams.idModulo : null;
+
+    if (this.cadastroAcesso.idGrupoModulo) {
+      this.isAtualizar = true;
       this.buscarPerfis();
     }
   }

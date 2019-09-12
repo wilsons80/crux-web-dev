@@ -11,6 +11,10 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
+  getUsuariosPorUnidadeLogada(){
+    return this.http.get(usuarioRootPath);
+  }
+
   getUsuariosPorUnidade(idUnidade:number){
     return this.http.get(usuarioRootPath + `unidade/${idUnidade}`);
   }

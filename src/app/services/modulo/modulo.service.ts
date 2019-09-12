@@ -14,6 +14,10 @@ export class ModuloService {
     return this.http.get(moduloRootPath + `unidade/${idUnidade}`);
   }
 
+  getUsuariosPorUnidadeLogada(){
+    return this.http.get(moduloRootPath);
+  }
+
   getGrupoModulo(idUnidade:number,idModulo:number){
     return this.http.get(moduloRootPath + `${idModulo}/unidade/${idUnidade}`);
   }

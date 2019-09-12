@@ -55,7 +55,7 @@ export class AcessoComponent implements OnInit {
   }
  
   consultar() {
-    this.acessoService.getPerfilAcessoDoUsuario(2, this.cadastroAcesso.idUsuario, this.cadastroAcesso.idModulo)
+    this.acessoService.getPerfilAcessoDoUsuario(this.cadastroAcesso.idUsuario, this.cadastroAcesso.idModulo)
       .subscribe((perfilAcessoUsuario: PerfilAcessoUsuario[]) => {
         
         if(_.isEmpty(perfilAcessoUsuario)){
@@ -76,7 +76,11 @@ export class AcessoComponent implements OnInit {
   }
 
   atualizar(cadastroAcesso: CadastroAcesso) {
-    this.router.navigate(['/acesso/cadastrar'], { queryParams: { idGrupoModulo: cadastroAcesso.idGrupoModulo } });
+    this.router.navigate(['/acesso/cadastrar'], { queryParams: { 
+      idGrupoModulo: cadastroAcesso.idGrupoModulo,
+      idUnidade: cadastroAcesso.idUnidade, 
+      idModulo: cadastroAcesso.idModulo
+    } });
   }
 
   deletar(perfilAcessoUsuario:PerfilAcessoUsuario) {
@@ -107,11 +111,11 @@ export class AcessoComponent implements OnInit {
   getAll() {
     //TODO ESPERANDO FAZER O METODO NO BACKEND
     this.cadastroAcesso.idUnidade = this.activatedRoute.snapshot.params.idUnidade;
-      this.usuarioService.getUsuariosPorUnidade(2).subscribe((usuarios:UsuarioUnidade[]) => {
+      this.usuarioService.getUsuariosPorUnidadeLogada().subscribe((usuarios:UsuarioUnidade[]) => {
         this.usuarios = usuarios;
       });
 
-    this.moduloService.getModulosPorUnidade(2).subscribe((modulos:Modulo[]) => {
+    this.moduloService.getUsuariosPorUnidadeLogada().subscribe((modulos:Modulo[]) => {
       this.modulos = modulos;
     });
   }
