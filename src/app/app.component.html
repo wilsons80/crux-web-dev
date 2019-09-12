@@ -6,17 +6,18 @@
 
   <div class="sidenav-content">
     <router-outlet></router-outlet>
+   </div>
 
-    <div id="rodape">
-        <div *ngIf="toolbarPrincipalService.nomeUsuario != undefined"  style="width: 100%;" class="cinza" fxLayout="row"  fxLayoutAlign="center center" fxLayoutGap="10px">
-          <mat-icon>person</mat-icon>
-          <label>{{toolbarPrincipalService.nomeUsuario.toUpperCase()}}</label>
-        </div>
-        <div class="cinza" style="text-align: center; font-size: small;">
-          <br>Versão: <b>1.0</b>
-          <br>Última atualização: <b>{{ data | dataSimples }}</b>
-        </div>
-      </div>
+  <div id="rodape" fxLayout="column" fxLayoutAlign="center center">
+    <div *ngIf="toolbarPrincipalService.nomeUsuario != undefined" style="width: 100%;" class="cinza" fxLayout="row"
+      fxLayoutAlign="center center" fxLayoutGap="10px">
+      <mat-icon>person</mat-icon>
+      <label>{{toolbarPrincipalService.nomeUsuario.toUpperCase()}}</label>
+    </div>
+    <div class="cinza" style="text-align: center; font-size: small;">
+      <br>Versão: <b>1.0</b>
+      <br>Última atualização: <b>{{ data | dataSimples }}</b>
+    </div>
+
   </div>
-
 </mat-drawer-container>

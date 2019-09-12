@@ -1,7 +1,7 @@
 <mat-toolbar class="subtitulo">Cadastrar Indicadores</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
-    <form #formCadastroPerspectiva="ngForm">
+    <form #formCadastro="ngForm">
  
         <!-- DADOS INICIAIS -->
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
@@ -51,7 +51,7 @@
                     name="botaoConfirmar" 
                     fxFlex="20%" 
                     color="primary"
-                    [disabled]="formCadastroPerspectiva.invalid" 
+                    [disabled]="formCadastro.invalid" 
                     (click)="isAtualizar ? atualizar() : cadastrar()">
                     {{getNomeBotao()}}
             </button>

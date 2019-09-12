@@ -2,6 +2,7 @@ import { Modulos } from './../../core/modulos';
 import { ControleMenuService } from './../../services/controle-menu/controle-menu.service';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 
 
 @Component({
@@ -13,7 +14,10 @@ export class MenuPrincipalComponent implements OnInit {
 
     enumModulos = Modulos;
 
-  constructor(private controleMenuService:ControleMenuService) { }
+  constructor(
+    private controleMenuService:ControleMenuService,
+    private menuPrincipalService:MenuPrincipalService,
+    ) { }
 
 
   ngOnInit() {
@@ -22,6 +26,10 @@ export class MenuPrincipalComponent implements OnInit {
   
   mostrarMenu(modulo){
     return this.controleMenuService.acessoModulos[modulo].mostrarMenu;
+  }
+
+  fecharMenu(){
+    this.menuPrincipalService.alternar();
   }
 
 }

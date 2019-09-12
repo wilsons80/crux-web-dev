@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="start none" fxFill>
     <mat-nav-list style="width: 260px">
         
-        <a mat-list-item [routerLink]="['/home']" routerLinkActive="router-link-active">
+        <a mat-list-item (click)="fecharMenu()" [routerLink]="['/home']" routerLinkActive="router-link-active">
             <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
         </a>
         
