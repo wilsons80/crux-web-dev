@@ -1,3 +1,4 @@
+import { ToastService } from './../../../services/toast/toast.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DepartamentoService } from './../../../services/departamento/departamento.service';
 import { Departamento } from './../../../core/departamento';
@@ -24,9 +25,9 @@ export class CadastrarDepartamentoComponent implements OnInit {
   constructor(
     private unidadeService: UnidadeService,
     private departamentoService: DepartamentoService,
-    private router: Router,
     private route: ActivatedRoute,
     private location:Location,
+    private toastService:ToastService
   ) { }
 
 
@@ -50,13 +51,15 @@ export class CadastrarDepartamentoComponent implements OnInit {
     
   }
   cadastrar() {
-
     this.departamentoService.cadastrar(this.departamento).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Departamento cadastrado com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() {
+    this.departamento = new Departamento();
+   }
 
   cancelar() { 
     this.location.back();
@@ -69,6 +72,7 @@ export class CadastrarDepartamentoComponent implements OnInit {
   atualizar(){
     this.departamentoService.alterar(this.departamento).subscribe(()=>{
       this.location.back();
+      this.toastService.showSucesso("Departamento atualizado com sucesso");
     });
     
   }

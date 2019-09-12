@@ -109,8 +109,6 @@ export class AcessoComponent implements OnInit {
   }
 
   getAll() {
-    //TODO ESPERANDO FAZER O METODO NO BACKEND
-    this.cadastroAcesso.idUnidade = this.activatedRoute.snapshot.params.idUnidade;
       this.usuarioService.getUsuariosPorUnidadeLogada().subscribe((usuarios:UsuarioUnidade[]) => {
         this.usuarios = usuarios;
       });

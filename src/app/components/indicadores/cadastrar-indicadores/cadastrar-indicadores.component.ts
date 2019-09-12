@@ -1,3 +1,4 @@
+import { ToastService } from './../../../services/toast/toast.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,6 +24,7 @@ export class CadastrarIndicadoresComponent implements OnInit {
     private objetivoService: ObjetivoService,
     private route: ActivatedRoute,
     private location: Location,
+    private toastService:ToastService
   ) { }
 
 
@@ -44,10 +46,13 @@ export class CadastrarIndicadoresComponent implements OnInit {
   cadastrar() {
     this.indicadoresService.cadastrar(this.indicadores).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Indicador cadastrado com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() { 
+    this.indicadores = new Indicadores()
+  }
 
   cancelar() {
     this.location.back();
@@ -60,6 +65,7 @@ export class CadastrarIndicadoresComponent implements OnInit {
   atualizar() {
     this.indicadoresService.alterar(this.indicadores).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Indicador atualizado com sucesso");
     });
 
   }

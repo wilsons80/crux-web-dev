@@ -7,6 +7,7 @@ import { IniciativaService } from 'src/app/services/iniciativa/iniciativa.servic
 import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
 import { ProgramaService } from 'src/app/services/programa/programa.service';
 import { Programa } from './../../../core/programa';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-cadastrar-programas',
@@ -31,6 +32,7 @@ export class CadastrarProgramasComponent implements OnInit {
     private programaService: ProgramaService,
     private route: ActivatedRoute,
     private location: Location,
+    private toastService:ToastService
   ) { }
 
 
@@ -56,10 +58,13 @@ export class CadastrarProgramasComponent implements OnInit {
   cadastrar() {
     this.programaService.cadastrar(this.programa).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Programa cadastrado com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() { 
+    this.programa = new Programa();
+  }
 
   cancelar() {
     this.location.back();
@@ -72,6 +77,7 @@ export class CadastrarProgramasComponent implements OnInit {
   atualizar() {
     this.programaService.alterar(this.programa).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Programa atualizado com sucesso");
     });
 
   }

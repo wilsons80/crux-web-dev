@@ -7,6 +7,7 @@ import { MetasService } from 'src/app/services/metas/metas.service';
 import { ActivatedRoute } from '@angular/router';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { IndicadoresService } from 'src/app/services/indicadores/indicadores.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-cadastrar-metas',
@@ -25,6 +26,7 @@ export class CadastrarMetasComponent implements OnInit {
     private metasService: MetasService,
     private route: ActivatedRoute,
     private location: Location,
+    private toastService:ToastService
   ) { }
 
 
@@ -46,10 +48,13 @@ export class CadastrarMetasComponent implements OnInit {
   cadastrar() {
     this.metasService.cadastrar(this.metas).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Meta cadastrada com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() { 
+    this.metas = new Metas();
+  }
 
   cancelar() {
     this.location.back();
@@ -62,6 +67,7 @@ export class CadastrarMetasComponent implements OnInit {
   atualizar() {
     this.metasService.alterar(this.metas).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Meta atualizada com sucesso");
     });
 
   }

@@ -5,6 +5,7 @@ import { Iniciativa } from 'src/app/core/iniciativa';
 import { MetasService } from 'src/app/services/metas/metas.service';
 import { IniciativaService } from 'src/app/services/iniciativa/iniciativa.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-cadastrar-iniciativas',
@@ -23,6 +24,7 @@ export class CadastrarIniciativasComponent implements OnInit {
     private metasService: MetasService,
     private route: ActivatedRoute,
     private location: Location,
+    private toastService:ToastService
   ) { }
 
 
@@ -44,10 +46,13 @@ export class CadastrarIniciativasComponent implements OnInit {
   cadastrar() {
     this.iniciativaService.cadastrar(this.iniciativa).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Iniciativa cadastrada com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() {
+    this.iniciativa = new Iniciativa();
+   }
 
   cancelar() {
     this.location.back();
@@ -60,6 +65,7 @@ export class CadastrarIniciativasComponent implements OnInit {
   atualizar() {
     this.iniciativaService.alterar(this.iniciativa).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Iniciativa cadastrada com sucesso");
     });
 
   }

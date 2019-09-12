@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { GrupoModulo } from './../../../core/grupo-modulo';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -40,6 +41,7 @@ export class CadastrarAcessoComponent implements OnInit {
     private unidadeService: UnidadeService,
     private usuarioService:UsuarioService,
     private route: ActivatedRoute,
+    private location:Location,
   ) {}
 
   ngOnInit() {
@@ -70,14 +72,6 @@ export class CadastrarAcessoComponent implements OnInit {
     
   }
 
-  cadastrarAtualizar() {
-    if (this.isAtualizar) {
-      this.atualizar();
-    }
-    else { 
-      this.cadastrar(); 
-    }
-  }
 
   atualizar() {
     this.acessoService.alterar(this.cadastroAcesso).subscribe(() => {
@@ -88,6 +82,7 @@ export class CadastrarAcessoComponent implements OnInit {
   cadastrar() {
     this.acessoService.cadastrarAcesso(this.cadastroAcesso).subscribe(() => {
       this.toastService.showSucesso("Usuário Cadastrado com sucesso");
+      this.location.back();
     });
   }
 
@@ -108,7 +103,7 @@ export class CadastrarAcessoComponent implements OnInit {
   }
 
   cancelar() {
-
+    this.location.back();
   }
 
   buscarPerfis() {

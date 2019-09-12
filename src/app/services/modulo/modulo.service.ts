@@ -15,7 +15,7 @@ export class ModuloService {
   }
 
   getUsuariosPorUnidadeLogada(){
-    return this.http.get(moduloRootPath);
+    return this.http.get(moduloRootPath + `unidade`);
   }
 
   getGrupoModulo(idUnidade:number,idModulo:number){

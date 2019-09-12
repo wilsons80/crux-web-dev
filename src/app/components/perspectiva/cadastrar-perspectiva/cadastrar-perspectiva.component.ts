@@ -1,3 +1,4 @@
+import { ToastService } from './../../../services/toast/toast.service';
 import { PerspectivaService } from './../../../services/perspectiva/perspectiva.service';
 import { Perspectiva } from 'src/app/core/perspectiva';
 import { Component, OnInit } from '@angular/core';
@@ -26,6 +27,7 @@ export class CadastrarPerspectivaComponent implements OnInit {
     private perspectivaService:PerspectivaService,
     private route: ActivatedRoute,
     private location:Location,
+    private toastService:ToastService
   ) { }
 
 
@@ -47,10 +49,13 @@ export class CadastrarPerspectivaComponent implements OnInit {
   cadastrar() {
     this.perspectivaService.cadastrar(this.perspectiva).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Perspectiva cadastrada com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() {
+    this.perspectiva = new Perspectiva();
+   }
 
   cancelar() { 
     this.location.back();
@@ -64,6 +69,7 @@ export class CadastrarPerspectivaComponent implements OnInit {
   atualizar(){
     this.perspectivaService.alterar(this.perspectiva).subscribe(()=>{
       this.location.back();
+      this.toastService.showSucesso("Perspectiva atualizada com sucesso");
     });
     
   }

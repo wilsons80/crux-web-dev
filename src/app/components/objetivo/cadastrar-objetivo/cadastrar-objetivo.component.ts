@@ -1,3 +1,4 @@
+import { ToastService } from './../../../services/toast/toast.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,6 +25,7 @@ export class CadastrarObjetivoComponent implements OnInit {
     private objetivoService: ObjetivoService,
     private route: ActivatedRoute,
     private location:Location,
+    private toastService:ToastService
   ) { }
 
 
@@ -46,10 +48,13 @@ export class CadastrarObjetivoComponent implements OnInit {
 
     this.objetivoService.cadastrar(this.objetivo).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Objetivo cadastrado com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() { 
+    this.objetivo = new Objetivo();
+  }
 
   cancelar() { 
     this.location.back();
@@ -62,6 +67,7 @@ export class CadastrarObjetivoComponent implements OnInit {
   atualizar(){
     this.objetivoService.alterar(this.objetivo).subscribe(()=>{
       this.location.back();
+      this.toastService.showSucesso("Objetivo atualizado com sucesso");
     });
     
   }

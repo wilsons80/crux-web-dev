@@ -21,7 +21,7 @@ export class AcessoService {
     if(idUsuario == undefined) idUsuario = "";
     if(idModulo == undefined) idModulo = "";
 
-    return this.http.get(acessoRootPath + `perfil/unidadelogada}`, {params: {
+    return this.http.get(acessoRootPath + `perfil/unidadelogada`, {params: {
        usuario: `${idUsuario}`,
        modulo: `${idModulo}`
     }});

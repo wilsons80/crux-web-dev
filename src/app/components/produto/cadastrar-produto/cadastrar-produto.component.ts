@@ -5,6 +5,7 @@ import { Produto } from 'src/app/core/produto';
 import { ActivatedRoute } from '@angular/router';
 import { Perspectiva } from 'src/app/core/perspectiva';
 import { Objetivo } from 'src/app/core/objetivo';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -21,7 +22,8 @@ export class CadastrarProdutoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location:Location,
-    private produtoService:ProdutoService
+    private produtoService:ProdutoService,
+    private toastService:ToastService
   ) { }
 
 
@@ -40,10 +42,13 @@ export class CadastrarProdutoComponent implements OnInit {
   cadastrar() {
     this.produtoService.cadastrar(this.produto).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Produto cadastrado com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() { 
+    this.produto = new Produto();
+  }
 
   cancelar() { 
     this.location.back();
@@ -56,6 +61,7 @@ export class CadastrarProdutoComponent implements OnInit {
   atualizar(){
     this.produtoService.alterar(this.produto).subscribe(()=>{
       this.location.back();
+      this.toastService.showSucesso("Produto atualizado com sucesso");
     });
     
   }
