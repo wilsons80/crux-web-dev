@@ -45,31 +45,42 @@ export class CadastrarAcessoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.unidadeService.getUnidadesComAcesso().subscribe((acessoUnidade: AcessoUnidade) => this.unidades = acessoUnidade);
+    this.unidadeService.getUnidadesComAcesso()
+      .subscribe((acessoUnidade: AcessoUnidade) => {
+        this.unidades = acessoUnidade;
+      });
 
-    this.cadastroAcesso.idGrupoModulo = this.route.snapshot.queryParams.idGrupoModulo ? this.route.snapshot.queryParams.idGrupoModulo : null;
-    this.cadastroAcesso.idUnidade = this.route.snapshot.queryParams.idUnidade ? this.route.snapshot.queryParams.idUnidade : null;
-    this.cadastroAcesso.idModulo = this.route.snapshot.queryParams.idModulo ? this.route.snapshot.queryParams.idModulo : null;
+      this.cadastroAcesso.idGrupoModulo = this.route.snapshot.queryParams.idGrupoModulo ? Number(this.route.snapshot.queryParams.idGrupoModulo) : null;
+      this.cadastroAcesso.idUnidade = this.route.snapshot.queryParams.idUnidade ? Number(this.route.snapshot.queryParams.idUnidade) : null;
+      this.cadastroAcesso.idModulo = this.route.snapshot.queryParams.idModulo ? Number(this.route.snapshot.queryParams.idModulo) : null;
+      this.cadastroAcesso.idUsuario = this.route.snapshot.queryParams.idUsuario ? Number(this.route.snapshot.queryParams.idUsuario) : null;
 
-    if (this.cadastroAcesso.idGrupoModulo) {
-      this.isAtualizar = true;
-      this.buscarPerfis();
-    }
+      if (this.cadastroAcesso.idGrupoModulo) {
+        this.isAtualizar = true;
+        this.buscarPerfis();
+      }
+
+      if(this.cadastroAcesso.idUnidade) {
+        this.unidadeSelecionada();
+      }
   }
 
   unidadeSelecionada(){
     if (!this.isAtualizar) {
       this.limparCamposDependendentesUnidade();
-    }
-      this.usuarioService.getUsuariosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((usuarios:UsuarioUnidade[]) => this.usuarios = usuarios);
       this.moduloService.getModulosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((modulos:Modulo[]) => this.modulos = modulos);
+    } else {
+      this.moduloService.getUsuariosPorUnidadeLogada().subscribe((modulos:Modulo[]) => this.modulos = modulos);
+    }
+
+    this.usuarioService.getUsuariosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((usuarios:UsuarioUnidade[]) => this.usuarios = usuarios);
   }
 
   limparCamposDependendentesUnidade() {
     this.cadastroAcesso.idUsuario =  null,
     this.cadastroAcesso.idModulo  =  null,
     this.cadastroAcesso.idGrupoModulo=  null
-    
+
   }
 
 
@@ -88,7 +99,7 @@ export class CadastrarAcessoComponent implements OnInit {
 
   limpar() {
     if (this.isAtualizar) {
-      
+
       this.cadastroAcesso.idGrupoModulo = null
 
     } else {

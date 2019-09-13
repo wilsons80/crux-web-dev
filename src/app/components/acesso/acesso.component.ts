@@ -25,7 +25,7 @@ import { Modulo } from 'src/app/core/modulo';
 export class AcessoComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  
+
   cadastroAcesso: CadastroAcesso = new CadastroAcesso();
   perfilAcessoUsuario:PerfilAcessoUsuario;
 
@@ -49,15 +49,14 @@ export class AcessoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
     this.dataSource.paginator = this.paginator;
-    this.getAll();
+    this.consultar();
   }
- 
+
   consultar() {
     this.acessoService.getPerfilAcessoDoUsuario(this.cadastroAcesso.idUsuario, this.cadastroAcesso.idModulo)
       .subscribe((perfilAcessoUsuario: PerfilAcessoUsuario[]) => {
-        
+
         if(_.isEmpty(perfilAcessoUsuario)){
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
@@ -67,7 +66,7 @@ export class AcessoComponent implements OnInit {
         }
       })
   }
- 
+
   limpar() {
     this.cadastroAcesso.idUsuario = null;
     this.cadastroAcesso.idModulo = null;
@@ -76,10 +75,11 @@ export class AcessoComponent implements OnInit {
   }
 
   atualizar(cadastroAcesso: CadastroAcesso) {
-    this.router.navigate(['/acesso/cadastrar'], { queryParams: { 
+    this.router.navigate(['/acesso/cadastrar'], { queryParams: {
       idGrupoModulo: cadastroAcesso.idGrupoModulo,
-      idUnidade: cadastroAcesso.idUnidade, 
-      idModulo: cadastroAcesso.idModulo
+      idUnidade: cadastroAcesso.idUnidade,
+      idModulo: cadastroAcesso.idModulo,
+      idUsuario: cadastroAcesso.idUsuario
     } });
   }
 
@@ -108,14 +108,15 @@ export class AcessoComponent implements OnInit {
     );
   }
 
+  /*
   getAll() {
-      this.usuarioService.getUsuariosPorUnidadeLogada().subscribe((usuarios:UsuarioUnidade[]) => {
-        this.usuarios = usuarios;
-      });
+    this.usuarioService.getUsuariosPorUnidadeLogada().subscribe((usuarios:UsuarioUnidade[]) => {
+      this.usuarios = usuarios;
+    });
 
     this.moduloService.getUsuariosPorUnidadeLogada().subscribe((modulos:Modulo[]) => {
       this.modulos = modulos;
     });
   }
-
+  */
 }
