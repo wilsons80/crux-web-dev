@@ -14,12 +14,12 @@ import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolb
   styleUrls: ['./escolher-unidade.component.css']
 })
 export class EscolherUnidadeComponent implements OnInit {
- 
-  
-  
-  
+
+
+
+
   unidades: AcessoUnidade[];
-  
+
   constructor(
     private unidadeService:UnidadeService,
     private menuService:MenuService,
@@ -28,22 +28,11 @@ export class EscolherUnidadeComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef
     ) { }
 
-<<<<<<< HEAD
-    ngOnInit() {
-    // this.unidades = this.toolbarPrincipalService.unidades;
-    console.log("unidade", this.unidades)
-=======
   ngOnInit() {
-    /*
-   this.unidadeService.getUnidadesComAcesso().subscribe((acessoUnidade: AcessoUnidade[]) => {
-     this.unidades = acessoUnidade;
-   })
-   */
->>>>>>> ef30ce5be824ee89b1a978296ce6740edcbe8623
   }
-  
+
   escolherUnidade(idUnidade:number){
-    
+
     this.unidadeService.getUnidadePorId(idUnidade).pipe(
       switchMap((unidade:Unidade) => {return this.menuService.getMenuPrincipal()} )
       )
@@ -52,10 +41,10 @@ export class EscolherUnidadeComponent implements OnInit {
       this.router.navigate([`home`]);
     })
   }
-  
+
   ngAfterContentChecked(): void {
     this.unidades = this.toolbarPrincipalService.unidades;
     this.changeDetectorRef.detectChanges();
   }
-     
+
 }
