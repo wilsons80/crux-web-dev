@@ -28,18 +28,7 @@ export class EscolherUnidadeComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef
     ) { }
 
-<<<<<<< HEAD
     ngOnInit() {
-    // this.unidades = this.toolbarPrincipalService.unidades;
-    console.log("unidade", this.unidades)
-=======
-  ngOnInit() {
-    /*
-   this.unidadeService.getUnidadesComAcesso().subscribe((acessoUnidade: AcessoUnidade[]) => {
-     this.unidades = acessoUnidade;
-   })
-   */
->>>>>>> ef30ce5be824ee89b1a978296ce6740edcbe8623
   }
   
   escolherUnidade(idUnidade:number){
