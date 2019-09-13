@@ -1,18 +1,28 @@
 <div fxLayout="column" fxLayoutAlign="start none" fxFill>
     <mat-nav-list style="width: 260px">
-        
+
+        <!-- MENU DE CONFIGURAÇOES -->
+        <button fxLayoutAlign="center center" mat-fab class="botao">
+            <mat-icon class="nao-foto"></mat-icon>
+        </button>
+        <mat-divider style="margin-top: 20px"></mat-divider>
+
+        <!-- HOME -->
         <a mat-list-item (click)="fecharMenu()" [routerLink]="['/home']" routerLinkActive="router-link-active">
             <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
         </a>
-        
+
+        <!-- MENU ADMINISTRATIVO -->
         <modulo-administrativo></modulo-administrativo>
+
+        <!-- MENU PEDAGÓGICO -->
         <modulo-pedagogico></modulo-pedagogico>
-        
+
         <mat-divider></mat-divider>
-        
+
         <!-- MENU DE CONFIGURAÇOES -->
         <menu-configuracoes></menu-configuracoes>
-        
+
     </mat-nav-list>
 
 </div>

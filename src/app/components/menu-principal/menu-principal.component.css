@@ -14,3 +14,12 @@ a:hover, a:active{
     padding-top: 3px
 }
 
+.botao{
+    height: 100px;
+    width: 100px;
+    background: url(../../../assets/img/fundacao-bb.jpg) no-repeat 0 0;
+    background-size: cover;
+    margin: auto;
+    background-attachment: initial;
+    background-position: center;
+}
