@@ -4,7 +4,7 @@
 
         <!-- ESQUERDA -->
         <div fxLayout="row" fxLayoutAlign="space-around center">
-            <button *ngIf="mostrarMenu" mat-button (click)="menuPrincipalToggle()">
+            <button *ngIf="mostrarMenu && toolbarPrincipalService.unidadeSelecionada" mat-button (click)="menuPrincipalToggle()">
                 <mat-icon>menu</mat-icon>
             </button>
             <div fxLayout="row" fxLayoutAlign="space-around center">

@@ -1,3 +1,4 @@
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { Modulos } from './../../core/modulos';
 import { ControleMenuService } from './../../services/controle-menu/controle-menu.service';
 import { Component, OnInit } from '@angular/core';
