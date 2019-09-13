@@ -12,7 +12,7 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   getUsuariosPorUnidadeLogada(){
-    return this.http.get(usuarioRootPath+`unidade/`);
+    return this.http.get(usuarioRootPath+`unidade`);
   }
 
   getUsuariosPorUnidade(idUnidade:number){
