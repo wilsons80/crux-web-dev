@@ -9,7 +9,7 @@ import { NovaSenhaComponent } from './components/nova-senha/nova-senha.component
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'teste', component: UploadFotoComponent },
+  { path: 'upload', component: UploadFotoComponent },
   { path: 'novasenha', component: NovaSenhaComponent, canActivate: [AuthGuard]},
   
 ];
