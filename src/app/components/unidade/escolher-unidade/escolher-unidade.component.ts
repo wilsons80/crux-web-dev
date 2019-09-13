@@ -23,9 +23,11 @@ export class EscolherUnidadeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /*
    this.unidadeService.getUnidadesComAcesso().subscribe((acessoUnidade: AcessoUnidade[]) => {
      this.unidades = acessoUnidade;
    })
+   */
   }
 
   escolherUnidade(idUnidade:number){
