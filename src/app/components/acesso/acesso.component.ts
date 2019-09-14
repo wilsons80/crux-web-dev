@@ -50,6 +50,7 @@ export class AcessoComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+    this.getAll();
     this.consultar();
   }
 
@@ -108,7 +109,7 @@ export class AcessoComponent implements OnInit {
     );
   }
 
-  /*
+  
   getAll() {
     this.usuarioService.getUsuariosPorUnidadeLogada().subscribe((usuarios:UsuarioUnidade[]) => {
       this.usuarios = usuarios;
@@ -118,5 +119,5 @@ export class AcessoComponent implements OnInit {
       this.modulos = modulos;
     });
   }
-  */
+  
 }
