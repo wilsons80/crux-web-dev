@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({

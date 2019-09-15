@@ -1,0 +1,60 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ArquivoService } from '../../services/arquivo/arquivo.service';
+
+@Component({
+  selector: 'app-upload-foto',
+  templateUrl: './upload-foto.component.html',
+  styleUrls: ['./upload-foto.component.css']
+})
+export class UploadFotoComponent implements OnInit {
+
+  nomeArquivo: string;
+  file: File;
+
+  constructor(
+    private arquivoService: ArquivoService,
+    private router: Router
+  ) { }
+
+  ngOnInit() {
+  }
+
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+
+  fileChangeEvent(event: any): void {
+    console.log(event);
+    this.nomeArquivo = event.target.files.length > 0 ? event.target.files[0].name : null;
+    this.file = event.target.files[0];
+    this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+  }
+  imageLoaded() {
+    console.log("imageLoaded");
+  }
+  cropperReady() {
+    console.log("cropperReady");
+    // cropper ready
+  }
+  loadImageFailed() {
+    console.log("loadImageFailed");
+    // show message
+  }
+
+  salvar() {
+
+    this.arquivoService.gravar(this.file).subscribe(() => {
+      console.log("voltei");
+
+    });
+  }
+
+  cancelar() {
+    this.router.navigate(['home']);
+  }
+
+}

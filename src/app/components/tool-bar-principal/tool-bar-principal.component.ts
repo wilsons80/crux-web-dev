@@ -21,7 +21,6 @@ export class ToolBarPrincipalComponent implements OnInit {
 
   constructor(
     private authGuard:AuthGuard,
-    private autenticadorService:AutenticadorService,
     private router:Router,
     private menuPrincipalService:MenuPrincipalService,
     private unidadeService:UnidadeService,

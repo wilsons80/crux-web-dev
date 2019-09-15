@@ -1,18 +1,17 @@
 import { Location } from '@angular/common';
-import { GrupoModulo } from './../../../core/grupo-modulo';
-import { UnidadeService } from 'src/app/services/unidade/unidade.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AcessoUnidade } from 'src/app/core/acesso-unidade';
+import { CadastroAcesso } from 'src/app/core/cadastro-acesso';
+import { Modulo } from 'src/app/core/modulo';
+import { UsuarioUnidade } from 'src/app/core/usuario-unidade';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
+import { GrupoModulo } from './../../../core/grupo-modulo';
+import { AcessoService } from './../../../services/acesso/acesso.service';
 import { ModuloService } from './../../../services/modulo/modulo.service';
 import { UsuarioService } from './../../../services/usuario/usuario.service';
-import { AcessoService } from './../../../services/acesso/acesso.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
-import { Component, OnInit, Inject } from '@angular/core';
-import { CadastroAcesso } from 'src/app/core/cadastro-acesso';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { UsuarioUnidade } from 'src/app/core/usuario-unidade';
-import { Modulo } from 'src/app/core/modulo';
-import { AcessoUnidade } from 'src/app/core/acesso-unidade';
 
 @Component({
   selector: 'app-cadastrar-acesso',
@@ -39,10 +38,10 @@ export class CadastrarAcessoComponent implements OnInit {
     private moduloService: ModuloService,
     private toastService: ToastService,
     private unidadeService: UnidadeService,
-    private usuarioService:UsuarioService,
+    private usuarioService: UsuarioService,
     private route: ActivatedRoute,
-    private location:Location,
-  ) {}
+    private location: Location,
+  ) { }
 
   ngOnInit() {
     this.unidadeService.getUnidadesComAcesso()
@@ -50,36 +49,36 @@ export class CadastrarAcessoComponent implements OnInit {
         this.unidades = acessoUnidade;
       });
 
-      this.cadastroAcesso.idGrupoModulo = this.route.snapshot.queryParams.idGrupoModulo ? Number(this.route.snapshot.queryParams.idGrupoModulo) : null;
-      this.cadastroAcesso.idUnidade = this.route.snapshot.queryParams.idUnidade ? Number(this.route.snapshot.queryParams.idUnidade) : null;
-      this.cadastroAcesso.idModulo = this.route.snapshot.queryParams.idModulo ? Number(this.route.snapshot.queryParams.idModulo) : null;
-      this.cadastroAcesso.idUsuario = this.route.snapshot.queryParams.idUsuario ? Number(this.route.snapshot.queryParams.idUsuario) : null;
+    this.cadastroAcesso.idGrupoModulo = this.route.snapshot.queryParams.idGrupoModulo ? Number(this.route.snapshot.queryParams.idGrupoModulo) : null;
+    this.cadastroAcesso.idUnidade = this.route.snapshot.queryParams.idUnidade ? Number(this.route.snapshot.queryParams.idUnidade) : null;
+    this.cadastroAcesso.idModulo = this.route.snapshot.queryParams.idModulo ? Number(this.route.snapshot.queryParams.idModulo) : null;
+    this.cadastroAcesso.idUsuario = this.route.snapshot.queryParams.idUsuario ? Number(this.route.snapshot.queryParams.idUsuario) : null;
 
-      if (this.cadastroAcesso.idGrupoModulo) {
-        this.isAtualizar = true;
-        this.buscarPerfis();
-      }
-
-      if(this.cadastroAcesso.idUnidade) {
-        this.unidadeSelecionada();
-      }
-  }
-
-  unidadeSelecionada(){
-    if (!this.isAtualizar) {
-      this.limparCamposDependendentesUnidade();
-      this.moduloService.getModulosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((modulos:Modulo[]) => this.modulos = modulos);
-    } else {
-      this.moduloService.getUsuariosPorUnidadeLogada().subscribe((modulos:Modulo[]) => this.modulos = modulos);
+    if (this.cadastroAcesso.idGrupoModulo) {
+      this.isAtualizar = true;
+      this.buscarPerfis();
     }
 
-    this.usuarioService.getUsuariosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((usuarios:UsuarioUnidade[]) => this.usuarios = usuarios);
+    if (this.cadastroAcesso.idUnidade) {
+      this.unidadeSelecionada();
+    }
+  }
+
+  unidadeSelecionada() {
+    if (!this.isAtualizar) {
+      this.limparCamposDependendentesUnidade();
+      this.moduloService.getModulosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((modulos: Modulo[]) => this.modulos = modulos);
+    } else {
+      this.moduloService.getUsuariosPorUnidadeLogada().subscribe((modulos: Modulo[]) => this.modulos = modulos);
+    }
+
+    this.usuarioService.getUsuariosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((usuarios: UsuarioUnidade[]) => this.usuarios = usuarios);
   }
 
   limparCamposDependendentesUnidade() {
-    this.cadastroAcesso.idUsuario =  null,
-    this.cadastroAcesso.idModulo  =  null,
-    this.cadastroAcesso.idGrupoModulo=  null
+    this.cadastroAcesso.idUsuario = null,
+      this.cadastroAcesso.idModulo = null,
+      this.cadastroAcesso.idGrupoModulo = null
 
   }
 
@@ -119,7 +118,7 @@ export class CadastrarAcessoComponent implements OnInit {
 
   buscarPerfis() {
     this.moduloService.getGrupoModulo(this.cadastroAcesso.idUnidade, this.cadastroAcesso.idModulo)
-      .subscribe((perfis:GrupoModulo[]) => this.perfis = perfis);
+      .subscribe((perfis: GrupoModulo[]) => this.perfis = perfis);
   }
 
   getNomeBotao() {

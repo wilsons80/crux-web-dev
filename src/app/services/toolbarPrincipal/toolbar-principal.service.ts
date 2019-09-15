@@ -18,6 +18,7 @@ export class ToolbarPrincipalService {
   unidadeSelecionada: AcessoUnidade;
   username: string;
   nomeUsuario: string;
+  logo:any;
 
   constructor(private http: HttpClient,
     private unidadeService: UnidadeService) { }
