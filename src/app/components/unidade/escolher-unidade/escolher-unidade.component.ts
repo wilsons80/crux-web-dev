@@ -29,6 +29,11 @@ export class EscolherUnidadeComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    console.log('Data:', new Date());
+
+    this.unidadeService.getUnidadesComAcesso().subscribe((acessoUnidade: AcessoUnidade[]) => {
+      this.unidades = acessoUnidade;
+    });
   }
 
   escolherUnidade(idUnidade:number){
@@ -43,8 +48,8 @@ export class EscolherUnidadeComponent implements OnInit {
   }
 
   ngAfterContentChecked(): void {
-    this.unidades = this.toolbarPrincipalService.unidades;
-    this.changeDetectorRef.detectChanges();
+    //this.unidades = this.toolbarPrincipalService.unidades;
+    //this.changeDetectorRef.detectChanges();
   }
 
 }
