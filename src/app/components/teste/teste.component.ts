@@ -18,7 +18,7 @@ export class TesteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.arquivoService.get(4).subscribe((response:any) => {
+    this.arquivoService.get(2).subscribe((response:any) => {
       this.imageurl = this.fileUtils.convertBufferArrayToBase64(response);
     });
   }

@@ -11,7 +11,7 @@ import { ArquivoService } from '../../services/arquivo/arquivo.service';
 export class UploadFotoComponent implements OnInit {
 
   nomeArquivo: string;
-  file: File;
+  file: any;
 
   constructor(
     private arquivoService: ArquivoService,
@@ -25,12 +25,12 @@ export class UploadFotoComponent implements OnInit {
   croppedImage: any = '';
 
   fileChangeEvent(event: any): void {
-    console.log(event);
     this.nomeArquivo = event.target.files.length > 0 ? event.target.files[0].name : null;
     this.file = event.target.files[0];
     this.imageChangedEvent = event;
   }
   imageCropped(event: ImageCroppedEvent) {
+    this.file = event.file;
     this.croppedImage = event.base64;
   }
   imageLoaded() {
@@ -48,7 +48,7 @@ export class UploadFotoComponent implements OnInit {
   salvar() {
 
     this.arquivoService.gravar(this.file).subscribe(() => {
-      console.log("voltei");
+      this.router.navigate(['home']);
 
     });
   }

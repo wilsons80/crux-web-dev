@@ -7,16 +7,20 @@
     <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
         <div *ngFor="let item of unidades">
             <div fxLayout="column">
-                <button [matTooltip]="item.nome" mat-fab class="botao" [ngStyle]="{'background-image': getBackground()}" (click)="escolherUnidade(item.id)" >
-                    <mat-icon class="nao-foto"></mat-icon>
-                </button>
+                <button mat-fab [matTooltip]="item.nome"  
+                                class="botao"
+                                [style.background-image]="getBackground(item)"
+                                (click)="escolherUnidade(item.id)" >
+                                <mat-icon class="nao-foto"></mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- <div fxLayoutAlign="center">
+            
+            <!-- <div fxLayoutAlign="center">
+                [ngStyle]="{'background-image': getBackground()}" 
         <div fxLayout="row wrap" fxLayoutGap="20px">
             <div *ngFor="let item of unidades">
                 <div fxLayout="column">

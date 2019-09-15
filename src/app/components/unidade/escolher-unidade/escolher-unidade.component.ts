@@ -34,9 +34,12 @@ export class EscolherUnidadeComponent implements OnInit {
     this.activatedRoute.data.pipe(
       switchMap((data: {unidades:AcessoUnidade[]})=>{
         this.unidades = data.unidades;
-        this.arquivoService.get(4).subscribe((response:any) => {
-          this.imageurl = this.fileUtils.convertBufferArrayToBase64(response);
+        _.forEach(this.unidades, (unidade:AcessoUnidade) => {
+          this.arquivoService.get(unidade.id).subscribe((response:any) => {
+            unidade.logo = this.fileUtils.convertBufferArrayToBase64(response);
+          });  
         });
+        
          return new Observable(obs => obs.next())
       })
     ).subscribe();
@@ -54,9 +57,10 @@ export class EscolherUnidadeComponent implements OnInit {
       })
   }
 
-  getBackground(){
-    console.log(this.imageurl);
-    return `url(${this.imageurl})`
+  getBackground(unidade){
+    if(unidade && unidade.logo){
+      return `url(${unidade.logo.changingThisBreaksApplicationSecurity})`
+    }
   }
 
   
