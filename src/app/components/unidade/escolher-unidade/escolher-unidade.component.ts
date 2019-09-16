@@ -1,3 +1,4 @@
+import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import _ from 'lodash';
@@ -27,7 +28,7 @@ export class EscolherUnidadeComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private arquivoService: ArquivoService,
-    private fileUtils:FileUtils
+    private fileUtils:FileUtils,
   ) { }
 
   ngOnInit() {
@@ -47,22 +48,22 @@ export class EscolherUnidadeComponent implements OnInit {
   }
   
   escolherUnidade(idUnidade: number) {
-
     this.unidadeService.getUnidadePorId(idUnidade).pipe(
-      switchMap((unidade: Unidade) => { return this.menuService.getMenuPrincipal() })
+      switchMap((unidade: Unidade) => { 
+        return this.menuService.getMenuPrincipal() 
+      })
     )
       .subscribe((menu) => {
         console.log("menuzao da massa", menu);
-        this.router.navigate([`home`]);
+        this.router.navigate([`index`]);
       })
   }
 
-  getBackground(unidade){
+  getBackground(unidade:AcessoUnidade){
     if(unidade && unidade.logo){
       return `url(${unidade.logo.changingThisBreaksApplicationSecurity})`
     }
   }
 
   
-
 }

@@ -41,6 +41,7 @@ import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
 import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
 import { TesteComponent } from './components/teste/teste.component';
+import { IndexComponent } from './components/index/index.component';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -54,6 +55,7 @@ registerLocaleData(localePt, 'pt-BR');
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
     TesteComponent,
+    IndexComponent,
     
   ],
   imports: [

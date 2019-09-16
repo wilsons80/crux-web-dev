@@ -6,6 +6,7 @@
                         (click)="fecharMenu()"  
                          class="botao" 
                          matTooltip = "Trocar a logo"
+                         [style.background-image]="getBackground()"
                          [routerLink]="['/upload']" 
                          routerLinkActive="router-link-active">
             <mat-icon class="nao-foto"></mat-icon>

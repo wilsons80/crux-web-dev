@@ -41,6 +41,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+   
     this.menuPrincipalService.toggle.subscribe((resposta) => {
       if (resposta && resposta.logout == true) {
         this.close()

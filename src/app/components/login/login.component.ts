@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
     ).subscribe((menu: Menu[]) => {
       console.log("unidadelogada", this.usuarioLogado);
-      if (this.usuarioLogado.unidadeLogada) {
+      if (this.usuarioLogado.unidades && this.usuarioLogado.unidades.length == 1) {
 
         this.router.navigate(['home']);
       } else {
