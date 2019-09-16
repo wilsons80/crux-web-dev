@@ -17,6 +17,7 @@ export class MenuPrincipalComponent implements OnInit {
 
   constructor(
     private controleMenuService:ControleMenuService,
+    private toolbarPrincipalService:ToolbarPrincipalService,
     private menuPrincipalService:MenuPrincipalService,
     ) { }
 
@@ -32,5 +33,9 @@ export class MenuPrincipalComponent implements OnInit {
   fecharMenu(){
     this.menuPrincipalService.alternar();
   }
-
+  getBackground(){
+    if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){
+      return `url(${this.toolbarPrincipalService.logo.changingThisBreaksApplicationSecurity})`
+    }
+  }
 }

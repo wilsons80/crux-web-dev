@@ -19,7 +19,7 @@
         <div *ngIf="mostrarMenu" fxLayout="row" fxLayoutAlign="space-around center">
             <mat-form-field style="width: 300px" fxLayoutGap="20px">
                 <mat-select name="unidade" #unidade="ngModel" [(ngModel)]="toolbarPrincipalService.unidadeSelecionada"
-                    (selectionChange)="mudarUnidade($event.value)">
+                    (selectionChange)="escolherUnidade($event.value.id)">
                     <mat-option *ngFor="let u of toolbarPrincipalService.unidades" [value]="u">
                         {{u.nome}}
                     </mat-option>

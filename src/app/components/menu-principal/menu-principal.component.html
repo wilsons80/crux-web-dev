@@ -2,7 +2,13 @@
     <mat-nav-list style="width: 260px">
 
         <!-- MENU DE CONFIGURAÇOES -->
-        <button fxLayoutAlign="center center" mat-fab class="botao"  [routerLink]="['/upload']" routerLinkActive="router-link-active">
+        <button mat-fab fxLayoutAlign="center center" 
+                        (click)="fecharMenu()"  
+                         class="botao" 
+                         matTooltip = "Trocar a logo"
+                         [style.background-image]="getBackground()"
+                         [routerLink]="['/upload']" 
+                         routerLinkActive="router-link-active">
             <mat-icon class="nao-foto"></mat-icon>
         </button>
         <mat-divider style="margin-top: 20px"></mat-divider>

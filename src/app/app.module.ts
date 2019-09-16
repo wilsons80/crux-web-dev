@@ -1,3 +1,4 @@
+import { UploadFotoModule } from './components/upload-foto/upload-foto.module';
 import { AtividadeModule } from './components/atividade/atividade.module';
 import { ProdutoModule } from './components/produto/produto.module';
 import { MetasModule } from './components/metas/metas.module';
@@ -29,7 +30,6 @@ import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { ConfirmDialogComponent } from './components/common/confirm-dialog/confirm-dialog.component';
-import { UploadFotoComponent } from './components/common/upload-foto/upload-foto.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PerspectivaModule } from './components/perspectiva/perspectiva.module';
 import { IndicadoresModule } from './components/indicadores/indicadores.module';
@@ -40,20 +40,22 @@ import { UnidadeModule } from './components/unidade/unidade.module';
 import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
 import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
+import { TesteComponent } from './components/teste/teste.component';
+import { IndexComponent } from './components/index/index.component';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
   entryComponents: [
     HttpErrorToastComponent,
     ConfirmDialogComponent,
-    UploadFotoComponent
   ],
   declarations: [
     AppComponent,
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
-    UploadFotoComponent
+    TesteComponent,
+    IndexComponent,
     
   ],
   imports: [
@@ -99,7 +101,8 @@ registerLocaleData(localePt, 'pt-BR');
     ProgramasModule,
     ProjetoModule,
     ProdutoModule,
-    AtividadeModule
+    AtividadeModule,
+    UploadFotoModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},
