@@ -9,10 +9,11 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
 import { MatPaginatedTabHeader } from '@angular/material/tabs/typings/paginated-tab-header';
+import { CadastrarAtividadeComponent } from './cadastrar-atividade/cadastrar-atividade.component';
 
 
 @NgModule({
-  declarations: [AtividadeComponent],
+  declarations: [AtividadeComponent, CadastrarAtividadeComponent],
   imports: [
     CommonModule,
     AtividadeRoutingModule,

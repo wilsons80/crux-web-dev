@@ -55,7 +55,7 @@ export class EscolherUnidadeComponent implements OnInit {
     )
       .subscribe((menu) => {
         console.log("menuzao da massa", menu);
-        this.router.navigate([`index`]);
+        this.router.navigate([`home`]);
       })
   }
 
