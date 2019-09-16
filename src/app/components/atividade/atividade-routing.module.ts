@@ -6,7 +6,7 @@ import { CadastrarAtividadeComponent } from './cadastrar-atividade/cadastrar-ati
 
 
 const routes: Routes = [
-  { path: 'ativdade/cadastrar', component: CadastrarAtividadeComponent,canActivate: [AuthGuard]},
+  { path: 'atividade/cadastrar', component: CadastrarAtividadeComponent,canActivate: [AuthGuard]},
   { path: 'atividade', component: AtividadeComponent,canActivate: [AuthGuard]},
 ];
 
