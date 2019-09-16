@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolBarPrincipalComponent } from './tool-bar-principal.component';
-import { MatToolbarModule, MatIconModule, MatMenuModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatSelectModule, MatOptionModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatMenuModule, MatInputModule, MatButtonModule, MatFormFieldModule, MatSelectModule, MatOptionModule, MatProgressBarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -23,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatOptionModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressBarModule
   
   ],
   exports: [ToolBarPrincipalComponent]

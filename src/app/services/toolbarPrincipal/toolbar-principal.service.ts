@@ -19,6 +19,7 @@ export class ToolbarPrincipalService {
   username: string;
   nomeUsuario: string;
   logo:any;
+  loadingCompleto = true;
 
   constructor(private http: HttpClient,
     private unidadeService: UnidadeService) { }

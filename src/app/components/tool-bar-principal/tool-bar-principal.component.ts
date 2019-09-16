@@ -57,4 +57,9 @@ export class ToolBarPrincipalComponent implements OnInit {
         this.router.navigateByUrl('home/').then(() => this.router.navigate(['home']));
       })
   }
+
+  getLoadingCompleto() {
+    return this.toolbarPrincipalService.loadingCompleto;
+  }
+
 }
