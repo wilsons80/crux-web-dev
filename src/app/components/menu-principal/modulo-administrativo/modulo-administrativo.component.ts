@@ -36,5 +36,8 @@ export class ModuloAdministrativoComponent implements OnInit {
     }else
       this.currentState = 'hidden';
   }
+  getIcone(){
+    return this.isMostrarSubMenu ? "expand_more" : "chevron_right";
+  }
 
 }
