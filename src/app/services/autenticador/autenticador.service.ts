@@ -64,8 +64,11 @@ export class AutenticadorService {
         switchMap((usuarioLogado:UsuarioLogado) => {
           this.setSession(usuarioLogado)
           this.toolbarPrincipalService.setarPropriedadesUsuarioLogado(usuarioLogado);
+          if(usuarioLogado.unidadeLogada){
             return this.arquivoService.get(usuarioLogado.unidadeLogada.id)
-          
+          }else {
+            return new Observable(obs => obs.next())
+          }
         }),
         shareReplay(),
       ).subscribe((arquivo) => {

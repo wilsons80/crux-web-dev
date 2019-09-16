@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { AutenticadorService } from './../../services/autenticador/autenticador.
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterContentChecked {
 
   usuario: Login = new Login();
   error: any;
@@ -24,12 +24,17 @@ export class LoginComponent implements OnInit {
     private autenticadorService: AutenticadorService,
     private menuService: MenuService,
     private router: Router,
+    private drc: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
     if (this.autenticadorService.isLoggedIn) {
       this.router.navigate([`unidade/escolher/`]);
     }
+  }
+
+  ngAfterContentChecked(): void {
+    this.drc.detectChanges();
   }
 
   login() {
