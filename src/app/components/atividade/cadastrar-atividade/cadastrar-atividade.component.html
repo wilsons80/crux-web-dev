@@ -79,7 +79,7 @@
             <div id="coluna3" fxFlex= "20%">
                 <mat-toolbar class="titulopartes">Período</mat-toolbar>
                 <div fxLayout="row" fxFlexFill>
-                        <mat-form-field fxFlex= "85%" fxFlexOffset="20px" >
+                        <mat-form-field fxFlex= "75%" fxFlexOffset="20px" >
                                 <input matInput type="number"  name="ano" placeholder="Ano:" [(ngModel)]="atividade.periodoAtividade"> 
                            </mat-form-field>
                 </div>
@@ -107,8 +107,8 @@
 
             <!-- HORARIO INICIO -->
                <div fxFlex= "15%">
-                   <div fxLayout="row">
-                        <mat-form-field >
+                   <div fxLayout="row" fxFlexFill>
+                        <mat-form-field  fxFlex= "35%">
                                 <input matInput #horaInicio="ngModel" 
                                                 mat-hide-icons="calendar" 
                                                 type="time" 
