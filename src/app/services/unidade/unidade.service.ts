@@ -26,7 +26,7 @@ export class UnidadeService {
   }
 
   getUnidadePorId(idUnidade:number){
-    return this.http.get(unidadeRootPath + `${idUnidade}`);
+    return this.http.get(unidadeRootPath + `logada/${idUnidade}`);
   }
 
   getAllUnidadesUsuarioLogadoTemAcesso(){
