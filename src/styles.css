@@ -38,6 +38,11 @@ button.mat-raised-button.mat-button-base{
   color: black
 }
 
+/* BOTOES DA APP */
+button.mat-fab.mat-button-base.mat-accent.botao{
+  background-color:transparent;
+}
+
 button.mat-fab.mat-button-base{
   background-color: black;
   text-transform: uppercase;
