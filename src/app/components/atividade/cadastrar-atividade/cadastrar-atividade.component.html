@@ -1,1 +1,231 @@
-<p>cadastrar-atividade works!</p>
+<mat-toolbar class="subtitulo">Cadastrar Indicadores</mat-toolbar>
+
+<div class="painel-principal" style="padding: 10px;">
+    <form #formCadastro="ngForm">
+ 
+        <!-- DESCRICAO -->
+        <mat-toolbar class="titulopartes">Descrição</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    
+            <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
+                  <input matInput maxlength="200"  name="descricao" placeholder="Descrição da Atividade:" [(ngModel)]="atividade.descricao" required> 
+             </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    
+            <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
+                  <input matInput 
+                         maxlength="200"  
+                         name="descricaoLocalExecucao" 
+                         placeholder="Descrição da Local da Execução:" 
+                         [(ngModel)]="atividade.descricaoLocalExecucao"> 
+             </mat-form-field>
+
+        </div>
+
+          <!-- UNIDADE -->
+         <mat-toolbar class="titulopartes">Unidade</mat-toolbar>
+         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
+                        <mat-label>Unidade:</mat-label>
+                        <mat-select [(ngModel)]="atividade.unidade" name="unidade" required>
+                            <mat-option *ngFor="let u of unidades" [value]="u" >
+                              {{u.nomeUnidade}}
+                            </mat-option>
+                        </mat-select>
+                </mat-form-field>
+         </div>
+
+        <!-- DATA -->
+        <mat-toolbar class="titulopartes">Data</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+                    <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início" [(ngModel)]="atividade.dataInicio">
+                    <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
+                    <mat-datepicker #dataInicio></mat-datepicker>
+             </mat-form-field>
+           
+             <mat-form-field fxFlex= "50%">
+                    <input matInput name= "dataFim" [matDatepicker]="dataFim" placeholder="Data Fim" [(ngModel)]="atividade.dataFim">
+                    <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+                    <mat-datepicker #dataFim></mat-datepicker>
+             </mat-form-field>
+
+        </div>
+        
+        <!-- DATA PREVISTA -->
+        <mat-toolbar class="titulopartes">Data Prevista</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+                    <input matInput name="dataPrevisaoInicio" [matDatepicker]="dataPrevisaoInicio" placeholder="Data de Previção de Início" [(ngModel)]="atividade.dataPrevisaoInicio">
+                    <mat-datepicker-toggle matSuffix [for]="dataPrevisaoInicio"></mat-datepicker-toggle>
+                    <mat-datepicker #dataPrevisaoInicio></mat-datepicker>
+             </mat-form-field>
+           
+             <mat-form-field fxFlex= "50%">
+                    <input matInput name="dataPrevisaoTermino" [matDatepicker]="dataPrevisaoTermino" placeholder="Data de Previção de Fim" [(ngModel)]="atividade.dataPrevisaoTermino">
+                    <mat-datepicker-toggle matSuffix [for]="dataPrevisaoTermino"></mat-datepicker-toggle>
+                    <mat-datepicker #dataPrevisaoTermino></mat-datepicker>
+             </mat-form-field>
+
+        </div>
+
+        <!-- DADOS BÁSICOS -->
+        <mat-toolbar class="titulopartes">Dados Básicos</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    
+            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
+                  <input matInput #horaInicio="ngModel" 
+                                  mat-hide-icons="calendar" 
+                                  type="time" 
+                                  name="horaInicio" 
+                                  placeholder="Hora Início:" 
+                                  [(ngModel)]="atividade.horaInicio" required> 
+             </mat-form-field>
+
+             <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
+                <input matInput #horaFim="ngModel" 
+                                mat-hide-icons="calendar" 
+                                type="time" 
+                                name="horaFim" 
+                                placeholder="Hora Fim:" 
+                                [(ngModel)]="atividade.horaFim" required> 
+           </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    
+            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
+                  <input matInput type="number" maxlength="10"  name="numeroAulas" placeholder="Número de Aulas:" [(ngModel)]="atividade.numeroAulas"> 
+             </mat-form-field>
+            
+             <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
+                  <input matInput type="number"  name="cargaHoraria" placeholder="Carga horária:" [(ngModel)]="atividade.cargaHoraria"> 
+             </mat-form-field>
+
+        </div>
+       
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    
+            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
+                  <input matInput type="number" name="maximoParticipantes" placeholder="Número Máximo de Participantes:" [(ngModel)]="atividade.maximoParticipantes"> 
+             </mat-form-field>
+            
+             <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
+                  <input matInput type="number"  name="periodoAtividade" placeholder="Período da Atividade:" [(ngModel)]="atividade.periodoAtividade"> 
+             </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    
+                <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
+                      <input matInput type="number" name="maximoParticipantes" placeholder="Número Máximo de Participantes:" [(ngModel)]="atividade.maximoParticipantes"> 
+                 </mat-form-field>
+                
+                 <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
+                      <input matInput type="number"  name="periodoAtividade" placeholder="Período da Atividade:" [(ngModel)]="atividade.periodoAtividade"> 
+                 </mat-form-field>
+    
+            </div>
+
+             <!-- PLANO DE ACAO -->
+         <mat-toolbar class="titulopartes">Plano de Ação</mat-toolbar>
+         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
+                        <mat-label>Planos de Ação:</mat-label>
+                        <mat-select [(ngModel)]="atividade.planosAcao" name="planosAcao">
+                            <mat-option *ngFor="let u of listaPlanosAcao" [value]="u" >
+                              {{u.nome}}
+                            </mat-option>
+                        </mat-select>
+                </mat-form-field>
+         </div>
+
+          <!-- PROJETO -->
+          <mat-toolbar class="titulopartes">Projeto</mat-toolbar>
+          <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                 <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
+                         <mat-label>Projetos:</mat-label>
+                         <mat-select [(ngModel)]="atividade.projeto" name="projeto">
+                             <mat-option *ngFor="let u of projetos" [value]="u" >
+                               {{u.nome}}
+                             </mat-option>
+                         </mat-select>
+                 </mat-form-field>
+          </div>
+ 
+
+
+        <!-- DIAS AULA -->
+        <!-- <mat-toolbar class="titulopartes">Dias de Aula</mat-toolbar>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                <mat-slide-toggle name="segunda" [(ngModel)]="atividade.segunda">Segunda</mat-slide-toggle>
+                <mat-slide-toggle name="terca"   [(ngModel)]="atividade.terca">Terça</mat-slide-toggle>
+                <mat-slide-toggle name="quarta"  [(ngModel)]="atividade.quarta">Quarta</mat-slide-toggle>
+                <mat-slide-toggle name="quinta"  [(ngModel)]="atividade.quinta">Quinta</mat-slide-toggle>
+                <mat-slide-toggle name="sexta"   [(ngModel)]="atividade.sexta">Sexta</mat-slide-toggle>
+                <mat-slide-toggle name="sabado"  [(ngModel)]="atividade.sabado">Sábado</mat-slide-toggle>
+                <mat-slide-toggle name="domingo" [(ngModel)]="atividade.domingo">Domingo</mat-slide-toggle>    
+        </div> -->
+
+
+         <!-- OBJETIVO -->
+         <!-- <mat-toolbar class="titulopartes">Objetivo</mat-toolbar>
+         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
+                        <mat-label>Objetivo:</mat-label>
+                        <mat-select [(ngModel)]="indicadores.objetivo" name="objetivo" required>
+                            <mat-option *ngFor="let o of objetivos" [value]="o" >
+                              {{o.nome}}
+                            </mat-option>
+                        </mat-select>
+                </mat-form-field>
+
+         </div> -->
+        
+        <!-- BOTÕES -->
+        <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+            fxFlexFill>
+            <button mat-raised-button 
+                    name="botaoConfirmar" 
+                    fxFlex="20%" 
+                    color="primary"
+                    [disabled]="formCadastro.invalid" 
+                    (click)="isAtualizar ? atualizar() : cadastrar()">
+                    {{getNomeBotao()}}
+            </button>
+            
+            <button *ngIf="!isAtualizar" 
+                    mat-raised-button 
+                    fxFlex="20%" 
+                    color="primary" 
+                    (click)="limpar()">
+                    Limpar
+            </button>
+            
+            <button mat-raised-button 
+                    fxFlex="20%" 
+                    color="primary" 
+                    (click)="cancelar()">
+                Cancelar
+            </button>
+
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
+
+
+

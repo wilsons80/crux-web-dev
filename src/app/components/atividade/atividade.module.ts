@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AtividadeRoutingModule } from './atividade-routing.module';
 import { AtividadeComponent } from './atividade.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatDatepickerModule, MatTooltipModule, MatPaginatorModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatDatepickerModule, MatTooltipModule, MatPaginatorModule, MatSlideToggleModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -32,7 +32,8 @@ import { CadastrarAtividadeComponent } from './cadastrar-atividade/cadastrar-ati
     SharedPipesModule,
     MatDatepickerModule,
     MatTooltipModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSlideToggleModule
   ]
 })
 export class AtividadeModule { }
