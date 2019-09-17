@@ -2,7 +2,7 @@
 @include mat-core();
 
 $bv-brand: (
-    50: #ffffff,
+    50:black,
     100: #dde6f3,
     200: #b4c9e4,
     300: #7fa3d1,
@@ -17,7 +17,7 @@ $bv-brand: (
     A400: #6992c9,
     A700: #38649d,
     contrast: (
-        50: $black-87-opacity,
+        50: #FFFFFF,
         100: $black-87-opacity,
         200: $black-87-opacity,
         300: $black-87-opacity,

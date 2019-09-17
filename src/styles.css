@@ -26,14 +26,20 @@ mat-toolbar.mat-toolbar.mat-toolbar-single-row.titulopartes{
   height: auto;
   font-size: large;
   color: rgb(142,142,142);
-  margin-bottom: 10px
+  margin-bottom: 20px
   
 }
 
 
 /* BOTOES DA APP */
 button.mat-raised-button.mat-button-base{
-  background-color: #0288D1;
+  background-color: white;
+  text-transform: uppercase;
+  color: black
+}
+
+button.mat-fab.mat-button-base{
+  background-color: black;
   text-transform: uppercase;
   color: white
 }
