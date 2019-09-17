@@ -25,7 +25,8 @@ mat-toolbar.mat-toolbar.mat-toolbar-single-row.titulopartes{
   background: rgb(241, 241, 241);
   height: auto;
   font-size: large;
-  color: rgb(142,142,142)
+  color: rgb(142,142,142);
+  margin-bottom: 10px
   
 }
 

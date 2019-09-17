@@ -5,16 +5,13 @@
  
         <!-- DESCRICAO -->
         <mat-toolbar class="titulopartes">Descrição</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    
+        <div fxLayout="row">
             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
                   <input matInput maxlength="200"  name="descricao" placeholder="Descrição da Atividade:" [(ngModel)]="atividade.descricao" required> 
              </mat-form-field>
-
         </div>
 
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    
+        <div fxLayout="row">
             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
                   <input matInput 
                          maxlength="200"  
@@ -22,7 +19,6 @@
                          placeholder="Descrição da Local da Execução:" 
                          [(ngModel)]="atividade.descricaoLocalExecucao"> 
              </mat-form-field>
-
         </div>
 
           <!-- UNIDADE -->
@@ -38,101 +34,156 @@
                 </mat-form-field>
          </div>
 
-        <!-- DATA -->
-        <mat-toolbar class="titulopartes">Data</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-
-            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
-                    <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início" [(ngModel)]="atividade.dataInicio">
-                    <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
-                    <mat-datepicker #dataInicio></mat-datepicker>
-             </mat-form-field>
-           
-             <mat-form-field fxFlex= "50%">
-                    <input matInput name= "dataFim" [matDatepicker]="dataFim" placeholder="Data Fim" [(ngModel)]="atividade.dataFim">
-                    <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
-                    <mat-datepicker #dataFim></mat-datepicker>
-             </mat-form-field>
-
-        </div>
-        
-        <!-- DATA PREVISTA -->
-        <mat-toolbar class="titulopartes">Data Prevista</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-
-            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
-                    <input matInput name="dataPrevisaoInicio" [matDatepicker]="dataPrevisaoInicio" placeholder="Data de Previção de Início" [(ngModel)]="atividade.dataPrevisaoInicio">
-                    <mat-datepicker-toggle matSuffix [for]="dataPrevisaoInicio"></mat-datepicker-toggle>
-                    <mat-datepicker #dataPrevisaoInicio></mat-datepicker>
-             </mat-form-field>
-           
-             <mat-form-field fxFlex= "50%">
-                    <input matInput name="dataPrevisaoTermino" [matDatepicker]="dataPrevisaoTermino" placeholder="Data de Previção de Fim" [(ngModel)]="atividade.dataPrevisaoTermino">
-                    <mat-datepicker-toggle matSuffix [for]="dataPrevisaoTermino"></mat-datepicker-toggle>
-                    <mat-datepicker #dataPrevisaoTermino></mat-datepicker>
-             </mat-form-field>
-
-        </div>
-
-        <!-- DADOS BÁSICOS -->
-        <mat-toolbar class="titulopartes">Dados Básicos</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    
-            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                  <input matInput #horaInicio="ngModel" 
-                                  mat-hide-icons="calendar" 
-                                  type="time" 
-                                  name="horaInicio" 
-                                  placeholder="Hora Início:" 
-                                  [(ngModel)]="atividade.horaInicio" required> 
-             </mat-form-field>
-
-             <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
-                <input matInput #horaFim="ngModel" 
-                                mat-hide-icons="calendar" 
-                                type="time" 
-                                name="horaFim" 
-                                placeholder="Hora Fim:" 
-                                [(ngModel)]="atividade.horaFim" required> 
-           </mat-form-field>
-
-        </div>
-
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    
-            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                  <input matInput type="number" maxlength="10"  name="numeroAulas" placeholder="Número de Aulas:" [(ngModel)]="atividade.numeroAulas"> 
-             </mat-form-field>
-            
-             <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
-                  <input matInput type="number"  name="cargaHoraria" placeholder="Carga horária:" [(ngModel)]="atividade.cargaHoraria"> 
-             </mat-form-field>
-
-        </div>
        
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+             
+            <!-- DATA -->
+            <div id="coluna1" fxFlex= "30%">
+                <mat-toolbar class="titulopartes">Data</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     
-            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                  <input matInput type="number" name="maximoParticipantes" placeholder="Número Máximo de Participantes:" [(ngModel)]="atividade.maximoParticipantes"> 
-             </mat-form-field>
-            
-             <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
-                  <input matInput type="number"  name="periodoAtividade" placeholder="Período da Atividade:" [(ngModel)]="atividade.periodoAtividade"> 
-             </mat-form-field>
+                      <mat-form-field fxFlex= "40%" fxFlexOffset="20px" >
+                                <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início:" [(ngModel)]="atividade.dataInicio">
+                                <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
+                                <mat-datepicker #dataInicio></mat-datepicker>
+                            </mat-form-field>
 
-        </div>
-
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    
-                <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                      <input matInput type="number" name="maximoParticipantes" placeholder="Número Máximo de Participantes:" [(ngModel)]="atividade.maximoParticipantes"> 
-                 </mat-form-field>
-                
-                 <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
-                      <input matInput type="number"  name="periodoAtividade" placeholder="Período da Atividade:" [(ngModel)]="atividade.periodoAtividade"> 
-                 </mat-form-field>
-    
+                            <mat-form-field fxFlex= "40%" fxFlexOffset="20px" >
+                                    <input matInput name= "dataFim" [matDatepicker]="dataFim" placeholder="Data Fim" [(ngModel)]="atividade.dataFim">
+                                    <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+                                    <mat-datepicker #dataFim></mat-datepicker>
+                                </mat-form-field>
+                    </div>
             </div>
+            
+            <!-- DATA PREVISTA -->
+            <div id="coluna2" fxFlex= "50%">
+                <mat-toolbar class="titulopartes">Data Prevista</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    
+                        <mat-form-field fxFlex= "40%" fxFlexOffset="20px" >
+                                  <input matInput name= "dataPrevisaoInicio" [matDatepicker]="dataPrevisaoInicio" placeholder="Data de Previsão de Início:" [(ngModel)]="atividade.dataPrevisaoInicio">
+                                  <mat-datepicker-toggle matSuffix [for]="dataPrevisaoInicio"></mat-datepicker-toggle>
+                                  <mat-datepicker #dataPrevisaoInicio></mat-datepicker>
+                              </mat-form-field>
+  
+                              <mat-form-field fxFlex= "40%" fxFlexOffset="20px" >
+                                      <input matInput name= "dataPrevisaoTermino" [matDatepicker]="dataPrevisaoTermino" placeholder="Data de Previsão de Fim:" [(ngModel)]="atividade.dataPrevisaoTermino">
+                                      <mat-datepicker-toggle matSuffix [for]="dataPrevisaoTermino"></mat-datepicker-toggle>
+                                      <mat-datepicker #dataPrevisaoTermino></mat-datepicker>
+                                  </mat-form-field>
+                      </div>
+            </div>
+            
+            <!-- PERÍODO -->
+            <div id="coluna3" fxFlex= "20%">
+                <mat-toolbar class="titulopartes">Período</mat-toolbar>
+                <div fxLayout="row" fxFlexFill>
+                        <mat-form-field fxFlex= "85%" fxFlexOffset="20px" >
+                                <input matInput type="number"  name="ano" placeholder="Ano:" [(ngModel)]="atividade.periodoAtividade"> 
+                           </mat-form-field>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DADOS BÁSICOS -->
+        <mat-toolbar class="titulopartes">Dados Básicos</mat-toolbar>
+        <div fxLayout="row" fxLayoutAlign="space-between center"  style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+        
+            <!-- LOCAL EXECUÇÃO-->
+              <div id="coluna2" fxFlex= "15%">
+                    <div fxLayout="row">
+                            <mat-form-field fxFlexOffset="20px">
+                                    <mat-label>Local de Execução:</mat-label>
+                                    <mat-select [(ngModel)]="atividade.localExecucao" name="localExecucao">
+                                        <mat-option *ngFor="let u of localExecucao" [value]="u.id" >
+                                          {{u.descricao}}
+                                        </mat-option>
+                                    </mat-select>
+                            </mat-form-field>
+                        </div>
+               </div>
+        
+
+            <!-- HORARIO INICIO -->
+               <div fxFlex= "15%">
+                   <div fxLayout="row">
+                        <mat-form-field >
+                                <input matInput #horaInicio="ngModel" 
+                                                mat-hide-icons="calendar" 
+                                                type="time" 
+                                                name="horaInicio" 
+                                                placeholder="Hora Início:" 
+                                                [(ngModel)]="atividade.horaInicio"> 
+                           </mat-form-field>
+
+                           <!-- <mat-form-field fxFlex= "10%" >
+                                <input matInput #horaFim="ngModel" 
+                                                mat-hide-icons="calendar" 
+                                                type="time" 
+                                                name="horaFim" 
+                                                placeholder="Hora Fim:" 
+                                                [(ngModel)]="atividade.horaFim"> 
+                           </mat-form-field> -->
+                   </div>
+               </div>
+
+               <!-- HORARIO FIM -->
+               <div fxFlex= "15%">
+                    <div fxLayout="row">
+                            <mat-form-field>
+                                 <input matInput #horaFim="ngModel" 
+                                                 mat-hide-icons="calendar" 
+                                                 type="time" 
+                                                 name="horaFim" 
+                                                 placeholder="Hora Fim:" 
+                                                 [(ngModel)]="atividade.horaFim"> 
+                            </mat-form-field>
+                    </div>
+                </div>
+               
+        
+              <!-- HORARIO FIXO / LIVRE -->
+               <div fxFlex= "15%">
+                    <div fxLayout="row" >
+                            <mat-form-field >
+                                    <mat-label>Tipo Horário:</mat-label>
+                                    <mat-select [(ngModel)]="atividade.horarioFixo" name="horarioFixo">
+                                        <mat-option *ngFor="let u of tipoHorario" [value]="u.id" >
+                                          {{u.descricao}}
+                                        </mat-option>
+                                    </mat-select>
+                            </mat-form-field>
+                        </div>
+               </div>
+              
+               <!-- CARGA HORÁRIA -->
+               <div  fxFlex= "15%">
+                   <div fxLayout="row" >
+                    <mat-form-field >
+                        <input matInput type="number"  name="cargaHoraria" placeholder="Carga horária:" [(ngModel)]="atividade.cargaHoraria"> 
+                   </mat-form-field>
+                    </div>
+               </div>
+
+               <!-- NUMERO DE AULAS -->
+               <div fxFlex= "15%">
+                    <div fxLayout="row"  >
+                            <mat-form-field >
+                                    <input matInput type="number" maxlength="10"  name="numeroAulas" placeholder="Número de Aulas:" [(ngModel)]="atividade.numeroAulas"> 
+                            </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- MAX PARTICIPANTES -->
+               <!-- <div fxFlex= "15%">
+                    <div fxLayout="row">
+                            <mat-form-field fxFlex= "85%" >
+                                    <input matInput type="number" name="maximoParticipantes" placeholder="Máximo Participantes:" [(ngModel)]="atividade.maximoParticipantes"> 
+                               </mat-form-field>
+                    </div>
+                </div> -->
+           </div>
 
              <!-- PLANO DE ACAO -->
          <mat-toolbar class="titulopartes">Plano de Ação</mat-toolbar>

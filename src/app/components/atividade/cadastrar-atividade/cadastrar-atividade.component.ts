@@ -28,6 +28,17 @@ export class CadastrarAtividadeComponent implements OnInit {
   projetos: Projeto[];
   unidades: Unidade[];
 
+  tipoHorario:any = [
+    {id:'F' , descricao:'FIXO' },
+    {id:'L' , descricao:'LIVRE' },
+  ];
+  
+  localExecucao:any = [
+    {id:'I' , descricao:'INTERNA' },
+    {id:'E' , descricao:'EXTERNA' },
+  ];
+
+
   isAtualizar: boolean = false;
 
   constructor(
