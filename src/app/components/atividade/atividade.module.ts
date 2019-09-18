@@ -34,7 +34,6 @@ import { CadastrarAtividadeComponent } from './cadastrar-atividade/cadastrar-ati
     MatTooltipModule,
     MatPaginatorModule,
     MatSlideToggleModule,
-    
   ]
 })
 export class AtividadeModule { }
