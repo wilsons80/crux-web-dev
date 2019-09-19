@@ -1,1 +1,141 @@
-<p>cadastrar-funcionario works!</p>
+
+<mat-toolbar class="subtitulo">Cadastrar Iniciativas</mat-toolbar>
+
+<div class="painel-principal" style="padding: 10px;">
+    <mat-horizontal-stepper #stepper style="background: transparent; padding: 10px">
+        <!-- ETAPA 1 - DADOS INICIAIS -->
+        <mat-step  [stepControl]="formCadastroEtapa1">
+            <form #formCadastroEtapa1="ngForm">
+                <ng-template matStepLabel>DADOS PESSOAIS</ng-template>
+                <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+            
+                    <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
+                          <input matInput maxlength="250"  name="nome" placeholder="Nome Completo:" required> 
+                     </mat-form-field>
+        
+                </div>
+            </form>
+                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                    fxFlexFill>
+                    <button mat-raised-button 
+                            name="botaoConfirmar" 
+                            fxFlex="20%" 
+                            color="primary"
+                            [disabled]="formCadastroEtapa1.invalid" 
+                            matStepperNext
+                            >
+                            Próximo
+                    </button>
+        
+                </div>
+                
+          </mat-step>
+       
+        <!-- ETAPA 2 -- DOCUMENTOS -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEtapa2">
+            <form #formCadastroEtapa2="ngForm">
+                <ng-template matStepLabel>DOCUMENTOS</ng-template>
+                <mat-toolbar  class="titulopartes">Em construção</mat-toolbar>
+            
+                    EM CONSTRUÇÃO!!!!
+        
+            </form>
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                    fxFlexFill>
+                    <button mat-raised-button 
+                            name="botaoConfirmar" 
+                            fxFlex="20%" 
+                            color="primary"
+                            [disabled]="formCadastroEtapa1.invalid" 
+                            matStepperNext
+                            >
+                            Próximo
+                    </button>
+        
+                    <button mat-raised-button 
+                            name="botaoConfirmar" 
+                            fxFlex="20%" 
+                            color="primary"
+                            [disabled]="formCadastroEtapa1.invalid" 
+                            matStepperPrevious
+                            >
+                            voltar
+                    </button>
+                </div>
+          </mat-step>
+
+        <!-- ETAPA 3 - OUTRAS INFORMAçÕes -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEtapa3">
+            <form #formCadastroEtapa3="ngForm">
+                <ng-template matStepLabel>OUTRAS INFORMAÇÕES</ng-template>
+                <mat-toolbar  class="titulopartes">EM CONSTRUCAO</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+            
+                            EM CONSTRUCAO
+        
+                </div>
+            </form>
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                    fxFlexFill>
+                    <button mat-raised-button 
+                            name="botaoConfirmar" 
+                            fxFlex="20%" 
+                            color="primary"
+                            [disabled]="formCadastroEtapa1.invalid" 
+                            matStepperNext
+                            >
+                            Próximo
+                    </button>
+        
+                    <button mat-raised-button 
+                            name="botaoConfirmar" 
+                            fxFlex="20%" 
+                            color="primary"
+                            [disabled]="formCadastroEtapa1.invalid" 
+                            matStepperPrevious
+                            >
+                            voltar
+                    </button>
+                </div>
+          </mat-step>
+
+          <!-- ETAPA 4 -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEtapa4">
+                <form #formCadastroEtapa4="ngForm">
+                    <ng-template matStepLabel>FINALIZANDO</ng-template>
+                    <mat-toolbar  class="titulopartes">EM CONSTRUCAO</mat-toolbar>
+                    <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                
+                                EM CONSTRUCAO
+            
+                    </div>
+                </form>
+                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                        fxFlexFill>
+                        <button mat-raised-button 
+                                name="botaoConfirmar" 
+                                fxFlex="20%" 
+                                color="primary"
+                                [disabled]="formCadastroEtapa1.invalid" 
+                                matStepperNext
+                                >
+                                Cadastrar
+                        </button>
+            
+                        <button mat-raised-button 
+                                name="botaoConfirmar" 
+                                fxFlex="20%" 
+                                color="primary"
+                                [disabled]="formCadastroEtapa1.invalid" 
+                                matStepperPrevious
+                                >
+                                voltar
+                        </button>
+                    </div>
+              </mat-step>
+          
+    </mat-horizontal-stepper>
+</div>
+
+
