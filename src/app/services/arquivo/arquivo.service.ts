@@ -1,6 +1,6 @@
+import { Cacheable } from 'ngx-cacheable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 
 const rootPath = 'api/arquivo/';
 
@@ -28,11 +28,12 @@ export class ArquivoService {
     return this.http.put(rootPath, formData);
   }
 
+  @Cacheable()
   get(idUnidade: number) {
     return this.http.get(rootPath + `${idUnidade}`, httpOptions);
   }
 
-  
+
 
 }
 
