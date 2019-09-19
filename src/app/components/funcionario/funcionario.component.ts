@@ -20,7 +20,7 @@ export class FuncionarioComponent implements OnInit {
   funcionario: Funcionario = new Funcionario();
   msg:string;
 
-  displayedColumns: string[] = ['sigla', 'nome', 'unidade', 'acoes'];
+  displayedColumns: string[] = ['matricula','nome', 'dataAdmissao', 'tipoFuncionario','cargo', 'acoes'];
   dataSource: MatTableDataSource<Funcionario> = new MatTableDataSource();
 
   constructor(

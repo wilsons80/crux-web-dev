@@ -1,3 +1,4 @@
+import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -28,7 +29,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatListModule,
     FlexLayoutModule,
     MatTooltipModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    SharedPipesModule
   ]
 })
 export class FuncionarioModule { }
