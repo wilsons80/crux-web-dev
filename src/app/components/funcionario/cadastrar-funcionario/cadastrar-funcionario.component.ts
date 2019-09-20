@@ -47,6 +47,30 @@ export class CadastrarFuncionarioComponent implements OnInit {
     {id: 'I' ,tipo: 'CURSANDO'},
   ]
 
+  situacaoTrabalho:any[] =[
+    {tipo: 'CARTEIRA ASSINADA'},
+    {tipo: 'SEM CARTEIRA ASSINADA'},
+    {tipo: 'AUTÔNOMO'},
+    {tipo: 'TRABALHO INFORMAL'},
+    {tipo: 'APOSENTADO'},
+    {tipo: 'PENSIONISTA'},
+    {tipo: 'DESEMPREGRADO'},
+    {tipo: 'FUNCIONÁRIO PÚBLICO'},
+    {tipo: 'PROFISSIONAL LIBERAL'},
+    {tipo: 'OUTROS'},
+  ]
+  
+  classificadorMotivoNaoTrab:any[] =[
+    {id: 'SI' ,descricao: 'NÃO TEM INTERESSE EM TRABALHAR'},
+    {id: 'NE' ,descricao: 'PROCUROU, MAS NÃO ENCONTROU EMPRESO'},
+    {id: 'ES' ,descricao: 'SOMENTE ESTUDA'},
+    {id: 'SM' ,descricao: 'PRESTA SERVIÇO MILITAR'},
+    {id: 'PS' ,descricao: 'POR PROBLEMAS DE SAÚDE'},
+    {id: 'LA' ,descricao: 'DO LAR'},
+    {id: 'OU' ,descricao: 'OUTROS'},
+  ]
+
+
   condicoesMoradia:CondicoesMoradia[];
   grausInstrucao:GrausInstrucao[]
 

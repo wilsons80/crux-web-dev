@@ -293,73 +293,152 @@
             </div>
         </mat-step>
 
-        <!-- ------------------ ETAPA 2 -- DOCUMENTOS ------------------------ -->
-        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEtapa2">
-            <form #formCadastroEtapa2="ngForm">
+        <!-- ------------------ ABA DOCUMENTOS ------------------------ -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDocumentos">
+            <form #formCadastroDocumentos="ngForm">
                 <ng-template matStepLabel>DOCUMENTOS</ng-template>
                 <mat-toolbar class="titulopartes">Documentos</mat-toolbar>
 
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                        <input matInput  [(ngModel)]="funcionario.pessoasFisica.cpf"
-                            name="cpf" placeholder="CPF:"  [textMask]="{mask: mascaraCpf}">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.cpf" name="cpf" placeholder="CPF:"
+                            [textMask]="{mask: mascaraCpf}">
                     </mat-form-field>
                 </div>
 
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                        <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                            <input matInput  [(ngModel)]="funcionario.pessoasFisica.identidade"
-                                name="identidade" placeholder="Identidade:" >
-                        </mat-form-field>
-                        <mat-form-field  fxFlex="30%">
-                            <input matInput  [(ngModel)]="funcionario.pessoasFisica.orgaoCi"
-                                name="orgaoCi" placeholder="Órgão Expedidor:" >
-                        </mat-form-field>
-                        <mat-form-field fxFlex="5%">
-                                <mat-label>UF:</mat-label>
-                                <mat-select [(ngModel)]="funcionario.pessoasFisica.ufCi" name="ufCi">
-                                    <mat-option *ngFor="let m of ufs" [value]="m">
-                                        {{m.nome}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.identidade" name="identidade"
+                            placeholder="Identidade:">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="30%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.orgaoCi" name="orgaoCi"
+                            placeholder="Órgão Expedidor:">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="5%">
+                        <mat-label>UF:</mat-label>
+                        <mat-select [(ngModel)]="funcionario.pessoasFisica.ufCi" name="ufCi">
+                            <mat-option *ngFor="let m of ufs" [value]="m">
+                                {{m.nome}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
-                
+
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                        <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                            <input matInput  [(ngModel)]="funcionario.pessoasFisica.tituloEleitor"
-                                name="tituloEleitor" placeholder="Titulo de Eleitor:" >
-                        </mat-form-field>
-                        <mat-form-field  fxFlex="30%">
-                            <input matInput  [(ngModel)]="funcionario.pessoasFisica.zonaTitulo"
-                                name="zonaTitulo" placeholder="Zona:" >
-                        </mat-form-field>
-                        
-                        <mat-form-field  fxFlex="30%">
-                            <input matInput  [(ngModel)]="funcionario.pessoasFisica.sessaoTitulo"
-                                name="sessaoTitulo" placeholder="Sessão:" >
-                        </mat-form-field>
-                        
+                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.tituloEleitor" name="tituloEleitor"
+                            placeholder="Titulo de Eleitor:">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="30%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.zonaTitulo" name="zonaTitulo"
+                            placeholder="Zona:">
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="30%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.sessaoTitulo" name="sessaoTitulo"
+                            placeholder="Sessão:">
+                    </mat-form-field>
+
                 </div>
 
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroEtapa2.invalid" matStepperNext>
+                    [disabled]="formCadastroDocumentos.invalid" matStepperNext>
                     Próximo
                 </button>
 
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroEtapa2.invalid" matStepperPrevious>
+                    [disabled]="formCadastroDocumentos.invalid" matStepperPrevious>
                     voltar
                 </button>
             </div>
         </mat-step>
 
-        <!-- ETAPA 3 - OUTRAS INFORMAçÕes -->
-        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEtapa3">
-            <form #formCadastroEtapa3="ngForm">
+        <!--  DADOS PROFISSIONAIS -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDadosProfissionais">
+            <form #formCadastroDadosProfissionais="ngForm">
+                <ng-template matStepLabel>DADOS PROFISSIONAIS</ng-template>
+
+                <mat-toolbar class="titulopartes">Trabalho</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="20%">
+                        <mat-label>Situação:</mat-label>
+                        <mat-select [(ngModel)]="funcionario.pessoasFisica.situacaoTrabalho" name="situacaoTrabalho">
+                            <mat-option *ngFor="let m of situacaoTrabalho" [value]="m">
+                                {{m.tipo}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="70%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.profissao" name="profissao"
+                            placeholder="Descrição da Profissão:">
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" fxFlexFill>
+                    <label fxFlexOffset="20px">R$: </label>
+                    <mat-form-field fxFlex="20%">
+                        <input matInput maxlength="200" name="rendaMensal" placeholder="Renda Mensal:"
+                            [(ngModel)]="funcionario.pessoasFisica.valorAluguel">
+                    </mat-form-field>
+                </div>
+
+                <mat-toolbar class="titulopartes">Documentos</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.cts" name="cts"
+                            placeholder="Carteira de Trabalho:">
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="30%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.serieCtps" name="serieCtps"
+                            placeholder="Número da Série:">
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.nis" name="nis"
+                            placeholder="Número do NIS:">
+                    </mat-form-field>
+                </div>
+
+                <mat-toolbar class="titulopartes">Não Trabalho</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                        <mat-label>Motivo de Não Trabalhar:</mat-label>
+                        <mat-select [(ngModel)]="funcionario.pessoasFisica.classificadorMotivoNaoTrab" name="classificadorMotivoNaoTrab">
+                            <mat-option *ngFor="let m of classificadorMotivoNaoTrab" [value]="m">
+                                {{m.descricao}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="70%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.motivoNaoTrab" name="motivoNaoTrab"
+                            placeholder="Outros:">
+                    </mat-form-field>
+                </div>
+
+            </form>
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
+                    [disabled]="formCadastroDadosProfissionais.invalid" matStepperNext>
+                    Próximo
+                </button>
+
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>
+
+        <!--  OUTRAS INFORMAçÕes -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutros">
+            <form #formCadastroOutros="ngForm">
                 <ng-template matStepLabel>OUTRAS INFORMAÇÕES</ng-template>
                 <mat-toolbar class="titulopartes">EM CONSTRUCAO</mat-toolbar>
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
@@ -371,7 +450,7 @@
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroEtapa2.invalid" matStepperNext>
+                    [disabled]="formCadastroOutros.invalid" matStepperNext>
                     Próximo
                 </button>
 
@@ -382,7 +461,7 @@
         </mat-step>
 
         <!-- ETAPA 4 -->
-        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEtapa4">
+        <!-- <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEtapa4">
             <form #formCadastroEtapa4="ngForm">
                 <ng-template matStepLabel>FINALIZANDO</ng-template>
                 <mat-toolbar class="titulopartes">EM CONSTRUCAO</mat-toolbar>
@@ -404,7 +483,7 @@
                     voltar
                 </button>
             </div>
-        </mat-step>
+        </mat-step> -->
 
     </mat-horizontal-stepper>
 </div>
