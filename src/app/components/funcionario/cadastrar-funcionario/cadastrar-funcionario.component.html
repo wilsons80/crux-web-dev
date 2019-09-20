@@ -379,10 +379,15 @@
                 </div>
 
                 <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" fxFlexFill>
-                    <label fxFlexOffset="20px">R$: </label>
-                    <mat-form-field fxFlex="20%">
-                        <input matInput maxlength="200" name="rendaMensal" placeholder="Renda Mensal:"
-                            [(ngModel)]="funcionario.pessoasFisica.valorAluguel">
+                    <mat-form-field fxFlexOffset="20px" fxFlex="68%">
+                        <input matInput [(ngModel)]="funcionario.pessoasFisica.nomeEmpresaTrabalho" name="nomeEmpresaTrabalho"
+                            placeholder="Nome da Empresa de Trabalho:">
+                    </mat-form-field>
+
+                    <label>R$: </label>
+                    <mat-form-field fxFlex="21%">
+                        <input matInput maxlength="200" name="valorRenda" placeholder="Renda Mensal:"
+                            [(ngModel)]="funcionario.pessoasFisica.valorRenda">
                     </mat-form-field>
                 </div>
 
@@ -410,7 +415,8 @@
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     <mat-form-field fxFlexOffset="20px" fxFlex="30%">
                         <mat-label>Motivo de Não Trabalhar:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.classificadorMotivoNaoTrab" name="classificadorMotivoNaoTrab">
+                        <mat-select [(ngModel)]="funcionario.pessoasFisica.classificadorMotivoNaoTrab"
+                            name="classificadorMotivoNaoTrab">
                             <mat-option *ngFor="let m of classificadorMotivoNaoTrab" [value]="m">
                                 {{m.descricao}}
                             </mat-option>
