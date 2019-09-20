@@ -1,3 +1,4 @@
+import { GrausInstrucao } from './../../../core/graus-instrucao';
 import { CondicoesMoradia } from './../../../core/condicoes-moradia';
 import { PessoaFisica } from './../../../core/pessoa-fisica';
 import { Funcionario } from './../../../core/funcionario';
@@ -28,8 +29,26 @@ export class CadastrarFuncionarioComponent implements OnInit {
     {tipo: 'DIVORCIADO'},
     {tipo: 'VIUVO'},
   ]
+ 
+  formaIngresso:any[] =[
+    {tipo: 'CRAS'},
+    {tipo: 'DEMANDA ESPONTÂNEA'},
+    {tipo: 'SOLICITAÇÃO JUDICIAL'},
+    {tipo: 'OUTRO'},
+  ]
+  
+  tipoEscola:any[] =[
+    {id: 'P' ,tipo: 'PÚBLICO'},
+    {id: 'R' ,tipo: 'PRIVADO'},
+  ]
+ 
+  nivelEscolaridade:any[] =[
+    {id: 'C' ,tipo: 'COMPLETO'},
+    {id: 'I' ,tipo: 'CURSANDO'},
+  ]
 
   condicoesMoradia:CondicoesMoradia[];
+  grausInstrucao:GrausInstrucao[]
 
   public maskCep = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
