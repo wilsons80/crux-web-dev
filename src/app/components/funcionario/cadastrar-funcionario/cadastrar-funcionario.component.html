@@ -186,21 +186,22 @@
                 <mat-toolbar class="titulopartes">Escolaridade</mat-toolbar>
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                        <input matInput maxlength="250" name="nome" placeholder="Descrição (Fundamental, Médio, Jardim, etc):"
+                        <input matInput maxlength="250" name="nome"
+                            placeholder="Descrição (Fundamental, Médio, Jardim, etc):"
                             [(ngModel)]="funcionario.pessoasFisica.nome">
                     </mat-form-field>
 
                     <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                            <mat-label>Nível de Escolaridade:</mat-label>
-                            <mat-select [(ngModel)]="funcionario.pessoasFisica.nivelEscolaridade" name="nivelEscolaridade">
-                                <mat-option *ngFor="let m of nivelEscolaridade" [value]="m.id">
-                                    {{m.tipo}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        
+                        <mat-label>Nível de Escolaridade:</mat-label>
+                        <mat-select [(ngModel)]="funcionario.pessoasFisica.nivelEscolaridade" name="nivelEscolaridade">
+                            <mat-option *ngFor="let m of nivelEscolaridade" [value]="m.id">
+                                {{m.tipo}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
                 </div>
-               
+
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     <mat-form-field fxFlex="45%" fxFlexOffset="20px">
                         <mat-label>Tipo de Escola:</mat-label>
@@ -210,10 +211,11 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    
+
                     <mat-form-field fxFlex="45%" fxFlexOffset="20px">
                         <mat-label>Forma de Ingresso:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.formaIngressoEntidade" name="formaIngressoEntidade">
+                        <mat-select [(ngModel)]="funcionario.pessoasFisica.formaIngressoEntidade"
+                            name="formaIngressoEntidade">
                             <mat-option *ngFor="let m of formaIngresso" [value]="m">
                                 {{m.tipo}}
                             </mat-option>
@@ -222,61 +224,61 @@
                 </div>
 
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                        <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                            <input matInput maxlength="250" name="regiaoEscola" placeholder="Região Administrativa:"
-                                [(ngModel)]="funcionario.pessoasFisica.regiaoEscola">
-                        </mat-form-field>
-                        <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                                <mat-label>Grau de Instrucao:</mat-label>
-                                <mat-select [(ngModel)]="funcionario.pessoasFisica.grausInstrucao" name="grausInstrucao">
-                                    <mat-option *ngFor="let m of grausInstrucao" [value]="m">
-                                        {{m}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                        
-                    </div>
-                
+                    <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+                        <input matInput maxlength="250" name="regiaoEscola" placeholder="Região Administrativa:"
+                            [(ngModel)]="funcionario.pessoasFisica.regiaoEscola">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+                        <mat-label>Grau de Instrucao:</mat-label>
+                        <mat-select [(ngModel)]="funcionario.pessoasFisica.grausInstrucao" name="grausInstrucao">
+                            <mat-option *ngFor="let m of grausInstrucao" [value]="m">
+                                {{m}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+
                 <!-- ETAPA 1 - CURSO -->
                 <mat-toolbar class="titulopartes">Curso</mat-toolbar>
-                <div fxLayout="row"  fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                        <mat-form-field fxFlexOffset="20px"  fxFlex="95%">
-                                <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.cursoEscola"
-                                    name="cursoEscola" placeholder="Nome do Curso:">
-                            </mat-form-field>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="95%">
+                        <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.cursoEscola"
+                            name="cursoEscola" placeholder="Nome do Curso:">
+                    </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                        <mat-form-field fxFlexOffset="20px" fxFlex="95%">
-                                <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.serieEscola"
-                                    name="serieEscola" placeholder="Série do Curso:">
-                            </mat-form-field>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="95%">
+                        <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.serieEscola"
+                            name="serieEscola" placeholder="Série do Curso:">
+                    </mat-form-field>
                 </div>
-                
+
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                        <mat-form-field fxFlexOffset="20px" fxFlex="95%">
-                                <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.periodoEscola"
-                                    name="periodoEscola" placeholder="Período do Curso:">
-                            </mat-form-field>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="95%">
+                        <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.periodoEscola"
+                            name="periodoEscola" placeholder="Período do Curso:">
+                    </mat-form-field>
                 </div>
-               
+
                 <!-- ETAPA 1 - FAMILIAR -->
                 <mat-toolbar class="titulopartes">FAMILIAR</mat-toolbar>
-                <div fxLayout="row"  fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                        <mat-form-field fxFlexOffset="20px"  fxFlex="95%">
-                                <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.cursoEscola"
-                                    name="cursoEscola" placeholder="Escola Frequentada pelo familiar:">
-                            </mat-form-field>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="95%">
+                        <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.cursoEscola"
+                            name="cursoEscola" placeholder="Escola Frequentada pelo familiar:">
+                    </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                        <mat-form-field fxFlexOffset="20px" fxFlex="95%">
-                                <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.serieEscola"
-                                    name="serieEscola" placeholder="Turno de Frequência:">
-                            </mat-form-field>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="95%">
+                        <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.serieEscola"
+                            name="serieEscola" placeholder="Turno de Frequência:">
+                    </mat-form-field>
                 </div>
-                
 
-               
-                
+
+
+
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
@@ -295,9 +297,50 @@
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEtapa2">
             <form #formCadastroEtapa2="ngForm">
                 <ng-template matStepLabel>DOCUMENTOS</ng-template>
-                <mat-toolbar class="titulopartes">Em construção</mat-toolbar>
+                <mat-toolbar class="titulopartes">Documentos</mat-toolbar>
 
-                EM CONSTRUÇÃO!!!!
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                        <input matInput  [(ngModel)]="funcionario.pessoasFisica.cpf"
+                            name="cpf" placeholder="CPF:"  [textMask]="{mask: mascaraCpf}">
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                        <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                            <input matInput  [(ngModel)]="funcionario.pessoasFisica.identidade"
+                                name="identidade" placeholder="Identidade:" >
+                        </mat-form-field>
+                        <mat-form-field  fxFlex="30%">
+                            <input matInput  [(ngModel)]="funcionario.pessoasFisica.orgaoCi"
+                                name="orgaoCi" placeholder="Órgão Expedidor:" >
+                        </mat-form-field>
+                        <mat-form-field fxFlex="5%">
+                                <mat-label>UF:</mat-label>
+                                <mat-select [(ngModel)]="funcionario.pessoasFisica.ufCi" name="ufCi">
+                                    <mat-option *ngFor="let m of ufs" [value]="m">
+                                        {{m.nome}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                </div>
+                
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                        <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                            <input matInput  [(ngModel)]="funcionario.pessoasFisica.tituloEleitor"
+                                name="tituloEleitor" placeholder="Titulo de Eleitor:" >
+                        </mat-form-field>
+                        <mat-form-field  fxFlex="30%">
+                            <input matInput  [(ngModel)]="funcionario.pessoasFisica.zonaTitulo"
+                                name="zonaTitulo" placeholder="Zona:" >
+                        </mat-form-field>
+                        
+                        <mat-form-field  fxFlex="30%">
+                            <input matInput  [(ngModel)]="funcionario.pessoasFisica.sessaoTitulo"
+                                name="sessaoTitulo" placeholder="Sessão:" >
+                        </mat-form-field>
+                        
+                </div>
 
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
