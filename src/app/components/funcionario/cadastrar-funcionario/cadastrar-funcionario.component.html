@@ -3,281 +3,29 @@
 <div class="painel-principal" style="padding: 10px;">
     <mat-horizontal-stepper #stepper style="background: transparent; padding: 10px">
 
-        <!-- ETAPA 1 - DADOS PESSOAIS -->
+        <!------------------ DADOS PESSOAIS ------------------------>
         <mat-step [stepControl]="formCadastroDadosPessoais">
             <form #formCadastroDadosPessoais="ngForm">
                 <ng-template matStepLabel>DADOS PESSOAIS</ng-template>
 
-                <!-- ETAPA 1 - DADOS INICIAIS -->
-                <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
+                <dados-pessoais [pessoaFisica]="funcionario.pessoasFisica"></dados-pessoais>
 
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-
-                    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
-                        <input matInput maxlength="250" name="nome" placeholder="Nome Completo:"
-                            [(ngModel)]="funcionario.pessoasFisica.nome">
-                    </mat-form-field>
-
+                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                    fxFlexFill>
+                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
+                        [disabled]="formCadastroDadosPessoais.invalid" matStepperNext>
+                        Próximo
+                    </button>
                 </div>
-
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-
-                    <mat-form-field fxFlex="5%" fxFlexOffset="20px">
-                        <mat-label>Sexo:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.sexo" name="sexo">
-                            <mat-option *ngFor="let m of sexo" [value]="m">
-                                {{m.tipo}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="29%">
-                        <input matInput maxlength="45" name="cor" placeholder="Cor:"
-                            [(ngModel)]="funcionario.pessoasFisica.cor">
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="20%">
-                        <input matInput name="dataNascimento" [matDatepicker]="dataNascimento"
-                            placeholder="Data de Nascimento:" [(ngModel)]="funcionario.pessoasFisica.dataNascimento">
-                        <mat-datepicker-toggle matSuffix [for]="dataNascimento"></mat-datepicker-toggle>
-                        <mat-datepicker #dataNascimento></mat-datepicker>
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="20%">
-                        <input matInput maxlength="200" name="cidadeNaturalidade" placeholder="Cidade de Nascimento:"
-                            [(ngModel)]="funcionario.pessoasFisica.cidadeNaturalidade">
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="5%">
-                        <mat-label>UF:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.ufNascimento" name="ufNascimento">
-                            <mat-option *ngFor="let m of ufs" [value]="m">
-                                {{m.nome}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-
-                <!-- ETAPA 1 - FILIAÇÃO -->
-                <mat-toolbar class="titulopartes">Filiação</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-
-                    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
-                        <input matInput maxlength="250" name="nomeMae" placeholder="Nome da Mãe:"
-                            [(ngModel)]="funcionario.pessoasFisica.nomeMae">
-                    </mat-form-field>
-
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-
-                    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
-                        <input matInput maxlength="250" name="nomePai" placeholder="Nome do Pai:"
-                            [(ngModel)]="funcionario.pessoasFisica.nomePai">
-                    </mat-form-field>
-
-                </div>
-
-                <!-- ETAPA 1 - ENDEREÇO -->
-                <mat-toolbar class="titulopartes">Endereço</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-                    <mat-form-field fxFlex="10%" fxFlexOffset="20px">
-                        <input type="text" matInput [(ngModel)]="funcionario.pessoasFisica.cep" name="cep"
-                            placeholder="CEP:" [textMask]="{mask: maskCep}" />
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="81%">
-                        <input matInput maxlength="200" name="endereco" placeholder="Endereço:"
-                            [(ngModel)]="funcionario.pessoasFisica.endereco">
-                    </mat-form-field>
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-
-                    <mat-form-field fxFlex="5%" fxFlexOffset="20px">
-                        <mat-label>UF:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.ufEndereco" name="ufEndereco">
-                            <mat-option *ngFor="let m of ufs" [value]="m">
-                                {{m.nome}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="42%">
-                        <input matInput maxlength="200" name="bairro" placeholder="Bairro:"
-                            [(ngModel)]="funcionario.pessoasFisica.bairro">
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="40%">
-                        <input matInput maxlength="200" name="pontoReferencia" placeholder="Ponto de Referência:"
-                            [(ngModel)]="funcionario.pessoasFisica.pontoReferencia">
-                    </mat-form-field>
-
-                </div>
-
-                <!-- ETAPA 1 - MORADIA -->
-                <mat-toolbar class="titulopartes">Moradia</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-                    <mat-form-field fxFlex="50%" fxFlexOffset="20px">
-                        <mat-label>Condição da Moradia:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.condicaoMoradia" name="condicaoMoradia">
-                            <mat-option *ngFor="let m of condicoesMoradia" [value]="m">
-                                {{m.descricao}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" fxFlexFill>
-                        <label>R$: </label>
-                        <mat-form-field fxFlex="30%">
-                            <input matInput maxlength="200" name="vlAluguel" placeholder="Valor do Aluguel:"
-                                [(ngModel)]="funcionario.pessoasFisica.valorAluguel">
-                        </mat-form-field>
-                    </div>
-
-                </div>
-
-
-                <!-- ETAPA 1 - CONTATO -->
-                <mat-toolbar class="titulopartes">Contato</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="30px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.telefoneResidencial"
-                            name="telefoneResidencial" placeholder="Telefone Residencial:"
-                            [textMask]="{mask: maskPhone}">
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.telefoneComercial"
-                            name="telefoneComercial" placeholder="Telefone Comercial:" [textMask]="{mask: maskPhone}">
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.celular" name="celular"
-                            placeholder="Celular:" [textMask]="{mask: maskPhone}">
-                    </mat-form-field>
-                </div>
-
-                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="50%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.email" name="email" placeholder="Email:">
-                    </mat-form-field>
-                    <mat-checkbox>Autorizo o recebimento de emails.</mat-checkbox>
-
-                </div>
-
             </form>
-
-
-            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroDadosPessoais.invalid" matStepperNext>
-                    Próximo
-                </button>
-
-            </div>
-
         </mat-step>
 
-        <!-- ------------------ ETAPA 2 -- Escolaridade ------------------------ -->
+        <!-- ------------------ ESCOLARIDADE ------------------------ -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
             <form #formCadastroEscolaridade="ngForm">
                 <ng-template matStepLabel>ESCOLARIDADE</ng-template>
-                <mat-toolbar class="titulopartes">Escolaridade</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                        <input matInput maxlength="250" name="nome"
-                            placeholder="Descrição (Fundamental, Médio, Jardim, etc):"
-                            [(ngModel)]="funcionario.pessoasFisica.nome">
-                    </mat-form-field>
 
-                    <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                        <mat-label>Nível de Escolaridade:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.nivelEscolaridade" name="nivelEscolaridade">
-                            <mat-option *ngFor="let m of nivelEscolaridade" [value]="m.id">
-                                {{m.tipo}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                        <mat-label>Tipo de Escola:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.tipoEscola" name="tipoEscola">
-                            <mat-option *ngFor="let m of tipoEscola" [value]="m">
-                                {{m.tipo}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                        <mat-label>Forma de Ingresso:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.formaIngressoEntidade"
-                            name="formaIngressoEntidade">
-                            <mat-option *ngFor="let m of formaIngresso" [value]="m">
-                                {{m.tipo}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                        <input matInput maxlength="250" name="regiaoEscola" placeholder="Região Administrativa:"
-                            [(ngModel)]="funcionario.pessoasFisica.regiaoEscola">
-                    </mat-form-field>
-                    <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                        <mat-label>Grau de Instrucao:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.grausInstrucao" name="grausInstrucao">
-                            <mat-option *ngFor="let m of grausInstrucao" [value]="m">
-                                {{m}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-                </div>
-
-                <!-- ETAPA 1 - CURSO -->
-                <mat-toolbar class="titulopartes">Curso</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="95%">
-                        <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.cursoEscola"
-                            name="cursoEscola" placeholder="Nome do Curso:">
-                    </mat-form-field>
-                </div>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="95%">
-                        <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.serieEscola"
-                            name="serieEscola" placeholder="Série do Curso:">
-                    </mat-form-field>
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="95%">
-                        <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.periodoEscola"
-                            name="periodoEscola" placeholder="Período do Curso:">
-                    </mat-form-field>
-                </div>
-
-                <!-- ETAPA 1 - FAMILIAR -->
-                <mat-toolbar class="titulopartes">FAMILIAR</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="95%">
-                        <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.cursoEscola"
-                            name="cursoEscola" placeholder="Escola Frequentada pelo familiar:">
-                    </mat-form-field>
-                </div>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="95%">
-                        <input matInput maxlength="200" [(ngModel)]="funcionario.pessoasFisica.serieEscola"
-                            name="serieEscola" placeholder="Turno de Frequência:">
-                    </mat-form-field>
-                </div>
-
-
-
+                <escolaridade [pessoaFisica]="funcionario.pessoasFisica"></escolaridade>
 
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
@@ -286,70 +34,27 @@
                     [disabled]="formCadastroEscolaridade.invalid" matStepperNext>
                     Próximo
                 </button>
-
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
                     voltar
                 </button>
             </div>
         </mat-step>
 
-        <!-- ------------------ ABA DOCUMENTOS ------------------------ -->
+        <!-- ------------------ DOCUMENTOS ------------------------ -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDocumentos">
             <form #formCadastroDocumentos="ngForm">
                 <ng-template matStepLabel>DOCUMENTOS</ng-template>
-                <mat-toolbar class="titulopartes">Documentos</mat-toolbar>
 
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.cpf" name="cpf" placeholder="CPF:"
-                            [textMask]="{mask: mascaraCpf}">
-                    </mat-form-field>
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.identidade" name="identidade"
-                            placeholder="Identidade:">
-                    </mat-form-field>
-                    <mat-form-field fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.orgaoCi" name="orgaoCi"
-                            placeholder="Órgão Expedidor:">
-                    </mat-form-field>
-                    <mat-form-field fxFlex="5%">
-                        <mat-label>UF:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.ufCi" name="ufCi">
-                            <mat-option *ngFor="let m of ufs" [value]="m">
-                                {{m.nome}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.tituloEleitor" name="tituloEleitor"
-                            placeholder="Titulo de Eleitor:">
-                    </mat-form-field>
-                    <mat-form-field fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.zonaTitulo" name="zonaTitulo"
-                            placeholder="Zona:">
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.sessaoTitulo" name="sessaoTitulo"
-                            placeholder="Sessão:">
-                    </mat-form-field>
-
-                </div>
+                <documentos [pessoaFisica]="funcionario.pessoasFisica"></documentos>
 
             </form>
+
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
                     [disabled]="formCadastroDocumentos.invalid" matStepperNext>
                     Próximo
                 </button>
-
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
                     [disabled]="formCadastroDocumentos.invalid" matStepperPrevious>
                     voltar
@@ -357,76 +62,12 @@
             </div>
         </mat-step>
 
-        <!--  DADOS PROFISSIONAIS -->
+        <!------------------ DADOS PROFISSIONAIS ------------------------>
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDadosProfissionais">
             <form #formCadastroDadosProfissionais="ngForm">
                 <ng-template matStepLabel>DADOS PROFISSIONAIS</ng-template>
 
-                <mat-toolbar class="titulopartes">Trabalho</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="20%">
-                        <mat-label>Situação:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.situacaoTrabalho" name="situacaoTrabalho">
-                            <mat-option *ngFor="let m of situacaoTrabalho" [value]="m">
-                                {{m.tipo}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field fxFlex="70%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.profissao" name="profissao"
-                            placeholder="Descrição da Profissão:">
-                    </mat-form-field>
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="68%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.nomeEmpresaTrabalho" name="nomeEmpresaTrabalho"
-                            placeholder="Nome da Empresa de Trabalho:">
-                    </mat-form-field>
-
-                    <label>R$: </label>
-                    <mat-form-field fxFlex="21%">
-                        <input matInput maxlength="200" name="valorRenda" placeholder="Renda Mensal:"
-                            [(ngModel)]="funcionario.pessoasFisica.valorRenda">
-                    </mat-form-field>
-                </div>
-
-                <mat-toolbar class="titulopartes">Documentos</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.cts" name="cts"
-                            placeholder="Carteira de Trabalho:">
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.serieCtps" name="serieCtps"
-                            placeholder="Número da Série:">
-                    </mat-form-field>
-                </div>
-
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.nis" name="nis"
-                            placeholder="Número do NIS:">
-                    </mat-form-field>
-                </div>
-
-                <mat-toolbar class="titulopartes">Não Trabalho</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                        <mat-label>Motivo de Não Trabalhar:</mat-label>
-                        <mat-select [(ngModel)]="funcionario.pessoasFisica.classificadorMotivoNaoTrab"
-                            name="classificadorMotivoNaoTrab">
-                            <mat-option *ngFor="let m of classificadorMotivoNaoTrab" [value]="m">
-                                {{m.descricao}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field fxFlex="70%">
-                        <input matInput [(ngModel)]="funcionario.pessoasFisica.motivoNaoTrab" name="motivoNaoTrab"
-                            placeholder="Outros:">
-                    </mat-form-field>
-                </div>
+                <dados-profissionais [pessoaFisica]="funcionario.pessoasFisica"></dados-profissionais>
 
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
@@ -435,7 +76,6 @@
                     [disabled]="formCadastroDadosProfissionais.invalid" matStepperNext>
                     Próximo
                 </button>
-
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
                     voltar
                 </button>
@@ -446,12 +86,9 @@
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutros">
             <form #formCadastroOutros="ngForm">
                 <ng-template matStepLabel>OUTRAS INFORMAÇÕES</ng-template>
-                <mat-toolbar class="titulopartes">EM CONSTRUCAO</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-                    EM CONSTRUCAO
+                <outras-informacoes [pessoaFisica]="funcionario.pessoasFisica"></outras-informacoes>
 
-                </div>
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
@@ -459,37 +96,13 @@
                     [disabled]="formCadastroOutros.invalid" matStepperNext>
                     Próximo
                 </button>
-
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
                     voltar
                 </button>
             </div>
         </mat-step>
 
-        <!-- ETAPA 4 -->
-        <!-- <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEtapa4">
-            <form #formCadastroEtapa4="ngForm">
-                <ng-template matStepLabel>FINALIZANDO</ng-template>
-                <mat-toolbar class="titulopartes">EM CONSTRUCAO</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-                    EM CONSTRUCAO
-
-                </div>
-            </form>
-            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroEtapa2.invalid" matStepperNext>
-                    Cadastrar
-                </button>
-
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroEtapa2.invalid" matStepperPrevious>
-                    voltar
-                </button>
-            </div>
-        </mat-step> -->
 
     </mat-horizontal-stepper>
 </div>

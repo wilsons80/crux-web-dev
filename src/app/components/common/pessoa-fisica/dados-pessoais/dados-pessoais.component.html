@@ -1,0 +1,150 @@
+<!-- ETAPA 1 - DADOS INICIAIS -->
+<mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
+
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+        <input matInput maxlength="250" name="nome" placeholder="Nome Completo:" [(ngModel)]="pessoaFisica.nome">
+    </mat-form-field>
+
+</div>
+
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+    <mat-form-field fxFlex="5%" fxFlexOffset="20px">
+        <mat-label>Sexo:</mat-label>
+        <mat-select [(ngModel)]="pessoaFisica.sexo" name="sexo">
+            <mat-option *ngFor="let m of sexo" [value]="m">
+                {{m.tipo}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="29%">
+        <input matInput maxlength="45" name="cor" placeholder="Cor:" [(ngModel)]="pessoaFisica.cor">
+    </mat-form-field>
+
+    <mat-form-field fxFlex="20%">
+        <input matInput name="dataNascimento" [matDatepicker]="dataNascimento" placeholder="Data de Nascimento:"
+            [(ngModel)]="pessoaFisica.dataNascimento">
+        <mat-datepicker-toggle matSuffix [for]="dataNascimento"></mat-datepicker-toggle>
+        <mat-datepicker #dataNascimento></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="20%">
+        <input matInput maxlength="200" name="cidadeNaturalidade" placeholder="Cidade de Nascimento:"
+            [(ngModel)]="pessoaFisica.cidadeNaturalidade">
+    </mat-form-field>
+
+    <mat-form-field fxFlex="5%">
+        <mat-label>UF:</mat-label>
+        <mat-select [(ngModel)]="pessoaFisica.ufNascimento" name="ufNascimento">
+            <mat-option *ngFor="let m of ufs" [value]="m">
+                {{m.nome}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<!-- ETAPA 1 - FILIAÇÃO -->
+<mat-toolbar class="titulopartes">Filiação</mat-toolbar>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+        <input matInput maxlength="250" name="nomeMae" placeholder="Nome da Mãe:" [(ngModel)]="pessoaFisica.nomeMae">
+    </mat-form-field>
+
+</div>
+
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+        <input matInput maxlength="250" name="nomePai" placeholder="Nome do Pai:" [(ngModel)]="pessoaFisica.nomePai">
+    </mat-form-field>
+
+</div>
+
+<!-- ETAPA 1 - ENDEREÇO -->
+<mat-toolbar class="titulopartes">Endereço</mat-toolbar>
+<div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
+    <mat-form-field fxFlex="10%" fxFlexOffset="20px">
+        <input type="text" matInput [(ngModel)]="pessoaFisica.cep" name="cep" placeholder="CEP:"
+            [textMask]="{mask: maskCep}" />
+    </mat-form-field>
+
+    <mat-form-field fxFlex="81%">
+        <input matInput maxlength="200" name="endereco" placeholder="Endereço:" [(ngModel)]="pessoaFisica.endereco">
+    </mat-form-field>
+</div>
+
+<div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
+
+    <mat-form-field fxFlex="5%" fxFlexOffset="20px">
+        <mat-label>UF:</mat-label>
+        <mat-select [(ngModel)]="pessoaFisica.ufEndereco" name="ufEndereco">
+            <mat-option *ngFor="let m of ufs" [value]="m">
+                {{m.nome}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="42%">
+        <input matInput maxlength="200" name="bairro" placeholder="Bairro:" [(ngModel)]="pessoaFisica.bairro">
+    </mat-form-field>
+
+    <mat-form-field fxFlex="40%">
+        <input matInput maxlength="200" name="pontoReferencia" placeholder="Ponto de Referência:"
+            [(ngModel)]="pessoaFisica.pontoReferencia">
+    </mat-form-field>
+
+</div>
+
+<!-- ETAPA 1 - MORADIA -->
+<mat-toolbar class="titulopartes">Moradia</mat-toolbar>
+<div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
+    <mat-form-field fxFlex="50%" fxFlexOffset="20px">
+        <mat-label>Condição da Moradia:</mat-label>
+        <mat-select [(ngModel)]="pessoaFisica.condicaoMoradia" name="condicaoMoradia">
+            <mat-option *ngFor="let m of condicoesMoradia" [value]="m">
+                {{m.descricao}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" fxFlexFill>
+        <label>R$: </label>
+        <mat-form-field fxFlex="30%">
+            <input matInput maxlength="200" name="vlAluguel" placeholder="Valor do Aluguel:"
+                [(ngModel)]="pessoaFisica.valorAluguel">
+        </mat-form-field>
+    </div>
+
+</div>
+
+
+<!-- ETAPA 1 - CONTATO -->
+<mat-toolbar class="titulopartes">Contato</mat-toolbar>
+<div fxLayout="row" fxLayoutGap="30px" fxFlexFill>
+    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+        <input matInput [(ngModel)]="pessoaFisica.telefoneResidencial" name="telefoneResidencial"
+            placeholder="Telefone Residencial:" [textMask]="{mask: maskPhone}">
+    </mat-form-field>
+
+    <mat-form-field fxFlex="30%">
+        <input matInput [(ngModel)]="pessoaFisica.telefoneComercial" name="telefoneComercial"
+            placeholder="Telefone Comercial:" [textMask]="{mask: maskPhone}">
+    </mat-form-field>
+
+    <mat-form-field fxFlex="30%">
+        <input matInput [(ngModel)]="pessoaFisica.celular" name="celular" placeholder="Celular:"
+            [textMask]="{mask: maskPhone}">
+    </mat-form-field>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" fxFlexFill>
+    <mat-form-field fxFlexOffset="20px" fxFlex="50%">
+        <input matInput [(ngModel)]="pessoaFisica.email" name="email" placeholder="Email:">
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="pessoaFisica.autorizaEmail">Autorizo o recebimento de emails.</mat-checkbox>
+
+</div>
+

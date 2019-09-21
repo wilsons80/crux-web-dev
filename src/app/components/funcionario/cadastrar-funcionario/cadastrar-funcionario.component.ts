@@ -13,6 +13,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   pessoaFisica:PessoaFisica = new PessoaFisica();
   funcionario:Funcionario = new Funcionario();
+  
   ufs:any[] =[
     {nome: 'DF'}
   ]
@@ -76,7 +77,6 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   public maskCep = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-  public maskCNJP = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/];
   public mascaraCpf = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/,];
 
   constructor() { 
