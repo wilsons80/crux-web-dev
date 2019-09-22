@@ -10,6 +10,7 @@ import { EscolaridadeComponent } from './escolaridade/escolaridade.component';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { DadosProfissionaisComponent } from './dados-profissionais/dados-profissionais.component';
 import { OutrasInformacoesComponent } from './outras-informacoes/outras-informacoes.component';
+import { FuncionalComponent } from './funcional/funcional.component';
 
 
 
@@ -19,7 +20,7 @@ import { OutrasInformacoesComponent } from './outras-informacoes/outras-informac
     EscolaridadeComponent, 
     DocumentosComponent, 
     DadosProfissionaisComponent, 
-    OutrasInformacoesComponent],
+    OutrasInformacoesComponent, FuncionalComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -47,7 +48,8 @@ import { OutrasInformacoesComponent } from './outras-informacoes/outras-informac
     EscolaridadeComponent, 
     DocumentosComponent, 
     DadosProfissionaisComponent,
-    OutrasInformacoesComponent
+    OutrasInformacoesComponent,
+    FuncionalComponent
   ]
 })
 export class PessoaFisicaModule { }
