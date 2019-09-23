@@ -13,7 +13,7 @@
                 <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                     fxFlexFill>
                     <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                        [disabled]="formCadastroDadosPessoais.invalid" matStepperNext>
+                         matStepperNext>
                         Próximo
                     </button>
                 </div>
@@ -31,7 +31,7 @@
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroEscolaridade.invalid" matStepperNext>
+                    matStepperNext>
                     Próximo
                 </button>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
@@ -52,11 +52,11 @@
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroDocumentos.invalid" matStepperNext>
+                    matStepperNext>
                     Próximo
                 </button>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroDocumentos.invalid" matStepperPrevious>
+                    matStepperPrevious>
                     voltar
                 </button>
             </div>
@@ -73,7 +73,7 @@
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroDadosProfissionais.invalid" matStepperNext>
+                    matStepperNext>
                     Próximo
                 </button>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
@@ -83,8 +83,8 @@
         </mat-step>
 
         <!--  FUNCIONAL -->
-        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutros">
-            <form #formCadastroOutros="ngForm">
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroFuncional">
+            <form #formCadastroFuncional="ngForm">
                 <ng-template matStepLabel>FUNCIONAL</ng-template>
 
                 <funcional [funcionario]="funcionario"></funcional>
@@ -93,7 +93,7 @@
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroOutros.invalid" matStepperNext>
+                    matStepperNext>
                     Próximo
                 </button>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
@@ -113,16 +113,15 @@
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                    [disabled]="formCadastroOutros.invalid" matStepperNext>
-                    Próximo
+                    [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid || 
+                                formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid ||  formCadastroOutros.invalid"  
+                    matStepperNext>
+                    Cadastrar
                 </button>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
                     voltar
                 </button>
             </div>
         </mat-step>
-
-
-
     </mat-horizontal-stepper>
 </div>
