@@ -1,3 +1,4 @@
+import { CondicoesMoradiaService } from './../../../../services/condicoes-moradia/condicoes-moradia.service';
 import { PessoaFisica } from './../../../../core/pessoa-fisica';
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
@@ -38,9 +39,14 @@ export class DadosPessoaisComponent implements OnInit {
   ]
 
   
-  constructor() { }
+  constructor(
+    private condicoesMoradiaService:CondicoesMoradiaService
+  ) { }
 
   ngOnInit() {
+    this.condicoesMoradiaService.getAll().subscribe((condicoesMoradia:CondicoesMoradia[])=> {
+      this.condicoesMoradia = condicoesMoradia;
+    })
   }
 
 }

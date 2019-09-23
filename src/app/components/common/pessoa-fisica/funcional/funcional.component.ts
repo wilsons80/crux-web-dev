@@ -1,3 +1,5 @@
+import { CargosService } from './../../../../services/cargos/cargos.service';
+import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { ConclusaoParecer } from './../../../../core/conclusao-parecer';
 import { TipoFuncionario } from './../../../../core/tipo-funcionario';
 import { Funcionario } from 'src/app/core/funcionario';
@@ -5,6 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { ParecerEntrevistador } from 'src/app/core/parecer-entrevistador';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { Unidade } from 'src/app/core/unidade';
+import { Cargo } from 'src/app/core/cargo';
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 
 @Component({
   selector: 'funcional',
@@ -41,29 +46,30 @@ export class FuncionalComponent implements OnInit {
     {id: ConclusaoParecer.NAO_CONTINUAR, descricao: 'NÃO DAR CONTINUIDADE AO PROCESSO SELETIVO'},
   ]
 
-  // (Tipo =  D = CANDIDATO A VAGA DE FUNCIONÁRIO): { S = Dar continuidade ao processo seletivo; n = Não dar continuidade ao processo seletivo}	12	13
   funcionarios: Funcionario[];
-
+  unidades: Unidade[];
+  cargos: Cargo[];
   
-  constructor() { }
+  constructor(
+    private funcionarioService:FuncionarioService,
+    private unidadeService:UnidadeService,
+    private cargosService:CargosService
+    
+    ) { }
 
   ngOnInit() {
+    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[])=> {
+      this.funcionarios = funcionarios;
+    });
+    
+    this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: Unidade[])=> {
+      this.unidades = unidades;
+    });
+    
+    this.cargosService.getAll().subscribe((cargos: Cargo[])=> {
+      this.cargos = cargos;
+    });
+
   }
 
 }
-
-
-// matricula:string;
-// 	dataAdmissao:Date;
-// 	dataDemissao:Date;
-// 	tipoFuncionario:TipoFuncionario;
-// 	salarioPretendido:number;
-// 	cargo:Cargo;
-//     pessoasFisica:PessoaFisica;
-//     unidade:Unidade;
-// 	dtHrEntrevista:Date;
-//     parecerEntrevistador:ParecerEntrevistador;
-// 	descricaoParecerEntrevistador:string;
-// 	conclusaoParecer:ConclusaoParecer;
-// 	funcionarioEntrevistador:Funcionario;
-// 	empresaFuncionario:Empresa; 
