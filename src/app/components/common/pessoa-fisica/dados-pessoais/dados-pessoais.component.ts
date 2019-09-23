@@ -1,11 +1,13 @@
 import { PessoaFisica } from './../../../../core/pessoa-fisica';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, forwardRef } from '@angular/core';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
+import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
 
 @Component({
   selector: 'dados-pessoais',
   templateUrl: './dados-pessoais.component.html',
-  styleUrls: ['./dados-pessoais.component.css']
+  styleUrls: ['./dados-pessoais.component.css'],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class DadosPessoaisComponent implements OnInit {
 

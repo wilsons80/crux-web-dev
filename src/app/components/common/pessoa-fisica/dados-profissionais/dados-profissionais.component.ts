@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'dados-profissionais',
   templateUrl: './dados-profissionais.component.html',
-  styleUrls: ['./dados-profissionais.component.css']
+  styleUrls: ['./dados-profissionais.component.css'],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class DadosProfissionaisComponent implements OnInit {
 

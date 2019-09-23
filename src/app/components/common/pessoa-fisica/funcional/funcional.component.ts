@@ -4,11 +4,13 @@ import { Funcionario } from 'src/app/core/funcionario';
 import { Component, OnInit, Input } from '@angular/core';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { ParecerEntrevistador } from 'src/app/core/parecer-entrevistador';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'funcional',
   templateUrl: './funcional.component.html',
-  styleUrls: ['./funcional.component.css']
+  styleUrls: ['./funcional.component.css'],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class FuncionalComponent implements OnInit {
 

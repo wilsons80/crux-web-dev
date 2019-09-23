@@ -1,11 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'escolaridade',
   templateUrl: './escolaridade.component.html',
-  styleUrls: ['./escolaridade.component.css']
+  styleUrls: ['./escolaridade.component.css'],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class EscolaridadeComponent implements OnInit {
 
