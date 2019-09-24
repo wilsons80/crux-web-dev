@@ -42,7 +42,7 @@ export class ToolBarPrincipalComponent implements OnInit {
   }
 
   menuPrincipalToggle() {
-    this.menuPrincipalService.expandido = !this.menuPrincipalService.expandido
+    this.menuPrincipalService.expandido = !this.menuPrincipalService.expandido;
     // this.menuPrincipalService.alternar();
   }
 
