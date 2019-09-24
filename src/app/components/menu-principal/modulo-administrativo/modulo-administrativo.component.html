@@ -1,15 +1,15 @@
 <a mat-list-item (click)="toggle()">
-    <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': _sidenavService.linkText == true }" >
         <div fxLayout="row" fxLayoutAlign="start stretch">
             <mat-icon>supervisor_account</mat-icon>
-            <span class="nav-caption">Administrativo</span>
+            <span class="nav-caption" [@animateText]="_sidenavService.linkText ? 'show' : 'hide'">Administrativo </span>
         </div>
         <div fxLayout="row" fxLayoutAlign="start stretch">
-            <mat-icon style="padding-top: 2px">{{getIcone()}}</mat-icon>
+            <mat-icon [@animateText]="_sidenavService.linkText ? 'show' : 'hide'" style="padding-top: 2px">{{getIcone()}}</mat-icon>
         </div>
     </div>
 </a>
-<mat-nav-list style="width: 260px">
+<mat-nav-list [ngClass]="{'expandido': _sidenavService.linkText == true }">
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
        

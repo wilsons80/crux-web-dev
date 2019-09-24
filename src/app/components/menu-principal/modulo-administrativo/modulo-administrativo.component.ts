@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { SidenavService } from 'src/app/services/sidenav.service';
+import { animateText } from 'src/app/animations/animations';
 
 @Component({
   selector: 'modulo-administrativo',
@@ -16,15 +18,17 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         opacity: 1
       })),
       transition('*=>show', animate('500ms')),
-    ])
+    ]), animateText
   ]
 })
 export class ModuloAdministrativoComponent implements OnInit {
 
   currentState = "hidden"
   isMostrarSubMenu: boolean = false;
+
   
-  constructor() { }
+  
+  constructor(public _sidenavService: SidenavService) { }
 
   ngOnInit() {
   }

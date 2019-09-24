@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { MenuConfiguracoesComponent } from './menu-configuracoes/menu-configuracoes.component';
 import { MenuPrincipalComponent } from './menu-principal.component';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -31,7 +32,8 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
     MatDividerModule,
     MatListModule,
     RouterModule,
-    MatTooltipModule
+    MatTooltipModule,
+    BrowserAnimationsModule
 
   ],
   exports: [MenuPrincipalComponent]

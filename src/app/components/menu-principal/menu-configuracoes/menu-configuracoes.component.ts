@@ -1,5 +1,7 @@
+import { animateText } from './../../../animations/animations';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   selector: 'menu-configuracoes',
@@ -16,13 +18,13 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         opacity: 1
       })),
       transition('*=>show', animate('500ms')),
-    ])
+    ]), animateText
   ]
 })
 export class MenuConfiguracoesComponent implements OnInit {
 
   currentState = "hidden"
-  constructor() { }
+  constructor(public _sidenavService: SidenavService) { }
 
   isMostrarSubMenu: boolean = false;
 

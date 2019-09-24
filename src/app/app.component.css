@@ -16,3 +16,9 @@
    justify-content: center;
  }
 
+
+ .main_content {
+  width:100%; 
+  height: calc(100vh - 5px); 
+  background:white;
+}

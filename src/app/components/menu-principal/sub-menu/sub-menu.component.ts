@@ -1,11 +1,14 @@
+import { animateText } from 'src/app/animations/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   selector: 'sub-menu',
   templateUrl: './sub-menu.component.html',
-  styleUrls: ['./sub-menu.component.css']
+  styleUrls: ['./sub-menu.component.css'],
+  animations:[animateText]
 })
 export class SubMenuComponent implements OnInit {
 
@@ -15,6 +18,7 @@ export class SubMenuComponent implements OnInit {
 
   constructor(
     private menuPrincipalService: MenuPrincipalService,
+    public _sidenavService: SidenavService
   ) { }
 
   ngOnInit() {

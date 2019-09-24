@@ -10,6 +10,7 @@ import { AcessoUnidade } from './../../core/acesso-unidade';
 import { LogoutService } from './../../services/logout/logout.service';
 import { MenuService } from './../../services/menu/menu.service';
 import { MenuPrincipalService } from './../../services/menuPrincipal/menu-principal.service';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   selector: 'tool-bar-principal',
@@ -19,7 +20,9 @@ import { MenuPrincipalService } from './../../services/menuPrincipal/menu-princi
 export class ToolBarPrincipalComponent implements OnInit {
 
   mostrarMenu = false;
-  unidadeSelecionada: any[]
+  unidadeSelecionada: any[];
+  public sideNavState: boolean = false;
+  public linkText: boolean = false;
 
   constructor(
     private authGuard: AuthGuard,
@@ -29,8 +32,7 @@ export class ToolBarPrincipalComponent implements OnInit {
     private logoutService: LogoutService,
     public toolbarPrincipalService: ToolbarPrincipalService,
     private menuService: MenuService,
-    private location: Location
-
+    private location: Location,
   ) { }
 
   ngOnInit(): void {

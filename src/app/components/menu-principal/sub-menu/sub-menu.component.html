@@ -1,8 +1,8 @@
-<a mat-list-item (click)="fecharMenu()" [routerLink]="getRouterLink()" routerLinkActive="router-link-active" class="submenu">
-    <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
+<a mat-list-item (click)="fecharMenu()" [routerLink]="getRouterLink()" routerLinkActive="router-link-active" >
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': _sidenavService.linkText == true }">
         <div fxLayout="row" fxLayoutAlign="start stretch">
             <mat-icon>{{icone}}</mat-icon>
-            <span class="nav-caption">{{titulo}}</span>
+            <span class="nav-caption" [@animateText]="_sidenavService.linkText ? 'show' : 'hide'">{{titulo}} </span>
         </div>
     </div>
 </a>
