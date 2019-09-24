@@ -12,6 +12,7 @@ export class SubMenuComponent implements OnInit {
   @Input() rota: string
   @Input() icone: string
   @Input() titulo: string
+  @Input() toolTip: string
 
   constructor(
     public menuPrincipalService: MenuPrincipalService,

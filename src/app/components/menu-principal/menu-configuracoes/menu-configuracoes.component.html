@@ -1,6 +1,6 @@
 <a mat-list-item (click)="toggle()">
     <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
-        <div fxLayout="row" fxLayoutAlign="start stretch">
+        <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="Configurações">
             <mat-icon>settings</mat-icon>
             <span *ngIf="menuPrincipalService.expandido" class="nav-caption">Configurações</span>
         </div>
@@ -14,10 +14,10 @@
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
         <!-- ACESSO -->
-        <sub-menu icone="lock" titulo="Acesso" rota="acesso"></sub-menu>
+        <sub-menu icone="lock" titulo="Acesso" rota="acesso" toolTip="Acesso"></sub-menu>
 
         <!-- ALTERAR SENHA -->
-        <sub-menu icone="cached" titulo="Alterar Senha" rota="novasenha"></sub-menu>
+        <sub-menu icone="cached" titulo="Alterar Senha" rota="novasenha" toolTip="Alterar Senha"></sub-menu>
 
 
     </div>

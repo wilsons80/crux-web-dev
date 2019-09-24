@@ -1,6 +1,6 @@
 <a mat-list-item (click)="toggle()">
     <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
-        <div fxLayout="row" fxLayoutAlign="start stretch">
+        <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="Módulo Pegagógico">
             <mat-icon>local_library</mat-icon>
             <span *ngIf="menuPrincipalService.expandido" class="nav-caption">Pedagógico</span>
         </div>
@@ -15,7 +15,7 @@
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
         <!-- ATIVIDADE -->
-        <sub-menu icone="chrome_reader_mode" titulo="Atividade" rota="atividade"></sub-menu>
+        <sub-menu icone="chrome_reader_mode" titulo="Atividade" rota="atividade" toolTip="Atividade"></sub-menu>
 
 
     </div>
