@@ -2,10 +2,10 @@
     <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
         <div fxLayout="row" fxLayoutAlign="start stretch">
             <mat-icon>local_library</mat-icon>
-            <span *ngIf="menuPrincipalService.expadindo" class="nav-caption">Pedagógico</span>
+            <span *ngIf="menuPrincipalService.expandido" class="nav-caption">Pedagógico</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="start stretch">
-            <mat-icon *ngIf="menuPrincipalService.expadindo" style="padding-top: 2px">{{getIcone()}}</mat-icon>
+            <mat-icon *ngIf="menuPrincipalService.expandido" style="padding-top: 2px">{{getIcone()}}</mat-icon>
         </div>
     </div>
 </a>
@@ -13,7 +13,7 @@
 <mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
-       
+
         <!-- ATIVIDADE -->
         <sub-menu icone="chrome_reader_mode" titulo="Atividade" rota="atividade"></sub-menu>
 

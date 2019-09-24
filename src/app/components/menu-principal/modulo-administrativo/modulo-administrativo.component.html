@@ -2,17 +2,17 @@
     <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
         <div fxLayout="row" fxLayoutAlign="start stretch">
             <mat-icon>supervisor_account</mat-icon>
-            <span *ngIf="menuPrincipalService.expadindo"  class="nav-caption">Administrativo</span>
+            <span *ngIf="menuPrincipalService.expandido"  class="nav-caption">Administrativo</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="start stretch">
-            <mat-icon *ngIf="menuPrincipalService.expadindo" style="padding-top: 2px">{{getIcone()}}</mat-icon>
+            <mat-icon *ngIf="menuPrincipalService.expandido" style="padding-top: 2px">{{getIcone()}}</mat-icon>
         </div>
     </div>
 </a>
 <mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
-       
+
         <!-- DEPARTAMENTO -->
         <sub-menu icone="business" titulo="Departamento" rota="departamento"></sub-menu>
 
