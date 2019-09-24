@@ -1,10 +1,10 @@
 <mat-toolbar class="subtitulo">Cadastrar Departamento</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
-    
-    
+
+
     <form #formCadastroDepartamento="ngForm" >
-            
+
         <!-- DADOS INICIAIS -->
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
@@ -13,7 +13,7 @@
                </mat-form-field>
 
                <mat-form-field fxFlex= "72%"  >
-                    <input matInput maxlength="100"  name="nmDepartamento" placeholder="Nome do Departamento:" [(ngModel)]="departamento.nmDepartamento" required> 
+                    <input matInput maxlength="100"  name="nmDepartamento" placeholder="Nome do Departamento:" [(ngModel)]="departamento.nmDepartamento" required>
                </mat-form-field>
         </div>
 
@@ -21,8 +21,8 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                             <mat-form-field fxFlexOffset="20px" fxFlex= "45%" >
                                     <mat-label>Unidade:</mat-label>
-                                    <mat-select [(ngModel)]="departamento.unidade" name="unidade" required>
-                                        <mat-option *ngFor="let u of unidades" [value]="u" >
+                                    <mat-select [(ngModel)]="departamento.unidade.idUnidade" name="unidade" required>
+                                        <mat-option *ngFor="let u of unidades" [value]="u.idUnidade" >
                                           {{u.nomeUnidade}}
                                         </mat-option>
                                     </mat-select>
@@ -30,8 +30,8 @@
 
                                 <mat-form-field fxFlex= "46%" fxFlexOffset="20px">
                                         <mat-label>Departamento Superior: </mat-label>
-                                        <mat-select name="departamentoSuperior" [(ngModel)]="departamento.departamentoSuperior" [disabled]="!departamento.unidade">
-                                            <mat-option *ngFor="let d of departamentos" [value]="d">
+                                        <mat-select name="departamentoSuperior" [(ngModel)]="departamento.departamentoSuperior.idDepartamento" [disabled]="!departamento.unidade">
+                                            <mat-option *ngFor="let d of departamentos" [value]="d.idDepartamento">
                                                 {{d.nmDepartamento}}
                                             </mat-option>
                                         </mat-select>
@@ -52,9 +52,9 @@
 
           <!-- BOTÕES -->
           <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                        <button mat-raised-button name="botaoConfirmar"  
-                                fxFlex= "20%"  
-                                [disabled]="formCadastroDepartamento.invalid" 
+                        <button mat-raised-button name="botaoConfirmar"
+                                fxFlex= "20%"
+                                [disabled]="formCadastroDepartamento.invalid"
                                 (click)="isAtualizar ? atualizar() : cadastrar()">
                                 {{getNomeBotao()}}</button>
                         <button *ngIf="!isAtualizar" mat-raised-button fxFlex= "20%"  (click)="limpar()">

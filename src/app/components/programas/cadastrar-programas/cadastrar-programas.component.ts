@@ -33,7 +33,10 @@ export class CadastrarProgramasComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
-  ) { }
+  ) {
+    this.programa.iniciativa = new Iniciativa();
+    this.programa.objetivo = new Objetivo();
+  }
 
 
   ngOnInit() {
@@ -62,7 +65,7 @@ export class CadastrarProgramasComponent implements OnInit {
     });
   }
 
-  limpar() { 
+  limpar() {
     this.programa = new Programa();
   }
 

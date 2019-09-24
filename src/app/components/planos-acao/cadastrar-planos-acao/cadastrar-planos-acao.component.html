@@ -2,13 +2,13 @@
 
 <div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
- 
+
         <!-- DADOS INICIAIS -->
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    
+
             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Nome do Plano de Ação:" [(ngModel)]="planosAcao.nome" required> 
+                  <input matInput maxlength="200"  name="nome" placeholder="Nome do Plano de Ação:" [(ngModel)]="planosAcao.nome" required>
              </mat-form-field>
 
         </div>
@@ -22,7 +22,7 @@
                     <mat-datepicker-toggle matSuffix [for]="dtImplantacao"></mat-datepicker-toggle>
                     <mat-datepicker #dtImplantacao></mat-datepicker>
              </mat-form-field>
-           
+
              <mat-form-field fxFlex= "50%">
                     <input matInput name= "dtTermino" [matDatepicker]="dtTermino" placeholder="Data Fim" [(ngModel)]="planosAcao.dataFim">
                     <mat-datepicker-toggle matSuffix [for]="dtTermino"></mat-datepicker-toggle>
@@ -36,38 +36,38 @@
          <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
                         <mat-label>Iniciativa:</mat-label>
-                        <mat-select [(ngModel)]="planosAcao.iniciativa" name="iniciativa" required>
-                            <mat-option *ngFor="let i of iniciativas" [value]="i" >
+                        <mat-select [(ngModel)]="planosAcao.iniciativa.id" name="iniciativa" required>
+                            <mat-option *ngFor="let i of iniciativas" [value]="i.id" >
                               {{i.nome}}
                             </mat-option>
                         </mat-select>
                 </mat-form-field>
 
          </div>
-        
+
         <!-- BOTÕES -->
         <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
             fxFlexFill>
-            <button mat-raised-button 
-                    name="botaoConfirmar" 
-                    fxFlex="20%" 
+            <button mat-raised-button
+                    name="botaoConfirmar"
+                    fxFlex="20%"
                     color="primary"
-                    [disabled]="formCadastro.invalid" 
+                    [disabled]="formCadastro.invalid"
                     (click)="isAtualizar ? atualizar() : cadastrar()">
                     {{getNomeBotao()}}
             </button>
-            
-            <button *ngIf="!isAtualizar" 
-                    mat-raised-button 
-                    fxFlex="20%" 
-                    color="primary" 
+
+            <button *ngIf="!isAtualizar"
+                    mat-raised-button
+                    fxFlex="20%"
+                    color="primary"
                     (click)="limpar()">
                     Limpar
             </button>
-            
-            <button mat-raised-button 
-                    fxFlex="20%" 
-                    color="primary" 
+
+            <button mat-raised-button
+                    fxFlex="20%"
+                    color="primary"
                     (click)="cancelar()">
                 Cancelar
             </button>

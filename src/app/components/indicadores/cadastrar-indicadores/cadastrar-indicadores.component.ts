@@ -25,20 +25,22 @@ export class CadastrarIndicadoresComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
-  ) { }
+  ) {
+    this.indicadores.objetivo = new Objetivo();
+  }
 
 
   ngOnInit() {
     this.objetivoService.getAll().subscribe((objetivos: Objetivo[]) => {
       this.objetivos = objetivos;
-    })
+    });
 
     let idIndicadores: number;
-    idIndicadores = this.route.snapshot.queryParams.idIndicadores ? this.route.snapshot.queryParams.idIndicadores : null;
+    idIndicadores = this.route.snapshot.queryParams.idIndicador ? this.route.snapshot.queryParams.idIndicador : null;
     if (idIndicadores) {
       this.isAtualizar = true;
-      this.indicadoresService.getById(idIndicadores).subscribe((indicadores: Indicadores) => {
-        this.indicadores = indicadores
+      this.indicadoresService.getById(idIndicadores).subscribe((ind: Indicadores) => {
+        this.indicadores = ind;
       });
     }
 
@@ -50,7 +52,7 @@ export class CadastrarIndicadoresComponent implements OnInit {
     });
   }
 
-  limpar() { 
+  limpar() {
     this.indicadores = new Indicadores()
   }
 

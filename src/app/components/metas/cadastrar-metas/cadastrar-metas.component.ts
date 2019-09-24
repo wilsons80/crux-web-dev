@@ -27,7 +27,9 @@ export class CadastrarMetasComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
-  ) { }
+  ) {
+    this.metas.indicadores = new Indicadores();
+  }
 
 
   ngOnInit() {
@@ -52,7 +54,7 @@ export class CadastrarMetasComponent implements OnInit {
     });
   }
 
-  limpar() { 
+  limpar() {
     this.metas = new Metas();
   }
 

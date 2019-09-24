@@ -25,7 +25,9 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
-  ) { }
+  ) {
+    this.planosAcao.iniciativa = new Iniciativa();
+  }
 
 
   ngOnInit() {
@@ -50,7 +52,7 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
     });
   }
 
-  limpar() { 
+  limpar() {
     this.planosAcao = new PlanosAcao();
   }
 

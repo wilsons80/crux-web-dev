@@ -19,10 +19,6 @@ export class CadastrarProjetoComponent implements OnInit {
 
   iniciativas: Iniciativa[];
   programas: Programa[];
-  funcionarios: any[] = [
-    { id: 1, nome: 'Brutos' },
-    { id: 2, nome: 'Popeye' }
-  ];
   projeto: Projeto = new Projeto();
 
   isAtualizar: boolean = false;
@@ -33,8 +29,11 @@ export class CadastrarProjetoComponent implements OnInit {
     private projetoService: ProjetoService,
     private route: ActivatedRoute,
     private location: Location,
-    private toastService:ToastService
-  ) { }
+    private toastService: ToastService
+  ) {
+    this.projeto.programa = new Programa();
+    this.projeto.iniciativa = new Iniciativa();
+  }
 
 
   ngOnInit() {

@@ -26,7 +26,9 @@ export class CadastrarObjetivoComponent implements OnInit {
     private route: ActivatedRoute,
     private location:Location,
     private toastService:ToastService
-  ) { }
+  ) {
+    this.objetivo.perspectiva = new Perspectiva();
+  }
 
 
   ngOnInit() {
@@ -42,7 +44,7 @@ export class CadastrarObjetivoComponent implements OnInit {
         this.objetivo = objetivo
       });
     }
-    
+
   }
   cadastrar() {
 
@@ -52,11 +54,11 @@ export class CadastrarObjetivoComponent implements OnInit {
     });
   }
 
-  limpar() { 
+  limpar() {
     this.objetivo = new Objetivo();
   }
 
-  cancelar() { 
+  cancelar() {
     this.location.back();
   }
 
@@ -69,7 +71,7 @@ export class CadastrarObjetivoComponent implements OnInit {
       this.location.back();
       this.toastService.showSucesso("Objetivo atualizado com sucesso");
     });
-    
+
   }
 
 }

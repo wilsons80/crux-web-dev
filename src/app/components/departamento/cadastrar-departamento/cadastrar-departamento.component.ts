@@ -28,7 +28,10 @@ export class CadastrarDepartamentoComponent implements OnInit {
     private route: ActivatedRoute,
     private location:Location,
     private toastService:ToastService
-  ) { }
+  ) {
+    this.departamento.unidade = new Unidade();
+    this.departamento.departamentoSuperior = new Departamento();
+  }
 
 
   ngOnInit() {
@@ -48,7 +51,7 @@ export class CadastrarDepartamentoComponent implements OnInit {
         this.departamento = departamento
       });
     }
-    
+
   }
   cadastrar() {
     this.departamentoService.cadastrar(this.departamento).subscribe(() => {
@@ -61,7 +64,7 @@ export class CadastrarDepartamentoComponent implements OnInit {
     this.departamento = new Departamento();
    }
 
-  cancelar() { 
+  cancelar() {
     this.location.back();
   }
 
@@ -74,7 +77,7 @@ export class CadastrarDepartamentoComponent implements OnInit {
       this.location.back();
       this.toastService.showSucesso("Departamento atualizado com sucesso");
     });
-    
+
   }
-  
+
 }
