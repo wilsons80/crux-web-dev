@@ -14,7 +14,7 @@ export class SubMenuComponent implements OnInit {
   @Input() titulo: string
 
   constructor(
-    private menuPrincipalService: MenuPrincipalService,
+    public menuPrincipalService: MenuPrincipalService,
   ) { }
 
   ngOnInit() {

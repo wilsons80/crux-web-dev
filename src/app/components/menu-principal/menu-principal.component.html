@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutAlign="start none" fxFill>
-    <mat-nav-list style="width: 260px">
+    <mat-nav-list >
 
         <!-- MENU DE CONFIGURAÇOES -->
         <button mat-fab fxLayoutAlign="center center" 
@@ -11,11 +11,12 @@
                          routerLinkActive="router-link-active">
             <mat-icon class="nao-foto"></mat-icon>
         </button>
-        <mat-divider style="margin-top: 20px"></mat-divider>
+        <mat-divider style="margin-top: 10px"></mat-divider>
 
         <!-- HOME -->
         <a mat-list-item (click)="fecharMenu()" [routerLink]="['/home']" routerLinkActive="router-link-active">
-            <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
+            <mat-icon>home</mat-icon> 
+            <span *ngIf="menuPrincipalService.expadindo"  class="nav-caption">Home</span>
         </a>
 
         <!-- MENU ADMINISTRATIVO -->

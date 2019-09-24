@@ -5,6 +5,8 @@ import { Injectable,EventEmitter } from '@angular/core';
 })
 export class MenuPrincipalService {
 
+  expadindo:boolean = false;
+
   constructor() { }
 
   toggle = new EventEmitter();

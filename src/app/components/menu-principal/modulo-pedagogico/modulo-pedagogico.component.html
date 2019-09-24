@@ -1,16 +1,16 @@
 <a mat-list-item (click)="toggle()">
-    <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
         <div fxLayout="row" fxLayoutAlign="start stretch">
             <mat-icon>local_library</mat-icon>
-            <span class="nav-caption">Pedagógico</span>
+            <span *ngIf="menuPrincipalService.expadindo" class="nav-caption">Pedagógico</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="start stretch">
-            <mat-icon style="padding-top: 2px">{{getIcone()}}</mat-icon>
+            <mat-icon *ngIf="menuPrincipalService.expadindo" style="padding-top: 2px">{{getIcone()}}</mat-icon>
         </div>
     </div>
 </a>
 
-<mat-nav-list style="width: 260px">
+<mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
        

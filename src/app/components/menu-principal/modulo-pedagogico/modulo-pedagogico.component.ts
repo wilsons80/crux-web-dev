@@ -1,3 +1,4 @@
+import { MenuPrincipalService } from './../../../services/menuPrincipal/menu-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -25,7 +26,7 @@ export class ModuloPedagogicoComponent implements OnInit {
   currentState = "hidden"
   isMostrarSubMenu: boolean = false;
   
-  constructor() { }
+  constructor(public menuPrincipalService:MenuPrincipalService) { }
 
   ngOnInit() {
   }

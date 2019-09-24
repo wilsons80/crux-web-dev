@@ -4,6 +4,7 @@ import { LoadingIndicatorService } from 'src/app/services/loadingIndicator/loadi
 import { LoadingPopupService } from './services/loadingPopup/loading-popup.service';
 import { MenuPrincipalService } from './services/menuPrincipal/menu-principal.service';
 import { ToolbarPrincipalService } from './services/toolbarPrincipal/toolbar-principal.service';
+import { AuthGuard } from './guards/auth.guard';
 
 @Component({
   selector: 'app-root',
@@ -14,17 +15,20 @@ export class AppComponent {
   title = 'crux-web-dev';
 
   data = new Date();
+  teste = false;
 
   @ViewChild('menuPrincipal', { static: false }) menuPrincipal: MatDrawer;
   reason = '';
 
   showFiller = false;
+  mostrarMenu: any;
 
   constructor(
     private menuPrincipalService: MenuPrincipalService,
     loadingIndicatorService: LoadingIndicatorService,
     loadingPopupService: LoadingPopupService,
-    public toolbarPrincipalService: ToolbarPrincipalService
+    public toolbarPrincipalService: ToolbarPrincipalService,
+    private authGuard: AuthGuard,
   ) {
 
     const subs = loadingIndicatorService.onLoadingChanged
@@ -42,11 +46,15 @@ export class AppComponent {
 
   ngOnInit(): void {
    
+  
+    this.authGuard.mostrarMenu.subscribe(resultado => this.mostrarMenu = resultado);
+
     this.menuPrincipalService.toggle.subscribe((resposta) => {
       if (resposta && resposta.logout == true) {
         this.close()
       } else
-        this.menuPrincipal.toggle()
+      this.teste = true
+        // this.menuPrincipal.toggle()
     });
   }
 

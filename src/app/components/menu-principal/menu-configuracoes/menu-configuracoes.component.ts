@@ -1,3 +1,4 @@
+import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -22,7 +23,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class MenuConfiguracoesComponent implements OnInit {
 
   currentState = "hidden"
-  constructor() { }
+  constructor(public menuPrincipalService:MenuPrincipalService) { }
 
   isMostrarSubMenu: boolean = false;
 

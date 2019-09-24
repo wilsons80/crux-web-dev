@@ -15,14 +15,17 @@ export class MenuPrincipalComponent implements OnInit {
 
     enumModulos = Modulos;
 
+    teste = false;
+
   constructor(
     private controleMenuService:ControleMenuService,
     private toolbarPrincipalService:ToolbarPrincipalService,
-    private menuPrincipalService:MenuPrincipalService,
+    public menuPrincipalService:MenuPrincipalService,
     ) { }
 
 
   ngOnInit() {
+    this.menuPrincipalService.toggle.subscribe(() =>this.teste = !this.teste );
     
   }
   
@@ -31,7 +34,8 @@ export class MenuPrincipalComponent implements OnInit {
   }
 
   fecharMenu(){
-    this.menuPrincipalService.alternar();
+    this.teste = !this.teste;
+    // this.menuPrincipalService.alternar();
   }
   getBackground(){
     if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){
