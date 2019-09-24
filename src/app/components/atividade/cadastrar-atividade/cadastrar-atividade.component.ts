@@ -23,7 +23,7 @@ import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 export class CadastrarAtividadeComponent implements OnInit {
 
   atividade: Atividade = new Atividade();
-  
+
   listaPlanosAcao: PlanosAcao[];
   projetos: Projeto[];
   unidades: Unidade[];
@@ -32,7 +32,7 @@ export class CadastrarAtividadeComponent implements OnInit {
     {id:'F' , descricao:'FIXO' },
     {id:'L' , descricao:'LIVRE' },
   ];
-  
+
   localExecucao:any = [
     {id:'I' , descricao:'INTERNA' },
     {id:'E' , descricao:'EXTERNA' },
@@ -49,17 +49,21 @@ export class CadastrarAtividadeComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
-  ) { }
+  ) {
+    this.atividade.unidade = new Unidade();
+    this.atividade.projeto = new Projeto();
+    this.atividade.planosAcao = new PlanosAcao();
+  }
 
 
   ngOnInit() {
     this.planosAcaoService.getAll().subscribe((planosAcao: PlanosAcao[]) => {
       this.listaPlanosAcao = planosAcao;
     })
-   
+
     this.projetoService.getAll().subscribe((projetos: Projeto[]) => {
       this.projetos = projetos;
-   
+
     })
     this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: Unidade[]) => {
       this.unidades = unidades;
@@ -82,7 +86,7 @@ export class CadastrarAtividadeComponent implements OnInit {
     });
   }
 
-  limpar() { 
+  limpar() {
     this.atividade = new Atividade();
   }
 
