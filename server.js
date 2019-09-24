@@ -38,6 +38,7 @@ const forceSSL = function() {
 app.use(forceSSL());
 */
 
+
 app.use(express.static(`./dist/${NOME_APP_DEPLOY}`));
 app.all('/*', function(req,res) {
    res.sendFile(path.join(__dirname,`/dist/${NOME_APP_DEPLOY}/index.html`));
