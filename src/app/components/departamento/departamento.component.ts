@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Departamento } from './../../core/departamento';
@@ -11,7 +11,8 @@ import { DepartamentoService } from './../../services/departamento/departamento.
   styleUrls: ['./departamento.component.css']
 })
 export class DepartamentoComponent implements OnInit {
-
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+ 
   departamentos: Departamento[];
   mostrarTabela: boolean = false;
   departamento: Departamento = new Departamento();
@@ -28,6 +29,7 @@ export class DepartamentoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.getAll();
   }
   
@@ -35,7 +37,7 @@ export class DepartamentoComponent implements OnInit {
   limpar() {
     this.mostrarTabela = false;
     this.departamento = new Departamento()
-    this.dataSource.data = null;
+    this.dataSource.data = [];
   }
 
   consultar() {
@@ -75,7 +77,6 @@ export class DepartamentoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        
         this.departamentoService.excluir(departamento.idDepartamento).subscribe(() => {
           this.departamento.idDepartamento = null;
           this.consultar();
@@ -91,19 +92,20 @@ export class DepartamentoComponent implements OnInit {
   getAll(){
     this.departamentoService.getAll().subscribe((departamentos: Departamento[]) => {
       this.departamentos = departamentos;
-      this.dataSource.data = departamentos;
+      this.dataSource.data = departamentos ? departamentos : [];
       this.verificaMostrarTabela(departamentos);
     })
   }
 
-  verificaMostrarTabela(departamentos) {
-    if(departamentos.length == 0) {
+  verificaMostrarTabela(departamentos: Departamento[]) {
+    if(!departamentos ||departamentos.length == 0) {
       this.mostrarTabela = false; 
       this.msg = "Nenhum departamento cadastrado."
     }else{
       this.mostrarTabela = true; 
     }
   }
+
 
 }
 

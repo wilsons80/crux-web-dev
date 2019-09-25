@@ -1,7 +1,9 @@
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { Modulos } from './../../core/modulos';
 import { ControleMenuService } from './../../services/controle-menu/controle-menu.service';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 
 
 @Component({
@@ -13,10 +15,17 @@ export class MenuPrincipalComponent implements OnInit {
 
     enumModulos = Modulos;
 
-  constructor(private controleMenuService:ControleMenuService) { }
+    teste = false;
+
+  constructor(
+    private controleMenuService:ControleMenuService,
+    private toolbarPrincipalService:ToolbarPrincipalService,
+    public menuPrincipalService:MenuPrincipalService,
+    ) { }
 
 
   ngOnInit() {
+    this.menuPrincipalService.toggle.subscribe(() =>this.teste = !this.teste );
     
   }
   
@@ -24,4 +33,13 @@ export class MenuPrincipalComponent implements OnInit {
     return this.controleMenuService.acessoModulos[modulo].mostrarMenu;
   }
 
+  fecharMenu(){
+    this.teste = !this.teste;
+    // this.menuPrincipalService.alternar();
+  }
+  getBackground(){
+    if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){
+      return `url(${this.toolbarPrincipalService.logo.changingThisBreaksApplicationSecurity})`
+    }
+  }
 }

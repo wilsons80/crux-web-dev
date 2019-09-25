@@ -1,13 +1,17 @@
-import { UnidadeService } from 'src/app/services/unidade/unidade.service';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AcessoUnidade } from 'src/app/core/acesso-unidade';
+import { CadastroAcesso } from 'src/app/core/cadastro-acesso';
+import { Modulo } from 'src/app/core/modulo';
+import { UsuarioUnidade } from 'src/app/core/usuario-unidade';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
+import { GrupoModulo } from './../../../core/grupo-modulo';
+import { AcessoService } from './../../../services/acesso/acesso.service';
 import { ModuloService } from './../../../services/modulo/modulo.service';
 import { UsuarioService } from './../../../services/usuario/usuario.service';
-import { AcessoService } from './../../../services/acesso/acesso.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
-import { Component, OnInit, Inject } from '@angular/core';
-import { CadastroAcesso } from 'src/app/core/cadastro-acesso';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-cadastrar-acesso',
@@ -17,93 +21,89 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class CadastrarAcessoComponent implements OnInit {
 
 
-  usuarios: any;
-  modulos: any;
-  perfis: any;
-  unidades: boolean;
-  usuario: any;
-  isAtualizar: boolean;
+  usuarios: UsuarioUnidade[];
+  modulos: Modulo[];
+  perfis: GrupoModulo[];
+  unidades: AcessoUnidade;
+  isAtualizar: boolean = false;
+
 
   labelBotao: string;
 
-  cadastroAcessoTO: CadastroAcesso = new CadastroAcesso();
+  cadastroAcesso: CadastroAcesso = new CadastroAcesso();
 
   constructor(
     public toolbarPrincipalService: ToolbarPrincipalService,
     private acessoService: AcessoService,
     private moduloService: ModuloService,
     private toastService: ToastService,
-    private dialogRef: MatDialogRef<CadastrarAcessoComponent>,
     private unidadeService: UnidadeService,
-    private usuarioService:UsuarioService,
-
-    @Inject(MAT_DIALOG_DATA) data
-  ) {
-    this.usuarios = data.usuarios,
-    this.modulos= data.modulos,
-    this.labelBotao = data.labelBotao;
-    
-    if (data.atualizar) {
-      this.cadastroAcessoTO.idUnidade = data.usuario.idUnidade;
-      this.isAtualizar = data.atualizar;
-      this.cadastroAcessoTO.idModulo = data.usuario.idModulo;
-      this.cadastroAcessoTO.idUsuario = data.usuario.idUsuario;
-    }
-  }
+    private usuarioService: UsuarioService,
+    private route: ActivatedRoute,
+    private location: Location,
+  ) { }
 
   ngOnInit() {
-    this.unidadeService.getPorUsuario().subscribe((unidades: any) => this.unidades = unidades);
-    if(this.isAtualizar){
+    this.unidadeService.getUnidadesComAcesso()
+      .subscribe((acessoUnidade: AcessoUnidade) => {
+        this.unidades = acessoUnidade;
+      });
+
+    this.cadastroAcesso.idGrupoModulo = this.route.snapshot.queryParams.idGrupoModulo ? Number(this.route.snapshot.queryParams.idGrupoModulo) : null;
+    this.cadastroAcesso.idUnidade = this.route.snapshot.queryParams.idUnidade ? Number(this.route.snapshot.queryParams.idUnidade) : null;
+    this.cadastroAcesso.idModulo = this.route.snapshot.queryParams.idModulo ? Number(this.route.snapshot.queryParams.idModulo) : null;
+    this.cadastroAcesso.idUsuario = this.route.snapshot.queryParams.idUsuario ? Number(this.route.snapshot.queryParams.idUsuario) : null;
+
+    if (this.cadastroAcesso.idGrupoModulo) {
+      this.isAtualizar = true;
       this.buscarPerfis();
+    }
+
+    if (this.cadastroAcesso.idUnidade) {
+      this.unidadeSelecionada();
     }
   }
 
-  unidadeSelecionada(){
+  unidadeSelecionada() {
     if (!this.isAtualizar) {
       this.limparCamposDependendentesUnidade();
+      this.moduloService.getModulosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((modulos: Modulo[]) => this.modulos = modulos);
+    } else {
+      this.moduloService.getUsuariosPorUnidadeLogada().subscribe((modulos: Modulo[]) => this.modulos = modulos);
     }
-      this.usuarioService.getUsuariosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(usuarios => this.usuarios = usuarios);
-      this.moduloService.getModulosPorUnidade(this.cadastroAcessoTO.idUnidade).subscribe(modulos => this.modulos = modulos);
+
+    this.usuarioService.getUsuariosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((usuarios: UsuarioUnidade[]) => this.usuarios = usuarios);
   }
 
   limparCamposDependendentesUnidade() {
-    this.cadastroAcessoTO.idUsuario =  null,
-    this.cadastroAcessoTO.idModulo  =  null,
-    this.cadastroAcessoTO.idGrupoModulo=  null
-    
+    this.cadastroAcesso.idUsuario = null,
+      this.cadastroAcesso.idModulo = null,
+      this.cadastroAcesso.idGrupoModulo = null
+
   }
 
-  cadastrarAtualizar() {
-    if (this.isAtualizar) {
-      this.atualizar();
-    }
-    else { 
-      this.cadastrar(); 
-    }
-  }
 
   atualizar() {
-    this.acessoService.alterar(this.cadastroAcessoTO).subscribe(() => {
+    this.acessoService.alterar(this.cadastroAcesso).subscribe(() => {
       this.toastService.showSucesso("Usuário atualizado com sucesso");
-      this.dialogRef.close();
     });
   }
 
   cadastrar() {
-    this.acessoService.cadastrarAcesso(this.cadastroAcessoTO).subscribe(() => {
+    this.acessoService.cadastrarAcesso(this.cadastroAcesso).subscribe(() => {
       this.toastService.showSucesso("Usuário Cadastrado com sucesso");
-      this.dialogRef.close();
+      this.location.back();
     });
   }
 
   limpar() {
     if (this.isAtualizar) {
-      
-      this.cadastroAcessoTO.idGrupoModulo = null
+
+      this.cadastroAcesso.idGrupoModulo = null
 
     } else {
 
-      this.cadastroAcessoTO = {
+      this.cadastroAcesso = {
         idUnidade: null,
         idUsuario: null,
         idModulo: null,
@@ -113,13 +113,12 @@ export class CadastrarAcessoComponent implements OnInit {
   }
 
   cancelar() {
-    this.dialogRef.close();
-
+    this.location.back();
   }
 
   buscarPerfis() {
-    this.moduloService.getGrupoModulo(this.cadastroAcessoTO.idUnidade, this.cadastroAcessoTO.idModulo)
-      .subscribe(perfis => this.perfis = perfis);
+    this.moduloService.getGrupoModulo(this.cadastroAcesso.idUnidade, this.cadastroAcesso.idModulo)
+      .subscribe((perfis: GrupoModulo[]) => this.perfis = perfis);
   }
 
   getNomeBotao() {

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { PlanosAcao } from 'src/app/core/planos-acao';
 import { ProgramaService } from 'src/app/services/programa/programa.service';
@@ -13,8 +13,11 @@ import { Programa } from './../../core/programa';
 })
 export class ProgramasComponent implements OnInit {
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   listaProgramas: Programa[];
   programa: Programa = new Programa();
+  msg:string;
 
   mostrarTabela = false;
 
@@ -29,28 +32,30 @@ export class ProgramasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.programaService.getAll().subscribe((listaProgramas: Programa[]) => {
-      this.listaProgramas = listaProgramas;
-    })
+    this.dataSource.paginator = this.paginator;
+    this.getAll();
   }
 
   limpar() {
+    this.mostrarTabela = false;
     this.programa = new Programa()
-    this.dataSource.data = null;
+    this.dataSource.data = [];
   }
 
   consultar() {
     if (this.programa.id) {
       this.programaService.getById(this.programa.id).subscribe((programa: Programa) => {
-        this.dataSource.data = [programa];
+        if(!programa){
+          this.mostrarTabela = false
+          this.msg = "Nenhum registro para a pesquisa selecionada"
+        }else {
+          this.dataSource.data = [programa];
+          this.mostrarTabela = true;
+        }
       })
     } else {
-      this.programaService.getAll().subscribe((programa: Programa[]) => {
-        this.listaProgramas = programa
-        this.dataSource.data = programa;
-      })
+      this.getAll();
     }
-    this.mostrarTabela = true;
   }
 
 
@@ -73,12 +78,10 @@ export class ProgramasComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-
         this.programaService.excluir(programa.id).subscribe(() => {
-
+          this.programa.id = null;
           this.consultar();
         })
-
       } else {
         dialogRef.close();
       }
@@ -86,4 +89,20 @@ export class ProgramasComponent implements OnInit {
     );
   }
 
+  getAll() {
+    this.programaService.getAll().subscribe((listaProgramas: Programa[]) => {
+      this.listaProgramas = listaProgramas;
+      this.dataSource.data = listaProgramas ? listaProgramas : [];
+      this.verificaMostrarTabela(listaProgramas);
+    })
+  }
+
+  verificaMostrarTabela(listaProgramas: Programa[]) {
+    if(!listaProgramas ||listaProgramas.length == 0) {
+      this.mostrarTabela = false; 
+      this.msg = "Nenhum programa cadastrado."
+    }else{
+      this.mostrarTabela = true; 
+    }
+  }
 }

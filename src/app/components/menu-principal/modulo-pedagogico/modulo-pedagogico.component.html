@@ -1,99 +1,23 @@
-<a mat-list-item >
-    <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
-        <div fxLayout="row" fxLayoutAlign="start stretch">
+<a mat-list-item (click)="toggle()">
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
+        <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="Módulo Pegagógico">
             <mat-icon>local_library</mat-icon>
-            <span class="nav-caption">Pedagógico</span>
+            <span *ngIf="menuPrincipalService.expandido" class="nav-caption">Pedagógico</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="start stretch">
-            <mat-icon style="padding-top: 2px">chevron_right</mat-icon>
+            <mat-icon *ngIf="menuPrincipalService.expandido" style="padding-top: 2px">{{getIcone()}}</mat-icon>
         </div>
     </div>
 </a>
 
-<mat-nav-list style="width: 260px">
-        <!-- UNIDADES -->
-        <sub-menu-unidade></sub-menu-unidade>
-       
-       
-       <!-- ACESSOS -->
-       <a mat-list-item [routerLink]="getRouterLink('acesso')" routerLinkActive="router-link-active" class="submenu">
-            <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
-                <div fxLayout="row" fxLayoutAlign="start stretch">
-                    <mat-icon>lock</mat-icon>
-                    <span class="nav-caption">Acessos</span>
-                </div>
-            </div>
-        </a>
+<mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
 
-        <!-- FUNCIONÁRIOS -->
-       <!-- <a mat-list-item [routerLink]="getRouterLink('funcionario')" routerLinkActive="router-link-active" class="submenu">
-            <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
-                <div fxLayout="row" fxLayoutAlign="start stretch">
-                    <mat-icon>account_circle</mat-icon>
-                    <span class="nav-caption">Funcionários</span>
-                </div>
-            </div>
-        </a> -->
+    <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
-         <!-- ATIVIDADES -->
-       <!-- <a mat-list-item [routerLink]="getRouterLink()" routerLinkActive="router-link-active" class="submenu">
-            <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
-                <div fxLayout="row" fxLayoutAlign="start stretch">
-                    <mat-icon>list_alt</mat-icon>
-                    <span class="nav-caption">Atividades</span>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="start stretch">
-                    <mat-icon style="padding-top: 2px">chevron_right</mat-icon>
-                </div>
-            </div>
-        </a> -->
+        <!-- ATIVIDADE -->
+        <sub-menu icone="chrome_reader_mode" titulo="Atividade" rota="atividade" toolTip="Atividade"></sub-menu>
 
 
-</mat-nav-list>
+    </div>
 
-
-<mat-nav-list style="width: 260px">
-        
-    <!-- <a mat-list-item [routerLink]='' routerLinkActive="router-link-active">
-        <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
-    </a>
-    
-    <modulo-pedagogico></modulo-pedagogico>
-     -->
-    <!-- <menu-sub-modulos *ngIf="mostrarMenu(enumModulos.ALUNOS)" 
-                  [modulo]='enumModulos.ALUNOS' 
-                  icone="person" 
-                  titulo="Alunos"
-                  pathRootRouter='aluno'
-                  >
-    </menu-sub-modulos>
-    
-    <menu-sub-modulos *ngIf="mostrarMenu(enumModulos.UNIDADES)" 
-                  [modulo]='enumModulos.UNIDADES' 
-                  icone="account_balance" 
-                  titulo="Unidades"
-                  pathRootRouter='unidade'
-                  >
-    </menu-sub-modulos>
-    
-    <menu-sub-modulos *ngIf="mostrarMenu(enumModulos.CURSOS)" 
-                  [modulo]='enumModulos.CURSOS' 
-                  icone="school" 
-                  titulo="Cursos"
-                  pathRootRouter='curso'
-                  >
-    </menu-sub-modulos>
-    
-    <menu-sub-modulos *ngIf="mostrarMenu(enumModulos.ACESSOS)"
-                  [modulo]='enumModulos.ACESSOS' 
-                  icone="lock" 
-                  titulo="Acessos"
-                  pathRootRouter='acesso'
-                  >
-    </menu-sub-modulos>
-
-    <mat-divider></mat-divider>
-    
-    <menu-configuracoes></menu-configuracoes> -->
-    
 </mat-nav-list>

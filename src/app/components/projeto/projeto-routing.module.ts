@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ProjetoComponent } from './projeto.component';
+import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { CadastrarProjetoComponent } from './cadastrar-projeto/cadastrar-projeto.component';
+import { ProjetoComponent } from './projeto.component';
 
 
 const routes: Routes = [
-  //{ path: 'programas/cadastrar', component: CadastrarProgramasComponent,canActivate: [AuthGuard]},
-  { path: 'projeto', component: ProjetoComponent,canActivate: [AuthGuard]},
+  { path: 'projeto/cadastrar', component: CadastrarProjetoComponent, canActivate: [AuthGuard] },
+  { path: 'projeto', component: ProjetoComponent, canActivate: [AuthGuard] },
 
 ];
 

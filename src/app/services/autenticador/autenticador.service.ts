@@ -1,14 +1,18 @@
+import { FileUtils } from './../../utils/file-utils';
+import { ArquivoService } from './../arquivo/arquivo.service';
+import { TrocaSenha } from './../../core/troca-senha';
 import { ToolbarPrincipalService } from './../toolbarPrincipal/toolbar-principal.service';
 import { Usuario } from './../../core/usuario';
 import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
 
-import { tap, shareReplay } from 'rxjs/operators';
+import { tap, shareReplay, switchMap } from 'rxjs/operators';
 
 import * as jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 import { UsuarioLogado } from 'src/app/core/usuario-logado';
+import { Observable } from 'rxjs';
 
 const autenticadorRootPath = 'api/autenticador/';
 const tokenRootPath = 'api/token/';
@@ -20,7 +24,9 @@ export class AutenticadorService {
 
   constructor(
     private http: HttpClient,
-    private toolbarPrincipalService:ToolbarPrincipalService
+    private toolbarPrincipalService:ToolbarPrincipalService,
+    private arquivoService:ArquivoService,
+    private fileUtils:FileUtils
     ) { }
 
   private setSession(authResult) {
@@ -51,17 +57,23 @@ export class AutenticadorService {
     localStorage.removeItem('expires_at');
   }
 
-  refreshToken(idUnidade) {
-    if (moment().isBetween(this.getExpiration().subtract(3, 'day'), this.getExpiration())) {
+  refreshToken() {
+    if (moment().isBetween(this.getExpiration().subtract(3, 'minutes'), this.getExpiration())) {
       return this.http.get(tokenRootPath + `refresh-token`)
       .pipe(
-        tap((usuarioLogado:UsuarioLogado) => {
-          console.log("refresca token", usuarioLogado);
+        switchMap((usuarioLogado:UsuarioLogado) => {
           this.setSession(usuarioLogado)
           this.toolbarPrincipalService.setarPropriedadesUsuarioLogado(usuarioLogado);
+          if(usuarioLogado.unidadeLogada){
+            return this.arquivoService.get(usuarioLogado.unidadeLogada.id)
+          }else {
+            return new Observable(obs => obs.next())
+          }
         }),
         shareReplay(),
-      ).subscribe();
+      ).subscribe((arquivo) => {
+        this.toolbarPrincipalService.logo = this.fileUtils.convertBufferArrayToBase64(arquivo);
+      });
     }
   }
 
@@ -80,5 +92,8 @@ export class AutenticadorService {
     return !this.isLoggedIn();
   }
 
+  trocarSenha(trocaSenha:TrocaSenha){
+    return this.http.post(autenticadorRootPath + `trocar-senha`,trocaSenha);
+  }
 
 }

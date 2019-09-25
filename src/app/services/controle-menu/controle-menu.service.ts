@@ -7,6 +7,9 @@ import { Modulos } from 'src/app/core/modulos';
 })
 export class ControleMenuService {
 
+
+  logo:any;
+
   mostrarModuloAlunos = false;
   mostrarModuloCursos = false;
   mostrarModuloUnidades = false;

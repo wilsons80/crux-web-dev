@@ -1,89 +1,95 @@
-<mat-toolbar>Planos de Ação</mat-toolbar>
-<div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
+<mat-toolbar class="subtitulo">Projetos</mat-toolbar>
+<div class="painel-principal" style="padding: 10px;">
+    <div class="painel-consultar">
+        <form #formConsultarDepartamento="ngForm">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
 
-        <div  fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" style="padding: 10px 10px 30px">
-                <div>
-                        <button mat-fab color="primary" [routerLink]="['/projeto/cadastrar']" routerLinkActive="router-link-active">
-                            <mat-icon>add</mat-icon>
-                        </button>
-                    </div>
-                    <div>Cadastrar novo Plano de Ação</div>
-                </div>
+                <mat-icon>folder_open</mat-icon>
+                <mat-form-field fxFlex="100%" fxFlexOffset="20px">
+                    <mat-label>Selecione um projeto</mat-label>
+                    <mat-select [(ngModel)]="projeto" name="projeto">
+                        <mat-option *ngFor="let d of projetos" [value]="d">
+                            {{d.nome}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
 
-            <form #formConsultarDepartamento="ngForm" class="mat-elevation-z1 painel-consultar" >
 
-                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    
-                    <mat-icon fxFlexOffset="10px">business</mat-icon>
-                    <mat-form-field fxFlex= "80%" fxFlexOffset="10px" >
-                        <mat-label>Selecione um plano de ação</mat-label>
-                        <mat-select [(ngModel)]="projeto" name="planosAcao">
-                            <mat-option *ngFor="let p of projetos" [value]="p">
-                                {{p.nome}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                
+            <div dir="rtl" class="botoes" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 20px;"
+                fxFlexFill>
 
-            <div dir="rtl" class="botoes" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 20px; padding-right: 90px" fxFlexFill>
-                    
-                    <button mat-raised-button fxFlex= "20%"  color="primary"  (click)="consultar()">
-                        consultar
-                    </button>
+                <button mat-raised-button fxFlex="20%" (click)="consultar()">
+                    CONSULTAR
+                </button>
 
-                    <button mat-raised-button fxFlex= "20%" style="padding-right: 20px" color="primary" (click)="limpar()" route>
-                         Limpar
-                    </button>
-                            
+                <button mat-raised-button fxFlex="20%" style="padding-right: 20px" (click)="limpar()" route>
+                    LIMPAR
+                </button>
+
             </div>
         </form>
 
-        <table *ngIf="mostrarTabela" mat-table [dataSource]="dataSource" class="mat-elevation-z1 minhas-tarefas">
+        <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 20px">
 
-            <ng-container matColumnDef="nome">
-              <th mat-header-cell *matHeaderCellDef> Nome: </th>
-              <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="programa">
-              <th mat-header-cell *matHeaderCellDef> Programa: </th>
-              <td mat-cell *matCellDef="let element"> {{element.objetivo.nome}} </td>
-            </ng-container>
-          
-            <ng-container matColumnDef="dataPrevisaoInicio">
-              <th mat-header-cell *matHeaderCellDef> Data de Previsão de Início:  </th>
-              <td mat-cell *matCellDef="let element"> {{element.dataPrevisaoInicio | dataSimples}} </td>
-            </ng-container>
-            
-            <ng-container matColumnDef="dataInicio">
-              <th mat-header-cell *matHeaderCellDef> Data início:  </th>
-              <td mat-cell *matCellDef="let element"> {{element.dataInicio | dataSimples}} </td>
-            </ng-container>
-           
-            <ng-container matColumnDef="dataFim">
-              <th mat-header-cell *matHeaderCellDef> Data fim:  </th>
-              <td mat-cell *matCellDef="let element"> {{element.dataFim | dataSimples}} </td>
-            </ng-container>
-          
+
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef> Nome: </th>
+            <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="programa">
+            <th mat-header-cell *matHeaderCellDef> Programa: </th>
+            <td mat-cell *matCellDef="let element"> {{element.programa.nome}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dataPrevisaoInicio">
+            <th mat-header-cell *matHeaderCellDef> Data de Previsão de Início:  </th>
+            <td mat-cell *matCellDef="let element"> {{element.dataPrevisaoInicio | dataSimples}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dataInicio">
+            <th mat-header-cell *matHeaderCellDef> Data início:  </th>
+            <td mat-cell *matCellDef="let element"> {{element.dataInicio | dataSimples}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="dataFim">
+            <th mat-header-cell *matHeaderCellDef> Data fim:  </th>
+            <td mat-cell *matCellDef="let element"> {{element.dataFim | dataSimples}} </td>
+          </ng-container>
+
             <ng-container matColumnDef="acoes">
-                    <th mat-header-cell *matHeaderCellDef> Ações </th>
-                    <td mat-cell *matCellDef="let element"> 
-                          <button  mat-button color="warn" (click)="deletar(element)" >
-                              <mat-icon>clear</mat-icon>
-                          </button> 
-                          <button mat-button (click)="atualizar(element)">
-                                  <mat-icon>create</mat-icon>
-                              </button> 
-                    </td>
-                  </ng-container>
-          
+                <th mat-header-cell *matHeaderCellDef> Ações </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-button (click)="deletar(element)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-button (click)="atualizar(element)">
+                        <mat-icon>create</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
+        </table>
+        <div [hidden]="!mostrarTabela">
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+        <ng-template #tabelaSemDados>
+            <div fxLayout="row" fxLayoutAlign="center center" style="padding-top: 20px">
+                {{msg}}
+            </div>
+        </ng-template>
+
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-top: 50px">
+            <div>
+                <button matTooltip="Adicionar novo projeto" mat-fab color="primary"
+                    [routerLink]="['/projeto/cadastrar']" routerLinkActive="router-link-active">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-
-
 

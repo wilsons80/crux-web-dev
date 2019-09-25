@@ -7,15 +7,15 @@
 }
 
 .botao{
-    height: 200px;
-    width: 250px;
-    background: url(../../../../assets/img/no-foto.png) no-repeat 0 0;
-    background-size: 100%;
+    height: 150px;
+    width: 150px;
+    /* background: url(../../../../assets/img/fundacao-bb.jpg) no-repeat 0 0; */
+    background-size: cover;
     margin: auto;
-    align-content: center;
+    background-attachment: initial;
+    background-position: center;
+    background-color: aliceblue;
 }
-
-
 
 .center {
     margin-top: 20px;

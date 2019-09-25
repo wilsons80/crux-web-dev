@@ -1,3 +1,4 @@
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { LoadingPopupComponent } from 'src/app/components/common/loading-popup/loading-popup.component';
@@ -11,16 +12,18 @@ export class LoadingPopupService {
 
   dialogRef: MatDialogRef<any,any>;
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    public dialog: MatDialog,
+    private toolbarPrincipalService:ToolbarPrincipalService
+    ) {
   }
 
   mostrarDialog(): void {
-   
-      this.openDialog();
+    this.toolbarPrincipalService.loadingCompleto = false;
   }
 
   closeDialog() {
-    this.dialog.closeAll();
+    this.toolbarPrincipalService.loadingCompleto = true;
   }
 
 

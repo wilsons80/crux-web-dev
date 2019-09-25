@@ -1,3 +1,7 @@
+import { FuncionarioModule } from './components/funcionario/funcionario.module';
+import { UploadFotoModule } from './components/upload-foto/upload-foto.module';
+import { AtividadeModule } from './components/atividade/atividade.module';
+import { ProdutoModule } from './components/produto/produto.module';
 import { MetasModule } from './components/metas/metas.module';
 import { ObjetivoModule } from './components/objetivo/objetivo.module';
 import { DepartamentoModule } from './components/departamento/departamento.module';
@@ -12,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './components/login/login.module';
 import { HomeModule } from './components/home/home.module';
-import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatSidenavModule, MatMenuModule, MatExpansionModule, MatDividerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatCardModule } from '@angular/material';
+import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatSidenavModule, MatMenuModule, MatExpansionModule, MatDividerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatCardModule, MatPaginatorIntl } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -27,25 +31,28 @@ import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { ConfirmDialogComponent } from './components/common/confirm-dialog/confirm-dialog.component';
-import { UploadFotoComponent } from './components/common/upload-foto/upload-foto.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PerspectivaModule } from './components/perspectiva/perspectiva.module';
 import { IndicadoresModule } from './components/indicadores/indicadores.module';
 import { IniciativasModule } from './components/iniciativas/iniciativas.module';
+import { SharedPipesModule } from './pipes/shared-pipes.module';
+import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
+import { UnidadeModule } from './components/unidade/unidade.module';
+import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
+import { ProgramasModule } from './components/programas/programas.module';
+import { ProjetoModule } from './components/projeto/projeto.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
   entryComponents: [
     HttpErrorToastComponent,
     ConfirmDialogComponent,
-    UploadFotoComponent
   ],
   declarations: [
     AppComponent,
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
-    UploadFotoComponent
     
   ],
   imports: [
@@ -84,9 +91,19 @@ registerLocaleData(localePt, 'pt-BR');
     ObjetivoModule,
     IndicadoresModule,
     IniciativasModule,
-    MetasModule
+    MetasModule,
+    SharedPipesModule,
+    UnidadeModule,
+    PlanosAcaoModule,
+    ProgramasModule,
+    ProjetoModule,
+    ProdutoModule,
+    AtividadeModule,
+    UploadFotoModule,
+    FuncionarioModule
   ],
   providers: [
+    { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: LOCALE_ID, useValue: 'pt-BR' },
 

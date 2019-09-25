@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Metas } from 'src/app/core/metas';
-import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatDialogConfig, MatPaginator } from '@angular/material';
 import { MetasService } from 'src/app/services/metas/metas.service';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -12,9 +12,12 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class MetasComponent implements OnInit {
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   listaMetas: Metas[];
   mostrarTabela: boolean = false;
   metas: Metas = new Metas();
+  msg:string;
 
   displayedColumns: string[] = ['nome', 'indicadores', 'dataInicio','dataFim', 'acoes'];
 
@@ -29,29 +32,31 @@ export class MetasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.metasService.getAll().subscribe((metas: Metas[]) => {
-      this.listaMetas = metas
-    })
+    this.dataSource.paginator = this.paginator;
+    this.getAll();
   }
+ 
 
   limpar() {
     this.mostrarTabela = false;
     this.metas = new Metas()
-    this.dataSource.data = null;
+    this.dataSource.data = [];
   }
 
   consultar() {
     if (this.metas.id) {
       this.metasService.getById(this.metas.id).subscribe((metas: Metas) => {
-        this.dataSource.data = [metas];
+        if(!metas){
+          this.mostrarTabela = false
+          this.msg = "Nenhum registro para a pesquisa selecionada"
+        }else {
+          this.dataSource.data = [metas];
+          this.mostrarTabela = true;
+        }
       })
     } else {
-      this.metasService.getAll().subscribe((listaMetas: Metas[]) => {
-        this.listaMetas = listaMetas
-        this.dataSource.data = listaMetas;
-      })
+      this.getAll();
     }
-    this.mostrarTabela = true;
   }
 
 
@@ -74,12 +79,10 @@ export class MetasComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-
         this.metasService.excluir(metas.id).subscribe(() => {
-
+          this.metas.id = null;
           this.consultar();
         })
-
       } else {
         dialogRef.close();
       }
@@ -87,4 +90,20 @@ export class MetasComponent implements OnInit {
     );
   }
 
+  getAll() {
+    this.metasService.getAll().subscribe((metas: Metas[]) => {
+      this.listaMetas = metas
+      this.dataSource.data = metas ? metas : [];
+      this.verificaMostrarTabela(metas);
+    })
+  }
+ 
+  verificaMostrarTabela(metas: Metas[]) {
+    if(!metas || metas.length == 0) {
+      this.mostrarTabela = false; 
+      this.msg = "Nenhuma meta cadastrada."
+    }else{
+      this.mostrarTabela = true; 
+    }
+  }
 }

@@ -1,0 +1,75 @@
+import { CargosService } from './../../../../services/cargos/cargos.service';
+import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
+import { ConclusaoParecer } from './../../../../core/conclusao-parecer';
+import { TipoFuncionario } from './../../../../core/tipo-funcionario';
+import { Funcionario } from 'src/app/core/funcionario';
+import { Component, OnInit, Input } from '@angular/core';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
+import { ParecerEntrevistador } from 'src/app/core/parecer-entrevistador';
+import { ControlContainer, NgForm } from '@angular/forms';
+import { Unidade } from 'src/app/core/unidade';
+import { Cargo } from 'src/app/core/cargo';
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
+
+@Component({
+  selector: 'funcional',
+  templateUrl: './funcional.component.html',
+  styleUrls: ['./funcional.component.css'],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
+})
+export class FuncionalComponent implements OnInit {
+
+  @Input() funcionario:Funcionario
+
+  horaEntrevista;
+
+  tipoFuncionario = TipoFuncionario;
+
+  tiposFuncionario = [
+    {id: TipoFuncionario.CANDIDATO_VAGA_FUNCIONARIO, descricao:'CANDIDATO A VAGA DE FUNCIONÁRIO'},
+    {id: TipoFuncionario.COLABORADOR, descricao:'COLABORADOR'},
+    {id: TipoFuncionario.ESTAGIARIO, descricao:'ESTAGIÁRIO'},
+    {id: TipoFuncionario.FUNCIONARIO, descricao:'FUNCIONÁRIO'},
+    {id: TipoFuncionario.INSTRUTOR, descricao:'INSTRUTOR'},
+    {id: TipoFuncionario.VOLUNTARIO, descricao:'VOLUNTÁRIO'},
+  ]
+  
+  listaParecer = [
+    {id: ParecerEntrevistador.TOTALMENTO_ADEQUADO_PERFIL, descricao:'TOTALMENTE ADEQUADO AO PERFIL'},
+    {id: ParecerEntrevistador.ADEQUADO_PERFIL, descricao:'ADEQUADO AO PERFIL'},
+    {id: ParecerEntrevistador.NAO_ADEQUADO_PERFIL, descricao:' NÃO ADEQUADO AO PERFIL'},
+    {id: ParecerEntrevistador.INDICADO_CONSULTA_FUTURA, descricao:'INDICADO PARA CONSULTA FUTURA'}
+  ]
+
+  conclusaoDoParecer = [
+    {id: ConclusaoParecer.CONTINUAR, descricao: 'DAR CONTINUIDADE AO PROCESSO SELETIVO'},
+    {id: ConclusaoParecer.NAO_CONTINUAR, descricao: 'NÃO DAR CONTINUIDADE AO PROCESSO SELETIVO'},
+  ]
+
+  funcionarios: Funcionario[];
+  unidades: Unidade[];
+  cargos: Cargo[];
+  
+  constructor(
+    private funcionarioService:FuncionarioService,
+    private unidadeService:UnidadeService,
+    private cargosService:CargosService
+    
+    ) { }
+
+  ngOnInit() {
+    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[])=> {
+      this.funcionarios = funcionarios;
+    });
+    
+    this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: Unidade[])=> {
+      this.unidades = unidades;
+    });
+    
+    this.cargosService.getAll().subscribe((cargos: Cargo[])=> {
+      this.cargos = cargos;
+    });
+
+  }
+
+}

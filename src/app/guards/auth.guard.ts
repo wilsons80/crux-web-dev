@@ -24,24 +24,12 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
 
     if (this.autenticadorService.isLoggedIn()) {
-      
-      this.autenticadorService.refreshToken(route.params.idUnidade);
 
-        this.mostrarMenu.emit(true);
-      
+      this.autenticadorService.refreshToken();
 
-      let idUnidade = route.params.idUnidade;
-      
-      if (idUnidade) {
-      
-        this.acessoService.getMenuPrincipal(idUnidade).subscribe(acessos => {
-          console.log("acessos", acessos)
-          this.controleMenuService.setAcessos(acessos);
-        })
-      }
-
-
+      this.mostrarMenu.emit(true);
       return true;
+      
     } else {
       this.autenticadorService.logout();
       this.mostrarMenu.emit(false);

@@ -1,3 +1,4 @@
+import { ToastService } from './../../../services/toast/toast.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,14 +19,16 @@ export class CadastrarObjetivoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(
     private perspectivaService: PerspectivaService,
     private objetivoService: ObjetivoService,
     private route: ActivatedRoute,
     private location:Location,
-  ) { }
+    private toastService:ToastService
+  ) {
+    this.objetivo.perspectiva = new Perspectiva();
+  }
 
 
   ngOnInit() {
@@ -41,18 +44,21 @@ export class CadastrarObjetivoComponent implements OnInit {
         this.objetivo = objetivo
       });
     }
-    
+
   }
   cadastrar() {
 
     this.objetivoService.cadastrar(this.objetivo).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Objetivo cadastrado com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() {
+    this.objetivo = new Objetivo();
+  }
 
-  cancelar() { 
+  cancelar() {
     this.location.back();
   }
 
@@ -63,8 +69,9 @@ export class CadastrarObjetivoComponent implements OnInit {
   atualizar(){
     this.objetivoService.alterar(this.objetivo).subscribe(()=>{
       this.location.back();
+      this.toastService.showSucesso("Objetivo atualizado com sucesso");
     });
-    
+
   }
 
 }

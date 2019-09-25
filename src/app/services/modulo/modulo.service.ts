@@ -11,7 +11,11 @@ export class ModuloService {
   constructor(private http: HttpClient) { }
 
   getModulosPorUnidade(idUnidade:number){
-    return this.http.get(moduloRootPath + `/unidade/${idUnidade}`);
+    return this.http.get(moduloRootPath + `unidade/${idUnidade}`);
+  }
+
+  getUsuariosPorUnidadeLogada(){
+    return this.http.get(moduloRootPath + `unidade`);
   }
 
   getGrupoModulo(idUnidade:number,idModulo:number){

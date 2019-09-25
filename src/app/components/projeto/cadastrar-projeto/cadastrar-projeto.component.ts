@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Objetivo } from 'src/app/core/objetivo';
 import { ProjetoService } from 'src/app/services/projeto/projeto.service';
 import { Projeto } from 'src/app/core/projeto';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-cadastrar-projeto',
@@ -18,10 +19,6 @@ export class CadastrarProjetoComponent implements OnInit {
 
   iniciativas: Iniciativa[];
   programas: Programa[];
-  funcionarios: any[] = [
-    { id: 1, nome: 'Brutos' },
-    { id: 2, nome: 'Popeye' }
-  ];
   projeto: Projeto = new Projeto();
 
   isAtualizar: boolean = false;
@@ -32,7 +29,11 @@ export class CadastrarProjetoComponent implements OnInit {
     private projetoService: ProjetoService,
     private route: ActivatedRoute,
     private location: Location,
-  ) { }
+    private toastService: ToastService
+  ) {
+    this.projeto.programa = new Programa();
+    this.projeto.iniciativa = new Iniciativa();
+  }
 
 
   ngOnInit() {
@@ -57,10 +58,13 @@ export class CadastrarProjetoComponent implements OnInit {
   cadastrar() {
     this.projetoService.cadastrar(this.projeto).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Projeto cadastrado com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() {
+    this.projeto = new Projeto();
+   }
 
   cancelar() {
     this.location.back();
@@ -73,6 +77,7 @@ export class CadastrarProjetoComponent implements OnInit {
   atualizar() {
     this.projetoService.alterar(this.projeto).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Projeto atualizado com sucesso");
     });
 
   }

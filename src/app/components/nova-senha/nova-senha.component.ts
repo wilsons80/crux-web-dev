@@ -1,8 +1,12 @@
+import { TrocaSenha } from './../../core/troca-senha';
+import { AutenticadorService } from './../../services/autenticador/autenticador.service';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogConfig, MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-
+import { Routes, Router } from '@angular/router';
+import { LogoutService } from 'src/app/services/logout/logout.service';
 @Component({
   selector: 'app-nova-senha',
   templateUrl: './nova-senha.component.html',
@@ -10,16 +14,16 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class NovaSenhaComponent implements OnInit {
 
-  login: String;
-  senhaAtual: String;
+  trocaSenha:TrocaSenha = new TrocaSenha();
   confirmacaoNovaSenha: String;
-  novaSenha: String;
 
-  
   constructor(
-    private toastService:ToastService,
-    private dialog: MatDialog
-    ) { }
+    private toastService: ToastService,
+    private dialog: MatDialog,
+    private location: Location,
+    private autenticadorService:AutenticadorService,
+    private logoutService:LogoutService
+  ) { }
 
   ngOnInit() {
   }
@@ -36,25 +40,27 @@ export class NovaSenhaComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        //TODO chamar o metodo do Backend
-        this.toastService.showAlerta("Metodo não implementado no backend.");
+        this.autenticadorService.trocarSenha(this.trocaSenha).subscribe(() =>{
+          this.logoutService.logout();
+        })
       } else {
-        //this.dialogRefConfirma.close();
+        dialogRef.close();
       }
     }
     );
   }
 
-  alterarSenha(){
-    
-    if(this.novaSenha !== this.confirmacaoNovaSenha) {
+  alterarSenha() {
+    if (this.trocaSenha.senhaNova !== this.confirmacaoNovaSenha) {
       this.toastService.showAlerta("As novas senhas são diferentes.");
       return;
     }
-
-   this.chamaCaixaDialogo();
-    
+    this.chamaCaixaDialogo();
   }
- 
-  
+
+  cancelar() {
+    this.location.back();
+  }
+
+
 }

@@ -14,25 +14,25 @@ export class UnidadeService {
 
 
   getAllTiposUnidade() {
-    return this.http.get(unidadeRootPath + `tiposunidade/`);
+    return this.http.get(unidadeRootPath + `tiposunidade`);
   }
 
   getAllClassificadorSituacaoImovel() {
-    return this.http.get(unidadeRootPath + `classificadorimovel/`);
+    return this.http.get(unidadeRootPath + `classificadorimovel`);
   }
-  
-  getPorUsuario() {
-    return this.http.get(unidadeRootPath + `usuario/`);
+
+  getUnidadesComAcesso() {
+    return this.http.get(unidadeRootPath + `usuario`);
   }
 
   getUnidadePorId(idUnidade:number){
-    return this.http.get(unidadeRootPath + `${idUnidade}`);
+    return this.http.get(unidadeRootPath + `logada/${idUnidade}`);
   }
 
   getAllUnidadesUsuarioLogadoTemAcesso(){
     return this.http.get(unidadeRootPath);
   }
- 
+
   cadastrar(unidade:Unidade){
     return this.http.post(unidadeRootPath, unidade);
   }
@@ -40,7 +40,7 @@ export class UnidadeService {
   alterar(unidade:Unidade){
     return this.http.put(unidadeRootPath, unidade);
   }
-  
+
   excluir(idUnidade:number){
     return this.http.delete(unidadeRootPath + `${idUnidade}`);
   }

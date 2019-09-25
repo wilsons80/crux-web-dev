@@ -5,6 +5,8 @@ import { Injectable,EventEmitter } from '@angular/core';
 })
 export class MenuPrincipalService {
 
+  expandido:boolean = false;
+
   constructor() { }
 
   toggle = new EventEmitter();
@@ -12,7 +14,7 @@ export class MenuPrincipalService {
   alternar(){
     this.toggle.emit();
   }
-  
+
   logout(){
     this.toggle.emit({logout:true});
   }

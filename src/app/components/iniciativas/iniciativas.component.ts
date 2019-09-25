@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -11,10 +11,13 @@ import { IniciativaService } from './../../services/iniciativa/iniciativa.servic
   styleUrls: ['./iniciativas.component.css']
 })
 export class IniciativasComponent implements OnInit {
+  
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   iniciativas: Iniciativa[];
   mostrarTabela: boolean = false;
   iniciativa: Iniciativa = new Iniciativa();
+  msg:string;
 
 
   displayedColumns: string[] = ['nome', 'metas', 'dataInicio', 'dataFim', 'acoes'];
@@ -30,34 +33,36 @@ export class IniciativasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.iniciativaService.getAll().subscribe((iniciativas: Iniciativa[]) => {
-      this.iniciativas = iniciativas
-    })
+    this.dataSource.paginator = this.paginator;
+    this.getAll();
   }
+ 
 
   limpar() {
     this.mostrarTabela = false;
     this.iniciativa = new Iniciativa()
-    this.dataSource.data = null;
+    this.dataSource.data = [];
   }
 
   consultar() {
     if (this.iniciativa.id) {
       this.iniciativaService.getById(this.iniciativa.id).subscribe((iniciativa: Iniciativa) => {
-        this.dataSource.data = [iniciativa];
+        if(!iniciativa){
+          this.mostrarTabela = false
+          this.msg = "Nenhum registro para a pesquisa selecionada"
+        }else {
+          this.dataSource.data = [iniciativa];
+          this.mostrarTabela = true;
+        }
       })
     } else {
-      this.iniciativaService.getAll().subscribe((iniciativa: Iniciativa[]) => {
-        this.iniciativas = iniciativa
-        this.dataSource.data = iniciativa;
-      })
+      this.getAll();
     }
-    this.mostrarTabela = true;
   }
 
 
   atualizar(iniciativa: Iniciativa) {
-    this.router.navigate(['/iniciativa/cadastrar'], { queryParams: { idIniciativa: iniciativa.id } });
+    this.router.navigate(['/iniciativas/cadastrar'], { queryParams: { idIniciativa: iniciativa.id } });
   }
 
   deletar(iniciativa: Iniciativa) {
@@ -75,12 +80,10 @@ export class IniciativasComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-
         this.iniciativaService.excluir(iniciativa.id).subscribe(() => {
-
+          this.iniciativa.id = null;
           this.consultar();
         })
-
       } else {
         dialogRef.close();
       }
@@ -88,4 +91,20 @@ export class IniciativasComponent implements OnInit {
     );
   }
 
+  getAll() {
+    this.iniciativaService.getAll().subscribe((iniciativas: Iniciativa[]) => {
+      this.iniciativas = iniciativas;
+      this.dataSource.data = iniciativas ? iniciativas : [];
+      this.verificaMostrarTabela(iniciativas);
+    })
+  }
+
+  verificaMostrarTabela(iniciativas: Iniciativa[]) {
+    if(!iniciativas ||iniciativas.length == 0) {
+      this.mostrarTabela = false; 
+      this.msg = "Nenhuma iniciativa cadastrada."
+    }else{
+      this.mostrarTabela = true; 
+    }
+  }
 }

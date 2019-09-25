@@ -5,6 +5,7 @@ import { Iniciativa } from 'src/app/core/iniciativa';
 import { PlanosAcaoService } from 'src/app/services/planosAcao/planos-acao.service';
 import { PlanosAcao } from './../../../core/planos-acao';
 import { IniciativaService } from './../../../services/iniciativa/iniciativa.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-cadastrar-planos-acao',
@@ -23,7 +24,10 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
     private planosAcaoService: PlanosAcaoService,
     private route: ActivatedRoute,
     private location: Location,
-  ) { }
+    private toastService:ToastService
+  ) {
+    this.planosAcao.iniciativa = new Iniciativa();
+  }
 
 
   ngOnInit() {
@@ -44,10 +48,13 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
   cadastrar() {
     this.planosAcaoService.cadastrar(this.planosAcao).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Plano de ação cadastrado com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() {
+    this.planosAcao = new PlanosAcao();
+  }
 
   cancelar() {
     this.location.back();
@@ -60,6 +67,7 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
   atualizar() {
     this.planosAcaoService.alterar(this.planosAcao).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Plano de ação atualizado com sucesso");
     });
 
   }

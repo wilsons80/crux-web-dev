@@ -1,0 +1,44 @@
+<mat-toolbar class="titulopartes">Documentos</mat-toolbar>
+
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                        <input matInput [(ngModel)]="pessoaFisica.cpf" name="cpf" placeholder="CPF:"
+                            [textMask]="{mask: mascaraCpf}">
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                        <input matInput [(ngModel)]="pessoaFisica.identidade" name="identidade"
+                            placeholder="Identidade:">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="30%">
+                        <input matInput [(ngModel)]="pessoaFisica.orgaoCi" name="orgaoCi"
+                            placeholder="Órgão Expedidor:">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="5%">
+                        <mat-label>UF:</mat-label>
+                        <mat-select [(ngModel)]="pessoaFisica.ufCi" name="ufCi">
+                            <mat-option *ngFor="let m of ufs" [value]="m">
+                                {{m.nome}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                        <input matInput [(ngModel)]="pessoaFisica.tituloEleitor" name="tituloEleitor"
+                            placeholder="Titulo de Eleitor:">
+                    </mat-form-field>
+                    <mat-form-field fxFlex="30%">
+                        <input matInput [(ngModel)]="pessoaFisica.zonaTitulo" name="zonaTitulo"
+                            placeholder="Zona:">
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="30%">
+                        <input matInput [(ngModel)]="pessoaFisica.sessaoTitulo" name="sessaoTitulo"
+                            placeholder="Sessão:">
+                    </mat-form-field>
+
+                </div>

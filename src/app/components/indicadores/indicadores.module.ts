@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { IndicadoresRoutingModule } from './indicadores-routing.module';
 import { IndicadoresComponent } from './indicadores.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatDatepickerModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatDatepickerModule, MatPaginatorModule, MatTooltipModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -29,7 +29,9 @@ import { CadastrarIndicadoresComponent } from './cadastrar-indicadores/cadastrar
     MatListModule,
     FlexLayoutModule,
     SharedPipesModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatPaginatorModule,
+    MatTooltipModule
   ]
 })
 export class IndicadoresModule { }

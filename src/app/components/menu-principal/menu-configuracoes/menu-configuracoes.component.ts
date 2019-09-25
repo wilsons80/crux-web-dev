@@ -1,3 +1,4 @@
+import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -6,7 +7,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   templateUrl: './menu-configuracoes.component.html',
   styleUrls: ['./menu-configuracoes.component.css'],
   animations: [
-    trigger('photoState', [
+    trigger('menuState', [
       state('hidden', style({
         visibility: 'hidden',
         opacity: 0
@@ -22,7 +23,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class MenuConfiguracoesComponent implements OnInit {
 
   currentState = "hidden"
-  constructor() { }
+  constructor(public menuPrincipalService:MenuPrincipalService) { }
 
   isMostrarSubMenu: boolean = false;
 
@@ -35,5 +36,9 @@ export class MenuConfiguracoesComponent implements OnInit {
       this.currentState = 'show';
     }else
       this.currentState = 'hidden';
+  }
+
+  getIcone(){
+    return this.isMostrarSubMenu ? "expand_more" : "chevron_right";
   }
 }

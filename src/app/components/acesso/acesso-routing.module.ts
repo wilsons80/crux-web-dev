@@ -6,8 +6,8 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 
 
 const routes: Routes = [
-  { path: 'acesso/:idUnidade', component: AcessoComponent, canActivate: [AuthGuard]},
-  //{ path: 'acesso/:idUnidade/cadastrar', component: CadastrarAcessoComponent, canActivate: [AuthGuard]},
+  { path: 'acesso', component: AcessoComponent, canActivate: [AuthGuard]},
+  { path: 'acesso/cadastrar', component: CadastrarAcessoComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

@@ -1,15 +1,53 @@
-<a mat-list-item >
-    <div fxLayout="row" fxLayoutAlign="space-between stretch" style="width: 260px">
-        <div fxLayout="row" fxLayoutAlign="start stretch">
+<a mat-list-item (click)="toggle()">
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
+        <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="Módulo Administrativo">
             <mat-icon>supervisor_account</mat-icon>
-            <span class="nav-caption">Administrativo</span>
+            <span *ngIf="menuPrincipalService.expandido"  class="nav-caption">Administrativo</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="start stretch">
-            <mat-icon style="padding-top: 2px">chevron_right</mat-icon>
+            <mat-icon *ngIf="menuPrincipalService.expandido" style="padding-top: 2px">{{getIcone()}}</mat-icon>
         </div>
     </div>
 </a>
-<mat-nav-list style="width: 260px">
-   
-<sub-menu-departamento></sub-menu-departamento>
+<mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
+
+    <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
+
+        <!-- DEPARTAMENTO -->
+        <sub-menu icone="business" titulo="Departamento" rota="departamento" toolTip="Departamento"></sub-menu>
+
+         <!-- FUNCIONARIO -->
+         <sub-menu icone="perm_contact_calendar" titulo="Funcionário" rota="funcionario" toolTip="Funcionário" ></sub-menu>
+
+        <!-- PERSPECTIVA -->
+        <sub-menu icone="pages" titulo="Perspectiva" rota="perspectiva" toolTip="Perspectiva"></sub-menu>
+
+        <!-- OBJETIVOS -->
+        <sub-menu icone="my_location" titulo="Objetivos" rota="objetivo" toolTip="Objetivos"></sub-menu>
+
+        <!-- INDICADORES -->
+        <sub-menu icone="trending_up" titulo="Indicadores" rota="indicadores" toolTip="Indicadores"></sub-menu>
+
+        <!-- METAS -->
+        <sub-menu icone="account_tree" titulo="Metas" rota="metas" toolTip="Departamento"></sub-menu>
+
+        <!-- INICIATIVAS -->
+        <sub-menu icone="highlight" titulo="Iniciativas" rota="iniciativas" toolTip="Iniciativas"></sub-menu>
+
+        <!-- PLANOS DE ACAO -->
+        <sub-menu icone="list_alt" titulo="Planos de Ação" rota="planosacao" toolTip="Planos de Ação"></sub-menu>
+
+        <!-- PROGRAMAS -->
+        <sub-menu icone="apps" titulo="Programas" rota="programas" toolTip="Programas"></sub-menu>
+
+        <!-- FUNCIONARIOS DOS PROGRAMAS -->
+
+        <!-- PROJETOS -->
+        <sub-menu icone="folder_open" titulo="Projetos" rota="projeto" toolTip="Projetos"></sub-menu>
+
+        <!-- FUNCIONARIOS DOS PROJETOS -->
+
+        <!-- PRODUTOS -->
+        <sub-menu icone="unarchive" titulo="Produtos" rota="produto" toolTip="Produtos"></sub-menu>
+    </div>
 </mat-nav-list>

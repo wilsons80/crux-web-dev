@@ -1,18 +1,19 @@
-<mat-toolbar class="tituloprincipal">Cadastrar Perspectiva</mat-toolbar>
+<mat-toolbar class="subtitulo">Cadastrar Perspectiva</mat-toolbar>
 
-<div class="mat-elevation-z1 painel-principal" style="padding: 10px;">
+<div class="painel-principal" style="padding: 10px;">
     <form #formCadastroPerspectiva="ngForm">
- 
+
         <!-- DADOS INICIAIS -->
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    
+
             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nmDepartamento" placeholder="Nome da Perspectiva:" [(ngModel)]="perspectiva.nmPerspectiva" required> 
+                  <input matInput maxlength="200"  name="nmDepartamento" placeholder="Nome da Perspectiva:" [(ngModel)]="perspectiva.nmPerspectiva" required>
              </mat-form-field>
 
         </div>
 
+         <!-- DATA -->
         <mat-toolbar class="titulopartes">Data</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
@@ -21,7 +22,7 @@
                     <mat-datepicker-toggle matSuffix [for]="dtImplantacao"></mat-datepicker-toggle>
                     <mat-datepicker #dtImplantacao></mat-datepicker>
              </mat-form-field>
-           
+
              <mat-form-field fxFlex= "50%">
                     <input matInput name= "dtTermino" [matDatepicker]="dtTermino" placeholder="Data Término" [(ngModel)]="perspectiva.dtTermino">
                     <mat-datepicker-toggle matSuffix [for]="dtTermino"></mat-datepicker-toggle>
@@ -35,38 +36,38 @@
          <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
                         <mat-label>Unidade:</mat-label>
-                        <mat-select [(ngModel)]="perspectiva.unidade" name="unidade" required>
-                            <mat-option *ngFor="let u of unidades" [value]="u" >
+                        <mat-select [(ngModel)]="perspectiva.unidade.idUnidade" name="unidade" required>
+                            <mat-option *ngFor="let u of unidades" [value]="u.idUnidade" >
                               {{u.nomeUnidade}}
                             </mat-option>
                         </mat-select>
                 </mat-form-field>
 
          </div>
-        
+
         <!-- BOTÕES -->
         <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
             fxFlexFill>
-            <button mat-raised-button 
-                    name="botaoConfirmar" 
-                    fxFlex="20%" 
+            <button mat-raised-button
+                    name="botaoConfirmar"
+                    fxFlex="20%"
                     color="primary"
-                    [disabled]="formCadastroPerspectiva.invalid" 
+                    [disabled]="formCadastroPerspectiva.invalid"
                     (click)="isAtualizar ? atualizar() : cadastrar()">
                     {{getNomeBotao()}}
             </button>
-            
-            <button *ngIf="!isAtualizar" 
-                    mat-raised-button 
-                    fxFlex="20%" 
-                    color="primary" 
+
+            <button *ngIf="!isAtualizar"
+                    mat-raised-button
+                    fxFlex="20%"
+                    color="primary"
                     (click)="limpar()">
                     Limpar
             </button>
-            
-            <button mat-raised-button 
-                    fxFlex="20%" 
-                    color="primary" 
+
+            <button mat-raised-button
+                    fxFlex="20%"
+                    color="primary"
                     (click)="cancelar()">
                 Cancelar
             </button>

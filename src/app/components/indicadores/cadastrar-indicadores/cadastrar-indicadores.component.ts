@@ -1,3 +1,4 @@
+import { ToastService } from './../../../services/toast/toast.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,20 +24,23 @@ export class CadastrarIndicadoresComponent implements OnInit {
     private objetivoService: ObjetivoService,
     private route: ActivatedRoute,
     private location: Location,
-  ) { }
+    private toastService:ToastService
+  ) {
+    this.indicadores.objetivo = new Objetivo();
+  }
 
 
   ngOnInit() {
     this.objetivoService.getAll().subscribe((objetivos: Objetivo[]) => {
       this.objetivos = objetivos;
-    })
+    });
 
     let idIndicadores: number;
-    idIndicadores = this.route.snapshot.queryParams.idIndicadores ? this.route.snapshot.queryParams.idIndicadores : null;
+    idIndicadores = this.route.snapshot.queryParams.idIndicador ? this.route.snapshot.queryParams.idIndicador : null;
     if (idIndicadores) {
       this.isAtualizar = true;
-      this.indicadoresService.getById(idIndicadores).subscribe((indicadores: Indicadores) => {
-        this.indicadores = indicadores
+      this.indicadoresService.getById(idIndicadores).subscribe((ind: Indicadores) => {
+        this.indicadores = ind;
       });
     }
 
@@ -44,10 +48,13 @@ export class CadastrarIndicadoresComponent implements OnInit {
   cadastrar() {
     this.indicadoresService.cadastrar(this.indicadores).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Indicador cadastrado com sucesso");
     });
   }
 
-  limpar() { }
+  limpar() {
+    this.indicadores = new Indicadores()
+  }
 
   cancelar() {
     this.location.back();
@@ -60,6 +67,7 @@ export class CadastrarIndicadoresComponent implements OnInit {
   atualizar() {
     this.indicadoresService.alterar(this.indicadores).subscribe(() => {
       this.location.back();
+      this.toastService.showSucesso("Indicador atualizado com sucesso");
     });
 
   }

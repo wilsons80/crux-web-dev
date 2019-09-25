@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Atividade } from 'src/app/core/atividade';
-import { MatDialogConfig, MatTableDataSource, MatDialog } from '@angular/material';
+import { MatDialogConfig, MatTableDataSource, MatDialog, MatPaginator } from '@angular/material';
 import { Programa } from 'src/app/core/programa';
 import { ProgramaService } from 'src/app/services/programa/programa.service';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 
 @Component({
   selector: 'app-atividade',
@@ -13,8 +14,11 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class AtividadeComponent implements OnInit {
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   atividades: Atividade[];
   atividade: Atividade = new Atividade();
+  msg:string;
 
   mostrarTabela = false;
 
@@ -22,40 +26,42 @@ export class AtividadeComponent implements OnInit {
   dataSource: MatTableDataSource<Atividade> = new MatTableDataSource();
 
   constructor(
-    private programaService: ProgramaService,
+    private atividadeService: AtividadeService,
     private router: Router,
     private dialog: MatDialog,
-
   ) { }
 
   ngOnInit() {
-    this.programaService.getAll().subscribe((atividades: Atividade[]) => {
-      this.atividades = atividades;
-    })
+    this.dataSource.paginator = this.paginator;
+    this.getAll();
   }
+ 
 
   limpar() {
+    this.mostrarTabela = false;
     this.atividade = new Atividade()
-    this.dataSource.data = null;
+    this.dataSource.data = [];
   }
 
   consultar() {
     if (this.atividade.id) {
-      this.programaService.getById(this.atividade.id).subscribe((atividade: Atividade) => {
-        this.dataSource.data = [atividade];
+      this.atividadeService.getById(this.atividade.id).subscribe((atividade: Atividade) => {
+        if(!atividade){
+          this.mostrarTabela = false
+          this.msg = "Nenhum registro para a pesquisa selecionada"
+        }else {
+          this.dataSource.data = [atividade];
+          this.mostrarTabela = true;
+        }
       })
     } else {
-      this.programaService.getAll().subscribe((atividade: Atividade[]) => {
-        this.atividades = atividade
-        this.dataSource.data = atividade;
-      })
+      this.getAll();
     }
-    this.mostrarTabela = true;
   }
 
 
   atualizar(atividade: Atividade) {
-    this.router.navigate(['/atividade/cadastrar'], { queryParams: { idPrograma: atividade.id } });
+    this.router.navigate(['/atividade/cadastrar'], { queryParams: { idAtividade: atividade.id } });
   }
 
   deletar(atividade: Atividade) {
@@ -65,7 +71,7 @@ export class AtividadeComponent implements OnInit {
   chamaCaixaDialogo(atividade: Atividade) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a atividade ?`,
+      pergunta: `Certeza que desse excluir a atividade?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };
@@ -73,17 +79,32 @@ export class AtividadeComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-
-        this.programaService.excluir(atividade.id).subscribe(() => {
-
+        this.atividadeService.excluir(atividade.id).subscribe(() => {
+          this.atividade.id = null;
           this.consultar();
         })
-
       } else {
         dialogRef.close();
       }
     }
     );
+  }
+
+   getAll() {
+    this.atividadeService.getAll().subscribe((atividades: Atividade[]) => {
+      this.atividades = atividades;
+      this.dataSource.data = atividades ? atividades : [];
+      this.verificaMostrarTabela(atividades);
+    })
+  }
+
+  verificaMostrarTabela(atividades: Atividade[]) {
+    if(!atividades || atividades.length == 0) {
+      this.mostrarTabela = false; 
+      this.msg = "Nenhuma atividade cadastrada."
+    }else{
+      this.mostrarTabela = true; 
+    }
   }
 
 }

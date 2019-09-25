@@ -13,15 +13,15 @@ export class AcessoService {
 
   constructor(private http: HttpClient) { }
   
-  getMenuPrincipal(idUnidade:number){
-    return this.http.get(menuRootPath + `unidade/${idUnidade}`);
+  getMenuPrincipal(){
+    return this.http.get(menuRootPath);
   }
 
-  getAcessosDoUsurioNoModulo(idUnidade:number, idUsuario:number|string, idModulo:number|string){
+  getPerfilAcessoDoUsuario(idUsuario:number|string, idModulo:number|string){
     if(idUsuario == undefined) idUsuario = "";
     if(idModulo == undefined) idModulo = "";
 
-    return this.http.get(acessoRootPath + `perfil/unidade/${idUnidade}`, {params: {
+    return this.http.get(acessoRootPath + `perfil/unidadelogada`, {params: {
        usuario: `${idUsuario}`,
        modulo: `${idModulo}`
     }});
