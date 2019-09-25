@@ -53,8 +53,8 @@ button.mat-fab.mat-button-base{
 /* TELAS DE CONSULTA */
 .painel-principal  {
     /* margin-top: 5%; */
-    margin-left: 15%;
-    margin-right: 15%;
+    /* margin-left: 15%;
+    margin-right: 15%; */
     /* border: 3px solid #73AD21; */
 }
 
@@ -74,15 +74,6 @@ button.mat-fab.mat-button-base{
   margin-right: 8%;
 }
 
-article.acompanhamento-intimacaoes mat-toolbar,
-article.minhas-tarefas mat-toolbar {
-  background: rgb(255, 255, 255) !important;
-  vertical-align: middle;
-}
-
-article.minhas-tarefas {
-  margin-bottom: 1.3rem;
-}
 mat-toolbar.mat-toolbar.mat-toolbar-single-row.subtitulo {
   background: #ECEFF1;
 }
@@ -117,3 +108,9 @@ div.inserted {
 .expandido{
   width: 260px;
 }
+
+/* .main_content {
+  width:100%; 
+  height: calc(100vh - 100px); 
+  background: #efefef;
+} */
