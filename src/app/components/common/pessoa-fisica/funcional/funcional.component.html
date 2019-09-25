@@ -32,7 +32,7 @@
     </mat-form-field>
 </div>
 
-<div *ngIf="funcionario.tipoFuncionario != tipoFuncionario.CANDIDATO_VAGA_FUNCIONARIO">
+<div *ngIf="funcionario.tipoFuncionario == tipoFuncionario.CANDIDATO_VAGA_FUNCIONARIO">
     <mat-toolbar class="titulopartes">Entrevista</mat-toolbar>
 
     <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
