@@ -1,6 +1,6 @@
 export enum TipoEmpresa{
     PARCEIRA ="P",
-	CONVÊNIO = "V",
+	CONVENIO = "V",
 	CONTRATO = "T",
 	FORNECEDOR = "F",
 	CLIENTE = "C",

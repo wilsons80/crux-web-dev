@@ -27,3 +27,4 @@ export class Empresa {
 	uf:string;
     usuarioAlteracao:number;
 }
+
