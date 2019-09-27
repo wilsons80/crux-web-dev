@@ -1,4 +1,4 @@
-<mat-toolbar class="subtitulo">Cadastrar Funcionários</mat-toolbar>
+<mat-toolbar class="subtitulo">Funcionários</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
     <mat-horizontal-stepper #stepper style="background: transparent; padding: 10px">
@@ -88,7 +88,7 @@
                 <ng-template matStepLabel>FUNCIONAL</ng-template>
 
                 <funcional [funcionario]="funcionario"></funcional>
-                
+
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
@@ -113,8 +113,8 @@
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" (click)="cadastrar()"
-                    [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid || 
-                                formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid ||  formCadastroOutros.invalid"  
+                    [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
+                                formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid ||  formCadastroOutros.invalid"
                     matStepperNext>
                     Cadastrar
                 </button>

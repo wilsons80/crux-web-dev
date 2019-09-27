@@ -1,65 +1,65 @@
-<mat-toolbar class="subtitulo">Cadastrar Produto</mat-toolbar>
+<mat-toolbar class="subtitulo">Produto</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
- 
+
         <!-- DADOS INICIAIS -->
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    
+
             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Nome do Produto:" [(ngModel)]="produto.nome" required> 
+                  <input matInput maxlength="200"  name="nome" placeholder="Nome do Produto:" [(ngModel)]="produto.nome" required>
              </mat-form-field>
-    
+
         </div>
-    
+
         <!--UNIDADE -->
         <mat-toolbar class="titulopartes">Unidade</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    
+
             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="20"  name="codigoUnidadeMedida" placeholder="Código Unidade Medida:" [(ngModel)]="produto.codigoUnidadeMedida"> 
+                  <input matInput maxlength="20"  name="codigoUnidadeMedida" placeholder="Código Unidade Medida:" [(ngModel)]="produto.codigoUnidadeMedida">
              </mat-form-field>
-           
+
              <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="descricaoUnidadeMedida" placeholder="Descrição Unidade Medida:" [(ngModel)]="produto.descricaoUnidadeMedida" > 
+                  <input matInput maxlength="200"  name="descricaoUnidadeMedida" placeholder="Descrição Unidade Medida:" [(ngModel)]="produto.descricaoUnidadeMedida" >
              </mat-form-field>
-    
+
         </div>
 
        <!--NOTA FISCAL -->
        <mat-toolbar class="titulopartes">Nota Fiscal</mat-toolbar>
        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-   
+
            <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                 <input matInput maxlength="200"  name="nomeProdutoNotafiscal" placeholder="Nome Produto Nota Fiscal:" [(ngModel)]="produto.nomeProdutoNotafiscal" > 
+                 <input matInput maxlength="200"  name="nomeProdutoNotafiscal" placeholder="Nome Produto Nota Fiscal:" [(ngModel)]="produto.nomeProdutoNotafiscal" >
             </mat-form-field>
-    
+
        </div>
-        
+
         <!-- BOTÕES -->
         <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
             fxFlexFill>
-            <button mat-raised-button 
-                    name="botaoConfirmar" 
-                    fxFlex="20%" 
+            <button mat-raised-button
+                    name="botaoConfirmar"
+                    fxFlex="20%"
                     color="primary"
-                    [disabled]="formCadastro.invalid" 
+                    [disabled]="formCadastro.invalid"
                     (click)="isAtualizar ? atualizar() : cadastrar()">
                     {{getNomeBotao()}}
             </button>
-            
-            <button *ngIf="!isAtualizar" 
-                    mat-raised-button 
-                    fxFlex="20%" 
-                    color="primary" 
+
+            <button *ngIf="!isAtualizar"
+                    mat-raised-button
+                    fxFlex="20%"
+                    color="primary"
                     (click)="limpar()">
                     Limpar
             </button>
-            
-            <button mat-raised-button 
-                    fxFlex="20%" 
-                    color="primary" 
+
+            <button mat-raised-button
+                    fxFlex="20%"
+                    color="primary"
                     (click)="cancelar()">
                 Cancelar
             </button>
