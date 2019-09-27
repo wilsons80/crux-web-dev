@@ -25,9 +25,9 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field fxFlex="20%">
+                <!-- <mat-form-field fxFlex="20%">
                     <input matInput maxlength="45" name="cor" placeholder="Cor:" [(ngModel)]="pessoaFisica.cor">
-                </mat-form-field>
+                </mat-form-field> -->
 
                 <mat-form-field fxFlex="20%">
                     <input matInput name="dataNascimento" [matDatepicker]="dataNascimento"
@@ -112,7 +112,7 @@
     </div>
 
     <!-- ETAPA 1 - MORADIA -->
-    <mat-toolbar class="titulopartes">Moradia</mat-toolbar>
+    <!-- <mat-toolbar class="titulopartes">Moradia</mat-toolbar>
     <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
         <mat-form-field fxFlex="50%" fxFlexOffset="20px">
             <mat-label>Condição da Moradia:</mat-label>
@@ -130,32 +130,30 @@
             </mat-form-field>
         </div>
 
-    </div>
+    </div> -->
 
 
     <!-- ETAPA 1 - CONTATO -->
     <mat-toolbar class="titulopartes">Contato</mat-toolbar>
     <div fxLayout="row" fxLayoutGap="30px" fxFlexFill>
-        <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+        <mat-form-field fxFlexOffset="20px" fxFlex="20%">
             <input matInput [(ngModel)]="pessoaFisica.telefoneResidencial" name="telefoneResidencial"
                 placeholder="Telefone Residencial:" [textMask]="{mask: maskPhone}">
         </mat-form-field>
 
-        <mat-form-field fxFlex="30%">
+        <!-- <mat-form-field fxFlex="30%">
             <input matInput [(ngModel)]="pessoaFisica.telefoneComercial" name="telefoneComercial"
                 placeholder="Telefone Comercial:" [textMask]="{mask: maskPhone}">
-        </mat-form-field>
+        </mat-form-field> -->
 
-        <mat-form-field fxFlex="30%">
+        <mat-form-field fxFlex="20%">
             <input matInput [(ngModel)]="pessoaFisica.celular" name="celular" placeholder="Celular:"
                 [textMask]="{mask: maskPhone}">
         </mat-form-field>
-    </div>
 
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" fxFlexFill>
-        <mat-form-field fxFlexOffset="20px" fxFlex="50%">
+        <mat-form-field fxFlexOffset="20px" fxFlex="40%">
             <input matInput [(ngModel)]="pessoaFisica.email" name="email" placeholder="Email:">
         </mat-form-field>
-        <mat-checkbox name="autorizaEmail" [(ngModel)]="pessoaFisica.autorizaEmail">Autorizo o recebimento de
-            emails.</mat-checkbox>
+        <!-- <mat-checkbox name="autorizaEmail" [(ngModel)]="pessoaFisica.autorizaEmail">Autorizo o recebimento de
+            emails.</mat-checkbox> -->
     </div>
