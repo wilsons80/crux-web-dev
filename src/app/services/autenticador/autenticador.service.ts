@@ -62,23 +62,26 @@ export class AutenticadorService {
   }
 
   refreshToken() {
-    if (moment().isBetween(this.getExpiration().subtract(this.parametros.timeExpiredToken, 'minutes'), this.getExpiration())) {
-      return this.http.get(tokenRootPath + `refresh-token`)
-      .pipe(
-        switchMap((usuarioLogado:UsuarioLogado) => {
-          this.setSession(usuarioLogado)
-          this.toolbarPrincipalService.setarPropriedadesUsuarioLogado(usuarioLogado);
-          if(usuarioLogado.unidadeLogada){
-            return this.arquivoService.get(usuarioLogado.unidadeLogada.id)
-          }else {
-            return new Observable(obs => obs.next())
-          }
-        }),
-        shareReplay(),
-      ).subscribe((arquivo) => {
-        this.toolbarPrincipalService.logo = this.fileUtils.convertBufferArrayToBase64(arquivo);
-      });
-    }
+    this.parametros.getTimeExpiredToken().subscribe((valor: number) => {
+      if (moment().isBetween(this.getExpiration().subtract(valor, 'minutes'), this.getExpiration())) {
+        return this.http.get(tokenRootPath + `refresh-token`)
+        .pipe(
+          switchMap((usuarioLogado:UsuarioLogado) => {
+            this.setSession(usuarioLogado)
+            this.toolbarPrincipalService.setarPropriedadesUsuarioLogado(usuarioLogado);
+            if(usuarioLogado.unidadeLogada){
+              return this.arquivoService.get(usuarioLogado.unidadeLogada.id)
+            }else {
+              return new Observable(obs => obs.next())
+            }
+          }),
+          shareReplay(),
+        ).subscribe((arquivo) => {
+          this.toolbarPrincipalService.logo = this.fileUtils.convertBufferArrayToBase64(arquivo);
+        });
+      }
+    });
+
   }
 
   getExpiration() {

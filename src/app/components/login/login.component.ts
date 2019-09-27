@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentChecked, ChangeDetectorRef } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -7,7 +7,6 @@ import { MenuService } from 'src/app/services/menu/menu.service';
 import { Menu } from './../../core/menu';
 import { UsuarioLogado } from './../../core/usuario-logado';
 import { AutenticadorService } from './../../services/autenticador/autenticador.service';
-import { ParametrosService } from 'src/app/services/parametros/parametros.service';
 
 
 @Component({
@@ -25,8 +24,7 @@ export class LoginComponent implements OnInit, AfterContentChecked {
     private autenticadorService: AutenticadorService,
     private menuService: MenuService,
     private router: Router,
-    private drc: ChangeDetectorRef,
-    private parametros: ParametrosService
+    private drc: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -45,7 +43,6 @@ export class LoginComponent implements OnInit, AfterContentChecked {
       switchMap((usuarioLogado: UsuarioLogado) => {
         this.usuarioLogado = usuarioLogado;
         if (usuarioLogado.unidadeLogada) {
-          this.parametros.getTimeExpiredToken().subscribe((valor: number) => this.parametros.timeExpiredToken = valor);
           return this.menuService.getMenuPrincipal();
         } else
           return new Observable(obs => obs.next())
