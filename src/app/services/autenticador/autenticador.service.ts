@@ -13,6 +13,7 @@ import * as jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 import { UsuarioLogado } from 'src/app/core/usuario-logado';
 import { Observable } from 'rxjs';
+import { ParametrosService } from '../parametros/parametros.service';
 
 const autenticadorRootPath = 'api/autenticador/';
 const tokenRootPath = 'api/token/';
@@ -26,8 +27,11 @@ export class AutenticadorService {
     private http: HttpClient,
     private toolbarPrincipalService:ToolbarPrincipalService,
     private arquivoService:ArquivoService,
-    private fileUtils:FileUtils
-    ) { }
+    private fileUtils:FileUtils,
+    private parametros: ParametrosService
+  ) {
+
+  }
 
   private setSession(authResult) {
     const token = authResult.token;
@@ -44,11 +48,11 @@ export class AutenticadorService {
 
   login(usuario:Usuario) {
     return this.http.post(autenticadorRootPath + `login`, usuario).pipe(
-      tap(response => 
+      tap(response =>
         this.setSession(response)
         ),
       shareReplay(),
-    );  
+    );
   }
 
 
@@ -58,7 +62,7 @@ export class AutenticadorService {
   }
 
   refreshToken() {
-    if (moment().isBetween(this.getExpiration().subtract(3, 'minutes'), this.getExpiration())) {
+    if (moment().isBetween(this.getExpiration().subtract(this.parametros.timeExpiredToken, 'minutes'), this.getExpiration())) {
       return this.http.get(tokenRootPath + `refresh-token`)
       .pipe(
         switchMap((usuarioLogado:UsuarioLogado) => {

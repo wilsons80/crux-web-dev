@@ -64,4 +64,8 @@ export class ToolBarPrincipalComponent implements OnInit {
     return this.toolbarPrincipalService.loadingCompleto;
   }
 
+
+  goHome() {
+    this.router.navigate(['home']);
+  }
 }
