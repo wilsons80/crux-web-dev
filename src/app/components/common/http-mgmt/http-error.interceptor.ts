@@ -17,12 +17,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           msgErro = respError.error.mensagem;
         }
 
-        let idErro = null;
-        if (respError.error && respError.error.codigo) {
-          idErro = respError.error.codigo;
-        }
+        // let idErro = null;
+        // if (respError.error && respError.error.codigo) {
+        //   idErro = respError.error.codigo;
+        // }
 
-        this.toastService.showAlerta(msgErro, idErro);
+        this.toastService.showAlerta(msgErro);
         return throwError(respError);
       })
     );

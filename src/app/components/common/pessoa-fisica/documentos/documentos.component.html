@@ -9,12 +9,12 @@
 
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                        <input matInput [(ngModel)]="pessoaFisica.identidade" name="identidade"
+                        <input matInput maxlength="30" [(ngModel)]="pessoaFisica.identidade" name="identidade"
                             placeholder="Identidade:">
                     </mat-form-field>
                     <mat-form-field fxFlex="30%">
                         <input matInput [(ngModel)]="pessoaFisica.orgaoCi" name="orgaoCi"
-                            placeholder="Órgão Expedidor:">
+                        maxlength="45" placeholder="Órgão Expedidor:">
                     </mat-form-field>
                     <mat-form-field fxFlex="5%">
                         <mat-label>UF:</mat-label>

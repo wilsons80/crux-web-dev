@@ -8,9 +8,17 @@
         <div id="row_dados" fxFlex="90%" fxFlexFill>
 
             <div fxLayout="row" fxLayoutGap="5px" >
-                <mat-form-field fxFlex="95%" fxFlexOffset="20px" >
-                    <input matInput maxlength="250" name="nome" placeholder="Nome Completo:"
+                <mat-form-field fxFlex="55%" fxFlexOffset="20px" >
+                    <input matInput maxlength="255" name="nome" placeholder="Nome Completo:"
                         [(ngModel)]="pessoaFisica.nome" required>
+                </mat-form-field>
+                <mat-form-field fxFlex="20%" fxFlexOffset="20px" >
+                    <mat-label>Estado Civil:</mat-label>
+                    <mat-select [(ngModel)]="pessoaFisica.estadoCivil" name="estadoCivil">
+                        <mat-option *ngFor="let m of estadoCivil" [value]="m">
+                            {{m.tipo}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
 
@@ -64,12 +72,12 @@
     <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
         <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-            <input matInput maxlength="250" name="nomeMae" placeholder="Nome da Mãe:"
+            <input matInput maxlength="200" name="nomeMae" placeholder="Nome da Mãe:"
                 [(ngModel)]="pessoaFisica.nomeMae">
         </mat-form-field>
 
         <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-            <input matInput maxlength="250" name="nomePai" placeholder="Nome do Pai:"
+            <input matInput maxlength="200" name="nomePai" placeholder="Nome do Pai:"
                 [(ngModel)]="pessoaFisica.nomePai">
         </mat-form-field>
 
@@ -152,7 +160,7 @@
         </mat-form-field>
 
         <mat-form-field fxFlexOffset="20px" fxFlex="40%">
-            <input matInput [(ngModel)]="pessoaFisica.email" name="email" placeholder="Email:">
+            <input maxlength="100" matInput [(ngModel)]="pessoaFisica.email" name="email" placeholder="Email:">
         </mat-form-field>
         <!-- <mat-checkbox name="autorizaEmail" [(ngModel)]="pessoaFisica.autorizaEmail">Autorizo o recebimento de
             emails.</mat-checkbox> -->

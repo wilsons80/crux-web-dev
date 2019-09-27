@@ -20,6 +20,14 @@ export class DadosPessoaisComponent implements OnInit {
   ufs:any[] =[
     {nome: 'DF'}
   ]
+  
+  estadoCivil:any[] =[
+    {tipo: 'SOLTEIRO'},
+    {tipo: 'CASADO'},
+    {tipo: 'UNIÃO ESTÁVEL'},
+    {tipo: 'DIVORCIADO'},
+    {tipo: 'VIÚVO'}
+  ]
 
   sexo:any[] =[
     {tipo: 'M'},
