@@ -60,10 +60,10 @@
         </mat-form-field>
 
         <div fxLayout="row" fxLayoutGap="20px" fxFlex="70%" fxLayoutAlign="start center">
-            <label >R$: </label>
             <mat-form-field fxFlex="50%">
                 <input matInput maxlength="200" name="salarioPretendido" placeholder="Salário Pretendido:"
                     [(ngModel)]="funcionario.salarioPretendido">
+                    <span matPrefix>R$&nbsp;</span>
             </mat-form-field>
         </div>
     </div>

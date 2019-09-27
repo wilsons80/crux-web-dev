@@ -1,3 +1,4 @@
+import { EmpresaModule } from './components/empresa/empresa.module';
 import { FuncionarioModule } from './components/funcionario/funcionario.module';
 import { UploadFotoModule } from './components/upload-foto/upload-foto.module';
 import { AtividadeModule } from './components/atividade/atividade.module';
@@ -100,7 +101,8 @@ registerLocaleData(localePt, 'pt-BR');
     ProdutoModule,
     AtividadeModule,
     UploadFotoModule,
-    FuncionarioModule
+    FuncionarioModule,
+    EmpresaModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},
