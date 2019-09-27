@@ -92,9 +92,11 @@
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" (click)="cadastrar()"
+                    [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
+                                formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid"
                     matStepperNext>
-                    Próximo
+                    Cadastrar
                 </button>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
                     voltar
@@ -103,7 +105,7 @@
         </mat-step>
 
         <!--  OUTRAS INFORMAçÕes -->
-        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutros">
+        <!-- <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutros">
             <form #formCadastroOutros="ngForm">
                 <ng-template matStepLabel>OUTRAS INFORMAÇÕES</ng-template>
 
@@ -122,6 +124,6 @@
                     voltar
                 </button>
             </div>
-        </mat-step>
+        </mat-step> -->
     </mat-horizontal-stepper>
 </div>
