@@ -29,9 +29,9 @@ export class CadastrarCursoFormacaoComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.pessoaFisicaService.getAll().subscribe((lista:PessoaFisica[]) => {
-    //   this.listaPessoaFisica = lista;
-    // });
+    this.pessoaFisicaService.getAll().subscribe((lista:PessoaFisica[]) => {
+      this.listaPessoaFisica = lista;
+    });
 
     let idCursoFormacao: number;
     idCursoFormacao = this.route.snapshot.queryParams.idCursoFormacao ? this.route.snapshot.queryParams.idCursoFormacao : null;
