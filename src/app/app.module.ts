@@ -42,6 +42,7 @@ import { UnidadeModule } from './components/unidade/unidade.module';
 import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
 import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
+import { CargoModule } from './components/cargo/cargo.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -102,7 +103,8 @@ registerLocaleData(localePt, 'pt-BR');
     AtividadeModule,
     UploadFotoModule,
     FuncionarioModule,
-    EmpresaModule
+    EmpresaModule,
+    CargoModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},

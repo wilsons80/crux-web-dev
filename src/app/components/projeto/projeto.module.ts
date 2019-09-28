@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
 import { CadastrarProjetoComponent } from './cadastrar-projeto/cadastrar-projeto.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
@@ -16,22 +17,7 @@ import { CadastrarProjetoComponent } from './cadastrar-projeto/cadastrar-projeto
   imports: [
     CommonModule,
     ProjetoRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    FlexLayoutModule,
-    SharedPipesModule,
-    MatDatepickerModule,
-    MatPaginatorModule,
-    MatTooltipModule
+    MaterialCommonModule
   ]
 })
 export class ProjetoModule { }

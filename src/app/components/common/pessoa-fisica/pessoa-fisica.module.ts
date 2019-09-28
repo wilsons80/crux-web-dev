@@ -11,6 +11,7 @@ import { DocumentosComponent } from './documentos/documentos.component';
 import { DadosProfissionaisComponent } from './dados-profissionais/dados-profissionais.component';
 import { OutrasInformacoesComponent } from './outras-informacoes/outras-informacoes.component';
 import { FuncionalComponent } from './funcional/funcional.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 
@@ -24,24 +25,7 @@ import { FuncionalComponent } from './funcional/funcional.component';
   imports: [
     CommonModule,
     MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    FlexLayoutModule,
-    MatTooltipModule,
-    MatPaginatorModule,
-    SharedPipesModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatCheckboxModule,
-    
+    MaterialCommonModule
   ],
   exports:[
     DadosPessoaisComponent,

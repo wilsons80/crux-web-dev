@@ -9,6 +9,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
 import { CadastrarMetasComponent } from './cadastrar-metas/cadastrar-metas.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
@@ -16,22 +17,7 @@ import { CadastrarMetasComponent } from './cadastrar-metas/cadastrar-metas.compo
   imports: [
     CommonModule,
     MetasRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    FlexLayoutModule,
-    SharedPipesModule,
-    MatDatepickerModule,
-    MatPaginatorModule,
-    MatTooltipModule
+    MaterialCommonModule
   ]
 })
 export class MetasModule { }

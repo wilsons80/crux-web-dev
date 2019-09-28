@@ -9,6 +9,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CadastrarPerspectivaComponent } from './cadastrar-perspectiva/cadastrar-perspectiva.component';
 import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
@@ -16,23 +17,7 @@ import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
   imports: [
     CommonModule,
     PerspectivaRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    FlexLayoutModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    SharedPipesModule,
-    MatPaginatorModule,
-    MatTooltipModule
+    MaterialCommonModule
   ]
 })
 export class PerspectivaModule { }

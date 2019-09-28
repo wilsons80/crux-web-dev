@@ -1,3 +1,4 @@
+import { MaterialCommonModule } from './../../material-modules/material-common.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -17,23 +18,7 @@ import { CadastrarAtividadeComponent } from './cadastrar-atividade/cadastrar-ati
   imports: [
     CommonModule,
     AtividadeRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    FlexLayoutModule,
-    SharedPipesModule,
-    MatDatepickerModule,
-    MatTooltipModule,
-    MatPaginatorModule,
-    MatSlideToggleModule,
+    MaterialCommonModule
   ]
 })
 export class AtividadeModule { }
