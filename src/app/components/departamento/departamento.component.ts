@@ -42,7 +42,7 @@ export class DepartamentoComponent implements OnInit {
 
   consultar() {
     if (this.departamento.idDepartamento) {
-      this.departamentoService.getDepartamentoById(this.departamento.idDepartamento).subscribe((departamento: Departamento) => {
+      this.departamentoService.getById(this.departamento.idDepartamento).subscribe((departamento: Departamento) => {
         if(!departamento){
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
