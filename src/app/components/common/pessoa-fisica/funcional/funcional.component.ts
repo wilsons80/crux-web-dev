@@ -1,3 +1,4 @@
+import { Empresa } from './../../../../core/empresa';
 import { CargosService } from './../../../../services/cargos/cargos.service';
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { ConclusaoParecer } from './../../../../core/conclusao-parecer';
@@ -10,6 +11,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 import { Unidade } from 'src/app/core/unidade';
 import { Cargo } from 'src/app/core/cargo';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
+import { EmpresaService } from 'src/app/services/empresa/empresa.service';
 
 @Component({
   selector: 'funcional',
@@ -33,7 +35,7 @@ export class FuncionalComponent implements OnInit {
     {id: TipoFuncionario.INSTRUTOR, descricao:'INSTRUTOR'},
     {id: TipoFuncionario.VOLUNTARIO, descricao:'VOLUNTÁRIO'},
   ]
-  
+
   listaParecer = [
     {id: ParecerEntrevistador.TOTALMENTO_ADEQUADO_PERFIL, descricao:'TOTALMENTE ADEQUADO AO PERFIL'},
     {id: ParecerEntrevistador.ADEQUADO_PERFIL, descricao:'ADEQUADO AO PERFIL'},
@@ -49,25 +51,31 @@ export class FuncionalComponent implements OnInit {
   funcionarios: Funcionario[];
   unidades: Unidade[];
   cargos: Cargo[];
-  
+  empresas: Empresa[];
+
   constructor(
-    private funcionarioService:FuncionarioService,
-    private unidadeService:UnidadeService,
-    private cargosService:CargosService
-    
+    private funcionarioService: FuncionarioService,
+    private unidadeService: UnidadeService,
+    private cargosService: CargosService,
+    private empresaService: EmpresaService
+
     ) { }
 
   ngOnInit() {
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[])=> {
       this.funcionarios = funcionarios;
     });
-    
+
     this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: Unidade[])=> {
       this.unidades = unidades;
     });
-    
+
     this.cargosService.getAll().subscribe((cargos: Cargo[])=> {
       this.cargos = cargos;
+    });
+
+    this.empresaService.getAll().subscribe((empresas: Empresa[])=> {
+      this.empresas = empresas;
     });
 
   }

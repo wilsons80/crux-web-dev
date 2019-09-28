@@ -56,10 +56,10 @@
                             {{m.nome}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field> 
-            </div> 
+                </mat-form-field>
+            </div>
         </div>
-       
+
             <div fxFlex="16%">
                     <button name="fotoPerfil" ng mat-raised-button class="botao">
                             <mat-icon class="nao-foto"></mat-icon>
@@ -93,7 +93,7 @@
         </mat-form-field>
 
         <mat-form-field fxFlex="81%">
-            <input matInput maxlength="200" name="endereco" placeholder="Endereço:" [(ngModel)]="pessoaFisica.endereco">
+            <input matInput maxlength="200" required name="endereco" placeholder="Endereço:" [(ngModel)]="pessoaFisica.endereco">
         </mat-form-field>
     </div>
 
@@ -156,7 +156,7 @@
 
         <mat-form-field fxFlex="20%">
             <input matInput [(ngModel)]="pessoaFisica.celular" name="celular" placeholder="Celular:"
-                [textMask]="{mask: maskPhone}">
+                [textMask]="{mask: maskPhone}" required>
         </mat-form-field>
 
         <mat-form-field fxFlexOffset="20px" fxFlex="40%">
