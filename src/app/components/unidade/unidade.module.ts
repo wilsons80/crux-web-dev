@@ -8,6 +8,7 @@ import { UnidadeComponent } from './unidade.component';
 import { FormsModule } from '@angular/forms';
 import { CadastrarUnidadeComponent } from './cadastrar-unidade/cadastrar-unidade.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
@@ -19,19 +20,7 @@ import { TextMaskModule } from 'angular2-text-mask';
   imports: [
     CommonModule,
     UnidadeRoutingModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    MatTooltipModule
+    MaterialCommonModule
   ],
 
 })

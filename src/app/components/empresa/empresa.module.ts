@@ -9,6 +9,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
 import { CadastrarEmpresaComponent } from './cadastrar-empresa/cadastrar-empresa.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
@@ -16,24 +17,7 @@ import { CadastrarEmpresaComponent } from './cadastrar-empresa/cadastrar-empresa
   imports: [
     CommonModule,
     EmpresaRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    FlexLayoutModule,
-    SharedPipesModule,
-    MatDatepickerModule,
-    MatPaginatorModule,
-    MatTooltipModule,
-    MatCheckboxModule,
-    MatSlideToggleModule
+    MaterialCommonModule
   ]
 })
 export class EmpresaModule { }

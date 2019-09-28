@@ -8,6 +8,7 @@ import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
 import { CadastrarIniciativasComponent } from './cadastrar-iniciativas/cadastrar-iniciativas.component';
 import { IniciativasRoutingModule } from './iniciativas-routing.module';
 import { IniciativasComponent } from './iniciativas.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 
@@ -16,22 +17,7 @@ import { IniciativasComponent } from './iniciativas.component';
   imports: [
     CommonModule,
     IniciativasRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    FlexLayoutModule,
-    SharedPipesModule,
-    MatDatepickerModule,
-    MatPaginatorModule,
-    MatTooltipModule
+    MaterialCommonModule
   ]
 })
 export class IniciativasModule { }

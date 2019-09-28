@@ -7,6 +7,7 @@ import { DepartamentoRoutingModule } from './departamento-routing.module';
 import { DepartamentoComponent } from './departamento.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CadastrarDepartamentoComponent } from './cadastrar-departamento/cadastrar-departamento.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 
@@ -18,20 +19,7 @@ import { CadastrarDepartamentoComponent } from './cadastrar-departamento/cadastr
   imports: [
     CommonModule,
     DepartamentoRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    FlexLayoutModule,
-    MatTooltipModule,
-    MatPaginatorModule
+    MaterialCommonModule
   ],
   exports: []
 })

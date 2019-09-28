@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PessoaFisicaModule } from '../common/pessoa-fisica/pessoa-fisica.module';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
@@ -17,25 +18,8 @@ import { PessoaFisicaModule } from '../common/pessoa-fisica/pessoa-fisica.module
   imports: [
     CommonModule,
     FuncionarioRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    FlexLayoutModule,
-    MatTooltipModule,
-    MatPaginatorModule,
-    SharedPipesModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatCheckboxModule,
-    PessoaFisicaModule
+    PessoaFisicaModule,
+    MaterialCommonModule
   ]
 })
 export class FuncionarioModule { }

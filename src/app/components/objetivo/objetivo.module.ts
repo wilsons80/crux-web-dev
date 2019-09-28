@@ -7,6 +7,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { ObjetivoRoutingModule } from './objetivo-routing.module';
 import { ObjetivoComponent } from './objetivo.component';
 import { CadastrarObjetivoComponent } from './cadastrar-objetivo/cadastrar-objetivo.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 
@@ -15,21 +16,7 @@ import { CadastrarObjetivoComponent } from './cadastrar-objetivo/cadastrar-objet
   imports: [
     CommonModule,
     ObjetivoRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCardModule,
-    MatTableModule,
-    TextMaskModule,
-    MatListModule,
-    FlexLayoutModule,
-    MatDatepickerModule,
-    MatPaginatorModule,
-    MatTooltipModule
+    MaterialCommonModule
   ]
 })
 export class ObjetivoModule { }
