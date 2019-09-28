@@ -1,6 +1,7 @@
 import { PlanosAcao } from './planos-acao';
 import { Projeto } from './projeto';
 import { Unidade } from './unidade';
+
 export class Atividade{
     id:number;
     descricao:string;
