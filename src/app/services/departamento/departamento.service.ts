@@ -1,42 +1,16 @@
 import { Departamento } from './../../core/departamento';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-const departamentoRootPath = 'api/departamento/';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
+import { BaseService } from '../base/base.service';
+import { Rotas } from 'src/app/core/rotas';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DepartamentoService {
+export class DepartamentoService extends BaseService<Departamento> {
 
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http, Rotas.ROTA_DEPARTAMENTO);
+  }
 
-  getAll(){
-    return this.http.get(departamentoRootPath);
-  }
-  
-  cadastrar(departamento:Departamento){
-    return this.http.post(departamentoRootPath , departamento);
-  }
- 
-  alterar(departamento:Departamento){
-    return this.http.put(departamentoRootPath , departamento);
-  }
- 
-  getDepartamentoById(idDepartamento:number){
-    return this.http.get(departamentoRootPath + `${idDepartamento}`);
-  }
- 
-  excluir(idDepartamento:number){
-    return this.http.delete(departamentoRootPath + `${idDepartamento}`);
-  }
-  
 }
-
-	

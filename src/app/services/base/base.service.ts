@@ -1,15 +1,25 @@
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
+
 
 @Injectable({
   providedIn: 'root'
 })
-export abstract class BaseService<T, P> {
-  
-  rootPath: P;
+export abstract class BaseService<T> {
 
-  constructor(public http: HttpClient) { }
+
+  constructor(public http: HttpClient,
+              public rootPath: string){
+  }
 
   getAll() {
     return this.http.get(`${this.rootPath}`);

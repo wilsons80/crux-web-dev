@@ -47,7 +47,7 @@ export class CadastrarDepartamentoComponent implements OnInit {
     idDepartamento = this.route.snapshot.queryParams.idDepartamento ? this.route.snapshot.queryParams.idDepartamento : null;
     if (idDepartamento) {
       this.isAtualizar = true;
-      this.departamentoService.getDepartamentoById(idDepartamento).subscribe((departamento: Departamento) => {
+      this.departamentoService.getById(idDepartamento).subscribe((departamento: Departamento) => {
         this.departamento = departamento
       });
     }

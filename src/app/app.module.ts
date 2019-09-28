@@ -56,7 +56,6 @@ registerLocaleData(localePt, 'pt-BR');
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
-
   ],
   imports: [
     BrowserModule,

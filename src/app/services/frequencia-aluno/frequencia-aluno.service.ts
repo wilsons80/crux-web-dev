@@ -2,17 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { FrequenciaAluno } from 'src/app/core/frequencia-aluno';
-
-interface Path {
-  rootPath: 'api/frequenciaaluno/';
-}
+import { Rotas } from 'src/app/core/rotas';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FrequenciaAlunoService extends BaseService<FrequenciaAluno, Path> {
+export class FrequenciaAlunoService extends BaseService<FrequenciaAluno> {
 
   constructor(http: HttpClient) {
-    super(http);
+    super(http, Rotas.FREQUENCIA_ALUNO);
   }
 }
