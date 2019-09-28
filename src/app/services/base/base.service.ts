@@ -14,17 +14,14 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export abstract class BaseService<T, R> {
+export abstract class BaseService<T> {
 
 
   constructor(public http: HttpClient,
-              public entity: any,
               public rootPath: string){
   }
 
   getAll() {
-    console.log('T', this.entity);
-
     return this.http.get(`${this.rootPath}`);
   }
 

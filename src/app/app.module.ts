@@ -1,3 +1,4 @@
+import { CursoFormacaoModule } from './components/curso-formacao/curso-formacao.module';
 import { EmpresaModule } from './components/empresa/empresa.module';
 import { FuncionarioModule } from './components/funcionario/funcionario.module';
 import { UploadFotoModule } from './components/upload-foto/upload-foto.module';
@@ -17,7 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './components/login/login.module';
 import { HomeModule } from './components/home/home.module';
-import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatSidenavModule, MatMenuModule, MatExpansionModule, MatDividerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatCardModule, MatPaginatorIntl } from '@angular/material';
+import { MatIconModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatDialogModule, MatSidenavModule, MatMenuModule, MatExpansionModule, MatDividerModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatCardModule, MatPaginatorIntl, MatDatepickerModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -43,32 +44,6 @@ import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
 import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
 import { CargoModule } from './components/cargo/cargo.module';
-import { CursoFormacaoComponent } from './components/curso-formacao/curso-formacao.component';
-import { AlunoComponent } from './components/aluno/aluno.component';
-import { CadastarAlunoComponent } from './components/aluno/cadastar-aluno/cadastar-aluno.component';
-import { FamiliarAlunoComponent } from './components/familiar-aluno/familiar-aluno.component';
-import { CadastrarFamiliarAlunoComponent } from './components/familiar-aluno/cadastrar-familiar-aluno/cadastrar-familiar-aluno.component';
-import { ResponsavelAlunoComponent } from './components/responsavel-aluno/responsavel-aluno.component';
-import { CadastrarResponsavelAlunoComponent } from './components/responsavel-aluno/cadastrar-responsavel-aluno/cadastrar-responsavel-aluno.component';
-import { SituacaoVulnerabilidadeComponent } from './components/situacao-vulnerabilidade/situacao-vulnerabilidade.component';
-import { CadastrarSituacaoVulnerabilidadeComponent } from './components/situacao-vulnerabilidade/cadastrar-situacao-vulnerabilidade/cadastrar-situacao-vulnerabilidade.component';
-import { DiagnosticoAtendimentoComponent } from './components/diagnostico-atendimento/diagnostico-atendimento.component';
-import { CadastrarDiagnosticoAtendimentoComponent } from './components/diagnostico-atendimento/cadastrar-diagnostico-atendimento/cadastrar-diagnostico-atendimento.component';
-import { SolucaoAtendimentoComponent } from './components/solucao-atendimento/solucao-atendimento.component';
-import { CadastrarSolucaoAtendimentoComponent } from './components/solucao-atendimento/cadastrar-solucao-atendimento/cadastrar-solucao-atendimento.component';
-import { VulnerabilidadeFamiliarComponent } from './components/vulnerabilidade-familiar/vulnerabilidade-familiar.component';
-import { CadastrarVulnerabilidadeFamiliarComponent } from './components/vulnerabilidade-familiar/cadastrar-vulnerabilidade-familiar/cadastrar-vulnerabilidade-familiar.component';
-import { VulnerabilidadeAlunoComponent } from './components/vulnerabilidade-aluno/vulnerabilidade-aluno.component';
-import { CadastrarVulnerabilidadeAlunoComponent } from './components/vulnerabilidade-aluno/cadastrar-vulnerabilidade-aluno/cadastrar-vulnerabilidade-aluno.component';
-import { EntidadeSocialComponent } from './components/entidade-social/entidade-social.component';
-import { CadastrarEntidadeSocialComponent } from './components/entidade-social/cadastrar-entidade-social/cadastrar-entidade-social.component';
-import { EncaminhamentoAlunoComponent } from './components/encaminhamento-aluno/encaminhamento-aluno.component';
-import { CadastrarEncaminhamentoAlunoComponent } from './components/encaminhamento-aluno/cadastrar-encaminhamento-aluno/cadastrar-encaminhamento-aluno.component';
-import { ReprovacaoAlunoComponent } from './components/reprovacao-aluno/reprovacao-aluno.component';
-import { CadastrarReprovacaoAlunoComponent } from './components/reprovacao-aluno/cadastrar-reprovacao-aluno/cadastrar-reprovacao-aluno.component';
-import { AtividadeAlunoComponent } from './components/atividade-aluno/atividade-aluno.component';
-import { CadastrarAtividadeAlunoComponent } from './components/atividade-aluno/cadastrar-atividade-aluno/cadastrar-atividade-aluno.component';
-import { FrequenciaAlunoComponent } from './components/frequencia-aluno/frequencia-aluno.component';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -81,33 +56,6 @@ registerLocaleData(localePt, 'pt-BR');
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
-    CursoFormacaoComponent,
-    AlunoComponent,
-    CadastarAlunoComponent,
-    FamiliarAlunoComponent,
-    CadastrarFamiliarAlunoComponent,
-    ResponsavelAlunoComponent,
-    CadastrarResponsavelAlunoComponent,
-    SituacaoVulnerabilidadeComponent,
-    CadastrarSituacaoVulnerabilidadeComponent,
-    DiagnosticoAtendimentoComponent,
-    CadastrarDiagnosticoAtendimentoComponent,
-    SolucaoAtendimentoComponent,
-    CadastrarSolucaoAtendimentoComponent,
-    VulnerabilidadeFamiliarComponent,
-    CadastrarVulnerabilidadeFamiliarComponent,
-    VulnerabilidadeAlunoComponent,
-    CadastrarVulnerabilidadeAlunoComponent,
-    EntidadeSocialComponent,
-    CadastrarEntidadeSocialComponent,
-    EncaminhamentoAlunoComponent,
-    CadastrarEncaminhamentoAlunoComponent,
-    ReprovacaoAlunoComponent,
-    CadastrarReprovacaoAlunoComponent,
-    AtividadeAlunoComponent,
-    CadastrarAtividadeAlunoComponent,
-    FrequenciaAlunoComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -156,7 +104,8 @@ registerLocaleData(localePt, 'pt-BR');
     UploadFotoModule,
     FuncionarioModule,
     EmpresaModule,
-    CargoModule
+    CargoModule,
+    CursoFormacaoModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},

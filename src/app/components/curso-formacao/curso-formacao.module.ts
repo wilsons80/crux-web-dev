@@ -1,3 +1,4 @@
+import { CursoFormacaoComponent } from './curso-formacao.component';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,7 +8,7 @@ import { CadastrarCursoFormacaoComponent } from './cadastrar-curso-formacao/cada
 
 
 @NgModule({
-  declarations: [CadastrarCursoFormacaoComponent],
+  declarations: [CursoFormacaoComponent, CadastrarCursoFormacaoComponent],
   imports: [
     CommonModule,
     CursoFormacaoRoutingModule,

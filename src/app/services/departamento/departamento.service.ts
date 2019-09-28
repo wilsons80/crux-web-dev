@@ -7,10 +7,10 @@ import { Rotas } from 'src/app/core/rotas';
 @Injectable({
   providedIn: 'root'
 })
-export class DepartamentoService extends BaseService<Departamento, Rotas.ROTA_DEPARTAMENTO> {
+export class DepartamentoService extends BaseService<Departamento> {
 
   constructor(http: HttpClient) {
-    super(http);
+    super(http, Rotas.ROTA_DEPARTAMENTO);
   }
-  
+
 }
