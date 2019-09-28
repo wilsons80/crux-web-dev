@@ -43,6 +43,7 @@ import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
 import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
 import { CargoModule } from './components/cargo/cargo.module';
+import { CursoFormacaoComponent } from './components/curso-formacao/curso-formacao.component';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -55,6 +56,7 @@ registerLocaleData(localePt, 'pt-BR');
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
+    CursoFormacaoComponent,
     
   ],
   imports: [

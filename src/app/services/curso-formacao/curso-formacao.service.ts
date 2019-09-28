@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CursoFormacao } from 'src/app/core/curso-formacao';
 
-const rootPath = 'api/cusrosformacaopf/';
+const rootPath = 'api/cursoformacaopf/';
 
 @Injectable({
   providedIn: 'root'
