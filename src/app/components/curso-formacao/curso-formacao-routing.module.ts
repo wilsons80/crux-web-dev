@@ -7,7 +7,7 @@ import { CursoFormacaoComponent } from './curso-formacao.component';
 
 const routes: Routes = [
   {path: 'cursoformacao/cadastrar', component: CadastrarCursoFormacaoComponent, canActivate: [AuthGuard]},
-  {path: 'cadastrar', component: CursoFormacaoComponent, canActivate: [AuthGuard]}
+  {path: 'cursoformacao', component: CursoFormacaoComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

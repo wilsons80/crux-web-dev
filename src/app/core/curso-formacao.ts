@@ -1,7 +1,7 @@
 import { PessoaFisica } from './pessoa-fisica';
 
 export class CursoFormacao{
-  id:number;
+    id:number;
 	dataFim:Date;
 	dataInicio:Date;
 	nome:string;

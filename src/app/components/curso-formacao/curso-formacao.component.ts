@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 import { CursoFormacao } from 'src/app/core/curso-formacao';
 import { CursoFormacaoService } from 'src/app/services/curso-formacao/curso-formacao.service';
-import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -12,15 +12,15 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class CursoFormacaoComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  cursoFormacaos: CursoFormacao[];
+  cursosFormacao: CursoFormacao[];
   mostrarTabela: boolean = false;
   cursoFormacao: CursoFormacao = new CursoFormacao();
-  msg:string;
+  msg: string;
 
 
-  displayedColumns: string[] = ['nome', 'metas', 'dataInicio', 'dataFim', 'acoes'];
+  displayedColumns: string[] = ['nome', 'nomeInstuicao', 'dataInicio', 'dataFim', 'acoes'];
 
 
   dataSource: MatTableDataSource<CursoFormacao> = new MatTableDataSource();
@@ -47,10 +47,10 @@ export class CursoFormacaoComponent implements OnInit {
   consultar() {
     if (this.cursoFormacao.id) {
       this.cursoFormacaoService.getById(this.cursoFormacao.id).subscribe((cursoFormacao: CursoFormacao) => {
-        if(!cursoFormacao){
+        if (!cursoFormacao) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
+        } else {
           this.dataSource.data = [cursoFormacao];
           this.mostrarTabela = true;
         }
@@ -92,18 +92,18 @@ export class CursoFormacaoComponent implements OnInit {
   }
 
   getAll() {
-    this.cursoFormacaoService.getAll().subscribe((cursoFormacaos: CursoFormacao[]) => {
-      this.cursoFormacaos = cursoFormacaos;
-      this.dataSource.data = cursoFormacaos ? cursoFormacaos : [];
-      this.verificaMostrarTabela(cursoFormacaos);
+    this.cursoFormacaoService.getAll().subscribe((cursosFormacao: CursoFormacao[]) => {
+      this.cursosFormacao = cursosFormacao;
+      this.dataSource.data = cursosFormacao ? cursosFormacao : [];
+      this.verificaMostrarTabela(cursosFormacao);
     })
   }
 
   verificaMostrarTabela(cursoFormacaos: CursoFormacao[]) {
-    if(!cursoFormacaos ||cursoFormacaos.length == 0) {
+    if (!cursoFormacaos || cursoFormacaos.length == 0) {
       this.mostrarTabela = false;
       this.msg = "Nenhuma curso de formação cadastrado."
-    }else{
+    } else {
       this.mostrarTabela = true;
     }
   }

@@ -43,7 +43,7 @@ import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
 import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
 import { CargoModule } from './components/cargo/cargo.module';
-import { CursoFormacaoComponent } from './components/curso-formacao/curso-formacao.component';
+import { CursoFormacaoModule } from './components/curso-formacao/curso-formacao.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -56,7 +56,6 @@ registerLocaleData(localePt, 'pt-BR');
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
-    CursoFormacaoComponent,
     
   ],
   imports: [
@@ -106,7 +105,8 @@ registerLocaleData(localePt, 'pt-BR');
     UploadFotoModule,
     FuncionarioModule,
     EmpresaModule,
-    CargoModule
+    CargoModule,
+    CursoFormacaoModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},
