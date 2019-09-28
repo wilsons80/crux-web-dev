@@ -14,13 +14,13 @@ export class CursoFormacaoComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  cursoFormacaos: CursoFormacao[];
+  cursosFormacao: CursoFormacao[];
   mostrarTabela: boolean = false;
   cursoFormacao: CursoFormacao = new CursoFormacao();
   msg:string;
 
 
-  displayedColumns: string[] = ['nome', 'metas', 'dataInicio', 'dataFim', 'acoes'];
+  displayedColumns: string[] = ['nome', 'dataInicio', 'dataFim', 'acoes'];
 
 
   dataSource: MatTableDataSource<CursoFormacao> = new MatTableDataSource();
@@ -93,7 +93,7 @@ export class CursoFormacaoComponent implements OnInit {
 
   getAll() {
     this.cursoFormacaoService.getAll().subscribe((cursoFormacaos: CursoFormacao[]) => {
-      this.cursoFormacaos = cursoFormacaos;
+      this.cursosFormacao = cursoFormacaos;
       this.dataSource.data = cursoFormacaos ? cursoFormacaos : [];
       this.verificaMostrarTabela(cursoFormacaos);
     })
