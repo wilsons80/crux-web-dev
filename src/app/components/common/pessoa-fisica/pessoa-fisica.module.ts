@@ -12,6 +12,8 @@ import { DadosProfissionaisComponent } from './dados-profissionais/dados-profiss
 import { OutrasInformacoesComponent } from './outras-informacoes/outras-informacoes.component';
 import { FuncionalComponent } from './funcional/funcional.component';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { AcademicoComponent } from './academico/academico.component';
+import { OutrasInformacoesAlunoComponent } from './outras-informacoes-aluno/outras-informacoes-aluno.component';
 
 
 
@@ -21,7 +23,10 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
     EscolaridadeComponent, 
     DocumentosComponent, 
     DadosProfissionaisComponent, 
-    OutrasInformacoesComponent, FuncionalComponent],
+    OutrasInformacoesComponent, 
+    FuncionalComponent, 
+    AcademicoComponent, 
+    OutrasInformacoesAlunoComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -33,7 +38,9 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
     DocumentosComponent, 
     DadosProfissionaisComponent,
     OutrasInformacoesComponent,
-    FuncionalComponent
+    FuncionalComponent,
+    AcademicoComponent,
+    OutrasInformacoesAlunoComponent
   ]
 })
 export class PessoaFisicaModule { }
