@@ -1,14 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-
-interface Path {
-  rootPath: 'api//';
-}
+import { BaseService } from '../base/base.service';
+import { ParticipanteAtendimento } from 'src/app/core/participante-atendimento';
+import { Rotas } from 'src/app/core/rotas';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ParticipantesAtendimentosService {
+export class ParticipantesAtendimentosService extends BaseService<ParticipanteAtendimento> {
 
-  constructor() { }
+  constructor(http: HttpClient) {
+    super(http, Rotas.PARTICIPANTE_ATENDIMENTO);
+  }
+  
 }

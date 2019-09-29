@@ -1,14 +1,11 @@
-import { CursoFormacao } from 'src/app/core/curso-formacao';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Metas } from 'src/app/core/metas';
-import { Iniciativa } from 'src/app/core/iniciativa';
-import { IniciativaService } from 'src/app/services/iniciativa/iniciativa.service';
-import { MetasService } from 'src/app/services/metas/metas.service';
 import { ActivatedRoute } from '@angular/router';
-import { ToastService } from 'src/app/services/toast/toast.service';
-import { PessoaFisica } from 'src/app/core/pessoa-fisica';
+import { CursoFormacao } from 'src/app/core/curso-formacao';
 import { CursoFormacaoService } from 'src/app/services/curso-formacao/curso-formacao.service';
+import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { PessoaFisica } from './../../../core/pessoa-fisica';
 
 @Component({
   selector: 'app-cadastrar-curso-formacao',
@@ -17,15 +14,14 @@ import { CursoFormacaoService } from 'src/app/services/curso-formacao/curso-form
 })
 export class CadastrarCursoFormacaoComponent implements OnInit {
 
-  pessoaFisica: PessoaFisica[];
   cursoFormacao: CursoFormacao = new CursoFormacao();
+  listaPessoaFisica:PessoaFisica[];
 
   isAtualizar: boolean = false;
 
   constructor(
     private cursoFormacaoService: CursoFormacaoService,
-    
-    //TODOs private pessoaService: PessoaService,
+    private pessoaFisicaService: PessoaFisicaService,
     private route: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
@@ -33,13 +29,15 @@ export class CadastrarCursoFormacaoComponent implements OnInit {
 
 
   ngOnInit() {
-   
+    this.pessoaFisicaService.getAll().subscribe((lista:PessoaFisica[]) => {
+      this.listaPessoaFisica = lista;
+    });
 
-    let idIniciativa: number;
-    idIniciativa = this.route.snapshot.queryParams.idIniciativa ? this.route.snapshot.queryParams.idIniciativa : null;
-    if (idIniciativa) {
+    let idCursoFormacao: number;
+    idCursoFormacao = this.route.snapshot.queryParams.idCursoFormacao ? this.route.snapshot.queryParams.idCursoFormacao : null;
+    if (idCursoFormacao) {
       this.isAtualizar = true;
-      this.cursoFormacaoService.getById(idIniciativa).subscribe((cursoFormacao: CursoFormacao) => {
+      this.cursoFormacaoService.getById(idCursoFormacao).subscribe((cursoFormacao: CursoFormacao) => {
         this.cursoFormacao = cursoFormacao
       });
     }

@@ -2,19 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Familiares } from 'src/app/core/familiares';
 import { BaseService } from '../base/base.service';
+import { Rotas } from 'src/app/core/rotas';
 
-
-interface Path {
-  rootPath: 'api/familiares/';
-}
 
 @Injectable({
   providedIn: 'root'
 })
-export class FamiliarAlunoService extends BaseService<Familiares, Path> {
+export class FamiliarAlunoService extends BaseService<Familiares> {
 
   constructor(http: HttpClient) {
-    super(http);
+    super(http, Rotas.FAMILIARES);
   }
 
 }

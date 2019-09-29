@@ -20,7 +20,7 @@ export class CursoFormacaoComponent implements OnInit {
   msg: string;
 
 
-  displayedColumns: string[] = ['nome', 'nomeInstuicao', 'dataInicio', 'dataFim', 'acoes'];
+  displayedColumns: string[] = ['nome', 'dataInicio', 'dataFim', 'acoes'];
 
 
   dataSource: MatTableDataSource<CursoFormacao> = new MatTableDataSource();
@@ -92,10 +92,10 @@ export class CursoFormacaoComponent implements OnInit {
   }
 
   getAll() {
-    this.cursoFormacaoService.getAll().subscribe((cursosFormacao: CursoFormacao[]) => {
-      this.cursosFormacao = cursosFormacao;
-      this.dataSource.data = cursosFormacao ? cursosFormacao : [];
-      this.verificaMostrarTabela(cursosFormacao);
+    this.cursoFormacaoService.getAll().subscribe((cursoFormacaos: CursoFormacao[]) => {
+      this.cursosFormacao = cursoFormacaos;
+      this.dataSource.data = cursoFormacaos ? cursoFormacaos : [];
+      this.verificaMostrarTabela(cursoFormacaos);
     })
   }
 

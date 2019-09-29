@@ -1,13 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-interface Path {
-  rootPath: 'api//';
-}
+import { BaseService } from '../base/base.service';
+import { UniformeAluno } from 'src/app/core/uniforme-aluno';
+import { Rotas } from 'src/app/core/rotas';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UniformeEntregeAlunoService {
+export class UniformeEntregeAlunoService extends BaseService<UniformeAluno> {
 
-  constructor() { }
+  constructor(http: HttpClient) {
+    super(http, Rotas.UNIFORME_ALUNO);
+  }
 }
