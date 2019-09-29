@@ -1,3 +1,4 @@
+import { MaterialCommonModule } from './../../material-modules/material-common.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +11,8 @@ import { CadastrarTalentoComponent } from './cadastrar-talento/cadastrar-talento
   declarations: [TalentoComponent, CadastrarTalentoComponent],
   imports: [
     CommonModule,
-    TalentoRoutingModule
+    TalentoRoutingModule,
+    MaterialCommonModule
   ]
 })
 export class TalentoModule { }
