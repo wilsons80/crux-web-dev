@@ -1,1 +1,66 @@
-<p>cadastrar-faltas-funcionario works!</p>
+<mat-toolbar class="subtitulo">Falta Funcionário</mat-toolbar>
+
+<div class="painel-principal" style="padding: 10px;">
+    <form #formCadastro="ngForm">
+
+        <!-- DADOS INICIAIS -->
+        <mat-toolbar class="titulopartes">Funcionário</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+            <mat-form-field fxFlexOffset="20px" fxFlex="95%">
+                <mat-label>Funcionário que faltou:</mat-label>
+                <mat-select [(ngModel)]="faltasFuncionario.funcionarioFaltou" name="funcionarioFaltou" required>
+                    <mat-option *ngFor="let o of funcionarios" [value]="o">
+                        {{o.pessoasFisica.nome}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+
+        <!-- FALTAS -->
+        <mat-toolbar class="titulopartes">FALTAS</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+            <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+                <input matInput maxlength="200" name="descricao" placeholder="Descrição da falta:"
+                    [(ngModel)]="faltasFuncionario.descricao" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="46%" fxFlexOffset="20px">
+                <input matInput maxlength="200" name="descricao" placeholder="Justificativa da falta:"
+                    [(ngModel)]="faltasFuncionario.jutificativaFalta" required>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+        
+            <mat-form-field fxFlex="30%" fxFlexOffset="20px">
+            <input matInput name="dataFaltaFuncionario" [matDatepicker]="dataFaltaFuncionario" placeholder="Data da Falta:"
+                [(ngModel)]="faltasFuncionario.dataFaltaFuncionario" required>
+            <mat-datepicker-toggle matSuffix [for]="dataFaltaFuncionario"></mat-datepicker-toggle>
+            <mat-datepicker #dataFaltaFuncionario></mat-datepicker>
+        </mat-form-field>
+
+</div>
+
+
+<!-- BOTÕES -->
+<div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" [disabled]="formCadastro.invalid"
+        (click)="isAtualizar ? atualizar() : cadastrar()">
+        {{getNomeBotao()}}
+    </button>
+
+    <button *ngIf="!isAtualizar" mat-raised-button fxFlex="20%" color="primary" (click)="limpar()">
+        Limpar
+    </button>
+
+    <button mat-raised-button fxFlex="20%" color="primary" (click)="cancelar()">
+        Cancelar
+    </button>
+
+</div>
+</form>
+
+
+</div>
