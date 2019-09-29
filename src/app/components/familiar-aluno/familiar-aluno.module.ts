@@ -4,13 +4,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FamiliarAlunoRoutingModule } from './familiar-aluno-routing.module';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
   declarations: [FamiliarAlunoComponent, CadastrarFamiliarAlunoComponent],
   imports: [
     CommonModule,
-    FamiliarAlunoRoutingModule
+    FamiliarAlunoRoutingModule,
+    MaterialCommonModule
   ]
 })
 export class FamiliarAlunoModule { }

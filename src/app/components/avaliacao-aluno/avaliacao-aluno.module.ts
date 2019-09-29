@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 
 import { AvaliacaoAlunoRoutingModule } from './avaliacao-aluno-routing.module';
 import { CadastrarAvaliacaoAlunoComponent } from './cadastrar-avaliacao-aluno/cadastrar-avaliacao-aluno.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
   declarations: [AvaliacaoAlunoComponent, CadastrarAvaliacaoAlunoComponent],
   imports: [
     CommonModule,
-    AvaliacaoAlunoRoutingModule
+    AvaliacaoAlunoRoutingModule,
+    MaterialCommonModule
   ]
 })
 export class AvaliacaoAlunoModule { }
