@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 export enum Rotas {
     ROTA_DEPARTAMENTO        = 'api/departamento/',
     ALUNO_TRABALHANDO        = 'api/alunostrabalhando/',
@@ -23,9 +22,3 @@ export enum Rotas {
     UNIFORME_ALUNO           = 'api/uniformealuno/',
     VULNERABILIDADE_ALUNO    = 'api/vulnerabilidadesaluno/',
 }
-=======
-export enum Rotas{
-   ALUNO = "api/aluno/",
-   PESSOA_FISICA = "api/pessoafisica/",
-}
->>>>>>> 68daffad145b6b14b2d88aec04681b5c4396ab0a
