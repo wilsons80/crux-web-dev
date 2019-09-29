@@ -15,7 +15,7 @@
                 <mat-form-field fxFlex="20%" fxFlexOffset="20px" >
                     <mat-label>Estado Civil:</mat-label>
                     <mat-select [(ngModel)]="pessoaFisica.estadoCivil" name="estadoCivil">
-                        <mat-option *ngFor="let m of estadoCivil" [value]="m">
+                        <mat-option *ngFor="let m of estadoCivil" [value]="m.tipo">
                             {{m.tipo}}
                         </mat-option>
                     </mat-select>
