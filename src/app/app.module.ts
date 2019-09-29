@@ -45,16 +45,24 @@ import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
 import { CargoModule } from './components/cargo/cargo.module';
 import { AlunoModule } from './components/aluno/aluno.module';
-import { AvaliacaoAtividadeComponent } from './components/avaliacao-atividade/avaliacao-atividade.component';
-import { CadastrarAvaliacaoAtividadeComponent } from './components/avaliacao-atividade/cadastrar-avaliacao-atividade/cadastrar-avaliacao-atividade.component';
-import { AvaliacaoAlunoComponent } from './components/avaliacao-aluno/avaliacao-aluno.component';
-import { CadastrarAvaliacaoAlunoComponent } from './components/avaliacao-aluno/cadastrar-avaliacao-aluno/cadastrar-avaliacao-aluno.component';
-import { AlunoTrabalhandoComponent } from './components/aluno-trabalhando/aluno-trabalhando.component';
-import { CadastrarAlunoTrabalhandoComponent } from './components/aluno-trabalhando/cadastrar-aluno-trabalhando/cadastrar-aluno-trabalhando.component';
-import { AtendimentoComponent } from './components/atendimento/atendimento.component';
-import { CadastrarAtendimentoComponent } from './components/atendimento/cadastrar-atendimento/cadastrar-atendimento.component';
-import { ParticipanteAtendimentoComponent } from './components/participante-atendimento/participante-atendimento.component';
-import { CadastrarParticipanteAtendimentoComponent } from './components/participante-atendimento/cadastrar-participante-atendimento/cadastrar-participante-atendimento.component';
+import { FamiliarAlunoModule } from './components/familiar-aluno/familiar-aluno.module';
+import { ResponsavelAlunoModule } from './components/responsavel-aluno/responsavel-aluno.module';
+import { SituacaoVulnerabilidadeModule } from './components/situacao-vulnerabilidade/situacao-vulnerabilidade.module';
+import { DiagnosticoAtendimentoModule } from './components/diagnostico-atendimento/diagnostico-atendimento.module';
+import { SolucaoAtendimentoModule } from './components/solucao-atendimento/solucao-atendimento.module';
+import { VulnerabilidadeFamiliarModule } from './components/vulnerabilidade-familiar/vulnerabilidade-familiar.module';
+import { VulnerabilidadeAlunoModule } from './components/vulnerabilidade-aluno/vulnerabilidade-aluno.module';
+import { EntidadeSocialModule } from './components/entidade-social/entidade-social.module';
+import { EncaminhamentoAlunoModule } from './components/encaminhamento-aluno/encaminhamento-aluno.module';
+import { ReprovacaoAlunoModule } from './components/reprovacao-aluno/reprovacao-aluno.module';
+import { AtividadeAlunoModule } from './components/atividade-aluno/atividade-aluno.module';
+import { FrequenciaAlunoModule } from './components/frequencia-aluno/frequencia-aluno.module';
+import { UniformeEntregueAlunoModule } from './components/uniforme-entregue-aluno/uniforme-entregue-aluno.module';
+import { AvaliacaoAtividadeModule } from './components/avaliacao-atividade/avaliacao-atividade.module';
+import { AvaliacaoAlunoModule } from './components/avaliacao-aluno/avaliacao-aluno.module';
+import { AlunoTrabalhandoModule } from './components/aluno-trabalhando/aluno-trabalhando.module';
+import { AtendimentoModule } from './components/atendimento/atendimento.module';
+import { ParticipanteAtendimentoModule } from './components/participante-atendimento/participante-atendimento.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -66,17 +74,7 @@ registerLocaleData(localePt, 'pt-BR');
     AppComponent,
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
-    ConfirmDialogComponent,
-    AvaliacaoAtividadeComponent,
-    CadastrarAvaliacaoAtividadeComponent,
-    AvaliacaoAlunoComponent,
-    CadastrarAvaliacaoAlunoComponent,
-    AlunoTrabalhandoComponent,
-    CadastrarAlunoTrabalhandoComponent,
-    AtendimentoComponent,
-    CadastrarAtendimentoComponent,
-    ParticipanteAtendimentoComponent,
-    CadastrarParticipanteAtendimentoComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -128,7 +126,25 @@ registerLocaleData(localePt, 'pt-BR');
     CargoModule,
     CursoFormacaoModule,
     AtividadeModule,
-    AlunoModule
+    AlunoModule,
+    FamiliarAlunoModule,
+    ResponsavelAlunoModule,
+    SituacaoVulnerabilidadeModule,
+    DiagnosticoAtendimentoModule,
+    SolucaoAtendimentoModule,
+    VulnerabilidadeFamiliarModule,
+    VulnerabilidadeAlunoModule,
+    EntidadeSocialModule,
+    EncaminhamentoAlunoModule,
+    ReprovacaoAlunoModule,
+    AtividadeAlunoModule,
+    FrequenciaAlunoModule,
+    UniformeEntregueAlunoModule,
+    AvaliacaoAtividadeModule,
+    AvaliacaoAlunoModule,
+    AlunoTrabalhandoModule,
+    AtendimentoModule,
+    ParticipanteAtendimentoModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},
