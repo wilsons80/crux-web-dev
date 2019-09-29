@@ -1,3 +1,4 @@
+import { MaterialCommonModule } from './../../material-modules/material-common.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +11,8 @@ import { CadastrarQuestionarioComponent } from './cadastrar-questionario/cadastr
   declarations: [QuestionarioComponent, CadastrarQuestionarioComponent],
   imports: [
     CommonModule,
-    QuestionarioRoutingModule
+    QuestionarioRoutingModule,
+    MaterialCommonModule
   ]
 })
 export class QuestionarioModule { }
