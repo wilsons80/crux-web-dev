@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AlunoTrabalhandoRoutingModule } from './aluno-trabalhando-routing.module';
 import { AlunoTrabalhandoComponent } from './aluno-trabalhando.component';
 import { CadastrarAlunoTrabalhandoComponent } from './cadastrar-aluno-trabalhando/cadastrar-aluno-trabalhando.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 
@@ -10,7 +11,8 @@ import { CadastrarAlunoTrabalhandoComponent } from './cadastrar-aluno-trabalhand
   declarations: [AlunoTrabalhandoComponent, CadastrarAlunoTrabalhandoComponent],
   imports: [
     CommonModule,
-    AlunoTrabalhandoRoutingModule
+    AlunoTrabalhandoRoutingModule,
+    MaterialCommonModule
   ]
 })
 export class AlunoTrabalhandoModule { }

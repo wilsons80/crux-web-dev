@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Diagnostico } from 'src/app/core/diagnostico';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { Router } from '@angular/router';
+import { DiagnosticoAtendimentoService } from 'src/app/services/diagnostico-atendimento/diagnostico-atendimento.service';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-diagnostico-atendimento',
@@ -7,9 +12,96 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiagnosticoAtendimentoComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+  diagnosticos: Diagnostico[];
+  mostrarTabela = false;
+  diagnostico: Diagnostico = new Diagnostico();
+  msg: string;
+
+  displayedColumns: string[] = ['descricao', 'acoes'];
+  dataSource: MatTableDataSource<Diagnostico> = new MatTableDataSource();
+
+  constructor(
+    private diagnosticoService: DiagnosticoAtendimentoService,
+    private router: Router,
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+    this.getAll();
+  }
+ 
+
+  limpar() {
+    this.mostrarTabela = false;
+    this.diagnostico = new Diagnostico();
+    this.dataSource.data = [];
+  }
+
+  consultar() {
+    if (this.diagnostico.id) {
+      this.diagnosticoService.getById(this.diagnostico.id).subscribe((retorno: Diagnostico) => {
+        if(!retorno){
+          this.mostrarTabela = false
+          this.msg = "Nenhum registro para a pesquisa selecionada";
+        } else {
+          this.dataSource.data = [retorno];
+          this.mostrarTabela = true;
+        }
+      });
+    } else {
+      this.getAll();
+    }
+  }
+
+
+  atualizar(retorno: Diagnostico) {
+    this.router.navigate(['/diagnosticoatendimento/cadastrar'], { queryParams: { id: retorno.id } });
+  }
+
+  deletar(retorno: Diagnostico) {
+    this.chamaCaixaDialogo(retorno);
+  }
+
+  chamaCaixaDialogo(retorno: Diagnostico) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      pergunta: `Certeza que desse excluir o diagnóstico de atendimento: ${retorno.descricao}?`,
+      textoConfirma: 'SIM',
+      textoCancela: 'NÃO'
+    };
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(confirma => {
+      if (confirma) {
+        this.diagnosticoService.excluir(retorno.id).subscribe(() => {
+          this.diagnostico.id = null;
+          this.consultar();
+        });
+      } else {
+        dialogRef.close();
+      }
+    }
+    );
+  }
+
+  getAll() {
+    this.diagnosticoService.getAll().subscribe((retorno: Diagnostico[]) => {
+      this.diagnosticos = retorno;
+      this.dataSource.data = retorno ? retorno : [];
+      this.verificaMostrarTabela(retorno);
+    });
+  }
+
+  verificaMostrarTabela(retorno: Diagnostico[]) {
+    if(!retorno ||retorno.length === 0) {
+      this.mostrarTabela = false;
+      this.msg = "Nenhum diagnóstico de atendimento cadastrado."
+    } else{
+      this.mostrarTabela = true;
+    }
   }
 
 }

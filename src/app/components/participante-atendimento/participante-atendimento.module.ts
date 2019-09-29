@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 
 import { ParticipanteAtendimentoRoutingModule } from './participante-atendimento-routing.module';
 import { CadastrarParticipanteAtendimentoComponent } from './cadastrar-participante-atendimento/cadastrar-participante-atendimento.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
   declarations: [ParticipanteAtendimentoComponent, CadastrarParticipanteAtendimentoComponent],
   imports: [
     CommonModule,
-    ParticipanteAtendimentoRoutingModule
+    ParticipanteAtendimentoRoutingModule,
+    MaterialCommonModule
   ]
 })
 export class ParticipanteAtendimentoModule { }

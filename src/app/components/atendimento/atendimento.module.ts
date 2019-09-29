@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 
 import { AtendimentoRoutingModule } from './atendimento-routing.module';
 import { CadastrarAtendimentoComponent } from './cadastrar-atendimento/cadastrar-atendimento.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
   declarations: [AtendimentoComponent, CadastrarAtendimentoComponent],
   imports: [
     CommonModule,
-    AtendimentoRoutingModule
+    AtendimentoRoutingModule,
+    MaterialCommonModule
   ]
 })
 export class AtendimentoModule { }

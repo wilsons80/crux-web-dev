@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 
 import { DiagnosticoAtendimentoRoutingModule } from './diagnostico-atendimento-routing.module';
 import { CadastrarDiagnosticoAtendimentoComponent } from './cadastrar-diagnostico-atendimento/cadastrar-diagnostico-atendimento.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 @NgModule({
   declarations: [DiagnosticoAtendimentoComponent, CadastrarDiagnosticoAtendimentoComponent],
   imports: [
     CommonModule,
-    DiagnosticoAtendimentoRoutingModule
+    DiagnosticoAtendimentoRoutingModule,
+    MaterialCommonModule
   ]
 })
 export class DiagnosticoAtendimentoModule { }
