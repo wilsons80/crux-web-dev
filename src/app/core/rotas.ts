@@ -22,7 +22,7 @@ export enum Rotas {
     UNIFORME_ALUNO           = 'api/uniformealuno/',
     VULNERABILIDADE_ALUNO    = 'api/vulnerabilidadesaluno/',
     CARGO                    = 'api/cargos/',
-    CURSO_FORMACAO           = 'api/cursoformacao/',
+    CURSO_FORMACAO           = 'api/cursoformacaopf/',
     GRAUS_INSTRUCAO          = 'api/grausinstrucao/',
     QUESTIONARIO             = 'api/questionarios/',
     EMPRESAS                 = 'api/empresas/',
