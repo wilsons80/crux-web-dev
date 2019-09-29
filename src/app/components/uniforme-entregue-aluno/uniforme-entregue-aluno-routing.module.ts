@@ -6,8 +6,8 @@ import { CadastrarUniformeEntregueAlunoComponent } from './cadastrar-uniforme-en
 
 
 const routes: Routes = [
-  { path: 'uniformeentregue/cadastrar', component: CadastrarUniformeEntregueAlunoComponent,canActivate: [AuthGuard]},
-  { path: 'uniformeentregue', component: UniformeEntregueAlunoComponent,canActivate: [AuthGuard]},
+  { path: 'uniformeentregue/cadastrar', component: CadastrarUniformeEntregueAlunoComponent, canActivate: [AuthGuard]},
+  { path: 'uniformeentregue', component: UniformeEntregueAlunoComponent, canActivate: [AuthGuard]},
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

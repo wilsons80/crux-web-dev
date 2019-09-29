@@ -45,6 +45,16 @@ import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
 import { CargoModule } from './components/cargo/cargo.module';
 import { AlunoModule } from './components/aluno/aluno.module';
+import { AvaliacaoAtividadeComponent } from './components/avaliacao-atividade/avaliacao-atividade.component';
+import { CadastrarAvaliacaoAtividadeComponent } from './components/avaliacao-atividade/cadastrar-avaliacao-atividade/cadastrar-avaliacao-atividade.component';
+import { AvaliacaoAlunoComponent } from './components/avaliacao-aluno/avaliacao-aluno.component';
+import { CadastrarAvaliacaoAlunoComponent } from './components/avaliacao-aluno/cadastrar-avaliacao-aluno/cadastrar-avaliacao-aluno.component';
+import { AlunoTrabalhandoComponent } from './components/aluno-trabalhando/aluno-trabalhando.component';
+import { CadastrarAlunoTrabalhandoComponent } from './components/aluno-trabalhando/cadastrar-aluno-trabalhando/cadastrar-aluno-trabalhando.component';
+import { AtendimentoComponent } from './components/atendimento/atendimento.component';
+import { CadastrarAtendimentoComponent } from './components/atendimento/cadastrar-atendimento/cadastrar-atendimento.component';
+import { ParticipanteAtendimentoComponent } from './components/participante-atendimento/participante-atendimento.component';
+import { CadastrarParticipanteAtendimentoComponent } from './components/participante-atendimento/cadastrar-participante-atendimento/cadastrar-participante-atendimento.component';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -57,6 +67,16 @@ registerLocaleData(localePt, 'pt-BR');
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
+    AvaliacaoAtividadeComponent,
+    CadastrarAvaliacaoAtividadeComponent,
+    AvaliacaoAlunoComponent,
+    CadastrarAvaliacaoAlunoComponent,
+    AlunoTrabalhandoComponent,
+    CadastrarAlunoTrabalhandoComponent,
+    AtendimentoComponent,
+    CadastrarAtendimentoComponent,
+    ParticipanteAtendimentoComponent,
+    CadastrarParticipanteAtendimentoComponent,
   ],
   imports: [
     BrowserModule,
