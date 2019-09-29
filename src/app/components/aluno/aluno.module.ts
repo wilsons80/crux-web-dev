@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { AlunoRoutingModule } from './aluno-routing.module';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { PessoaFisicaModule } from '../common/pessoa-fisica/pessoa-fisica.module';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     AlunoRoutingModule,
+    PessoaFisicaModule,
     MaterialCommonModule
   ]
 })
