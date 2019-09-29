@@ -1,3 +1,4 @@
+import { MaterialCommonModule } from './../../material-modules/material-common.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +11,8 @@ import { CadastrarSituacaoVulnerabilidadeComponent } from './cadastrar-situacao-
   declarations: [SituacaoVulnerabilidadeComponent, CadastrarSituacaoVulnerabilidadeComponent],
   imports: [
     CommonModule,
-    SituacaoVulnerabilidadeRoutingModule
+    SituacaoVulnerabilidadeRoutingModule,
+    MaterialCommonModule
   ]
 })
 export class SituacaoVulnerabilidadeModule { }
