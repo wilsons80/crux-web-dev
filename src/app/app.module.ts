@@ -14,9 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AcaoCompetenciaModule } from './components/acao-competencia/acao-competencia.module';
 import { AcessoModule } from './components/acesso/acesso.module';
-import { AlunoModule } from './components/aluno/aluno.module';
 import { AtividadeModule } from './components/atividade/atividade.module';
-import { CargoModule } from './components/cargo/cargo.module';
 import { AuthInterceptor } from './components/common/auth-interceptor/auth-interceptor';
 import { ConfirmDialogComponent } from './components/common/confirm-dialog/confirm-dialog.component';
 import { ExceptionHandlerModule } from './components/common/exception-handler/exception-handler.module';
@@ -43,12 +41,32 @@ import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
 import { ProdutoModule } from './components/produto/produto.module';
 import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
-import { QuestionarioModule } from './components/questionario/questionario.module';
-import { TalentoModule } from './components/talento/talento.module';
+import { CargoModule } from './components/cargo/cargo.module';
+import { AlunoModule } from './components/aluno/aluno.module';
+import { FamiliarAlunoModule } from './components/familiar-aluno/familiar-aluno.module';
+import { ResponsavelAlunoModule } from './components/responsavel-aluno/responsavel-aluno.module';
+import { SituacaoVulnerabilidadeModule } from './components/situacao-vulnerabilidade/situacao-vulnerabilidade.module';
+import { DiagnosticoAtendimentoModule } from './components/diagnostico-atendimento/diagnostico-atendimento.module';
+import { SolucaoAtendimentoModule } from './components/solucao-atendimento/solucao-atendimento.module';
+import { VulnerabilidadeFamiliarModule } from './components/vulnerabilidade-familiar/vulnerabilidade-familiar.module';
+import { VulnerabilidadeAlunoModule } from './components/vulnerabilidade-aluno/vulnerabilidade-aluno.module';
+import { EntidadeSocialModule } from './components/entidade-social/entidade-social.module';
+import { EncaminhamentoAlunoModule } from './components/encaminhamento-aluno/encaminhamento-aluno.module';
+import { ReprovacaoAlunoModule } from './components/reprovacao-aluno/reprovacao-aluno.module';
+import { AtividadeAlunoModule } from './components/atividade-aluno/atividade-aluno.module';
+import { FrequenciaAlunoModule } from './components/frequencia-aluno/frequencia-aluno.module';
+import { UniformeEntregueAlunoModule } from './components/uniforme-entregue-aluno/uniforme-entregue-aluno.module';
+import { AvaliacaoAtividadeModule } from './components/avaliacao-atividade/avaliacao-atividade.module';
+import { AvaliacaoAlunoModule } from './components/avaliacao-aluno/avaliacao-aluno.module';
+import { AlunoTrabalhandoModule } from './components/aluno-trabalhando/aluno-trabalhando.module';
+import { AtendimentoModule } from './components/atendimento/atendimento.module';
+import { ParticipanteAtendimentoModule } from './components/participante-atendimento/participante-atendimento.module';
 import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar-principal.module';
+import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { UnidadeModule } from './components/unidade/unidade.module';
 import { UploadFotoModule } from './components/upload-foto/upload-foto.module';
-import { SharedPipesModule } from './pipes/shared-pipes.module';
+import { QuestionarioModule } from './components/questionario/questionario.module';
+import { TalentoModule } from './components/talento/talento.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 
 registerLocaleData(localePt, 'pt-BR');
@@ -112,15 +130,30 @@ registerLocaleData(localePt, 'pt-BR');
     EmpresaModule,
     CargoModule,
     CursoFormacaoModule,
-    AtividadeModule,
     AlunoModule,
-    CursoFormacaoModule,
     GrausInstrucaoModule,
     QuestionarioModule,
     FaltasFuncionarioModule,
     TalentoModule,
-    AcaoCompetenciaModule
-
+    AcaoCompetenciaModule,
+    FamiliarAlunoModule,
+    ResponsavelAlunoModule,
+    SituacaoVulnerabilidadeModule,
+    DiagnosticoAtendimentoModule,
+    SolucaoAtendimentoModule,
+    VulnerabilidadeFamiliarModule,
+    VulnerabilidadeAlunoModule,
+    EntidadeSocialModule,
+    EncaminhamentoAlunoModule,
+    ReprovacaoAlunoModule,
+    AtividadeAlunoModule,
+    FrequenciaAlunoModule,
+    UniformeEntregueAlunoModule,
+    AvaliacaoAtividadeModule,
+    AvaliacaoAlunoModule,
+    AlunoTrabalhandoModule,
+    AtendimentoModule,
+    ParticipanteAtendimentoModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },

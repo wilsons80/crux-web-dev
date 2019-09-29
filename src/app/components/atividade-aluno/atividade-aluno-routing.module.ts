@@ -11,7 +11,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AtividadeAlunoComponent, CadastrarAtividadeAlunoComponent],
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
