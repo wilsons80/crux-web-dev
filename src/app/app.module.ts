@@ -44,6 +44,7 @@ import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
 import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
 import { CargoModule } from './components/cargo/cargo.module';
+import { AlunoModule } from './components/aluno/aluno.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -106,6 +107,8 @@ registerLocaleData(localePt, 'pt-BR');
     EmpresaModule,
     CargoModule,
     CursoFormacaoModule,
+    AtividadeModule,
+    AlunoModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl()},
