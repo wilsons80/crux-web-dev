@@ -5,8 +5,8 @@
     </mat-form-field>
 
     <mat-form-field fxFlex="20%">
-        <input matInput name="dataAdmissao" [matDatepicker]="dataAdmissao" placeholder="Data de Admissao:"
-            [(ngModel)]="funcionario.dataAdmissao">
+        <input matInput name="dataAdmissao" [matDatepicker]="dataAdmissao" placeholder="Data de Admissão:"
+            [(ngModel)]="funcionario.dataAdmissao" required>
         <mat-datepicker-toggle matSuffix [for]="dataAdmissao"></mat-datepicker-toggle>
         <mat-datepicker #dataAdmissao></mat-datepicker>
     </mat-form-field>

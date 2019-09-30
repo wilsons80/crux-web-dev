@@ -9,7 +9,7 @@
                         </mat-select>
                     </mat-form-field> -->
                     <mat-form-field fxFlex="70%" fxFlexOffset="20px">
-                        <input matInput  [(ngModel)]="pessoaFisica.profissao" name="profissao"
+                        <input matInput  maxlength="200" [(ngModel)]="pessoaFisica.profissao" name="profissao"
                             placeholder="Descrição da Profissão:">
                     </mat-form-field>
                 </div>
@@ -29,12 +29,12 @@
                 <mat-toolbar class="titulopartes">Documentos</mat-toolbar>
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                        <input matInput [(ngModel)]="pessoaFisica.cts" name="cts"
+                        <input matInput maxlength="20" [(ngModel)]="pessoaFisica.cts" name="cts"
                             placeholder="Carteira de Trabalho:">
                     </mat-form-field>
 
                     <mat-form-field fxFlex="30%">
-                        <input matInput [(ngModel)]="pessoaFisica.serieCtps" name="serieCtps"
+                        <input matInput maxlength="15" [(ngModel)]="pessoaFisica.serieCtps" name="serieCtps"
                             placeholder="Número da Série:">
                     </mat-form-field>
                 </div>

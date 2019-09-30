@@ -30,8 +30,8 @@ export class DadosPessoaisComponent implements OnInit {
   ]
 
   sexo:any[] =[
-    {tipo: 'M'},
-    {tipo: 'F'}
+    {sigla: 'M', descricao: 'MASCULINO'},
+    {sigla: 'F', descricao: 'FEMININO'}
   ]
   
   condicoesMoradia:CondicoesMoradia[];

@@ -3,7 +3,7 @@
 
     <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
 
-    <div fxLayout="row" style="margin-bottom: 20px" class="espaco" fxLayoutAlign="start start" fxLayoutGap="50px" fxFlexFill>
+    <div fxLayout="row" style="margin-bottom: 20px" class="espaco" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexFill>
 
         <div id="row_dados" fxFlex="90%" fxFlexFill>
 
@@ -24,11 +24,11 @@
 
             <div fxLayout="row" fxLayoutGap="20px" fxFlexFill>
 
-                <mat-form-field fxFlex="6%" fxFlexOffset="20px">
+                <mat-form-field fxFlex="10%" fxFlexOffset="20px">
                     <mat-label>Sexo:</mat-label>
                     <mat-select [(ngModel)]="pessoaFisica.sexo" name="sexo">
-                        <mat-option *ngFor="let m of sexo" [value]="m">
-                            {{m.tipo}}
+                        <mat-option *ngFor="let m of sexo" [value]="m.sigla">
+                            {{m.descricao}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -52,7 +52,7 @@
                 <mat-form-field fxFlex="5%">
                     <mat-label>UF:</mat-label>
                     <mat-select [(ngModel)]="pessoaFisica.ufNascimento" name="ufNascimento">
-                        <mat-option *ngFor="let m of ufs" [value]="m">
+                        <mat-option *ngFor="let m of ufs" [value]="m.nome">
                             {{m.nome}}
                         </mat-option>
                     </mat-select>
@@ -102,7 +102,7 @@
         <mat-form-field fxFlex="5%" fxFlexOffset="20px">
             <mat-label>UF:</mat-label>
             <mat-select [(ngModel)]="pessoaFisica.ufEndereco" name="ufEndereco">
-                <mat-option *ngFor="let m of ufs" [value]="m">
+                <mat-option *ngFor="let m of ufs" [value]="m.nome">
                     {{m.nome}}
                 </mat-option>
             </mat-select>

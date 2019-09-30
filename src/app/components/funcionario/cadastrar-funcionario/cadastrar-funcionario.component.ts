@@ -52,6 +52,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
     this.funcionario.pessoasFisica.cep = this.funcionario.pessoasFisica.cep ? this.retiraMascara(this.funcionario.pessoasFisica.cep.toString()) : null
     this.funcionario.pessoasFisica.celular = this.funcionario.pessoasFisica.celular ? this.retiraMascara(this.funcionario.pessoasFisica.celular.toString()) : null
     this.funcionario.pessoasFisica.cpf = this.funcionario.pessoasFisica.cpf ? this.retiraMascara(this.funcionario.pessoasFisica.cpf.toString()) : null
+    this.funcionario.pessoasFisica.telefoneResidencial = this.funcionario.pessoasFisica.telefoneResidencial ? this.retiraMascara(this.funcionario.pessoasFisica.telefoneResidencial.toString()) : null
   }
 
   limpar() {
@@ -67,6 +68,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
   }
 
   atualizar() {
+    this.tratarDados();
     this.funcionarioService.alterar(this.funcionario).subscribe(() => {
       this.location.back();
       this.toastService.showSucesso("Funcionário atualizado com sucesso");
