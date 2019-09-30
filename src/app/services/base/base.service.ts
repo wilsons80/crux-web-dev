@@ -1,5 +1,4 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -7,34 +6,30 @@ const httpOptions = {
   })
 };
 
-@Injectable({
-  providedIn: 'root'
-})
-export abstract class BaseService<T> {
-
+export class BaseService<T> {
 
   constructor(public http: HttpClient,
-              public rootPath: string) {
+              public rota: string) {
   }
 
   getAll() {
-    return this.http.get(`${this.rootPath}`);
+    return this.http.get(`${this.rota}`);
   }
 
   getById(id: number) {
-    return this.http.get(`${this.rootPath}${id}`);
+    return this.http.get(`${this.rota}${id}`);
   }
 
   cadastrar(param: T) {
-    return this.http.post(`${this.rootPath}`, param);
+    return this.http.post(`${this.rota}`, param);
   }
 
   alterar(param: T) {
-    return this.http.put(`${this.rootPath}`, param);
+    return this.http.put(`${this.rota}`, param);
   }
 
   excluir(id: number) {
-    return this.http.delete(`${this.rootPath}${id}`);
+    return this.http.delete(`${this.rota}${id}`);
   }
 
 }

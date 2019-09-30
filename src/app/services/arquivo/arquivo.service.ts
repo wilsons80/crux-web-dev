@@ -2,7 +2,7 @@ import { Cacheable } from 'ngx-cacheable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const rootPath = 'api/arquivo/';
+const rootPath = 'api/arquivounidade/';
 
 const httpOptions = {
   'responseType'  : 'arraybuffer' as 'json'

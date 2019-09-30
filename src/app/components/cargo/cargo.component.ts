@@ -59,7 +59,7 @@ export class CargoComponent implements OnInit {
 
 
   atualizar(cargo: Cargo) {
-    this.router.navigate(['/cargos/cadastrar'], { queryParams: { idCargo: cargo.id } });
+    this.router.navigate(['/cargo/cadastrar'], { queryParams: { idCargo: cargo.id } });
   }
 
   deletar(cargo: Cargo) {
