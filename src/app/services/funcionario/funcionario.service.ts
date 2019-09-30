@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Rotas } from 'src/app/core/rotas';
-import { BaseService } from './../../../../.history/src/app/services/base/base.service_20190930175311';
 import { Funcionario } from './../../core/funcionario';
+import { BaseService } from '../base/base.service';
 
 
 @Injectable({
