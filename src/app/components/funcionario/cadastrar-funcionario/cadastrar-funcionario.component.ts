@@ -5,6 +5,9 @@ import { Funcionario } from './../../../core/funcionario';
 import { PessoaFisica } from './../../../core/pessoa-fisica';
 import { FuncionarioService } from './../../../services/funcionario/funcionario.service';
 import { ActivatedRoute } from '@angular/router';
+import {Observable} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+import {UsuarioLogado} from '../../../core/usuario-logado';
 
 @Component({
   selector: 'app-cadastrar-funcionario',
@@ -38,7 +41,21 @@ export class CadastrarFuncionarioComponent implements OnInit {
         this.funcionario = funcionario;
       });
     }
+    
   }
+
+  // this.autenticadorService.login(this.usuario).pipe(
+
+  //   switchMap((usuarioLogado: UsuarioLogado) => {
+  //     this.usuarioLogado = usuarioLogado;
+  //     if (usuarioLogado.unidadeLogada) {
+  //       return this.menuService.getMenuPrincipal();
+  //     } else
+  //       return new Observable(obs => obs.next())
+  //   }),
+
+
+  // )
 
   cadastrar() {
     this.tratarDados();
