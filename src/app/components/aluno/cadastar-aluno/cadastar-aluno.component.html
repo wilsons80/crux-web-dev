@@ -83,12 +83,6 @@
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" (click)="cadastrar()"
-                    [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-                                formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid"
-                    matStepperNext>
-                    Cadastrar
-                </button>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
                     voltar
                 </button>
@@ -96,4 +90,32 @@
         </mat-step>
 
     </mat-horizontal-stepper>
+</div>
+
+
+<div dir="rtl" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+  <button mat-raised-button
+          name="botaoConfirmar"
+          fxFlex="20%"
+          color="primary"
+          [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
+                      formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid"
+          (click)="isAtualizar ? atualizar() : cadastrar()">
+          {{getNomeBotao()}}
+  </button>
+
+  <button *ngIf="!isAtualizar"
+          mat-raised-button
+          fxFlex="20%"
+          color="primary"
+          (click)="limpar()">
+          Limpar
+  </button>
+
+  <button mat-raised-button
+          fxFlex="20%"
+          color="primary"
+          (click)="cancelar()">
+      Cancelar
+  </button>
 </div>

@@ -6,7 +6,7 @@
         <mat-label>Forma de ingresso na Entidade:</mat-label>
         <mat-select [(ngModel)]="pessoaFisica.formaIngressoEntidade" name="formaIngressoEntidade">
             <mat-option *ngFor="let m of formaIngressoEntidade" [value]="m">
-                {{m.tipo}}
+                {{m}}
             </mat-option>
         </mat-select>
     </mat-form-field>
@@ -23,13 +23,6 @@
     <mat-form-field fxFlex="30%">
         <input matInput maxlength="50" name="nis" placeholder="Número do NIS:" [(ngModel)]="pessoaFisica.nis">
     </mat-form-field>
-
-    <mat-form-field fxFlex="30%">
-        <input matInput maxlength="50" name="valorOutrosBenerficiosSoc" placeholder="Valor de outros benefícios sociais:"
-                [(ngModel)]="pessoaFisica.valorOutrosBenerficiosSoc">
-            <span matPrefix>R$&nbsp;</span>
-    </mat-form-field>
-
 </div>
 
 

@@ -10,10 +10,10 @@ export class AtendimentoApoioComponent implements OnInit {
 
   @Input() pessoaFisica: PessoaFisica;
 
-  formaIngressoEntidade = [{tipo: 'CRAS'},
-                            {tipo: 'DEMANDA ESPONTÂNEA'},
-                            {tipo: 'SOLICITAÇÃO JUDICIAL'},
-                            {tipo: 'OUTRO'}
+  formaIngressoEntidade = [ 'CRAS',
+                            'DEMANDA ESPONTÂNEA',
+                            'SOLICITAÇÃO JUDICIAL',
+                            'OUTRO'
                           ];
 
   sim_nao: any[] = [
