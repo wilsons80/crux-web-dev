@@ -70,5 +70,6 @@ export class PessoaFisica{
    condicoesMoradia:CondicoesMoradia;
    grausInstrucao:GrausInstrucao;
    usuarioAlteracao:number;
+   foto?:any;
     
 }

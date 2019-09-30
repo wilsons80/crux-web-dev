@@ -14,6 +14,7 @@ export class DadosPessoaisComponent implements OnInit {
 
   @Input() pessoaFisica: PessoaFisica = new PessoaFisica();
 
+
   public maskCep = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   
@@ -57,4 +58,23 @@ export class DadosPessoaisComponent implements OnInit {
     })
   }
 
+  fileChangeEvent(event: any): void {
+    this.readThis(event.target);
+  }
+
+  getBackground(){
+    if(this.pessoaFisica && this.pessoaFisica.foto){
+      return `url(${this.pessoaFisica.foto})`
+    }
+  }
+
+  readThis(inputValue: any): void {
+    var file:File = inputValue.files[0];
+    var myReader:FileReader = new FileReader();
+  
+    myReader.onloadend = (e) => {
+      this.pessoaFisica.foto = myReader.result;
+    }
+    myReader.readAsDataURL(file);
+  }
 }

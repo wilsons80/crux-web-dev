@@ -59,11 +59,13 @@
             </div>
         </div>
 
-        <div fxFlex="15%">
-            <button name="fotoPerfil" ng mat-raised-button class="botao">
-                    <mat-icon class="nao-foto"></mat-icon>
-            </button>
-        </div>
+            <!-- FOTO PERFIL -->
+            <div fxFlex="16%">
+                    <button name="fotoPerfil" ng mat-raised-button class="botao"  (click)="uploadFile.click()"  [style.background-image]="getBackground()" >
+                            <mat-icon class="nao-foto"></mat-icon>
+                        </button>
+                        <input #uploadFile type="file" style="display:none;" (change)="fileChangeEvent($event)"/>
+                </div>
     </div>
 
     <!-- ETAPA 1 - FILIAÇÃO -->
