@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DadosPessoaisComponent } from './dados-pessoais/dados-pessoais.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatTooltipModule, MatPaginatorModule, MatStepperModule, MatDatepickerModule, MatCheckboxModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
-import { TextMaskModule } from 'angular2-text-mask';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
+import { MatButtonModule} from '@angular/material';
 import { EscolaridadeComponent } from './escolaridade/escolaridade.component';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { DadosProfissionaisComponent } from './dados-profissionais/dados-profissionais.component';
@@ -13,20 +9,22 @@ import { OutrasInformacoesComponent } from './outras-informacoes/outras-informac
 import { FuncionalComponent } from './funcional/funcional.component';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 import { AcademicoComponent } from './academico/academico.component';
-import { OutrasInformacoesAlunoComponent } from './outras-informacoes-aluno/outras-informacoes-aluno.component';
-
+import { EscolarComponent } from './escolar/escolar.component';
+import { AtendimentoApoioComponent } from './atendimento-apoio/atendimento-apoio.component';
 
 
 @NgModule({
   declarations: [
-    DadosPessoaisComponent, 
-    EscolaridadeComponent, 
-    DocumentosComponent, 
-    DadosProfissionaisComponent, 
-    OutrasInformacoesComponent, 
-    FuncionalComponent, 
-    AcademicoComponent, 
-    OutrasInformacoesAlunoComponent],
+    DadosPessoaisComponent,
+    EscolaridadeComponent,
+    DocumentosComponent,
+    DadosProfissionaisComponent,
+    OutrasInformacoesComponent,
+    FuncionalComponent,
+    AcademicoComponent,
+    EscolarComponent,
+    AtendimentoApoioComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -34,13 +32,14 @@ import { OutrasInformacoesAlunoComponent } from './outras-informacoes-aluno/outr
   ],
   exports:[
     DadosPessoaisComponent,
-    EscolaridadeComponent, 
-    DocumentosComponent, 
+    EscolaridadeComponent,
+    DocumentosComponent,
     DadosProfissionaisComponent,
     OutrasInformacoesComponent,
     FuncionalComponent,
     AcademicoComponent,
-    OutrasInformacoesAlunoComponent
+    EscolarComponent,
+    AtendimentoApoioComponent
   ]
 })
 export class PessoaFisicaModule { }

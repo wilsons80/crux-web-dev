@@ -1,0 +1,131 @@
+<!-- MORADIA -->
+<mat-toolbar class="titulopartes">Moradia</mat-toolbar>
+<div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
+
+    <mat-form-field fxFlex="50%" fxFlexOffset="20px">
+        <mat-label>Condição da Moradia:</mat-label>
+        <mat-select [(ngModel)]="pessoaFisica.condicaoMoradia" name="condicaoMoradia">
+            <mat-option *ngFor="let m of condicoesMoradia" [value]="m">
+                {{m.descricao}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>
+
+
+<!-- BENEFICIOS -->
+<mat-toolbar class="titulopartes">Benefícios</mat-toolbar>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    <mat-form-field fxFlex="30%">
+        <input matInput maxlength="50" name="valorOutrosBenerficiosSoc" placeholder="Valor de outros benefícios sociais:"
+                [(ngModel)]="pessoaFisica.valorOutrosBenerficiosSoc">
+            <span matPrefix>R$&nbsp;</span>
+    </mat-form-field>
+</div>
+
+<!-- ESCOLAR -->
+<mat-toolbar class="titulopartes">Escolar</mat-toolbar>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    <mat-form-field fxFlex="30%" fxFlexOffset="20px">
+        <mat-label>Tipo da escola regular onde o educando está matriculado:</mat-label>
+        <mat-select [(ngModel)]="pessoaFisica.tipoEscola" name="tipoEscola">
+            <mat-option *ngFor="let m of tipoEscola" [value]="m.flag">
+                {{m.tipo}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox name="autorizaEmail" [(ngModel)]="pessoaFisica.autorizaEmail">Autorizo o recebimento de emails.</mat-checkbox>
+</div>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+            <mat-label>Identificação da escola frequentada pelo familiar:</mat-label>
+            <textarea matInput
+                    name="escola"
+                    [(ngModel)]="pessoaFisica.escola"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    maxlength="200"
+                    ></textarea>
+    </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+            <mat-label>Descrição do turno de frequência da escola pelo familiar:</mat-label>
+            <textarea matInput
+                    name="turno"
+                    [(ngModel)]="pessoaFisica.turno"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    maxlength="200"
+                    ></textarea>
+    </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+            <mat-label>Nome do curso da escola regular onde o educando está matriculado:</mat-label>
+            <textarea matInput
+                    name="cursoEscola"
+                    [(ngModel)]="pessoaFisica.cursoEscola"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    maxlength="200"
+                    ></textarea>
+    </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+            <mat-label>Período do curso da escola regular onde o educando está matriculado:</mat-label>
+            <textarea matInput
+                    name="periodoEscola"
+                    [(ngModel)]="pessoaFisica.periodoEscola"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    maxlength="200"
+                    ></textarea>
+    </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+            <mat-label>Série do curso da escola regular onde o educando está matriculado:</mat-label>
+            <textarea matInput
+                    name="serieEscola"
+                    [(ngModel)]="pessoaFisica.serieEscola"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    maxlength="200"
+                    ></textarea>
+    </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+            <mat-label>Região administrativa da escola:</mat-label>
+            <textarea matInput
+                    name="regiaoEscola"
+                    [(ngModel)]="pessoaFisica.regiaoEscola"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    maxlength="200"
+                    ></textarea>
+    </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+            <mat-label>Observações:</mat-label>
+            <textarea matInput
+                    name="observacoes"
+                    [(ngModel)]="pessoaFisica.observacoes"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    maxlength="200"
+                    ></textarea>
+    </mat-form-field>
+</div>
