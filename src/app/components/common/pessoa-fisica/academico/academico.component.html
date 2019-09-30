@@ -27,7 +27,6 @@
                 </mat-option>
             </mat-select>
     </mat-form-field>
-
 </div>
 
 
@@ -44,9 +43,62 @@
     </mat-form-field>
 </div>
 
-
 <!-- OUTRAS INFORMAÇÕES -->
 <mat-toolbar class="titulopartes">Outras informações</mat-toolbar>
+
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+  <mat-form-field fxFlex="25%" fxFlexOffset="20px">
+    <mat-label>Mora com os pais ?</mat-label>
+    <mat-select [(ngModel)]="aluno.moraPais" name="moraPais">
+        <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
+            {{m.tipo}}
+        </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="25%" fxFlexOffset="20px">
+    <mat-label>Pais do educando são casados ?</mat-label>
+    <mat-select [(ngModel)]="aluno.paisCasados" name="paisCasados">
+        <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
+            {{m.tipo}}
+        </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="25%" fxFlexOffset="20px">
+    <mat-label>Aluno está matriculado na escola pública ?</mat-label>
+    <mat-select [(ngModel)]="aluno.matriculadoEscPub" name="matriculadoEscPub">
+        <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
+            {{m.tipo}}
+        </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="25%" fxFlexOffset="20px">
+    <mat-label>Aluno se trata de público prioritário ?</mat-label>
+    <mat-select [(ngModel)]="aluno.publicoPrioritario" name="publicoPrioritario">
+        <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
+            {{m.tipo}}
+        </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+  <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+          <mat-label>Descrição da pessoa que busca o educando na escola:</mat-label>
+          <textarea matInput
+                  name="descBuscaEscola"
+                  [(ngModel)]="aluno.descBuscaEscola"
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="2"
+                  maxlength="200"
+                  ></textarea>
+  </mat-form-field>
+</div>
+
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
             <mat-label>Desligamento:</mat-label>

@@ -5,7 +5,7 @@
 
     <div fxLayout="row" style="margin-bottom: 20px" class="espaco" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexFill>
 
-        <div id="row_dados" fxFlex="90%" fxFlexFill>
+        <div id="row_dados" fxFlex="85%" fxFlexFill>
 
             <div fxLayout="row" fxLayoutGap="5px" >
                 <mat-form-field fxFlex="55%" fxFlexOffset="20px" >
@@ -23,8 +23,7 @@
             </div>
 
             <div fxLayout="row" fxLayoutGap="20px" fxFlexFill>
-
-                <mat-form-field fxFlex="10%" fxFlexOffset="20px">
+                <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                     <mat-label>Sexo:</mat-label>
                     <mat-select [(ngModel)]="pessoaFisica.sexo" name="sexo">
                         <mat-option *ngFor="let m of sexo" [value]="m.sigla">
@@ -33,9 +32,9 @@
                     </mat-select>
                 </mat-form-field>
 
-                <!-- <mat-form-field fxFlex="20%">
+                <mat-form-field fxFlex="20%">
                     <input matInput maxlength="45" name="cor" placeholder="Cor:" [(ngModel)]="pessoaFisica.cor">
-                </mat-form-field> -->
+                </mat-form-field>
 
                 <mat-form-field fxFlex="20%">
                     <input matInput name="dataNascimento" [matDatepicker]="dataNascimento"
@@ -44,7 +43,7 @@
                     <mat-datepicker #dataNascimento></mat-datepicker>
                 </mat-form-field>
 
-                <mat-form-field fxFlex="35%">
+                <mat-form-field fxFlex="30%">
                     <input matInput maxlength="200" name="cidadeNaturalidade" placeholder="Cidade:"
                         [(ngModel)]="pessoaFisica.cidadeNaturalidade">
                 </mat-form-field>
@@ -60,11 +59,11 @@
             </div>
         </div>
 
-            <div fxFlex="16%">
-                    <button name="fotoPerfil" ng mat-raised-button class="botao">
-                            <mat-icon class="nao-foto"></mat-icon>
-                        </button>
-                </div>
+        <div fxFlex="15%">
+            <button name="fotoPerfil" ng mat-raised-button class="botao">
+                    <mat-icon class="nao-foto"></mat-icon>
+            </button>
+        </div>
     </div>
 
     <!-- ETAPA 1 - FILIAÇÃO -->

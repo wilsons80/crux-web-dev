@@ -10,7 +10,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 })
 export class OutrasInformacoesComponent implements OnInit {
 
-  @Input() pessoaFisica: PessoaFisica
+  @Input() pessoaFisica: PessoaFisica;
 
   constructor() { }
 

@@ -56,10 +56,10 @@
             </div>
         </mat-step>
 
-        
+
         <!--  FUNCIONAL -->
-        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDadosProfissionais">
-            <form #formCadastroAluno="ngForm">
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAcademico">
+            <form #formCadastroAcademico="ngForm">
                     <ng-template matStepLabel>ACADEMICO</ng-template>
                     <academico [aluno]="aluno"></academico>
             </form>
@@ -75,16 +75,17 @@
         </mat-step>
 
         <!-- OUTRAS INFORMAÇOES -->
-        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAluno">
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutrasInformacoes">
             <form #formCadastroOutrasInformacoes="ngForm">
                 <ng-template matStepLabel>OUTRAS INFORMAÇÕES</ng-template>
-                <outras-informacoes-aluno [aluno]="aluno"></outras-informacoes-aluno>
+                <escolar [pessoaFisica]="aluno.pessoaFisica"></escolar>
+                <atendimento-apoio [pessoaFisica]="aluno.pessoaFisica"></atendimento-apoio>
             </form>
-        
+
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" (click)="cadastrar()"
                     [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-                                formCadastroOutrasInformacoes.invalid || formCadastroAluno.invalid"
+                                formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid"
                     matStepperNext>
                     Cadastrar
                 </button>
