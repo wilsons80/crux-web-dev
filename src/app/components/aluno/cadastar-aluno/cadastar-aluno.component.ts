@@ -31,7 +31,7 @@ export class CadastarAlunoComponent implements OnInit {
     this.aluno.pessoaFisica = this.pessoaFisica;
 
     let idAluno: number;
-    idAluno = this.route.snapshot.queryParams.idAluno ? this.route.snapshot.queryParams.idAluno : null;
+    idAluno = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;
     if (idAluno) {
       this.isAtualizar = true;
       this.alunoService.getById(idAluno).subscribe((aluno: Aluno) => {

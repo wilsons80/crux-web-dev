@@ -35,8 +35,8 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlex= "100%" fxFlexOffset="20px">
         <mat-label>Selecione a Unidade</mat-label>
-        <mat-select name="unidade" [(ngModel)]="aluno.unidade" required>
-            <mat-option *ngFor="let u of unidades" [value]="u">
+        <mat-select name="unidade" [(ngModel)]="aluno.unidade.idUnidade" required>
+            <mat-option *ngFor="let u of unidades" [value]="u.idUnidade">
                 {{u.nomeUnidade}}
             </mat-option>
         </mat-select>

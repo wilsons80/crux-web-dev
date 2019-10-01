@@ -28,6 +28,8 @@ export class AcademicoComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.aluno.unidade = new Unidade();
+
     this.alunoService.getAll().subscribe((alunos: Aluno[]) => {
       this.alunos = alunos;
     });

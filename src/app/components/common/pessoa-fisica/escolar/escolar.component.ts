@@ -21,10 +21,13 @@ export class EscolarComponent implements OnInit {
 
   constructor(private condicaoMoradiaService: CondicoesMoradiaService) { }
 
-    ngOnInit() {
-      this.condicaoMoradiaService.getAll().subscribe((condicoes: CondicoesMoradia[]) => {
-          this.condicoesMoradia = condicoes;
-      });
-    }
+  ngOnInit() {
+    this.pessoaFisica.condicoesMoradia = new CondicoesMoradia();
+
+    this.condicaoMoradiaService.getAll().subscribe((condicoes: CondicoesMoradia[]) => {
+        this.condicoesMoradia = condicoes;
+    });
+    
+   }
 
 }

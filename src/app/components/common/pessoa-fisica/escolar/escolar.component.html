@@ -4,7 +4,7 @@
 
     <mat-form-field fxFlex="50%" fxFlexOffset="20px">
         <mat-label>Condição da Moradia:</mat-label>
-        <mat-select [(ngModel)]="pessoaFisica.condicaoMoradia" name="condicaoMoradia">
+        <mat-select [(ngModel)]="pessoaFisica.condicoesMoradia" name="condicaoMoradia">
             <mat-option *ngFor="let m of condicoesMoradia" [value]="m">
                 {{m.descricao}}
             </mat-option>
