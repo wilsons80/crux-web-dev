@@ -1,3 +1,4 @@
+import { ArquivoPessoaFisicaService } from './../../../services/arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -8,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {UsuarioLogado} from '../../../core/usuario-logado';
+import { FileUtils } from 'src/app/utils/file-utils';
 
 @Component({
   selector: 'app-cadastrar-funcionario',
@@ -25,7 +27,9 @@ export class CadastrarFuncionarioComponent implements OnInit {
     private funcionarioService: FuncionarioService,
     private route: ActivatedRoute,
     private location: Location,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private arquivoPessoaFisicaService:ArquivoPessoaFisicaService,
+    private fileUtils:FileUtils,
   ) {
 
   }
@@ -37,29 +41,32 @@ export class CadastrarFuncionarioComponent implements OnInit {
     idFuncionario = this.route.snapshot.queryParams.idFuncionario ? this.route.snapshot.queryParams.idFuncionario : null;
     if (idFuncionario) {
       this.isAtualizar = true;
-      this.funcionarioService.getById(idFuncionario).subscribe((funcionario: Funcionario) => {
-        this.funcionario = funcionario;
+      this.funcionarioService.getById(idFuncionario).pipe(
+        switchMap((funcionario: Funcionario) => {
+          this.funcionario = funcionario;
+          return this.arquivoPessoaFisicaService.get(funcionario.pessoasFisica.id)
+        })
+      ).subscribe((foto: any) => {
+        console.log("foto", foto);
+        this.funcionario.pessoasFisica.urlFoto = this.fileUtils.convertBufferArrayToBase64(foto);
       });
     }
     
   }
 
-  // this.autenticadorService.login(this.usuario).pipe(
-
-  //   switchMap((usuarioLogado: UsuarioLogado) => {
-  //     this.usuarioLogado = usuarioLogado;
-  //     if (usuarioLogado.unidadeLogada) {
-  //       return this.menuService.getMenuPrincipal();
-  //     } else
-  //       return new Observable(obs => obs.next())
-  //   }),
-
-
-  // )
 
   cadastrar() {
     this.tratarDados();
-    this.funcionarioService.cadastrar(this.funcionario).subscribe(() => {
+    this.funcionarioService.cadastrar(this.funcionario).pipe(
+    
+      switchMap((funcionarioRetorno:Funcionario) => {
+        if(this.funcionario.pessoasFisica.foto){
+          return this.arquivoPessoaFisicaService.gravar(this.funcionario.pessoasFisica.foto, funcionarioRetorno.pessoasFisica.id)
+        }else
+         return new Observable(obs => obs.next());
+      })
+
+    ).subscribe(() => {
       this.location.back();
       this.toastService.showSucesso("Funcionário cadastrado com sucesso");
     })
@@ -86,7 +93,16 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   atualizar() {
     this.tratarDados();
-    this.funcionarioService.alterar(this.funcionario).subscribe(() => {
+    this.funcionarioService.alterar(this.funcionario).pipe(
+    
+      switchMap((funcionario:Funcionario) => {
+        if(funcionario.pessoasFisica.foto){
+          return this.arquivoPessoaFisicaService.alterar(funcionario.pessoasFisica.foto, funcionario.pessoasFisica.id)
+        }else
+         return new Observable(obs => obs.next());
+      })
+
+    ).subscribe(() => {
       this.location.back();
       this.toastService.showSucesso("Funcionário atualizado com sucesso");
     });

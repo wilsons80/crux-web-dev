@@ -59,12 +59,14 @@ export class DadosPessoaisComponent implements OnInit {
   }
 
   fileChangeEvent(event: any): void {
+    console.log("events",event)
+    this.pessoaFisica.foto = event.target.files[0];
     this.readThis(event.target);
   }
 
   getBackground(){
-    if(this.pessoaFisica && this.pessoaFisica.foto){
-      return `url(${this.pessoaFisica.foto})`
+    if(this.pessoaFisica && this.pessoaFisica.urlFoto){
+      return `url(${this.pessoaFisica.urlFoto})`
     }
   }
 
@@ -73,7 +75,7 @@ export class DadosPessoaisComponent implements OnInit {
     var myReader:FileReader = new FileReader();
   
     myReader.onloadend = (e) => {
-      this.pessoaFisica.foto = myReader.result;
+      this.pessoaFisica.urlFoto = myReader.result;
     }
     myReader.readAsDataURL(file);
   }

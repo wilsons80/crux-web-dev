@@ -71,5 +71,6 @@ export class PessoaFisica{
    grausInstrucao:GrausInstrucao;
    usuarioAlteracao:number;
    foto?:any;
+   urlFoto?:any;
     
 }

@@ -7,6 +7,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 export class FileUtils {
 
+    imageBlobUrl: any;
+
     constructor(private domSanitizer:DomSanitizer){
 
     }
@@ -18,4 +20,6 @@ export class FileUtils {
         console.log("opa", this.domSanitizer.bypassSecurityTrustUrl(`data:image/jpg;base64,` + base64String));
         return this.domSanitizer.bypassSecurityTrustUrl(`data:image/jpg;base64,` + base64String);
     }
+
+
 }

@@ -27,10 +27,12 @@ export class UploadFotoComponent implements OnInit {
   fileChangeEvent(event: any): void {
     this.nomeArquivo = event.target.files.length > 0 ? event.target.files[0].name : null;
     this.file = event.target.files[0];
+    console.log("filechange", this.file);
     this.imageChangedEvent = event;
   }
   imageCropped(event: ImageCroppedEvent) {
     this.file = event.file;
+    console.log("imageCropped", this.file);
     this.croppedImage = event.base64;
   }
   imageLoaded() {
@@ -46,11 +48,11 @@ export class UploadFotoComponent implements OnInit {
   }
 
   salvar() {
+   console.log("file salvar",this.file)
+    // this.arquivoService.gravar(this.file).subscribe(() => {
+    //   this.router.navigate(['home']);
 
-    this.arquivoService.gravar(this.file).subscribe(() => {
-      this.router.navigate(['home']);
-
-    });
+    // });
   }
 
   cancelar() {
