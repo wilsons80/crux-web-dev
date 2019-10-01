@@ -9,7 +9,7 @@
                     <mat-label>Selecione um aluno</mat-label>
                     <mat-select [(ngModel)]="aluno" name="aluno">
                         <mat-option *ngFor="let d of alunos" [value]="d">
-                            {{ d.matriculaAluno }} - {{ d.pessoasFisica.nome }}
+                            {{ d.matriculaAluno }} - {{ d.pessoaFisica.nome }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
