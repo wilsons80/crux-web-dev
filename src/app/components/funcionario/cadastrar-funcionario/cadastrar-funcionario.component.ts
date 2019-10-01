@@ -47,8 +47,8 @@ export class CadastrarFuncionarioComponent implements OnInit {
           return this.arquivoPessoaFisicaService.get(funcionario.pessoasFisica.id)
         })
       ).subscribe((foto: any) => {
-        console.log("foto", foto);
-        this.funcionario.pessoasFisica.urlFoto = this.fileUtils.convertBufferArrayToBase64(foto);
+        foto = this.fileUtils.convertBufferArrayToBase64(foto);
+        this.funcionario.pessoasFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
       });
     }
     

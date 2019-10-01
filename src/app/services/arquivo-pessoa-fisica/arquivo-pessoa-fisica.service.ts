@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
 const rootPath = 'api/arquivopessoafisica/';
 
 const httpOptions = {
-  //'responseType'  : 'arraybuffer' as 'json'
-   'responseType'  : 'blob' as 'json'        //This also worked
+  'responseType'  : 'arraybuffer' as 'json'
+   //'responseType'  : 'blob' as 'json'        //This also worked
    //'responseType'  : 'blob' as 'json'        //This also worked
 };
 
