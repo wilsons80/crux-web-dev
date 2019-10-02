@@ -71,6 +71,9 @@ import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portugue
 import { CondicaoMoradiaComponent } from './components/condicao-moradia/condicao-moradia.component';
 import { CadastrarCondicaoMoradiaComponent } from './components/condicao-moradia/cadastrar-condicao-moradia/cadastrar-condicao-moradia.component';
 import { CondicaoMoradiaModule } from './components/condicao-moradia/condicao-moradia.module';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { CadastrarUsuarioComponent } from './components/usuario/cadastrar-usuario/cadastrar-usuario.component';
+import { UsuarioModule } from './components/usuario/usuario.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -157,7 +160,8 @@ registerLocaleData(localePt, 'pt-BR');
     AlunoTrabalhandoModule,
     AtendimentoModule,
     ParticipanteAtendimentoModule,
-    CondicaoMoradiaModule
+    CondicaoMoradiaModule,
+    UsuarioModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },

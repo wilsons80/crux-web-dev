@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-
-const usuarioRootPath = 'api/usuario/';
+import { Usuario } from 'src/app/core/usuario';
+import { BaseService } from '../base/base.service';
+import { Rotas } from 'src/app/core/rotas';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class UsuarioService extends BaseService<Usuario> {
 
-  constructor(private http: HttpClient) { }
-
-  getUsuariosPorUnidadeLogada(){
-    return this.http.get(usuarioRootPath+`unidade`);
+  constructor(http: HttpClient) {
+    super(http, Rotas.USUARIO);
   }
 
-  getUsuariosPorUnidade(idUnidade:number){
-    return this.http.get(usuarioRootPath + `unidade/${idUnidade}`);
+  getUsuariosPorUnidadeLogada() {
+    return this.http.get(Rotas.USUARIO + `unidade`);
+  }
+
+  getUsuariosPorUnidade(idUnidade: number ) {
+    return this.http.get(Rotas.USUARIO + `unidade/${idUnidade}`);
   }
 
 }
