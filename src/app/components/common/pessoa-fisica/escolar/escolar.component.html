@@ -44,7 +44,7 @@
     <mat-checkbox name="autorizaEmail" [(ngModel)]="pessoaFisica.autorizaEmail">Autorizo o recebimento de emails.</mat-checkbox>
 </div>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Identificação da escola frequentada pelo familiar:</mat-label>
             <textarea matInput
                     name="escola"
@@ -55,22 +55,23 @@
                     maxlength="200"
                     ></textarea>
     </mat-form-field>
+
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
+      <mat-label>Descrição do turno de frequência da escola pelo familiar:</mat-label>
+      <textarea matInput
+              name="turno"
+              [(ngModel)]="pessoaFisica.turno"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="2"
+              maxlength="200"
+              ></textarea>
+  </mat-form-field>
+
 </div>
+
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
-            <mat-label>Descrição do turno de frequência da escola pelo familiar:</mat-label>
-            <textarea matInput
-                    name="turno"
-                    [(ngModel)]="pessoaFisica.turno"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    maxlength="200"
-                    ></textarea>
-    </mat-form-field>
-</div>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Nome do curso da escola regular onde o educando está matriculado:</mat-label>
             <textarea matInput
                     name="cursoEscola"
@@ -81,22 +82,23 @@
                     maxlength="200"
                     ></textarea>
     </mat-form-field>
-</div>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
-            <mat-label>Período do curso da escola regular onde o educando está matriculado:</mat-label>
-            <textarea matInput
-                    name="periodoEscola"
-                    [(ngModel)]="pessoaFisica.periodoEscola"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    maxlength="200"
-                    ></textarea>
+
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
+      <mat-label>Período do curso da escola regular onde o educando está matriculado:</mat-label>
+      <textarea matInput
+              name="periodoEscola"
+              [(ngModel)]="pessoaFisica.periodoEscola"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="2"
+              maxlength="200"
+              ></textarea>
     </mat-form-field>
+
 </div>
+
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Série do curso da escola regular onde o educando está matriculado:</mat-label>
             <textarea matInput
                     name="serieEscola"
@@ -107,20 +109,21 @@
                     maxlength="200"
                     ></textarea>
     </mat-form-field>
-</div>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
-            <mat-label>Região administrativa da escola:</mat-label>
-            <textarea matInput
-                    name="regiaoEscola"
-                    [(ngModel)]="pessoaFisica.regiaoEscola"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    maxlength="200"
-                    ></textarea>
+
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
+      <mat-label>Região administrativa da escola:</mat-label>
+      <textarea matInput
+              name="regiaoEscola"
+              [(ngModel)]="pessoaFisica.regiaoEscola"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="2"
+              maxlength="200"
+              ></textarea>
     </mat-form-field>
+
 </div>
+
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
             <mat-label>Observações:</mat-label>
