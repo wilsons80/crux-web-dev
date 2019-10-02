@@ -27,7 +27,5 @@ export class EscolarComponent implements OnInit {
     this.condicaoMoradiaService.getAll().subscribe((condicoes: CondicoesMoradia[]) => {
         this.condicoesMoradia = condicoes;
     });
-    
    }
-
 }

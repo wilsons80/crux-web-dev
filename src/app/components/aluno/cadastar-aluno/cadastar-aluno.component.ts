@@ -46,9 +46,8 @@ export class CadastarAlunoComponent implements OnInit {
           return this.arquivoPessoaFisicaService.get(aluno.pessoaFisica.id);
         })
       ).subscribe((foto: any) => {
-        foto = this.fileUtils.convertBufferArrayToBase64(foto);
-
         this.aluno.pessoaFisica.foto = foto;
+        foto = this.fileUtils.convertBufferArrayToBase64(foto);
         this.aluno.pessoaFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
       });
     }
@@ -59,7 +58,7 @@ export class CadastarAlunoComponent implements OnInit {
 
     this.alunoService.cadastrar(this.aluno).pipe(
       switchMap((alunoRetorno: Aluno) => {
-        if (this.aluno.pessoaFisica.foto){
+        if (this.aluno.pessoaFisica.isFotoChanged && this.aluno.pessoaFisica.foto) {
           return this.arquivoPessoaFisicaService.gravar(this.aluno.pessoaFisica.foto, alunoRetorno.pessoaFisica.id);
         } else {
           return new Observable(obs => obs.next());
@@ -100,8 +99,8 @@ export class CadastarAlunoComponent implements OnInit {
 
     this.alunoService.alterar(this.aluno).pipe(
       switchMap((aluno: Aluno) => {
-        if(this.aluno.pessoaFisica.foto){
-          return this.arquivoPessoaFisicaService.alterar(this.aluno.pessoaFisica.foto, aluno.pessoaFisica.id)
+        if (this.aluno.pessoaFisica.isFotoChanged && this.aluno.pessoaFisica.foto) {
+          return this.arquivoPessoaFisicaService.alterar(this.aluno.pessoaFisica.foto, aluno.pessoaFisica.id);
         } else {
          return new Observable(obs => obs.next());
         }
