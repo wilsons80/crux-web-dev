@@ -68,6 +68,9 @@ import { UploadFotoModule } from './components/upload-foto/upload-foto.module';
 import { QuestionarioModule } from './components/questionario/questionario.module';
 import { TalentoModule } from './components/talento/talento.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
+import { CondicaoMoradiaComponent } from './components/condicao-moradia/condicao-moradia.component';
+import { CadastrarCondicaoMoradiaComponent } from './components/condicao-moradia/cadastrar-condicao-moradia/cadastrar-condicao-moradia.component';
+import { CondicaoMoradiaModule } from './components/condicao-moradia/condicao-moradia.module';
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -79,7 +82,7 @@ registerLocaleData(localePt, 'pt-BR');
     AppComponent,
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
-    ConfirmDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -153,7 +156,8 @@ registerLocaleData(localePt, 'pt-BR');
     AvaliacaoAlunoModule,
     AlunoTrabalhandoModule,
     AtendimentoModule,
-    ParticipanteAtendimentoModule
+    ParticipanteAtendimentoModule,
+    CondicaoMoradiaModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },

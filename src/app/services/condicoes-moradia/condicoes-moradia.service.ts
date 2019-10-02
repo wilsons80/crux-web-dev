@@ -1,35 +1,15 @@
-import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Cargo } from 'src/app/core/cargo';
-
-
-const rootPath = 'api/condicaomoradia/';
+import { BaseService } from '../base/base.service';
+import { Rotas } from 'src/app/core/rotas';
+import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CondicoesMoradiaService {
+export class CondicoesMoradiaService extends BaseService<CondicoesMoradia> {
 
-  constructor(private http: HttpClient) { }
-
-  getAll() {
-    return this.http.get(rootPath);
-  }
-
-  getById(id: number) {
-    return this.http.get(rootPath + `${id}`);
-  }
-
-  cadastrar(condicoesMoradia: CondicoesMoradia) {
-    return this.http.post(rootPath, condicoesMoradia);
-  }
-
-  alterar(condicoesMoradia: CondicoesMoradia) {
-    return this.http.put(rootPath, condicoesMoradia);
-  }
-
-  excluir(id: number) {
-    return this.http.delete(rootPath + `${id}`);
+  constructor(http: HttpClient) {
+    super(http, Rotas.CONDICAO_MORADIA);
   }
 }
