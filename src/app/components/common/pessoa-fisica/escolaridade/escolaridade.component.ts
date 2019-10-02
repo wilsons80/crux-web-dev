@@ -12,34 +12,33 @@ import { ControlContainer, NgForm } from '@angular/forms';
 })
 export class EscolaridadeComponent implements OnInit {
 
-  @Input() pessoaFisica:PessoaFisica = new PessoaFisica(); 
+  @Input() pessoaFisica: PessoaFisica = new PessoaFisica();
 
-  grausInstrucao:GrausInstrucao[];
+  grausInstrucao: GrausInstrucao[];
 
-  formaIngresso:any[] =[
+  formaIngresso: any[] = [
     {tipo: 'CRAS'},
     {tipo: 'DEMANDA ESPONTÂNEA'},
     {tipo: 'SOLICITAÇÃO JUDICIAL'},
     {tipo: 'OUTRO'},
   ];
 
-  tipoEscola:any[] =[
+  tipoEscola: any[] =[
     {id: 'P' ,tipo: 'PÚBLICO'},
     {id: 'R' ,tipo: 'PRIVADO'},
   ];
 
-  nivelEscolaridade:any[] =[
+  nivelEscolaridade: any[] =[
     {id: 'C' ,tipo: 'COMPLETO'},
     {id: 'I' ,tipo: 'CURSANDO'},
   ]
 
-  constructor(
-    private grausInstrucaoService:GrausInstrucaoService
-    ) { 
-    }
-    
-    ngOnInit() {
-    this.grausInstrucaoService.getAll().subscribe((graus:GrausInstrucao[]) => this.grausInstrucao = graus);
+  constructor(private grausInstrucaoService: GrausInstrucaoService) {
+    this.pessoaFisica.grausInstrucao = new GrausInstrucao();
+  }
+
+  ngOnInit() {
+    this.grausInstrucaoService.getAll().subscribe((graus: GrausInstrucao[]) => this.grausInstrucao = graus);
   }
 
 }
