@@ -5,6 +5,8 @@ import { LoadingPopupService } from './services/loadingPopup/loading-popup.servi
 import { MenuPrincipalService } from './services/menuPrincipal/menu-principal.service';
 import { ToolbarPrincipalService } from './services/toolbarPrincipal/toolbar-principal.service';
 import { AuthGuard } from './guards/auth.guard';
+import { environment } from '../environments/environment';
+import { versions } from 'src/environments/versions';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +14,13 @@ import { AuthGuard } from './guards/auth.guard';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'crux-web-dev';
+  title = 'OverCrux';
 
   data = new Date();
   teste = false;
+
+  versions = versions;
+  environment = environment;
 
   @ViewChild('menuPrincipal', { static: false }) menuPrincipal: MatDrawer;
   reason = '';
@@ -45,8 +50,8 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-   
-  
+
+
     this.authGuard.mostrarMenu.subscribe(resultado => this.mostrarMenu = resultado);
 
     this.menuPrincipalService.toggle.subscribe((resposta) => {

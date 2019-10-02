@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  assetsUrl: '../assets',
+  version: require('../../package.json').version
 };
