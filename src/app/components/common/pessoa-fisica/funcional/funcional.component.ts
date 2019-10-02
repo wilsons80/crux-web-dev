@@ -62,6 +62,10 @@ export class FuncionalComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.funcionario.empresaFuncionario = new Empresa();
+    this.funcionario.cargo = new Cargo();
+    this.funcionario.unidade = new Unidade();
+
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[])=> {
       this.funcionarios = funcionarios;
     });

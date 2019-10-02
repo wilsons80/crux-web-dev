@@ -1,3 +1,4 @@
+import { GrausInstrucaoService } from './../../../../services/graus-instrucao/graus-instrucao.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
@@ -32,9 +33,13 @@ export class EscolaridadeComponent implements OnInit {
     {id: 'I' ,tipo: 'CURSANDO'},
   ]
 
-  constructor() { }
+  constructor(
+    private grausInstrucaoService:GrausInstrucaoService
+  ) { }
 
   ngOnInit() {
+    this.pessoaFisica.grausInstrucao = new GrausInstrucao();
+    this.grausInstrucaoService.getAll().subscribe((graus:GrausInstrucao[]) => this.grausInstrucao = graus);
   }
 
 }

@@ -109,9 +109,9 @@
  <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
      <mat-form-field fxFlex= "95%" fxFlexOffset="20px">
          <mat-label>Selecione a Unidade</mat-label>
-         <mat-select name="unidade" [(ngModel)]="funcionario.unidade" required
+         <mat-select name="unidade" [(ngModel)]="funcionario.unidade.idUnidade" required
              >
-             <mat-option *ngFor="let u of unidades" [value]="u">
+             <mat-option *ngFor="let u of unidades" [value]="u.idUnidade">
                  {{u.nomeUnidade}}
              </mat-option>
          </mat-select>
@@ -124,9 +124,9 @@
 
      <mat-form-field fxFlex= "95%" fxFlexOffset="20px">
          <mat-label>Selecione o Cargo</mat-label>
-         <mat-select name="cargo" [(ngModel)]="funcionario.cargo" required
+         <mat-select name="cargo" [(ngModel)]="funcionario.cargo.id" required
              >
-             <mat-option *ngFor="let u of cargos" [value]="u">
+             <mat-option *ngFor="let u of cargos" [value]="u.id">
                  {{u.nome}}
              </mat-option>
          </mat-select>
@@ -140,9 +140,9 @@
 
      <mat-form-field fxFlex= "95%" fxFlexOffset="20px">
          <mat-label>Selecione a Empresa</mat-label>
-         <mat-select name="empresaFuncionario" [(ngModel)]="funcionario.empresaFuncionario" required
+         <mat-select name="empresaFuncionario" [(ngModel)]="funcionario.empresaFuncionario.id" required
              >
-             <mat-option *ngFor="let u of empresas" [value]="u">
+             <mat-option *ngFor="let u of empresas" [value]="u.id">
                  {{u.nomeFantasia}}
              </mat-option>
          </mat-select>
