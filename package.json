@@ -1,11 +1,12 @@
 {
-  "name": "crux-web-dev",
+  "name": "overcrux",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "npm run desenv",
     "producao": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server.js",
     "desenv": "ng serve --proxy-config proxy.config.js --host 0.0.0.0 --disable-host-check",
+    "prebuild": "cross-env TS_NODE_COMPILER_OPTIONS={\\\"module\\\":\\\"commonjs\\\"} ts-node git.version.ts",
     "postinstall": "ng build --aot --prod",
     "build": "ng build",
     "test": "ng test",
@@ -48,7 +49,8 @@
     "ngx-image-cropper": "^1.4.1",
     "rxjs": "~6.5.2",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "cross-env": "^5.2.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.802.1",

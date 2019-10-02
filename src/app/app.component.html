@@ -15,8 +15,8 @@
       <label>{{toolbarPrincipalService.nomeUsuario.toUpperCase()}}</label>
     </div>
     <div class="cinza" style="text-align: center; font-size: small;">
-      <br>Versão: <b>1.0</b>
-      <br>Última atualização: <b>{{ data | dataSimples }}</b>
+      <br>Versão <b>{{ environment.version }}</b> - Revisão <b>{{ versions.revision }}</b>
+      <br>Última atualização <b>{{ versions.revisionDate }}</b>
     </div>
 
   </div>
