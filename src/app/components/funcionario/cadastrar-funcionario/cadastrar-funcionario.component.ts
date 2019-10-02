@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import { FileUtils } from 'src/app/utils/file-utils';
+import { GrausInstrucao } from 'src/app/core/graus-instrucao';
 
 @Component({
   selector: 'app-cadastrar-funcionario',
@@ -17,6 +18,7 @@ import { FileUtils } from 'src/app/utils/file-utils';
 })
 export class CadastrarFuncionarioComponent implements OnInit {
 
+  grauInstrucao: GrausInstrucao = new GrausInstrucao();
   pessoaFisica: PessoaFisica = new PessoaFisica();
   funcionario: Funcionario = new Funcionario();
 
@@ -30,11 +32,13 @@ export class CadastrarFuncionarioComponent implements OnInit {
     private arquivoPessoaFisicaService:ArquivoPessoaFisicaService,
     private fileUtils:FileUtils,
   ) {
-
+    
   }
-
+  
   ngOnInit() {
+    this.pessoaFisica.grausInstrucao = this.grauInstrucao;
     this.funcionario.pessoasFisica = this.pessoaFisica;
+    
 
     let idFuncionario: number;
     idFuncionario = this.route.snapshot.queryParams.idFuncionario ? this.route.snapshot.queryParams.idFuncionario : null;
