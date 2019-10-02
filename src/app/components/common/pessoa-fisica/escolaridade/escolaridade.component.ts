@@ -12,7 +12,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 })
 export class EscolaridadeComponent implements OnInit {
 
-  @Input() pessoaFisica:PessoaFisica;
+  @Input() pessoaFisica:PessoaFisica = new PessoaFisica();
 
   grausInstrucao:GrausInstrucao[];
 
@@ -35,10 +35,11 @@ export class EscolaridadeComponent implements OnInit {
 
   constructor(
     private grausInstrucaoService:GrausInstrucaoService
-  ) { }
-
-  ngOnInit() {
-    this.pessoaFisica.grausInstrucao = new GrausInstrucao();
+    ) { 
+    }
+    
+    ngOnInit() {
+      this.pessoaFisica.grausInstrucao = new GrausInstrucao()
     this.grausInstrucaoService.getAll().subscribe((graus:GrausInstrucao[]) => this.grausInstrucao = graus);
   }
 
