@@ -17,20 +17,19 @@ export class ArquivoPessoaFisicaService {
 
   constructor(private http: HttpClient) { }
 
-  gravar(file: File, idPessoaFisica:number) {
+  gravar(file: File, idPessoaFisica: number) {
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append('file', file);
     return this.http.post(`${rootPath}${idPessoaFisica}`, formData);
   }
 
-  alterar(file: any, idPessoaFisica:number) {
+  alterar(file: any, idPessoaFisica: number) {
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append('file', file);
     return this.http.put(`${rootPath}${idPessoaFisica}`, formData);
   }
 
-  @Cacheable()
-  get(idUnidade: number) {
-    return this.http.get(rootPath + `${idUnidade}`, httpOptions);
+  get(id: number) {
+    return this.http.get(rootPath + `${id}`, httpOptions);
   }
 }

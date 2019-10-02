@@ -8,7 +8,6 @@ import { FuncionarioService } from './../../../services/funcionario/funcionario.
 import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
-import {UsuarioLogado} from '../../../core/usuario-logado';
 import { FileUtils } from 'src/app/utils/file-utils';
 
 @Component({
@@ -48,27 +47,28 @@ export class CadastrarFuncionarioComponent implements OnInit {
         })
       ).subscribe((foto: any) => {
         foto = this.fileUtils.convertBufferArrayToBase64(foto);
+
+        this.funcionario.pessoasFisica.foto = foto;
         this.funcionario.pessoasFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
       });
     }
-    
   }
 
 
   cadastrar() {
     this.tratarDados();
     this.funcionarioService.cadastrar(this.funcionario).pipe(
-    
-      switchMap((funcionarioRetorno:Funcionario) => {
+      switchMap((funcionarioRetorno: Funcionario) => {
         if(this.funcionario.pessoasFisica.foto){
           return this.arquivoPessoaFisicaService.gravar(this.funcionario.pessoasFisica.foto, funcionarioRetorno.pessoasFisica.id)
-        }else
+        } else {
          return new Observable(obs => obs.next());
+        }
       })
 
     ).subscribe(() => {
       this.location.back();
-      this.toastService.showSucesso("Funcionário cadastrado com sucesso");
+      this.toastService.showSucesso('Funcionário cadastrado com sucesso');
     })
   }
 
@@ -95,16 +95,17 @@ export class CadastrarFuncionarioComponent implements OnInit {
     this.tratarDados();
     this.funcionarioService.alterar(this.funcionario).pipe(
     
-      switchMap((funcionario:Funcionario) => {
-        if(funcionario.pessoasFisica.foto){
-          return this.arquivoPessoaFisicaService.alterar(funcionario.pessoasFisica.foto, funcionario.pessoasFisica.id)
-        }else
+      switchMap((funcionario: Funcionario) => {
+        if (this.funcionario.pessoasFisica.foto){
+          return this.arquivoPessoaFisicaService.alterar(this.funcionario.pessoasFisica.foto, funcionario.pessoasFisica.id)
+        } else {
          return new Observable(obs => obs.next());
+        }
       })
 
     ).subscribe(() => {
       this.location.back();
-      this.toastService.showSucesso("Funcionário atualizado com sucesso");
+      this.toastService.showSucesso('Funcionário atualizado com sucesso');
     });
 
   }
