@@ -1,25 +1,34 @@
 <!-- ADMISSÃO -->
 <mat-toolbar class="titulopartes">Admissão</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlex="15%" fxFlexOffset="20px">
+    <mat-form-field fxFlex= "65%" fxFlexOffset="20px">
+      <mat-label>Selecione a Unidade</mat-label>
+      <mat-select name="unidade" [(ngModel)]="aluno.unidade.idUnidade" required>
+          <mat-option *ngFor="let u of unidades" [value]="u.idUnidade">
+              {{u.nomeUnidade}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="10%" fxFlexOffset="20px">
         <input matInput maxlength="15" name="matricula" placeholder="Matrícula:" required [(ngModel)]="aluno.matriculaAluno">
     </mat-form-field>
 
-    <mat-form-field fxFlex="15%">
+    <mat-form-field fxFlex="10%">
         <input matInput name="dataDesligamento" [matDatepicker]="dataDesligamento" placeholder="Data de desligamento:"
             [(ngModel)]="aluno.dataDesligamento">
         <mat-datepicker-toggle matSuffix [for]="dataDesligamento"></mat-datepicker-toggle>
         <mat-datepicker #dataDesligamento></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field fxFlex="15%">
+    <mat-form-field fxFlex="10%">
         <input matInput name="dataEntrada" [matDatepicker]="dataEntrada" placeholder="Data de entrada:"
             [(ngModel)]="aluno.dataEntrada">
         <mat-datepicker-toggle matSuffix [for]="dataEntrada"></mat-datepicker-toggle>
         <mat-datepicker #dataEntrada></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field fxFlex="20%" fxFlexOffset="20px">
+    <mat-form-field fxFlex="15%" fxFlexOffset="20px">
             <mat-label>Já atendido em outro órgão da rede:</mat-label>
             <mat-select [(ngModel)]="aluno.atendidoOrgaoRede" name="atendidoOrgaoRede">
                 <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
@@ -27,21 +36,11 @@
                 </mat-option>
             </mat-select>
     </mat-form-field>
-</div>
 
 
-<!-- UNIDADE -->
-<mat-toolbar class="titulopartes">Unidade</mat-toolbar>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlex= "100%" fxFlexOffset="20px">
-        <mat-label>Selecione a Unidade</mat-label>
-        <mat-select name="unidade" [(ngModel)]="aluno.unidade.idUnidade" required>
-            <mat-option *ngFor="let u of unidades" [value]="u.idUnidade">
-                {{u.nomeUnidade}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+
 </div>
+
 
 <!-- OUTRAS INFORMAÇÕES -->
 <mat-toolbar class="titulopartes">Outras informações</mat-toolbar>
@@ -86,7 +85,7 @@
 </div>
 
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-  <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+  <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
           <mat-label>Descrição da pessoa que busca o educando na escola:</mat-label>
           <textarea matInput
                   name="descBuscaEscola"
@@ -97,23 +96,23 @@
                   maxlength="200"
                   ></textarea>
   </mat-form-field>
+
+  <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
+    <mat-label>Desligamento:</mat-label>
+    <textarea matInput
+            name="desligamento"
+            [(ngModel)]="aluno.descDesligamento"
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="2"
+            maxlength="200"
+            ></textarea>
+  </mat-form-field>
+
 </div>
 
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
-            <mat-label>Desligamento:</mat-label>
-            <textarea matInput
-                    name="desligamento"
-                    [(ngModel)]="aluno.descDesligamento"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    maxlength="200"
-                    ></textarea>
-    </mat-form-field>
-</div>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Problema saúde:</mat-label>
             <textarea matInput
                     name="descProblemaSaude"
@@ -124,9 +123,8 @@
                     maxlength="200"
                     ></textarea>
     </mat-form-field>
-</div>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Medicamentos controlados:</mat-label>
             <textarea matInput
                     name="descMedicamentosControlados"
@@ -138,8 +136,9 @@
                     ></textarea>
     </mat-form-field>
 </div>
+
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Outras informações:</mat-label>
             <textarea matInput
                     name="descOutrasInformacoes"
@@ -150,9 +149,8 @@
                     maxlength="200"
                     ></textarea>
     </mat-form-field>
-</div>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Forma de ingresso:</mat-label>
             <textarea matInput
                     name="descFormaIngressoEntidade"
@@ -164,6 +162,7 @@
                     ></textarea>
     </mat-form-field>
 </div>
+
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
             <mat-label>Obervação:</mat-label>
