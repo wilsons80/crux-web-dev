@@ -25,7 +25,6 @@ export class FuncionalComponent implements OnInit {
 
   horaEntrevista;
 
-  tipoFuncionario = TipoFuncionario;
 
   tiposFuncionario = [
     {id: TipoFuncionario.CANDIDATO_VAGA_FUNCIONARIO, descricao:'CANDIDATO A VAGA DE FUNCIONÁRIO'},
@@ -82,6 +81,10 @@ export class FuncionalComponent implements OnInit {
       this.empresas = empresas;
     });
 
+  }
+
+  mostrarCamposEntrevista(){
+    return this.funcionario.tipoFuncionario === TipoFuncionario.CANDIDATO_VAGA_FUNCIONARIO;
   }
 
 }
