@@ -29,7 +29,7 @@
 <!-- OUTRAS INFORMAÇÕES -->
 <mat-toolbar class="titulopartes">Outras informações</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Descrição de problemas de saúde do responsável:</mat-label>
             <textarea matInput
                     name="problemaSaude"
@@ -40,22 +40,22 @@
                     maxlength="200"
                     ></textarea>
     </mat-form-field>
-</div>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
-            <mat-label>Descrição dos medicamentos controlados utilizados pelo responsável:</mat-label>
-            <textarea matInput
-                    name="medicamentosControlados"
-                    [(ngModel)]="pessoaFisica.medicamentosControlados"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    maxlength="200"
-                    ></textarea>
+
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
+      <mat-label>Descrição dos medicamentos controlados utilizados pelo responsável:</mat-label>
+      <textarea matInput
+              name="medicamentosControlados"
+              [(ngModel)]="pessoaFisica.medicamentosControlados"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="2"
+              maxlength="200"
+              ></textarea>
     </mat-form-field>
+
 </div>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Descrição relevante do atendimento do aluno por outro órgão da rede:</mat-label>
             <textarea matInput
                     name="descricaoAlunoAtendidoOrgaoRede"
@@ -66,22 +66,23 @@
                     maxlength="200"
                     ></textarea>
     </mat-form-field>
-</div>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
-            <mat-label>Descrição de outros beneíicios da família:</mat-label>
-            <textarea matInput
-                    name="outrosBenSoc"
-                    [(ngModel)]="pessoaFisica.outrosBenSoc"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    maxlength="200"
-                    ></textarea>
+
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
+      <mat-label>Descrição de outros beneíicios da família:</mat-label>
+      <textarea matInput
+              name="outrosBenSoc"
+              [(ngModel)]="pessoaFisica.outrosBenSoc"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="2"
+              maxlength="200"
+              ></textarea>
     </mat-form-field>
+
 </div>
+
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Descrição relevante da rede de apoio social / pessoal:</mat-label>
             <textarea matInput
                     name="redeApoioSocial"
@@ -92,17 +93,17 @@
                     maxlength="200"
                     ></textarea>
     </mat-form-field>
-</div>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
-            <mat-label>Descrição da rede de apoio social / pessoal:</mat-label>
-            <textarea matInput
-                    name="redeApSocRelev"
-                    [(ngModel)]="pessoaFisica.redeApSocRelev"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    maxlength="200"
-                    ></textarea>
+
+    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
+      <mat-label>Descrição da rede de apoio social / pessoal:</mat-label>
+      <textarea matInput
+              name="redeApSocRelev"
+              [(ngModel)]="pessoaFisica.redeApSocRelev"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="2"
+              maxlength="200"
+              ></textarea>
     </mat-form-field>
+
 </div>
