@@ -46,9 +46,8 @@ export class CadastrarFuncionarioComponent implements OnInit {
           return this.arquivoPessoaFisicaService.get(funcionario.pessoasFisica.id)
         })
       ).subscribe((foto: any) => {
-        foto = this.fileUtils.convertBufferArrayToBase64(foto);
-
         this.funcionario.pessoasFisica.foto = foto;
+        foto = this.fileUtils.convertBufferArrayToBase64(foto);
         this.funcionario.pessoasFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
       });
     }
@@ -59,7 +58,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
     this.tratarDados();
     this.funcionarioService.cadastrar(this.funcionario).pipe(
       switchMap((funcionarioRetorno: Funcionario) => {
-        if(this.funcionario.pessoasFisica.foto){
+        if(this.funcionario.pessoasFisica.isFotoChanged && this.funcionario.pessoasFisica.foto){
           return this.arquivoPessoaFisicaService.gravar(this.funcionario.pessoasFisica.foto, funcionarioRetorno.pessoasFisica.id)
         } else {
          return new Observable(obs => obs.next());
@@ -92,11 +91,12 @@ export class CadastrarFuncionarioComponent implements OnInit {
   }
 
   atualizar() {
+    
     this.tratarDados();
     this.funcionarioService.alterar(this.funcionario).pipe(
     
       switchMap((funcionario: Funcionario) => {
-        if (this.funcionario.pessoasFisica.foto){
+        if (this.funcionario.pessoasFisica.isFotoChanged && this.funcionario.pessoasFisica.foto){
           return this.arquivoPessoaFisicaService.alterar(this.funcionario.pessoasFisica.foto, funcionario.pessoasFisica.id)
         } else {
          return new Observable(obs => obs.next());

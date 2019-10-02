@@ -59,8 +59,8 @@ export class DadosPessoaisComponent implements OnInit {
   }
 
   fileChangeEvent(event: any): void {
-    console.log("events",event)
     this.pessoaFisica.foto = event.target.files[0];
+    this.pessoaFisica.isFotoChanged = true;
     this.readThis(event.target);
   }
 

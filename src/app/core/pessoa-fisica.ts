@@ -72,5 +72,6 @@ export class PessoaFisica{
    usuarioAlteracao:number;
    foto?:any;
    urlFoto?:any;
+   isFotoChanged?:boolean;
     
 }
