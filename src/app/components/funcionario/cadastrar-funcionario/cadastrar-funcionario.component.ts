@@ -118,4 +118,16 @@ export class CadastrarFuncionarioComponent implements OnInit {
     return objeto.replace(/\D/g, '');
   }
 
+  getDataHora(data:Date, hora:string) {
+    if (data) {
+      data = new Date(data);
+      let hh = Number.parseInt(hora.substr(0, 2));
+      let mm = Number.parseInt(hora.substr(2, 2));
+      let ss = Number.parseInt(hora.substr(4, 2));
+
+      data.setHours(hh, mm, ss, 0);
+    }
+    return data;
+  }
+
 }
