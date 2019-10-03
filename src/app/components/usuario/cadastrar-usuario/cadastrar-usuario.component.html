@@ -1,1 +1,79 @@
-<p>cadastrar-usuario works!</p>
+<mat-toolbar class="subtitulo">Usuário</mat-toolbar>
+<div class="painel-principal" style="padding: 10px;">
+    <mat-horizontal-stepper #stepper style="background: transparent; padding: 10px">
+
+        <!------------------ DADOS USUARIO ------------------------>
+        <mat-step [stepControl]="formCadastroDadosUsuario">
+          <form #formCadastroDadosUsuario="ngForm">
+              <ng-template matStepLabel>DADOS USUARIO</ng-template>
+              <dados-usuario [usuario]="usuario"></dados-usuario>
+
+              <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                  <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                      Próximo
+                  </button>
+              </div>
+          </form>
+      </mat-step>
+
+        <!------------------ DADOS PESSOAIS ------------------------>
+        <mat-step [stepControl]="formCadastroDadosPessoais">
+            <form #formCadastroDadosPessoais="ngForm">
+                <ng-template matStepLabel>DADOS PESSOAIS</ng-template>
+                <dados-pessoais [pessoaFisica]="usuario.pessoaFisica"></dados-pessoais>
+
+                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                        Próximo
+                    </button>
+                </div>
+            </form>
+        </mat-step>
+
+        <!-- ------------------ DOCUMENTOS ------------------------ -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDocumentos">
+            <form #formCadastroDocumentos="ngForm">
+                <ng-template matStepLabel>DOCUMENTOS</ng-template>
+                <documentos [pessoaFisica]="usuario.pessoaFisica"></documentos>
+            </form>
+
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                    Próximo
+                </button>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>
+
+    </mat-horizontal-stepper>
+</div>
+
+
+<div dir="rtl" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+  <button mat-raised-button
+          name="botaoConfirmar"
+          fxFlex="20%"
+          color="primary"
+          [disabled]="formCadastroDadosPessoais.invalid ||  formCadastroDocumentos.invalid || formCadastroDadosUsuario.invalid"
+          (click)="isAtualizar ? atualizar() : cadastrar()">
+          {{getNomeBotao()}}
+  </button>
+
+  <button *ngIf="!isAtualizar"
+          mat-raised-button
+          fxFlex="20%"
+          color="primary"
+          (click)="limpar()">
+          Limpar
+  </button>
+
+  <button mat-raised-button
+          fxFlex="20%"
+          color="primary"
+          (click)="cancelar()">
+      Cancelar
+  </button>
+</div>
