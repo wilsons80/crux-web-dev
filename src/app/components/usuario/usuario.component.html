@@ -9,7 +9,7 @@
                     <mat-label>Selecione um usuário</mat-label>
                     <mat-select [(ngModel)]="usuario" name="usuario">
                         <mat-option *ngFor="let d of usuarios" [value]="d">
-                            {{ d.username }} - {{ d.pessoaFisica.nome }}
+                            {{ d.nomeUsuario }} - {{ d.pessoaFisica.nome }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -26,11 +26,10 @@
         </form>
 
         <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 20px">
-          'username', 'nome', 'status', 'dataInicioVigencia', 'dataFimVigencia', 'acoes'
 
             <ng-container matColumnDef="username">
-                <th mat-header-cell *matHeaderCellDef> Username: </th>
-                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+                <th mat-header-cell *matHeaderCellDef> Login: </th>
+                <td mat-cell *matCellDef="let element"> {{element.nomeUsuario}} </td>
             </ng-container>
 
             <ng-container matColumnDef="nome">
@@ -88,4 +87,5 @@
     </div>
 </div>
 
+Usuario:
 <pre>{{usuario | json}}</pre>

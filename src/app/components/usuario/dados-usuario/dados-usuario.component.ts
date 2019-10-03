@@ -1,6 +1,7 @@
-import { UsuarioSistema } from 'src/app/core/usuario-sistema';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
+import { UsuarioSistema } from 'src/app/core/usuario-sistema';
 
 @Component({
   selector: 'dados-usuario',
@@ -10,14 +11,23 @@ import { ControlContainer, NgForm } from '@angular/forms';
 })
 export class DadosUsuarioComponent implements OnInit {
 
-  @Input() usuario: UsuarioSistema;
+  @Input() usuario: UsuarioSistema = new UsuarioSistema();
   @Input() isAtualizar: boolean;
 
   hide = true;
 
-  constructor() { }
+  constructor() {
+    this.initObjetos();
+  }
 
   ngOnInit() {
+    this.initObjetos();
+  }
+
+
+  initObjetos() {
+    this.usuario = new UsuarioSistema();
+    this.usuario.pessoaFisica = new PessoaFisica();
   }
 
 }

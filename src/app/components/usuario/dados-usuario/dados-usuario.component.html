@@ -1,16 +1,17 @@
-<!-- MORADIA -->
 <mat-toolbar class="titulopartes">Dados do Usuário</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
     <mat-form-field fxFlex="55%" fxFlexOffset="20px" >
-        <input matInput maxlength="45" name="username" placeholder="Username:" [(ngModel)]="usuario.username" required>
+        <input matInput maxlength="45" name="nomeUsuario" placeholder="Login:" [(ngModel)]="usuario.nomeUsuario" required>
     </mat-form-field>
 
     <mat-form-field fxFlex="20%" [fxHide]="isAtualizar">
-        <input matInput  name="senha"
+        <input matInput
+               name="senhaUsuario"
                placeholder="Senha"
                maxlength="100"
-               [type]="hide ? 'password' : 'text'" [(ngModel)]="usuario.senha">
+               [type]="hide ? 'password' : 'text'"
+               [(ngModel)]="usuario.senhaUsuario">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar senha'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
@@ -67,5 +68,5 @@
     </mat-form-field>
 </div>
 
-
+Dados Usuário:
 <pre>{{usuario | json}}</pre>

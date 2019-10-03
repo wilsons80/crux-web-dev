@@ -47,6 +47,7 @@ export class CadastrarUsuarioComponent implements OnInit {
 
   limpar() {
     this.usuario = new UsuarioSistema();
+    this.usuario.pessoaFisica = new PessoaFisica();
   }
 
   cancelar() {

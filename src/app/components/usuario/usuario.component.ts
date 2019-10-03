@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UsuarioSistema } from 'src/app/core/usuario-sistema';
 import { UsuarioSistemaService } from 'src/app/services/usuario-sistema/usuario-sistema.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 
 @Component({
   selector: 'usuario',
@@ -27,17 +28,23 @@ export class UsuarioComponent implements OnInit {
     private usuarioSistemaService: UsuarioSistemaService,
     private router: Router,
     private dialog: MatDialog,
-  ) { }
+  ) {
+    this.initObjetos();
+  }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
 
+  initObjetos() {
+    this.usuario = new UsuarioSistema();
+    this.usuario.pessoaFisica = new PessoaFisica();
+  }
 
   limpar() {
+    this.initObjetos();
     this.mostrarTabela = false;
-    this.usuario = new UsuarioSistema();
     this.dataSource.data = [];
   }
 
@@ -95,7 +102,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   verificaMostrarTabela(usuarios: UsuarioSistema[]) {
-    if (!usuarios ||usuarios.length === 0) {
+    if (!usuarios || usuarios.length === 0) {
       this.mostrarTabela = false;
       this.msg = 'Nenhum usuário cadastrado.';
     } else {

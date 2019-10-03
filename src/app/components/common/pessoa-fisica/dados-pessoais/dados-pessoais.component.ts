@@ -1,8 +1,8 @@
-import { CondicoesMoradiaService } from './../../../../services/condicoes-moradia/condicoes-moradia.service';
-import { PessoaFisica } from './../../../../core/pessoa-fisica';
-import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
-import { ControlContainer, NgForm, NgModelGroup } from '@angular/forms';
+import { PessoaFisica } from './../../../../core/pessoa-fisica';
+import { CondicoesMoradiaService } from './../../../../services/condicoes-moradia/condicoes-moradia.service';
 
 @Component({
   selector: 'dados-pessoais',
@@ -17,11 +17,11 @@ export class DadosPessoaisComponent implements OnInit {
 
   public maskCep = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-  
+
   ufs:any[] =[
     {nome: 'DF'}
   ]
-  
+
   estadoCivil:any[] =[
     {tipo: 'SOLTEIRO'},
     {tipo: 'CASADO'},
@@ -34,20 +34,20 @@ export class DadosPessoaisComponent implements OnInit {
     {sigla: 'M', descricao: 'MASCULINO'},
     {sigla: 'F', descricao: 'FEMININO'}
   ]
-  
+
   condicoesMoradia:CondicoesMoradia[];
-  
+
   tipoEscola:any[] =[
     {id: 'P' ,tipo: 'PÚBLICO'},
     {id: 'R' ,tipo: 'PRIVADO'},
   ]
- 
+
   nivelEscolaridade:any[] =[
     {id: 'C' ,tipo: 'COMPLETO'},
     {id: 'I' ,tipo: 'CURSANDO'},
   ]
 
-  
+
   constructor(
     private condicoesMoradiaService:CondicoesMoradiaService
   ) { }
@@ -73,7 +73,7 @@ export class DadosPessoaisComponent implements OnInit {
   readThis(inputValue: any): void {
     var file:File = inputValue.files[0];
     var myReader:FileReader = new FileReader();
-  
+
     myReader.onloadend = (e) => {
       this.pessoaFisica.urlFoto = myReader.result;
     }
