@@ -42,8 +42,8 @@ export class UsuarioComponent implements OnInit {
   }
 
   consultar() {
-    if (this.usuario.id) {
-      this.usuarioSistemaService.getById(this.usuario.id).subscribe((usuario: UsuarioSistema) => {
+    if (this.usuario.idUsuario) {
+      this.usuarioSistemaService.getById(this.usuario.idUsuario).subscribe((usuario: UsuarioSistema) => {
         if(!usuario){
           this.mostrarTabela = false;
           this.msg = 'Nenhum registro para a pesquisa selecionada';
@@ -58,7 +58,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   atualizar(usuario: UsuarioSistema) {
-    this.router.navigate(['/usuario/cadastrar'], { queryParams: { id: usuario.id } });
+    this.router.navigate(['/usuario/cadastrar'], { queryParams: { id: usuario.idUsuario } });
   }
 
   deletar(usuario: UsuarioSistema) {
@@ -76,8 +76,8 @@ export class UsuarioComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        this.usuarioSistemaService.excluir(usuario.id).subscribe(() => {
-          this.usuario.id = null;
+        this.usuarioSistemaService.excluir(usuario.idUsuario).subscribe(() => {
+          this.usuario.idUsuario = null;
           this.consultar();
         });
       } else {
