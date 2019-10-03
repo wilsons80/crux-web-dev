@@ -9,6 +9,7 @@ import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisi
 import { FileUtils } from 'src/app/utils/file-utils';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { GrausInstrucao } from 'src/app/core/graus-instrucao';
 
 @Component({
   selector: 'app-cadastar-aluno',
@@ -30,7 +31,7 @@ export class CadastarAlunoComponent implements OnInit {
     private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
     private fileUtils: FileUtils,
   ) {
-
+    this.pessoaFisica.grausInstrucao = new GrausInstrucao();
   }
 
   ngOnInit() {
