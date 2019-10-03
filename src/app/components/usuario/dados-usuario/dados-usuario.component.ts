@@ -11,6 +11,8 @@ import { ControlContainer, NgForm } from '@angular/forms';
 export class DadosUsuarioComponent implements OnInit {
 
   @Input() usuario: UsuarioSistema = new UsuarioSistema();
+  @Input() isAtualizar: boolean;
+
   hide = true;
 
   constructor() { }
