@@ -59,13 +59,13 @@
             </div>
         </div>
 
-            <!-- FOTO PERFIL -->
-            <div fxFlex="16%">
-                    <button name="fotoPerfil" ng mat-raised-button class="botao"  (click)="uploadFile.click()"  [style.background-image]="getBackground()" >
-                        <mat-icon class="nao-foto"></mat-icon>
-                    </button>
-                    <input #uploadFile type="file" style="display:none;" (change)="fileChangeEvent($event)"/>
-                </div>
+        <!-- FOTO PERFIL -->
+        <div fxFlex="16%" style="text-align: end">
+            <button name="fotoPerfil" ng mat-raised-button class="botao"  (click)="uploadFile.click()"  [style.background-image]="getBackground()" >
+                <mat-icon class="nao-foto"></mat-icon>
+            </button>
+            <input #uploadFile type="file" style="display:none;" (change)="fileChangeEvent($event)"/>
+        </div>
     </div>
 
     <!-- ETAPA 1 - FILIAÇÃO -->
@@ -119,28 +119,6 @@
         </mat-form-field>
 
     </div>
-
-    <!-- ETAPA 1 - MORADIA -->
-    <!-- <mat-toolbar class="titulopartes">Moradia</mat-toolbar>
-    <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-        <mat-form-field fxFlex="50%" fxFlexOffset="20px">
-            <mat-label>Condição da Moradia:</mat-label>
-            <mat-select [(ngModel)]="pessoaFisica.condicaoMoradia" name="condicaoMoradia">
-                <mat-option *ngFor="let m of condicoesMoradia" [value]="m">
-                    {{m.descricao}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" fxFlexFill>
-            <mat-form-field fxFlex="30%">
-                <input matInput maxlength="200" name="vlAluguel" placeholder="Valor do Aluguel:"
-                    [(ngModel)]="pessoaFisica.valorAluguel">
-                    <span matPrefix>R$&nbsp;</span>
-            </mat-form-field>
-        </div>
-
-    </div> -->
-
 
     <!-- ETAPA 1 - CONTATO -->
     <mat-toolbar class="titulopartes">Contato</mat-toolbar>
