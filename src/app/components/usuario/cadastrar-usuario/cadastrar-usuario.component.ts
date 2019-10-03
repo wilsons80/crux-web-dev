@@ -27,6 +27,7 @@ export class CadastrarUsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.limpar();
     this.usuario.pessoaFisica = this.pessoaFisica;
 
     let id: number;
