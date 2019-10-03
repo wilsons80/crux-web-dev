@@ -13,7 +13,6 @@ import { Location } from '@angular/common';
 })
 export class CadastrarUsuarioComponent implements OnInit {
 
-  pessoaFisica: PessoaFisica = new PessoaFisica();
   usuario: UsuarioSistema = new UsuarioSistema();
 
   isAtualizar = false;
@@ -28,7 +27,6 @@ export class CadastrarUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.limpar();
-    this.usuario.pessoaFisica = this.pessoaFisica;
 
     let id: number;
     id = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;
