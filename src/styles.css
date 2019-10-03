@@ -18,7 +18,7 @@
 
 mat-toolbar.mat-toolbar.mat-toolbar-single-row.tituloprincipal{
   background: rgb(213, 226, 253);
-  
+
 }
 
 mat-toolbar.mat-toolbar.mat-toolbar-single-row.titulopartes{
@@ -27,7 +27,7 @@ mat-toolbar.mat-toolbar.mat-toolbar-single-row.titulopartes{
   font-size: large;
   color: rgb(142,142,142);
   margin-bottom: 20px
-  
+
 }
 
 
@@ -110,7 +110,20 @@ div.inserted {
 }
 
 /* .main_content {
-  width:100%; 
-  height: calc(100vh - 100px); 
+  width:100%;
+  height: calc(100vh - 100px);
   background: #efefef;
 } */
+
+
+
+/*================================================================*/
+/* Muda a cor da linha da tabela ao passar o mouse por cima */
+tr:not(.example-expanded-row):hover {
+  background: #F8F8FF;
+}
+
+tr:not(.example-expanded-row):active {
+  background: #efefef;
+}
+/*================================================================*/
