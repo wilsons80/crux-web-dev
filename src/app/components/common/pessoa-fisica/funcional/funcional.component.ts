@@ -23,9 +23,6 @@ export class FuncionalComponent implements OnInit {
 
   @Input() funcionario:Funcionario
 
-  horaEntrevista;
-
-
   tiposFuncionario = [
     {id: TipoFuncionario.CANDIDATO_VAGA_FUNCIONARIO, descricao:'CANDIDATO A VAGA DE FUNCIONÁRIO'},
     {id: TipoFuncionario.COLABORADOR, descricao:'COLABORADOR'},
@@ -64,6 +61,8 @@ export class FuncionalComponent implements OnInit {
     this.funcionario.empresaFuncionario = new Empresa();
     this.funcionario.cargo = new Cargo();
     this.funcionario.unidade = new Unidade();
+    this.funcionario.funcionarioEntrevistador = new Funcionario();
+
 
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[])=> {
       this.funcionarios = funcionarios;
