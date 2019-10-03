@@ -11,7 +11,7 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
 import { AcademicoComponent } from './academico/academico.component';
 import { EscolarComponent } from './escolar/escolar.component';
 import { AtendimentoApoioComponent } from './atendimento-apoio/atendimento-apoio.component';
-
+import { NgxCurrencyModule } from "ngx-currency";
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { AtendimentoApoioComponent } from './atendimento-apoio/atendimento-apoio
   imports: [
     CommonModule,
     MatButtonModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    NgxCurrencyModule
   ],
   exports:[
     DadosPessoaisComponent,

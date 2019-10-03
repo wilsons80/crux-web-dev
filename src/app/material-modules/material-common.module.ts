@@ -30,6 +30,7 @@ const modulos = [
     , ReactiveFormsModule
     , MatProgressBarModule
     , MatNativeDateModule
+    
 
 ]
 

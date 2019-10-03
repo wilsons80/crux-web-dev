@@ -5,6 +5,7 @@ import { TipoFuncionario } from './tipo-funcionario';
 import { Cargo } from './cargo';
 import { PessoaFisica } from './pessoa-fisica';
 import { Empresa } from './empresa';
+import { Time } from '@angular/common';
 
 export class Funcionario{
     id:number;
@@ -22,4 +23,5 @@ export class Funcionario{
 	conclusaoParecer:ConclusaoParecer;
 	funcionarioEntrevistador:Funcionario;
 	empresaFuncionario:Empresa; 
+	horaEntrevista?:string; 
 }
