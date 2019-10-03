@@ -119,11 +119,11 @@ div.inserted {
 
 /*================================================================*/
 /* Muda a cor da linha da tabela ao passar o mouse por cima */
-tr:not(.example-expanded-row):hover {
+tr:not(th):hover {
   background: #F8F8FF;
 }
 
-tr:not(.example-expanded-row):active {
+tr:not(th):active {
   background: #efefef;
 }
 /*================================================================*/
