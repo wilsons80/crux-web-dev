@@ -86,4 +86,18 @@ export class FuncionalComponent implements OnInit {
     return this.funcionario.tipoFuncionario === TipoFuncionario.CANDIDATO_VAGA_FUNCIONARIO;
   }
 
+  zerarCamposEntrevista(){
+    if(!this.mostrarCamposEntrevista()){
+      this.funcionario.funcionarioEntrevistador = null;
+      this.funcionario.dtHrEntrevista = null;
+      this.funcionario.horaEntrevista = null;
+      this.funcionario.salarioPretendido = null;
+      this.funcionario.parecerEntrevistador = null;
+      this.funcionario.conclusaoParecer = null;
+      this.funcionario.descricaoParecerEntrevistador = null;
+
+
+    }
+  }
+
 }

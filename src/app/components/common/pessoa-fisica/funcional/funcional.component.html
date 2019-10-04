@@ -24,7 +24,7 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlex="45%" fxFlexOffset="20px">
         <mat-label>Tipo de Funcionário:</mat-label>
-        <mat-select [(ngModel)]="funcionario.tipoFuncionario" name="tipoFuncionario">
+        <mat-select [(ngModel)]="funcionario.tipoFuncionario" name="tipoFuncionario" (selectionChange)="zerarCamposEntrevista()">
             <mat-option *ngFor="let m of tiposFuncionario" [value]="m.id">
                 {{m.descricao}}
             </mat-option>
@@ -56,7 +56,7 @@
 
         <mat-form-field>
             <input matInput #horaInicio="ngModel" mat-hide-icons="calendar" type="time" name="horaInicio"
-                placeholder="Hora:" [(ngModel)]="this.funcionario.horaEntrevista">
+                placeholder="Hora:" [(ngModel)]="funcionario.horaEntrevista">
         </mat-form-field>
 
         <div fxLayout="row" fxLayoutGap="20px" fxFlex="70%" fxLayoutAlign="start center">
