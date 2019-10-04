@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { EmpresaService } from 'src/app/services/empresa/empresa.service';
+import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 
 @Component({
   selector: 'cadastrar-empresa',
@@ -52,12 +53,17 @@ export class CadastrarEmpresaComponent implements OnInit {
     private empresaService: EmpresaService,
     private route: ActivatedRoute,
     private location: Location,
-    private toastService:ToastService
+    private toastService:ToastService,
+    private enderecoService:EnderecoService
   ) { }
 
 
   ngOnInit() {
    
+    this.enderecoService.getAllEstados().subscribe((ufs:any)=> {
+      this.ufs = ufs;
+    });
+
     let idEmpresa: number;
     idEmpresa = this.route.snapshot.queryParams.idEmpresa ? this.route.snapshot.queryParams.idEmpresa : null;
     if (idEmpresa) {

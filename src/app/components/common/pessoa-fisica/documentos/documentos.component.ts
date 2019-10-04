@@ -1,6 +1,7 @@
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { Component, OnInit, Input } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 
 @Component({
   selector: 'documentos',
@@ -18,9 +19,14 @@ export class DocumentosComponent implements OnInit {
   ]
 
   @Input() pessoaFisica:PessoaFisica;
-  constructor() { }
+  constructor(
+    private enderecoService:EnderecoService
+  ) { }
 
   ngOnInit() {
+    this.enderecoService.getAllEstados().subscribe((ufs:any)=> {
+      this.ufs = ufs;
+    });
   }
 
 }

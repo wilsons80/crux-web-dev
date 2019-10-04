@@ -60,7 +60,7 @@ export class DadosPessoaisComponent implements OnInit {
     })
 
     this.enderecoService.getAllEstados().subscribe((ufs:any)=> {
-      console.log("ufs", ufs);
+      this.ufs = ufs;
     });
   }
 

@@ -18,8 +18,8 @@
     <mat-form-field fxFlex="5%">
         <mat-label>UF:</mat-label>
         <mat-select [(ngModel)]="pessoaFisica.ufCi" name="ufCi">
-            <mat-option *ngFor="let m of ufs" [value]="m.nome">
-                {{m.nome}}
+            <mat-option *ngFor="let m of ufs" [value]="m">
+                {{m}}
             </mat-option>
         </mat-select>
     </mat-form-field>
