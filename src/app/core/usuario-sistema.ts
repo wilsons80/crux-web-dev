@@ -2,8 +2,8 @@ import { PessoaFisica } from './pessoa-fisica';
 
 export class UsuarioSistema {
   idUsuario: number;
-	username: string;
-	senha: string;
+	nomeUsuario: string;
+	senhaUsuario: string;
 	descFimVigenciaUsuario: string;
 	dataFimVigencia: Date;
 	dataInicioVigencia: Date;

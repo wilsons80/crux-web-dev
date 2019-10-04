@@ -7,9 +7,9 @@
                 <mat-icon>search</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
                     <mat-label>Selecione um usuário</mat-label>
-                    <mat-select [(ngModel)]="usuario" name="usuario">
+                    <mat-select [(ngModel)]="usuarioSistema" name="usuario">
                         <mat-option *ngFor="let d of usuarios" [value]="d">
-                            {{ d.username }} - {{ d.pessoaFisica.nome }}
+                            {{ d.nomeUsuario }} - {{ d.pessoaFisica.nome }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -26,11 +26,10 @@
         </form>
 
         <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 20px">
-          'username', 'nome', 'status', 'dataInicioVigencia', 'dataFimVigencia', 'acoes'
 
             <ng-container matColumnDef="username">
-                <th mat-header-cell *matHeaderCellDef> Username: </th>
-                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+                <th mat-header-cell *matHeaderCellDef> Login: </th>
+                <td mat-cell *matCellDef="let element"> {{element.nomeUsuario}} </td>
             </ng-container>
 
             <ng-container matColumnDef="nome">
@@ -45,7 +44,7 @@
 
             <ng-container matColumnDef="dataInicioVigencia">
                 <th mat-header-cell *matHeaderCellDef> Data Início Vigência:  </th>
-                <td mat-cell *matCellDef="let element"> {{element.dataInicioVigencia}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.dataInicioVigencia | dataSimples}} </td>
             </ng-container>
 
             <ng-container matColumnDef="dataFimVigencia">
@@ -80,12 +79,10 @@
         <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-top: 50px">
             <div>
                 <button matTooltip="Adicionar novo usuário" mat-fab color="primary"
-                    [routerLink]="['/usuario/cadastrar']" routerLinkActive="router-link-active">
+                    [routerLink]="['/usuariosistema/cadastrar']" routerLinkActive="router-link-active">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
         </div>
     </div>
 </div>
-
-<pre>{{usuario | json}}</pre>

@@ -32,4 +32,5 @@ export enum Rotas {
     ACOES_COMPETENCIA        = 'api/acoescompentencia/',
     CONDICAO_MORADIA         = 'api/condicaomoradia/',
     USUARIO                  = 'api/usuario/',
+    USUARIO_SISTEMA          = 'api/usuariosistema/',
 }

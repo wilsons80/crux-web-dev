@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UsuarioSistema } from 'src/app/core/usuario-sistema';
 import { UsuarioSistemaService } from 'src/app/services/usuario-sistema/usuario-sistema.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 
 @Component({
   selector: 'usuario',
@@ -15,7 +16,7 @@ export class UsuarioComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   usuarios: UsuarioSistema[];
-  usuario: UsuarioSistema = new UsuarioSistema();
+  usuarioSistema: UsuarioSistema = new UsuarioSistema();
 
   mostrarTabela = false;
   msg: string;
@@ -27,24 +28,30 @@ export class UsuarioComponent implements OnInit {
     private usuarioSistemaService: UsuarioSistemaService,
     private router: Router,
     private dialog: MatDialog,
-  ) { }
+  ) {
+    this.initObjetos();
+  }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
 
+  initObjetos() {
+    this.usuarioSistema = new UsuarioSistema();
+    this.usuarioSistema.pessoaFisica = new PessoaFisica();
+  }
 
   limpar() {
+    this.initObjetos();
     this.mostrarTabela = false;
-    this.usuario = new UsuarioSistema();
     this.dataSource.data = [];
   }
 
   consultar() {
-    if (this.usuario.idUsuario) {
-      this.usuarioSistemaService.getById(this.usuario.idUsuario).subscribe((usuario: UsuarioSistema) => {
-        if(!usuario){
+    if (this.usuarioSistema.idUsuario) {
+      this.usuarioSistemaService.getById(this.usuarioSistema.idUsuario).subscribe((usuario: UsuarioSistema) => {
+        if (!usuario) {
           this.mostrarTabela = false;
           this.msg = 'Nenhum registro para a pesquisa selecionada';
         } else {
@@ -57,15 +64,15 @@ export class UsuarioComponent implements OnInit {
     }
   }
 
-  atualizar(usuario: UsuarioSistema) {
-    this.router.navigate(['/usuario/cadastrar'], { queryParams: { id: usuario.idUsuario } });
+  atualizar(usuarioSistema: UsuarioSistema) {
+    this.router.navigate(['/usuariosistema/cadastrar'], { queryParams: { id: usuarioSistema.idUsuario } });
   }
 
-  deletar(usuario: UsuarioSistema) {
-    this.chamaCaixaDialogo(usuario);
+  deletar(usuarioSistema: UsuarioSistema) {
+    this.chamaCaixaDialogo(usuarioSistema);
   }
 
-  chamaCaixaDialogo(usuario: UsuarioSistema) {
+  chamaCaixaDialogo(usuarioSistema: UsuarioSistema) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       pergunta: `Certeza que desse excluir o usuário ?`,
@@ -76,8 +83,8 @@ export class UsuarioComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        this.usuarioSistemaService.excluir(usuario.idUsuario).subscribe(() => {
-          this.usuario.idUsuario = null;
+        this.usuarioSistemaService.excluir(usuarioSistema.idUsuario).subscribe(() => {
+          this.usuarioSistema.idUsuario = null;
           this.consultar();
         });
       } else {
@@ -95,7 +102,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   verificaMostrarTabela(usuarios: UsuarioSistema[]) {
-    if (!usuarios ||usuarios.length === 0) {
+    if (!usuarios || usuarios.length === 0) {
       this.mostrarTabela = false;
       this.msg = 'Nenhum usuário cadastrado.';
     } else {
