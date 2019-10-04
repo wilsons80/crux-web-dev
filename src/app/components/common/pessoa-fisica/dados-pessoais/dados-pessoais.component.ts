@@ -1,3 +1,4 @@
+import { EnderecoService } from './../../../../services/endereco/endereco.service';
 import { CondicoesMoradiaService } from './../../../../services/condicoes-moradia/condicoes-moradia.service';
 import { PessoaFisica } from './../../../../core/pessoa-fisica';
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
@@ -49,13 +50,18 @@ export class DadosPessoaisComponent implements OnInit {
 
   
   constructor(
-    private condicoesMoradiaService:CondicoesMoradiaService
+    private condicoesMoradiaService:CondicoesMoradiaService,
+    private enderecoService:EnderecoService
   ) { }
 
   ngOnInit() {
     this.condicoesMoradiaService.getAll().subscribe((condicoesMoradia:CondicoesMoradia[])=> {
       this.condicoesMoradia = condicoesMoradia;
     })
+
+    this.enderecoService.getAllEstados().subscribe((ufs:any)=> {
+      console.log("ufs", ufs);
+    });
   }
 
   fileChangeEvent(event: any): void {
