@@ -16,7 +16,7 @@ export class UsuarioComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   usuarios: UsuarioSistema[];
-  usuario: UsuarioSistema = new UsuarioSistema();
+  usuarioSistema: UsuarioSistema = new UsuarioSistema();
 
   mostrarTabela = false;
   msg: string;
@@ -38,8 +38,8 @@ export class UsuarioComponent implements OnInit {
   }
 
   initObjetos() {
-    this.usuario = new UsuarioSistema();
-    this.usuario.pessoaFisica = new PessoaFisica();
+    this.usuarioSistema = new UsuarioSistema();
+    this.usuarioSistema.pessoaFisica = new PessoaFisica();
   }
 
   limpar() {
@@ -49,9 +49,9 @@ export class UsuarioComponent implements OnInit {
   }
 
   consultar() {
-    if (this.usuario.idUsuario) {
-      this.usuarioSistemaService.getById(this.usuario.idUsuario).subscribe((usuario: UsuarioSistema) => {
-        if(!usuario){
+    if (this.usuarioSistema.idUsuario) {
+      this.usuarioSistemaService.getById(this.usuarioSistema.idUsuario).subscribe((usuario: UsuarioSistema) => {
+        if (!usuario) {
           this.mostrarTabela = false;
           this.msg = 'Nenhum registro para a pesquisa selecionada';
         } else {
@@ -64,15 +64,15 @@ export class UsuarioComponent implements OnInit {
     }
   }
 
-  atualizar(usuario: UsuarioSistema) {
-    this.router.navigate(['/usuario/cadastrar'], { queryParams: { id: usuario.idUsuario } });
+  atualizar(usuarioSistema: UsuarioSistema) {
+    this.router.navigate(['/usuariosistema/cadastrar'], { queryParams: { id: usuarioSistema.idUsuario } });
   }
 
-  deletar(usuario: UsuarioSistema) {
-    this.chamaCaixaDialogo(usuario);
+  deletar(usuarioSistema: UsuarioSistema) {
+    this.chamaCaixaDialogo(usuarioSistema);
   }
 
-  chamaCaixaDialogo(usuario: UsuarioSistema) {
+  chamaCaixaDialogo(usuarioSistema: UsuarioSistema) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       pergunta: `Certeza que desse excluir o usuário ?`,
@@ -83,8 +83,8 @@ export class UsuarioComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        this.usuarioSistemaService.excluir(usuario.idUsuario).subscribe(() => {
-          this.usuario.idUsuario = null;
+        this.usuarioSistemaService.excluir(usuarioSistema.idUsuario).subscribe(() => {
+          this.usuarioSistema.idUsuario = null;
           this.consultar();
         });
       } else {

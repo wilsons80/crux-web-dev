@@ -10,6 +10,6 @@ import { Rotas } from 'src/app/core/rotas';
 export class UsuarioSistemaService extends BaseService<UsuarioSistema> {
 
   constructor(http: HttpClient) {
-    super(http, Rotas.USUARIO);
+    super(http, Rotas.USUARIO_SISTEMA);
   }
 }

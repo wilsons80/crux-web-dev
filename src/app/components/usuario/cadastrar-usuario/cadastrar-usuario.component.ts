@@ -13,7 +13,7 @@ import { Location } from '@angular/common';
 })
 export class CadastrarUsuarioComponent implements OnInit {
 
-  usuario: UsuarioSistema = new UsuarioSistema();
+  usuarioSistema: UsuarioSistema = new UsuarioSistema();
 
   isAtualizar = false;
 
@@ -32,22 +32,22 @@ export class CadastrarUsuarioComponent implements OnInit {
     id = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;
     if (id) {
       this.isAtualizar = true;
-      this.usuarioSistemaService.getById(id).subscribe((usuario: UsuarioSistema) => {
-        this.usuario = usuario;
+      this.usuarioSistemaService.getById(id).subscribe((usuarioSistema: UsuarioSistema) => {
+        this.usuarioSistema = usuarioSistema;
       });
     }
   }
 
   cadastrar() {
-    this.usuarioSistemaService.cadastrar(this.usuario).subscribe(() => {
+    this.usuarioSistemaService.cadastrar(this.usuarioSistema).subscribe(() => {
       this.location.back();
       this.toastService.showSucesso('Usuário cadastrado com sucesso');
     });
   }
 
   limpar() {
-    this.usuario = new UsuarioSistema();
-    this.usuario.pessoaFisica = new PessoaFisica();
+    this.usuarioSistema = new UsuarioSistema();
+    this.usuarioSistema.pessoaFisica = new PessoaFisica();
   }
 
   cancelar() {
@@ -64,7 +64,7 @@ export class CadastrarUsuarioComponent implements OnInit {
 
 
   atualizar() {
-    this.usuarioSistemaService.alterar(this.usuario).subscribe(() => {
+    this.usuarioSistemaService.alterar(this.usuarioSistema).subscribe(() => {
       this.location.back();
       this.toastService.showSucesso('Usuário atualizado com sucesso');
     });

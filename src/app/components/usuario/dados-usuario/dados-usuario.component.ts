@@ -11,23 +11,16 @@ import { UsuarioSistema } from 'src/app/core/usuario-sistema';
 })
 export class DadosUsuarioComponent implements OnInit {
 
-  @Input() usuario: UsuarioSistema = new UsuarioSistema();
+  @Input() usuarioSistema: UsuarioSistema;
   @Input() isAtualizar: boolean;
 
   hide = true;
 
   constructor() {
-    this.initObjetos();
+
   }
 
   ngOnInit() {
-    this.initObjetos();
-  }
-
-
-  initObjetos() {
-    this.usuario = new UsuarioSistema();
-    this.usuario.pessoaFisica = new PessoaFisica();
   }
 
 }

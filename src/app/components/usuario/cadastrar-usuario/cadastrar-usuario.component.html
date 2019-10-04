@@ -6,7 +6,7 @@
         <mat-step [stepControl]="formCadastroDadosUsuario">
           <form #formCadastroDadosUsuario="ngForm">
               <ng-template matStepLabel>DADOS USUARIO</ng-template>
-              <dados-usuario [usuario]="usuario" [isAtualizar]="isAtualizar"></dados-usuario>
+              <dados-usuario [usuarioSistema]="usuarioSistema" [isAtualizar]="isAtualizar"></dados-usuario>
 
               <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
                   <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
@@ -20,7 +20,7 @@
         <mat-step [stepControl]="formCadastroDadosPessoais">
             <form #formCadastroDadosPessoais="ngForm">
                 <ng-template matStepLabel>DADOS PESSOAIS</ng-template>
-                <dados-pessoais [pessoaFisica]="usuario.pessoaFisica"></dados-pessoais>
+                <dados-pessoais [pessoaFisica]="usuarioSistema.pessoaFisica"></dados-pessoais>
 
                 <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
                     <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
@@ -34,7 +34,7 @@
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDocumentos">
             <form #formCadastroDocumentos="ngForm">
                 <ng-template matStepLabel>DOCUMENTOS</ng-template>
-                <documentos [pessoaFisica]="usuario.pessoaFisica"></documentos>
+                <documentos [pessoaFisica]="usuarioSistema.pessoaFisica"></documentos>
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
@@ -77,6 +77,3 @@
       Cancelar
   </button>
 </div>
-
-Cadastro Usuario:
-<pre>{{usuario | json}}</pre>

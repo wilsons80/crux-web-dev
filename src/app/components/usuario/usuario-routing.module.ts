@@ -6,8 +6,8 @@ import { UsuarioComponent } from './usuario.component';
 
 
 const routes: Routes = [
-  { path: 'usuario/cadastrar', component: CadastrarUsuarioComponent, canActivate: [AuthGuard]},
-  { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard]},
+  { path: 'usuariosistema/cadastrar', component: CadastrarUsuarioComponent, canActivate: [AuthGuard]},
+  { path: 'usuariosistema', component: UsuarioComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
