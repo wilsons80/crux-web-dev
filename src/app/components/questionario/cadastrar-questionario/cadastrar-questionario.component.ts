@@ -35,7 +35,7 @@ export class CadastrarQuestionarioComponent implements OnInit {
   ngOnInit() {
 
     let idQuestionario: number;
-    idQuestionario = this.route.snapshot.queryParams.idQuestionário ? this.route.snapshot.queryParams.idQuestionário : null;
+    idQuestionario = this.route.snapshot.queryParams.idQuestionario ? this.route.snapshot.queryParams.idQuestionario : null;
     if (idQuestionario) {
       this.isAtualizar = true;
       this.questionarioService.getById(idQuestionario).subscribe((ind: Questionario) => {

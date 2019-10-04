@@ -19,7 +19,7 @@ export class QuestionarioComponent implements OnInit {
   questionario: Questionario = new Questionario();
   msg: string;
 
-  displayedColumns: string[] = ['descricao', 'acoes'];
+  displayedColumns: string[] = ['descricao','tipoQuestionario','dataInicio','dataFim', 'acoes'];
   dataSource: MatTableDataSource<Questionario> = new MatTableDataSource();
 
   constructor(
@@ -61,7 +61,7 @@ export class QuestionarioComponent implements OnInit {
 
 
   atualizar(questionario: Questionario) {
-    this.router.navigate(['/grausinstrucao/cadastrar'], { queryParams: { idQuestionario: questionario.id } });
+    this.router.navigate(['/questionario/cadastrar'], { queryParams: { idQuestionario: questionario.id } });
   }
 
   deletar(questionario: Questionario) {
