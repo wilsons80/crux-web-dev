@@ -6,10 +6,10 @@
 
                 <mat-icon>my_location</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione um Grau de Instrução</mat-label>
-                    <mat-select [(ngModel)]="faltasFuncionario" name="faltasFuncionario">
-                        <mat-option *ngFor="let d of listaFaltasFuncionario" [value]="d">
-                            {{d.descricao}}
+                    <mat-label>Selecione um funcionário</mat-label>
+                    <mat-select [(ngModel)]="funcionario" name="funcionario" required>
+                        <mat-option *ngFor="let d of listaFuncionarios" [value]="d">
+                            {{d.pessoasFisica.nome}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

@@ -12,4 +12,8 @@ export class FaltasFuncionarioService extends BaseService<FaltasFuncionario> {
   constructor(http: HttpClient) {
     super(http, Rotas.FALTAS_FUNCIONARIOS);
   }
+
+  getPorFuncionario(idFuncionario:number){
+   return this.http.get(Rotas.FALTAS_FUNCIONARIOS + `funcionario/${idFuncionario}`)
+  }
 }

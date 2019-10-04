@@ -4,6 +4,8 @@ import { FaltasFuncionario } from 'src/app/core/faltas-funcionario';
 import { FaltasFuncionarioService } from 'src/app/services/faltas-funcionario/faltas-funcionario.service';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
+import { Funcionario } from 'src/app/core/funcionario';
 
 @Component({
   selector: 'app-faltas-funcionario',
@@ -15,15 +17,18 @@ export class FaltasFuncionarioComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   listaFaltasFuncionario: FaltasFuncionario[];
+  listaFuncionarios: Funcionario[];
   mostrarTabela: boolean = false;
   faltasFuncionario: FaltasFuncionario = new FaltasFuncionario();
   msg:string;
+  funcionario: Funcionario = new Funcionario();
 
   displayedColumns: string[] = ['descricao', 'acoes'];
   dataSource: MatTableDataSource<FaltasFuncionario> = new MatTableDataSource();
 
   constructor(
     private faltasFuncionarioService: FaltasFuncionarioService,
+    private funcionarioService: FuncionarioService,
     private router: Router,
     private dialog: MatDialog,
 
@@ -31,7 +36,9 @@ export class FaltasFuncionarioComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
-    this.getAll();
+    this.funcionarioService.getAll().subscribe((funcionarios:Funcionario[]) => {
+      this.listaFuncionarios = funcionarios;
+    })
     
   }
  
@@ -43,8 +50,7 @@ export class FaltasFuncionarioComponent implements OnInit {
   }
 
   consultar() {
-    if (this.faltasFuncionario.id) {
-      this.faltasFuncionarioService.getById(this.faltasFuncionario.id).subscribe((faltasFuncionario: FaltasFuncionario) => {
+      this.faltasFuncionarioService.getPorFuncionario(this.funcionario.id).subscribe((faltasFuncionario: FaltasFuncionario) => {
         if(!faltasFuncionario){
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
@@ -53,9 +59,6 @@ export class FaltasFuncionarioComponent implements OnInit {
           this.mostrarTabela = true;
         }
       })
-    } else {
-      this.getAll();
-    }
     
   }
 
@@ -90,20 +93,5 @@ export class FaltasFuncionarioComponent implements OnInit {
     );
   }
 
-  getAll() {
-    this.faltasFuncionarioService.getAll().subscribe((listaFaltasFuncionario: FaltasFuncionario[]) => {
-      this.listaFaltasFuncionario = listaFaltasFuncionario;
-      this.dataSource.data = listaFaltasFuncionario ? listaFaltasFuncionario : [];
-      this.verificaMostrarTabela(listaFaltasFuncionario);
-    })
-  }
-  verificaMostrarTabela(faltasFuncionarios: FaltasFuncionario[]) {
-    if(!faltasFuncionarios || faltasFuncionarios.length == 0) {
-      this.mostrarTabela = false; 
-      this.msg = "Nenhuma falta cadastrada."
-    }else{
-      this.mostrarTabela = true; 
-    }
-  }
 
 }

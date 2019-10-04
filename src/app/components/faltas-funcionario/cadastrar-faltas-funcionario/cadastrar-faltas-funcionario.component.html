@@ -9,8 +9,8 @@
 
             <mat-form-field fxFlexOffset="20px" fxFlex="95%">
                 <mat-label>Funcionário que faltou:</mat-label>
-                <mat-select [(ngModel)]="faltasFuncionario.funcionarioFaltou" name="funcionarioFaltou" required>
-                    <mat-option *ngFor="let o of funcionarios" [value]="o">
+                <mat-select [(ngModel)]="faltasFuncionario.funcionarioFaltou.id" name="funcionarioFaltou" required>
+                    <mat-option *ngFor="let o of funcionarios" [value]="o.id">
                         {{o.pessoasFisica.nome}}
                     </mat-option>
                 </mat-select>
