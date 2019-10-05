@@ -11,7 +11,7 @@ export enum Rotas {
     DIAGNOSTICOS             = 'api/diagnosticos/',
     ENCAMINHAMENTO_ALUNO     = 'api/encaminhaaluno/',
     ENTIDADE_SOCIAL          = 'api/entidadessociais/',
-    FAMILIARES               = 'api/familiares/',
+    FAMILIARES               = 'api/familiar/',
     FREQUENCIA_ALUNO         = 'api/frequenciaaluno/',
     PARTICIPANTE_ATENDIMENTO = 'api/participanteatendimento/',
     PESSOA_FISICA            = 'api/pessoafisica/',

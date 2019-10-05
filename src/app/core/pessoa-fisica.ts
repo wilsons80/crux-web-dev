@@ -7,8 +7,7 @@ export class PessoaFisica{
     nome:string;
     orgaoCi:string;
     classificadorMotivoNaoTrab:string;
-    descricaoAlunoAtendidoOrgaoRede:string;
-    descricaoFamiliaAtendidoOrgaoRede:string;
+    descricaoPessoaFisicaAtendidoOrgaoRede: string;
     bairro:string;
     cidadeNaturalidade:string;
     condicaoMoradia:string;
@@ -30,7 +29,6 @@ export class PessoaFisica{
     profissao:string;
     redeApSocRelev:string;
     redeApoioSocial:string;
-    redeApoioSocial1:string;
     regiaoEscola:string;
     serieEscola:string;
     sexo:string;

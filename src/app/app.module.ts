@@ -71,6 +71,7 @@ import { VulnerabilidadeFamiliarModule } from './components/vulnerabilidade-fami
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 
+
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
   entryComponents: [
@@ -81,7 +82,8 @@ registerLocaleData(localePt, 'pt-BR');
     AppComponent,
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -157,7 +159,7 @@ registerLocaleData(localePt, 'pt-BR');
     AtendimentoModule,
     ParticipanteAtendimentoModule,
     CondicaoMoradiaModule,
-    UsuarioModule
+    UsuarioModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },

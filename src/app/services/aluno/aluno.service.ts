@@ -13,4 +13,8 @@ export class AlunoService extends BaseService<Aluno> {
     super(http, Rotas.ALUNO);
   }
 
+  getAlunosByNome(nome: string) {
+    return this.http.get(`${Rotas.ALUNO}nome/${nome}`);
+  }
+
 }
