@@ -23,7 +23,7 @@ export class FaltasFuncionarioComponent implements OnInit {
   msg:string;
   funcionario: Funcionario = new Funcionario();
 
-  displayedColumns: string[] = ['descricao', 'acoes'];
+  displayedColumns: string[] = ['funcionarioFaltou','funcionarioCadastrouFalta','dataFaltaFuncionario', 'acoes'];
   dataSource: MatTableDataSource<FaltasFuncionario> = new MatTableDataSource();
 
   constructor(
@@ -50,12 +50,13 @@ export class FaltasFuncionarioComponent implements OnInit {
   }
 
   consultar() {
-      this.faltasFuncionarioService.getPorFuncionario(this.funcionario.id).subscribe((faltasFuncionario: FaltasFuncionario) => {
+      this.faltasFuncionarioService.getPorFuncionario(this.funcionario.id).subscribe((faltasFuncionario: FaltasFuncionario[]) => {
+        
         if(!faltasFuncionario){
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
         }else {
-          this.dataSource.data = [faltasFuncionario];
+          this.dataSource.data = faltasFuncionario;
           this.mostrarTabela = true;
         }
       })
