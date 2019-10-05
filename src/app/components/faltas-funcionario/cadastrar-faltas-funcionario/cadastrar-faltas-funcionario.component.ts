@@ -31,6 +31,9 @@ export class CadastrarFaltasFuncionarioComponent implements OnInit {
 
 
   ngOnInit() {
+    this.faltasFuncionario.funcionarioFaltou = new Funcionario();
+    this.faltasFuncionario.funcionarioCadastrouFalta = new Funcionario();
+
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
       this.funcionarios = funcionarios;
     });

@@ -16,6 +16,15 @@
                 </mat-select>
             </mat-form-field>
 
+            <mat-form-field fxFlexOffset="20px" fxFlex="95%">
+                <mat-label>Funcionário que está cadastrando a falta:</mat-label>
+                <mat-select [(ngModel)]="faltasFuncionario.funcionarioCadastrouFalta.id" name="funcionarioCadastrouFalta" required>
+                    <mat-option *ngFor="let o of funcionarios" [value]="o.id">
+                        {{o.pessoasFisica.nome}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
         </div>
 
         <!-- FALTAS -->
