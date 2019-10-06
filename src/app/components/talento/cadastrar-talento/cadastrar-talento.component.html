@@ -8,7 +8,7 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
             <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                <input matInput maxlength="200" name="nome" placeholder="Resposta do Talento:"
+                <input matInput maxlength="200" name="respostaTalento" placeholder="Resposta do Talento:"
                     [(ngModel)]="talento.respostaTalento" required>
             </mat-form-field>
 
@@ -20,8 +20,8 @@
             </mat-form-field>
 
             <mat-form-field fxFlex="20%" fxFlexOffset="20px">
-                <input matInput maxlength="200" name="nome" placeholder="Número Nota Competência:"
-                    [(ngModel)]="talento.respostaTalento" required>
+                <input matInput type="number" name="nrNotaCompetencia" placeholder="Número Nota Competência:"
+                    [(ngModel)]="talento.nrNotaCompetencia" required>
             </mat-form-field>
 
         </div>
