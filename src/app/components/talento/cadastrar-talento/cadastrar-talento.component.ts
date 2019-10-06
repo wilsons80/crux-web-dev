@@ -1,3 +1,4 @@
+import { Questionario } from './../../../core/questionario';
 import { PessoaFisica } from './../../../core/pessoa-fisica';
 import { Location } from '@angular/common';
 import { Talento } from 'src/app/core/talento';
@@ -5,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
 import { Funcionario } from 'src/app/core/funcionario';
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { FaltasFuncionarioService } from 'src/app/services/faltas-funcionario/faltas-funcionario.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { FaltasFuncionario } from 'src/app/core/faltas-funcionario';
 import { TalentosService } from 'src/app/services/talentos/talentos.service';
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
+import { QuestionarioService } from 'src/app/services/questionario/questionario.service';
 
 @Component({
   selector: 'app-cadastrar-talento',
@@ -18,35 +20,39 @@ import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisic
 })
 export class CadastrarTalentoComponent implements OnInit {
 
-  funcionarios: Funcionario[];
   pessoas: PessoaFisica[];
   talento: Talento = new Talento();
+  questionarios: Questionario [];
 
   isAtualizar: boolean = false;
 
   constructor(
-    private funcionarioService: FuncionarioService,
+    private questionarioService: QuestionarioService,
     private talentosService: TalentosService,
     private pessoaFisicaService: PessoaFisicaService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private toastService:ToastService
   ) { }
 
   ngOnInit() {
-    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
-      this.funcionarios = funcionarios;
+    this.talento.questionario = new Questionario();
+    this.talento.pessoasFisica = new PessoaFisica();
+
+    this.questionarioService.getAll().subscribe((questionarios: Questionario[]) => {
+      this.questionarios = questionarios;
     });
     
     this.pessoaFisicaService.getAll().subscribe((pessoas: PessoaFisica[]) => {
       this.pessoas = pessoas;
     });
 
-    let idFaltaFuncionario: number;
-    idFaltaFuncionario = this.route.snapshot.queryParams.idFaltaFuncionario ? this.route.snapshot.queryParams.idFaltaFuncionario : null;
-    if (idFaltaFuncionario) {
+    let idTalento: number;
+    idTalento = this.route.snapshot.queryParams.idTalento ? this.route.snapshot.queryParams.idTalento : null;
+    if (idTalento) {
       this.isAtualizar = true;
-      this.talentosService.getById(idFaltaFuncionario).subscribe((talento: Talento) => {
+      this.talentosService.getById(idTalento).subscribe((talento: Talento) => {
         this.talento = talento;
       });
     }
@@ -54,7 +60,7 @@ export class CadastrarTalentoComponent implements OnInit {
   }
   cadastrar() {
     this.talentosService.cadastrar(this.talento).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['talento']);
       this.toastService.showSucesso("Talento cadastrado com sucesso");
     });
   }

@@ -14,7 +14,7 @@
 
             <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                 <input matInput name="dataRespostaTalento" [matDatepicker]="dataRespostaTalento" placeholder="Data:"
-                    [(ngModel)]="talento.dataRespostaTalento" required>
+                    [(ngModel)]="talento.dataRespostaTalento">
                 <mat-datepicker-toggle matSuffix [for]="dataRespostaTalento"></mat-datepicker-toggle>
                 <mat-datepicker #dataRespostaTalento></mat-datepicker>
             </mat-form-field>
@@ -27,17 +27,31 @@
         </div>
 
         <!-- PESSOAS -->
-        <mat-toolbar class="titulopartes">Pessoa</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field fxFlexOffset="20px" fxFlex="90%">
+            <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center stretch" fxFlexFill >
+                <mat-toolbar class="titulopartes">Pessoa</mat-toolbar>
+                <mat-form-field fxFlex="80%" style="margin-left: 20px; margin-right: 20px">
                 <mat-label>Seleciona uma pessoa:</mat-label>
-                <mat-select [(ngModel)]="talento.pessoasFisica" name="pessoasFisica" required>
-                    <mat-option *ngFor="let o of pessoas" [value]="o">
+                <mat-select [(ngModel)]="talento.pessoasFisica.id" name="pessoasFisica" required>
+                    <mat-option *ngFor="let o of pessoas" [value]="o.id">
                         {{o.nome}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+            </div>
 
+            <!-- QUESTIONARIO -->
+            <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center stretch" fxFlexFill >
+                    <mat-toolbar class="titulopartes">Questionário</mat-toolbar>
+                    <mat-form-field fxFlex="80%" style="margin-left: 20px; margin-right: 20px">
+                    <mat-label>Seleciona um questionário:</mat-label>
+                    <mat-select [(ngModel)]="talento.questionario.id" name="questionario" required>
+                        <mat-option *ngFor="let o of questionarios" [value]="o.id">
+                            {{o.descricao}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                </div>
         </div>
 
         <!-- BOTÕES -->
