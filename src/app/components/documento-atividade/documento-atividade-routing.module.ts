@@ -6,8 +6,8 @@ import { DocumentoAtividadeComponent } from './documento-atividade.component';
 
 
 const routes: Routes = [
-  {path: 'documentoatividade/cadastrar', component: CadastrarDocumentoAtividadeComponent},
-  {path: 'documentoatividade', component: DocumentoAtividadeComponent}
+  {path: 'documentoatividade/cadastrar', component: CadastrarDocumentoAtividadeComponent, canActivate: [AuthGuard]},
+  {path: 'documentoatividade', component: DocumentoAtividadeComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
