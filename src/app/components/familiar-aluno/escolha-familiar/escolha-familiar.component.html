@@ -40,6 +40,15 @@
 </div>
 
 <!-- ESCOLHA DO FAMILIA DO ALUNO -->
-<div *ngIf="alunoSelecionado">
-    <familiares [aluno]="aluno" (mostrarFormularioFamiliar)="mostrarFomularioFamiliar($event)"></familiares>
+<div *ngIf="alunoSelecionado" style="padding: 10px;">
+    <familiares [aluno]="aluno"></familiares>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-right: 40px">
+    <div>
+        <button matTooltip="Adicionar novo familiar do aluno" mat-fab color="primary"
+                [routerLink]="['/familiaraluno/cadastrar']" routerLinkActive="router-link-active">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
 </div>

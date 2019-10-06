@@ -16,9 +16,6 @@ export class FamiliaresComponent implements OnInit {
   @Input() aluno: Aluno;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  @Output()
-  mostrarFormularioFamiliar =  new EventEmitter();
-
   mostrarTabela = false;
   msg: string;
 
@@ -49,13 +46,8 @@ export class FamiliaresComponent implements OnInit {
     }
   }
 
-  vincular(elemento) {
-
-  }
-
-
-  mostrarFormCadastroFamiliar() {
-    this.mostrarFormularioFamiliar.emit(true);
+  vincular(familiar: Familiares) {
+    this.router.navigate(['/familiaraluno/cadastrar'], { queryParams: { id: familiar.id } });
   }
 
 }

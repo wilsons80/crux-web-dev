@@ -22,8 +22,6 @@ import { startWith, map } from 'rxjs/operators';
 export class EscolhaFamiliarComponent implements OnInit {
 
   pessoaFisica: PessoaFisica = new PessoaFisica();
-  mostarFormularioFamiliar = false;
-
 
   // ==============================================================
   // Variáveis referente aos dados do aluno
@@ -134,12 +132,6 @@ export class EscolhaFamiliarComponent implements OnInit {
     this.aluno = new Aluno();
     this.aluno.pessoaFisica = new PessoaFisica();
     this.alunoSelecionado = false;
-    this.mostarFormularioFamiliar = false;
-  }
-
-
-  mostrarFomularioFamiliar(evento: any) {
-    this.mostarFormularioFamiliar = true;
   }
 
 }
