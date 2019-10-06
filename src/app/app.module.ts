@@ -70,6 +70,7 @@ import { VulnerabilidadeAlunoModule } from './components/vulnerabilidade-aluno/v
 import { VulnerabilidadeFamiliarModule } from './components/vulnerabilidade-familiar/vulnerabilidade-familiar.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
+import { DocumentoAtividadeModule } from './components/documento-atividade/documento-atividade.module';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -83,7 +84,7 @@ registerLocaleData(localePt, 'pt-BR');
     HttpErrorToastComponent,
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -160,6 +161,7 @@ registerLocaleData(localePt, 'pt-BR');
     ParticipanteAtendimentoModule,
     CondicaoMoradiaModule,
     UsuarioModule,
+    DocumentoAtividadeModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },

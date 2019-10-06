@@ -12,4 +12,8 @@ export class TalentosService extends BaseService<Talento> {
   constructor(http: HttpClient) {
     super(http, Rotas.TALENTOS);
   }
+
+  getByIdPessoaFisica(idPessoa:number){
+    return this.http.get(Rotas.TALENTOS +`pessoa/${idPessoa}`)
+  }
 }

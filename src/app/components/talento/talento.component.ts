@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
-import { Talento } from 'src/app/core/talento';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
-import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
+import { Talento } from 'src/app/core/talento';
+import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 import { TalentosService } from 'src/app/services/talentos/talentos.service';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-talento',
@@ -12,18 +14,21 @@ import { TalentosService } from 'src/app/services/talentos/talentos.service';
 })
 export class TalentoComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  listaTalento: Talento[];
+  listaPessoas: PessoaFisica[];
+  listaTalentos: Talento[];
   mostrarTabela: boolean = false;
-  talento: Talento = new Talento();
-  msg:string;
+  msg: string;
+  pessoaFisica: PessoaFisica;
+  talento: Talento = new Talento()
 
-  displayedColumns: string[] = ['descricao', 'acoes'];
+  displayedColumns: string[] = ['nome', 'dataRespostaTalento', 'nrNotaCompetencia', 'acoes'];
   dataSource: MatTableDataSource<Talento> = new MatTableDataSource();
 
   constructor(
-    private talentoService: TalentosService,
+    private talentosService: TalentosService,
+    private pessoaFisicaService: PessoaFisicaService,
     private router: Router,
     private dialog: MatDialog,
 
@@ -31,32 +36,37 @@ export class TalentoComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
-    this.getAll();
-    
+    this.pessoaFisicaService.getAll().subscribe((listaPessoas: PessoaFisica[]) => {
+      this.listaPessoas = listaPessoas;
+    })
+
   }
- 
+
 
   limpar() {
     this.mostrarTabela = false;
     this.talento = new Talento()
+    this.pessoaFisica = new PessoaFisica()
     this.dataSource.data = [];
+    this.msg = '';
   }
 
   consultar() {
-    if (this.talento.id) {
-      this.talentoService.getById(this.talento.id).subscribe((talento: Talento) => {
-        if(!talento){
-          this.mostrarTabela = false
-          this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
-          this.dataSource.data = [talento];
-          this.mostrarTabela = true;
-        }
-      })
-    } else {
-      this.getAll();
-    }
-    
+    this.talentosService.getByIdPessoaFisica(this.pessoaFisica.id).subscribe((talentos: Talento[]) => {
+      if (!talentos) {
+        this.mostrarTabela = false
+        this.msg = "Nenhum registro para a pesquisa selecionada"
+      } else {
+        this.dataSource.data = talentos;
+        this.mostrarTabela = true;
+      }
+    },
+      () => {
+        this.msg = "Nenhum registro para a pesquisa selecionada"
+        this.limpar()
+      }
+    )
+
   }
 
 
@@ -71,7 +81,7 @@ export class TalentoComponent implements OnInit {
   chamaCaixaDialogo(talento: Talento) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o talento?`,
+      pergunta: `Certeza que desse excluir o talento do funcionario?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };
@@ -79,7 +89,7 @@ export class TalentoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        this.talentoService.excluir(talento.id).subscribe(() => {
+        this.talentosService.excluir(talento.id).subscribe(() => {
           this.talento.id = null
           this.consultar();
         })
@@ -88,22 +98,6 @@ export class TalentoComponent implements OnInit {
       }
     }
     );
-  }
-
-  getAll() {
-    this.talentoService.getAll().subscribe((listaTalento: Talento[]) => {
-      this.listaTalento = listaTalento;
-      this.dataSource.data = listaTalento ? listaTalento : [];
-      this.verificaMostrarTabela(listaTalento);
-    })
-  }
-  verificaMostrarTabela(talentos: Talento[]) {
-    if(!talentos || talentos.length == 0) {
-      this.mostrarTabela = false; 
-      this.msg = "Nenhum talento cadastrado para o funcionário."
-    }else{
-      this.mostrarTabela = true; 
-    }
   }
 
 }
