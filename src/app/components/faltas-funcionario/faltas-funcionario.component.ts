@@ -21,7 +21,7 @@ export class FaltasFuncionarioComponent implements OnInit {
   mostrarTabela: boolean = false;
   faltasFuncionario: FaltasFuncionario = new FaltasFuncionario();
   msg:string;
-  funcionario: Funcionario = new Funcionario();
+  funcionario: Funcionario;
 
   displayedColumns: string[] = ['funcionarioFaltou','funcionarioCadastrouFalta','dataFaltaFuncionario', 'acoes'];
   dataSource: MatTableDataSource<FaltasFuncionario> = new MatTableDataSource();
@@ -46,12 +46,13 @@ export class FaltasFuncionarioComponent implements OnInit {
   limpar() {
     this.mostrarTabela = false;
     this.faltasFuncionario = new FaltasFuncionario()
+    this.funcionario = new Funcionario()
     this.dataSource.data = [];
+    this.msg = '';
   }
 
   consultar() {
       this.faltasFuncionarioService.getPorFuncionario(this.funcionario.id).subscribe((faltasFuncionario: FaltasFuncionario[]) => {
-        
         if(!faltasFuncionario){
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
@@ -59,13 +60,18 @@ export class FaltasFuncionarioComponent implements OnInit {
           this.dataSource.data = faltasFuncionario;
           this.mostrarTabela = true;
         }
-      })
+      },
+      ()  => {
+        this.msg = "Nenhum registro para a pesquisa selecionada"
+        this.limpar()
+      }
+      )
     
   }
 
 
   atualizar(faltasFuncionario: FaltasFuncionario) {
-    this.router.navigate(['/faltasfuncionario/cadastrar'], { queryParams: { idFaltasFuncionario: faltasFuncionario.id } });
+    this.router.navigate(['/faltasfuncionario/cadastrar'], { queryParams: { idFaltaFuncionario: faltasFuncionario.id } });
   }
 
   deletar(faltasFuncionario: FaltasFuncionario) {
