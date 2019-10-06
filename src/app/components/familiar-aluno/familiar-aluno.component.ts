@@ -37,14 +37,14 @@ export class FamiliarAlunoComponent implements OnInit {
 
   limpar() {
     this.mostrarTabela = false;
-    this.familiar = new Familiares()
+    this.familiar = new Familiares();
     this.dataSource.data = [];
   }
 
   consultar() {
     if (this.familiar.id) {
-      this.familiarService.getById(this.familiar.id).subscribe((familiar: Familiares) => {
-        if (!familiar) {
+      this.familiarService.getById(this.familiar.id).subscribe((familiar: any) => {
+        if (!familiar || familiar.length === 0) {
           this.mostrarTabela = false;
           this.msg = 'Nenhum registro para a pesquisa selecionada';
         } else {

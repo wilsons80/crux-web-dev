@@ -1,0 +1,45 @@
+<mat-toolbar class="subtitulo">Escolha o aluno para o familiar</mat-toolbar>
+<div class="painel-principal" style="padding: 10px;">
+    <div class="painel-consultar">
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
+            <mat-icon>search</mat-icon>
+            <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+
+                    <input matInput 
+                            required
+                            placeholder="Informe o nome do aluno" 
+                            [formControl]="autoComplete"
+                            [matAutocomplete]="auto">
+    
+                    <mat-autocomplete #auto="matAutocomplete"   
+                                        (optionSelected)="selecionar($event.option)" 
+                                        [displayWith]="displayFn">
+                        <mat-option *ngFor="let valor of alunos$ | async" [value]="valor">
+                            {{valor.pessoaFisica.nome}}
+                        </mat-option>
+                    </mat-autocomplete>
+
+                </mat-form-field>
+
+                <button mat-raised-button (click)="limparSelecao()" placeholder="Limpar seleção" style="margin-top: 15px; height: 33px; " >
+                    <mat-icon >clear</mat-icon>
+                    <label mat-button color="warn">
+                        LIMPAR
+                    </label>
+                </button>
+            </div>
+        </div>
+
+        <div [hidden]="!alunoSelecionado">
+            <dados-aluno [aluno]="aluno"></dados-aluno>
+        </div>
+
+    </div>
+</div>
+
+<!-- ESCOLHA DO FAMILIA DO ALUNO -->
+<div *ngIf="alunoSelecionado">
+    <familiares [aluno]="aluno" (mostrarFormularioFamiliar)="mostrarFomularioFamiliar($event)"></familiares>
+</div>

@@ -15,4 +15,12 @@ export class DadosAlunoComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  getBackground() {
+    if (this.aluno.pessoaFisica && this.aluno.pessoaFisica.urlFoto) {
+      return `url(${this.aluno.pessoaFisica.urlFoto})`;
+    }
+  }
+
+
 }

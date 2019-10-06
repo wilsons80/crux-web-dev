@@ -1,0 +1,51 @@
+<table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 10px">
+
+    <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome: </th>
+        <td mat-cell *matCellDef="let element"> {{element.pessoaFisica.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="grauparentesco">
+        <th mat-header-cell *matHeaderCellDef> Grau de parentesco:  </th>
+        <td mat-cell *matCellDef="let element"> {{element.descGrauParentesco}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="situacao">
+        <th mat-header-cell *matHeaderCellDef> Situação:  </th>
+        <td mat-cell *matCellDef="let element"> {{element.situacaoParentesco}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dataCadastro">
+        <th mat-header-cell *matHeaderCellDef> Data Admissão:  </th>
+        <td mat-cell *matCellDef="let element"> {{element.dataCadastro | dataSimples}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef> Ação </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="vincular(element)" [hidden]="!element">
+                <mat-icon>arrow_downward</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<div [hidden]="!mostrarTabela">
+    <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+</div>
+
+<ng-template #tabelaSemDados>
+    <div fxLayout="row" fxLayoutAlign="center center" style="padding-top: 10px">
+        {{msg}}
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-right: 40px">
+        <div>
+            <button matTooltip="Adicionar novo familiar do aluno" mat-fab color="primary" (click)="mostrarFormCadastroFamiliar()"
+                    [routerLink]="['/familiaraluno/cadastrar']" routerLinkActive="router-link-active">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+</ng-template>

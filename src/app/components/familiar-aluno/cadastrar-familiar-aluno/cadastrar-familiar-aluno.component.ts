@@ -29,24 +29,6 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
   familiares: Familiares[];
 
 
-  // ==============================================================
-  // Variáveis referente aos dados do aluno
-  autoComplete = new FormControl();
-
-  aluno: Aluno = new Aluno();
-  alunos$: Observable<any[]>;
-  alunos: Aluno[] = [];
-
-  alunoSelecionado = false;
-
-  mostrarTabelaAluno = false;
-  msg: string;
-  displayedColumnsAluno: string[] = ['matricula', 'nome', 'identidade', 'orgao', 'uf', 'acao'];
-  dataSourceAluno: MatTableDataSource<Aluno> = new MatTableDataSource();
-
-  // ==============================================================
-
-
   constructor(private alunoService: AlunoService,
               private toastService: ToastService,
               private route: ActivatedRoute,
@@ -59,13 +41,9 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.aluno.pessoaFisica = new PessoaFisica();
-
     this.familiar.aluno = new Aluno();
     this.familiar.aluno.pessoaFisica = this.pessoaFisica;
     this.familiar.aluno.pessoaFisica.grausInstrucao = new GrausInstrucao();
-
-    this.activate();
 
 
     let idFamiliaAluno: number;
@@ -110,7 +88,7 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
 
     this.familiarAlunoService.alterar(this.familiar).pipe(
       switchMap((familiarRetorno: Familiares) => {
-        if (this.familiar.aluno.pessoaFisica.isFotoChanged && this.aluno.pessoaFisica.foto) {
+        if (this.familiar.aluno.pessoaFisica.isFotoChanged && this.familiar.aluno.pessoaFisica.foto) {
           return this.arquivoPessoaFisicaService.alterar(this.familiar.aluno.pessoaFisica.foto, familiarRetorno.aluno.pessoaFisica.id);
         } else {
          return new Observable(obs => obs.next());
@@ -147,72 +125,4 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
   }
 
 
-
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //                                Métodos para buscar o aluno
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  consultarAlunosPorNome() {
-    this.getAlunosByNome(this.aluno.pessoaFisica.nome);
-  }
-
-  private getAlunosByNome(nomeAluno: string) {
-    if (nomeAluno === '' || nomeAluno === undefined) {
-      this.toastService.showAlerta('Informe pelo menos um nome para busca.');
-    } else {
-      this.alunoService.getAlunosByNome(nomeAluno).subscribe((alunos: Aluno[]) => {
-        this.dataSourceAluno.data = alunos ? alunos : [];
-        this.verificaMostrarTabela(alunos);
-      });
-    }
-  }
-
-  verificaMostrarTabela(alunos: Aluno[]) {
-    if (!alunos || alunos.length === 0) {
-      this.mostrarTabelaAluno = false;
-      this.msg = 'Nenhum aluno cadastrado.';
-    } else {
-      this.mostrarTabelaAluno = true;
-    }
-  }
-
-
-
-  activate(): any {
-    this.alunoService.getAll().subscribe( (valor: Aluno[]) => {
-      this.alunos = valor;
-      this.autoComplete.setValue('');
-    });
-
-    this.alunos$ = this.autoComplete.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => value ? this.filtrar(value) : this.alunos.slice())
-      );
-  }
-
-  filtrar(searchText: any) {
-    const descricao = searchText.pessoaFisica != null ? searchText.pessoaFisica.nome : searchText;
-    return this.alunos.filter(state => state.pessoaFisica.nome.toLowerCase().includes(descricao.toLowerCase()));
-  }
-
-  vincular(aluno: Aluno) {
-    this.aluno = aluno;
-  }
-
-  displayFn(valor: any): string {
-    return valor != null ? (valor.pessoaFisica !== undefined ? valor.pessoaFisica.nome : valor) : valor;
-  }
-
-  selecionar(event: any) {
-    this.aluno = this.autoComplete.value;
-    this.alunoSelecionado = true;
-  }
-
-  limparSelecao() {
-    this.autoComplete.setValue(' ');
-    this.aluno = new Aluno();
-    this.alunoSelecionado = false;
-  }
 }

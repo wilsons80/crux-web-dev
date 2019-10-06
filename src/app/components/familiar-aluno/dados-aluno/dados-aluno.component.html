@@ -1,6 +1,12 @@
-<mat-toolbar class="titulopartes">Aluno selecionado</mat-toolbar>
+<mat-toolbar class="titulopartes">Dados do Aluno</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
+    <div fxFlex="8%" style="text-align: end">
+        <button name="fotoPerfil" ng mat-raised-button class="foto" [style.background-image]="getBackground()" >
+            <mat-icon class="nao-foto"></mat-icon>
+        </button>
+    </div>
+        
     <mat-form-field fxFlex="10%" fxFlexOffset="20px" >
         <input matInput name="matricula" placeholder="Matricula" [(ngModel)]="aluno.matriculaAluno" disabled>
     </mat-form-field>

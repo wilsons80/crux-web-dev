@@ -14,4 +14,9 @@ export class FamiliarAlunoService extends BaseService<Familiares> {
     super(http, Rotas.FAMILIARES);
   }
 
+
+  getFamiliaresPorAluno(id: number) {
+    return this.http.get(`${Rotas.FAMILIARES}aluno/${id}`);
+  }
+  
 }

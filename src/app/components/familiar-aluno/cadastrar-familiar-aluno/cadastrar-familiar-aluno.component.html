@@ -1,168 +1,122 @@
-<mat-toolbar class="subtitulo">Aluno</mat-toolbar>
+<!-- Dados da FAMILIA DO ALUNO -->
+<mat-toolbar class="subtitulo">Familia do Aluno</mat-toolbar>
 <div class="painel-principal" style="padding: 10px;">
-    <div class="painel-consultar">
+    <mat-horizontal-stepper #stepper style="background: transparent; padding: 10px">
 
-        <form #formConsultar="ngForm">
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
-                <mat-icon>search</mat-icon>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+        <!------------------ DADOS PESSOAIS ------------------------>
+        <mat-step [stepControl]="formCadastroDadosPessoais">
+            <form #formCadastroDadosPessoais="ngForm">
+                <ng-template matStepLabel>DADOS PESSOAIS</ng-template>
+                <dados-pessoais [pessoaFisica]="familiar.aluno.pessoaFisica"></dados-pessoais>
 
-                        <input matInput 
-                               required
-                               placeholder="Informe o nome do aluno" 
-                               [formControl]="autoComplete"
-                               [matAutocomplete]="auto">
-        
-                        <mat-autocomplete #auto="matAutocomplete"   
-                                          (optionSelected)="selecionar($event.option)" 
-                                          [displayWith]="displayFn">
-                            <mat-option *ngFor="let valor of alunos$ | async" [value]="valor">
-                                {{valor.pessoaFisica.nome}}
-                            </mat-option>
-                        </mat-autocomplete>
-
-                    </mat-form-field>
-
-                    <button mat-raised-button (click)="limparSelecao()" placeholder="Limpar seleção" style="margin-top: 15px; height: 33px; " >
-                        <mat-icon >clear</mat-icon>
-                        <label mat-button color="warn">
-                            LIMPAR
-                        </label>
+                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                        Próximo
                     </button>
                 </div>
+            </form>
+        </mat-step>
+
+        <!-- ------------------ ESCOLARIDADE ------------------------ -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
+            <form #formCadastroEscolaridade="ngForm">
+                <ng-template matStepLabel>ESCOLARIDADE</ng-template>
+
+                <escolaridade [pessoaFisica]="familiar.aluno.pessoaFisica"></escolaridade>
+            </form>
+
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                    Próximo
+                </button>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
             </div>
-        </form>
+        </mat-step>
 
-        <div *ngIf="alunoSelecionado">
-            <dados-aluno [aluno]="aluno"></dados-aluno>
-        </div>
+        <!-- ------------------ DOCUMENTOS ------------------------ -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDocumentos">
+            <form #formCadastroDocumentos="ngForm">
+                <ng-template matStepLabel>DOCUMENTOS</ng-template>
 
-    </div>
+                <documentos [pessoaFisica]="familiar.aluno.pessoaFisica"></documentos>
+            </form>
+
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                    Próximo
+                </button>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>
+
+
+        <!--  FUNCIONAL -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAcademico">
+            <form #formCadastroAcademico="ngForm">
+                <ng-template matStepLabel>ACADEMICO</ng-template>
+                <academico [aluno]="familiar.aluno"></academico>
+            </form>
+
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                    Próximo
+                </button>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>
+
+        <!-- OUTRAS INFORMAÇOES -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutrasInformacoes">
+            <form #formCadastroOutrasInformacoes="ngForm">
+                <ng-template matStepLabel>OUTRAS INFORMAÇÕES</ng-template>
+                <escolar [pessoaFisica]="familiar.aluno.pessoaFisica"></escolar>
+                <atendimento-apoio [pessoaFisica]="familiar.aluno.pessoaFisica"></atendimento-apoio>
+            </form>
+
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>
+
+    </mat-horizontal-stepper>
 </div>
 
 
-<!-- Dados da FAMILIA DO ALUNO -->
-<div *ngIf="alunoSelecionado">
-    <mat-toolbar class="subtitulo">Familia do Aluno</mat-toolbar>
-    <div class="painel-principal" style="padding: 10px;">
-        <mat-horizontal-stepper #stepper style="background: transparent; padding: 10px">
-    
-            <!------------------ DADOS PESSOAIS ------------------------>
-            <mat-step [stepControl]="formCadastroDadosPessoais">
-                <form #formCadastroDadosPessoais="ngForm">
-                    <ng-template matStepLabel>DADOS PESSOAIS</ng-template>
-                    <dados-pessoais [pessoaFisica]="familiar.aluno.pessoaFisica"></dados-pessoais>
-    
-                    <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                        <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                            Próximo
-                        </button>
-                    </div>
-                </form>
-            </mat-step>
-    
-            <!-- ------------------ ESCOLARIDADE ------------------------ -->
-            <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
-                <form #formCadastroEscolaridade="ngForm">
-                    <ng-template matStepLabel>ESCOLARIDADE</ng-template>
-    
-                    <escolaridade [pessoaFisica]="familiar.aluno.pessoaFisica"></escolaridade>
-                </form>
-    
-                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                    fxFlexFill>
-                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                        Próximo
-                    </button>
-                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                        voltar
-                    </button>
-                </div>
-            </mat-step>
-    
-            <!-- ------------------ DOCUMENTOS ------------------------ -->
-            <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDocumentos">
-                <form #formCadastroDocumentos="ngForm">
-                    <ng-template matStepLabel>DOCUMENTOS</ng-template>
-    
-                    <documentos [pessoaFisica]="familiar.aluno.pessoaFisica"></documentos>
-                </form>
-    
-                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                    fxFlexFill>
-                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                        Próximo
-                    </button>
-                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                        voltar
-                    </button>
-                </div>
-            </mat-step>
-    
-    
-            <!--  FUNCIONAL -->
-            <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAcademico">
-                <form #formCadastroAcademico="ngForm">
-                    <ng-template matStepLabel>ACADEMICO</ng-template>
-                    <academico [aluno]="familiar.aluno"></academico>
-                </form>
-    
-                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                        Próximo
-                    </button>
-                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                        voltar
-                    </button>
-                </div>
-            </mat-step>
-    
-            <!-- OUTRAS INFORMAÇOES -->
-            <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutrasInformacoes">
-                <form #formCadastroOutrasInformacoes="ngForm">
-                    <ng-template matStepLabel>OUTRAS INFORMAÇÕES</ng-template>
-                    <escolar [pessoaFisica]="familiar.aluno.pessoaFisica"></escolar>
-                    <atendimento-apoio [pessoaFisica]="familiar.aluno.pessoaFisica"></atendimento-apoio>
-                </form>
-    
-                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                        voltar
-                    </button>
-                </div>
-            </mat-step>
-    
-        </mat-horizontal-stepper>
-    </div>
-    
-    
-    <div dir="rtl" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-      <button mat-raised-button
-              name="botaoConfirmar"
-              fxFlex="20%"
-              color="primary"
-              [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-                          formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid"
-              (click)="isAtualizar ? atualizar() : cadastrar()">
-              {{getNomeBotao()}}
-      </button>
-    
-      <button *ngIf="!isAtualizar"
-              mat-raised-button
-              fxFlex="20%"
-              color="primary"
-              (click)="limpar()">
-              Limpar
-      </button>
-    
-      <button mat-raised-button
-              fxFlex="20%"
-              color="primary"
-              (click)="cancelar()">
-          Cancelar
-      </button>
-    </div>
+<div dir="rtl" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+    <button mat-raised-button
+            name="botaoConfirmar"
+            fxFlex="20%"
+            color="primary"
+            [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
+                        formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid"
+            (click)="isAtualizar ? atualizar() : cadastrar()">
+            {{getNomeBotao()}}
+    </button>
+
+    <button *ngIf="!isAtualizar"
+            mat-raised-button
+            fxFlex="20%"
+            color="primary"
+            (click)="limpar()">
+            Limpar
+    </button>
+
+    <button mat-raised-button
+            fxFlex="20%"
+            color="primary"
+            (click)="cancelar()">
+        Cancelar
+    </button>
 </div>
 
 
