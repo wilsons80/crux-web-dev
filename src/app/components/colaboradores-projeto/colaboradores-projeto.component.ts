@@ -1,29 +1,29 @@
-import { ColaboradoresPrograma } from './../../core/colaboradores-programa';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
-import { ColaboradoresProgramaService } from 'src/app/services/colaboradores-programa/colaboradores-programa.service';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { ColaboradoresProjeto } from 'src/app/core/colaboradores-projeto';
+import { ColaboradoresProjetoService } from 'src/app/services/colaboradores-projeto/colaboradores-projeto.service';
 
 @Component({
-  selector: 'app-colaboradores-programa',
-  templateUrl: './colaboradores-programa.component.html',
-  styleUrls: ['./colaboradores-programa.component.css']
+  selector: 'app-colaboradores-projeto',
+  templateUrl: './colaboradores-projeto.component.html',
+  styleUrls: ['./colaboradores-projeto.component.css']
 })
-export class ColaboradoresProgramaComponent implements OnInit {
+export class ColaboradoresProjetoComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  listaColaboradores: ColaboradoresPrograma[];
+  listaColaboradores: ColaboradoresProjeto[];
   mostrarTabela: boolean = false;
-  colaboradores: ColaboradoresPrograma = new ColaboradoresPrograma();
+  colaboradores: ColaboradoresProjeto = new ColaboradoresProjeto();
   msg:string;
 
-  displayedColumns: string[] = ['nome', 'programa', 'cargo','dataInicio', 'acoes'];
-  dataSource: MatTableDataSource<ColaboradoresPrograma> = new MatTableDataSource();
+  displayedColumns: string[] = ['nome', 'projeto', 'cargo','dataInicio', 'acoes'];
+  dataSource: MatTableDataSource<ColaboradoresProjeto> = new MatTableDataSource();
 
   constructor(
-    private colaboradoresProgramaService: ColaboradoresProgramaService,
+    private colaboradoresProjetoService: ColaboradoresProjetoService,
     private router: Router,
     private dialog: MatDialog,
 
@@ -37,13 +37,13 @@ export class ColaboradoresProgramaComponent implements OnInit {
 
   limpar() {
     this.mostrarTabela = false;
-    this.colaboradores = new ColaboradoresPrograma()
+    this.colaboradores = new ColaboradoresProjeto()
     this.dataSource.data = [];
   }
 
   consultar() {
     if (this.colaboradores.id) {
-      this.colaboradoresProgramaService.getById(this.colaboradores.id).subscribe((colaboradores: ColaboradoresPrograma) => {
+      this.colaboradoresProjetoService.getById(this.colaboradores.id).subscribe((colaboradores: ColaboradoresProjeto) => {
         if(!colaboradores){
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
@@ -58,15 +58,15 @@ export class ColaboradoresProgramaComponent implements OnInit {
   }
 
 
-  atualizar(colaboradores: ColaboradoresPrograma) {
-    this.router.navigate(['/colaboradoresprograma/cadastrar'], { queryParams: { idColaborador: colaboradores.id } });
+  atualizar(colaboradores: ColaboradoresProjeto) {
+    this.router.navigate(['/colaboradoresprojeto/cadastrar'], { queryParams: { idColaborador: colaboradores.id } });
   }
 
-  deletar(colaboradores: ColaboradoresPrograma) {
+  deletar(colaboradores: ColaboradoresProjeto) {
     this.chamaCaixaDialogo(colaboradores);
   }
 
-  chamaCaixaDialogo(colaboradores: ColaboradoresPrograma) {
+  chamaCaixaDialogo(colaboradores: ColaboradoresProjeto) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       pergunta: `Certeza que desse excluir o colaborador?`,
@@ -77,7 +77,7 @@ export class ColaboradoresProgramaComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        this.colaboradoresProgramaService.excluir(colaboradores.id).subscribe(() => {
+        this.colaboradoresProjetoService.excluir(colaboradores.id).subscribe(() => {
           this.colaboradores.id = null;
           this.consultar();
         })
@@ -89,14 +89,14 @@ export class ColaboradoresProgramaComponent implements OnInit {
   }
 
   getAll() {
-    this.colaboradoresProgramaService.getAll().subscribe((colaboradores: ColaboradoresPrograma[]) => {
+    this.colaboradoresProjetoService.getAll().subscribe((colaboradores: ColaboradoresProjeto[]) => {
       this.listaColaboradores = colaboradores;
       this.dataSource.data = colaboradores ? colaboradores : [];
       this.verificaMostrarTabela(colaboradores);
     })
   }
 
-  verificaMostrarTabela(colaboradores: ColaboradoresPrograma[]) {
+  verificaMostrarTabela(colaboradores: ColaboradoresProjeto[]) {
     if(!colaboradores ||colaboradores.length == 0) {
       this.mostrarTabela = false; 
       this.msg = "Nenhum colaborador cadastrado."

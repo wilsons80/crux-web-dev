@@ -6,8 +6,8 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 
 
 const routes: Routes = [
-  {path: 'colaboradores/cadastrar', component:CadastrarColaboradoresProgramaComponent, canActivate: [AuthGuard]},
-  {path: 'colaboradores', component:ColaboradoresProgramaComponent, canActivate:[AuthGuard]}
+  {path: 'colaboradoresprograma/cadastrar', component:CadastrarColaboradoresProgramaComponent, canActivate: [AuthGuard]},
+  {path: 'colaboradoresprograma', component:ColaboradoresProgramaComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

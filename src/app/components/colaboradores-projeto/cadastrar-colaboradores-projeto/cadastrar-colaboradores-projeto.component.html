@@ -1,4 +1,4 @@
-<mat-toolbar class="subtitulo">Colaborador Programa</mat-toolbar>
+<mat-toolbar class="subtitulo">Colaborador Projeto</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
@@ -12,14 +12,14 @@
 
                     <mat-form-field fxFlex="35%" fxFlexOffset="20px">
                         <input matInput name="dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início:"
-                            [(ngModel)]="colaboradoresPrograma.dataInicio" required>
+                            [(ngModel)]="colaboradoresProjeto.dataInicio" required>
                         <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
                         <mat-datepicker #dataInicio></mat-datepicker>
                     </mat-form-field>
 
                     <mat-form-field fxFlex="35%" fxFlexOffset="20px">
                         <input matInput name="dataFim" [matDatepicker]="dataFim" placeholder="Data Fim:"
-                            [(ngModel)]="colaboradoresPrograma.dataFim" >
+                            [(ngModel)]="colaboradoresProjeto.dataFim" >
                         <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
                         <mat-datepicker #dataFim></mat-datepicker>
                     </mat-form-field>
@@ -31,7 +31,7 @@
                 <mat-toolbar class="titulopartes">Funcionários</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
                     <mat-label>Funcionário:</mat-label>
-                    <mat-select [(ngModel)]="colaboradoresPrograma.funcionario.id" name="funcionario" required>
+                    <mat-select [(ngModel)]="colaboradoresProjeto.funcionario.id" name="funcionario" required>
                         <mat-option *ngFor="let m of funcionarios" [value]="m.id">
                             {{m.pessoasFisica.nome}}
                         </mat-option>
@@ -48,8 +48,8 @@
                 <mat-toolbar class="titulopartes">Programas</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
                     <mat-label>Programa:</mat-label>
-                    <mat-select [(ngModel)]="colaboradoresPrograma.programa.id" name="programa" required>
-                        <mat-option *ngFor="let m of programas" [value]="m.id">
+                    <mat-select [(ngModel)]="colaboradoresProjeto.projeto.id" name="projeto" required>
+                        <mat-option *ngFor="let m of projetos" [value]="m.id">
                             {{m.nome}}
                         </mat-option>
                     </mat-select>
@@ -61,7 +61,7 @@
                 <mat-toolbar class="titulopartes">Cargos</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
                     <mat-label>Cargo:</mat-label>
-                    <mat-select [(ngModel)]="colaboradoresPrograma.cargo.id" name="cargo" required>
+                    <mat-select [(ngModel)]="colaboradoresProjeto.cargo.id" name="cargo" required>
                         <mat-option *ngFor="let m of cargos" [value]="m.id">
                             {{m.nome}}
                         </mat-option>
