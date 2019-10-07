@@ -138,4 +138,8 @@ export class EscolhaFamiliarComponent implements OnInit {
   goCadastrar() {
     this.router.navigate(['/familiaraluno/cadastrar'], { queryParams: { idAluno: this.aluno.id } });
   }
+
+  cancelar() {
+    this.location.back();
+  }
 }
