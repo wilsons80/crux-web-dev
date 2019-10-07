@@ -1,3 +1,6 @@
+{{familiar.pessoaFisica | json}}
+
+
 <!-- Dados da FAMILIA DO ALUNO -->
 <mat-toolbar class="subtitulo">Familia do Aluno</mat-toolbar>
 <div class="painel-principal" style="padding: 10px;">
@@ -7,7 +10,7 @@
         <mat-step [stepControl]="formCadastroDadosPessoais">
             <form #formCadastroDadosPessoais="ngForm">
                 <ng-template matStepLabel>DADOS PESSOAIS</ng-template>
-                <dados-pessoais [pessoaFisica]="familiar.aluno.pessoaFisica"></dados-pessoais>
+                <dados-pessoais [pessoaFisica]="familiar.pessoaFisica"></dados-pessoais>
 
                 <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
                     <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
@@ -21,8 +24,7 @@
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
             <form #formCadastroEscolaridade="ngForm">
                 <ng-template matStepLabel>ESCOLARIDADE</ng-template>
-
-                <escolaridade [pessoaFisica]="familiar.aluno.pessoaFisica"></escolaridade>
+                <escolaridade [pessoaFisica]="familiar.pessoaFisica"></escolaridade>
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
@@ -40,8 +42,7 @@
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDocumentos">
             <form #formCadastroDocumentos="ngForm">
                 <ng-template matStepLabel>DOCUMENTOS</ng-template>
-
-                <documentos [pessoaFisica]="familiar.aluno.pessoaFisica"></documentos>
+                <documentos [pessoaFisica]="familiar.pessoaFisica"></documentos>
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
@@ -56,11 +57,11 @@
         </mat-step>
 
 
-        <!--  FUNCIONAL -->
+        <!--  PROFISSIONAL -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAcademico">
             <form #formCadastroAcademico="ngForm">
-                <ng-template matStepLabel>ACADEMICO</ng-template>
-                <academico [aluno]="familiar.aluno"></academico>
+                <ng-template matStepLabel>PROFISSIONAL</ng-template>
+                <profissional [familiar]="familiar"></profissional>
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
@@ -77,8 +78,8 @@
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutrasInformacoes">
             <form #formCadastroOutrasInformacoes="ngForm">
                 <ng-template matStepLabel>OUTRAS INFORMAÇÕES</ng-template>
-                <escolar [pessoaFisica]="familiar.aluno.pessoaFisica"></escolar>
-                <atendimento-apoio [pessoaFisica]="familiar.aluno.pessoaFisica"></atendimento-apoio>
+                <escolar [pessoaFisica]="familiar.pessoaFisica"></escolar>
+                <atendimento-apoio [pessoaFisica]="familiar.pessoaFisica"></atendimento-apoio>
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>

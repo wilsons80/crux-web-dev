@@ -14,6 +14,7 @@ import { FileUtils } from 'src/app/utils/file-utils';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
 import { Familiares } from 'src/app/core/familiares';
 import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
+import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
 
 @Component({
   selector: 'app-cadastrar-familiar-aluno',
@@ -22,12 +23,14 @@ import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisi
 })
 export class CadastrarFamiliarAlunoComponent implements OnInit {
 
-  pessoaFisica: PessoaFisica = new PessoaFisica();
   isAtualizar = false;
 
   familiar: Familiares = new Familiares();
   familiares: Familiares[];
 
+  pessoaFisica = new PessoaFisica();
+  grausInstrucao = new GrausInstrucao();
+  condicoesMoradia = new CondicoesMoradia();
 
   constructor(private alunoService: AlunoService,
               private toastService: ToastService,
@@ -37,30 +40,40 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
               private fileUtils: FileUtils,
               private familiarAlunoService: FamiliarAlunoService
               ) {
-    this.pessoaFisica.grausInstrucao = new GrausInstrucao();
   }
 
   ngOnInit() {
-    this.familiar.aluno = new Aluno();
-    this.familiar.aluno.pessoaFisica = this.pessoaFisica;
-    this.familiar.aluno.pessoaFisica.grausInstrucao = new GrausInstrucao();
+    this.familiar.pessoasFisica = this.pessoaFisica;
+    this.familiar.pessoasFisica.grausInstrucao = this.grausInstrucao;
+    this.familiar.pessoasFisica.condicoesMoradia = this.condicoesMoradia;
+  
 
-
-    let idFamiliaAluno: number;
-    idFamiliaAluno = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;
+    // No caso de estar alterando um familiar
+    const idFamiliaAluno = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;
     if (idFamiliaAluno) {
       this.isAtualizar = true;
 
       this.familiarAlunoService.getById(idFamiliaAluno).pipe(
         switchMap((familiar: Familiares) => {
           this.familiar = familiar;
-          return this.arquivoPessoaFisicaService.get(familiar.aluno.pessoaFisica.id);
+          return this.arquivoPessoaFisicaService.get(familiar.pessoasFisica.id);
         })
       ).subscribe((foto: any) => {
-        this.familiar.aluno.pessoaFisica.foto = foto;
+        this.familiar.pessoasFisica.foto = foto;
         foto = this.fileUtils.convertBufferArrayToBase64(foto);
-        this.familiar.aluno.pessoaFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
+        this.familiar.pessoasFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
       });
+
+    } else {
+
+      // No caso de estar cadastrando um novo familiar, então o aluno é passa como parâmetro.
+      const idAluno = this.route.snapshot.queryParams.idAluno ? this.route.snapshot.queryParams.idAluno : null;
+      if (idAluno) {
+        this.alunoService.getById(idAluno).subscribe((aluno: Aluno) => {
+          this.familiar.aluno = aluno;
+        });
+      }
+
     }
   }
 
@@ -70,8 +83,8 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
 
     this.familiarAlunoService.cadastrar(this.familiar).pipe(
       switchMap((familiarRetorno: Familiares) => {
-        if (this.familiar.aluno.pessoaFisica.isFotoChanged && this.familiar.aluno.pessoaFisica.foto) {
-          return this.arquivoPessoaFisicaService.gravar(this.familiar.aluno.pessoaFisica.foto, familiarRetorno.aluno.pessoaFisica.id);
+        if (this.familiar.pessoasFisica.isFotoChanged && this.familiar.pessoasFisica.foto) {
+          return this.arquivoPessoaFisicaService.gravar(this.familiar.pessoasFisica.foto, familiarRetorno.pessoasFisica.id);
         } else {
           return new Observable(obs => obs.next());
         }
@@ -88,8 +101,8 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
 
     this.familiarAlunoService.alterar(this.familiar).pipe(
       switchMap((familiarRetorno: Familiares) => {
-        if (this.familiar.aluno.pessoaFisica.isFotoChanged && this.familiar.aluno.pessoaFisica.foto) {
-          return this.arquivoPessoaFisicaService.alterar(this.familiar.aluno.pessoaFisica.foto, familiarRetorno.aluno.pessoaFisica.id);
+        if (this.familiar.pessoasFisica.isFotoChanged && this.familiar.pessoasFisica.foto) {
+          return this.arquivoPessoaFisicaService.alterar(this.familiar.pessoasFisica.foto, familiarRetorno.pessoasFisica.id);
         } else {
          return new Observable(obs => obs.next());
         }
@@ -102,10 +115,10 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
   }
 
   tratarDados() {
-    this.familiar.aluno.pessoaFisica.cep = this.familiar.aluno.pessoaFisica.cep ? this.retiraMascara(this.familiar.aluno.pessoaFisica.cep.toString()) : null
-    this.familiar.aluno.pessoaFisica.celular = this.familiar.aluno.pessoaFisica.celular ? this.retiraMascara(this.familiar.aluno.pessoaFisica.celular.toString()) : null
-    this.familiar.aluno.pessoaFisica.cpf = this.familiar.aluno.pessoaFisica.cpf ? this.retiraMascara(this.familiar.aluno.pessoaFisica.cpf.toString()) : null
-    this.familiar.aluno.pessoaFisica.telefoneResidencial = this.familiar.aluno.pessoaFisica.telefoneResidencial ? this.retiraMascara(this.familiar.aluno.pessoaFisica.telefoneResidencial.toString()) : null
+    this.familiar.pessoasFisica.cep = this.familiar.pessoasFisica.cep ? this.retiraMascara(this.familiar.pessoasFisica.cep.toString()) : null
+    this.familiar.pessoasFisica.celular = this.familiar.pessoasFisica.celular ? this.retiraMascara(this.familiar.pessoasFisica.celular.toString()) : null
+    this.familiar.pessoasFisica.cpf = this.familiar.pessoasFisica.cpf ? this.retiraMascara(this.familiar.pessoasFisica.cpf.toString()) : null
+    this.familiar.pessoasFisica.telefoneResidencial = this.familiar.pessoasFisica.telefoneResidencial ? this.retiraMascara(this.familiar.pessoasFisica.telefoneResidencial.toString()) : null
   }
 
   limpar() {

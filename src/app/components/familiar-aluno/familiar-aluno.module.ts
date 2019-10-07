@@ -9,10 +9,12 @@ import { DadosAlunoComponent } from './dados-aluno/dados-aluno.component';
 import { PessoaFisicaModule } from '../common/pessoa-fisica/pessoa-fisica.module';
 import { FamiliaresComponent } from './familiares/familiares.component';
 import { EscolhaFamiliarComponent } from './escolha-familiar/escolha-familiar.component';
+import { ParentescoComponent } from './parentesco/parentesco.component';
+import { ProfissionalComponent } from './profissional/profissional.component';
 
 
 @NgModule({
-  declarations: [FamiliarAlunoComponent, CadastrarFamiliarAlunoComponent, DadosAlunoComponent, FamiliaresComponent, EscolhaFamiliarComponent],
+  declarations: [FamiliarAlunoComponent, CadastrarFamiliarAlunoComponent, DadosAlunoComponent, FamiliaresComponent, EscolhaFamiliarComponent, ParentescoComponent, ProfissionalComponent],
   imports: [
     CommonModule,
     FamiliarAlunoRoutingModule,

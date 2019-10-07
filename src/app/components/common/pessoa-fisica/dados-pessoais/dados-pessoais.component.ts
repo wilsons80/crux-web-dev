@@ -13,8 +13,7 @@ import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 })
 export class DadosPessoaisComponent implements OnInit {
 
-  @Input() pessoaFisica: PessoaFisica = new PessoaFisica();
-
+  @Input() pessoaFisica: PessoaFisica;
 
   public maskCep = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];

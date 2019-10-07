@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
 import { FileUtils } from 'src/app/utils/file-utils';
@@ -42,12 +42,13 @@ export class EscolhaFamiliarComponent implements OnInit {
 
 
   constructor(private alunoService: AlunoService,
-    private toastService: ToastService,
-    private route: ActivatedRoute,
-    private location: Location,
-    private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
-    private fileUtils: FileUtils,
-    private familiarAlunoService: FamiliarAlunoService
+              private router: Router,
+              private toastService: ToastService,
+              private route: ActivatedRoute,
+              private location: Location,
+              private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
+              private fileUtils: FileUtils,
+              private familiarAlunoService: FamiliarAlunoService
     ) {
     this.pessoaFisica.grausInstrucao = new GrausInstrucao();
   }
@@ -134,4 +135,7 @@ export class EscolhaFamiliarComponent implements OnInit {
     this.alunoSelecionado = false;
   }
 
+  goCadastrar() {
+    this.router.navigate(['/familiaraluno/cadastrar'], { queryParams: { idAluno: this.aluno.id } });
+  }
 }

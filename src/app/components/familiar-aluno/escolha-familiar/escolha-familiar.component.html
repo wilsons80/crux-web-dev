@@ -46,8 +46,7 @@
 
 <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-right: 40px">
     <div>
-        <button matTooltip="Adicionar novo familiar do aluno" mat-fab color="primary"
-                [routerLink]="['/familiaraluno/cadastrar']" routerLinkActive="router-link-active">
+        <button matTooltip="Adicionar novo familiar do aluno" mat-fab color="primary" (click)="goCadastrar()">
             <mat-icon>add</mat-icon>
         </button>
     </div>
