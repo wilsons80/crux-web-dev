@@ -7,7 +7,7 @@ import { DatePipe } from '@angular/common';
 export class DataSimplesPipe extends DatePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    return super.transform(value, 'dd/MM/yyyy');
+    return super.transform(value, 'dd/MM/yyyy', 'GMT-3', 'pt-BR');
   }
 
 
