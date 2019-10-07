@@ -10,6 +10,8 @@ export class ParentescoComponent implements OnInit {
 
   @Input() familiar: Familiares;
 
+
+
   constructor() { }
 
   ngOnInit() {
