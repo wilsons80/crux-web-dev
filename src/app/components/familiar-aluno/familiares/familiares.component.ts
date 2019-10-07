@@ -1,10 +1,10 @@
 import { Familiares } from 'src/app/core/familiares';
 import { Aluno } from './../../../core/aluno';
-import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog } from '@angular/material';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-aluno.service';
 import { Router } from '@angular/router';
-import { PessoaFisica } from 'src/app/core/pessoa-fisica';
+import { SituacaoParentesco } from 'src/app/core/situacao-parentesco';
 
 @Component({
   selector: 'familiares',
@@ -19,12 +19,13 @@ export class FamiliaresComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['nome', 'grauparentesco', 'situacao', 'dataCadastro', 'acoes'];
+  displayedColumns: string[] = ['nome', 'situacao', 'datacadastro', 'acoes'];
   dataSource: MatTableDataSource<Familiares> = new MatTableDataSource();
 
+  situacaoParentesco: SituacaoParentesco = new SituacaoParentesco();
+
   constructor( private familiarService: FamiliarAlunoService,
-               private router: Router,
-               private dialog: MatDialog) {
+               private router: Router) {
   }
 
   ngOnInit() {
@@ -39,7 +40,7 @@ export class FamiliaresComponent implements OnInit {
           this.mostrarTabela = false;
           this.msg = 'Nenhum familiar cadastrado para o aluno selecionado.';
         } else {
-          this.dataSource.data = [familiares];
+          this.dataSource.data = familiares ? familiares : [];
           this.mostrarTabela = true;
         }
       });
@@ -50,4 +51,8 @@ export class FamiliaresComponent implements OnInit {
     this.router.navigate(['/familiaraluno/cadastrar'], { queryParams: { id: familiar.id } });
   }
 
+  getSituacaoParentesco(flag: string) {
+    const situacao = this.situacaoParentesco.situacao.find( d => d.flag.includes(flag));
+    return situacao ? situacao.tipo : null;
+  }
 }

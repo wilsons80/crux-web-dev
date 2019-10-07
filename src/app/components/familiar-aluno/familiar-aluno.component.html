@@ -9,7 +9,7 @@
                     <mat-label>Selecione um familiar</mat-label>
                     <mat-select [(ngModel)]="familiar" name="familiar">
                         <mat-option *ngFor="let d of familiares" [value]="d">
-                            {{ d.pessoaFisica.nome }}
+                            {{ d.pessoasFisica.nome }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -73,7 +73,7 @@
 
         <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-top: 50px">
             <div>
-                <button matTooltip="Adicionar novo familiar do aluno" mat-fab color="primary"                        
+                <button matTooltip="Adicionar novo familiar do aluno" mat-fab color="primary"
                     [routerLink]="['/familiaraluno/escolha']" routerLinkActive="router-link-active">
                     <mat-icon>add</mat-icon>
                 </button>
