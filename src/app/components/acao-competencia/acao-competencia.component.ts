@@ -1,9 +1,11 @@
+import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { AcaoCompetencia } from 'src/app/core/acao-competencia';
 import { AcoesCompetenciaService } from 'src/app/services/acoes-competencia/acoes-competencia.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 
 @Component({
   selector: 'app-acao-competencia',
@@ -18,12 +20,16 @@ export class AcaoCompetenciaComponent implements OnInit {
   mostrarTabela: boolean = false;
   acaoCompetencia: AcaoCompetencia = new AcaoCompetencia();
   msg: string;
+  pessoas:PessoaFisica[];
+  pessoa:PessoaFisica;
+
 
   displayedColumns: string[] = ['descricao', 'dataInicio', 'acoes'];
   dataSource: MatTableDataSource<AcaoCompetencia> = new MatTableDataSource();
 
   constructor(
     private acaoCompetenciaService: AcoesCompetenciaService,
+    private pessoaFisicaService:PessoaFisicaService,
     private router: Router,
     private dialog: MatDialog,
 
@@ -31,32 +37,34 @@ export class AcaoCompetenciaComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
-    this.getAll();
-
+    this.pessoaFisicaService.getAll().subscribe((pessoas:PessoaFisica[]) => {
+      this.pessoas = pessoas;
+    })
   }
 
 
   limpar() {
     this.mostrarTabela = false;
-    this.acaoCompetencia = new AcaoCompetencia()
     this.dataSource.data = [];
+    this.acaoCompetencia = new AcaoCompetencia();
+    this.msg = '';
   }
 
   consultar() {
-    if (this.acaoCompetencia.id) {
-      this.acaoCompetenciaService.getById(this.acaoCompetencia.id).subscribe((acaoCompetencia: AcaoCompetencia) => {
-        if (!acaoCompetencia) {
-          this.mostrarTabela = false
-          this.msg = "Nenhum registro para a pesquisa selecionada"
-        } else {
-          this.dataSource.data = [acaoCompetencia];
-          this.mostrarTabela = true;
-        }
-      })
-    } else {
-      this.getAll();
+    this.acaoCompetenciaService.getPorPessoa(this.pessoa.id).subscribe((acaoCompetencia: AcaoCompetencia) => {
+      if(!acaoCompetencia){
+        this.mostrarTabela = false
+        this.msg = "Nenhum registro para a pesquisa selecionada"
+      }else {
+        this.dataSource.data = [acaoCompetencia];
+        this.mostrarTabela = true;
+      }
+    },
+    ()  => {
+      this.msg = "Nenhum registro para a pesquisa selecionada"
+      this.limpar()
     }
-
+    )
   }
 
 
