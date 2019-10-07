@@ -46,7 +46,7 @@ export class TalentoComponent implements OnInit {
   limpar() {
     this.mostrarTabela = false;
     this.talento = new Talento()
-    this.pessoaFisica = new PessoaFisica()
+    this.pessoaFisica = null;
     this.dataSource.data = [];
     this.msg = '';
   }

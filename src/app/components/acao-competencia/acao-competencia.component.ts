@@ -19,7 +19,7 @@ export class AcaoCompetenciaComponent implements OnInit {
   acaoCompetencia: AcaoCompetencia = new AcaoCompetencia();
   msg: string;
 
-  displayedColumns: string[] = ['descricao', 'acoes'];
+  displayedColumns: string[] = ['descricao', 'dataInicio', 'acoes'];
   dataSource: MatTableDataSource<AcaoCompetencia> = new MatTableDataSource();
 
   constructor(

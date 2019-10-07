@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Talento } from 'src/app/core/talento';
 import { AcoesCompetenciaService } from 'src/app/services/acoes-competencia/acoes-competencia.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -22,13 +22,16 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
     private acoesCompetenciaService: AcoesCompetenciaService,
     private talentoService: TalentosService,
     private route: ActivatedRoute,
-    private location: Location,
+    private router: Router,
     private toastService: ToastService
   ) {
   }
 
 
   ngOnInit() {
+
+    this.acaoCompetencia.talentosPf = new Talento();
+    
     this.talentoService.getAll().subscribe((talentos: Talento[]) => {
       this.talentos = talentos;
     });
@@ -45,7 +48,7 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
   }
   cadastrar() {
     this.acoesCompetenciaService.cadastrar(this.acaoCompetencia).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['acaocompetencia'])
       this.toastService.showSucesso("Ação competência cadastrada com sucesso");
     });
   }
@@ -55,7 +58,7 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['acaocompetencia'])
   }
 
   getNomeBotao() {
@@ -64,7 +67,7 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
 
   atualizar() {
     this.acoesCompetenciaService.alterar(this.acaoCompetencia).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['acaocompetencia'])
       this.toastService.showSucesso("Ação competência atualizada com sucesso");
     });
   }

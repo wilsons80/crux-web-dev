@@ -1,4 +1,4 @@
-<mat-toolbar class="subtitulo">Indicadores</mat-toolbar>
+<mat-toolbar class="subtitulo">Cadastrar ação competência</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
@@ -18,7 +18,7 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
             <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
-                    <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início" [(ngModel)]="acaoCompetencia.dataInicio" required>
+                    <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início" [(ngModel)]="acaoCompetencia.dataInicio">
                     <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
                     <mat-datepicker #dataInicio></mat-datepicker>
              </mat-form-field>
@@ -31,12 +31,26 @@
 
         </div>
 
+         <!-- TALENTO -->
+         <mat-toolbar class="titulopartes">Talento</mat-toolbar>
+         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
+                        <mat-label>Selecione um talento:</mat-label>
+                        <mat-select [(ngModel)]="acaoCompetencia.talentosPf.id" name="talentosPf" required>
+                            <mat-option *ngFor="let o of talentos" [value]="o.id" >
+                              {{o.respostaTalento}}
+                            </mat-option>
+                        </mat-select>
+                </mat-form-field>
+
+         </div>
+
          <!-- RESULTADO ESPERADO -->
          <mat-toolbar class="titulopartes">Resultado Esperado</mat-toolbar>
          <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
  
              <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                   <input matInput maxlength="200"  name="resultadoPrevAcao" placeholder="Resultado esperado:" [(ngModel)]="acaoCompetencia.resultadoPrevAcao" required>
+                   <input matInput maxlength="200"  name="resultadoPrevAcao" placeholder="Resultado esperado:" [(ngModel)]="acaoCompetencia.resultadoPrevAcao">
               </mat-form-field>
  
          </div>
@@ -46,24 +60,12 @@
          <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
  
              <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                   <input matInput maxlength="200"  name="resultadoAcao" placeholder="Resultado obtido:" [(ngModel)]="acaoCompetencia.resultadoAcao" required>
+                   <input matInput maxlength="200"  name="resultadoAcao" placeholder="Resultado obtido:" [(ngModel)]="acaoCompetencia.resultadoAcao">
               </mat-form-field>
  
          </div>
 
-         <!-- OBJETIVO -->
-         <!-- <mat-toolbar class="titulopartes">Objetivo</mat-toolbar>
-         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
-                        <mat-label>Objetivo:</mat-label>
-                        <mat-select [(ngModel)]="indicadores.objetivo.idObjetivo" name="objetivo" required>
-                            <mat-option *ngFor="let o of objetivos" [value]="o.idObjetivo" >
-                              {{o.nome}}
-                            </mat-option>
-                        </mat-select>
-                </mat-form-field>
-
-         </div> -->
+        
 
         <!-- BOTÕES -->
         <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
