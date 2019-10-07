@@ -36,6 +36,10 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
 
   ngOnInit() {
 
+    this.colaboradoresPrograma.funcionario = new Funcionario();
+    this.colaboradoresPrograma.cargo = new Cargo();
+    this.colaboradoresPrograma.programa = new Programa();
+
     this.funcionarioService.getAll().subscribe((funcionarios:Funcionario[]) => {
       this.funcionarios = funcionarios;
     })
@@ -48,11 +52,11 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
       this.cargos = cargos;
     })
 
-    let idColaboradores: number;
-    idColaboradores = this.route.snapshot.queryParams.idColaboradores ? this.route.snapshot.queryParams.idColaboradores : null;
-    if (idColaboradores) {
+    let idColaborador: number;
+    idColaborador = this.route.snapshot.queryParams.idColaborador ? this.route.snapshot.queryParams.idColaborador : null;
+    if (idColaborador) {
       this.isAtualizar = true;
-      this.colaboradoresProgramaService.getById(idColaboradores).subscribe((colaboradoresPrograma: ColaboradoresPrograma) => {
+      this.colaboradoresProgramaService.getById(idColaborador).subscribe((colaboradoresPrograma: ColaboradoresPrograma) => {
         this.colaboradoresPrograma = colaboradoresPrograma
       });
     }
@@ -60,8 +64,8 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
   }
   cadastrar() {
     this.colaboradoresProgramaService.cadastrar(this.colaboradoresPrograma).subscribe(() => {
-      this.router.navigate(['colaboradores']);
-      this.toastService.showSucesso("Cargo cadastrada com sucesso");
+      this.router.navigate(['colaboradoresprograma']);
+      this.toastService.showSucesso("Colaborador cadastrado com sucesso");
     });
   }
   
@@ -70,7 +74,7 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
   }
   
   cancelar() {
-    this.router.navigate(['colaboradores']);
+    this.router.navigate(['colaboradoresprograma']);
   }
   
   getNomeBotao() {
@@ -79,8 +83,8 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
   
   atualizar() {
     this.colaboradoresProgramaService.alterar(this.colaboradoresPrograma).subscribe(() => {
-      this.router.navigate(['colaboradores']);
-      this.toastService.showSucesso("Cargo cadastrada com sucesso");
+      this.router.navigate(['colaboradoresprograma']);
+      this.toastService.showSucesso("Colaborador atualizado com sucesso");
     });
 
   }

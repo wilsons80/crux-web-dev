@@ -12,4 +12,8 @@ export class AcoesCompetenciaService extends BaseService<AcaoCompetencia> {
   constructor(http: HttpClient) {
     super(http, Rotas.ACOES_COMPETENCIA);
   }
+
+  getPorPessoa(idPessoa:number){
+    return this.http.get(Rotas.ACOES_COMPETENCIA + `pessoa/${idPessoa}`);
+  }
 }
