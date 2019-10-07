@@ -11,15 +11,21 @@ import { FamiliaresComponent } from './familiares/familiares.component';
 import { EscolhaFamiliarComponent } from './escolha-familiar/escolha-familiar.component';
 import { ParentescoComponent } from './parentesco/parentesco.component';
 import { ProfissionalComponent } from './profissional/profissional.component';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 
 @NgModule({
-  declarations: [FamiliarAlunoComponent, CadastrarFamiliarAlunoComponent, DadosAlunoComponent, FamiliaresComponent, EscolhaFamiliarComponent, ParentescoComponent, ProfissionalComponent],
+  declarations: [FamiliarAlunoComponent,
+                 CadastrarFamiliarAlunoComponent,
+                 DadosAlunoComponent,
+                 FamiliaresComponent,
+                 EscolhaFamiliarComponent, ParentescoComponent, ProfissionalComponent],
   imports: [
     CommonModule,
     FamiliarAlunoRoutingModule,
     MaterialCommonModule,
-    PessoaFisicaModule
+    PessoaFisicaModule,
+    NgxCurrencyModule
   ]
 })
 export class FamiliarAlunoModule { }

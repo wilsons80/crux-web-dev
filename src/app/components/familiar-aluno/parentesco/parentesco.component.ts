@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Familiares } from 'src/app/core/familiares';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'parentesco',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parentesco.component.css']
 })
 export class ParentescoComponent implements OnInit {
+
+  @Input() familiar: Familiares;
+
+
 
   constructor() { }
 

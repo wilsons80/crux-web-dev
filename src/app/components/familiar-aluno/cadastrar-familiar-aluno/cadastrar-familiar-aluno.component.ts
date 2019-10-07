@@ -28,10 +28,6 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
   familiar: Familiares = new Familiares();
   familiares: Familiares[];
 
-  pessoaFisica = new PessoaFisica();
-  grausInstrucao = new GrausInstrucao();
-  condicoesMoradia = new CondicoesMoradia();
-
   constructor(private alunoService: AlunoService,
               private toastService: ToastService,
               private route: ActivatedRoute,
@@ -43,10 +39,10 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.familiar.pessoasFisica = this.pessoaFisica;
-    this.familiar.pessoasFisica.grausInstrucao = this.grausInstrucao;
-    this.familiar.pessoasFisica.condicoesMoradia = this.condicoesMoradia;
-  
+    this.familiar.pessoasFisica = new PessoaFisica();
+    this.familiar.pessoasFisica.grausInstrucao = new GrausInstrucao();
+    this.familiar.pessoasFisica.condicoesMoradia = new CondicoesMoradia();
+
 
     // No caso de estar alterando um familiar
     const idFamiliaAluno = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;

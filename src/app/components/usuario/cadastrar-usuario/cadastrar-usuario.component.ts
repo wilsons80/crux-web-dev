@@ -5,6 +5,10 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { UsuarioSistema } from 'src/app/core/usuario-sistema';
 import { Location } from '@angular/common';
+import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
+import { FileUtils } from 'src/app/utils/file-utils';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'cadastrar-usuario',
@@ -22,6 +26,8 @@ export class CadastrarUsuarioComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private toastService: ToastService,
+    private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
+    private fileUtils: FileUtils,
   ) {
   }
 
@@ -32,14 +38,29 @@ export class CadastrarUsuarioComponent implements OnInit {
     id = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;
     if (id) {
       this.isAtualizar = true;
-      this.usuarioSistemaService.getById(id).subscribe((usuarioSistema: UsuarioSistema) => {
-        this.usuarioSistema = usuarioSistema;
+      this.usuarioSistemaService.getById(id).pipe(
+        switchMap((usuarioSistema: UsuarioSistema) => {
+          this.usuarioSistema = usuarioSistema;
+          return this.arquivoPessoaFisicaService.get(usuarioSistema.pessoaFisica.id);
+        })
+      ).subscribe((foto: any) => {
+        this.usuarioSistema.pessoaFisica.foto = foto;
+        foto = this.fileUtils.convertBufferArrayToBase64(foto);
+        this.usuarioSistema.pessoaFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
       });
     }
   }
 
   cadastrar() {
-    this.usuarioSistemaService.cadastrar(this.usuarioSistema).subscribe(() => {
+    this.usuarioSistemaService.cadastrar(this.usuarioSistema).pipe(
+      switchMap((alunoRetorno: UsuarioSistema) => {
+        if (this.usuarioSistema.pessoaFisica.isFotoChanged && this.usuarioSistema.pessoaFisica.foto) {
+          return this.arquivoPessoaFisicaService.gravar(this.usuarioSistema.pessoaFisica.foto, alunoRetorno.pessoaFisica.id);
+        } else {
+          return new Observable(obs => obs.next());
+        }
+      })
+    ).subscribe(() => {
       this.location.back();
       this.toastService.showSucesso('Usuário cadastrado com sucesso');
     });
@@ -64,7 +85,15 @@ export class CadastrarUsuarioComponent implements OnInit {
 
 
   atualizar() {
-    this.usuarioSistemaService.alterar(this.usuarioSistema).subscribe(() => {
+    this.usuarioSistemaService.alterar(this.usuarioSistema).pipe(
+      switchMap((usuarioSistema: UsuarioSistema) => {
+        if (this.usuarioSistema.pessoaFisica.isFotoChanged && this.usuarioSistema.pessoaFisica.foto) {
+          return this.arquivoPessoaFisicaService.alterar(this.usuarioSistema.pessoaFisica.foto, usuarioSistema.pessoaFisica.id);
+        } else {
+         return new Observable(obs => obs.next());
+        }
+      })
+    ).subscribe(() => {
       this.location.back();
       this.toastService.showSucesso('Usuário atualizado com sucesso');
     });

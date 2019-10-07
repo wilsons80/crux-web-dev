@@ -1,4 +1,3 @@
-
 <!-- Dados da FAMILIA DO ALUNO -->
 <mat-toolbar class="subtitulo">Familia do Aluno</mat-toolbar>
 <div class="painel-principal" style="padding: 10px;">
@@ -17,6 +16,25 @@
                 </div>
             </form>
         </mat-step>
+
+        <!-- ------------------ PARENTESCO ------------------------ -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
+            <form #formCadastroEscolaridade="ngForm">
+                <ng-template matStepLabel>PARENTESCO</ng-template>
+                <parentesco [familiar]="familiar"></parentesco>
+            </form>
+
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                    Próximo
+                </button>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>
+
 
         <!-- ------------------ ESCOLARIDADE ------------------------ -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
@@ -58,7 +76,7 @@
         <!--  PROFISSIONAL -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAcademico">
             <form #formCadastroAcademico="ngForm">
-                <ng-template matStepLabel>PROFISSIONAL</ng-template>
+                <ng-template matStepLabel>DADOS PROFISSIONAIS</ng-template>
                 <profissional [familiar]="familiar"></profissional>
             </form>
 
