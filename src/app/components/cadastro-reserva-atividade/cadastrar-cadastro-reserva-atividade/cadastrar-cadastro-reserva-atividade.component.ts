@@ -1,3 +1,5 @@
+import { CadastroReservaAtividade } from './../../../core/cadastro-reserva-atividade';
+import { PessoaFisicaService } from './../../../services/pessoa-fisica/pessoa-fisica.service';
 import { Component, OnInit } from '@angular/core';
 import { ProdutosAtividade } from 'src/app/core/produtos-atividade';
 import { Produto } from 'src/app/core/produto';
@@ -8,6 +10,8 @@ import { ProdutoService } from 'src/app/services/produto/produto.service';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { CadastroReservaAtividadeService } from 'src/app/services/cadastro-reserva-atividade/cadastro-reserva-atividade.service';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 
 @Component({
   selector: 'app-cadastrar-cadastro-reserva-atividade',
@@ -16,8 +20,8 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 })
 export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
 
-  produtosAtividade: ProdutosAtividade = new ProdutosAtividade()
-  produtos: Produto[];
+  cadastroReserva: CadastroReservaAtividade = new CadastroReservaAtividade()
+  pessoas: PessoaFisica[];
   atividades: Atividade[];
 
   formasPagamento: any = [
@@ -30,8 +34,8 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
   isAtualizar: boolean = false;
 
   constructor(
-    private produtosAtividadeService: ProdutosAtividadeService,
-    private produtoService: ProdutoService,
+    private cadastroReservaAtividadeService: CadastroReservaAtividadeService,
+    private pessoaService: PessoaFisicaService,
     private atividadeService: AtividadeService,
     private route: ActivatedRoute,
     private router: Router,
@@ -40,37 +44,36 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.produtosAtividade.produto = new Produto();
-    this.produtosAtividade.atividade = new Atividade();
-    this.produtosAtividade.observacao = '';
+    this.cadastroReserva.pessoasFisica = new PessoaFisica();
+    this.cadastroReserva.atividade = new Atividade();
 
-    this.produtoService.getAll().subscribe((produtos: Produto[]) => {
-      this.produtos = produtos;
+    this.pessoaService.getAll().subscribe((pessoas: PessoaFisica[]) => {
+      this.pessoas = pessoas;
     })
 
     this.atividadeService.getAll().subscribe((atividades: Atividade[]) => {
       this.atividades = atividades;
     })
 
-    let idProdutoAtividade: number;
-    idProdutoAtividade = this.route.snapshot.queryParams.idProdutoAtividade ? this.route.snapshot.queryParams.idProdutoAtividade : null;
-    if (idProdutoAtividade) {
+    let idCadastroReserva: number;
+    idCadastroReserva = this.route.snapshot.queryParams.idCadastroReserva ? this.route.snapshot.queryParams.idCadastroReserva : null;
+    if (idCadastroReserva) {
       this.isAtualizar = true;
-      this.produtosAtividadeService.getById(idProdutoAtividade).subscribe((produtosAtividade: ProdutosAtividade) => {
-        this.produtosAtividade = produtosAtividade
+      this.cadastroReservaAtividadeService.getById(idCadastroReserva).subscribe((cadastroReserva: CadastroReservaAtividade) => {
+        this.cadastroReserva = cadastroReserva
       });
     }
 
   }
   cadastrar() {
-    this.produtosAtividadeService.cadastrar(this.produtosAtividade).subscribe(() => {
+    this.cadastroReservaAtividadeService.cadastrar(this.cadastroReserva).subscribe(() => {
       this.router.navigate(['produtosatividade']);
-      this.toastService.showSucesso("Produto Atividade cadastrado com sucesso");
+      this.toastService.showSucesso("Cadastro de Reserva da Atividade cadastrado com sucesso");
     });
   }
 
   limpar() {
-    this.produtosAtividade = new ProdutosAtividade();
+    this.cadastroReserva = new CadastroReservaAtividade();
   }
 
   cancelar() {
@@ -82,9 +85,9 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
   }
 
   atualizar() {
-    this.produtosAtividadeService.alterar(this.produtosAtividade).subscribe(() => {
-      this.router.navigate(['produtosatividade']);
-      this.toastService.showSucesso("Produto Atividade atualizado com sucesso");
+    this.cadastroReservaAtividadeService.alterar(this.cadastroReserva).subscribe(() => {
+      this.router.navigate(['cadastroreservaatividade']);
+      this.toastService.showSucesso("Cadastro de Reserva da Atividade atualizado com sucesso");
     });
 
   }

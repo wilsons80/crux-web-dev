@@ -3,116 +3,80 @@
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
 
-        <!-- DADOS BÁSICOS -->
-        <mat-toolbar class="titulopartes">Dados Básicos</mat-toolbar>
+        <!-- CADASTRO DE RESERVA -->
+        <mat-toolbar class="titulopartes">Cadastro de Reserva</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-           
             <mat-form-field fxFlex="50%" fxFlexOffset="20px">
                 <input matInput maxlength="200" name="descricao" placeholder="Descrição:"
-                    [(ngModel)]="produtosAtividade.descricao" required>
+                    [(ngModel)]="cadastroReserva.descricaoCadastroReserva" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="50%" >
+                <input matInput name="dataCadastroReserva" [matDatepicker]="dataCadastroReserva" placeholder="Data do Cadastro de Reserva:"
+                    [(ngModel)]="cadastroReserva.dataCadastroReserva" >
+                <mat-datepicker-toggle matSuffix [for]="dataCadastroReserva"></mat-datepicker-toggle>
+                <mat-datepicker #dataCadastroReserva></mat-datepicker>
+        </mat-form-field>
+
+        </div>
+       
+        <!-- CANCELAMENTO -->
+        <mat-toolbar class="titulopartes">Cancelamento do Cadastro Reserva</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+            <mat-form-field fxFlex="50%" fxFlexOffset="20px">
+                <input matInput maxlength="200" name="descricaoCancelamentoCadastro" placeholder="Descrição do Cancelamento do Cadastro:"
+                    [(ngModel)]="cadastroReserva.descricaoCancelamentoCadastro" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="50%" >
+                <input matInput name="dataCancelamentoCadastro" [matDatepicker]="dataCancelamentoCadastro" placeholder="Data do Cancelamento do Cadastro:"
+                    [(ngModel)]="cadastroReserva.dataCancelamentoCadastro" >
+                <mat-datepicker-toggle matSuffix [for]="dataCancelamentoCadastro"></mat-datepicker-toggle>
+                <mat-datepicker #dataCancelamentoCadastro></mat-datepicker>
+        </mat-form-field>
+
+        </div>
+        
+        <!-- ATIVIDADE -->
+        <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+            <mat-form-field style="margin: 0 20px 0 20px" fxFlex="40%">
+                <mat-label>Atividade:</mat-label>
+                <mat-select [(ngModel)]="cadastroReserva.atividade.id" name="atividade" required>
+                    <mat-option *ngFor="let m of atividades" [value]="m.id">
+                        {{m.descricao}}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
 
             <mat-form-field fxFlex="15%" >
-                    <input matInput name="dataAquisicao" [matDatepicker]="dataAquisicao" placeholder="Data de Arquisição:"
-                        [(ngModel)]="produtosAtividade.dataAquisicao" >
-                    <mat-datepicker-toggle matSuffix [for]="dataAquisicao"></mat-datepicker-toggle>
-                    <mat-datepicker #dataAquisicao></mat-datepicker>
+                <input matInput name="dataCadastroAtividade" [matDatepicker]="dataCadastroAtividade" placeholder="Data de Cadastro da Atividade:"
+                    [(ngModel)]="cadastroReserva.dataCadastroAtividade" >
+                <mat-datepicker-toggle matSuffix [for]="dataCadastroAtividade"></mat-datepicker-toggle>
+                <mat-datepicker #dataCadastroAtividade></mat-datepicker>
             </mat-form-field>
-            
+           
             <mat-form-field fxFlex="15%" >
-                    <input matInput name="dataVendaProduto" [matDatepicker]="dataVendaProduto" placeholder="Data de Venda:"
-                        [(ngModel)]="produtosAtividade.dataVendaProduto" >
-                    <mat-datepicker-toggle matSuffix [for]="dataVendaProduto"></mat-datepicker-toggle>
-                    <mat-datepicker #dataVendaProduto></mat-datepicker>
+                <input matInput name="dtAlteracaoAtividade" [matDatepicker]="dtAlteracaoAtividade" placeholder="Data de Alteração da Atividade:"
+                    [(ngModel)]="cadastroReserva.dtAlteracaoAtividade" >
+                <mat-datepicker-toggle matSuffix [for]="dtAlteracaoAtividade"></mat-datepicker-toggle>
+                <mat-datepicker #dtAlteracaoAtividade></mat-datepicker>
             </mat-form-field>
+
         </div>
 
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-           
-                <mat-form-field fxFlex="50%" fxFlexOffset="20px">
-                    <input matInput maxlength="200" name="descricaoOrigemProduto" placeholder="Descrição da Origem do Produto:"
-                        [(ngModel)]="produtosAtividade.descricaoOrigemProduto">
-                </mat-form-field>
-    
-                <mat-form-field fxFlex="15%" >
-                    <input matInput maxlength="200" name="qtdProduto" placeholder="Quantidade do Produto:"
-                        [(ngModel)]="produtosAtividade.qtdProduto">
-                </mat-form-field>
-    
-                <mat-form-field fxFlex="15%" >
-                    <input matInput maxlength="200" name="qtdProdutoVendida" placeholder="Quantidade Vendida do Produto:"
-                        [(ngModel)]="produtosAtividade.qtdProdutoVendida">
-                </mat-form-field>
-    
-                
-            </div>
-            <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-            <!-- PAGAMENTO -->
-                <div fxLayout="column" fxLayoutAlign="center stretch" fxFlex="30%" >
-                    <mat-toolbar class="titulopartes">Pagamento</mat-toolbar>
-                    <div fxLayout="row" fxLayoutGap="50px">
-                            <mat-form-field fxFlexOffset="20px" fxFlex="35%">
-                                    <input currencyMask name="valorProduto" placeholder="Valor do Produto:" matInput
-                                        [(ngModel)]="produtosAtividade.valorProduto"
-                                        [options]="{ prefix: '', thousands: '.', decimal: ',' }" />
-                                    <span matPrefix>R$&nbsp;</span>
-                                </mat-form-field>
-
-                                <mat-form-field fxFlex="40%">
-                                        <mat-label>Forma de Pagamengo:</mat-label>
-                                        <mat-select [(ngModel)]="produtosAtividade.formaPagamento" name="formaPagamento">
-                                            <mat-option *ngFor="let m of formasPagamento" [value]="m.sigla">
-                                                {{m.descricao}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                    </div>
-            </div>
-            
-             <!-- PRODUTO -->
-            <div fxLayout="column" fxFlex="35%" >
-                    <mat-toolbar class="titulopartes">Produto</mat-toolbar>
-                    <mat-form-field style="margin: 0 20px 0 20px" fxFlex="40%">
-                            <mat-label>Produtos:</mat-label>
-                            <mat-select [(ngModel)]="produtosAtividade.produto.id" name="produto" required>
-                                <mat-option *ngFor="let m of produtos" [value]="m.id">
-                                    {{m.nome}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-            </div>
-          
-            <!-- ATIVIDADE -->
-            <div fxLayout="column" fxFlex="35%" >
-                    <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
-                    <mat-form-field style="margin: 0 20px 0 20px" fxFlex="40%">
-                            <mat-label>Atividades:</mat-label>
-                            <mat-select [(ngModel)]="produtosAtividade.atividade.id" name="atividade" required>
-                                <mat-option *ngFor="let m of atividades" [value]="m.id">
-                                    {{m.descricao}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-            </div>
-
-            </div>
-
-            <!-- OBSERVACAO -->
-            <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
-            <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field  fxFlexOffset="20px" fxFlex= "85%" appearance="outline" >
-                            <mat-label>Obervação:</mat-label>
-                            <textarea  matInput #message
-                                    name="observacoes"
-                                    [(ngModel)]="produtosAtividade.observacao"
-                                    cdkTextareaAutosize
-                                    #autosize="cdkTextareaAutosize"
-                                    cdkAutosizeMinRows="2"
-                                    maxlength="200"
-                                    ></textarea>
-                      <mat-hint align="end">{{produtosAtividade?.observacao?.length}} / 200</mat-hint>
-                    </mat-form-field>
-                </div>
+         <!-- PESSOA -->
+         <mat-toolbar class="titulopartes">Pessoa</mat-toolbar>
+         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+             <mat-form-field style="margin: 0 20px 0 20px" fxFlex="40%">
+                 <mat-label>Pessoas:</mat-label>
+                 <mat-select [(ngModel)]="cadastroReserva.pessoasFisica.id" name="pessoafisica" required>
+                     <mat-option *ngFor="let m of pessoas" [value]="m.id">
+                         {{m.nome}}
+                     </mat-option>
+                 </mat-select>
+             </mat-form-field>
+          </div>
 
 
         <!-- BOTÕES -->
