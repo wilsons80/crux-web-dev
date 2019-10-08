@@ -5,6 +5,7 @@ import { MatToolbarModule, MatIconModule, MatMenuModule, MatInputModule, MatButt
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     MatToolbarModule,
-   MaterialCommonModule
+   MaterialCommonModule,
+   RouterModule
   
   ],
   exports: [ToolBarPrincipalComponent]

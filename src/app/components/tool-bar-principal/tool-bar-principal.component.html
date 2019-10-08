@@ -11,7 +11,7 @@
                 </button>
                 <div fxLayout="row" fxLayoutAlign="space-around center">
                     <a (click)="goHome()">
-                      OverCrux
+                        OverCrux
                     </a>
                 </div>
             </div>
@@ -20,7 +20,17 @@
 
 
             <!-- DIREITA -->
+
             <div *ngIf="mostrarMenu" fxLayout="row" fxLayoutAlign="space-around center">
+                <button mat-fab fxLayoutAlign="center center" 
+                                class="botao" 
+                                matTooltip="Trocar a logo"
+                                [style.background-image]="getBackground()" 
+                                [routerLink]="['/upload']"
+                                routerLinkActive="router-link-active"
+                                style="margin-right: 10px">
+                    <mat-icon class="nao-foto"></mat-icon>
+                </button>
                 <mat-form-field style="width: 300px" fxLayoutGap="20px">
                     <mat-select name="unidade" #unidade="ngModel"
                         [(ngModel)]="toolbarPrincipalService.unidadeSelecionada"

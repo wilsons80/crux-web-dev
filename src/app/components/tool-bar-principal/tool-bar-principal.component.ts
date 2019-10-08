@@ -68,4 +68,10 @@ export class ToolBarPrincipalComponent implements OnInit {
   goHome() {
     this.router.navigate(['home']);
   }
+
+  getBackground(){
+    if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){
+      return `url(${this.toolbarPrincipalService.logo.changingThisBreaksApplicationSecurity})`
+    }
+  }
 }
