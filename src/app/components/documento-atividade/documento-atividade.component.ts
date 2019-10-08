@@ -89,8 +89,8 @@ export class DocumentoAtividadeComponent implements OnInit {
         this.documentoAtividadeService
           .excluir(documentoAtividade.id)
           .subscribe(() => {
-            this.atividade.id = null;
             this.consultar();
+            this.atividade.id = null;
           });
       } else {
         dialogRef.close();

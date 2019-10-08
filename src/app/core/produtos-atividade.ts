@@ -11,7 +11,7 @@ export class ProdutosAtividade{
 	descricaoOrigemProduto:string;
 	qtdProduto:number;
 	qtdProdutoVendida:number;
-	formaPagamento:FormaPagamento;
+	formaPagamento:String;
 	atividade:Atividade;
 	produto:Produto;
 	usuarioAlteracao:number;
