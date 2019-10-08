@@ -24,13 +24,6 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
   pessoas: PessoaFisica[];
   atividades: Atividade[];
 
-  formasPagamento: any = [
-    {id:1, sigla:FormaPagamento.DINHEIRO, descricao: 'DINHEIRO'},
-    {id:2, sigla:FormaPagamento.CARTAO, descricao: 'CARTÃO'},
-    {id:3, sigla:FormaPagamento.DEBITO, descricao: 'DÉBITO'},
-    {id:4, sigla:FormaPagamento.DESCONTO_FOLHA, descricao: 'DESCONTO EM FOLHA'},
-  ]
-
   isAtualizar: boolean = false;
 
   constructor(

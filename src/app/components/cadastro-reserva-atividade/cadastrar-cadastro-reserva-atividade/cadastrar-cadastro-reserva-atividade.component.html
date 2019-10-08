@@ -5,13 +5,13 @@
 
         <!-- CADASTRO DE RESERVA -->
         <mat-toolbar class="titulopartes">Cadastro de Reserva</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field fxFlex="50%" fxFlexOffset="20px">
-                <input matInput maxlength="200" name="descricao" placeholder="Descrição:"
-                    [(ngModel)]="cadastroReserva.descricaoCadastroReserva" required>
+        <div fxLayout="row" fxLayoutGap="50px"  fxFlexFill>
+            <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+                <input matInput maxlength="200" name="descricao" placeholder="Descrição do Cadastro de Reserva:"
+                    [(ngModel)]="cadastroReserva.descricaoCadastroReserva" >
             </mat-form-field>
 
-            <mat-form-field fxFlex="50%" >
+            <mat-form-field fxFlex="45%" >
                 <input matInput name="dataCadastroReserva" [matDatepicker]="dataCadastroReserva" placeholder="Data do Cadastro de Reserva:"
                     [(ngModel)]="cadastroReserva.dataCadastroReserva" >
                 <mat-datepicker-toggle matSuffix [for]="dataCadastroReserva"></mat-datepicker-toggle>
@@ -22,13 +22,13 @@
        
         <!-- CANCELAMENTO -->
         <mat-toolbar class="titulopartes">Cancelamento do Cadastro Reserva</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field fxFlex="50%" fxFlexOffset="20px">
+        <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
+            <mat-form-field fxFlex="45%" fxFlexOffset="20px">
                 <input matInput maxlength="200" name="descricaoCancelamentoCadastro" placeholder="Descrição do Cancelamento do Cadastro:"
-                    [(ngModel)]="cadastroReserva.descricaoCancelamentoCadastro" required>
+                    [(ngModel)]="cadastroReserva.descricaoCancelamentoCadastro">
             </mat-form-field>
 
-            <mat-form-field fxFlex="50%" >
+            <mat-form-field fxFlex="45%" >
                 <input matInput name="dataCancelamentoCadastro" [matDatepicker]="dataCancelamentoCadastro" placeholder="Data do Cancelamento do Cadastro:"
                     [(ngModel)]="cadastroReserva.dataCancelamentoCadastro" >
                 <mat-datepicker-toggle matSuffix [for]="dataCancelamentoCadastro"></mat-datepicker-toggle>
@@ -39,8 +39,8 @@
         
         <!-- ATIVIDADE -->
         <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field style="margin: 0 20px 0 20px" fxFlex="40%">
+        <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
+            <mat-form-field fxFlexOffset="20px" fxFlex="45%">
                 <mat-label>Atividade:</mat-label>
                 <mat-select [(ngModel)]="cadastroReserva.atividade.id" name="atividade" required>
                     <mat-option *ngFor="let m of atividades" [value]="m.id">
@@ -67,8 +67,8 @@
 
          <!-- PESSOA -->
          <mat-toolbar class="titulopartes">Pessoa</mat-toolbar>
-         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-             <mat-form-field style="margin: 0 20px 0 20px" fxFlex="40%">
+         <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
+             <mat-form-field fxFlexOffset="20px" fxFlex="45%">
                  <mat-label>Pessoas:</mat-label>
                  <mat-select [(ngModel)]="cadastroReserva.pessoasFisica.id" name="pessoafisica" required>
                      <mat-option *ngFor="let m of pessoas" [value]="m.id">

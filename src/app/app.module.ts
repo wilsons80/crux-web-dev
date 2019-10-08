@@ -1,3 +1,4 @@
+import { CadastroReservaAtividadeModule } from './components/cadastro-reserva-atividade/cadastro-reserva-atividade.module';
 import { ProdutosAtividadeModule } from './components/produtos-atividade/produtos-atividade.module';
 import { ColaboradoresProjetoModule } from './components/colaboradores-projeto/colaboradores-projeto.module';
 import { registerLocaleData } from '@angular/common';
@@ -167,7 +168,8 @@ registerLocaleData(localePt, 'pt-BR');
     DocumentoAtividadeModule,
     ColaboradoresProgramaModule,
     ColaboradoresProjetoModule,
-    ProdutosAtividadeModule
+    ProdutosAtividadeModule,
+    CadastroReservaAtividadeModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },

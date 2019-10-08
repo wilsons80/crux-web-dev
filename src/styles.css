@@ -109,6 +109,11 @@ div.inserted {
   width: 200px;
 }
 
+.listamenufilhos{
+  background: lightgray;
+  width: 200px
+}
+
 /* .main_content {
   width:100%;
   height: calc(100vh - 100px);
