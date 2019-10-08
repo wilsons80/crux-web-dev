@@ -4,9 +4,9 @@
         <form #formConsultar="ngForm">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
 
-                <mat-icon>warning</mat-icon>
+                <mat-icon>block</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione um funcionário</mat-label>
+                    <mat-label>Selecione uma atividade</mat-label>
                     <mat-select [(ngModel)]="atividade" name="atividade" required>
                         <mat-option *ngFor="let d of listaAtividade" [value]="d" >
                             {{d.descricao}}
@@ -33,19 +33,14 @@
         <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 20px">
 
 
-            <ng-container matColumnDef="funcionarioFaltou">
-                <th mat-header-cell *matHeaderCellDef> Funcionario: </th>
-                <td mat-cell *matCellDef="let element"> {{element.funcionarioFaltou.pessoasFisica.nome}} </td>
+            <ng-container matColumnDef="descricao">
+                <th mat-header-cell *matHeaderCellDef> Id: </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
             </ng-container>
-            <ng-container matColumnDef="funcionarioCadastrouFalta">
-                <th mat-header-cell *matHeaderCellDef> Cadastrado por: </th>
-                <td mat-cell *matCellDef="let element"> {{element.funcionarioCadastrouFalta.pessoasFisica.nome}} </td>
+            <ng-container matColumnDef="atividade">
+                <th mat-header-cell *matHeaderCellDef> Atividade: </th>
+                <td mat-cell *matCellDef="let element"> {{element.atividade.descricao}} </td>
             </ng-container>
-            <ng-container matColumnDef="dataFaltaFuncionario">
-                <th mat-header-cell *matHeaderCellDef> Data da Falta: </th>
-                <td mat-cell *matCellDef="let element"> {{element.dataFaltaFuncionario | dataSimples}} </td>
-            </ng-container>
-
 
 
             <ng-container matColumnDef="acoes">

@@ -9,7 +9,7 @@
                     <mat-label>Selecione um familiar</mat-label>
                     <mat-select [(ngModel)]="familiar" name="familiar">
                         <mat-option *ngFor="let d of familiares" [value]="d">
-                            {{ d.pessoaFisica.nome }}
+                            {{ d.pessoasFisica.nome }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

@@ -28,9 +28,9 @@
 
             <!-- FUNCIONÁRIO -->
             <div id="data" fxLayout="column" fxLayoutAlign="start stretch" fxFlex="50%" fxFlexFill>
-                <mat-toolbar class="titulopartes">Funcionários</mat-toolbar>
+                <mat-toolbar class="titulopartes">Funcionário</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
-                    <mat-label>Funcionário:</mat-label>
+                    <mat-label>Funcionários:</mat-label>
                     <mat-select [(ngModel)]="colaboradoresProjeto.funcionario.id" name="funcionario" required>
                         <mat-option *ngFor="let m of funcionarios" [value]="m.id">
                             {{m.pessoasFisica.nome}}
@@ -45,9 +45,9 @@
 
             <!-- PROGRAMA -->
             <div id="data" fxLayout="column" fxLayoutAlign="start stretch" fxFlex="50%">
-                <mat-toolbar class="titulopartes">Programas</mat-toolbar>
+                <mat-toolbar class="titulopartes">Projeto</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
-                    <mat-label>Programa:</mat-label>
+                    <mat-label>Projetos:</mat-label>
                     <mat-select [(ngModel)]="colaboradoresProjeto.projeto.id" name="projeto" required>
                         <mat-option *ngFor="let m of projetos" [value]="m.id">
                             {{m.nome}}
@@ -58,9 +58,9 @@
 
             <!-- CARGO -->
             <div id="data" fxLayout="column" fxLayoutAlign="start stretch" fxFlex="50%" fxFlexFill>
-                <mat-toolbar class="titulopartes">Cargos</mat-toolbar>
+                <mat-toolbar class="titulopartes">Cargo</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
-                    <mat-label>Cargo:</mat-label>
+                    <mat-label>Cargos:</mat-label>
                     <mat-select [(ngModel)]="colaboradoresProjeto.cargo.id" name="cargo" required>
                         <mat-option *ngFor="let m of cargos" [value]="m.id">
                             {{m.nome}}

@@ -35,5 +35,6 @@ export enum Rotas {
     USUARIO_SISTEMA          = 'api/usuariosistema/',
     COLABORADORES_PROGRAMA   = 'api/colaboradoresprograma/',
     COLABORADORES_PROJETO    = 'api/colaboradoresprojeto/',
-    DOCUMENTO_ATIVIDADE      = 'api/documentosatividade/'
+    DOCUMENTO_ATIVIDADE      = 'api/documentosatividade/',
+    PRODUTO_ATIVIDADE        = 'api/produtosatividade/'
 }

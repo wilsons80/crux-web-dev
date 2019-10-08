@@ -1,3 +1,4 @@
+import { ColaboradoresProjetoModule } from './components/colaboradores-projeto/colaboradores-projeto.module';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
@@ -164,6 +165,7 @@ registerLocaleData(localePt, 'pt-BR');
     UsuarioModule,
     DocumentoAtividadeModule,
     ColaboradoresProgramaModule,
+    ColaboradoresProjetoModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },

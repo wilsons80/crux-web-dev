@@ -19,12 +19,10 @@ export class DocumentoAtividadeComponent implements OnInit {
   mostrarTabela: boolean = false;
   msg: string;
   atividade: Atividade;
-  documentoAtividade: DocumentoAtividade;
 
   displayedColumns: string[] = [
-    "funcionarioFaltou",
-    "funcionarioCadastrouFalta",
-    "dataFaltaFuncionario",
+    "descricao",
+    "atividade",
     "acoes"
   ];
   dataSource: MatTableDataSource<DocumentoAtividade> = new MatTableDataSource();
@@ -45,7 +43,6 @@ export class DocumentoAtividadeComponent implements OnInit {
 
   limpar() {
     this.mostrarTabela = false;
-    this.documentoAtividade = new DocumentoAtividade();
     this.dataSource.data = [];
     this.msg = "";
   }
@@ -90,7 +87,7 @@ export class DocumentoAtividadeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
         this.documentoAtividadeService
-          .excluir(this.documentoAtividade.id)
+          .excluir(documentoAtividade.id)
           .subscribe(() => {
             this.atividade.id = null;
             this.consultar();
