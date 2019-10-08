@@ -85,13 +85,13 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill *ngIf="familiar.pessoasFisica.classificadorMotivoNaoTrab === 'OU'">
   <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
           <mat-label>Motivo de não trabalhar:</mat-label>
-          <textarea matInput #message
+          <textarea matInput
                     name="motivoNaoTrab"
                     [(ngModel)]="familiar.pessoasFisica.motivoNaoTrab"
                     cdkTextareaAutosize
                     #autosize="cdkTextareaAutosize"
                     cdkAutosizeMinRows="2"
                     maxlength="200"></textarea>
-    <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+    <mat-hint align="end">{{familiar.pessoasFisica?.motivoNaoTrab?.length}} / 200</mat-hint>
   </mat-form-field>
 </div>

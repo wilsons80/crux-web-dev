@@ -24,7 +24,7 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlex="15%" fxFlexOffset="20px">
         <input currencyMask
-               matInput maxlength="50" name="valorOutrosBenerficiosSoc" 
+               matInput maxlength="50" name="valorOutrosBenerficiosSoc"
                placeholder="Valor de outros benefícios sociais:"
                [(ngModel)]="pessoaFisica.valorOutrosBenerficiosSoc"
                [options]="{ prefix: '', thousands: '.', decimal: '.' }" />
@@ -49,7 +49,7 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Identificação da escola frequentada pelo familiar:</mat-label>
-            <textarea matInput #message
+            <textarea matInput #escola
                     name="escola"
                     [(ngModel)]="pessoaFisica.escola"
                     cdkTextareaAutosize
@@ -57,12 +57,12 @@
                     cdkAutosizeMinRows="2"
                     maxlength="200"
                     ></textarea>
-        <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+        <mat-hint align="end">{{escola.value.length}} / 200</mat-hint>
     </mat-form-field>
 
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
       <mat-label>Descrição do turno de frequência da escola pelo familiar:</mat-label>
-      <textarea matInput #message
+      <textarea matInput #turno
               name="turno"
               [(ngModel)]="pessoaFisica.turno"
               cdkTextareaAutosize
@@ -70,7 +70,7 @@
               cdkAutosizeMinRows="2"
               maxlength="200"
               ></textarea>
-      <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+      <mat-hint align="end">{{turno.value.length}} / 200</mat-hint>
   </mat-form-field>
 
 </div>
@@ -78,7 +78,7 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
         <mat-label>Nome do curso da escola regular onde o educando está matriculado:</mat-label>
-        <textarea matInput #message
+        <textarea matInput #cursoEscola
                 name="cursoEscola"
                 [(ngModel)]="pessoaFisica.cursoEscola"
                 cdkTextareaAutosize
@@ -86,12 +86,12 @@
                 cdkAutosizeMinRows="2"
                 maxlength="200"
                 ></textarea>
-        <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+        <mat-hint align="end">{{cursoEscola.value.length}} / 200</mat-hint>
     </mat-form-field>
 
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
       <mat-label>Período do curso da escola regular onde o educando está matriculado:</mat-label>
-      <textarea matInput #message
+      <textarea matInput #periodoEscola
               name="periodoEscola"
               [(ngModel)]="pessoaFisica.periodoEscola"
               cdkTextareaAutosize
@@ -99,7 +99,7 @@
               cdkAutosizeMinRows="2"
               maxlength="200"
               ></textarea>
-      <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+      <mat-hint align="end">{{periodoEscola.value.length}} / 200</mat-hint>
     </mat-form-field>
 
 </div>
@@ -107,7 +107,7 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Série do curso da escola regular onde o educando está matriculado:</mat-label>
-            <textarea matInput #message
+            <textarea matInput #serieEscola
                     name="serieEscola"
                     [(ngModel)]="pessoaFisica.serieEscola"
                     cdkTextareaAutosize
@@ -115,12 +115,12 @@
                     cdkAutosizeMinRows="2"
                     maxlength="200"
                     ></textarea>
-      <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+      <mat-hint align="end">{{serieEscola.value.length}} / 200</mat-hint>
     </mat-form-field>
 
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
       <mat-label>Região administrativa da escola:</mat-label>
-      <textarea matInput #message
+      <textarea matInput #regiaoEscola
               name="regiaoEscola"
               [(ngModel)]="pessoaFisica.regiaoEscola"
               cdkTextareaAutosize
@@ -128,7 +128,7 @@
               cdkAutosizeMinRows="2"
               maxlength="200"
               ></textarea>
-      <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+      <mat-hint align="end">{{regiaoEscola.value.length}} / 200</mat-hint>
     </mat-form-field>
 
 </div>
@@ -136,7 +136,7 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
             <mat-label>Observações:</mat-label>
-            <textarea matInput #message
+            <textarea matInput #observacoes
                     name="observacoes"
                     [(ngModel)]="pessoaFisica.observacoes"
                     cdkTextareaAutosize
@@ -144,6 +144,6 @@
                     cdkAutosizeMinRows="2"
                     maxlength="200"
                     ></textarea>
-      <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+      <mat-hint align="end">{{observacoes.value.length}} / 200</mat-hint>
     </mat-form-field>
 </div>

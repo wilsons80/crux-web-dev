@@ -7,14 +7,14 @@
             <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                 <mat-form-field fxFlex="45%" fxFlexOffset="20px">
 
-                    <input matInput 
+                    <input matInput
                             required
-                            placeholder="Informe o nome do aluno" 
+                            placeholder="Informe o nome do aluno"
                             [formControl]="autoComplete"
                             [matAutocomplete]="auto">
-    
-                    <mat-autocomplete #auto="matAutocomplete"   
-                                        (optionSelected)="selecionar($event.option)" 
+
+                    <mat-autocomplete #auto="matAutocomplete"
+                                        (optionSelected)="selecionar($event.option)"
                                         [displayWith]="displayFn">
                         <mat-option *ngFor="let valor of alunos$ | async" [value]="valor">
                             {{valor.pessoaFisica.nome}}
@@ -23,10 +23,10 @@
 
                 </mat-form-field>
 
-                <button mat-raised-button 
+                <button mat-raised-button
                         color="primary"
-                        (click)="limparSelecao()" 
-                        placeholder="Limpar seleção" 
+                        (click)="limparSelecao()"
+                        placeholder="Limpar seleção"
                         style="margin-top: 15px !important; height: 33px;">
                     LIMPAR
                 </button>
@@ -42,9 +42,9 @@
 
 <!-- ESCOLHA DO FAMILIA DO ALUNO -->
 <div *ngIf="alunoSelecionado" style="padding: 10px;">
+
     <familiares [aluno]="aluno"></familiares>
 
-    
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-right: 40px">
         <div>
             <button matTooltip="Adicionar novo familiar do aluno" mat-fab color="primary" (click)="goCadastrar()">

@@ -31,7 +31,7 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Descrição de problemas de saúde do responsável:</mat-label>
-            <textarea matInput
+            <textarea matInput #problemaSaude
                     name="problemaSaude"
                     [(ngModel)]="pessoaFisica.problemaSaude"
                     cdkTextareaAutosize
@@ -39,11 +39,12 @@
                     cdkAutosizeMinRows="2"
                     maxlength="200"
                     ></textarea>
+       <mat-hint align="end">{{problemaSaude.value.length}} / 200</mat-hint>
     </mat-form-field>
 
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
       <mat-label>Descrição dos medicamentos controlados utilizados pelo responsável:</mat-label>
-      <textarea matInput
+      <textarea matInput #medicamentosControlados
               name="medicamentosControlados"
               [(ngModel)]="pessoaFisica.medicamentosControlados"
               cdkTextareaAutosize
@@ -51,13 +52,14 @@
               cdkAutosizeMinRows="2"
               maxlength="200"
               ></textarea>
+      <mat-hint align="end">{{medicamentosControlados.value.length}} / 200</mat-hint>
     </mat-form-field>
 
 </div>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Descrição relevante do atendimento do aluno por outro órgão da rede:</mat-label>
-            <textarea matInput
+            <textarea matInput #descricaoPessoaFisicaAtendidoOrgaoRede
                     name="descricaoPessoaFisicaAtendidoOrgaoRede"
                     [(ngModel)]="pessoaFisica.descricaoPessoaFisicaAtendidoOrgaoRede"
                     cdkTextareaAutosize
@@ -65,11 +67,12 @@
                     cdkAutosizeMinRows="2"
                     maxlength="200"
                     ></textarea>
+      <mat-hint align="end">{{descricaoPessoaFisicaAtendidoOrgaoRede.value.length}} / 200</mat-hint>
     </mat-form-field>
 
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
       <mat-label>Descrição de outros beneíicios da família:</mat-label>
-      <textarea matInput
+      <textarea matInput #outrosBenSoc
               name="outrosBenSoc"
               [(ngModel)]="pessoaFisica.outrosBenSoc"
               cdkTextareaAutosize
@@ -77,6 +80,7 @@
               cdkAutosizeMinRows="2"
               maxlength="200"
               ></textarea>
+       <mat-hint align="end">{{outrosBenSoc.value.length}} / 200</mat-hint>
     </mat-form-field>
 
 </div>
@@ -84,7 +88,7 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Descrição relevante da rede de apoio social / pessoal:</mat-label>
-            <textarea matInput
+            <textarea matInput #redeApoioSocial
                     name="redeApoioSocial"
                     [(ngModel)]="pessoaFisica.redeApoioSocial"
                     cdkTextareaAutosize
@@ -92,11 +96,12 @@
                     cdkAutosizeMinRows="2"
                     maxlength="200"
                     ></textarea>
+      <mat-hint align="end">{{redeApoioSocial.value.length}} / 200</mat-hint>
     </mat-form-field>
 
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
       <mat-label>Descrição da rede de apoio social / pessoal:</mat-label>
-      <textarea matInput
+      <textarea matInput #redeApSocRelev
               name="redeApSocRelev"
               [(ngModel)]="pessoaFisica.redeApSocRelev"
               cdkTextareaAutosize
@@ -104,6 +109,7 @@
               cdkAutosizeMinRows="2"
               maxlength="200"
               ></textarea>
+      <mat-hint align="end">{{redeApSocRelev.value.length}} / 200</mat-hint>
     </mat-form-field>
 
 </div>
