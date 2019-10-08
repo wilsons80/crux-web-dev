@@ -1,20 +1,20 @@
-import { FormaPagamento } from './../../../core/forma-pagamento';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Atividade } from 'src/app/core/atividade';
+import { ProdutosAtividade } from 'src/app/core/produtos-atividade';
 import { Produto } from 'src/app/core/produto';
-import { AtividadeService } from 'src/app/services/atividade/atividade.service';
-import { ProdutoService } from 'src/app/services/produto/produto.service';
+import { Atividade } from 'src/app/core/atividade';
+import { FormaPagamento } from 'src/app/core/forma-pagamento';
 import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
+import { ProdutoService } from 'src/app/services/produto/produto.service';
+import { AtividadeService } from 'src/app/services/atividade/atividade.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { ProdutosAtividade } from './../../../core/produtos-atividade';
 
 @Component({
-  selector: 'app-cadastrar-produtos-atividade',
-  templateUrl: './cadastrar-produtos-atividade.component.html',
-  styleUrls: ['./cadastrar-produtos-atividade.component.css']
+  selector: 'app-cadastrar-cadastro-reserva-atividade',
+  templateUrl: './cadastrar-cadastro-reserva-atividade.component.html',
+  styleUrls: ['./cadastrar-cadastro-reserva-atividade.component.css']
 })
-export class CadastrarProdutosAtividadeComponent implements OnInit {
+export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
 
   produtosAtividade: ProdutosAtividade = new ProdutosAtividade()
   produtos: Produto[];
