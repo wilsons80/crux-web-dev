@@ -51,8 +51,4 @@ export class FamiliaresComponent implements OnInit {
     this.router.navigate(['/familiaraluno/cadastrar'], { queryParams: { id: familiar.id } });
   }
 
-  getSituacaoParentesco(flag: string) {
-    const situacao = this.situacaoParentesco.situacao.find( d => d.flag.includes(flag));
-    return situacao ? situacao.tipo : null;
-  }
 }
