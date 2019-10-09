@@ -20,10 +20,10 @@
         </a>
 
         <!-- MENU ADMINISTRATIVO -->
-        <modulo-administrativo></modulo-administrativo>
+        <modulo-administrativo *ngIf="verificaAcesso(getModulos().ADMINISTRATIVO)"></modulo-administrativo>
 
         <!-- MENU PEDAGÓGICO -->
-        <modulo-pedagogico></modulo-pedagogico>
+        <modulo-pedagogico *ngIf="verificaAcesso(getModulos().PEDAGOGICO)"></modulo-pedagogico>
 
         <mat-divider></mat-divider>
 

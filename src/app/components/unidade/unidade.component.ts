@@ -90,11 +90,6 @@ export class UnidadeComponent implements OnInit {
   editarFoto(unidade:Unidade){
     this.abrirDialogUploadFoto(unidade);
   }
-
-
-  mostrarAcao(acao: string) {
-    return this.controleMenuService.acessoModulos['UNIDADE'][acao] == 'S'
-  }
   
   abrirDialogUploadFoto(unidade:Unidade) {
 

@@ -1,3 +1,4 @@
+import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -29,6 +30,7 @@ export class ToolBarPrincipalComponent implements OnInit {
     private logoutService: LogoutService,
     public toolbarPrincipalService: ToolbarPrincipalService,
     private menuService: MenuService,
+    private controleMenuService: ControleMenuService,
     private location: Location
 
   ) { }
@@ -56,6 +58,7 @@ export class ToolBarPrincipalComponent implements OnInit {
     )
       .subscribe((menu) => {
         console.log("menuzao da massa", menu);
+        this.controleMenuService.acessos = menu;
         this.router.navigateByUrl('').then(() => this.router.navigate(['home']));
       })
   }

@@ -29,10 +29,7 @@ export class MenuPrincipalComponent implements OnInit {
     
   }
   
-  mostrarMenu(modulo){
-    return this.controleMenuService.acessoModulos[modulo].mostrarMenu;
-  }
-
+ 
   fecharMenu(){
     this.teste = !this.teste;
     // this.menuPrincipalService.alternar();
@@ -41,5 +38,13 @@ export class MenuPrincipalComponent implements OnInit {
     if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){
       return `url(${this.toolbarPrincipalService.logo.changingThisBreaksApplicationSecurity})`
     }
+  }
+
+  verificaAcesso(modulo:Modulos) {
+    return this.controleMenuService.verificaAcessoModulo(modulo);
+  }
+
+  getModulos() {
+    return Modulos;
   }
 }

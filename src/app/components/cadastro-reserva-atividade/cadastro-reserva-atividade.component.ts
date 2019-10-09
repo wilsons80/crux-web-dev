@@ -1,3 +1,5 @@
+import { CadastroReservaAtividade } from './../../core/cadastro-reserva-atividade';
+import { CadastroReservaAtividadeService } from './../../services/cadastro-reserva-atividade/cadastro-reserva-atividade.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
 import { Atividade } from 'src/app/core/atividade';
@@ -23,15 +25,16 @@ export class CadastroReservaAtividadeComponent implements OnInit {
 
   displayedColumns: string[] = [
     "id",
-    "dataAquisicao",
-    "valorProduto",
+    "descricaoCadastroReserva",
+    "atividade",
+    "pessoa",
     "acoes"
   ];
-  dataSource: MatTableDataSource<ProdutosAtividade> = new MatTableDataSource();
+  dataSource: MatTableDataSource<CadastroReservaAtividade> = new MatTableDataSource();
 
   constructor(
     private atividadeService: AtividadeService,
-    private produtosAtividadeService: ProdutosAtividadeService,
+    private cadastroReservaAtividadeService: CadastroReservaAtividadeService,
     private router: Router,
     private dialog: MatDialog
   ) { }
@@ -51,13 +54,13 @@ export class CadastroReservaAtividadeComponent implements OnInit {
   }
 
   consultar() {
-    this.produtosAtividadeService.getPorAtividade(this.atividade.id).subscribe(
-      (produtosAtividade: ProdutosAtividade[]) => {
+    this.cadastroReservaAtividadeService.getPorAtividade(this.atividade.id).subscribe(
+      (cadastroReservaAtividade: CadastroReservaAtividade[]) => {
         if (!ProdutosAtividade) {
           this.mostrarTabela = false;
           this.msg = "Nenhum registro para a pesquisa selecionada";
         } else {
-          this.dataSource.data = produtosAtividade;
+          this.dataSource.data = cadastroReservaAtividade;
           this.mostrarTabela = true;
         }
       },
@@ -70,20 +73,20 @@ export class CadastroReservaAtividadeComponent implements OnInit {
     );
   }
 
-  atualizar(produtosAtividade: ProdutosAtividade) {
-    this.router.navigate(["/produtosatividade/cadastrar"], {
-      queryParams: { idProdutoAtividade: produtosAtividade.id }
+  atualizar(cadastroReservaAtividade: CadastroReservaAtividade) {
+    this.router.navigate(["/cadastroreservaatividade/cadastrar"], {
+      queryParams: { idCadastroReserva: cadastroReservaAtividade.id }
     });
   }
 
-  deletar(produtosAtividade: ProdutosAtividade) {
-    this.chamaCaixaDialogo(produtosAtividade);
+  deletar(cadastroReservaAtividade: CadastroReservaAtividade) {
+    this.chamaCaixaDialogo(cadastroReservaAtividade);
   }
 
-  chamaCaixaDialogo(produtosAtividade: ProdutosAtividade) {
+  chamaCaixaDialogo(cadastroReservaAtividade: CadastroReservaAtividade) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o produto da atividade?`,
+      pergunta: `Certeza que desse excluir a reserva da atividade?`,
       textoConfirma: "SIM",
       textoCancela: "NÃO"
     };
@@ -91,8 +94,8 @@ export class CadastroReservaAtividadeComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        this.produtosAtividadeService
-          .excluir(produtosAtividade.id)
+        this.cadastroReservaAtividadeService
+          .excluir(cadastroReservaAtividade.id)
           .subscribe(() => {
             this.consultar();
             this.atividade.id = null;

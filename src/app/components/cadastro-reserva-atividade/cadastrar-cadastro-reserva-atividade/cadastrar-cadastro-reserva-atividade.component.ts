@@ -60,7 +60,7 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
   }
   cadastrar() {
     this.cadastroReservaAtividadeService.cadastrar(this.cadastroReserva).subscribe(() => {
-      this.router.navigate(['produtosatividade']);
+      this.router.navigate(['cadastroreservaatividade']);
       this.toastService.showSucesso("Cadastro de Reserva da Atividade cadastrado com sucesso");
     });
   }
@@ -70,7 +70,7 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
   }
 
   cancelar() {
-    this.router.navigate(['produtosatividade']);
+    this.router.navigate(['cadastroreservaatividade']);
   }
 
   getNomeBotao() {

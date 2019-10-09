@@ -14,71 +14,73 @@
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
         <!-- CURSO DE FORMACAO -->
-        <sub-menu icone="library_books" titulo="Curso de Formação" rota="cursoformacao" toolTip="Curso de Formação"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().ACESSO)"  icone="library_books" titulo="Curso de Formação" rota="cursoformacao" toolTip="Curso de Formação"></sub-menu>
 
         <!-- ACAO COMPETENCIA -->
-        <sub-menu icone="directions_walk" titulo="Ações da Competência" rota="acaocompetencia" toolTip="Ações das competências do Talento do Funcionário"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().ACAO_COMPETENCIA)" icone="directions_walk" titulo="Ações da Competência" rota="acaocompetencia" toolTip="Ações das competências do Talento do Funcionário"></sub-menu>
 
         <!-- DEPARTAMENTO -->
-        <sub-menu icone="business" titulo="Departamento" rota="departamento" toolTip="Departamento"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().DEPARTAMENTO)" icone="business" titulo="Departamento" rota="departamento" toolTip="Departamento"></sub-menu>
 
         <!-- TALENTOS -->
-        <sub-menu icone="grade" titulo="Talento" rota="talento" toolTip="Talentos do Funcionário"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().TALENTO)" icone="grade" titulo="Talento" rota="talento" toolTip="Talentos do Funcionário"></sub-menu>
 
         <!-- QUESTIONARIO -->
-        <sub-menu icone="assignment" titulo="Questionário" rota="questionario" toolTip="Questionário dos Talentos"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().QUESTIONARIO)" icone="assignment" titulo="Questionário" rota="questionario" toolTip="Questionário dos Talentos"></sub-menu>
 
         <!-- GRAUS INSTRUÇÃO -->
-        <sub-menu icone="share" titulo="Grau de Instrução" rota="grausinstrucao" toolTip="Graus de Instrução"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().GRAUS_INSTRUCAO)" icone="share" titulo="Grau de Instrução" rota="grausinstrucao" toolTip="Graus de Instrução"></sub-menu>
 
         <!-- EMPRESA -->
-        <sub-menu icone="home_work" titulo="Empresa" rota="empresa" toolTip="Empresa"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().EMPRESA)" icone="home_work" titulo="Empresa" rota="empresa" toolTip="Empresa"></sub-menu>
 
          <!-- FUNCIONARIO -->
-         <sub-menu icone="perm_contact_calendar" titulo="Funcionário" rota="funcionario" toolTip="Funcionário" ></sub-menu>
+         <sub-menu *ngIf="verificaAcesso(getModulos().FUNCIONARIO)" icone="perm_contact_calendar" titulo="Funcionário" rota="funcionario" toolTip="Funcionário" ></sub-menu>
         
          <!-- COLABORADORES DO PROGRAMA -->
-         <sub-menu icone="block" titulo="Colaboradores do Programa" rota="colaboradoresprograma" toolTip="Colaboradores do programa" ></sub-menu>
+         <sub-menu *ngIf="verificaAcesso(getModulos().COLABORADORES_PROGRAMA)" icone="block" titulo="Colaboradores do Programa" rota="colaboradoresprograma" toolTip="Colaboradores do programa" ></sub-menu>
         
          <!-- COLABORADORES DO PROJETO -->
-         <sub-menu icone="block" titulo="Colaboradores do Projeto" rota="colaboradoresprojeto" toolTip="Colaboradores do projeto" ></sub-menu>
+         <sub-menu *ngIf="verificaAcesso(getModulos().COLABORADORES_PROJETO)" icone="block" titulo="Colaboradores do Projeto" rota="colaboradoresprojeto" toolTip="Colaboradores do projeto" ></sub-menu>
 
          <!-- FALTAS FUNCIONARIO -->
-         <sub-menu icone="warning" titulo="Faltas do Funcionário" rota="faltasfuncionario" toolTip="Faltas do Funcionário" ></sub-menu>
+         <sub-menu *ngIf="verificaAcesso(getModulos().FALTAS_FUNCIONARIO)" icone="warning" titulo="Faltas do Funcionário" rota="faltasfuncionario" toolTip="Faltas do Funcionário" ></sub-menu>
 
         <!-- PERSPECTIVA -->
-        <sub-menu icone="pages" titulo="Perspectiva" rota="perspectiva" toolTip="Perspectiva"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().PERSPECTIVA)" icone="pages" titulo="Perspectiva" rota="perspectiva" toolTip="Perspectiva"></sub-menu>
 
         <!-- OBJETIVOS -->
-        <sub-menu icone="my_location" titulo="Objetivos" rota="objetivo" toolTip="Objetivos"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().OBJETIVO)" icone="my_location" titulo="Objetivos" rota="objetivo" toolTip="Objetivos"></sub-menu>
 
         <!-- INDICADORES -->
-        <sub-menu icone="trending_up" titulo="Indicadores" rota="indicadores" toolTip="Indicadores"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().INDICADORES)" icone="trending_up" titulo="Indicadores" rota="indicadores" toolTip="Indicadores"></sub-menu>
 
         <!-- METAS -->
-        <sub-menu icone="account_tree" titulo="Metas" rota="metas" toolTip="Departamento"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().METAS)" icone="account_tree" titulo="Metas" rota="metas" toolTip="Departamento"></sub-menu>
 
         <!-- INICIATIVAS -->
-        <sub-menu icone="highlight" titulo="Iniciativas" rota="iniciativas" toolTip="Iniciativas"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().INICIATIVAS)" icone="highlight" titulo="Iniciativas" rota="iniciativas" toolTip="Iniciativas"></sub-menu>
 
         <!-- PLANOS DE ACAO -->
-        <sub-menu icone="list_alt" titulo="Planos de Ação" rota="planosacao" toolTip="Planos de Ação"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().PLANOS_ACAO)" icone="list_alt" titulo="Planos de Ação" rota="planosacao" toolTip="Planos de Ação"></sub-menu>
 
         <!-- PROGRAMAS -->
-        <sub-menu icone="apps" titulo="Programas" rota="programas" toolTip="Programas"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().PROGRAMAS)" icone="apps" titulo="Programas" rota="programas" toolTip="Programas"></sub-menu>
 
-        <!-- FUNCIONARIOS DOS PROGRAMAS -->
-
+        <!-- COLABORADORES DOS PROGRAMAS -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().COLABORADORES_PROGRAMA)" icone="bloc" titulo="Colaboradores do Programa" rota="colaboradoresprojeto" toolTip="Colaboradores do Programa"></sub-menu>
+        
         <!-- PROJETOS -->
-        <sub-menu icone="folder_open" titulo="Projetos" rota="projeto" toolTip="Projetos"></sub-menu>
-
-        <!-- FUNCIONARIOS DOS PROJETOS -->
-
+        <sub-menu *ngIf="verificaAcesso(getModulos().PROJETO)" icone="folder_open" titulo="Projetos" rota="projeto" toolTip="Projetos"></sub-menu>
+        
+        <!-- COLABORADORES DOS PROJETOS -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().COLABORADORES_PROJETO)" icone="block" titulo="Colaboradores do Projeto" rota="colaboradoresprojeto" toolTip="Colaboradores do Projeto"></sub-menu>
+        
         <!-- PRODUTOS -->
-        <sub-menu icone="unarchive" titulo="Produtos" rota="produto" toolTip="Produtos"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().PRODUTO)" icone="unarchive" titulo="Produtos" rota="produto" toolTip="Produtos"></sub-menu>
 
         <!-- CONDIÇÃO DE MORADIA -->
-        <sub-menu icone="museum" titulo="Condição de Moradia" rota="condicaomoradia" toolTip="Condição de Moradia"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().CONDICOES_MORADIA)" icone="museum" titulo="Condição de Moradia" rota="condicaomoradia" toolTip="Condição de Moradia"></sub-menu>
 
     </div>
 </mat-nav-list>

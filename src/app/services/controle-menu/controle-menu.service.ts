@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as _ from 'lodash';
 import { Modulos } from 'src/app/core/modulos';
 
 @Injectable({
@@ -8,63 +7,18 @@ import { Modulos } from 'src/app/core/modulos';
 export class ControleMenuService {
 
 
-  logo:any;
+  logo: any;
 
-  mostrarModuloAlunos = false;
-  mostrarModuloCursos = false;
-  mostrarModuloUnidades = false;
-
-  acessoModulos:any = {
-    ALUNO : {
-      mostrarMenu: false,
-      altera: 'N',
-      consulta: 'N',
-      deleta: 'N', 
-      insere: 'N'
-    },
-    CURSOS : {
-      mostrarMenu: false,
-      altera: 'N',
-      consulta: 'N',
-      deleta: 'N', 
-      insere: 'N'
-    },
-    UNIDADE : {
-      mostrarMenu: false,
-      altera: 'N',
-      consulta: 'N',
-      deleta: 'N', 
-      insere: 'N'
-    },
-    ACESSO : {
-      mostrarMenu: false,
-      altera: 'S',
-      consulta: 'S',
-      deleta: 'S', 
-      insere: 'S'
-    },
-  };
+  acessos: any = [];
 
   constructor() { }
 
-  setAcessos(acessos){
-    this.verificaAcessoModulo(acessos,Modulos.ALUNOS);
-    this.verificaAcessoModulo(acessos,Modulos.CURSOS);
-    this.verificaAcessoModulo(acessos,Modulos.UNIDADES);
-    this.verificaAcessoModulo(acessos,Modulos.ACESSOS);
-  }
+  verificaAcessoModulo(tipoModulo: Modulos) {
+    if (this.acessos) {
+      let acesso = this.acessos.find(a => a.nomeModuloFilho === tipoModulo)
+      return acesso ? true : false
+    }
 
-  verificaAcessoModulo(acessos:any, tipoModulo:Modulos){
-    let modulo = _.filter(acessos, acesso => acesso.modulo === tipoModulo);
-    if(modulo.length > 0){
-     this.acessoModulos[tipoModulo].mostrarMenu = true;
-     this.acessoModulos[tipoModulo].altera = modulo[0].altera;
-     this.acessoModulos[tipoModulo].consulta = modulo[0].consulta;
-     this.acessoModulos[tipoModulo].deleta = modulo[0].deleta;
-     this.acessoModulos[tipoModulo].insere = modulo[0].insere;
-    }else
-    this.acessoModulos[tipoModulo].mostrarMenu = false;
   }
-
 
 }

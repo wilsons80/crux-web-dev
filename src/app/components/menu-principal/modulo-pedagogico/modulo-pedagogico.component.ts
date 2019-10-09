@@ -1,6 +1,8 @@
 import { MenuPrincipalService } from './../../../services/menuPrincipal/menu-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
+import { Modulos } from 'src/app/core/modulos';
 
 @Component({
   selector: 'modulo-pedagogico',
@@ -26,7 +28,10 @@ export class ModuloPedagogicoComponent implements OnInit {
   currentState = "hidden"
   isMostrarSubMenu: boolean = false;
   
-  constructor(public menuPrincipalService:MenuPrincipalService) { }
+  constructor(
+    public menuPrincipalService:MenuPrincipalService,
+    private controleMenuService:ControleMenuService
+    ) { }
 
   ngOnInit() {
   }
@@ -41,6 +46,14 @@ export class ModuloPedagogicoComponent implements OnInit {
 
   getIcone(){
     return this.isMostrarSubMenu ? "expand_more" : "chevron_right";
+  }
+
+  getModulos() {
+    return Modulos;
+  }
+
+  verificaAcesso(modulo:Modulos) {
+    return this.controleMenuService.verificaAcessoModulo(modulo);
   }
 
 }
