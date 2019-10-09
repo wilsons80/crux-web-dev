@@ -1,4 +1,3 @@
-import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
@@ -9,7 +8,7 @@ import { UnidadeResolver } from 'src/app/guards/unidades.resolve';
 
 
 const routes: Routes = [
-  { path: 'unidade/escolher', component: EscolherUnidadeComponent, canActivate: [AuthGuard] , resolve: {unidades : UnidadeResolver}},
+  { path: 'unidade/escolher', component: EscolherUnidadeComponent, canActivate: [AuthGuard], resolve: { unidades: UnidadeResolver } },
   { path: 'unidade/cadastrar', component: CadastrarUnidadeComponent, canActivate: [AuthGuard] },
   { path: 'unidade/', component: UnidadeComponent, canActivate: [AuthGuard] },
 ];

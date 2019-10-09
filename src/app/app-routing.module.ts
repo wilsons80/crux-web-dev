@@ -1,3 +1,4 @@
+import { AcessoRestritoComponent } from './components/acesso-restrito/acesso-restrito.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'novasenha', component: NovaSenhaComponent, canActivate: [AuthGuard]},
+  { path: 'acessorestrito', component: AcessoRestritoComponent, canActivate: [AuthGuard]}
   
 ];
 

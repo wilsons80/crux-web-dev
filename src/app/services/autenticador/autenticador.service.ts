@@ -1,3 +1,5 @@
+import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
+import { MenuService } from 'src/app/services/menu/menu.service';
 import { FileUtils } from './../../utils/file-utils';
 import { ArquivoService } from './../arquivo/arquivo.service';
 import { TrocaSenha } from './../../core/troca-senha';
@@ -28,7 +30,9 @@ export class AutenticadorService {
     private toolbarPrincipalService:ToolbarPrincipalService,
     private arquivoService:ArquivoService,
     private fileUtils:FileUtils,
-    private parametros: ParametrosService
+    private parametros: ParametrosService,
+    private menuService:MenuService,
+    private controleMenuService:ControleMenuService
   ) {
 
   }
@@ -66,18 +70,33 @@ export class AutenticadorService {
       if (moment().isBetween(this.getExpiration().subtract(valor, 'minutes'), this.getExpiration())) {
         return this.http.get(tokenRootPath + `refresh-token`)
         .pipe(
+          
           switchMap((usuarioLogado:UsuarioLogado) => {
+            
             this.setSession(usuarioLogado)
+
             this.toolbarPrincipalService.setarPropriedadesUsuarioLogado(usuarioLogado);
+            
             if(usuarioLogado.unidadeLogada){
               return this.arquivoService.get(usuarioLogado.unidadeLogada.id)
             }else {
               return new Observable(obs => obs.next())
             }
           }),
+
+          switchMap((arquivo) => {
+            this.toolbarPrincipalService.logo = this.fileUtils.convertBufferArrayToBase64(arquivo);
+            if(this.toolbarPrincipalService.unidadeSelecionada){
+              return this.menuService.getMenuPrincipal()
+            }else {
+              return new Observable(obs => obs.next())
+            }
+            }),
           shareReplay(),
-        ).subscribe((arquivo) => {
-          this.toolbarPrincipalService.logo = this.fileUtils.convertBufferArrayToBase64(arquivo);
+        ).subscribe((menu) => {
+          console.log("fui ver o menuzao", menu);
+          
+          this.controleMenuService.acessos = menu;
         });
       }
     });

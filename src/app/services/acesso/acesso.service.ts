@@ -39,4 +39,15 @@ export class AcessoService {
     return this.http.delete(acessoRootPath + `${idUsuarioGrupo}`);
   }
   
+  getPerfilAcesso(nomeModulo:String){
+    return this.http.get(acessoRootPath + `modulo/${nomeModulo}`);
+  }
+
+
+  
+  // public List<PerfilAcessoTO> getPerfilAcesso(@PathVariable(name = "modulo") Long idModulo) {
+	// 	return getPerfilAcessoCmd.getPerfilAcesso(idModulo);
+	// }
+
+
 }

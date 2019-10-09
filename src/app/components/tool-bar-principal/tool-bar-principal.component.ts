@@ -57,7 +57,6 @@ export class ToolBarPrincipalComponent implements OnInit {
       })
     )
       .subscribe((menu) => {
-        console.log("menuzao da massa", menu);
         this.controleMenuService.acessos = menu;
         this.router.navigateByUrl('').then(() => this.router.navigate(['home']));
       })
