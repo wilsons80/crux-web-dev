@@ -54,7 +54,6 @@ export class EscolherUnidadeComponent implements OnInit {
       })
     )
       .subscribe((menu) => {
-        console.log("menuzao da massa", menu);
         this.router.navigateByUrl('').then(() => this.router.navigate(['home']));
       })
   }

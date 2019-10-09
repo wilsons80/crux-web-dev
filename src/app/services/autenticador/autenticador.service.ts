@@ -94,8 +94,6 @@ export class AutenticadorService {
             }),
           shareReplay(),
         ).subscribe((menu) => {
-          console.log("fui ver o menuzao", menu);
-          
           this.controleMenuService.acessos = menu;
         });
       }

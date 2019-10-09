@@ -13,9 +13,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("this", this.activatedRoute);
-    this.activatedRoute.data.subscribe((info) => console.log("info", info)
-    )
   }
 
 }
