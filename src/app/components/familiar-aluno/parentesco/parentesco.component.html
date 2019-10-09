@@ -1,7 +1,7 @@
 <mat-toolbar class="titulopartes">Dados parentesco</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-  <mat-form-field fxFlex="10%" fxFlexOffset="20px">
+  <mat-form-field fxFlex="15%" fxFlexOffset="20px">
       <input matInput name="dataCadastro" [matDatepicker]="dataCadastro" placeholder="Data de cadastro:"
              [(ngModel)]="familiar.dataCadastro" required>
       <mat-datepicker-toggle matSuffix [for]="dataCadastro"></mat-datepicker-toggle>
@@ -17,7 +17,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field fxFlex="10%">
+  <mat-form-field fxFlex="15%">
     <input matInput name="dataDesligamento" [matDatepicker]="dataDesligamento" placeholder="Data de desligamento:"
            [(ngModel)]="familiar.dataDesligamento">
     <mat-datepicker-toggle matSuffix [for]="dataDesligamento"></mat-datepicker-toggle>

@@ -1,3 +1,4 @@
+import { SituacaoParentesco } from './../../core/situacao-parentesco';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
 import { Familiares } from 'src/app/core/familiares';
@@ -17,10 +18,12 @@ export class FamiliarAlunoComponent implements OnInit {
   familiares: Familiares[];
   familiar: Familiares = new Familiares();
 
+  situacaoParentesco: SituacaoParentesco = new SituacaoParentesco();
+
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['nome', 'grauparentesco', 'situacao', 'dataCadastro', 'acoes'];
+  displayedColumns: string[] = ['nome', 'situacao', 'dataCadastro', 'acoes'];
   dataSource: MatTableDataSource<Familiares> = new MatTableDataSource();
 
   constructor(
