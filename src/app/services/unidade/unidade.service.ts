@@ -2,47 +2,39 @@ import { Unidade } from './../../core/unidade';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as _ from 'lodash';
+import { BaseService } from '../base/base.service';
+import { FaltasFuncionario } from 'src/app/core/faltas-funcionario';
+import { Rotas } from 'src/app/core/rotas';
 
-const unidadeRootPath = 'api/unidade/';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UnidadeService {
+export class UnidadeService extends BaseService<Unidade> {
 
-  constructor(private http: HttpClient) { }
+  constructor(http: HttpClient) {
+    super(http, Rotas.UNIDADE);
+  }
 
+
+  getUnidadePorId(idUnidade:number){
+    return this.http.get(Rotas.UNIDADE + `logada/${idUnidade}`);
+  }
 
   getAllTiposUnidade() {
-    return this.http.get(unidadeRootPath + `tiposunidade`);
+    return this.http.get(Rotas.UNIDADE + `tiposunidade`);
   }
 
   getAllClassificadorSituacaoImovel() {
-    return this.http.get(unidadeRootPath + `classificadorimovel`);
+    return this.http.get(Rotas.UNIDADE + `classificadorimovel`);
   }
 
   getUnidadesComAcesso() {
-    return this.http.get(unidadeRootPath + `usuario`);
-  }
-
-  getUnidadePorId(idUnidade:number){
-    return this.http.get(unidadeRootPath + `logada/${idUnidade}`);
+    return this.http.get(Rotas.UNIDADE + `usuario`);
   }
 
   getAllUnidadesUsuarioLogadoTemAcesso(){
-    return this.http.get(unidadeRootPath);
-  }
-
-  cadastrar(unidade:Unidade){
-    return this.http.post(unidadeRootPath, unidade);
-  }
-
-  alterar(unidade:Unidade){
-    return this.http.put(unidadeRootPath, unidade);
-  }
-
-  excluir(idUnidade:number){
-    return this.http.delete(unidadeRootPath + `${idUnidade}`);
+    return this.http.get(Rotas.UNIDADE);
   }
 
 }

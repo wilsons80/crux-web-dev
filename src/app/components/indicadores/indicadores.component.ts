@@ -72,7 +72,7 @@ export class IndicadoresComponent implements OnInit {
       pergunta: `Certeza que desse excluir o departamento ${indicadores.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
-    };
+    }; 
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {

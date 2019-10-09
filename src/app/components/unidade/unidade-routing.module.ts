@@ -10,7 +10,7 @@ import { UnidadeResolver } from 'src/app/guards/unidades.resolve';
 const routes: Routes = [
   { path: 'unidade/escolher', component: EscolherUnidadeComponent, canActivate: [AuthGuard], resolve: { unidades: UnidadeResolver } },
   { path: 'unidade/cadastrar', component: CadastrarUnidadeComponent, canActivate: [AuthGuard] },
-  { path: 'unidade/', component: UnidadeComponent, canActivate: [AuthGuard] },
+  { path: 'unidade', component: UnidadeComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

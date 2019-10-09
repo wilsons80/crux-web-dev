@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Unidade } from 'src/app/core/unidade';
-import { MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatDialogConfig, MatPaginator } from '@angular/material';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { Router } from '@angular/router';
 import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { UploadFotoComponent } from '../upload-foto/upload-foto.component';
+import { Indicadores } from 'src/app/core/indicadores';
+import { IndicadoresService } from 'src/app/services/indicadores/indicadores.service';
 
 
 @Component({
@@ -14,71 +16,84 @@ import { UploadFotoComponent } from '../upload-foto/upload-foto.component';
   styleUrls: ['./unidade.component.css']
 })
 export class UnidadeComponent implements OnInit {
+  
+ // displayedColumns: string[] = ['sigla', 'nome', 'tipo', 'acoes'];
 
-  unidades:any;
+ @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
+ //   unidades:any;
+
+//   unidade:Unidade = new Unidade()
+
+//   mostrarTabela: boolean = false;
+
+  unidades:Unidade[];
   unidade:Unidade = new Unidade()
-
   mostrarTabela: boolean = false;
+  msg:string;
 
   displayedColumns: string[] = ['sigla', 'nome', 'tipo', 'acoes'];
-  dataSource: MatTableDataSource<any>;
+  dataSource: MatTableDataSource<Unidade> = new MatTableDataSource();
+
   constructor(
-    private unidadeService:UnidadeService,
-    private router:Router,
+    private unidadeService: UnidadeService,
+    private router: Router,
     private dialog: MatDialog,
-    private controleMenuService:ControleMenuService
+
   ) { }
 
   ngOnInit() {
-    this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades:any) => {
-      this.unidades = unidades;
-    });
-    this.dataSource = new MatTableDataSource(this.unidades);
+    this.dataSource.paginator = this.paginator;
+    this.getAll();
   }
+ 
 
-  consultar(){
-    if(this.unidade.idUnidade){
-      this.unidadeService.getUnidadePorId(this.unidade.idUnidade).subscribe((unidade:Unidade) => {
-        let array = [];
-        array.push(unidade);
-        this.dataSource.data = array
-      })
-    }else{
-      this.dataSource.data = this.unidades;
-    }
-    this.mostrarTabela = true;
-  }
-
-  limpar(){
+  limpar() {
     this.mostrarTabela = false;
     this.unidade = new Unidade()
-    this.dataSource.data = null;
+    this.dataSource.data = [];
   }
 
-  atualizar(unidade:Unidade){
-    this.router.navigate(['/unidade/cadastrar'], { queryParams: { idUnidade: unidade.idUnidade} });
-  }
-  
-  deletar(element:Unidade) {
-    this.chamaCaixaDialogo(element);
+  consultar() {
+    if (this.unidade.idUnidade) {
+      this.unidadeService.getUnidadePorId(this.unidade.idUnidade).subscribe((unidade: Unidade) => {
+        if(!unidade){
+          this.mostrarTabela = false
+          this.msg = "Nenhum registro para a pesquisa selecionada"
+        }else {
+          this.dataSource.data = [unidade];
+          this.mostrarTabela = true;
+        }
+      })
+    } else {
+      this.getAll();
+    }
   }
 
-  chamaCaixaDialogo(element:Unidade) {
+
+  atualizar(unidade: Unidade) {
+    this.router.navigate(['/unidade/cadastrar'], { queryParams: { idUnidade: unidade.idUnidade } });
+  }
+
+  deletar(unidade: Unidade) {
+    this.chamaCaixaDialogo(unidade);
+  }
+
+  chamaCaixaDialogo(unidade: Unidade) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a unidade ${element.siglaUnidade}?`,
+      pergunta: `Certeza que desse excluir a unidade?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
-    };
+    }; 
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-       this.unidadeService.excluir(element.idUnidade).subscribe(() => {
-          this.ngOnInit();
-       })
-        
+        this.unidadeService.excluir(unidade.idUnidade).subscribe(() => {
+          this.unidade.idUnidade = null;
+          this.consultar();
+        })
       } else {
         dialogRef.close();
       }
@@ -86,24 +101,22 @@ export class UnidadeComponent implements OnInit {
     );
   }
 
-
-  editarFoto(unidade:Unidade){
-    this.abrirDialogUploadFoto(unidade);
-  }
-  
-  abrirDialogUploadFoto(unidade:Unidade) {
-
-    const dialogRef = this.dialog.open(UploadFotoComponent, {
-      
-      data: {
-        unidade: unidade,
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
-
+  getAll() {
+    this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: Unidade[]) => {
+      this.unidades = unidades;
+      this.dataSource.data = unidades ? unidades : [];
+      this.verificaMostrarTabela(unidades);
+    })
   }
 
+  verificaMostrarTabela(unidades: Unidade[]) {
+    if(!unidades ||unidades.length == 0) {
+      this.mostrarTabela = false; 
+      this.msg = "Nenhum indicador cadastrado."
+    }else{
+      this.mostrarTabela = true; 
+    }
+  }
 
 }
+
