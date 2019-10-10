@@ -63,6 +63,7 @@ export class AutenticadorService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('logo');
   }
 
   refreshToken() {
@@ -77,15 +78,21 @@ export class AutenticadorService {
 
             this.toolbarPrincipalService.setarPropriedadesUsuarioLogado(usuarioLogado);
             
-            if(usuarioLogado.unidadeLogada){
+            if(usuarioLogado.unidadeLogada && !localStorage.getItem("logo")){
               return this.arquivoService.get(usuarioLogado.unidadeLogada.id)
             }else {
+              this.toolbarPrincipalService.logo =localStorage.getItem("logo");
               return new Observable(obs => obs.next())
             }
           }),
 
-          switchMap((arquivo) => {
-            this.toolbarPrincipalService.logo = this.fileUtils.convertBufferArrayToBase64(arquivo);
+          switchMap((arquivoRetorno) => {
+            if(arquivoRetorno){
+              let arquivo:any = this.fileUtils.convertBufferArrayToBase64(arquivoRetorno)
+              let urlArquivo = arquivo.changingThisBreaksApplicationSecurity
+              localStorage.setItem("logo",urlArquivo);
+              this.toolbarPrincipalService.logo = urlArquivo;
+            }
             if(this.toolbarPrincipalService.unidadeSelecionada){
               return this.menuService.getMenuPrincipal()
             }else {

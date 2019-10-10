@@ -48,6 +48,7 @@ export class EscolherUnidadeComponent implements OnInit {
   }
   
   escolherUnidade(idUnidade: number) {
+    localStorage.removeItem("logo");
     this.unidadeService.getUnidadePorId(idUnidade).pipe(
       switchMap((unidade: Unidade) => { 
         return this.menuService.getMenuPrincipal() 

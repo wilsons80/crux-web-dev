@@ -36,7 +36,7 @@ export class MenuPrincipalComponent implements OnInit {
   }
   getBackground(){
     if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){
-      return `url(${this.toolbarPrincipalService.logo.changingThisBreaksApplicationSecurity})`
+      return `url(${this.toolbarPrincipalService.logo})`
     }
   }
 

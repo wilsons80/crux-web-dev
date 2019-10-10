@@ -51,6 +51,7 @@ export class ToolBarPrincipalComponent implements OnInit {
 
 
   escolherUnidade(idUnidade: number) {
+    localStorage.removeItem('logo');
     this.unidadeService.getUnidadePorId(idUnidade).pipe(
       switchMap((unidade: Unidade) => {
         return this.menuService.getMenuPrincipal()
@@ -73,7 +74,7 @@ export class ToolBarPrincipalComponent implements OnInit {
 
   getBackground(){
     if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){
-      return `url(${this.toolbarPrincipalService.logo.changingThisBreaksApplicationSecurity})`
+      return `url(${this.toolbarPrincipalService.logo})`
     }
   }
 }
