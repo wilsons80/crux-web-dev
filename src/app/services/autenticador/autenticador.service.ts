@@ -16,6 +16,7 @@ import * as moment from 'moment';
 import { UsuarioLogado } from 'src/app/core/usuario-logado';
 import { Observable } from 'rxjs';
 import { ParametrosService } from '../parametros/parametros.service';
+import { Menu } from 'src/app/core/menu';
 
 const autenticadorRootPath = 'api/autenticador/';
 const tokenRootPath = 'api/token/';
@@ -100,7 +101,7 @@ export class AutenticadorService {
             }
             }),
           shareReplay(),
-        ).subscribe((menu) => {
+        ).subscribe((menu:Menu[]) => {
           this.controleMenuService.acessos = menu;
         });
       }

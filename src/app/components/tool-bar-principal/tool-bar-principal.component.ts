@@ -11,6 +11,7 @@ import { AcessoUnidade } from './../../core/acesso-unidade';
 import { LogoutService } from './../../services/logout/logout.service';
 import { MenuService } from './../../services/menu/menu.service';
 import { MenuPrincipalService } from './../../services/menuPrincipal/menu-principal.service';
+import { Menu } from 'src/app/core/menu';
 
 @Component({
   selector: 'tool-bar-principal',
@@ -57,7 +58,7 @@ export class ToolBarPrincipalComponent implements OnInit {
         return this.menuService.getMenuPrincipal()
       })
     )
-      .subscribe((menu) => {
+      .subscribe((menu:Menu[]) => {
         this.controleMenuService.acessos = menu;
         this.router.navigateByUrl('').then(() => this.router.navigate(['home']));
       })

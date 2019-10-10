@@ -1,3 +1,5 @@
+import { TempoSessaoModule } from './../tempo-sessao/tempo-sessao.module';
+import { TempoSessaoComponent } from './../tempo-sessao/tempo-sessao.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +15,8 @@ import { MatToolbarModule } from '@angular/material';
     CommonModule,
     HomeRoutingModule,
     MatToolbarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    TempoSessaoModule
   ],
 })
 export class HomeModule { }
