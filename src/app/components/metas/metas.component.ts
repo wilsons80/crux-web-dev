@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Metas } from 'src/app/core/metas';
-import { MatTableDataSource, MatDialog, MatDialogConfig, MatPaginator } from '@angular/material';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { MetasService } from 'src/app/services/metas/metas.service';
-import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -12,30 +13,38 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class MetasComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   listaMetas: Metas[];
   mostrarTabela: boolean = false;
   metas: Metas = new Metas();
-  msg:string;
+  msg: string;
 
-  displayedColumns: string[] = ['nome', 'indicadores', 'dataInicio','dataFim', 'acoes'];
+  displayedColumns: string[] = ['nome', 'indicadores', 'dataInicio', 'dataFim', 'acoes'];
+  perfilAcesso: PerfilAcesso;
 
-  
+
+
   dataSource: MatTableDataSource<Metas> = new MatTableDataSource();
 
   constructor(
     private metasService: MetasService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['nome', 'indicadores', 'dataInicio', 'dataFim'];
+    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
- 
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -46,10 +55,10 @@ export class MetasComponent implements OnInit {
   consultar() {
     if (this.metas.id) {
       this.metasService.getById(this.metas.id).subscribe((metas: Metas) => {
-        if(!metas){
+        if (!metas) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
+        } else {
           this.dataSource.data = [metas];
           this.mostrarTabela = true;
         }
@@ -97,13 +106,13 @@ export class MetasComponent implements OnInit {
       this.verificaMostrarTabela(metas);
     })
   }
- 
+
   verificaMostrarTabela(metas: Metas[]) {
-    if(!metas || metas.length == 0) {
-      this.mostrarTabela = false; 
+    if (!metas || metas.length == 0) {
+      this.mostrarTabela = false;
       this.msg = "Nenhuma meta cadastrada."
-    }else{
-      this.mostrarTabela = true; 
+    } else {
+      this.mostrarTabela = true;
     }
   }
 }

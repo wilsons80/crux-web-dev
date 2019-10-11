@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
-import { Router } from '@angular/router';
-import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { Questionario } from 'src/app/core/questionario';
 import { QuestionarioService } from 'src/app/services/questionario/questionario.service';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-questionario',
@@ -19,17 +20,26 @@ export class QuestionarioComponent implements OnInit {
   questionario: Questionario = new Questionario();
   msg: string;
 
-  displayedColumns: string[] = ['descricao','tipoQuestionario','dataInicio','dataFim', 'acoes'];
+  displayedColumns: string[] = ['descricao', 'tipoQuestionario', 'dataInicio', 'dataFim', 'acoes'];
   dataSource: MatTableDataSource<Questionario> = new MatTableDataSource();
+
+  perfilAcesso: PerfilAcesso;
+
 
   constructor(
     private questionarioService: QuestionarioService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['descricao', 'tipoQuestionario', 'dataInicio', 'dataFim'];
+    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
 

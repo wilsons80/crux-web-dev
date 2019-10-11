@@ -1,13 +1,12 @@
-import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Atividade } from 'src/app/core/atividade';
-import { DocumentoAtividade } from 'src/app/core/documento-atividade';
-import { AtividadeService } from 'src/app/services/atividade/atividade.service';
-import { DocumentoAtividadeService } from 'src/app/services/documento-atividade/documento-atividade.service';
-import { Router } from '@angular/router';
-import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { ProdutosAtividade } from 'src/app/core/produtos-atividade';
+import { AtividadeService } from 'src/app/services/atividade/atividade.service';
+import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-produtos-atividade',
@@ -22,6 +21,9 @@ export class ProdutosAtividadeComponent implements OnInit {
   msg: string;
   atividade: Atividade;
 
+  perfilAcesso: PerfilAcesso;
+
+
   displayedColumns: string[] = [
     "id",
     "dataAquisicao",
@@ -34,10 +36,19 @@ export class ProdutosAtividadeComponent implements OnInit {
     private atividadeService: AtividadeService,
     private produtosAtividadeService: ProdutosAtividadeService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = [
+        "id",
+        "dataAquisicao",
+        "valorProduto"];
+    }
     this.dataSource.paginator = this.paginator;
     this.atividadeService.getAll().subscribe((listaAtividade: Atividade[]) => {
       this.listaAtividade = listaAtividade;

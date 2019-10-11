@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { Talento } from 'src/app/core/talento';
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
@@ -26,15 +27,24 @@ export class TalentoComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'dataRespostaTalento', 'nrNotaCompetencia', 'acoes'];
   dataSource: MatTableDataSource<Talento> = new MatTableDataSource();
 
+  perfilAcesso: PerfilAcesso;
+
+
   constructor(
     private talentosService: TalentosService,
     private pessoaFisicaService: PessoaFisicaService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['nome', 'dataRespostaTalento', 'nrNotaCompetencia'];
+    }
     this.dataSource.paginator = this.paginator;
     this.pessoaFisicaService.getAll().subscribe((listaPessoas: PessoaFisica[]) => {
       this.listaPessoas = listaPessoas;

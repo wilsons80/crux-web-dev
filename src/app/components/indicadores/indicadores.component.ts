@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatTableDataSource, MatPaginator } from '@angular/material';
-import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Indicadores } from './../../core/indicadores';
 import { IndicadoresService } from './../../services/indicadores/indicadores.service';
@@ -11,29 +12,37 @@ import { IndicadoresService } from './../../services/indicadores/indicadores.ser
   styleUrls: ['./indicadores.component.css']
 })
 export class IndicadoresComponent implements OnInit {
-  
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   listaIndicadores: Indicadores[];
   mostrarTabela: boolean = false;
   indicadores: Indicadores = new Indicadores();
-  msg:string;
+  msg: string;
 
-  displayedColumns: string[] = ['nome', 'objetivo', 'dataInicio','dataFim', 'acoes'];
+  displayedColumns: string[] = ['nome', 'objetivo', 'dataInicio', 'dataFim', 'acoes'];
   dataSource: MatTableDataSource<Indicadores> = new MatTableDataSource();
+  perfilAcesso: PerfilAcesso;
+
 
   constructor(
     private indicadoresService: IndicadoresService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['nome', 'objetivo', 'dataInicio', 'dataFim'];
+    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
- 
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -44,10 +53,10 @@ export class IndicadoresComponent implements OnInit {
   consultar() {
     if (this.indicadores.idIndicador) {
       this.indicadoresService.getById(this.indicadores.idIndicador).subscribe((indicadores: Indicadores) => {
-        if(!indicadores){
+        if (!indicadores) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
+        } else {
           this.dataSource.data = [indicadores];
           this.mostrarTabela = true;
         }
@@ -72,7 +81,7 @@ export class IndicadoresComponent implements OnInit {
       pergunta: `Certeza que desse excluir o departamento ${indicadores.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
-    }; 
+    };
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
@@ -97,11 +106,11 @@ export class IndicadoresComponent implements OnInit {
   }
 
   verificaMostrarTabela(indicadores: Indicadores[]) {
-    if(!indicadores ||indicadores.length == 0) {
-      this.mostrarTabela = false; 
+    if (!indicadores || indicadores.length == 0) {
+      this.mostrarTabela = false;
       this.msg = "Nenhum indicador cadastrado."
-    }else{
-      this.mostrarTabela = true; 
+    } else {
+      this.mostrarTabela = true;
     }
   }
 

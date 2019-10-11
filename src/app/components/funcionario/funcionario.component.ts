@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Funcionario } from 'src/app/core/funcionario';
-import { DepartamentoService } from 'src/app/services/departamento/departamento.service';
-import { Router } from '@angular/router';
-import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-funcionario',
@@ -13,28 +13,37 @@ import { FuncionarioService } from 'src/app/services/funcionario/funcionario.ser
 })
 export class FuncionarioComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
- 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
   funcionarios: Funcionario[];
   mostrarTabela: boolean = false;
   funcionario: Funcionario = new Funcionario();
-  msg:string;
+  msg: string;
+  perfilAcesso: PerfilAcesso;
 
-  displayedColumns: string[] = ['matricula','nome', 'dataAdmissao', 'tipoFuncionario','cargo', 'acoes'];
+
+  displayedColumns: string[] = ['matricula', 'nome', 'dataAdmissao', 'tipoFuncionario', 'cargo', 'acoes'];
   dataSource: MatTableDataSource<Funcionario> = new MatTableDataSource();
 
   constructor(
     private funcionarioService: FuncionarioService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['matricula', 'nome', 'dataAdmissao', 'tipoFuncionario', 'cargo'];
+    }
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
-  
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -45,10 +54,10 @@ export class FuncionarioComponent implements OnInit {
   consultar() {
     if (this.funcionario.id) {
       this.funcionarioService.getById(this.funcionario.id).subscribe((funcionario: Funcionario) => {
-        if(!Funcionario){
+        if (!Funcionario) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
+        } else {
           this.dataSource.data = [funcionario];
           this.mostrarTabela = true;
         }
@@ -56,7 +65,7 @@ export class FuncionarioComponent implements OnInit {
     } else {
       this.getAll();
     }
-   
+
   }
 
 
@@ -91,7 +100,7 @@ export class FuncionarioComponent implements OnInit {
     );
   }
 
-  getAll(){
+  getAll() {
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
       this.funcionarios = funcionarios;
       this.dataSource.data = funcionarios ? funcionarios : [];
@@ -100,11 +109,11 @@ export class FuncionarioComponent implements OnInit {
   }
 
   verificaMostrarTabela(funcionarios: Funcionario[]) {
-    if(!funcionarios ||funcionarios.length == 0) {
-      this.mostrarTabela = false; 
+    if (!funcionarios || funcionarios.length == 0) {
+      this.mostrarTabela = false;
       this.msg = "Nenhum Funcionário cadastrado."
-    }else{
-      this.mostrarTabela = true; 
+    } else {
+      this.mostrarTabela = true;
     }
   }
 

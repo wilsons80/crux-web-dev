@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { GrausInstrucaoService } from 'src/app/services/graus-instrucao/graus-instrucao.service';
-import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -12,12 +13,15 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class GrausInstrucaoComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   listaGrausInstrucao: GrausInstrucao[];
   mostrarTabela: boolean = false;
   grausInstrucao: GrausInstrucao = new GrausInstrucao();
-  msg:string;
+  msg: string;
+
+  perfilAcesso: PerfilAcesso;
+
 
   displayedColumns: string[] = ['descricao', 'acoes'];
   dataSource: MatTableDataSource<GrausInstrucao> = new MatTableDataSource();
@@ -26,15 +30,22 @@ export class GrausInstrucaoComponent implements OnInit {
     private grausInstrucaoService: GrausInstrucaoService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['descricao'];
+    }
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
-    
+
   }
- 
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -45,10 +56,10 @@ export class GrausInstrucaoComponent implements OnInit {
   consultar() {
     if (this.grausInstrucao.id) {
       this.grausInstrucaoService.getById(this.grausInstrucao.id).subscribe((grausInstrucao: GrausInstrucao) => {
-        if(!grausInstrucao){
+        if (!grausInstrucao) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
+        } else {
           this.dataSource.data = [grausInstrucao];
           this.mostrarTabela = true;
         }
@@ -56,7 +67,7 @@ export class GrausInstrucaoComponent implements OnInit {
     } else {
       this.getAll();
     }
-    
+
   }
 
 
@@ -98,11 +109,11 @@ export class GrausInstrucaoComponent implements OnInit {
     })
   }
   verificaMostrarTabela(grausInstrucaos: GrausInstrucao[]) {
-    if(!grausInstrucaos || grausInstrucaos.length == 0) {
-      this.mostrarTabela = false; 
+    if (!grausInstrucaos || grausInstrucaos.length == 0) {
+      this.mostrarTabela = false;
       this.msg = "Nenhum Graus de Instrução cadastrado."
-    }else{
-      this.mostrarTabela = true; 
+    } else {
+      this.mostrarTabela = true;
     }
   }
 

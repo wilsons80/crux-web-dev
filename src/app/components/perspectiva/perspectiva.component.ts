@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Perspectiva } from 'src/app/core/perspectiva';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { PerspectivaService } from './../../services/perspectiva/perspectiva.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-perspectiva',
@@ -21,15 +22,23 @@ export class PerspectivaComponent implements OnInit {
 
   displayedColumns: string[] = ['nome', 'dtImplantacao', 'dtTermino', 'unidade', 'acoes'];
   dataSource: MatTableDataSource<Perspectiva> = new MatTableDataSource();
+  perfilAcesso:PerfilAcesso;
 
+  
   constructor(
     private perspectivaService: PerspectivaService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute:ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['nome', 'dtImplantacao', 'dtTermino', 'unidade'];
+    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatTableDataSource, MatPaginator } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Projeto } from 'src/app/core/projeto';
 import { ProjetoService } from 'src/app/services/projeto/projeto.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-projeto',
@@ -23,14 +24,23 @@ export class ProjetoComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'programa','dataPrevisaoInicio', 'dataInicio', 'dataFim', 'acoes'];
   dataSource: MatTableDataSource<Projeto> = new MatTableDataSource();
 
+  perfilAcesso:PerfilAcesso;
+
+  
   constructor(
     private projetoService: ProjetoService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute:ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['nome', 'programa','dataPrevisaoInicio', 'dataInicio', 'dataFim'];
+    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

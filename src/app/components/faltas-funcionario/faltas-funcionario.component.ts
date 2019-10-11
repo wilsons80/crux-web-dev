@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FaltasFuncionario } from 'src/app/core/faltas-funcionario';
-import { FaltasFuncionarioService } from 'src/app/services/faltas-funcionario/faltas-funcionario.service';
-import { Router } from '@angular/router';
-import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { Funcionario } from 'src/app/core/funcionario';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { FaltasFuncionarioService } from 'src/app/services/faltas-funcionario/faltas-funcionario.service';
+import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-faltas-funcionario',
@@ -14,34 +15,46 @@ import { Funcionario } from 'src/app/core/funcionario';
 })
 export class FaltasFuncionarioComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   listaFaltasFuncionario: FaltasFuncionario[];
   listaFuncionarios: Funcionario[];
   mostrarTabela: boolean = false;
   faltasFuncionario: FaltasFuncionario = new FaltasFuncionario();
-  msg:string;
+  msg: string;
   funcionario: Funcionario;
 
-  displayedColumns: string[] = ['funcionarioFaltou','funcionarioCadastrouFalta','dataFaltaFuncionario', 'acoes'];
+  displayedColumns: string[] = ['funcionarioFaltou', 'funcionarioCadastrouFalta', 'dataFaltaFuncionario', 'acoes'];
   dataSource: MatTableDataSource<FaltasFuncionario> = new MatTableDataSource();
+
+  perfilAcesso: PerfilAcesso;
+
+
 
   constructor(
     private faltasFuncionarioService: FaltasFuncionarioService,
     private funcionarioService: FuncionarioService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns =  ['funcionarioFaltou', 'funcionarioCadastrouFalta', 'dataFaltaFuncionario'];
+    }
+
+
     this.dataSource.paginator = this.paginator;
-    this.funcionarioService.getAll().subscribe((funcionarios:Funcionario[]) => {
+    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
       this.listaFuncionarios = funcionarios;
     })
-    
+
   }
- 
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -52,21 +65,21 @@ export class FaltasFuncionarioComponent implements OnInit {
   }
 
   consultar() {
-      this.faltasFuncionarioService.getPorFuncionario(this.funcionario.id).subscribe((faltasFuncionario: FaltasFuncionario[]) => {
-        if(!faltasFuncionario){
-          this.mostrarTabela = false
-          this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
-          this.dataSource.data = faltasFuncionario;
-          this.mostrarTabela = true;
-        }
-      },
-      ()  => {
+    this.faltasFuncionarioService.getPorFuncionario(this.funcionario.id).subscribe((faltasFuncionario: FaltasFuncionario[]) => {
+      if (!faltasFuncionario) {
+        this.mostrarTabela = false
+        this.msg = "Nenhum registro para a pesquisa selecionada"
+      } else {
+        this.dataSource.data = faltasFuncionario;
+        this.mostrarTabela = true;
+      }
+    },
+      () => {
         this.msg = "Nenhum registro para a pesquisa selecionada"
         this.limpar()
       }
-      )
-    
+    )
+
   }
 
 

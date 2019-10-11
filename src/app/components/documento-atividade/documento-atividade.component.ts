@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from "@angular/material";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Atividade } from "src/app/core/atividade";
 import { DocumentoAtividade } from "src/app/core/documento-atividade";
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { AtividadeService } from "src/app/services/atividade/atividade.service";
 import { DocumentoAtividadeService } from "src/app/services/documento-atividade/documento-atividade.service";
 import { ConfirmDialogComponent } from "../common/confirm-dialog/confirm-dialog.component";
@@ -20,6 +21,9 @@ export class DocumentoAtividadeComponent implements OnInit {
   msg: string;
   atividade: Atividade;
 
+  perfilAcesso: PerfilAcesso;
+
+
   displayedColumns: string[] = [
     "descricao",
     "atividade",
@@ -31,10 +35,19 @@ export class DocumentoAtividadeComponent implements OnInit {
     private atividadeService: AtividadeService,
     private documentoAtividadeService: DocumentoAtividadeService,
     private router: Router,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if (this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N') {
+      this.displayedColumns = [
+        "descricao",
+        "atividade"
+      ];
+    }
     this.dataSource.paginator = this.paginator;
     this.atividadeService.getAll().subscribe((listaAtividade: Atividade[]) => {
       this.listaAtividade = listaAtividade;

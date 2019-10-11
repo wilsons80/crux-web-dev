@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { SituacoesVulnerabilidade } from 'src/app/core/situacoes-vulnerabilidade';
-import { Router } from '@angular/router';
 import { SituacaoVulnerabilidadeService } from 'src/app/services/situacao-vulnerabilidade/situacao-vulnerabilidade.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
@@ -13,7 +14,7 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 export class SituacaoVulnerabilidadeComponent implements OnInit {
 
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   situacoes: SituacoesVulnerabilidade[];
   mostrarTabela = false;
@@ -26,18 +27,27 @@ export class SituacaoVulnerabilidadeComponent implements OnInit {
 
   dataSource: MatTableDataSource<SituacoesVulnerabilidade> = new MatTableDataSource();
 
+  perfilAcesso: PerfilAcesso;
+
+
   constructor(
     private situacaoService: SituacaoVulnerabilidadeService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['descricao'];
+    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
- 
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -48,7 +58,7 @@ export class SituacaoVulnerabilidadeComponent implements OnInit {
   consultar() {
     if (this.situacao.id) {
       this.situacaoService.getById(this.situacao.id).subscribe((situacao: SituacoesVulnerabilidade) => {
-        if(!situacao){
+        if (!situacao) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada";
         } else {
@@ -101,11 +111,11 @@ export class SituacaoVulnerabilidadeComponent implements OnInit {
   }
 
   verificaMostrarTabela(situacoes: SituacoesVulnerabilidade[]) {
-    if(!situacoes ||situacoes.length === 0) {
+    if (!situacoes || situacoes.length === 0) {
       this.mostrarTabela = false;
       this.msg = "Nenhuma situação de vulnerabilidade cadastrada."
-    } else{
-      this.mostrarTabela = true; 
+    } else {
+      this.mostrarTabela = true;
     }
   }
 

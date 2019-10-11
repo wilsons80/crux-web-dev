@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatTableDataSource, MatPaginator } from '@angular/material';
-import { Router } from '@angular/router';
-import { PlanosAcao } from 'src/app/core/planos-acao';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { ProgramaService } from 'src/app/services/programa/programa.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Programa } from './../../core/programa';
@@ -13,25 +13,35 @@ import { Programa } from './../../core/programa';
 })
 export class ProgramasComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   listaProgramas: Programa[];
   programa: Programa = new Programa();
-  msg:string;
+  msg: string;
 
   mostrarTabela = false;
 
   displayedColumns: string[] = ['nome', 'objetivo', 'dataInicio', 'dataFim', 'acoes'];
   dataSource: MatTableDataSource<Programa> = new MatTableDataSource();
 
+  perfilAcesso: PerfilAcesso;
+
+
   constructor(
     private programaService: ProgramaService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['nome', 'objetivo', 'dataInicio', 'dataFim'];
+    }
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
@@ -45,10 +55,10 @@ export class ProgramasComponent implements OnInit {
   consultar() {
     if (this.programa.id) {
       this.programaService.getById(this.programa.id).subscribe((programa: Programa) => {
-        if(!programa){
+        if (!programa) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
+        } else {
           this.dataSource.data = [programa];
           this.mostrarTabela = true;
         }
@@ -98,11 +108,11 @@ export class ProgramasComponent implements OnInit {
   }
 
   verificaMostrarTabela(listaProgramas: Programa[]) {
-    if(!listaProgramas ||listaProgramas.length == 0) {
-      this.mostrarTabela = false; 
+    if (!listaProgramas || listaProgramas.length == 0) {
+      this.mostrarTabela = false;
       this.msg = "Nenhum programa cadastrado."
-    }else{
-      this.mostrarTabela = true; 
+    } else {
+      this.mostrarTabela = true;
     }
   }
 }

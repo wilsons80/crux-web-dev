@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Empresa } from 'src/app/core/empresa';
-import { Router } from '@angular/router';
-import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { EmpresaService } from 'src/app/services/empresa/empresa.service';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-empresa',
@@ -12,15 +13,18 @@ import { EmpresaService } from 'src/app/services/empresa/empresa.service';
 })
 export class EmpresaComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   empresas: Empresa[];
   mostrarTabela: boolean = false;
   empresa: Empresa = new Empresa();
-  msg:string;
+  msg: string;
 
 
   displayedColumns: string[] = ['codigo', 'nomeRazaoSocial', 'cnpj', 'telefone', 'ativa', 'acoes'];
+
+  perfilAcesso: PerfilAcesso;
+
 
 
   dataSource: MatTableDataSource<Empresa> = new MatTableDataSource();
@@ -29,14 +33,21 @@ export class EmpresaComponent implements OnInit {
     private empresaService: EmpresaService,
     private router: Router,
     private dialog: MatDialog,
-
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['codigo', 'nomeRazaoSocial', 'cnpj', 'telefone', 'ativa'];
+    }
+
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
- 
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -47,10 +58,10 @@ export class EmpresaComponent implements OnInit {
   consultar() {
     if (this.empresa.id) {
       this.empresaService.getById(this.empresa.id).subscribe((empresa: Empresa) => {
-        if(!empresa){
+        if (!empresa) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
+        } else {
           this.dataSource.data = [empresa];
           this.mostrarTabela = true;
         }
@@ -100,11 +111,11 @@ export class EmpresaComponent implements OnInit {
   }
 
   verificaMostrarTabela(empresas: Empresa[]) {
-    if(!empresas ||empresas.length == 0) {
-      this.mostrarTabela = false; 
+    if (!empresas || empresas.length == 0) {
+      this.mostrarTabela = false;
       this.msg = "Nenhuma empresa cadastrada."
-    }else{
-      this.mostrarTabela = true; 
+    } else {
+      this.mostrarTabela = true;
     }
   }
 }

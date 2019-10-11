@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatTableDataSource, MatPaginator } from '@angular/material';
-import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Departamento } from './../../core/departamento';
 import { DepartamentoService } from './../../services/departamento/departamento.service';
@@ -11,28 +12,36 @@ import { DepartamentoService } from './../../services/departamento/departamento.
   styleUrls: ['./departamento.component.css']
 })
 export class DepartamentoComponent implements OnInit {
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
- 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
   departamentos: Departamento[];
   mostrarTabela: boolean = false;
   departamento: Departamento = new Departamento();
-  msg:string;
+  msg: string;
 
   displayedColumns: string[] = ['sigla', 'nome', 'unidade', 'acoes'];
   dataSource: MatTableDataSource<Departamento> = new MatTableDataSource();
+  perfilAcesso: PerfilAcesso;
+
 
   constructor(
     private departamentoService: DepartamentoService,
     private router: Router,
     private dialog: MatDialog,
-
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns =  ['sigla', 'nome', 'unidade'];
+    }
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
-  
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -43,10 +52,10 @@ export class DepartamentoComponent implements OnInit {
   consultar() {
     if (this.departamento.idDepartamento) {
       this.departamentoService.getById(this.departamento.idDepartamento).subscribe((departamento: Departamento) => {
-        if(!departamento){
+        if (!departamento) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
+        } else {
           this.dataSource.data = [departamento];
           this.mostrarTabela = true;
         }
@@ -54,7 +63,7 @@ export class DepartamentoComponent implements OnInit {
     } else {
       this.getAll();
     }
-   
+
   }
 
 
@@ -89,7 +98,7 @@ export class DepartamentoComponent implements OnInit {
     );
   }
 
-  getAll(){
+  getAll() {
     this.departamentoService.getAll().subscribe((departamentos: Departamento[]) => {
       this.departamentos = departamentos;
       this.dataSource.data = departamentos ? departamentos : [];
@@ -98,11 +107,11 @@ export class DepartamentoComponent implements OnInit {
   }
 
   verificaMostrarTabela(departamentos: Departamento[]) {
-    if(!departamentos ||departamentos.length == 0) {
-      this.mostrarTabela = false; 
+    if (!departamentos || departamentos.length == 0) {
+      this.mostrarTabela = false;
       this.msg = "Nenhum departamento cadastrado."
-    }else{
-      this.mostrarTabela = true; 
+    } else {
+      this.mostrarTabela = true;
     }
   }
 

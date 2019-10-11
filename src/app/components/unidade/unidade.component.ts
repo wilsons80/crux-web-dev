@@ -31,23 +31,22 @@ export class UnidadeComponent implements OnInit {
 
   displayedColumns: string[] = ['sigla', 'nome', 'tipo', 'acoes'];
   dataSource: MatTableDataSource<Unidade> = new MatTableDataSource();
-
+  
   constructor(
     private unidadeService: UnidadeService,
     private router: Router,
     private dialog: MatDialog,
-    private actRoute: ActivatedRoute
+    private activatedRoute:ActivatedRoute
 
   ) { }
 
   ngOnInit() {
-    this.perfilAcesso =  this.actRoute.snapshot.data.perfilAcesso[0];
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
       this.displayedColumns = ['sigla', 'nome', 'tipo'];
     }
 
-    this.actRoute.snapshot.data;
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

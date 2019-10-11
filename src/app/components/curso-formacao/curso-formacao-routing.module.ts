@@ -10,7 +10,7 @@ import { Modulos } from 'src/app/core/modulos';
 
 
 const routes: Routes = [
-  {path: 'cursoformacao/cadastrar', component: CadastrarCursoFormacaoComponent, canActivate: [AuthGuard]},
+  {path: 'cursoformacao/cadastrar', component: CadastrarCursoFormacaoComponent, canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.CURSO_FORMACAO} },
   {path: 'cursoformacao', component: CursoFormacaoComponent, canActivate: [AuthGuard], resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.CURSO_FORMACAO}}
 ];
 

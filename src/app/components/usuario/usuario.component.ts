@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatTableDataSource, MatDialogConfig } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioSistema } from 'src/app/core/usuario-sistema';
 import { UsuarioSistemaService } from 'src/app/services/usuario-sistema/usuario-sistema.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'usuario',
@@ -24,15 +25,26 @@ export class UsuarioComponent implements OnInit {
   displayedColumns: string[] = ['username', 'nome', 'status', 'dataInicioVigencia', 'dataFimVigencia', 'acoes'];
   dataSource: MatTableDataSource<UsuarioSistema> = new MatTableDataSource();
 
-  constructor(
-    private usuarioSistemaService: UsuarioSistemaService,
-    private router: Router,
-    private dialog: MatDialog,
+
+ perfilAcesso:PerfilAcesso;
+
+ 
+ constructor(
+   private usuarioSistemaService: UsuarioSistemaService,
+   private router: Router,
+   private dialog: MatDialog,
+   private activatedRoute:ActivatedRoute
   ) {
     this.initObjetos();
   }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['username', 'nome', 'status', 'dataInicioVigencia', 'dataFimVigencia'];
+    }
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
-import { Iniciativa } from 'src/app/core/iniciativa';
-import { IniciativaService } from 'src/app/services/iniciativa/iniciativa.service';
-import { Router } from '@angular/router';
-import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { Produto } from 'src/app/core/produto';
 import { ProdutoService } from 'src/app/services/produto/produto.service';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'produto',
@@ -14,15 +13,16 @@ import { ProdutoService } from 'src/app/services/produto/produto.service';
 })
 export class ProdutoComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   produtos: Produto[];
   mostrarTabela: boolean = false;
   produto: Produto = new Produto();
-  msg:string;
+  msg: string;
 
 
   displayedColumns: string[] = ['nome', 'codigoUnidadeMedida', 'nomeProdutoNotafiscal', 'acoes'];
+  perfilAcesso: PerfilAcesso;
 
 
   dataSource: MatTableDataSource<Produto> = new MatTableDataSource();
@@ -31,14 +31,21 @@ export class ProdutoComponent implements OnInit {
     private produtoService: ProdutoService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns =['nome', 'codigoUnidadeMedida', 'nomeProdutoNotafiscal'];
+    }
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
- 
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -49,10 +56,10 @@ export class ProdutoComponent implements OnInit {
   consultar() {
     if (this.produto.id) {
       this.produtoService.getById(this.produto.id).subscribe((produto: Produto) => {
-        if(!produto){
+        if (!produto) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
+        } else {
           this.dataSource.data = [produto];
           this.mostrarTabela = true;
         }
@@ -102,11 +109,11 @@ export class ProdutoComponent implements OnInit {
   }
 
   verificaMostrarTabela(produtos: Produto[]) {
-    if(!produtos ||produtos.length == 0) {
-      this.mostrarTabela = false; 
+    if (!produtos || produtos.length == 0) {
+      this.mostrarTabela = false;
       this.msg = "Nenhuma produto cadastrado."
-    }else{
-      this.mostrarTabela = true; 
+    } else {
+      this.mostrarTabela = true;
     }
   }
 

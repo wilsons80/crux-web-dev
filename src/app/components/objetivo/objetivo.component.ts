@@ -1,9 +1,10 @@
-import { ObjetivoService } from './../../services/objetivo/objetivo.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Objetivo } from 'src/app/core/objetivo';
-import { MatTableDataSource, MatDialog, MatDialogConfig, MatPaginator } from '@angular/material';
-import { Router } from '@angular/router';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { ObjetivoService } from './../../services/objetivo/objetivo.service';
 
 @Component({
   selector: 'app-objetivo',
@@ -12,29 +13,38 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class ObjetivoComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   objetivos: Objetivo[];
   mostrarTabela: boolean = false;
   objetivo: Objetivo = new Objetivo();
-  msg:string;
+  msg: string;
 
   displayedColumns: string[] = ['nome', 'perspectiva', 'usuarioAlteracao', 'acoes'];
   dataSource: MatTableDataSource<Objetivo> = new MatTableDataSource();
+
+  perfilAcesso: PerfilAcesso;
+
 
   constructor(
     private objetivoService: ObjetivoService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['sigla', 'nome', 'tipo'];
+    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
-    
+
   }
- 
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -45,10 +55,10 @@ export class ObjetivoComponent implements OnInit {
   consultar() {
     if (this.objetivo.idObjetivo) {
       this.objetivoService.getById(this.objetivo.idObjetivo).subscribe((objetivo: Objetivo) => {
-        if(!objetivo){
+        if (!objetivo) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"
-        }else {
+        } else {
           this.dataSource.data = [objetivo];
           this.mostrarTabela = true;
         }
@@ -56,7 +66,7 @@ export class ObjetivoComponent implements OnInit {
     } else {
       this.getAll();
     }
-    
+
   }
 
 
@@ -98,11 +108,11 @@ export class ObjetivoComponent implements OnInit {
     })
   }
   verificaMostrarTabela(objetivos: Objetivo[]) {
-    if(!objetivos || objetivos.length == 0) {
-      this.mostrarTabela = false; 
+    if (!objetivos || objetivos.length == 0) {
+      this.mostrarTabela = false;
       this.msg = "Nenhum objetivo cadastrado."
-    }else{
-      this.mostrarTabela = true; 
+    } else {
+      this.mostrarTabela = true;
     }
   }
 }

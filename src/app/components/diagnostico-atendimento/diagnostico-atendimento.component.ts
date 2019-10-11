@@ -1,7 +1,8 @@
-import { Diagnostico } from 'src/app/core/diagnostico';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
-import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Diagnostico } from 'src/app/core/diagnostico';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { DiagnosticoAtendimentoService } from 'src/app/services/diagnostico-atendimento/diagnostico-atendimento.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
@@ -12,7 +13,7 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class DiagnosticoAtendimentoComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   diagnosticos: Diagnostico[];
   mostrarTabela = false;
@@ -21,18 +22,26 @@ export class DiagnosticoAtendimentoComponent implements OnInit {
 
   displayedColumns: string[] = ['descricao', 'acoes'];
   dataSource: MatTableDataSource<Diagnostico> = new MatTableDataSource();
+  perfilAcesso: PerfilAcesso;
+
 
   constructor(
     private diagnosticoService: DiagnosticoAtendimentoService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['descricao'];
+    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
- 
+
 
   limpar() {
     this.mostrarTabela = false;
@@ -43,7 +52,7 @@ export class DiagnosticoAtendimentoComponent implements OnInit {
   consultar() {
     if (this.diagnostico.id) {
       this.diagnosticoService.getById(this.diagnostico.id).subscribe((retorno: Diagnostico) => {
-        if(!retorno){
+        if (!retorno) {
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada";
         } else {
@@ -96,10 +105,10 @@ export class DiagnosticoAtendimentoComponent implements OnInit {
   }
 
   verificaMostrarTabela(retorno: Diagnostico[]) {
-    if(!retorno ||retorno.length === 0) {
+    if (!retorno || retorno.length === 0) {
       this.mostrarTabela = false;
       this.msg = "Nenhum diagnóstico de atendimento cadastrado."
-    } else{
+    } else {
       this.mostrarTabela = true;
     }
   }
