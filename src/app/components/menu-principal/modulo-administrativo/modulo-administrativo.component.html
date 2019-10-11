@@ -33,6 +33,9 @@
 
         <!-- EMPRESA -->
         <sub-menu *ngIf="verificaAcesso(getModulos().EMPRESA)" icone="home_work" titulo="Empresa" rota="empresa" toolTip="Empresa"></sub-menu>
+      
+        <!-- UNIDADE -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().UNIDADE)" icone="business" titulo="Unidade" rota="unidade" toolTip="Unidade"></sub-menu>
 
          <!-- FUNCIONARIO -->
          <sub-menu *ngIf="verificaAcesso(getModulos().FUNCIONARIO)" icone="perm_contact_calendar" titulo="Funcionário" rota="funcionario" toolTip="Funcionário" ></sub-menu>

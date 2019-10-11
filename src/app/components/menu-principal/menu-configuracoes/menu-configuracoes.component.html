@@ -14,10 +14,10 @@
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
         <!-- USUARIO -->
-        <sub-menu icone="person_add" titulo="Usuário" rota="usuariosistema" toolTip="Usuário"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().USUARIO)" icone="person_add" titulo="Usuário" rota="usuariosistema" toolTip="Usuário"></sub-menu>
 
         <!-- ACESSO -->
-        <sub-menu icone="lock" titulo="Acesso" rota="acesso" toolTip="Acesso"></sub-menu>
+        <sub-menu *ngIf="verificaAcesso(getModulos().ACESSO)" icone="lock" titulo="Acesso" rota="acesso" toolTip="Acesso"></sub-menu>
 
         <!-- ALTERAR SENHA -->
         <sub-menu icone="cached" titulo="Alterar Senha" rota="novasenha" toolTip="Alterar Senha"></sub-menu>

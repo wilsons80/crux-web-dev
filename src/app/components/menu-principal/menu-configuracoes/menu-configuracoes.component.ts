@@ -1,6 +1,8 @@
+import { ControleMenuService } from './../../../services/controle-menu/controle-menu.service';
 import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Modulos } from 'src/app/core/modulos';
 
 @Component({
   selector: 'menu-configuracoes',
@@ -23,7 +25,10 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class MenuConfiguracoesComponent implements OnInit {
 
   currentState = "hidden"
-  constructor(public menuPrincipalService:MenuPrincipalService) { }
+  constructor(
+    public menuPrincipalService:MenuPrincipalService,
+    private controleMenuService:ControleMenuService
+    ) { }
 
   isMostrarSubMenu: boolean = false;
 
@@ -40,5 +45,13 @@ export class MenuConfiguracoesComponent implements OnInit {
 
   getIcone(){
     return this.isMostrarSubMenu ? "expand_more" : "chevron_right";
+  }
+
+  getModulos() {
+    return Modulos;
+  }
+
+  verificaAcesso(modulo:Modulos) {
+    return this.controleMenuService.verificaAcessoModulo(modulo);
   }
 }

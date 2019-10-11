@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioSistemaService } from 'src/app/services/usuario-sistema/usuario-sistema.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { UsuarioSistema } from 'src/app/core/usuario-sistema';
-import { Location } from '@angular/common';
 import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
 import { FileUtils } from 'src/app/utils/file-utils';
 import { switchMap } from 'rxjs/operators';
@@ -23,11 +22,11 @@ export class CadastrarUsuarioComponent implements OnInit {
 
   constructor(
     private usuarioSistemaService: UsuarioSistemaService,
-    private route: ActivatedRoute,
-    private location: Location,
+    private actRoute: ActivatedRoute,
     private toastService: ToastService,
     private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
     private fileUtils: FileUtils,
+    private router: Router,
   ) {
   }
 
@@ -35,7 +34,7 @@ export class CadastrarUsuarioComponent implements OnInit {
     this.limpar();
 
     let id: number;
-    id = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;
+    id = this.actRoute.snapshot.queryParams.id ? this.actRoute.snapshot.queryParams.id : null;
     if (id) {
       this.isAtualizar = true;
       this.usuarioSistemaService.getById(id).pipe(
@@ -52,6 +51,7 @@ export class CadastrarUsuarioComponent implements OnInit {
   }
 
   cadastrar() {
+    this.tratarDados();
     this.usuarioSistemaService.cadastrar(this.usuarioSistema).pipe(
       switchMap((alunoRetorno: UsuarioSistema) => {
         if (this.usuarioSistema.pessoaFisica.isFotoChanged && this.usuarioSistema.pessoaFisica.foto) {
@@ -61,7 +61,7 @@ export class CadastrarUsuarioComponent implements OnInit {
         }
       })
     ).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['usuariosistema']);
       this.toastService.showSucesso('Usuário cadastrado com sucesso');
     });
   }
@@ -72,7 +72,7 @@ export class CadastrarUsuarioComponent implements OnInit {
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['usuariosistema']);
   }
 
   retiraMascara(objeto) {
@@ -85,6 +85,7 @@ export class CadastrarUsuarioComponent implements OnInit {
 
 
   atualizar() {
+    this.tratarDados();
     this.usuarioSistemaService.alterar(this.usuarioSistema).pipe(
       switchMap((usuarioSistema: UsuarioSistema) => {
         if (this.usuarioSistema.pessoaFisica.isFotoChanged && this.usuarioSistema.pessoaFisica.foto) {
@@ -94,9 +95,16 @@ export class CadastrarUsuarioComponent implements OnInit {
         }
       })
     ).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['usuariosistema']);
       this.toastService.showSucesso('Usuário atualizado com sucesso');
     });
   }
 
+
+  tratarDados() {
+    this.usuarioSistema.pessoaFisica.cep = this.usuarioSistema.pessoaFisica.cep ? this.retiraMascara(this.usuarioSistema.pessoaFisica.cep.toString()) : null
+    this.usuarioSistema.pessoaFisica.celular = this.usuarioSistema.pessoaFisica.celular ? this.retiraMascara(this.usuarioSistema.pessoaFisica.celular.toString()) : null
+    this.usuarioSistema.pessoaFisica.cpf = this.usuarioSistema.pessoaFisica.cpf ? this.retiraMascara(this.usuarioSistema.pessoaFisica.cpf.toString()) : null
+    this.usuarioSistema.pessoaFisica.telefoneResidencial = this.usuarioSistema.pessoaFisica.telefoneResidencial ? this.retiraMascara(this.usuarioSistema.pessoaFisica.telefoneResidencial.toString()) : null
+  }
 }
