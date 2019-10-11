@@ -6,8 +6,9 @@ import { Atividade } from 'src/app/core/atividade';
 import { ProdutosAtividade } from 'src/app/core/produtos-atividade';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastro-reserva-atividade',
@@ -23,6 +24,8 @@ export class CadastroReservaAtividadeComponent implements OnInit {
   msg: string;
   atividade: Atividade;
 
+  perfilAcesso:PerfilAcesso;
+
   displayedColumns: string[] = [
     "id",
     "descricaoCadastroReserva",
@@ -36,10 +39,22 @@ export class CadastroReservaAtividadeComponent implements OnInit {
     private atividadeService: AtividadeService,
     private cadastroReservaAtividadeService: CadastroReservaAtividadeService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = [
+        "id",
+        "descricaoCadastroReserva",
+        "atividade",
+        "pessoa",
+      ];
+    }
+
     this.dataSource.paginator = this.paginator;
     this.atividadeService.getAll().subscribe((listaAtividade: Atividade[]) => {
       this.listaAtividade = listaAtividade;

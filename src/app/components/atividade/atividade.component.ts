@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Atividade } from 'src/app/core/atividade';
-import { MatDialogConfig, MatTableDataSource, MatDialog, MatPaginator } from '@angular/material';
-import { Programa } from 'src/app/core/programa';
-import { ProgramaService } from 'src/app/services/programa/programa.service';
-import { Router } from '@angular/router';
-import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-atividade',
@@ -19,6 +18,7 @@ export class AtividadeComponent implements OnInit {
   atividades: Atividade[];
   atividade: Atividade = new Atividade();
   msg:string;
+  perfilAcesso:PerfilAcesso;
 
   mostrarTabela = false;
 
@@ -29,9 +29,15 @@ export class AtividadeComponent implements OnInit {
     private atividadeService: AtividadeService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['descricao', 'dataPrevisaoInicio', 'dataPrevisaoTermino', 'cargaHoraria'];
+    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

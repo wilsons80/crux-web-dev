@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
 import { CondicoesMoradiaService } from 'src/app/services/condicoes-moradia/condicoes-moradia.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'condicao-moradia',
@@ -19,6 +20,9 @@ export class CondicaoMoradiaComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
+  perfilAcesso:PerfilAcesso;
+
+  
   displayedColumns: string[] = ['descricao', 'acoes'];
   dataSource: MatTableDataSource<CondicoesMoradia> = new MatTableDataSource();
 
@@ -26,9 +30,15 @@ export class CondicaoMoradiaComponent implements OnInit {
     private condicaoMoradiaService: CondicoesMoradiaService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['descricao'];
+    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

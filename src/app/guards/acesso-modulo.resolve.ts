@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { AcessoService } from './../services/acesso/acesso.service';
 import { AcessoModule } from './../components/acesso/acesso.module';
 import { HttpClient } from '@angular/common/http';
@@ -24,12 +25,18 @@ export class AcessoModuloResolver implements Resolve<PerfilAcesso> {
     ): Observable<any> | Promise<any> | any {
 
         let modulo = route.data['modulo'];
+        let path:string = state.url.toUpperCase();
 
         return this.acessoService.getPerfilAcesso(modulo).pipe(
-            switchMap((perfilAcesso:PerfilAcesso) => {
-                if(_.isEmpty(perfilAcesso) || perfilAcesso.insere == 'N'){
+            switchMap((perfilAcesso:PerfilAcesso[]) => {
+                if(_.isEmpty(perfilAcesso) || perfilAcesso[0].consulta === "N"){
                     this.router.navigate(['acessorestrito'])
                 }
+
+                if(path.includes("CADASTRAR") && perfilAcesso[0].insere === "N"){
+                    this.router.navigate(['acessorestrito'])
+                }
+                
                 return of(perfilAcesso);
             })
         )

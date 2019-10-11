@@ -1,7 +1,8 @@
+import { PerfilAcesso } from './../../core/perfil-acesso';
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AcaoCompetencia } from 'src/app/core/acao-competencia';
 import { AcoesCompetenciaService } from 'src/app/services/acoes-competencia/acoes-competencia.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -22,6 +23,7 @@ export class AcaoCompetenciaComponent implements OnInit {
   msg: string;
   pessoas:PessoaFisica[];
   pessoa:PessoaFisica;
+  perfilAcesso:PerfilAcesso
 
 
   displayedColumns: string[] = ['descricao', 'dataInicio', 'acoes'];
@@ -32,10 +34,15 @@ export class AcaoCompetenciaComponent implements OnInit {
     private pessoaFisicaService:PessoaFisicaService,
     private router: Router,
     private dialog: MatDialog,
-
+    private activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns =['descricao', 'dataInicio'];
+    }
     this.dataSource.paginator = this.paginator;
     this.pessoaFisicaService.getAll().subscribe((pessoas:PessoaFisica[]) => {
       this.pessoas = pessoas;

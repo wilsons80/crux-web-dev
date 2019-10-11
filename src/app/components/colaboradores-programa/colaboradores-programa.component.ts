@@ -2,8 +2,9 @@ import { ColaboradoresPrograma } from './../../core/colaboradores-programa';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
 import { ColaboradoresProgramaService } from 'src/app/services/colaboradores-programa/colaboradores-programa.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-colaboradores-programa',
@@ -18,18 +19,28 @@ export class ColaboradoresProgramaComponent implements OnInit {
   mostrarTabela: boolean = false;
   colaboradores: ColaboradoresPrograma = new ColaboradoresPrograma();
   msg:string;
+  perfilAcesso:PerfilAcesso;
 
+  
   displayedColumns: string[] = ['nome', 'programa', 'cargo','dataInicio', 'acoes'];
   dataSource: MatTableDataSource<ColaboradoresPrograma> = new MatTableDataSource();
-
+  
   constructor(
     private colaboradoresProgramaService: ColaboradoresProgramaService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute:ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['nome', 'programa', 'cargo','dataInicio'];
+    }
+
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

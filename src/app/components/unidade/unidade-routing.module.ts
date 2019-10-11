@@ -11,7 +11,7 @@ import { Modulos } from 'src/app/core/modulos';
 
 const routes: Routes = [
   { path: 'unidade/escolher', component: EscolherUnidadeComponent, canActivate: [AuthGuard], resolve: { unidades: UnidadeResolver } },
-  { path: 'unidade/cadastrar', component: CadastrarUnidadeComponent, canActivate: [AuthGuard] },
+  { path: 'unidade/cadastrar', component: CadastrarUnidadeComponent, canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.UNIDADE} },
   { path: 'unidade', component: UnidadeComponent, canActivate: [AuthGuard], resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.UNIDADE} },
 ];
 

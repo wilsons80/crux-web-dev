@@ -11,6 +11,7 @@ import { AcessoService } from './../../services/acesso/acesso.service';
 import { ControleMenuService } from './../../services/controle-menu/controle-menu.service';
 import { ModuloService } from './../../services/modulo/modulo.service';
 import { UsuarioService } from './../../services/usuario/usuario.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 
 @Component({
@@ -34,6 +35,8 @@ export class AcessoComponent implements OnInit {
   dataSource: MatTableDataSource<PerfilAcessoUsuario> = new MatTableDataSource();
   msg: string;
 
+  perfilAcesso:PerfilAcesso;
+
   constructor(
     private dialog: MatDialog,
     private usuarioService: UsuarioService,
@@ -45,6 +48,12 @@ export class AcessoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['nomeUsuario', 'nomeModulo', 'nomeUnidade', 'nomeGrupoModulo']
+    }
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
     this.consultar();

@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
 import { Aluno } from 'src/app/core/aluno';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-aluno',
@@ -23,13 +24,23 @@ export class AlunoComponent implements OnInit {
   displayedColumns: string[] = ['matricula', 'nome', 'turno', 'serie', 'dataEntrada', 'dataDesligamento', 'acoes'];
   dataSource: MatTableDataSource<Aluno> = new MatTableDataSource();
 
+  perfilAcesso:PerfilAcesso;
+
   constructor(
     private alunoService: AlunoService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['matricula', 'nome', 'turno', 'serie', 'dataEntrada', 'dataDesligamento']
+    }
+
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

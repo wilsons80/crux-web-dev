@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Cargo } from 'src/app/core/cargo';
 import { CargosService } from 'src/app/services/cargos/cargos.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cargo',
@@ -20,6 +21,8 @@ export class CargoComponent implements OnInit {
 
   mostrarTabela = false;
 
+  perfilAcesso:PerfilAcesso;
+
   displayedColumns: string[] = ['codigo', 'nome', 'tipoCargo','acoes'];
   dataSource: MatTableDataSource<Cargo> = new MatTableDataSource();
 
@@ -27,10 +30,17 @@ export class CargoComponent implements OnInit {
     private cargoService: CargosService,
     private router: Router,
     private dialog: MatDialog,
+    private activatedRoute:ActivatedRoute
 
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
+      this.displayedColumns = ['codigo', 'nome', 'tipoCargo'];
+    }
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
