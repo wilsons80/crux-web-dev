@@ -99,6 +99,7 @@ export class CadastrarAcessoComponent implements OnInit {
   atualizar() {
     this.acessoService.alterar(this.cadastroAcesso).subscribe(() => {
       this.toastService.showSucesso("Usuário atualizado com sucesso");
+      this.router.navigate(['acesso'])
     });
   }
 
