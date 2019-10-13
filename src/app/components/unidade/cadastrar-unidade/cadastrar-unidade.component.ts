@@ -25,7 +25,6 @@ export class CadastrarUnidadeComponent implements OnInit {
   estados: any;
 
   unidade: Unidade = new Unidade();
-  confirmacaoEmail: string;
 
   isAtualizar: boolean = false;
 
@@ -39,16 +38,19 @@ export class CadastrarUnidadeComponent implements OnInit {
   unidades: any[];
 
   tiposUnidade: any[] = [
-    { tipoUnidade: 'MATRIZ' },
-    { tipoUnidade: 'FILIAL' },
+    { id: '1' ,tipo: 'M', descricao: 'MATRIZ' },
+    { id: '2' ,tipo: 'F', descricao: 'FILIAL' },
   ]
 
+  	// MATRIZ(1, "M"), FILIAL(2, "F");
+
   situacoesImovel: any[] = [
-    { tipo: 'Próprio' },
-    { tipo: 'Concessão' },
-    { tipo: 'Licença pra funcionamento' },
-    { tipo: 'Outro' }
+    { id: '1',tipo:'P', descricao: 'PRÓPRIO' },
+    { id: '2',tipo:'C', descricao:'CONCESSÃO' },
+    { id: '3',tipo:'L', descricao: 'LICENÇA PRA FUNCIONAMENTO' },
+    { id: '4',tipo:'O', descricao: 'OUTRO' }
   ]
+
 
   constructor(
     private enderecoService: EnderecoService,
@@ -84,19 +86,30 @@ export class CadastrarUnidadeComponent implements OnInit {
     });
   }
 
-  //TODO 
   cancelar() {
     this.router.navigate(['unidade'])
     
   }
-  //TODO
   atualizar(){
+    this.tratarDados();
+    this.unidadeService.alterar(this.unidade).pipe(
+      switchMap((unidade: Unidade) => {
+        if (this.unidade.isFotoChanged && this.unidade.foto) {
+          return this.arquivoService.gravarComIdUnidade(this.unidade.foto, unidade.idUnidade)
+        } else {
+          return new Observable(obs => obs.next());
+        }
+      })
+
+    ).subscribe(() => {
+      this.router.navigate(['unidade'])
+      this.toastService.showSucesso('Unidade atualizada com sucesso');
+    })
 
   }
 
   limpar() {
     this.unidade = new Unidade();
-    this.confirmacaoEmail = null;
   }
 
   cadastrar() {
@@ -115,11 +128,13 @@ export class CadastrarUnidadeComponent implements OnInit {
       this.toastService.showSucesso('Unidade cadastrada com sucesso');
     })
   }
+
+  
   tratarDados() {
-    this.unidade.cep = this.unidade.cep ? this.retiraMascara(this.unidade.cep) : null;
-    this.unidade.celular = this.unidade.celular ? this.retiraMascara(this.unidade.celular) : null;
-    this.unidade.telefone = this.unidade.telefone ? this.retiraMascara(this.unidade.telefone) : null;
-    this.unidade.cnpj = this.unidade.cnpj ? this.retiraMascara(this.unidade.cnpj) : null;
+    this.unidade.cep = this.unidade.cep ? this.retiraMascara(this.unidade.cep.toString()) : null;
+    this.unidade.celular = this.unidade.celular ? this.retiraMascara(this.unidade.celular.toString()) : null;
+    this.unidade.telefone = this.unidade.telefone ? this.retiraMascara(this.unidade.telefone.toString()) : null;
+    this.unidade.cnpj = this.unidade.cnpj ? this.retiraMascara(this.unidade.cnpj.toString()) : null;
   }
 
   fileChangeEvent(event: any): void {

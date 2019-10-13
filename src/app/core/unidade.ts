@@ -21,8 +21,8 @@ export class Unidade {
 	classificacaoSituacaoImovel: string
 	nomeFantasia: string
 	cnpj:string
-	numeroInscricaoEstadual:number
-	numeroInscricaoMunicipal:number
+	inscricaoEstadual:string
+	inscricaoMunicipal:string
 	homePage:string
 	foto?:any;
    urlFoto?:any;

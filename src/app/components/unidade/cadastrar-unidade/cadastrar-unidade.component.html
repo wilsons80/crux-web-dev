@@ -46,8 +46,8 @@
                     <mat-form-field fxFlex="24%" fxFlexOffset="20px">
                         <mat-label>Tipo: </mat-label>
                         <mat-select name="tipoUnidades" [(ngModel)]="unidade.tipoUnidade">
-                            <mat-option *ngFor="let t of tiposUnidade" [value]="t.tipoUnidade">
-                                {{t.tipoUnidade}}
+                            <mat-option *ngFor="let t of tiposUnidade" [value]="t.tipo">
+                                {{t.descricao}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -57,7 +57,7 @@
                         <mat-select [(ngModel)]="unidade.classificacaoSituacaoImovel"
                             name="classificacaoSituacaoImovel">
                             <mat-option *ngFor="let s of situacoesImovel" [value]="s.tipo">
-                                {{s.tipo}}
+                                {{s.descricao}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -79,15 +79,15 @@
 
             <mat-form-field fxFlex="20%" fxFlexOffset="20px">
                 <input #numeroInscricaoEstadual type="text" matInput maxlength="20"
-                    [(ngModel)]="unidade.numeroInscricaoEstadual" name="numeroInscricaoEstadual"
-                    placeholder="Numero Inscrição Estadual:" />
+                    [(ngModel)]="unidade.inscricaoEstadual" name="numeroInscricaoEstadual"
+                    placeholder="Número Inscrição Estadual:" />
                 <mat-hint align="end">{{numeroInscricaoEstadual.value.length}} / 20</mat-hint>
             </mat-form-field>
 
             <mat-form-field fxFlex="20%" fxFlexOffset="20px">
                 <input #numeroInscricaoMunicipal type="text" matInput maxlength="20"
-                    [(ngModel)]="unidade.numeroInscricaoMunicipal" name="numeroInscricaoMunicipal"
-                    placeholder="Numero Inscrição Municipal:" />
+                    [(ngModel)]="unidade.inscricaoMunicipal" name="numeroInscricaoMunicipal"
+                    placeholder="Número Inscrição Municipal:" />
                 <mat-hint align="end">{{numeroInscricaoMunicipal.value.length}} / 20</mat-hint>
             </mat-form-field>
 
@@ -134,10 +134,9 @@
         <!-- CONTATO -->
         <mat-toolbar class="titulopartes">Contato</mat-toolbar>
 
-        <div fxLayout="column" class="espaco" fxFlexFill>
 
             <!-- TELEFONES -->
-            <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
+            <div fxLayout="row" class="espaco" fxLayoutGap="50px" fxFlexFill>
                 <mat-form-field fxFlexOffset="20px" fxFlex="8%">
                     <input matInput [(ngModel)]="unidade.telefone" name="telefoneFixo" placeholder="Telefone Fixo:"
                         [textMask]="{mask: maskPhone}">
@@ -154,20 +153,11 @@
                     <mat-hint align="end">{{email.value.length}} / 100</mat-hint>
                 </mat-form-field>
 
-                <mat-form-field fxFlex="30%">
-                    <input #email1 matInput maxlength="100" [(ngModel)]="confirmacaoEmail" name="confirmacaoEmail"
-                        placeholder="Confirmação do email:" [required]="unidade.email" email>
-                    <mat-hint align="end">{{email1.value.length}} / 100</mat-hint>
-                </mat-form-field>
-
-            </div>
-            <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-                <mat-form-field fxFlexOffset="20px" fxFlex="50%">
+                <mat-form-field fxFlexOffset="20px" fxFlex="30%">
                     <input #homePage matInput maxlength="200" [(ngModel)]="unidade.homePage" name="homePage"
                         placeholder="Home Page: ">
                     <mat-hint align="end">{{homePage.value.length}} / 200</mat-hint>
                 </mat-form-field>
-            </div>
         </div>
 
         <!-- DESCRIÇÃO -->
@@ -189,7 +179,7 @@
                  </mat-form-field>
               
                  <mat-form-field  fxFlex= "40%" fxFlexOffset="20px"  appearance="outline">
-                        <mat-label>Situação do Imóvel:</mat-label>
+                        <mat-label>Estrutura física:</mat-label>
                       <textarea matInput #descricaoEstruturaFisicaImovel
                                         name="resultadoAcao"
                                         [(ngModel)]="unidade.descricaoEstruturaFisicaImovel"
