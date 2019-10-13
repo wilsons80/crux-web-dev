@@ -22,6 +22,11 @@ export class ArquivoService {
     return this.http.post(rootPath, formData);
   }
 
+  gravarComIdUnidade(file: File, idUnidade: number) {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post(`${rootPath}/unidade/${idUnidade}`, formData);
+  }
   alterar(file: File) {
     const formData = new FormData();
     formData.append("file", file);

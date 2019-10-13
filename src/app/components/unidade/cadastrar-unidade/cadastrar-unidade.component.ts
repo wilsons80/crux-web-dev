@@ -1,9 +1,15 @@
+import { ArquivoService } from './../../../services/arquivo/arquivo.service';
+import { ToastService } from './../../../services/toast/toast.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Unidade } from 'src/app/core/unidade';
 import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 import { ActivatedRoute } from '@angular/router';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { switchMap } from 'rxjs/operators';
+import { Funcionario } from 'src/app/core/funcionario';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'cadastrar-unidade',
@@ -48,6 +54,10 @@ export class CadastrarUnidadeComponent implements OnInit {
     private enderecoService: EnderecoService,
     private activatedRoute: ActivatedRoute,
     private unidadeService: UnidadeService,
+    private router: Router,
+    private toastService:ToastService,
+    private arquivoService:ArquivoService
+    
     
   ) { }
 
@@ -76,6 +86,7 @@ export class CadastrarUnidadeComponent implements OnInit {
 
   //TODO 
   cancelar() {
+    this.router.navigate(['unidade'])
     
   }
   //TODO
@@ -88,12 +99,49 @@ export class CadastrarUnidadeComponent implements OnInit {
     this.confirmacaoEmail = null;
   }
 
-
   cadastrar() {
+    this.tratarDados();
+    this.unidadeService.cadastrar(this.unidade).pipe(
+      switchMap((unidade: Unidade) => {
+        if (this.unidade.isFotoChanged && this.unidade.foto) {
+          return this.arquivoService.gravarComIdUnidade(this.unidade.foto, unidade.idUnidade)
+        } else {
+          return new Observable(obs => obs.next());
+        }
+      })
+
+    ).subscribe(() => {
+      this.router.navigate(['unidade'])
+      this.toastService.showSucesso('Unidade cadastrada com sucesso');
+    })
+  }
+  tratarDados() {
     this.unidade.cep = this.unidade.cep ? this.retiraMascara(this.unidade.cep) : null;
     this.unidade.celular = this.unidade.celular ? this.retiraMascara(this.unidade.celular) : null;
     this.unidade.telefone = this.unidade.telefone ? this.retiraMascara(this.unidade.telefone) : null;
+    this.unidade.cnpj = this.unidade.cnpj ? this.retiraMascara(this.unidade.cnpj) : null;
+  }
 
+  fileChangeEvent(event: any): void {
+    this.unidade.foto = event.target.files[0];
+    this.unidade.isFotoChanged = true;
+    this.readThis(event.target);
+  }
+
+  getBackground(){
+    if(this.unidade && this.unidade.urlFoto){
+      return `url(${this.unidade.urlFoto})`
+    }
+  }
+
+  readThis(inputValue: any): void {
+    var file:File = inputValue.files[0];
+    var myReader:FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.unidade.urlFoto = myReader.result;
+    }
+    myReader.readAsDataURL(file);
   }
 
   retiraMascara(objeto) {

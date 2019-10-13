@@ -24,5 +24,8 @@ export class Unidade {
 	numeroInscricaoEstadual:number
 	numeroInscricaoMunicipal:number
 	homePage:string
+	foto?:any;
+   urlFoto?:any;
+   isFotoChanged?:boolean;
 	
 }
