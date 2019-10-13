@@ -34,10 +34,6 @@ export class AtividadeComponent implements OnInit {
 
   ngOnInit() {
     this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
-
-    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
-      this.displayedColumns = ['descricao', 'dataPrevisaoInicio', 'dataPrevisaoTermino', 'cargaHoraria'];
-    }
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

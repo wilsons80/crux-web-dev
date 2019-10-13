@@ -41,10 +41,6 @@ export class TalentoComponent implements OnInit {
 
   ngOnInit() {
     this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
-
-    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
-      this.displayedColumns = ['nome', 'dataRespostaTalento', 'nrNotaCompetencia'];
-    }
     this.dataSource.paginator = this.paginator;
     this.pessoaFisicaService.getAll().subscribe((listaPessoas: PessoaFisica[]) => {
       this.listaPessoas = listaPessoas;

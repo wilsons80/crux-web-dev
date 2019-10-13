@@ -41,10 +41,6 @@ export class UsuarioComponent implements OnInit {
   ngOnInit() {
     this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
 
-    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
-      this.displayedColumns = ['username', 'nome', 'status', 'dataInicioVigencia', 'dataFimVigencia'];
-    }
-
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

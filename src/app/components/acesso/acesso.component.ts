@@ -49,11 +49,6 @@ export class AcessoComponent implements OnInit {
 
   ngOnInit() {
     this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
-
-    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
-      this.displayedColumns = ['nomeUsuario', 'nomeModulo', 'nomeUnidade', 'nomeGrupoModulo']
-    }
-
     this.dataSource.paginator = this.paginator;
     this.getAll();
     this.consultar();

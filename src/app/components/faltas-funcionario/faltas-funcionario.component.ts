@@ -43,10 +43,6 @@ export class FaltasFuncionarioComponent implements OnInit {
   ngOnInit() {
     this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
 
-    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
-      this.displayedColumns =  ['funcionarioFaltou', 'funcionarioCadastrouFalta', 'dataFaltaFuncionario'];
-    }
-
 
     this.dataSource.paginator = this.paginator;
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {

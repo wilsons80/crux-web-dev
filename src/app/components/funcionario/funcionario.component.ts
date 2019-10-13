@@ -36,10 +36,6 @@ export class FuncionarioComponent implements OnInit {
   ngOnInit() {
     this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
 
-    if(this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N'){
-      this.displayedColumns = ['matricula', 'nome', 'dataAdmissao', 'tipoFuncionario', 'cargo'];
-    }
-
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
