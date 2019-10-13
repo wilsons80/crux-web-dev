@@ -1,19 +1,16 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Objetivo } from 'src/app/core/objetivo';
-import { Indicadores } from 'src/app/core/indicadores';
-import { IndicadoresService } from 'src/app/services/indicadores/indicadores.service';
-import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
 import { ActivatedRoute } from '@angular/router';
-import { ToastService } from 'src/app/services/toast/toast.service';
 import { Atividade } from 'src/app/core/atividade';
 import { PlanosAcao } from 'src/app/core/planos-acao';
 import { Projeto } from 'src/app/core/projeto';
 import { Unidade } from 'src/app/core/unidade';
+import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { PlanosAcaoService } from 'src/app/services/planosAcao/planos-acao.service';
 import { ProjetoService } from 'src/app/services/projeto/projeto.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
-import { AtividadeService } from 'src/app/services/atividade/atividade.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-atividade',
@@ -28,14 +25,18 @@ export class CadastrarAtividadeComponent implements OnInit {
   projetos: Projeto[];
   unidades: Unidade[];
 
-  tipoHorario:any = [
-    {id:'F' , descricao:'FIXO' },
-    {id:'L' , descricao:'LIVRE' },
+   perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
+  tipoHorario: any = [
+    { id: 'F', descricao: 'FIXO' },
+    { id: 'L', descricao: 'LIVRE' },
   ];
 
-  localExecucao:any = [
-    {id:'I' , descricao:'INTERNA' },
-    {id:'E' , descricao:'EXTERNA' },
+  localExecucao: any = [
+    { id: 'I', descricao: 'INTERNA' },
+    { id: 'E', descricao: 'EXTERNA' },
   ];
 
 
@@ -46,9 +47,9 @@ export class CadastrarAtividadeComponent implements OnInit {
     private projetoService: ProjetoService,
     private unidadeService: UnidadeService,
     private atividadeService: AtividadeService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
-    private toastService:ToastService
+    private toastService: ToastService
   ) {
     this.atividade.unidade = new Unidade();
     this.atividade.projeto = new Projeto();
@@ -57,6 +58,15 @@ export class CadastrarAtividadeComponent implements OnInit {
 
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
     this.planosAcaoService.getAll().subscribe((planosAcao: PlanosAcao[]) => {
       this.listaPlanosAcao = planosAcao;
     })
@@ -70,7 +80,7 @@ export class CadastrarAtividadeComponent implements OnInit {
     })
 
     let idAtividade: number;
-    idAtividade = this.route.snapshot.queryParams.idAtividade ? this.route.snapshot.queryParams.idAtividade : null;
+    idAtividade = this.activatedRoute.snapshot.queryParams.idAtividade ? this.activatedRoute.snapshot.queryParams.idAtividade : null;
     if (idAtividade) {
       this.isAtualizar = true;
       this.atividadeService.getById(idAtividade).subscribe((atividade: Atividade) => {
@@ -79,6 +89,15 @@ export class CadastrarAtividadeComponent implements OnInit {
     }
 
   }
+  
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+
   cadastrar() {
     this.atividadeService.cadastrar(this.atividade).subscribe(() => {
       this.location.back();
@@ -94,9 +113,6 @@ export class CadastrarAtividadeComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.atividadeService.alterar(this.atividade).subscribe(() => {

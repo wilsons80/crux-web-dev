@@ -50,9 +50,6 @@ export class CadastrarAvaliacaoAtividadeComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.avaliacaoService.alterar(this.avaliacao).subscribe(() => {

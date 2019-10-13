@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { CondicoesMoradiaService } from 'src/app/services/condicoes-moradia/condicoes-moradia.service';
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { ToastService } from 'src/app/services/toast/toast.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
+import { CondicoesMoradiaService } from 'src/app/services/condicoes-moradia/condicoes-moradia.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'cadastrar-condicao-moradia',
@@ -16,21 +17,36 @@ export class CadastrarCondicaoMoradiaComponent implements OnInit {
   condicaoMoradia: CondicoesMoradia = new CondicoesMoradia();
   isAtualizar = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private condicaoMoradiaService: CondicoesMoradiaService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService: ToastService
   ) { }
 
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
+
     this.condicaoMoradiaService.getAll().subscribe((condicoesMoradia: CondicoesMoradia[]) => {
       this.condicoesMoradia = condicoesMoradia;
     });
 
     let id: number;
-    id = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;
+    id = this.activatedRoute.snapshot.queryParams.id ? this.activatedRoute.snapshot.queryParams.id : null;
     if (id) {
       this.isAtualizar = true;
       this.condicaoMoradiaService.getById(id).subscribe((condicaoMoradia: CondicoesMoradia) => {
@@ -39,6 +55,14 @@ export class CadastrarCondicaoMoradiaComponent implements OnInit {
     }
 
   }
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+
   cadastrar() {
     this.condicaoMoradiaService.cadastrar(this.condicaoMoradia).subscribe(() => {
       this.location.back();
@@ -48,15 +72,12 @@ export class CadastrarCondicaoMoradiaComponent implements OnInit {
 
   limpar() {
     this.condicaoMoradia = new CondicoesMoradia();
-   }
+  }
 
   cancelar() {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.condicaoMoradiaService.alterar(this.condicaoMoradia).subscribe(() => {

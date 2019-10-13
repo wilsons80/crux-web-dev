@@ -99,55 +99,44 @@
             </div>
         </mat-step>
 
-        <!--  OUTRAS INFORMAçÕes -->
-        <!-- <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutros">
-            <form #formCadastroOutros="ngForm">
-                <ng-template matStepLabel>OUTRAS INFORMAÇÕES</ng-template>
-
-                <outras-informacoes [pessoaFisica]="funcionario.pessoasFisica"></outras-informacoes>
-
-            </form>
-            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" (click)="cadastrar()"
-                    [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-                                formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid ||  formCadastroOutros.invalid"
-                    matStepperNext>
-                    Cadastrar
-                </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
-                </button>
-            </div>
-        </mat-step> -->
+       
     </mat-horizontal-stepper>
 </div>
 
-<!-- <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-fxFlexFill> -->
-<div dir="rtl" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-    <button mat-raised-button
+
+
+<!-- BOTOES -->
+<div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+    <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button
             name="botaoConfirmar"
             fxFlex="20%"
             color="primary"
             [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
             formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid"
-            (click)="isAtualizar ? atualizar() : cadastrar()">
-            {{getNomeBotao()}}
+            (click)="cadastrar()"> Cadastrar
     </button>
 
-    <button *ngIf="!isAtualizar"
-            mat-raised-button
+    <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button
+            name="botaoConfirmar"
             fxFlex="20%"
             color="primary"
+            [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
+            formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid"
+            (click)="atualizar()">
+            Atualizar
+    </button>
+
+    <button *ngIf="mostrarBotaoLimpar()" 
+            mat-raised-button 
+            fxFlex="20%" 
             (click)="limpar()">
             Limpar
     </button>
-
-    <button mat-raised-button
-            fxFlex="20%"
-            color="primary"
+    <button 
+            mat-raised-button 
+            fxFlex="20%" 
             (click)="cancelar()">
-        Cancelar
+            Cancelar
     </button>
+
 </div>

@@ -1,11 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
 import { GrausInstrucaoService } from 'src/app/services/graus-instrucao/graus-instrucao.service';
-import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
-import { ActivatedRoute } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { Objetivo } from 'src/app/core/objetivo';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-graus-instrucao',
@@ -18,19 +17,32 @@ export class CadastrarGrausInstrucaoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private grausInstrucaoService: GrausInstrucaoService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
-    private toastService:ToastService
+    private toastService: ToastService
   ) {
   }
 
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
 
     let idGrausInstrucao: number;
-    idGrausInstrucao = this.route.snapshot.queryParams.idGrausInstrucao ? this.route.snapshot.queryParams.idGrausInstrucao : null;
+    idGrausInstrucao = this.activatedRoute.snapshot.queryParams.idGrausInstrucao ? this.activatedRoute.snapshot.queryParams.idGrausInstrucao : null;
     if (idGrausInstrucao) {
       this.isAtualizar = true;
       this.grausInstrucaoService.getById(idGrausInstrucao).subscribe((grausInstrucao: GrausInstrucao) => {
@@ -39,6 +51,15 @@ export class CadastrarGrausInstrucaoComponent implements OnInit {
     }
 
   }
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+  
   cadastrar() {
     this.grausInstrucaoService.cadastrar(this.grausInstrucao).subscribe(() => {
       this.location.back();
@@ -54,9 +75,7 @@ export class CadastrarGrausInstrucaoComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
+
 
   atualizar() {
     this.grausInstrucaoService.alterar(this.grausInstrucao).subscribe(() => {

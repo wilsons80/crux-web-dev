@@ -6,6 +6,7 @@ import { AcoesCompetenciaService } from 'src/app/services/acoes-competencia/acoe
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { AcaoCompetencia } from './../../../core/acao-competencia';
 import { TalentosService } from './../../../services/talentos/talentos.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 @Component({
   selector: 'app-cadastrar-acao-competencia',
   templateUrl: './cadastrar-acao-competencia.component.html',
@@ -18,10 +19,14 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private acoesCompetenciaService: AcoesCompetenciaService,
     private talentoService: TalentosService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private toastService: ToastService
   ) {
@@ -30,6 +35,16 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
 
   ngOnInit() {
 
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
+
     this.acaoCompetencia.talentosPf = new Talento();
     
     this.talentoService.getAll().subscribe((talentos: Talento[]) => {
@@ -37,7 +52,7 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
     });
 
     let idAcaoCompetencia: number;
-    idAcaoCompetencia = this.route.snapshot.queryParams.idAcaoCompetencia ? this.route.snapshot.queryParams.idAcaoCompetencia : null;
+    idAcaoCompetencia = this.activatedRoute.snapshot.queryParams.idAcaoCompetencia ? this.activatedRoute.snapshot.queryParams.idAcaoCompetencia : null;
     if (idAcaoCompetencia) {
       this.isAtualizar = true;
       this.acoesCompetenciaService.getById(idAcaoCompetencia).subscribe((acaoCompetencia: AcaoCompetencia) => {
@@ -61,9 +76,6 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
     this.router.navigate(['acaocompetencia'])
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.acoesCompetenciaService.alterar(this.acaoCompetencia).subscribe(() => {
@@ -71,4 +83,13 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
       this.toastService.showSucesso("Ação competência atualizada com sucesso");
     });
   }
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+
 }

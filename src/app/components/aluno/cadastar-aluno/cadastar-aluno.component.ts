@@ -10,6 +10,7 @@ import { FileUtils } from 'src/app/utils/file-utils';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastar-aluno',
@@ -23,9 +24,13 @@ export class CadastarAlunoComponent implements OnInit {
 
   isAtualizar = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private alunoService: AlunoService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService: ToastService,
     private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
@@ -35,10 +40,21 @@ export class CadastarAlunoComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
+
     this.aluno.pessoaFisica = this.pessoaFisica;
 
     let idAluno: number;
-    idAluno = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;
+    idAluno = this.activatedRoute.snapshot.queryParams.id ? this.activatedRoute.snapshot.queryParams.id : null;
     if (idAluno) {
       this.isAtualizar = true;
       this.alunoService.getById(idAluno).pipe(
@@ -52,6 +68,14 @@ export class CadastarAlunoComponent implements OnInit {
         this.aluno.pessoaFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
       });
     }
+  }
+  
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
   }
 
   cadastrar() {
@@ -90,9 +114,6 @@ export class CadastarAlunoComponent implements OnInit {
     return objeto.replace(/\D/g, '');
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
 
   atualizar() {

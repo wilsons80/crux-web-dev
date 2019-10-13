@@ -5,6 +5,7 @@ import { Cargo } from 'src/app/core/cargo';
 import { CargosService } from 'src/app/services/cargos/cargos.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { TipoCargo } from 'src/app/core/tipo-cargo';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-cargo',
@@ -14,6 +15,10 @@ import { TipoCargo } from 'src/app/core/tipo-cargo';
 export class CadastrarCargoComponent implements OnInit {
 
   cargo: Cargo = new Cargo();
+
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
 
   isAtualizar: boolean = false;
 
@@ -25,7 +30,7 @@ export class CadastrarCargoComponent implements OnInit {
 
   constructor(
     private cargoService: CargosService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService: ToastService
   ) { }
@@ -33,9 +38,19 @@ export class CadastrarCargoComponent implements OnInit {
 
   ngOnInit() {
 
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
+
 
     let idCargo: number;
-    idCargo = this.route.snapshot.queryParams.idCargo ? this.route.snapshot.queryParams.idCargo : null;
+    idCargo = this.activatedRoute.snapshot.queryParams.idCargo ? this.activatedRoute.snapshot.queryParams.idCargo : null;
     if (idCargo) {
       this.isAtualizar = true;
       this.cargoService.getById(idCargo).subscribe((cargo: Cargo) => {
@@ -43,6 +58,13 @@ export class CadastrarCargoComponent implements OnInit {
       });
     }
 
+  }
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
   }
   cadastrar() {
     this.cargoService.cadastrar(this.cargo).subscribe(() => {
@@ -59,9 +81,6 @@ export class CadastrarCargoComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.cargoService.alterar(this.cargo).subscribe(() => {

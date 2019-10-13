@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { FileUtils } from 'src/app/utils/file-utils';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-funcionario',
@@ -25,9 +26,13 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private funcionarioService: FuncionarioService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService: ToastService,
     private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
@@ -37,12 +42,22 @@ export class CadastrarFuncionarioComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
     this.pessoaFisica.grausInstrucao = this.grauInstrucao;
     this.funcionario.pessoasFisica = this.pessoaFisica;
     this.funcionario.funcionarioEntrevistador = this.funcionarioEntrevistador;
 
     let idFuncionario: number;
-    idFuncionario = this.route.snapshot.queryParams.idFuncionario ? this.route.snapshot.queryParams.idFuncionario : null;
+    idFuncionario = this.activatedRoute.snapshot.queryParams.idFuncionario ? this.activatedRoute.snapshot.queryParams.idFuncionario : null;
     if (idFuncionario) {
       this.isAtualizar = true;
       this.funcionarioService.getById(idFuncionario).pipe(
@@ -92,16 +107,20 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   }
 
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+
   limpar() {
     this.funcionario = new Funcionario()
   }
 
   cancelar() {
     this.location.back();
-  }
-
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
   }
 
   atualizar() {

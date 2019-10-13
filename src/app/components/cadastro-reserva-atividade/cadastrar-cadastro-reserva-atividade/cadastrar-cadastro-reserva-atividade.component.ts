@@ -1,17 +1,13 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Atividade } from 'src/app/core/atividade';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
+import { AtividadeService } from 'src/app/services/atividade/atividade.service';
+import { CadastroReservaAtividadeService } from 'src/app/services/cadastro-reserva-atividade/cadastro-reserva-atividade.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 import { CadastroReservaAtividade } from './../../../core/cadastro-reserva-atividade';
 import { PessoaFisicaService } from './../../../services/pessoa-fisica/pessoa-fisica.service';
-import { Component, OnInit } from '@angular/core';
-import { ProdutosAtividade } from 'src/app/core/produtos-atividade';
-import { Produto } from 'src/app/core/produto';
-import { Atividade } from 'src/app/core/atividade';
-import { FormaPagamento } from 'src/app/core/forma-pagamento';
-import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
-import { ProdutoService } from 'src/app/services/produto/produto.service';
-import { AtividadeService } from 'src/app/services/atividade/atividade.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastService } from 'src/app/services/toast/toast.service';
-import { CadastroReservaAtividadeService } from 'src/app/services/cadastro-reserva-atividade/cadastro-reserva-atividade.service';
-import { PessoaFisica } from 'src/app/core/pessoa-fisica';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-cadastro-reserva-atividade',
@@ -26,16 +22,30 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private cadastroReservaAtividadeService: CadastroReservaAtividadeService,
     private pessoaService: PessoaFisicaService,
     private atividadeService: AtividadeService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private toastService: ToastService
   ) { }
 
   ngOnInit() {
+   
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
 
     this.cadastroReserva.pessoasFisica = new PessoaFisica();
     this.cadastroReserva.atividade = new Atividade();
@@ -49,7 +59,7 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
     })
 
     let idCadastroReserva: number;
-    idCadastroReserva = this.route.snapshot.queryParams.idCadastroReserva ? this.route.snapshot.queryParams.idCadastroReserva : null;
+    idCadastroReserva = this.activatedRoute.snapshot.queryParams.idCadastroReserva ? this.activatedRoute.snapshot.queryParams.idCadastroReserva : null;
     if (idCadastroReserva) {
       this.isAtualizar = true;
       this.cadastroReservaAtividadeService.getById(idCadastroReserva).subscribe((cadastroReserva: CadastroReservaAtividade) => {
@@ -58,6 +68,15 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
     }
 
   }
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+  
   cadastrar() {
     this.cadastroReservaAtividadeService.cadastrar(this.cadastroReserva).subscribe(() => {
       this.router.navigate(['cadastroreservaatividade']);
@@ -73,9 +92,6 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
     this.router.navigate(['cadastroreservaatividade']);
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.cadastroReservaAtividadeService.alterar(this.cadastroReserva).subscribe(() => {

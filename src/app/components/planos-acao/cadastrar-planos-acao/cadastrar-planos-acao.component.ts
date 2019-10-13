@@ -6,6 +6,7 @@ import { PlanosAcaoService } from 'src/app/services/planosAcao/planos-acao.servi
 import { PlanosAcao } from './../../../core/planos-acao';
 import { IniciativaService } from './../../../services/iniciativa/iniciativa.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-planos-acao',
@@ -19,10 +20,14 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private iniciativaService: IniciativaService,
     private planosAcaoService: PlanosAcaoService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
   ) {
@@ -31,12 +36,21 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
 
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
     this.iniciativaService.getAll().subscribe((iniciativas: Iniciativa[]) => {
       this.iniciativas = iniciativas;
     })
 
     let idPlanosAcao: number;
-    idPlanosAcao = this.route.snapshot.queryParams.idPlanosAcao ? this.route.snapshot.queryParams.idPlanosAcao : null;
+    idPlanosAcao = this.activatedRoute.snapshot.queryParams.idPlanosAcao ? this.activatedRoute.snapshot.queryParams.idPlanosAcao : null;
     if (idPlanosAcao) {
       this.isAtualizar = true;
       this.planosAcaoService.getById(idPlanosAcao).subscribe((planosAcao: PlanosAcao) => {
@@ -45,6 +59,15 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
     }
 
   }
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+  
   cadastrar() {
     this.planosAcaoService.cadastrar(this.planosAcao).subscribe(() => {
       this.location.back();
@@ -60,9 +83,6 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.planosAcaoService.alterar(this.planosAcao).subscribe(() => {

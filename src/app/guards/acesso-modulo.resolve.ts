@@ -32,10 +32,6 @@ export class AcessoModuloResolver implements Resolve<PerfilAcesso> {
                 if(_.isEmpty(perfilAcesso) || perfilAcesso[0].consulta === "N"){
                     this.router.navigate(['acessorestrito'])
                 }
-
-                if(path.includes("CADASTRAR") && perfilAcesso[0].insere === "N"){
-                    this.router.navigate(['acessorestrito'])
-                }
                 
                 return of(perfilAcesso);
             })

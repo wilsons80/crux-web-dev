@@ -4,6 +4,7 @@ import { SituacaoVulnerabilidadeService } from 'src/app/services/situacao-vulner
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Location } from '@angular/common';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-situacao-vulnerabilidade',
@@ -15,17 +16,32 @@ export class CadastrarSituacaoVulnerabilidadeComponent implements OnInit {
   situacao: SituacoesVulnerabilidade = new SituacoesVulnerabilidade();
   isAtualizar = false;
 
+
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private situacaoService: SituacaoVulnerabilidadeService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService: ToastService
   ) { }
 
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
     let idSituacao: number;
-    idSituacao = this.route.snapshot.queryParams.idSituacao ? this.route.snapshot.queryParams.idSituacao : null;
+    idSituacao = this.activatedRoute.snapshot.queryParams.idSituacao ? this.activatedRoute.snapshot.queryParams.idSituacao : null;
     if (idSituacao) {
       this.isAtualizar = true;
       this.situacaoService.getById(idSituacao).subscribe((situacao: SituacoesVulnerabilidade) => {
@@ -33,7 +49,13 @@ export class CadastrarSituacaoVulnerabilidadeComponent implements OnInit {
       });
     }
   }
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
 
+    return true;
+  }
   cadastrar() {
     this.situacaoService.cadastrar(this.situacao).subscribe(() => {
       this.location.back();
@@ -49,9 +71,6 @@ export class CadastrarSituacaoVulnerabilidadeComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.situacaoService.alterar(this.situacao).subscribe(() => {

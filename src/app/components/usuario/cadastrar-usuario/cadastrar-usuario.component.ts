@@ -8,6 +8,7 @@ import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisi
 import { FileUtils } from 'src/app/utils/file-utils';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'cadastrar-usuario',
@@ -16,13 +17,17 @@ import { Observable } from 'rxjs';
 })
 export class CadastrarUsuarioComponent implements OnInit {
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   usuarioSistema: UsuarioSistema = new UsuarioSistema();
 
   isAtualizar = false;
 
   constructor(
     private usuarioSistemaService: UsuarioSistemaService,
-    private actRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private toastService: ToastService,
     private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
     private fileUtils: FileUtils,
@@ -31,10 +36,19 @@ export class CadastrarUsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
     this.limpar();
 
     let id: number;
-    id = this.actRoute.snapshot.queryParams.id ? this.actRoute.snapshot.queryParams.id : null;
+    id = this.activatedRoute.snapshot.queryParams.id ? this.activatedRoute.snapshot.queryParams.id : null;
     if (id) {
       this.isAtualizar = true;
       this.usuarioSistemaService.getById(id).pipe(
@@ -50,6 +64,13 @@ export class CadastrarUsuarioComponent implements OnInit {
     }
   }
 
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
   cadastrar() {
     this.tratarDados();
     this.usuarioSistemaService.cadastrar(this.usuarioSistema).pipe(
@@ -79,9 +100,6 @@ export class CadastrarUsuarioComponent implements OnInit {
     return objeto.replace(/\D/g, '');
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
 
   atualizar() {

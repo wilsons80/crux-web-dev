@@ -1,11 +1,12 @@
-import { ToastService } from './../../../services/toast/toast.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Objetivo } from 'src/app/core/objetivo';
 import { Perspectiva } from 'src/app/core/perspectiva';
 import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
 import { PerspectivaService } from 'src/app/services/perspectiva/perspectiva.service';
+import { ToastService } from './../../../services/toast/toast.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-objetivo',
@@ -19,25 +20,38 @@ export class CadastrarObjetivoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
 
   constructor(
     private perspectivaService: PerspectivaService,
     private objetivoService: ObjetivoService,
-    private route: ActivatedRoute,
-    private location:Location,
-    private toastService:ToastService
+    private activatedRoute: ActivatedRoute,
+    private location: Location,
+    private toastService: ToastService
   ) {
     this.objetivo.perspectiva = new Perspectiva();
   }
 
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
     this.perspectivaService.getAll().subscribe((perspectivas: Perspectiva[]) => {
       this.perspectivas = perspectivas;
     })
 
     let idObjetivo: number;
-    idObjetivo = this.route.snapshot.queryParams.idObjetivo ? this.route.snapshot.queryParams.idObjetivo : null;
+    idObjetivo = this.activatedRoute.snapshot.queryParams.idObjetivo ? this.activatedRoute.snapshot.queryParams.idObjetivo : null;
     if (idObjetivo) {
       this.isAtualizar = true;
       this.objetivoService.getById(idObjetivo).subscribe((objetivo: Objetivo) => {
@@ -46,6 +60,15 @@ export class CadastrarObjetivoComponent implements OnInit {
     }
 
   }
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+
   cadastrar() {
 
     this.objetivoService.cadastrar(this.objetivo).subscribe(() => {
@@ -62,12 +85,9 @@ export class CadastrarObjetivoComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
-  atualizar(){
-    this.objetivoService.alterar(this.objetivo).subscribe(()=>{
+  atualizar() {
+    this.objetivoService.alterar(this.objetivo).subscribe(() => {
       this.location.back();
       this.toastService.showSucesso("Objetivo atualizado com sucesso");
     });

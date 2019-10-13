@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { IndicadoresService } from 'src/app/services/indicadores/indicadores.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-metas',
@@ -19,12 +20,16 @@ export class CadastrarMetasComponent implements OnInit {
   indicadores: Indicadores[];
   metas: Metas = new Metas();
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   isAtualizar: boolean = false;
 
   constructor(
     private indicadoresService: IndicadoresService,
     private metasService: MetasService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
   ) {
@@ -33,12 +38,23 @@ export class CadastrarMetasComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
+
     this.indicadoresService.getAll().subscribe((indicadores: Indicadores[]) => {
       this.indicadores = indicadores;
     })
 
     let idMetas: number;
-    idMetas = this.route.snapshot.queryParams.idMetas ? this.route.snapshot.queryParams.idMetas : null;
+    idMetas = this.activatedRoute.snapshot.queryParams.idMetas ? this.activatedRoute.snapshot.queryParams.idMetas : null;
     if (idMetas) {
       this.isAtualizar = true;
       this.metasService.getById(idMetas).subscribe((metas: Metas) => {
@@ -46,6 +62,14 @@ export class CadastrarMetasComponent implements OnInit {
       });
     }
 
+  }
+  
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
   }
   cadastrar() {
     this.metasService.cadastrar(this.metas).subscribe(() => {
@@ -62,9 +86,6 @@ export class CadastrarMetasComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.metasService.alterar(this.metas).subscribe(() => {

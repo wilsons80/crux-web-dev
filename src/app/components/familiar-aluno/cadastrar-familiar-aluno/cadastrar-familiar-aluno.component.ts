@@ -129,9 +129,6 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
     return objeto.replace(/\D/g, '');
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
 
 }

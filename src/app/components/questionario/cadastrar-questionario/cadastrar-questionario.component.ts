@@ -6,6 +6,7 @@ import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Objetivo } from 'src/app/core/objetivo';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-questionario',
@@ -18,6 +19,10 @@ export class CadastrarQuestionarioComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   tiposQuestionario = [
     {id: 1, tipo: "T", descricao: "TALENTO" },
     {id: 2, tipo: "G", descricao: "GRUPO FAMILIAR" },
@@ -25,7 +30,7 @@ export class CadastrarQuestionarioComponent implements OnInit {
   ]
   constructor(
     private questionarioService: QuestionarioService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
   ) {
@@ -33,9 +38,18 @@ export class CadastrarQuestionarioComponent implements OnInit {
 
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
 
     let idQuestionario: number;
-    idQuestionario = this.route.snapshot.queryParams.idQuestionario ? this.route.snapshot.queryParams.idQuestionario : null;
+    idQuestionario = this.activatedRoute.snapshot.queryParams.idQuestionario ? this.activatedRoute.snapshot.queryParams.idQuestionario : null;
     if (idQuestionario) {
       this.isAtualizar = true;
       this.questionarioService.getById(idQuestionario).subscribe((ind: Questionario) => {
@@ -44,6 +58,14 @@ export class CadastrarQuestionarioComponent implements OnInit {
     }
 
   }
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+
   cadastrar() {
     this.questionarioService.cadastrar(this.questionario).subscribe(() => {
       this.location.back();
@@ -59,9 +81,6 @@ export class CadastrarQuestionarioComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.questionarioService.alterar(this.questionario).subscribe(() => {

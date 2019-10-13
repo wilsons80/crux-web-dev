@@ -9,6 +9,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { EmpresaService } from 'src/app/services/empresa/empresa.service';
 import { EnderecoService } from 'src/app/services/endereco/endereco.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'cadastrar-empresa',
@@ -18,6 +19,10 @@ import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 export class CadastrarEmpresaComponent implements OnInit {
 
   categoriaEmpresa: CategoriaEmpresa;
+
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
 
   categoriasEmpresa: any [] = [
     {id: CategoriaEmpresa.COMERCIAL, descricao: 'COMERCIAL'},
@@ -51,7 +56,7 @@ export class CadastrarEmpresaComponent implements OnInit {
 
   constructor(
     private empresaService: EmpresaService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService:ToastService,
     private enderecoService:EnderecoService
@@ -60,12 +65,23 @@ export class CadastrarEmpresaComponent implements OnInit {
 
   ngOnInit() {
    
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
+
+
     this.enderecoService.getAllEstados().subscribe((ufs:any)=> {
       this.ufs = ufs;
     });
 
     let idEmpresa: number;
-    idEmpresa = this.route.snapshot.queryParams.idEmpresa ? this.route.snapshot.queryParams.idEmpresa : null;
+    idEmpresa = this.activatedRoute.snapshot.queryParams.idEmpresa ? this.activatedRoute.snapshot.queryParams.idEmpresa : null;
     if (idEmpresa) {
       this.isAtualizar = true;
       this.empresaService.getById(idEmpresa).subscribe((empresa: Empresa) => {
@@ -73,6 +89,13 @@ export class CadastrarEmpresaComponent implements OnInit {
       });
     }
 
+  }
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
   }
   cadastrar() {
     this.tratarDados();
@@ -96,9 +119,6 @@ export class CadastrarEmpresaComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
 

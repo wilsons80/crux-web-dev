@@ -6,6 +6,7 @@ import { CursoFormacaoService } from 'src/app/services/curso-formacao/curso-form
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { PessoaFisica } from './../../../core/pessoa-fisica';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-curso-formacao',
@@ -19,22 +20,37 @@ export class CadastrarCursoFormacaoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private cursoFormacaoService: CursoFormacaoService,
     private pessoaFisicaService: PessoaFisicaService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
   ) { }
 
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
+
     this.pessoaFisicaService.getAll().subscribe((lista:PessoaFisica[]) => {
       this.listaPessoaFisica = lista;
     });
 
     let idCursoFormacao: number;
-    idCursoFormacao = this.route.snapshot.queryParams.idCursoFormacao ? this.route.snapshot.queryParams.idCursoFormacao : null;
+    idCursoFormacao = this.activatedRoute.snapshot.queryParams.idCursoFormacao ? this.activatedRoute.snapshot.queryParams.idCursoFormacao : null;
     if (idCursoFormacao) {
       this.isAtualizar = true;
       this.cursoFormacaoService.getById(idCursoFormacao).subscribe((cursoFormacao: CursoFormacao) => {
@@ -43,6 +59,15 @@ export class CadastrarCursoFormacaoComponent implements OnInit {
     }
 
   }
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+  
   cadastrar() {
     this.cursoFormacaoService.cadastrar(this.cursoFormacao).subscribe(() => {
       this.location.back();
@@ -58,9 +83,6 @@ export class CadastrarCursoFormacaoComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.cursoFormacaoService.alterar(this.cursoFormacao).subscribe(() => {

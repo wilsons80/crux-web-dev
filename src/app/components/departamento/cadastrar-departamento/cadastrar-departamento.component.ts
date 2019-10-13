@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { Unidade } from 'src/app/core/unidade';
 import { Location } from '@angular/common';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-departamento',
@@ -20,12 +21,16 @@ export class CadastrarDepartamentoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   constructor(
     private unidadeService: UnidadeService,
     private departamentoService: DepartamentoService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location:Location,
     private toastService:ToastService
   ) {
@@ -35,6 +40,16 @@ export class CadastrarDepartamentoComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
     this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: Unidade[]) => {
       this.unidades = unidades;
     })
@@ -44,7 +59,7 @@ export class CadastrarDepartamentoComponent implements OnInit {
     })
 
     let idDepartamento: number;
-    idDepartamento = this.route.snapshot.queryParams.idDepartamento ? this.route.snapshot.queryParams.idDepartamento : null;
+    idDepartamento = this.activatedRoute.snapshot.queryParams.idDepartamento ? this.activatedRoute.snapshot.queryParams.idDepartamento : null;
     if (idDepartamento) {
       this.isAtualizar = true;
       this.departamentoService.getById(idDepartamento).subscribe((departamento: Departamento) => {
@@ -53,6 +68,14 @@ export class CadastrarDepartamentoComponent implements OnInit {
     }
 
   }
+
+    mostrarBotaoLimpar(){
+    	if(this.isAtualizar) return false;
+    	if(!this.mostrarBotaoAtualizar) return false;
+    	if(!this.mostrarBotaoCadastrar) return false;
+
+    	return true;
+  	}
   cadastrar() {
     this.departamentoService.cadastrar(this.departamento).subscribe(() => {
       this.location.back();

@@ -6,6 +6,7 @@ import { Unidade } from 'src/app/core/unidade';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { PerspectivaService } from './../../../services/perspectiva/perspectiva.service';
 import { ToastService } from './../../../services/toast/toast.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-perspectiva',
@@ -19,25 +20,38 @@ export class CadastrarPerspectivaComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
 
   constructor(
     private unidadeService: UnidadeService,
-    private perspectivaService:PerspectivaService,
-    private route: ActivatedRoute,
-    private location:Location,
-    private toastService:ToastService
+    private perspectivaService: PerspectivaService,
+    private activatedRoute: ActivatedRoute,
+    private location: Location,
+    private toastService: ToastService
   ) {
     this.perspectiva.unidade = new Unidade();
   }
 
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
     this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: Unidade[]) => {
       this.unidades = unidades;
     })
 
     let idPerspectiva: number;
-    idPerspectiva = this.route.snapshot.queryParams.idPerspectiva ? this.route.snapshot.queryParams.idPerspectiva : null;
+    idPerspectiva = this.activatedRoute.snapshot.queryParams.idPerspectiva ? this.activatedRoute.snapshot.queryParams.idPerspectiva : null;
     if (idPerspectiva) {
       this.isAtualizar = true;
       this.perspectivaService.getById(idPerspectiva).subscribe((perspectiva: Perspectiva) => {
@@ -53,21 +67,26 @@ export class CadastrarPerspectivaComponent implements OnInit {
     });
   }
 
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+
   limpar() {
     this.perspectiva = new Perspectiva();
-   }
+  }
 
   cancelar() {
     this.location.back();
   }
 
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
-  atualizar(){
-    this.perspectivaService.alterar(this.perspectiva).subscribe(()=>{
+  atualizar() {
+    this.perspectivaService.alterar(this.perspectiva).subscribe(() => {
       this.location.back();
       this.toastService.showSucesso("Perspectiva atualizada com sucesso");
     });

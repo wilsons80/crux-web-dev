@@ -6,6 +6,7 @@ import { Indicadores } from 'src/app/core/indicadores';
 import { Objetivo } from 'src/app/core/objetivo';
 import { IndicadoresService } from 'src/app/services/indicadores/indicadores.service';
 import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-indicadores',
@@ -19,10 +20,14 @@ export class CadastrarIndicadoresComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private indicadoresService: IndicadoresService,
     private objetivoService: ObjetivoService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
   ) {
@@ -31,12 +36,23 @@ export class CadastrarIndicadoresComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
+
     this.objetivoService.getAll().subscribe((objetivos: Objetivo[]) => {
       this.objetivos = objetivos;
     });
 
     let idIndicadores: number;
-    idIndicadores = this.route.snapshot.queryParams.idIndicador ? this.route.snapshot.queryParams.idIndicador : null;
+    idIndicadores = this.activatedRoute.snapshot.queryParams.idIndicador ? this.activatedRoute.snapshot.queryParams.idIndicador : null;
     if (idIndicadores) {
       this.isAtualizar = true;
       this.indicadoresService.getById(idIndicadores).subscribe((ind: Indicadores) => {
@@ -60,9 +76,7 @@ export class CadastrarIndicadoresComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
+
 
   atualizar() {
     this.indicadoresService.alterar(this.indicadores).subscribe(() => {
@@ -70,6 +84,14 @@ export class CadastrarIndicadoresComponent implements OnInit {
       this.toastService.showSucesso("Indicador atualizado com sucesso");
     });
 
+  }
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
   }
 
 }

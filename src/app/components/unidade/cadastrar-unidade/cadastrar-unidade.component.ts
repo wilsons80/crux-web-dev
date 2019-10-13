@@ -3,6 +3,7 @@ import { Unidade } from 'src/app/core/unidade';
 import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 import { ActivatedRoute } from '@angular/router';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'cadastrar-unidade',
@@ -11,7 +12,10 @@ import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 })
 export class CadastrarUnidadeComponent implements OnInit {
 
-
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+  
   estados: any;
 
   unidade: Unidade = new Unidade();
@@ -42,13 +46,24 @@ export class CadastrarUnidadeComponent implements OnInit {
 
   constructor(
     private enderecoService: EnderecoService,
-    private route: ActivatedRoute,
-    private unidadeService: UnidadeService
+    private activatedRoute: ActivatedRoute,
+    private unidadeService: UnidadeService,
+    
   ) { }
 
   ngOnInit() {
+
+  this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+  if(this.perfilAcesso.insere === 'N'){
+    this.mostrarBotaoCadastrar = false;
+  }
+  
+  if(this.perfilAcesso.altera === 'N'){
+    this.mostrarBotaoAtualizar = false;
+  }
     let idUnidade: number;
-    idUnidade = this.route.snapshot.queryParams.idUnidade ? this.route.snapshot.queryParams.idUnidade : null;
+    idUnidade = this.activatedRoute.snapshot.queryParams.idUnidade ? this.activatedRoute.snapshot.queryParams.idUnidade : null;
     if (idUnidade) {
       this.isAtualizar = true;
       this.unidadeService.getUnidadePorId(idUnidade).subscribe((unidade: Unidade) => this.unidade = unidade);
@@ -59,8 +74,13 @@ export class CadastrarUnidadeComponent implements OnInit {
     });
   }
 
+  //TODO 
   cancelar() {
     
+  }
+  //TODO
+  atualizar(){
+
   }
 
   limpar() {
@@ -80,8 +100,13 @@ export class CadastrarUnidadeComponent implements OnInit {
     return objeto.replace(/\D/g, '');
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
   }
 
 }

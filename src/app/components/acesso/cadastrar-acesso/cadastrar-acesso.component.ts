@@ -1,9 +1,9 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AcessoUnidade } from 'src/app/core/acesso-unidade';
 import { CadastroAcesso } from 'src/app/core/cadastro-acesso';
 import { Modulo } from 'src/app/core/modulo';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { UsuarioUnidade } from 'src/app/core/usuario-unidade';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
@@ -27,6 +27,9 @@ export class CadastrarAcessoComponent implements OnInit {
   unidades: AcessoUnidade;
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
 
   labelBotao: string;
 
@@ -39,20 +42,30 @@ export class CadastrarAcessoComponent implements OnInit {
     private toastService: ToastService,
     private unidadeService: UnidadeService,
     private usuarioService: UsuarioService,
-    private route: ActivatedRoute,
-    private location: Location,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
+
     this.unidadeService.getUnidadesComAcesso()
       .subscribe((acessoUnidade: AcessoUnidade) => {
         this.unidades = acessoUnidade;
       });
 
-    this.cadastroAcesso.idGrupoModulo = this.route.snapshot.queryParams.idGrupoModulo ? Number(this.route.snapshot.queryParams.idGrupoModulo) : null;
-    this.cadastroAcesso.idUnidade = this.route.snapshot.queryParams.idUnidade ? Number(this.route.snapshot.queryParams.idUnidade) : null;
-    this.cadastroAcesso.idModulo = this.route.snapshot.queryParams.idModulo ? Number(this.route.snapshot.queryParams.idModulo) : null;
-    this.cadastroAcesso.idUsuario = this.route.snapshot.queryParams.idUsuario ? Number(this.route.snapshot.queryParams.idUsuario) : null;
+    this.cadastroAcesso.idGrupoModulo = this.activatedRoute.snapshot.queryParams.idGrupoModulo ? Number(this.activatedRoute.snapshot.queryParams.idGrupoModulo) : null;
+    this.cadastroAcesso.idUnidade = this.activatedRoute.snapshot.queryParams.idUnidade ? Number(this.activatedRoute.snapshot.queryParams.idUnidade) : null;
+    this.cadastroAcesso.idModulo = this.activatedRoute.snapshot.queryParams.idModulo ? Number(this.activatedRoute.snapshot.queryParams.idModulo) : null;
+    this.cadastroAcesso.idUsuario = this.activatedRoute.snapshot.queryParams.idUsuario ? Number(this.activatedRoute.snapshot.queryParams.idUsuario) : null;
 
     if (this.cadastroAcesso.idGrupoModulo) {
       this.isAtualizar = true;
@@ -92,7 +105,7 @@ export class CadastrarAcessoComponent implements OnInit {
   cadastrar() {
     this.acessoService.cadastrarAcesso(this.cadastroAcesso).subscribe(() => {
       this.toastService.showSucesso("Usuário Cadastrado com sucesso");
-      this.location.back();
+      this.router.navigate(['acesso'])
     });
   }
 
@@ -113,7 +126,7 @@ export class CadastrarAcessoComponent implements OnInit {
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['acesso'])
   }
 
   buscarPerfis() {
@@ -121,8 +134,13 @@ export class CadastrarAcessoComponent implements OnInit {
       .subscribe((perfis: GrupoModulo[]) => this.perfis = perfis);
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
   }
 
 }

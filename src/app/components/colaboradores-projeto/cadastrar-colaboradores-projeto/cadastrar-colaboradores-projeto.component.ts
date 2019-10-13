@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Cargo } from 'src/app/core/cargo';
 import { ColaboradoresProjeto } from 'src/app/core/colaboradores-projeto';
 import { Funcionario } from 'src/app/core/funcionario';
-import { Programa } from 'src/app/core/programa';
-import { Cargo } from 'src/app/core/cargo';
+import { Projeto } from 'src/app/core/projeto';
+import { CargosService } from 'src/app/services/cargos/cargos.service';
 import { ColaboradoresProjetoService } from 'src/app/services/colaboradores-projeto/colaboradores-projeto.service';
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
-import { ProgramaService } from 'src/app/services/programa/programa.service';
-import { CargosService } from 'src/app/services/cargos/cargos.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastService } from 'src/app/services/toast/toast.service';
-import { Projeto } from 'src/app/core/projeto';
 import { ProjetoService } from 'src/app/services/projeto/projeto.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-colaboradores-projeto',
@@ -21,8 +20,12 @@ export class CadastrarColaboradoresProjetoComponent implements OnInit {
 
   colaboradoresProjeto: ColaboradoresProjeto = new ColaboradoresProjeto()
   funcionarios: Funcionario[];
-  projetos:Projeto[];
-  cargos:Cargo[];
+  projetos: Projeto[];
+  cargos: Cargo[];
+
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
 
   isAtualizar: boolean = false;
 
@@ -31,31 +34,41 @@ export class CadastrarColaboradoresProjetoComponent implements OnInit {
     private funcionarioService: FuncionarioService,
     private projetoService: ProjetoService,
     private cargosService: CargosService,
-    private route:ActivatedRoute,
-    private router:Router,
-    private toastService:ToastService
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private toastService: ToastService
   ) { }
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
 
     this.colaboradoresProjeto.funcionario = new Funcionario();
     this.colaboradoresProjeto.cargo = new Cargo();
     this.colaboradoresProjeto.projeto = new Projeto();
 
-    this.funcionarioService.getAll().subscribe((funcionarios:Funcionario[]) => {
+    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
       this.funcionarios = funcionarios;
     })
-    
-    this.projetoService.getAll().subscribe((projetos:Projeto[]) => {
+
+    this.projetoService.getAll().subscribe((projetos: Projeto[]) => {
       this.projetos = projetos;
     })
-    
-    this.cargosService.getAll().subscribe((cargos:Cargo[]) => {
+
+    this.cargosService.getAll().subscribe((cargos: Cargo[]) => {
       this.cargos = cargos;
     })
 
     let idColaborador: number;
-    idColaborador = this.route.snapshot.queryParams.idColaborador ? this.route.snapshot.queryParams.idColaborador : null;
+    idColaborador = this.activatedRoute.snapshot.queryParams.idColaborador ? this.activatedRoute.snapshot.queryParams.idColaborador : null;
     if (idColaborador) {
       this.isAtualizar = true;
       this.colaboradoresProjetoService.getById(idColaborador).subscribe((colaboradoresProjeto: ColaboradoresProjeto) => {
@@ -64,25 +77,31 @@ export class CadastrarColaboradoresProjetoComponent implements OnInit {
     }
 
   }
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+
   cadastrar() {
     this.colaboradoresProjetoService.cadastrar(this.colaboradoresProjeto).subscribe(() => {
       this.router.navigate(['colaboradoresprojeto']);
       this.toastService.showSucesso("Colaborador cadastrado com sucesso");
     });
   }
-  
+
   limpar() {
     this.colaboradoresProjeto = new ColaboradoresProjeto();
   }
-  
+
   cancelar() {
     this.router.navigate(['colaboradoresprojeto']);
   }
-  
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
-  
+
+
   atualizar() {
     this.colaboradoresProjetoService.alterar(this.colaboradoresProjeto).subscribe(() => {
       this.router.navigate(['colaboradoresprojeto']);

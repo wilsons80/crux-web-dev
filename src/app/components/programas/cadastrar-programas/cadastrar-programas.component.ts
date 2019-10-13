@@ -8,6 +8,7 @@ import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
 import { ProgramaService } from 'src/app/services/programa/programa.service';
 import { Programa } from './../../../core/programa';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-programas',
@@ -26,11 +27,16 @@ export class CadastrarProgramasComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   constructor(
     private iniciativaService: IniciativaService,
     private objetivoService: ObjetivoService,
     private programaService: ProgramaService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
   ) {
@@ -40,6 +46,15 @@ export class CadastrarProgramasComponent implements OnInit {
 
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
     this.iniciativaService.getAll().subscribe((iniciativas: Iniciativa[]) => {
       this.iniciativas = iniciativas;
     })
@@ -49,7 +64,7 @@ export class CadastrarProgramasComponent implements OnInit {
     })
 
     let idPrograma: number;
-    idPrograma = this.route.snapshot.queryParams.idPrograma ? this.route.snapshot.queryParams.idPrograma : null;
+    idPrograma = this.activatedRoute.snapshot.queryParams.idPrograma ? this.activatedRoute.snapshot.queryParams.idPrograma : null;
     if (idPrograma) {
       this.isAtualizar = true;
       this.programaService.getById(idPrograma).subscribe((programa: Programa) => {
@@ -57,6 +72,14 @@ export class CadastrarProgramasComponent implements OnInit {
       });
     }
 
+  }
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
   }
   cadastrar() {
     this.programaService.cadastrar(this.programa).subscribe(() => {
@@ -73,9 +96,6 @@ export class CadastrarProgramasComponent implements OnInit {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.programaService.alterar(this.programa).subscribe(() => {

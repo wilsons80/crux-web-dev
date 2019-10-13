@@ -8,6 +8,7 @@ import { ProdutoService } from 'src/app/services/produto/produto.service';
 import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { ProdutosAtividade } from './../../../core/produtos-atividade';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-produtos-atividade',
@@ -19,6 +20,10 @@ export class CadastrarProdutosAtividadeComponent implements OnInit {
   produtosAtividade: ProdutosAtividade = new ProdutosAtividade()
   produtos: Produto[];
   atividades: Atividade[];
+
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
 
   formasPagamento: any = [
     {id:1, sigla:FormaPagamento.DINHEIRO, descricao: 'DINHEIRO'},
@@ -33,12 +38,21 @@ export class CadastrarProdutosAtividadeComponent implements OnInit {
     private produtosAtividadeService: ProdutosAtividadeService,
     private produtoService: ProdutoService,
     private atividadeService: AtividadeService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private toastService: ToastService
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
 
     this.produtosAtividade.produto = new Produto();
     this.produtosAtividade.atividade = new Atividade();
@@ -53,7 +67,7 @@ export class CadastrarProdutosAtividadeComponent implements OnInit {
     })
 
     let idProdutoAtividade: number;
-    idProdutoAtividade = this.route.snapshot.queryParams.idProdutoAtividade ? this.route.snapshot.queryParams.idProdutoAtividade : null;
+    idProdutoAtividade = this.activatedRoute.snapshot.queryParams.idProdutoAtividade ? this.activatedRoute.snapshot.queryParams.idProdutoAtividade : null;
     if (idProdutoAtividade) {
       this.isAtualizar = true;
       this.produtosAtividadeService.getById(idProdutoAtividade).subscribe((produtosAtividade: ProdutosAtividade) => {
@@ -62,6 +76,14 @@ export class CadastrarProdutosAtividadeComponent implements OnInit {
     }
 
   }
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+
   cadastrar() {
     this.produtosAtividadeService.cadastrar(this.produtosAtividade).subscribe(() => {
       this.router.navigate(['produtosatividade']);
@@ -77,9 +99,6 @@ export class CadastrarProdutosAtividadeComponent implements OnInit {
     this.router.navigate(['produtosatividade']);
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
   atualizar() {
     this.produtosAtividadeService.alterar(this.produtosAtividade).subscribe(() => {

@@ -1,11 +1,10 @@
-import { ProdutoService } from './../../../services/produto/produto.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Produto } from 'src/app/core/produto';
 import { ActivatedRoute } from '@angular/router';
-import { Perspectiva } from 'src/app/core/perspectiva';
-import { Objetivo } from 'src/app/core/objetivo';
+import { Produto } from 'src/app/core/produto';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { ProdutoService } from './../../../services/produto/produto.service';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -18,26 +17,39 @@ export class CadastrarProdutoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
+
 
   constructor(
-    private route: ActivatedRoute,
-    private location:Location,
-    private produtoService:ProdutoService,
-    private toastService:ToastService
+    private activatedRoute: ActivatedRoute,
+    private location: Location,
+    private produtoService: ProdutoService,
+    private toastService: ToastService
   ) { }
 
 
   ngOnInit() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
     let idProduto: number;
-    idProduto = this.route.snapshot.queryParams.idProduto ? this.route.snapshot.queryParams.idProduto : null;
+    idProduto = this.activatedRoute.snapshot.queryParams.idProduto ? this.activatedRoute.snapshot.queryParams.idProduto : null;
     if (idProduto) {
       this.isAtualizar = true;
       this.produtoService.getById(idProduto).subscribe((produto: Produto) => {
         this.produto = produto;
       });
     }
-    
+
   }
   cadastrar() {
     this.produtoService.cadastrar(this.produto).subscribe(() => {
@@ -46,24 +58,28 @@ export class CadastrarProdutoComponent implements OnInit {
     });
   }
 
-  limpar() { 
+  limpar() {
     this.produto = new Produto();
   }
 
-  cancelar() { 
+  cancelar() {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
 
-  atualizar(){
-    this.produtoService.alterar(this.produto).subscribe(()=>{
+  atualizar() {
+    this.produtoService.alterar(this.produto).subscribe(() => {
       this.location.back();
       this.toastService.showSucesso("Produto atualizado com sucesso");
     });
-    
+
+  }
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
   }
 
 }

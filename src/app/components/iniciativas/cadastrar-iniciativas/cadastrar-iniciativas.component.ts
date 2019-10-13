@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Metas } from 'src/app/core/metas';
-import { Iniciativa } from 'src/app/core/iniciativa';
-import { MetasService } from 'src/app/services/metas/metas.service';
-import { IniciativaService } from 'src/app/services/iniciativa/iniciativa.service';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Iniciativa } from 'src/app/core/iniciativa';
+import { Metas } from 'src/app/core/metas';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { IniciativaService } from 'src/app/services/iniciativa/iniciativa.service';
+import { MetasService } from 'src/app/services/metas/metas.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
@@ -19,22 +20,39 @@ export class CadastrarIniciativasComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
+
   constructor(
     private iniciativaService: IniciativaService,
     private metasService: MetasService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
-    private toastService:ToastService
+    private toastService: ToastService
   ) { }
 
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if (this.perfilAcesso.insere === 'N') {
+      this.mostrarBotaoCadastrar = false;
+    }
+
+    if (this.perfilAcesso.altera === 'N') {
+      this.mostrarBotaoAtualizar = false;
+    }
+
+
     this.metasService.getAll().subscribe((metas: Metas[]) => {
       this.metas = metas;
     })
 
     let idIniciativa: number;
-    idIniciativa = this.route.snapshot.queryParams.idIniciativa ? this.route.snapshot.queryParams.idIniciativa : null;
+    idIniciativa = this.activatedRoute.snapshot.queryParams.idIniciativa ? this.activatedRoute.snapshot.queryParams.idIniciativa : null;
     if (idIniciativa) {
       this.isAtualizar = true;
       this.iniciativaService.getById(idIniciativa).subscribe((iniciativa: Iniciativa) => {
@@ -43,6 +61,15 @@ export class CadastrarIniciativasComponent implements OnInit {
     }
 
   }
+
+  mostrarBotaoLimpar() {
+    if (this.isAtualizar) return false;
+    if (!this.mostrarBotaoAtualizar) return false;
+    if (!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+
   cadastrar() {
     this.iniciativaService.cadastrar(this.iniciativa).subscribe(() => {
       this.location.back();
@@ -52,15 +79,13 @@ export class CadastrarIniciativasComponent implements OnInit {
 
   limpar() {
     this.iniciativa = new Iniciativa();
-   }
+  }
 
   cancelar() {
     this.location.back();
   }
 
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
+ 
 
   atualizar() {
     this.iniciativaService.alterar(this.iniciativa).subscribe(() => {

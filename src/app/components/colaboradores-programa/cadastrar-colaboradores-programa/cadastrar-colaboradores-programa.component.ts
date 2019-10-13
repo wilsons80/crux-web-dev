@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { CargosService } from 'src/app/services/cargos/cargos.service';
 import { Funcionario } from 'src/app/core/funcionario';
 import { Cargo } from 'src/app/core/cargo';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-colaboradores-programa',
@@ -22,6 +23,10 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
   programas:Programa[];
   cargos:Cargo[];
 
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true
+  mostrarBotaoAtualizar = true;
+
   isAtualizar: boolean = false;
 
   constructor(
@@ -29,12 +34,23 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
     private funcionarioService: FuncionarioService,
     private programaService: ProgramaService,
     private cargosService: CargosService,
-    private route:ActivatedRoute,
+    private activatedRoute:ActivatedRoute,
     private router:Router,
     private toastService:ToastService
   ) { }
 
   ngOnInit() {
+
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
+    if(this.perfilAcesso.insere === 'N'){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(this.perfilAcesso.altera === 'N'){
+      this.mostrarBotaoAtualizar = false;
+    }
+
 
     this.colaboradoresPrograma.funcionario = new Funcionario();
     this.colaboradoresPrograma.cargo = new Cargo();
@@ -53,7 +69,7 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
     })
 
     let idColaborador: number;
-    idColaborador = this.route.snapshot.queryParams.idColaborador ? this.route.snapshot.queryParams.idColaborador : null;
+    idColaborador = this.activatedRoute.snapshot.queryParams.idColaborador ? this.activatedRoute.snapshot.queryParams.idColaborador : null;
     if (idColaborador) {
       this.isAtualizar = true;
       this.colaboradoresProgramaService.getById(idColaborador).subscribe((colaboradoresPrograma: ColaboradoresPrograma) => {
@@ -77,16 +93,20 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
     this.router.navigate(['colaboradoresprograma']);
   }
   
-  getNomeBotao() {
-    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
-  }
-  
   atualizar() {
     this.colaboradoresProgramaService.alterar(this.colaboradoresPrograma).subscribe(() => {
       this.router.navigate(['colaboradoresprograma']);
       this.toastService.showSucesso("Colaborador atualizado com sucesso");
     });
 
+  }
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
   }
 
 }
