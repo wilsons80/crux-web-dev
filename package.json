@@ -1,12 +1,11 @@
 {
   "name": "overcrux",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "npm run desenv",
     "producao": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 server.js",
     "desenv": "ng serve --proxy-config proxy.config.js --host 0.0.0.0 --disable-host-check",
-    "prebuild": "cross-env TS_NODE_COMPILER_OPTIONS={\\\"module\\\":\\\"commonjs\\\"} ts-node git.version.ts",
     "postinstall": "ng build --aot --prod",
     "build": "ng build",
     "test": "ng test",
