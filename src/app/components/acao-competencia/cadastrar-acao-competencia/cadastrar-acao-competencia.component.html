@@ -7,9 +7,20 @@
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="descricao" placeholder="Descrição:" [(ngModel)]="acaoCompetencia.descricao" required>
+            <mat-form-field fxFlex= "95%" fxFlexOffset="20px"  appearance="outline">
+                    <mat-label>Descrição:</mat-label>
+                  <textarea matInput #message
+                                    name="descricao"
+                                    [(ngModel)]="acaoCompetencia.descricao"
+                                    cdkTextareaAutosize
+                                    #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="2"
+                                    maxlength="200"
+                                    required>
+                  </textarea>
+                  <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
              </mat-form-field>
+             
 
         </div>
 
@@ -49,19 +60,39 @@
          <mat-toolbar class="titulopartes">Resultado Esperado</mat-toolbar>
          <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
  
-             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                   <input matInput maxlength="200"  name="resultadoPrevAcao" placeholder="Resultado esperado:" [(ngModel)]="acaoCompetencia.resultadoPrevAcao">
-              </mat-form-field>
- 
+                <mat-form-field fxFlex= "95%" fxFlexOffset="20px"  appearance="outline">
+                        <mat-label>Resultado esperado:</mat-label>
+                      <textarea matInput #message
+                                        name="resultadoPrevAcao"
+                                        [(ngModel)]="acaoCompetencia.resultadoPrevAcao"
+                                        cdkTextareaAutosize
+                                        #autosize="cdkTextareaAutosize"
+                                        cdkAutosizeMinRows="2"
+                                        maxlength="200"
+                                        >
+                      </textarea>
+                      <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+                 </mat-form-field>
+
          </div>
         
          <!-- RESULTADO OBTIDO -->
          <mat-toolbar class="titulopartes">Resultado Obtido</mat-toolbar>
          <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
  
-             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                   <input matInput maxlength="200"  name="resultadoAcao" placeholder="Resultado obtido:" [(ngModel)]="acaoCompetencia.resultadoAcao">
-              </mat-form-field>
+                <mat-form-field fxFlex= "95%" fxFlexOffset="20px"  appearance="outline">
+                        <mat-label>Resultado obtido:</mat-label>
+                      <textarea matInput #message
+                                        name="resultadoAcao"
+                                        [(ngModel)]="acaoCompetencia.resultadoAcao"
+                                        cdkTextareaAutosize
+                                        #autosize="cdkTextareaAutosize"
+                                        cdkAutosizeMinRows="2"
+                                        maxlength="200"
+                                        >
+                      </textarea>
+                      <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+                 </mat-form-field>
  
          </div>
 
