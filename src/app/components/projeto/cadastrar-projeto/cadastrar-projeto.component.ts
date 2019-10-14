@@ -44,11 +44,11 @@ export class CadastrarProjetoComponent implements OnInit {
   ngOnInit() {
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
-    if(this.perfilAcesso.insere === 'N'){
+    if(!this.perfilAcesso.insere){
       this.mostrarBotaoCadastrar = false;
     }
     
-    if(this.perfilAcesso.altera === 'N'){
+    if(!this.perfilAcesso.altera){
       this.mostrarBotaoAtualizar = false;
     }
     this.iniciativaService.getAll().subscribe((iniciativas: Iniciativa[]) => {

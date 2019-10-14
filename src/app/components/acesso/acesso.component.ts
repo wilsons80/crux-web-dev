@@ -20,7 +20,7 @@ import { PerfilAcesso } from 'src/app/core/perfil-acesso';
   styleUrls: ['./acesso.component.css']
 })
 export class AcessoComponent implements OnInit {
-
+  
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   cadastroAcesso: CadastroAcesso = new CadastroAcesso();
