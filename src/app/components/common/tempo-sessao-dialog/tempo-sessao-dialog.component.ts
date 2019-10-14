@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { AutenticadorService } from './../../../services/autenticador/autenticador.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { timer } from 'rxjs';
+import { timer, Subscription } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 
 @Component({
@@ -10,12 +10,14 @@ import { take, map } from 'rxjs/operators';
   templateUrl: './tempo-sessao-dialog.component.html',
   styleUrls: ['./tempo-sessao-dialog.component.css']
 })
-export class TempoSessaoDialogComponent implements OnInit {
+export class TempoSessaoDialogComponent implements OnInit, OnDestroy {
+ 
 
   sessaoExpirada = false;
   tempo:number
   tempoDown: number;
 
+  sub:Subscription;
 
   constructor( 
     private router:Router,
@@ -45,6 +47,9 @@ login(){
   this.router.navigate(['login']);
   this.dialogRef.close();
 }
-  
+
+ngOnDestroy(): void {
+ this.sub.unsubscribe();
+}
 
 }

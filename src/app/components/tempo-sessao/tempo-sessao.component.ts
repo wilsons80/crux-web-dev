@@ -1,8 +1,8 @@
 import { AutenticadorService } from './../../services/autenticador/autenticador.service';
 import { TempoSessaoService } from './../../services/tempo-sessao/tempo-sessao.service';
 import { TempoSessaoModule } from './tempo-sessao.module';
-import { Component, OnInit } from '@angular/core';
-import { Observable, timer } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, timer, Subscription } from 'rxjs';
 import { take, map, switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { TempoSessaoDialogComponent } from '../common/tempo-sessao-dialog/tempo-sessao-dialog.component';
@@ -12,22 +12,24 @@ import { TempoSessaoDialogComponent } from '../common/tempo-sessao-dialog/tempo-
   templateUrl: './tempo-sessao.component.html',
   styleUrls: ['./tempo-sessao.component.css']
 })
-export class TempoSessaoComponent implements OnInit {
-
+export class TempoSessaoComponent implements OnInit, OnDestroy {
+  
   countDown;
   counter = 0;
   tick = 1000;
-
+  
+  sub:Subscription;
+  
   constructor(
     private tempoSessaoService:TempoSessaoService,
     private autenticadorService:AutenticadorService,
     public dialog: MatDialog
     ){
       
-  }
-
+    }
+    
   ngOnInit() {
-    this.autenticadorService.tempoSessao$.pipe(
+    this.sub= this.autenticadorService.tempoSessao$.pipe(
       switchMap((info) => {
         this.counter = info.valor*60
         return timer(0,1000).pipe(
@@ -35,8 +37,8 @@ export class TempoSessaoComponent implements OnInit {
           map(() => --this.counter))
       })
     ).subscribe((info) => {
-        this.countDown = info;
-
+      this.countDown = info;
+      
         if(this.countDown === 30){
           this.openDialog();
         }
@@ -53,5 +55,9 @@ export class TempoSessaoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+  
+  ngOnDestroy(): void {
+   this.sub.unsubscribe();
   }
 }

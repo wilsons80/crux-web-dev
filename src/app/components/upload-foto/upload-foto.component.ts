@@ -41,9 +41,10 @@ export class UploadFotoComponent implements OnInit {
   }
 
   salvar() {
+
     this.arquivoService.gravar(this.file).subscribe(() => {
       this.router.navigate(['home']);
-
+      localStorage.removeItem('logo');
     });
   }
 
