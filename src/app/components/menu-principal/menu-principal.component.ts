@@ -15,7 +15,7 @@ export class MenuPrincipalComponent implements OnInit {
 
     enumModulos = Modulos;
 
-    teste = false;
+    visivel = false;
 
   constructor(
     private controleMenuService:ControleMenuService,
@@ -25,14 +25,13 @@ export class MenuPrincipalComponent implements OnInit {
 
 
   ngOnInit() {
-    this.menuPrincipalService.toggle.subscribe(() =>this.teste = !this.teste );
+    this.menuPrincipalService.toggle.subscribe(() =>this.visivel = !this.visivel );
     
   }
   
  
   fecharMenu(){
-    this.teste = !this.teste;
-    // this.menuPrincipalService.alternar();
+    this.visivel = !this.visivel;
   }
   getBackground(){
     if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){

@@ -1,3 +1,4 @@
+import { TempoSessaoModule } from './components/tempo-sessao/tempo-sessao.module';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
@@ -76,6 +77,7 @@ import { VulnerabilidadeAlunoModule } from './components/vulnerabilidade-aluno/v
 import { VulnerabilidadeFamiliarModule } from './components/vulnerabilidade-familiar/vulnerabilidade-familiar.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
+import { TempoSessaoDialogComponent } from './components/common/tempo-sessao-dialog/tempo-sessao-dialog.component';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -83,6 +85,7 @@ registerLocaleData(localePt, 'pt-BR');
   entryComponents: [
     HttpErrorToastComponent,
     ConfirmDialogComponent,
+    TempoSessaoDialogComponent
   ],
   declarations: [
     AppComponent,
@@ -90,6 +93,7 @@ registerLocaleData(localePt, 'pt-BR');
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
     AcessoRestritoComponent,
+    TempoSessaoDialogComponent,
 
   ],
   imports: [
@@ -172,6 +176,8 @@ registerLocaleData(localePt, 'pt-BR');
     ColaboradoresProjetoModule,
     ProdutosAtividadeModule,
     CadastroReservaAtividadeModule,
+    TempoSessaoModule
+    
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },

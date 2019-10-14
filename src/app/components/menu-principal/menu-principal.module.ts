@@ -1,3 +1,4 @@
+import { TempoSessaoModule } from './../tempo-sessao/tempo-sessao.module';
 import { ModuloPedagogicoComponent } from './modulo-pedagogico/modulo-pedagogico.component';
 import { ModuloAdministrativoComponent } from './modulo-administrativo/modulo-administrativo.component';
 import { CommonModule } from '@angular/common';
@@ -31,7 +32,8 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
     MatDividerModule,
     MatListModule,
     RouterModule,
-    MatTooltipModule
+    MatTooltipModule,
+    TempoSessaoModule
 
   ],
   exports: [MenuPrincipalComponent]

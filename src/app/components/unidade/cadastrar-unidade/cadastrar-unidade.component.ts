@@ -1,3 +1,4 @@
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -59,6 +60,7 @@ export class CadastrarUnidadeComponent implements OnInit {
     private toastService: ToastService,
     private arquivoUnidadeService: ArquivoUnidadeService,
     private fileUtils: FileUtils,
+    private toolbarPrincipalService:ToolbarPrincipalService
   ) { }
 
   ngOnInit() {
@@ -110,6 +112,9 @@ export class CadastrarUnidadeComponent implements OnInit {
       })
 
     ).subscribe(() => {
+      if(this.unidade.idUnidade === this.toolbarPrincipalService.unidadeSelecionada.id){
+        localStorage.removeItem("logo");
+      }
       this.router.navigate(['unidade'])
       this.toastService.showSucesso('Unidade atualizada com sucesso');
     })

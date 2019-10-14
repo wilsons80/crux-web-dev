@@ -32,7 +32,6 @@ export class ToolBarPrincipalComponent implements OnInit {
     public toolbarPrincipalService: ToolbarPrincipalService,
     private menuService: MenuService,
     private controleMenuService: ControleMenuService,
-    private location: Location
 
   ) { }
 
@@ -48,8 +47,6 @@ export class ToolBarPrincipalComponent implements OnInit {
     this.menuPrincipalService.expandido = !this.menuPrincipalService.expandido;
     // this.menuPrincipalService.alternar();
   }
-
-
 
   escolherUnidade(idUnidade: number) {
     localStorage.removeItem('logo');
@@ -76,6 +73,7 @@ export class ToolBarPrincipalComponent implements OnInit {
   getBackground(){
     if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){
       return `url(${this.toolbarPrincipalService.logo})`
+      
     }
   }
 }
