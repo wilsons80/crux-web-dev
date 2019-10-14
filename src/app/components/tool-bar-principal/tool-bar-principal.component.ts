@@ -1,17 +1,15 @@
-import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Menu } from 'src/app/core/menu';
 import { Unidade } from 'src/app/core/unidade';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
-import { AcessoUnidade } from './../../core/acesso-unidade';
 import { LogoutService } from './../../services/logout/logout.service';
 import { MenuService } from './../../services/menu/menu.service';
 import { MenuPrincipalService } from './../../services/menuPrincipal/menu-principal.service';
-import { Menu } from 'src/app/core/menu';
 
 @Component({
   selector: 'tool-bar-principal',
@@ -55,7 +53,7 @@ export class ToolBarPrincipalComponent implements OnInit {
         return this.menuService.getMenuPrincipal()
       })
     )
-      .subscribe((menu:Menu[]) => {
+      .subscribe((menu: Menu[]) => {
         this.controleMenuService.acessos = menu;
         this.router.navigateByUrl('').then(() => this.router.navigate(['home']));
       })
@@ -70,10 +68,13 @@ export class ToolBarPrincipalComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-  getBackground(){
-    if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){
+  getBackground() {
+    if (this.toolbarPrincipalService && this.toolbarPrincipalService.logo) {
       return `url(${this.toolbarPrincipalService.logo})`
-      
+
     }
+  }
+  naoPossuiFoto() {
+    return "data:image/jpg;base64," === this.toolbarPrincipalService.logo
   }
 }

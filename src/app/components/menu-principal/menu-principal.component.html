@@ -3,11 +3,17 @@
 
         <div fxLayout="column" fxLayoutGap="20px" >
             <!-- LOGO -->
-            <button mat-fab fxLayoutAlign="center center" (click)="fecharMenu()" class="botao"
-                matTooltip="Trocar a logo" [style.background-image]="getBackground()" [routerLink]="['/upload']"
+            <button *ngIf="naoPossuiFoto()"  mat-fab #botao fxLayoutAlign="center center" (click)="fecharMenu()" class="botao"
+                matTooltip="Trocar a logo" [routerLink]="['/upload']"
                 routerLinkActive="router-link-active">
                 <mat-icon class="nao-foto"></mat-icon>
             </button>
+           
+            <!-- <button mat-fab *ngIf="!naoPossuiFoto()" fxLayoutAlign="center center" (click)="fecharMenu()" class="botao"
+                matTooltip="Trocar a logo" [style.background-image]="getBackground()" [routerLink]="['/upload']"
+                routerLinkActive="router-link-active">
+                <mat-icon class="nao-foto"></mat-icon>
+            </button> -->
 
             <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="10px">
                 <label *ngIf="menuPrincipalService.expandido" >Sessão: </label>
