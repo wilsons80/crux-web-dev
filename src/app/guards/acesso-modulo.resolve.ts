@@ -1,14 +1,10 @@
-import { state } from '@angular/animations';
-import { AcessoService } from './../services/acesso/acesso.service';
-import { AcessoModule } from './../components/acesso/acesso.module';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from "@angular/router";
+import _ from 'lodash';
 import { Observable, of } from "rxjs";
 import { switchMap } from 'rxjs/operators';
 import { PerfilAcesso } from '../core/perfil-acesso';
-import { UnidadeService } from '../services/unidade/unidade.service';
-import _ from 'lodash';
+import { AcessoService } from './../services/acesso/acesso.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,8 +12,8 @@ import _ from 'lodash';
 @Injectable()
 export class AcessoModuloResolver implements Resolve<PerfilAcesso> {
     constructor(
-        private acessoService:AcessoService,
-        private router:Router,
+        private acessoService: AcessoService,
+        private router: Router,
     ) { }
     resolve(
         route: ActivatedRouteSnapshot,
@@ -25,14 +21,14 @@ export class AcessoModuloResolver implements Resolve<PerfilAcesso> {
     ): Observable<any> | Promise<any> | any {
 
         let modulo = route.data['modulo'];
-        let path:string = state.url.toUpperCase();
+        let path: string = state.url.toUpperCase();
 
         return this.acessoService.getPerfilAcesso(modulo).pipe(
-            switchMap((perfilAcesso:PerfilAcesso[]) => {
-                if(_.isEmpty(perfilAcesso) || perfilAcesso[0].consulta === "N"){
+            switchMap((perfilAcesso: PerfilAcesso[]) => {
+                if (_.isEmpty(perfilAcesso) || perfilAcesso[0].consulta === "N") {
                     this.router.navigate(['acessorestrito'])
                 }
-                
+
                 return of(perfilAcesso);
             })
         )

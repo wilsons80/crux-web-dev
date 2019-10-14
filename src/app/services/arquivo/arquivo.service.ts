@@ -12,7 +12,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class ArquivoService {
+export class ArquivoUnidadeService {
 
   constructor(private http: HttpClient) { }
 
@@ -27,19 +27,23 @@ export class ArquivoService {
     formData.append('file', file);
     return this.http.post(`${rootPath}/unidade/${idUnidade}`, formData);
   }
+  
   alterar(file: File) {
     const formData = new FormData();
     formData.append("file", file);
     return this.http.put(rootPath, formData);
   }
+  
+  alterarComIdUnidade(file: File, idUnidade: number) {
+    const formData = new FormData();
+    formData.append("file", file);
+    return this.http.put(`${rootPath}/unidade/${idUnidade}`, formData);
+  }
 
-  @Cacheable()
   get(idUnidade: number) {
     return this.http.get(rootPath + `${idUnidade}`, httpOptions);
   }
-
-
-
 }
+
 
 

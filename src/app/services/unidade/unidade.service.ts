@@ -17,7 +17,7 @@ export class UnidadeService extends BaseService<Unidade> {
   }
 
 
-  getUnidadePorId(idUnidade:number){
+  getUnidadeSetandoLogada(idUnidade:number){
     return this.http.get(Rotas.UNIDADE + `logada/${idUnidade}`);
   }
 
@@ -36,5 +36,7 @@ export class UnidadeService extends BaseService<Unidade> {
   getAllUnidadesUsuarioLogadoTemAcesso(){
     return this.http.get(Rotas.UNIDADE);
   }
+
+  
 
 }

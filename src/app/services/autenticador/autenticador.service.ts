@@ -1,7 +1,7 @@
 import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 import { MenuService } from 'src/app/services/menu/menu.service';
 import { FileUtils } from './../../utils/file-utils';
-import { ArquivoService } from './../arquivo/arquivo.service';
+import { ArquivoUnidadeService } from './../arquivo/arquivo.service';
 import { TrocaSenha } from './../../core/troca-senha';
 import { ToolbarPrincipalService } from './../toolbarPrincipal/toolbar-principal.service';
 import { Usuario } from './../../core/usuario';
@@ -29,7 +29,7 @@ export class AutenticadorService {
   constructor(
     private http: HttpClient,
     private toolbarPrincipalService:ToolbarPrincipalService,
-    private arquivoService:ArquivoService,
+    private arquivoService:ArquivoUnidadeService,
     private fileUtils:FileUtils,
     private parametros: ParametrosService,
     private menuService:MenuService,
