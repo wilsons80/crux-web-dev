@@ -5,6 +5,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Modulos } from 'src/app/core/modulos';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 
+
 @Component({
   selector: 'menu-configuracoes',
   templateUrl: './menu-configuracoes.component.html',
@@ -25,7 +26,8 @@ import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolb
 })
 export class MenuConfiguracoesComponent implements OnInit {
 
-  currentState = "hidden"
+  currentState = "hidden";
+
   constructor(public menuPrincipalService:MenuPrincipalService,
               private controleMenuService:ControleMenuService,
               private toolbarPrincipalService: ToolbarPrincipalService

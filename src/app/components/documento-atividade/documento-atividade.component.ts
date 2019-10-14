@@ -42,7 +42,7 @@ export class DocumentoAtividadeComponent implements OnInit {
   ngOnInit() {
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
-    if (this.perfilAcesso.altera === 'N' && this.perfilAcesso.deleta === 'N') {
+    if (!this.perfilAcesso.altera && !this.perfilAcesso.deleta) {
       this.displayedColumns = [
         "descricao",
         "atividade"

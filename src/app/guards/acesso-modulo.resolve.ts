@@ -25,7 +25,7 @@ export class AcessoModuloResolver implements Resolve<PerfilAcesso> {
 
         return this.acessoService.getPerfilAcesso(modulo).pipe(
             switchMap((perfilAcesso: PerfilAcesso[]) => {
-                if (_.isEmpty(perfilAcesso) || perfilAcesso[0].consulta === "N") {
+                if (_.isEmpty(perfilAcesso) || !perfilAcesso[0].consulta) {
                     this.router.navigate(['acessorestrito'])
                 }
 
