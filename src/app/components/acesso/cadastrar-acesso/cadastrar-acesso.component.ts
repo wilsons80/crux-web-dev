@@ -6,7 +6,6 @@ import { Modulo } from 'src/app/core/modulo';
 import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { UsuarioUnidade } from 'src/app/core/usuario-unidade';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { GrupoModulo } from './../../../core/grupo-modulo';
 import { AcessoService } from './../../../services/acesso/acesso.service';
@@ -36,7 +35,6 @@ export class CadastrarAcessoComponent implements OnInit {
   cadastroAcesso: CadastroAcesso = new CadastroAcesso();
 
   constructor(
-    public toolbarPrincipalService: ToolbarPrincipalService,
     private acessoService: AcessoService,
     private moduloService: ModuloService,
     private toastService: ToastService,

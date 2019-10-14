@@ -7,7 +7,7 @@ import { AcessoUnidade } from 'src/app/core/acesso-unidade';
 import { Unidade } from 'src/app/core/unidade';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
-import { ArquivoService } from './../../../services/arquivo/arquivo.service';
+import { ArquivoUnidadeService } from './../../../services/arquivo/arquivo.service';
 import { MenuService } from './../../../services/menu/menu.service';
 import { Observable } from 'rxjs';
 import { FileUtils } from 'src/app/utils/file-utils';
@@ -27,7 +27,7 @@ export class EscolherUnidadeComponent implements OnInit {
     private menuService: MenuService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private arquivoService: ArquivoService,
+    private arquivoService: ArquivoUnidadeService,
     private fileUtils:FileUtils,
   ) { }
 
@@ -49,7 +49,7 @@ export class EscolherUnidadeComponent implements OnInit {
   
   escolherUnidade(idUnidade: number) {
     localStorage.removeItem("logo");
-    this.unidadeService.getUnidadePorId(idUnidade).pipe(
+    this.unidadeService.getUnidadeSetandoLogada(idUnidade).pipe(
       switchMap((unidade: Unidade) => { 
         return this.menuService.getMenuPrincipal() 
       })

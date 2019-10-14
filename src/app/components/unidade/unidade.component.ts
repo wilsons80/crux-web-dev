@@ -56,7 +56,7 @@ export class UnidadeComponent implements OnInit {
 
   consultar() {
     if (this.unidade.idUnidade) {
-      this.unidadeService.getUnidadePorId(this.unidade.idUnidade).subscribe((unidade: Unidade) => {
+      this.unidadeService.getUnidadeSetandoLogada(this.unidade.idUnidade).subscribe((unidade: Unidade) => {
         if(!unidade){
           this.mostrarTabela = false
           this.msg = "Nenhum registro para a pesquisa selecionada"

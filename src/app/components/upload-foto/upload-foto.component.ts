@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { ArquivoService } from '../../services/arquivo/arquivo.service';
+import { ArquivoUnidadeService } from '../../services/arquivo/arquivo.service';
 
 @Component({
   selector: 'app-upload-foto',
@@ -14,7 +14,7 @@ export class UploadFotoComponent implements OnInit {
   file: any;
 
   constructor(
-    private arquivoService: ArquivoService,
+    private arquivoService: ArquivoUnidadeService,
     private router: Router
   ) { }
 
