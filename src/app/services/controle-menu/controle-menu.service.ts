@@ -16,8 +16,8 @@ export class ControleMenuService {
 
   verificaAcessoModulo(tipoModulo: Modulos) {
     if (this.acessos) {
-      let acesso = this.acessos.find(a => a.nomeModulo === tipoModulo)
-      return acesso ? true : false
+      const acesso = this.acessos.find(a => a.nomeModulo === tipoModulo);
+      return acesso ? true : false;
     }
 
   }

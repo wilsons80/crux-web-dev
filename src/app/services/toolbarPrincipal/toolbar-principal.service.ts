@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import { UsuarioLogado } from 'src/app/core/usuario-logado';
 import { UnidadeService } from '../unidade/unidade.service';
 
-const unidadeRootPath = 'api/unidade/';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +19,7 @@ export class ToolbarPrincipalService {
   nomeUsuario: string;
   logo:any;
   loadingCompleto = true;
+  admin:boolean;
 
   constructor(private http: HttpClient,
     private unidadeService: UnidadeService) { }
@@ -35,6 +35,7 @@ export class ToolbarPrincipalService {
     }
     this.username = usuarioLogado.username;
     this.nomeUsuario = usuarioLogado.nomeUsuario;
+    this.admin = usuarioLogado.admin;
   }
 
   apagaPropriedadesdoUsuarioLogado() {

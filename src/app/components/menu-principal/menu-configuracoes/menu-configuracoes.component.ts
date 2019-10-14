@@ -3,6 +3,7 @@ import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-princi
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Modulos } from 'src/app/core/modulos';
+import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 
 @Component({
   selector: 'menu-configuracoes',
@@ -25,10 +26,10 @@ import { Modulos } from 'src/app/core/modulos';
 export class MenuConfiguracoesComponent implements OnInit {
 
   currentState = "hidden"
-  constructor(
-    public menuPrincipalService:MenuPrincipalService,
-    private controleMenuService:ControleMenuService
-    ) { }
+  constructor(public menuPrincipalService:MenuPrincipalService,
+              private controleMenuService:ControleMenuService,
+              private toolbarPrincipalService: ToolbarPrincipalService
+              ) { }
 
   isMostrarSubMenu: boolean = false;
 
@@ -53,5 +54,9 @@ export class MenuConfiguracoesComponent implements OnInit {
 
   verificaAcesso(modulo:Modulos) {
     return this.controleMenuService.verificaAcessoModulo(modulo);
+  }
+
+  isUsuarioAdmin(): boolean {
+    return this.toolbarPrincipalService.admin;
   }
 }

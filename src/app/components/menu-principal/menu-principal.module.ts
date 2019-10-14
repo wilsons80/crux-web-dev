@@ -17,7 +17,7 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
     MenuConfiguracoesComponent,
     SubMenuComponent,
     ModuloAdministrativoComponent,
-    ModuloPedagogicoComponent
+    ModuloPedagogicoComponent,
   ],
   imports: [
     CommonModule,

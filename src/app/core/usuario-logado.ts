@@ -4,6 +4,7 @@ export class UsuarioLogado{
     username: string;
     nomeUsuario: string;
     trocarSenha: boolean;
+    admin: boolean;
     unidadeLogada: AcessoUnidade;
     unidades: AcessoUnidade[]
 }
