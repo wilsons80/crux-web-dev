@@ -15,6 +15,7 @@ export class ToolbarPrincipalService {
 
   unidades: AcessoUnidade[] = [];
   unidadeSelecionada: AcessoUnidade;
+  idPessoaFisica: number;
   username: string;
   nomeUsuario: string;
   logo:any;
@@ -36,6 +37,7 @@ export class ToolbarPrincipalService {
     this.username = usuarioLogado.username;
     this.nomeUsuario = usuarioLogado.nomeUsuario;
     this.admin = usuarioLogado.admin;
+    this.idPessoaFisica = usuarioLogado.idPessoaFisica;
   }
 
   apagaPropriedadesdoUsuarioLogado() {
