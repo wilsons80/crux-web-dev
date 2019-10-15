@@ -1,3 +1,5 @@
+import { MenuPrincipalService } from './../menuPrincipal/menu-principal.service';
+import { ArquivoPessoaFisicaService } from './../arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import * as jwtDecode from 'jwt-decode';
@@ -15,6 +17,7 @@ import { Usuario } from './../../core/usuario';
 import { FileUtils } from './../../utils/file-utils';
 import { ArquivoUnidadeService } from './../arquivo/arquivo.service';
 import { ToolbarPrincipalService } from './../toolbarPrincipal/toolbar-principal.service';
+import { AcessoUnidade } from 'src/app/core/acesso-unidade';
 
 
 
@@ -27,6 +30,8 @@ const tokenRootPath = 'api/token/';
 })
 export class AutenticadorService {
   tempoSessao$ = new EventEmitter();
+  usuarioLogado: UsuarioLogado;
+
   constructor(
     private http: HttpClient,
     private toolbarPrincipalService: ToolbarPrincipalService,
@@ -36,6 +41,8 @@ export class AutenticadorService {
     private menuService: MenuService,
     private controleMenuService: ControleMenuService,
     private tempoSessaoService: TempoSessaoService,
+    private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
+    private menuPrincipalService: MenuPrincipalService,
   ) {
 
   }
@@ -67,6 +74,7 @@ export class AutenticadorService {
     localStorage.removeItem('token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('logo');
+    localStorage.removeItem('fotoPerfil');
   }
 
   refreshToken() {
@@ -76,40 +84,31 @@ export class AutenticadorService {
         return this.http.get(tokenRootPath + `refresh-token`)
           .pipe(
 
+            /** Dados do Usuario Logado */ 
             switchMap((usuarioLogado: UsuarioLogado) => {
-
-              this.setSession(usuarioLogado)
-
+              this.usuarioLogado = usuarioLogado;
+              this.setSession(usuarioLogado);
               this.toolbarPrincipalService.setarPropriedadesUsuarioLogado(usuarioLogado);
-
-              if (usuarioLogado.unidadeLogada && !localStorage.getItem("logo")) {
-                return this.arquivoService.get(usuarioLogado.unidadeLogada.id)
-              } else {
-                this.toolbarPrincipalService.logo = localStorage.getItem("logo");
-                return new Observable(obs => obs.next())
-              }
+              return this.getLogoUnidade(usuarioLogado.unidadeLogada);
             }),
 
+            /** Logo da Unidade */ 
             switchMap((arquivoRetorno) => {
-              if (arquivoRetorno) {
-                let arquivo: any = this.fileUtils.convertBufferArrayToBase64(arquivoRetorno)
-                let urlArquivo = arquivo.changingThisBreaksApplicationSecurity
-                localStorage.setItem("logo", urlArquivo);
-                this.toolbarPrincipalService.logo = urlArquivo;
-              }
-
-
-              if (this.toolbarPrincipalService.unidadeSelecionada) {
-                return this.menuService.getMenuPrincipal()
-              } else {
-                return new Observable(obs => obs.next())
-              }
-
-
+              this.setArquivo(arquivoRetorno);
+              return this.getMenu();
             }),
+
+            /** Menu */
+            switchMap((menu: Menu[]) => {
+              this.controleMenuService.acessos = menu;
+              return this.getFotoUsuario(this.usuarioLogado.unidadeLogada);
+            }),
+
             shareReplay(),
-          ).subscribe((menu: Menu[]) => {
-            this.controleMenuService.acessos = menu;
+
+            /** Foto Perfil */
+          ).subscribe((arquivoPFRetorno) => {
+            this.setFotoPerfil(arquivoPFRetorno);
           });
       }
     });
@@ -138,4 +137,49 @@ export class AutenticadorService {
     return this.http.post(autenticadorRootPath + `trocar-senha`, trocaSenha);
   }
 
+  getLogoUnidade(unidadeLogada:AcessoUnidade){
+    if (unidadeLogada && !localStorage.getItem("logo")) {
+      return this.arquivoService.get(unidadeLogada.id)
+    } else {
+      this.toolbarPrincipalService.logo = localStorage.getItem("logo");
+      return new Observable(obs => obs.next())
+    }
+
+  }
+  
+  getFotoUsuario(unidadeLogada:AcessoUnidade){
+    if (unidadeLogada && !localStorage.getItem("fotoPerfil")) {
+      return this.arquivoPessoaFisicaService.get(this.usuarioLogado.idPessoaFisica)
+    } else {
+      this.menuPrincipalService.fotoPerfil = localStorage.getItem("fotoPerfil");
+      return new Observable(obs => obs.next())
+    }
+
+  }
+
+  setArquivo(arquivoRetorno){
+    if (arquivoRetorno) {
+      let arquivo: any = this.fileUtils.convertBufferArrayToBase64(arquivoRetorno)
+      let urlArquivo = arquivo.changingThisBreaksApplicationSecurity
+      localStorage.setItem("logo", urlArquivo);
+      this.toolbarPrincipalService.logo = urlArquivo;
+    }
+  }
+
+  setFotoPerfil(arquivoPFRetorno){
+    if (arquivoPFRetorno) {
+      let arquivo: any = this.fileUtils.convertBufferArrayToBase64(arquivoPFRetorno)
+      let urlArquivo = arquivo.changingThisBreaksApplicationSecurity
+      localStorage.setItem("fotoPerfil", urlArquivo);
+      this.menuPrincipalService.fotoPerfil = urlArquivo;
+    }
+  }
+
+  getMenu(){
+    if (this.toolbarPrincipalService.unidadeSelecionada) {
+      return this.menuService.getMenuPrincipal()
+    } else {
+      return new Observable(obs => obs.next())
+    }
+  }
 }

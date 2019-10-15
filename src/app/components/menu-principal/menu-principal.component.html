@@ -2,10 +2,9 @@
     <mat-nav-list>
 
         <div fxLayout="column" fxLayoutGap="20px" >
-            <!-- LOGO -->
-            <button *ngIf="naoPossuiFoto()"  mat-fab #botao fxLayoutAlign="center center" (click)="fecharMenu()" class="botao"
-                matTooltip="Trocar a logo" [routerLink]="['/upload']"
-                routerLinkActive="router-link-active">
+            <!-- FOTO PERFIL -->
+            <button mat-fab #botao fxLayoutAlign="center center" class="botao"
+                [style.background-image]="getBackground()">
                 <mat-icon class="nao-foto"></mat-icon>
             </button>
            

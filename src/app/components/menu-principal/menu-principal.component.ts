@@ -39,8 +39,8 @@ export class MenuPrincipalComponent implements OnInit {
     this.visivel = !this.visivel;
   }
   getBackground(){
-    if(this.toolbarPrincipalService && this.toolbarPrincipalService.logo){
-      return `url(${this.toolbarPrincipalService.logo})`
+    if(this.menuPrincipalService && this.menuPrincipalService.fotoPerfil){
+      return `url(${this.menuPrincipalService.fotoPerfil})`
     }
   }
 

@@ -7,6 +7,8 @@ export class MenuPrincipalService {
 
   expandido:boolean = false;
 
+  fotoPerfil:any;
+
   constructor() { }
 
   toggle = new EventEmitter();
