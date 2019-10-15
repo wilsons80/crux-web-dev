@@ -36,20 +36,22 @@ export class TempoSessaoDialogComponent implements OnInit, OnDestroy {
           this.sessaoExpirada = true;
         }
       })
-}
+  }
 
-revalidarSessao(){
-  this.autenticadorService.refreshToken();
-  this.dialogRef.close();
-}
+  revalidarSessao(){
+    this.autenticadorService.refreshToken();
+    this.dialogRef.close();
+  }
 
-login(){
-  this.router.navigate(['login']);
-  this.dialogRef.close();
-}
+  login(){
+    this.router.navigate(['login']);
+    this.dialogRef.close();
+  }
 
-ngOnDestroy(): void {
- this.sub.unsubscribe();
-}
+  ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
 
 }
