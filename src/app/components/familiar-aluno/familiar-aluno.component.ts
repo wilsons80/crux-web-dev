@@ -3,8 +3,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
 import { Familiares } from 'src/app/core/familiares';
 import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-aluno.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-familiar-aluno',
@@ -17,22 +18,26 @@ export class FamiliarAlunoComponent implements OnInit {
  
   familiares: Familiares[];
   familiar: Familiares = new Familiares();
-
+  perfilAcesso: PerfilAcesso;
+  
   situacaoParentesco: SituacaoParentesco = new SituacaoParentesco();
 
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['nome', 'situacao', 'dataCadastro', 'acoes'];
+  displayedColumns: string[] = ['nome', 'situacao', 'tutela', 'transportaaluno', 'respfinanceiro', 'dataCadastro', 'acoes'];
   dataSource: MatTableDataSource<Familiares> = new MatTableDataSource();
 
   constructor(
     private familiarService: FamiliarAlunoService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
+    this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
+
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }

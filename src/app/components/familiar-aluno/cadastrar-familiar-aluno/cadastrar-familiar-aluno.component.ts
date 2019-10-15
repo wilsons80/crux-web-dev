@@ -15,6 +15,7 @@ import { GrausInstrucao } from 'src/app/core/graus-instrucao';
 import { Familiares } from 'src/app/core/familiares';
 import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-familiar-aluno',
@@ -27,6 +28,10 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
 
   familiar: Familiares = new Familiares();
   familiares: Familiares[];
+
+  perfilAcesso: PerfilAcesso;
+  mostrarBotaoCadastrar = true;
+  mostrarBotaoAtualizar = true;
 
   constructor(private alunoService: AlunoService,
               private toastService: ToastService,
@@ -43,6 +48,15 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
     this.familiar.pessoasFisica.grausInstrucao = new GrausInstrucao();
     this.familiar.pessoasFisica.condicoesMoradia = new CondicoesMoradia();
 
+    this.perfilAcesso = this.route.snapshot.data.perfilAcesso[0];
+
+    if(!this.perfilAcesso.insere){
+      this.mostrarBotaoCadastrar = false;
+    }
+    
+    if(!this.perfilAcesso.altera){
+      this.mostrarBotaoAtualizar = false;
+    }
 
     // No caso de estar alterando um familiar
     const idFamiliaAluno = this.route.snapshot.queryParams.id ? this.route.snapshot.queryParams.id : null;
@@ -117,6 +131,15 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
     this.familiar.pessoasFisica.telefoneResidencial = this.familiar.pessoasFisica.telefoneResidencial ? this.retiraMascara(this.familiar.pessoasFisica.telefoneResidencial.toString()) : null
   }
 
+
+  mostrarBotaoLimpar(){
+    if(this.isAtualizar) return false;
+    if(!this.mostrarBotaoAtualizar) return false;
+    if(!this.mostrarBotaoCadastrar) return false;
+
+    return true;
+  }
+  
   limpar() {
     this.familiar = new Familiares();
   }

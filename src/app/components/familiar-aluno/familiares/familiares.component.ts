@@ -19,7 +19,7 @@ export class FamiliaresComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['nome', 'situacao', 'datacadastro', 'acoes'];
+  displayedColumns: string[] = ['nome', 'situacao', 'tutela', 'transportaaluno', 'respfinanceiro', 'datacadastro', 'acoes'];
   dataSource: MatTableDataSource<Familiares> = new MatTableDataSource();
 
   situacaoParentesco: SituacaoParentesco = new SituacaoParentesco();
