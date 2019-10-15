@@ -1,3 +1,4 @@
+import { MenuService } from 'src/app/services/menu/menu.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +13,8 @@ import { ControleMenuService } from './../../services/controle-menu/controle-men
 import { ModuloService } from './../../services/modulo/modulo.service';
 import { UsuarioService } from './../../services/usuario/usuario.service';
 import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { switchMap } from 'rxjs/operators';
+import { Menu } from 'src/app/core/menu';
 
 
 @Component({
@@ -45,6 +48,7 @@ export class AcessoComponent implements OnInit {
     public controleMenuService: ControleMenuService,
     private acessoService: AcessoService,
     private router: Router,
+    private menuService:MenuService
   ) { }
 
   ngOnInit() {
@@ -101,8 +105,14 @@ export class AcessoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        this.acessoService.excluir(perfilAcessoUsuario.idUsuarioGrupo).subscribe(() => {
-          this.consultar();
+        this.acessoService.excluir(perfilAcessoUsuario.idUsuarioGrupo).pipe(
+          switchMap(() => {
+            this.consultar();
+            return this.menuService.getMenuPrincipal();
+          })
+
+        ).subscribe((menu:Menu[]) => {
+          this.controleMenuService.acessos = menu;
         })
       } else {
         dialogRef.close();

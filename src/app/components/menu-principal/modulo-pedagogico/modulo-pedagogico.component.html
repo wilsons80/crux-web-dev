@@ -20,6 +20,9 @@
         <!-- DOCUMENTOS ATIVIDADE -->
         <sub-menu *ngIf="verificaAcesso(getModulos().DOCUMENTO_ATIVIDADE)" icone="insert_drive_file" titulo="Documentos da Atividade" rota="documentoatividade" toolTip="Documentos da Atividade"></sub-menu>
         
+        <!-- DEPARTAMENTO -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().DEPARTAMENTO)" icone="business" titulo="Departamento" rota="departamento" toolTip="Departamento"></sub-menu>
+        
         <!-- PRODUTOS ATIVIDADE -->
         <sub-menu *ngIf="verificaAcesso(getModulos().PRODUTOS_ATIVIDADE)" icone="work" titulo="Produtos da Atividade" rota="produtosatividade" toolTip="Produtos da Atividade"></sub-menu>
       
