@@ -1,5 +1,6 @@
 import { Aluno } from './aluno';
 import { PessoaFisica } from './pessoa-fisica';
+import { ResponsaveisAluno } from './responsaveis-aluno';
 
 export class Familiares {
     id: number;
@@ -18,4 +19,6 @@ export class Familiares {
     transportaAluno: boolean;
     tutelaAluno: boolean;
     responsavelFinanceiroPeloAluno: boolean;
+
+    responsavel: ResponsaveisAluno;
 }

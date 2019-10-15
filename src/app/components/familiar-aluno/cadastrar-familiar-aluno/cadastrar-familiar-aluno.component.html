@@ -18,8 +18,8 @@
         </mat-step>
 
         <!-- ------------------ PARENTESCO ------------------------ -->
-        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
-            <form #formCadastroEscolaridade="ngForm">
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroParentesco">
+            <form #formCadastroParentesco="ngForm">
                 <ng-template matStepLabel>PARENTESCO</ng-template>
                 <parentesco [familiar]="familiar"></parentesco>
             </form>
@@ -34,6 +34,25 @@
                 </button>
             </div>
         </mat-step>
+
+
+        <!-- ------------------ RESPONSAVEL ------------------------ -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroResponsavel">
+            <form #formCadastroResponsavel="ngForm">
+                <ng-template matStepLabel>RESPONSÁVEL</ng-template>
+                <responsavel [responsavel]="familiar.responsavel"></responsavel>
+            </form>
+
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                    Próximo
+                </button>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>        
 
         <!-- ------------------ ESCOLARIDADE ------------------------ -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
@@ -73,8 +92,8 @@
 
 
         <!--  PROFISSIONAL -->
-        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAcademico">
-            <form #formCadastroAcademico="ngForm">
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroProfissional">
+            <form #formCadastroProfissional="ngForm">
                 <ng-template matStepLabel>DADOS PROFISSIONAIS</ng-template>
                 <profissional [familiar]="familiar"></profissional>
             </form>
@@ -113,8 +132,9 @@
             name="botaoConfirmar"
             fxFlex="20%"
             color="primary"
-            [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-                        formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid"
+            [disabled]="formCadastroDadosPessoais.invalid || formCadastroParentesco.invalid || formCadastroResponsavel.invalid ||
+                        formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid || formCadastroProfissional.invalid ||
+                        formCadastroOutrasInformacoes.invalid"
             (click)="cadastrar()"> Cadastrar
     </button>
 
@@ -122,8 +142,9 @@
             name="botaoConfirmar"
             fxFlex="20%"
             color="primary"
-            [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-                        formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid"
+            [disabled]="formCadastroDadosPessoais.invalid || formCadastroParentesco.invalid || formCadastroResponsavel.invalid ||
+                        formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid || formCadastroProfissional.invalid ||
+                        formCadastroOutrasInformacoes.invalid"
             (click)="atualizar()">
             Atualizar
     </button>
