@@ -10,6 +10,21 @@
         <td mat-cell *matCellDef="let element"> {{situacaoParentesco.getSituacaoParentesco(element.situacaoParentesco)}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="tutela">
+            <th mat-header-cell *matHeaderCellDef> Tutela  </th>
+            <td mat-cell *matCellDef="let element"> {{element.tutelaAluno ? 'Sim' : 'Não'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="transportaaluno">
+            <th mat-header-cell *matHeaderCellDef> Transporta o Aluno</th>
+            <td mat-cell *matCellDef="let element"> {{element.transportaAluno  ? 'Sim' : 'Não'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="respfinanceiro">
+            <th mat-header-cell *matHeaderCellDef> Responsável Financeiro</th>
+            <td mat-cell *matCellDef="let element"> {{element.responsavelFinanceiroPeloAluno ? 'Sim' : 'Não'}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="datacadastro">
         <th mat-header-cell *matHeaderCellDef> Data Cadastro:  </th>
         <td mat-cell *matCellDef="let element"> {{element.dataCadastro | dataSimples}} </td>

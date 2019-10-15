@@ -26,29 +26,43 @@
         </form>
 
         <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 20px">
-
             <ng-container matColumnDef="nome">
-                <th mat-header-cell *matHeaderCellDef> Nome: </th>
+                <th mat-header-cell *matHeaderCellDef> Nome </th>
                 <td mat-cell *matCellDef="let element"> {{element.pessoasFisica.nome}} </td>
             </ng-container>
 
             <ng-container matColumnDef="situacao">
-                <th mat-header-cell *matHeaderCellDef> Situação:  </th>
+                <th mat-header-cell *matHeaderCellDef> Situação  </th>
                 <td mat-cell *matCellDef="let element"> {{situacaoParentesco.getSituacaoParentesco(element.situacaoParentesco)}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="tutela">
+                    <th mat-header-cell *matHeaderCellDef> Tutela  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.tutelaAluno ? 'Sim' : 'Não'}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="transportaaluno">
+                    <th mat-header-cell *matHeaderCellDef> Transporta o Aluno</th>
+                    <td mat-cell *matCellDef="let element"> {{element.transportaAluno  ? 'Sim' : 'Não'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="respfinanceiro">
+                    <th mat-header-cell *matHeaderCellDef> Responsável Financeiro</th>
+                    <td mat-cell *matCellDef="let element"> {{element.responsavelFinanceiroPeloAluno ? 'Sim' : 'Não'}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="dataCadastro">
-                <th mat-header-cell *matHeaderCellDef> Data Admissão:  </th>
+                <th mat-header-cell *matHeaderCellDef> Data Cadastro</th>
                 <td mat-cell *matCellDef="let element"> {{element.dataCadastro | dataSimples}} </td>
             </ng-container>
 
             <ng-container matColumnDef="acoes">
                 <th mat-header-cell *matHeaderCellDef> Ações </th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-button (click)="deletar(element)">
+                    <button *ngIf="perfilAcesso.deleta"  mat-button (click)="deletar(element)">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <button mat-button (click)="atualizar(element)">
+                    <button *ngIf="perfilAcesso.consulta" mat-button (click)="atualizar(element)">
                         <mat-icon>create</mat-icon>
                     </button>
                 </td>
@@ -66,7 +80,7 @@
             </div>
         </ng-template>
 
-        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-top: 50px">
+        <div fxLayout="row" *ngIf="perfilAcesso.insere" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-top: 50px">
             <div>
                 <button matTooltip="Adicionar novo familiar do aluno" mat-fab color="primary"
                     [routerLink]="['/familiaraluno/escolha']" routerLinkActive="router-link-active">
@@ -76,4 +90,3 @@
         </div>
     </div>
 </div>
-
