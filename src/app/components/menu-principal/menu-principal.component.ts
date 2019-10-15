@@ -45,7 +45,11 @@ export class MenuPrincipalComponent implements OnInit {
   }
 
   verificaAcesso(modulo:Modulos) {
-    return this.controleMenuService.verificaAcessoModulo(modulo);
+    return this.controleMenuService.verificaAcessoModulo(modulo) && !this.isUsuarioAdmin();
+  }
+
+  isUsuarioAdmin(): boolean {
+    return this.toolbarPrincipalService.admin;
   }
 
   getModulos() {
