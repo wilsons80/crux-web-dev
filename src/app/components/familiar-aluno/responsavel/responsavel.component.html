@@ -1,22 +1,22 @@
 <mat-toolbar class="titulopartes">Dados responsável</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-  <mat-form-field fxFlex="15%" fxFlexOffset="20px">
+  <mat-form-field fxFlex="20%" fxFlexOffset="20px">
       <input matInput name="dataVinculacao" [matDatepicker]="dataVinculacao" placeholder="Data de vinculação:"
-             [(ngModel)]="responsavel.dataVinculacao" required>
+             [(ngModel)]="responsavel.dataVinculacao">
       <mat-datepicker-toggle matSuffix [for]="dataVinculacao"></mat-datepicker-toggle>
       <mat-datepicker #dataVinculacao></mat-datepicker>
   </mat-form-field>
 
 
-  <mat-form-field fxFlex="15%" fxFlexOffset="20px">
+  <mat-form-field fxFlex="20%" fxFlexOffset="20px">
     <input matInput name="dataDesvinculacao" [matDatepicker]="dataDesvinculacao" placeholder="Data de Desvinculação:"
-           [(ngModel)]="responsavel.dataDesvinculacao" required>
+           [(ngModel)]="responsavel.dataDesvinculacao">
     <mat-datepicker-toggle matSuffix [for]="dataDesvinculacao"></mat-datepicker-toggle>
     <mat-datepicker #dataDesvinculacao></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field fxFlex="25%">
+  <mat-form-field fxFlex="30%">
     <mat-label>Tipo Responsável</mat-label>
     <mat-select [(ngModel)]="responsavel.tipoResponsavel" name="tipoResponsavel">
         <mat-option *ngFor="let m of tipoResponsavel.tipos" [value]="m.flag">
@@ -25,11 +25,7 @@
     </mat-select>
   </mat-form-field>
 
-</div>
-
-
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlex="15%" fxFlexOffset="20px">
+  <mat-form-field fxFlex="30%" fxFlexOffset="20px">
         <mat-label>Aluno tem o mesmo endereço do responsávl</mat-label>
         <mat-select [(ngModel)]="responsavel.mesmoEnderResponsavel" name="mesmoEnderResponsavel">
             <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
@@ -58,7 +54,7 @@
     <mat-label>Descrição do desligamento</mat-label>
     <textarea matInput #descDesligamento
               name="descDesligamento"
-              [(ngModel)]="familiar.descDesligamento"
+              [(ngModel)]="responsavel.descDesligamento"
               cdkTextareaAutosize
               #autosize="cdkTextareaAutosize"
               cdkAutosizeMinRows="2"

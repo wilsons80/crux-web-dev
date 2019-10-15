@@ -16,6 +16,7 @@ import { Familiares } from 'src/app/core/familiares';
 import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
 import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { ResponsaveisAluno } from 'src/app/core/responsaveis-aluno';
 
 @Component({
   selector: 'app-cadastrar-familiar-aluno',
@@ -47,6 +48,7 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
     this.familiar.pessoasFisica = new PessoaFisica();
     this.familiar.pessoasFisica.grausInstrucao = new GrausInstrucao();
     this.familiar.pessoasFisica.condicoesMoradia = new CondicoesMoradia();
+    this.familiar.responsavel = new ResponsaveisAluno();
 
     this.perfilAcesso = this.route.snapshot.data.perfilAcesso[0];
 
