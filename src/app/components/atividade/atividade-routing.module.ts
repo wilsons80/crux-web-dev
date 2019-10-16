@@ -8,7 +8,7 @@ import { Modulos } from 'src/app/core/modulos';
 
 
 const routes: Routes = [
-  { path: 'atividade/cadastrar', component: CadastrarAtividadeComponent,canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.UNIDADE} },
+  { path: 'atividade/cadastrar', component: CadastrarAtividadeComponent,canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.ATIVIDADE} },
   { path: 'atividade', component: AtividadeComponent,canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.ATIVIDADE} },
 ];
 
