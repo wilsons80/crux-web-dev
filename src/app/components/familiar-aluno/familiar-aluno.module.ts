@@ -12,6 +12,7 @@ import { EscolhaFamiliarComponent } from './escolha-familiar/escolha-familiar.co
 import { ParentescoComponent } from './parentesco/parentesco.component';
 import { ProfissionalComponent } from './profissional/profissional.component';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { ResponsavelComponent } from './responsavel/responsavel.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { NgxCurrencyModule } from 'ngx-currency';
                  CadastrarFamiliarAlunoComponent,
                  DadosAlunoComponent,
                  FamiliaresComponent,
-                 EscolhaFamiliarComponent, ParentescoComponent, ProfissionalComponent],
+                 EscolhaFamiliarComponent, ParentescoComponent, ProfissionalComponent, ResponsavelComponent],
   imports: [
     CommonModule,
     FamiliarAlunoRoutingModule,

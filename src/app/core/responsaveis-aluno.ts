@@ -1,5 +1,4 @@
 import { Aluno } from './aluno';
-import { TipoResponsaveis } from './tipo-responsaveis';
 import { Familiares } from './familiares';
 
 export class ResponsaveisAluno {
@@ -9,10 +8,6 @@ export class ResponsaveisAluno {
 	dataDesvinculacao: Date;
 	dataVinculacao: Date;
 	mesmoEnderResponsavel: string;
-    
-    tipoResponsavel: TipoResponsaveis;
-	aluno: Aluno;
-	familiar: Familiares;
-    
+    tipoResponsavel: string;
     usuarioAlteracao: number;
 }
