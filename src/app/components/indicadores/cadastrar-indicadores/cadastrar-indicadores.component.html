@@ -3,26 +3,48 @@
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
 
-        <!-- DADOS INICIAIS -->
-        <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Nome do Indicador:" [(ngModel)]="indicadores.nome" required>
-             </mat-form-field>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-        </div>
+                                <!-- DADOS INICIAIS -->
+                                <div fxLayout="column" fxFlex="45%">
+                                        <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
+                                        <mat-form-field style="margin-left: 20px">
+                                                <input #nome matInput maxlength="200" name="nome" placeholder="Nome da Meta:"
+                                                        [(ngModel)]="indicadores.nome" required>
+                                                <mat-hint align="end">{{nome.value.length}} / 200</mat-hint>
+                                        </mat-form-field>
+                                </div>
+        
+                                <!-- OBJETIVO -->
+                                <div fxLayout="column" fxFlex="55%">
+                                        <mat-toolbar class="titulopartes">Objetivo</mat-toolbar>
+                                        <mat-form-field style="margin: 0 20px 20px 20px">
+                                                <mat-label>Objetivos:</mat-label>
+                                                <mat-select [(ngModel)]="indicadores.objetivo.idObjetivo" name="objetivos" required>
+                                                        <mat-option *ngFor="let i of objetivos" [value]="i.idObjetivo">
+                                                                {{i.nome}}
+                                                        </mat-option>
+                                                </mat-select>
+                                                <mat-hint *ngIf="objetivos?.length === 0" align="start">Nenhum objetivo
+                                                        cadastrado</mat-hint>
+                                        </mat-form-field>
+                                </div>
+                        </div>
+        
+        
 
+         <!-- DATA -->
         <mat-toolbar class="titulopartes">Data</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+            <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
                     <input matInput name= "dtImplantacao" [matDatepicker]="dtImplantacao" placeholder="Data de Início" [(ngModel)]="indicadores.dataInicio" required>
                     <mat-datepicker-toggle matSuffix [for]="dtImplantacao"></mat-datepicker-toggle>
                     <mat-datepicker #dtImplantacao></mat-datepicker>
              </mat-form-field>
 
-             <mat-form-field fxFlex= "50%">
+             <mat-form-field fxFlex= "20%">
                     <input matInput name= "dtTermino" [matDatepicker]="dtTermino" placeholder="Data Fim" [(ngModel)]="indicadores.dataFim">
                     <mat-datepicker-toggle matSuffix [for]="dtTermino"></mat-datepicker-toggle>
                     <mat-datepicker #dtTermino></mat-datepicker>
@@ -30,19 +52,6 @@
 
         </div>
 
-         <!-- OBJETIVO -->
-         <mat-toolbar class="titulopartes">Objetivo</mat-toolbar>
-         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
-                        <mat-label>Objetivo:</mat-label>
-                        <mat-select [(ngModel)]="indicadores.objetivo.idObjetivo" name="objetivo" required>
-                            <mat-option *ngFor="let o of objetivos" [value]="o.idObjetivo" >
-                              {{o.nome}}
-                            </mat-option>
-                        </mat-select>
-                </mat-form-field>
-
-         </div>
 
         <!-- BOTOES -->
    <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
