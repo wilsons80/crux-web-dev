@@ -3,27 +3,47 @@
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
 
-        <!-- DADOS INICIAIS -->
-        <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Nome da Meta:" [(ngModel)]="metas.nome" required>
-             </mat-form-field>
+                                <!-- DADOS INICIAIS -->
+                                <div fxLayout="column" fxFlex="45%">
+                                        <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
+                                        <mat-form-field style="margin-left: 20px">
+                                                <input #nome matInput maxlength="200" name="nome"
+                                                        placeholder="Nome da Meta:" [(ngModel)]="metas.nome"
+                                                        required>
+                                                <mat-hint align="end">{{nome.value.length}} / 200</mat-hint>
+                                        </mat-form-field>
+                                </div>
+        
+                                <!-- INDICADORES -->
+                                <div fxLayout="column" fxFlex="55%">
+                                        <mat-toolbar class="titulopartes">Indicador</mat-toolbar>
+                                        <mat-form-field style="margin: 0 20px 20px 20px">
+                                                <mat-label>Indicadores:</mat-label>
+                                                <mat-select [(ngModel)]="metas.indicadores.idIndicador" name="metas" required>
+                                                        <mat-option *ngFor="let i of indicadores" [value]="i.idIndicador">
+                                                                {{i.nome}}
+                                                        </mat-option>
+                                                </mat-select>
+                                                <mat-hint *ngIf="indicadores?.length === 0" align="start">Nenhum indicador
+                                                        cadastrado</mat-hint>
+                                        </mat-form-field>
+                                </div>
+                        </div>
 
-        </div>
-
+       
         <!-- DATA -->
         <mat-toolbar class="titulopartes">Data</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+            <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
                     <input matInput name= "dtImplantacao" [matDatepicker]="dtImplantacao" placeholder="Data de Início" [(ngModel)]="metas.dataInicio" required>
                     <mat-datepicker-toggle matSuffix [for]="dtImplantacao"></mat-datepicker-toggle>
                     <mat-datepicker #dtImplantacao></mat-datepicker>
              </mat-form-field>
 
-             <mat-form-field fxFlex= "50%">
+             <mat-form-field fxFlex= "20%">
                     <input matInput name= "dtTermino" [matDatepicker]="dtTermino" placeholder="Data Fim" [(ngModel)]="metas.dataFim">
                     <mat-datepicker-toggle matSuffix [for]="dtTermino"></mat-datepicker-toggle>
                     <mat-datepicker #dtTermino></mat-datepicker>
@@ -31,20 +51,6 @@
 
         </div>
 
-         <!-- OBJETIVO -->
-         <mat-toolbar class="titulopartes">Indicadores</mat-toolbar>
-         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
-                        <mat-label>Indicadores:</mat-label>
-                        <mat-select [(ngModel)]="metas.indicadores.idIndicador" name="iniciativa" required>
-                            <mat-option *ngFor="let i of indicadores" [value]="i.idIndicador" >
-                              {{i.nome}}
-                            </mat-option>
-                        </mat-select>
-                        <mat-hint *ngIf="indicadores?.length === 0"  align="start">Nenhum indicador cadastrado</mat-hint>
-                </mat-form-field>
-
-         </div>
 
        <!-- BOTOES -->
    <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
