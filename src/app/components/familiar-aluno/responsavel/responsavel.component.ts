@@ -18,6 +18,8 @@ export class ResponsavelComponent implements OnInit {
   responsavel: ResponsaveisAluno = new ResponsaveisAluno();
   mensagemResponsavelVigente: string = null;
 
+  openFormCadastro = true;
+
   constructor(private familiarAlunoService: FamiliarAlunoService) { }
 
   ngOnInit() {
@@ -28,6 +30,9 @@ export class ResponsavelComponent implements OnInit {
     this.responsavel = responsavel;
   }
 
+  onGetAdicionar(evento) {
+    this.openFormCadastro = evento;
+  }
 
   mostrarResponsavelVigente() {
     if (this.familiar && this.familiar.aluno ) {

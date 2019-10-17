@@ -1,8 +1,7 @@
-{{mensagemResponsavelVigente}}
-
 <mat-accordion>
 
-  <mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel [expanded]="openFormCadastro"
+                       (closed)="openFormCadastro = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Dados do responsável
@@ -15,7 +14,9 @@
   </mat-expansion-panel>
 
 
-  <mat-expansion-panel (opened)="listaResponsaveis.carregarListaResponsaveis()">
+  <mat-expansion-panel [expanded]="!openFormCadastro"
+                       (opened)="listaResponsaveis.carregarListaResponsaveis()"
+                       (closed)="openFormCadastro = true">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Lista de responsáveis ( {{familiar.responsaveis.length}} )
@@ -25,7 +26,8 @@
     
     <lista-responsaveis [familiar]="familiar"  
                         #listaResponsaveis
-                        (onResponsavel)="onGetResponsavel($event)">
+                        (onResponsavel)="onGetResponsavel($event)"
+                        (onAdicionar)="onGetAdicionar($event)">
     </lista-responsaveis>
 
   </mat-expansion-panel>

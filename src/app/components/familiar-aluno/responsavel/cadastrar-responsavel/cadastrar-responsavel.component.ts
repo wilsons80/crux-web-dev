@@ -1,3 +1,4 @@
+import { ToastService } from 'src/app/services/toast/toast.service';
 import { Familiares } from './../../../../core/familiares';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ResponsaveisAluno } from 'src/app/core/responsaveis-aluno';
@@ -22,7 +23,7 @@ export class CadastrarResponsavelComponent implements OnInit {
     {tipo: 'Não', flag: 'N'}
   ];
 
-  constructor() {
+  constructor(private toastService: ToastService) {
 
   }
 
@@ -31,7 +32,22 @@ export class CadastrarResponsavelComponent implements OnInit {
     this.responsavel.aluno = new Aluno();
   }
 
+  validarDataVinculacao() {
+    if (this.responsavel.dataVinculacao === null) {
+      this.toastService.showAlerta('A data de vinculação deve ser informada.');
+      return;
+    }
+
+    if (this.responsavel.dataDesvinculacao && this.responsavel.dataDesvinculacao < this.responsavel.dataVinculacao) {
+      this.toastService.showAlerta('A data de vinculação tem quer ser maior que a data de desvinculação.');
+      return;
+    }
+
+  }
+
   adicionar() {
+    this.validarDataVinculacao();
+
     Object.assign(this.responsavel.familiar, this.familiar);
     Object.assign(this.responsavel.aluno, this.familiar.aluno);
 

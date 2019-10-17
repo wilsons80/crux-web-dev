@@ -17,6 +17,7 @@ export class ListaResponsaveisComponent implements OnInit {
 
 
   @Output() onResponsavel = new EventEmitter();
+  @Output() onAdicionar = new EventEmitter();
   @Input() familiar: Familiares;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -64,4 +65,7 @@ export class ListaResponsaveisComponent implements OnInit {
     }
   }
 
+  novo() {
+    this.onAdicionar.emit(true);
+  }
 }
