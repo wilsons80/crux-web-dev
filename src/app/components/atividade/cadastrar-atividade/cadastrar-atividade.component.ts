@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Atividade } from 'src/app/core/atividade';
+import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { PlanosAcao } from 'src/app/core/planos-acao';
 import { Projeto } from 'src/app/core/projeto';
 import { Unidade } from 'src/app/core/unidade';
@@ -10,7 +10,6 @@ import { PlanosAcaoService } from 'src/app/services/planosAcao/planos-acao.servi
 import { ProjetoService } from 'src/app/services/projeto/projeto.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 
 @Component({
   selector: 'app-cadastrar-atividade',
@@ -25,7 +24,7 @@ export class CadastrarAtividadeComponent implements OnInit {
   projetos: Projeto[];
   unidades: Unidade[];
 
-   perfilAcesso: PerfilAcesso;
+  perfilAcesso: PerfilAcesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 
@@ -48,8 +47,8 @@ export class CadastrarAtividadeComponent implements OnInit {
     private unidadeService: UnidadeService,
     private atividadeService: AtividadeService,
     private activatedRoute: ActivatedRoute,
-    private location: Location,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) {
     this.atividade.unidade = new Unidade();
     this.atividade.projeto = new Projeto();
@@ -60,11 +59,11 @@ export class CadastrarAtividadeComponent implements OnInit {
   ngOnInit() {
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
-    if(!this.perfilAcesso.insere){
+    if (!this.perfilAcesso.insere) {
       this.mostrarBotaoCadastrar = false;
     }
-    
-    if(!this.perfilAcesso.altera){
+
+    if (!this.perfilAcesso.altera) {
       this.mostrarBotaoAtualizar = false;
     }
     this.planosAcaoService.getAll().subscribe((planosAcao: PlanosAcao[]) => {
@@ -89,18 +88,18 @@ export class CadastrarAtividadeComponent implements OnInit {
     }
 
   }
-  
-  mostrarBotaoLimpar(){
-    if(this.isAtualizar) return false;
-    if(!this.mostrarBotaoAtualizar) return false;
-    if(!this.mostrarBotaoCadastrar) return false;
+
+  mostrarBotaoLimpar() {
+    if (this.isAtualizar) return false;
+    if (!this.mostrarBotaoAtualizar) return false;
+    if (!this.mostrarBotaoCadastrar) return false;
 
     return true;
   }
 
   cadastrar() {
     this.atividadeService.cadastrar(this.atividade).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['atividade'])
       this.toastService.showSucesso("Atividade cadastrada com sucesso");
     });
   }
@@ -110,13 +109,13 @@ export class CadastrarAtividadeComponent implements OnInit {
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['atividade'])
   }
 
 
   atualizar() {
     this.atividadeService.alterar(this.atividade).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['atividade'])
       this.toastService.showSucesso("Atividade atualizada com sucesso");
     });
 

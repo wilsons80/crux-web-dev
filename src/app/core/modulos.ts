@@ -2,6 +2,7 @@ export enum Modulos{
      ADMINISTRATIVO                  	= "ADMINISTRATIVO"
      ,PEDAGOGICO                    	= "PEDAGOGICO"
      ,ACAO_COMPETENCIA                	= "ACAO_COMPETENCIA"
+     ,ACOES_ATIVIDADE                	= "ACOES_ATIVIDADE"
     , ACESSO						  	= "ACESSO"
     , ALUNO 							= "ALUNO"
     , ALUNO_TRABALHANDO					= "ALUNO_TRABALHANDO"

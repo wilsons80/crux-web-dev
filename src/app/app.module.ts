@@ -1,3 +1,4 @@
+import { AcoesAtividadeModule } from './components/acoes-atividade/acoes-atividade.module';
 import { TempoSessaoModule } from './components/tempo-sessao/tempo-sessao.module';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -176,7 +177,8 @@ registerLocaleData(localePt, 'pt-BR');
     ColaboradoresProjetoModule,
     ProdutosAtividadeModule,
     CadastroReservaAtividadeModule,
-    TempoSessaoModule
+    TempoSessaoModule,
+    AcoesAtividadeModule
     
   ],
   providers: [
