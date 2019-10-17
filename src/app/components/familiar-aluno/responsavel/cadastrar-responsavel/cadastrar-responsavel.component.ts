@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ResponsaveisAluno } from 'src/app/core/responsaveis-aluno';
 import { TipoResponsaveis } from 'src/app/core/tipo-responsaveis';
 import { Aluno } from 'src/app/core/aluno';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 
 @Component({
   selector: 'cadastrar-responsavel',
@@ -11,9 +12,8 @@ import { Aluno } from 'src/app/core/aluno';
 })
 export class CadastrarResponsavelComponent implements OnInit {
 
-  @Input() responsavel: ResponsaveisAluno;
+  @Input() responsavel: ResponsaveisAluno = new ResponsaveisAluno();
   @Input() familiar: Familiares;
-  @Output() onAtualizarLista = new EventEmitter();
 
   tipoResponsavel: TipoResponsaveis = new TipoResponsaveis();
   
@@ -22,26 +22,22 @@ export class CadastrarResponsavelComponent implements OnInit {
     {tipo: 'Não', flag: 'N'}
   ];
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
+    this.responsavel.familiar = new Familiares();
+    this.responsavel.aluno = new Aluno();
   }
 
   adicionar() {
-    if (this.responsavel.familiar === undefined) {
-      this.responsavel.familiar = new Familiares();
-    }
-    if (this.responsavel.aluno === undefined) {
-      this.responsavel.aluno = new Aluno();
-    }
-
     Object.assign(this.responsavel.familiar, this.familiar);
     Object.assign(this.responsavel.aluno, this.familiar.aluno);
 
     delete this.responsavel.familiar.responsaveis;
 
     this.familiar.responsaveis.push(this.responsavel);
-    this.onAtualizarLista.emit(true);
     this.limpar();
   }
 

@@ -1,5 +1,7 @@
 import { Aluno } from './../../../core/aluno';
 import { Component, OnInit, Input } from '@angular/core';
+import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
+import { FileUtils } from 'src/app/utils/file-utils';
 
 @Component({
   selector: 'dados-aluno',
@@ -10,9 +12,11 @@ export class DadosAlunoComponent implements OnInit {
 
   @Input() aluno: Aluno;
 
-  constructor() { }
+  constructor(private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
+              private fileUtils: FileUtils) { }
 
   ngOnInit() {
+    this.carregarDadosAluno();
   }
 
 
@@ -22,5 +26,14 @@ export class DadosAlunoComponent implements OnInit {
     }
   }
 
+  carregarDadosAluno() {
+    if (this.aluno && this.aluno.pessoaFisica && this.aluno.pessoaFisica.id) {
+      this.arquivoPessoaFisicaService.get(this.aluno.pessoaFisica.id).subscribe((foto: any) => {
+        this.aluno.pessoaFisica.foto = foto;
+        foto = this.fileUtils.convertBufferArrayToBase64(foto);
+        this.aluno.pessoaFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
+      });
+    }
+  }
 
 }

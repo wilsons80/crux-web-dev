@@ -4,6 +4,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ResponsaveisAluno } from 'src/app/core/responsaveis-aluno';
 import { TipoResponsaveis } from 'src/app/core/tipo-responsaveis';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-aluno.service';
 
 @Component({
   selector: 'responsavel',
@@ -13,26 +14,30 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 export class ResponsavelComponent implements OnInit {
 
   @Input() familiar: Familiares;
-  @ViewChild('listaResponsaveis', { static: true }) listaResponsaveis: any;
-
 
   responsavel: ResponsaveisAluno = new ResponsaveisAluno();
-  openFormCadastro: false;
-  
-  constructor() { }
+  mensagemResponsavelVigente: string = null;
+
+  constructor(private familiarAlunoService: FamiliarAlunoService) { }
 
   ngOnInit() {
+    this.mostrarResponsavelVigente();
   }
 
   onGetResponsavel(responsavel) {
     this.responsavel = responsavel;
   }
 
-  onOpenFormCadastro(evento) {
-     this.openFormCadastro = evento;
-  }
 
-  onAtualizarLista(evento) {
-    this.listaResponsaveis.carregarListaResponsaveis();
+  mostrarResponsavelVigente() {
+    if (this.familiar && this.familiar.aluno ) {
+      this.familiarAlunoService.getResponsavelVigente(this.familiar.aluno.id).subscribe((responsavel: any) => {
+
+        this.mensagemResponsavelVigente = responsavel.familiar.pessoasFisica.nome +
+                                          ' - Início: ' + responsavel.dataVinculacao +
+                                          ' - Fim: ' + responsavel.dataDesvinculacao;
+
+      });
+    }
   }
 }

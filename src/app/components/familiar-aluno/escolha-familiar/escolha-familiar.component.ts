@@ -120,11 +120,6 @@ export class EscolhaFamiliarComponent implements OnInit {
     this.aluno = this.autoComplete.value;
     this.alunoSelecionado = true;
 
-    this.arquivoPessoaFisicaService.get(this.aluno.pessoaFisica.id).subscribe((foto: any) => {
-      this.aluno.pessoaFisica.foto = foto;
-      foto = this.fileUtils.convertBufferArrayToBase64(foto);
-      this.aluno.pessoaFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
-    });
   }
 
   limparSelecao() {

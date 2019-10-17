@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <div [hidden]="!alunoSelecionado">
+        <div *ngIf="alunoSelecionado">
             <dados-aluno [aluno]="aluno"></dados-aluno>
         </div>
 

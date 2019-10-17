@@ -18,5 +18,9 @@ export class FamiliarAlunoService extends BaseService<Familiares> {
   getFamiliaresPorAluno(id: number) {
     return this.http.get(`${Rotas.FAMILIARES}aluno/${id}`);
   }
+
+  getResponsavelVigente(idAluno: number) {
+    return this.http.get(`${Rotas.FAMILIARES}${idAluno}/responsavelvigente`);
+  }
   
 }

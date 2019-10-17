@@ -5,6 +5,7 @@ import { ResponsaveisAluno } from 'src/app/core/responsaveis-aluno';
 import { TipoResponsaveis } from 'src/app/core/tipo-responsaveis';
 import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 import { ActivatedRoute } from '@angular/router';
+import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcast-event.service';
 
 
 @Component({
@@ -15,9 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ListaResponsaveisComponent implements OnInit {
 
 
-  @Output() onNovo = new EventEmitter();
   @Output() onResponsavel = new EventEmitter();
-
   @Input() familiar: Familiares;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -42,7 +41,7 @@ export class ListaResponsaveisComponent implements OnInit {
 
 
   carregarListaResponsaveis() {
-    if (this.familiar.responsaveis) {
+    if (this.familiar && this.familiar.responsaveis) {
       if (!this.familiar.responsaveis || this.familiar.responsaveis.length === 0) {
         this.mostrarTabela = false;
         this.msg = 'Nenhum responsável cadastrado.';
@@ -65,7 +64,4 @@ export class ListaResponsaveisComponent implements OnInit {
     }
   }
 
-  novo() {
-    this.onNovo.emit(true);
-  }
 }

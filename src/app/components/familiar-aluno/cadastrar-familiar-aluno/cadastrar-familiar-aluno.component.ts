@@ -17,6 +17,7 @@ import { Familiares } from 'src/app/core/familiares';
 import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
 import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcast-event.service';
 
 @Component({
   selector: 'app-cadastrar-familiar-aluno',
@@ -52,11 +53,11 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
 
     this.perfilAcesso = this.route.snapshot.data.perfilAcesso[0];
 
-    if(!this.perfilAcesso.insere){
+    if (!this.perfilAcesso.insere) {
       this.mostrarBotaoCadastrar = false;
     }
-    
-    if(!this.perfilAcesso.altera){
+
+    if (!this.perfilAcesso.altera) {
       this.mostrarBotaoAtualizar = false;
     }
 
@@ -78,7 +79,7 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
 
     } else {
 
-      // No caso de estar cadastrando um novo familiar, então o aluno é passa como parâmetro.
+      // No caso de estar cadastrando um novo familiar, então o aluno é passado como parâmetro.
       const idAluno = this.route.snapshot.queryParams.idAluno ? this.route.snapshot.queryParams.idAluno : null;
       if (idAluno) {
         this.alunoService.getById(idAluno).subscribe((aluno: Aluno) => {
