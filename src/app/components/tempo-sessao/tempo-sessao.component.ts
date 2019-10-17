@@ -30,7 +30,7 @@ export class TempoSessaoComponent implements OnInit, OnDestroy {
     
   ngOnInit() {
     this.sub= this.autenticadorService.tempoSessao$.pipe(
-      switchMap((info) => {
+      switchMap((info: any) => {
         this.counter = info.valor*60
         return timer(0,1000).pipe(
           take(this.counter),

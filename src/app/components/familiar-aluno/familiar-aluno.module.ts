@@ -13,6 +13,9 @@ import { ParentescoComponent } from './parentesco/parentesco.component';
 import { ProfissionalComponent } from './profissional/profissional.component';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { ResponsavelComponent } from './responsavel/responsavel.component';
+import { CadastrarResponsavelComponent } from './responsavel/cadastrar-responsavel/cadastrar-responsavel.component';
+import { MatExpansionModule } from '@angular/material';
+import { ListaResponsaveisComponent } from './responsavel/lista-responsaveis/lista-responsaveis.component';
 
 
 @NgModule({
@@ -20,13 +23,14 @@ import { ResponsavelComponent } from './responsavel/responsavel.component';
                  CadastrarFamiliarAlunoComponent,
                  DadosAlunoComponent,
                  FamiliaresComponent,
-                 EscolhaFamiliarComponent, ParentescoComponent, ProfissionalComponent, ResponsavelComponent],
+                 EscolhaFamiliarComponent, ParentescoComponent, ProfissionalComponent, ResponsavelComponent, CadastrarResponsavelComponent, ListaResponsaveisComponent],
   imports: [
     CommonModule,
     FamiliarAlunoRoutingModule,
     MaterialCommonModule,
     PessoaFisicaModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    MatExpansionModule
   ]
 })
 export class FamiliarAlunoModule { }

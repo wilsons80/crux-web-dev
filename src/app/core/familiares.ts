@@ -20,5 +20,5 @@ export class Familiares {
     tutelaAluno: boolean;
     responsavelFinanceiroPeloAluno: boolean;
 
-    responsavel: ResponsaveisAluno;
+    responsaveis: ResponsaveisAluno[];
 }
