@@ -57,4 +57,8 @@ export class CadastrarAvaliacaoAtividadeComponent implements OnInit {
       this.toastService.showSucesso("Avaliação atualizada com sucesso");
     });
   }
+
+  getNomeBotao() {
+    return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
+  }
 }
