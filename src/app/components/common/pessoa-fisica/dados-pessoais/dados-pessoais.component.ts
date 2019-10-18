@@ -6,64 +6,64 @@ import { CondicoesMoradiaService } from './../../../../services/condicoes-moradi
 import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 
 @Component({
-  selector: 'dados-pessoais',
-  templateUrl: './dados-pessoais.component.html',
-  styleUrls: ['./dados-pessoais.component.css'],
-  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
+  selector:  'dados-pessoais',
+  templateUrl:  './dados-pessoais.component.html',
+  styleUrls:  ['./dados-pessoais.component.css'],
+  viewProviders:  [{ provide:  ControlContainer, useExisting:  NgForm }]
 })
 export class DadosPessoaisComponent implements OnInit {
 
-  @Input() pessoaFisica: PessoaFisica;
+  @Input() pessoaFisica:  PessoaFisica;
 
   public maskCep = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   public maskPhone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
-  ufs:any[] =[
-    {nome: 'DF'}
+  ufs: any[] =[
+    {nome:  'DF'}
   ]
 
-  estadoCivil:any[] =[
-    {tipo: 'SOLTEIRO'},
-    {tipo: 'CASADO'},
-    {tipo: 'UNIÃO ESTÁVEL'},
-    {tipo: 'DIVORCIADO'},
-    {tipo: 'VIÚVO'}
+  estadoCivil: any[] =[
+    {tipo:  'SOLTEIRO'},
+    {tipo:  'CASADO'},
+    {tipo:  'UNIÃO ESTÁVEL'},
+    {tipo:  'DIVORCIADO'},
+    {tipo:  'VIÚVO'}
   ]
 
-  sexo:any[] =[
-    {sigla: 'M', descricao: 'MASCULINO'},
-    {sigla: 'F', descricao: 'FEMININO'}
+  sexo: any[] =[
+    {sigla:  'M', descricao:  'MASCULINO'},
+    {sigla:  'F', descricao:  'FEMININO'}
   ]
 
-  condicoesMoradia:CondicoesMoradia[];
+  condicoesMoradia: CondicoesMoradia[];
 
-  tipoEscola:any[] =[
-    {id: 'P' ,tipo: 'PÚBLICO'},
-    {id: 'R' ,tipo: 'PRIVADO'},
-  ]
+  tipoEscola: any[] = [
+    {id:  'P', tipo:  'PÚBLICO'},
+    {id:  'R', tipo:  'PRIVADO'},
+  ];
 
-  nivelEscolaridade:any[] =[
-    {id: 'C' ,tipo: 'COMPLETO'},
-    {id: 'I' ,tipo: 'CURSANDO'},
+  nivelEscolaridade: any[] =[
+    { id: 'C' , tipo: 'COMPLETO'},
+    { id: 'I' , tipo: 'CURSANDO'},
   ]
 
 
   constructor(
-    private condicoesMoradiaService:CondicoesMoradiaService,
-    private enderecoService:EnderecoService
+    private condicoesMoradiaService: CondicoesMoradiaService,
+    private enderecoService: EnderecoService
   ) { }
 
   ngOnInit() {
-    this.condicoesMoradiaService.getAll().subscribe((condicoesMoradia:CondicoesMoradia[])=> {
+    this.condicoesMoradiaService.getAll().subscribe((condicoesMoradia: CondicoesMoradia[])=> {
       this.condicoesMoradia = condicoesMoradia;
-    })
+    });
 
-    this.enderecoService.getAllEstados().subscribe((ufs:any)=> {
+    this.enderecoService.getAllEstados().subscribe((ufs: any)=> {
       this.ufs = ufs;
     });
   }
 
-  fileChangeEvent(event: any): void {
+  fileChangeEvent(event:  any):  void {
     this.pessoaFisica.foto = event.target.files[0];
     this.pessoaFisica.isFotoChanged = true;
     this.readThis(event.target);
@@ -75,9 +75,9 @@ export class DadosPessoaisComponent implements OnInit {
     }
   }
 
-  readThis(inputValue: any): void {
-    var file:File = inputValue.files[0];
-    var myReader:FileReader = new FileReader();
+  readThis(inputValue:  any):  void {
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
       this.pessoaFisica.urlFoto = myReader.result;

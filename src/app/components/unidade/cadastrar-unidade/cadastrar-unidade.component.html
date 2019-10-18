@@ -72,6 +72,19 @@
             </div>
         </div>
 
+        <!-- INSTITUIÇÃO -->
+        <mat-toolbar class="titulopartes">Instituição</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="20px" class="espaco" style="margin-top: 10px; margin-bottom: 20px" fxFlexFill>
+            <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+                <mat-label>Instiuição</mat-label>
+                <mat-select [(ngModel)]="unidade.instituicao.id" name="instituicao">
+                    <mat-option *ngFor="let m of instituicoes" [value]="m.id">
+                        {{m.nome}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
 
         <!-- INSCRIÇÃO -->
         <mat-toolbar class="titulopartes">Inscrição</mat-toolbar>
@@ -133,31 +146,28 @@
 
         <!-- CONTATO -->
         <mat-toolbar class="titulopartes">Contato</mat-toolbar>
+        <div fxLayout="row" class="espaco" fxLayoutGap="50px" fxFlexFill>
+            <mat-form-field fxFlexOffset="20px" fxFlex="10%">
+                <input matInput [(ngModel)]="unidade.telefone" name="telefoneFixo" placeholder="Telefone Fixo:"
+                    [textMask]="{mask: maskPhone}">
+            </mat-form-field>
 
+            <mat-form-field fxFlex="10%">
+                <input matInput [(ngModel)]="unidade.celular" name="celular" placeholder="Celular:"
+                    [textMask]="{mask: maskPhone}">
+            </mat-form-field>
 
-            <!-- TELEFONES -->
-            <div fxLayout="row" class="espaco" fxLayoutGap="50px" fxFlexFill>
-                <mat-form-field fxFlexOffset="20px" fxFlex="8%">
-                    <input matInput [(ngModel)]="unidade.telefone" name="telefoneFixo" placeholder="Telefone Fixo:"
-                        [textMask]="{mask: maskPhone}">
-                </mat-form-field>
+            <mat-form-field fxFlex="30%">
+                <input #email matInput maxlength="100" email [(ngModel)]="unidade.email" name="email"
+                    placeholder="Email:">
+                <mat-hint align="end">{{email.value.length}} / 100</mat-hint>
+            </mat-form-field>
 
-                <mat-form-field fxFlex="8%">
-                    <input matInput [(ngModel)]="unidade.celular" name="celular" placeholder="Celular:"
-                        [textMask]="{mask: maskPhone}">
-                </mat-form-field>
-
-                <mat-form-field fxFlex="30%">
-                    <input #email matInput maxlength="100" email [(ngModel)]="unidade.email" name="email"
-                        placeholder="Email:">
-                    <mat-hint align="end">{{email.value.length}} / 100</mat-hint>
-                </mat-form-field>
-
-                <mat-form-field fxFlexOffset="20px" fxFlex="30%">
-                    <input #homePage matInput maxlength="200" [(ngModel)]="unidade.homePage" name="homePage"
-                        placeholder="Home Page: ">
-                    <mat-hint align="end">{{homePage.value.length}} / 200</mat-hint>
-                </mat-form-field>
+            <mat-form-field fxFlexOffset="20px" fxFlex="30%">
+                <input #homePage matInput maxlength="200" [(ngModel)]="unidade.homePage" name="homePage"
+                    placeholder="Home Page: ">
+                <mat-hint align="end">{{homePage.value.length}} / 200</mat-hint>
+            </mat-form-field>
         </div>
 
         <!-- DESCRIÇÃO -->
