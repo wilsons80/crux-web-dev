@@ -2,47 +2,53 @@
 <div class="painel-principal" style="padding: 10px;">
     <form #formAlterarSenha="ngForm">
 
-        <!-- SENHA ATUAL -->
-        <mat-toolbar class="titulopartes">Senha Atual</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field fxFlex="95%" fxFlexOffset="20px">
-                <input matInput maxlength="20" name="senhaAtual" [(ngModel)]="trocaSenha.senhaAtual" type="password"
-                    placeholder="Insira a senha atual" required>
-            </mat-form-field>
+
+            <!-- SENHA ATUAL -->
+            <div fxLayout="column" fxFlex="20%">
+                <mat-toolbar class="titulopartes">Senha Atual</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                        <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+                                <input matInput maxlength="20" placeholder="Insira a senha atual" name="senhaAtual" [type]="hide ? 'password' : 'text'" [(ngModel)]="trocaSenha.senhaAtual" required>
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                        </mat-form-field>
+                  
+                </div>
+            </div>
+
+            <!-- NOVA SENHA -->
+            <div fxLayout="column" fxFlex="75%">
+                <mat-toolbar class="titulopartes">Nova Senha</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                        <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+                                <input matInput maxlength="20" placeholder="Insira nova senha" name="novaSenha" [type]="hide ? 'password' : 'text'" [(ngModel)]="trocaSenha.senhaNova" required>
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                        </mat-form-field>
+                    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+                        <input matInput maxlength="20" name="confirmacaoNovaSenha" [(ngModel)]="confirmacaoNovaSenha"
+                            type="password" placeholder="Confirme a nova senha" required>
+                    </mat-form-field>
+                </div>
+            </div>
         </div>
 
-        <!-- NOVA SENHA -->
-        <mat-toolbar class="titulopartes">Nova Senha</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field fxFlex="95%" fxFlexOffset="20px">
-                <input matInput maxlength="20" name="novaSenha" [(ngModel)]="trocaSenha.senhaNova" type="password" placeholder="Insira nova senha"
-                required>
-            </mat-form-field>
-            <mat-form-field fxFlex="95%" fxFlexOffset="20px">
-                <input matInput maxlength="20" name="confirmacaoNovaSenha" [(ngModel)]="confirmacaoNovaSenha" type="password"
-                placeholder="Confirme a nova senha" required>
-            </mat-form-field>
-        </div>
 
         <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-        fxFlexFill>
-        <button mat-raised-button 
-                name="botaoConfirmar" 
-                fxFlex="20%" 
-                color="primary"
-                [disabled]="formAlterarSenha.invalid" 
-                (click)="alterarSenha()">
+            fxFlexFill>
+            <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
+                [disabled]="formAlterarSenha.invalid" (click)="alterarSenha()">
                 Alterar
-        </button>
-        
-        
-        <button mat-raised-button 
-                fxFlex="20%" 
-                color="primary" 
-                (click)="cancelar()">
-            Cancelar
-        </button>
+            </button>
 
-    </div>
+
+            <button mat-raised-button fxFlex="20%" color="primary" (click)="cancelar()">
+                Cancelar
+            </button>
+
+        </div>
     </form>
 </div>

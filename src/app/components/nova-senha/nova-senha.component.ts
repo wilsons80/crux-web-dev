@@ -16,6 +16,7 @@ export class NovaSenhaComponent implements OnInit {
 
   trocaSenha:TrocaSenha = new TrocaSenha();
   confirmacaoNovaSenha: String;
+  hide = true;
 
   constructor(
     private toastService: ToastService,
