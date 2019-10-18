@@ -3,7 +3,6 @@ import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-princi
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Modulos } from 'src/app/core/modulos';
-import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 
 
 @Component({
@@ -26,39 +25,36 @@ import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolb
 })
 export class MenuConfiguracoesComponent implements OnInit {
 
-  currentState = "hidden";
+  currentState = 'hidden';
 
-  constructor(public menuPrincipalService:MenuPrincipalService,
-              private controleMenuService:ControleMenuService,
-              private toolbarPrincipalService: ToolbarPrincipalService
+  constructor(public menuPrincipalService: MenuPrincipalService,
+              private controleMenuService: ControleMenuService
               ) { }
 
-  isMostrarSubMenu: boolean = false;
+  isMostrarSubMenu = false;
 
   ngOnInit() {
   }
   
-  toggle(){
+  toggle() {
     this.isMostrarSubMenu = !this.isMostrarSubMenu;
-    if(this.isMostrarSubMenu){
+    if (this.isMostrarSubMenu){
       this.currentState = 'show';
-    }else
+    } else {
       this.currentState = 'hidden';
+    }
   }
 
   getIcone(){
-    return this.isMostrarSubMenu ? "expand_more" : "chevron_right";
+    return this.isMostrarSubMenu ? 'expand_more' : 'chevron_right';
   }
 
   getModulos() {
     return Modulos;
   }
 
-  verificaAcesso(modulo:Modulos) {
+  verificaAcesso(modulo: Modulos) {
     return this.controleMenuService.verificaAcessoModulo(modulo);
   }
 
-  isUsuarioAdmin(): boolean {
-    return this.toolbarPrincipalService.admin;
-  }
 }

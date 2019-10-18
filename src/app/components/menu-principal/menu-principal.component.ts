@@ -23,33 +23,28 @@ export class MenuPrincipalComponent implements OnInit {
     visivel = false;
 
   constructor(
-    private controleMenuService:ControleMenuService,
-    private toolbarPrincipalService:ToolbarPrincipalService,
-    public menuPrincipalService:MenuPrincipalService,
+    private controleMenuService: ControleMenuService,
+    private toolbarPrincipalService: ToolbarPrincipalService,
+    public menuPrincipalService: MenuPrincipalService,
     ) { }
 
 
   ngOnInit() {
     this.menuPrincipalService.toggle.subscribe(() =>this.visivel = !this.visivel );
-    
   }
-  
- 
+
   fecharMenu(){
     this.visivel = !this.visivel;
   }
+  
   getBackground(){
     if(this.menuPrincipalService && this.menuPrincipalService.fotoPerfil){
       return `url(${this.menuPrincipalService.fotoPerfil})`
     }
   }
 
-  verificaAcesso(modulo:Modulos) {
-    return this.controleMenuService.verificaAcessoModulo(modulo) && !this.isUsuarioAdmin();
-  }
-
-  isUsuarioAdmin(): boolean {
-    return this.toolbarPrincipalService.admin;
+  verificaAcesso(modulo: Modulos) {
+    return this.controleMenuService.verificaAcessoModulo(modulo);
   }
 
   getModulos() {
