@@ -16,6 +16,9 @@
         <!-- USUARIO -->
         <sub-menu *ngIf="verificaAcesso(getModulos().USUARIO)" icone="person_add" titulo="Usuário" rota="usuariosistema" toolTip="Usuário"></sub-menu>
 
+        <!-- INSTITUICAO -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().INSTITUICAO)" icone="store" titulo="Intituição" rota="instituicao" toolTip="Intituição"></sub-menu>
+
         <!-- UNIDADE -->
         <sub-menu *ngIf="verificaAcesso(getModulos().UNIDADE)" icone="business" titulo="Unidade" rota="unidade" toolTip="Unidade"></sub-menu>
 

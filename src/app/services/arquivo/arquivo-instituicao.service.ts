@@ -2,17 +2,16 @@ import { Cacheable } from 'ngx-cacheable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const rootPath = 'api/arquivounidade/';
+const rootPath = 'api/arquivoinstituicao/';
 
 const httpOptions = {
   'responseType'  : 'arraybuffer' as 'json'
-   //'responseType'  : 'blob' as 'json'        //This also worked
 };
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArquivoUnidadeService {
+export class ArquivoInstituicaoService {
 
   constructor(private http: HttpClient) { }
 
@@ -22,26 +21,26 @@ export class ArquivoUnidadeService {
     return this.http.post(rootPath, formData);
   }
 
-  gravarComIdUnidade(file: File, idUnidade: number) {
+  gravarComIdInstituicao(file: File, id: number) {
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.post(`${rootPath}/unidade/${idUnidade}`, formData);
+    return this.http.post(`${rootPath}/instituicao/${id}`, formData);
   }
-  
+
   alterar(file: File) {
     const formData = new FormData();
     formData.append('file', file);
     return this.http.put(rootPath, formData);
   }
-  
-  alterarComIdUnidade(file: File, idUnidade: number) {
+
+  alterarComIdInstituicao(file: File, id: number) {
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.put(`${rootPath}/unidade/${idUnidade}`, formData);
+    return this.http.put(`${rootPath}/instituicao/${id}`, formData);
   }
 
-  get(idUnidade: number) {
-    return this.http.get(rootPath + `${idUnidade}`, httpOptions);
+  get(id: number) {
+    return this.http.get(rootPath + `${id}`, httpOptions);
   }
 }
 

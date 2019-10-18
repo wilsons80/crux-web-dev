@@ -79,6 +79,7 @@ import { VulnerabilidadeFamiliarModule } from './components/vulnerabilidade-fami
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 import { TempoSessaoDialogComponent } from './components/common/tempo-sessao-dialog/tempo-sessao-dialog.component';
+import { InstituicaoModule } from './components/instituicao/instituicao.module';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -95,7 +96,6 @@ registerLocaleData(localePt, 'pt-BR');
     ConfirmDialogComponent,
     AcessoRestritoComponent,
     TempoSessaoDialogComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -178,8 +178,8 @@ registerLocaleData(localePt, 'pt-BR');
     ProdutosAtividadeModule,
     CadastroReservaAtividadeModule,
     TempoSessaoModule,
-    AcoesAtividadeModule
-    
+    AcoesAtividadeModule,
+    InstituicaoModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },

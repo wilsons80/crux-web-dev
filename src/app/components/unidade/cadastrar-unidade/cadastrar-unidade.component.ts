@@ -10,6 +10,8 @@ import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { FileUtils } from 'src/app/utils/file-utils';
 import { ArquivoUnidadeService } from './../../../services/arquivo/arquivo.service';
 import { ToastService } from './../../../services/toast/toast.service';
+import { Instituicao } from 'src/app/core/instituicao';
+import { InstituicaoService } from 'src/app/services/instituicao/instituicao.service';
 
 @Component({
   selector: 'cadastrar-unidade',
@@ -19,15 +21,14 @@ import { ToastService } from './../../../services/toast/toast.service';
 export class CadastrarUnidadeComponent implements OnInit {
 
   perfilAcesso: PerfilAcesso;
-  mostrarBotaoCadastrar = true
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
   estados: any;
 
   unidade: Unidade = new Unidade();
-
-  isAtualizar: boolean = false;
-
+  instituicoes: Instituicao[];
+  isAtualizar = false;
 
 
   public maskCep = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
@@ -42,7 +43,7 @@ export class CadastrarUnidadeComponent implements OnInit {
     { id: '2', tipo: 'F', descricao: 'FILIAL' },
   ]
 
-  // MATRIZ(1, "M"), FILIAL(2, "F");
+  // MATRIZ(1, 'M'), FILIAL(2, 'F');
 
   situacoesImovel: any[] = [
     { id: '1', tipo: 'P', descricao: 'PRÓPRIO' },
@@ -60,11 +61,12 @@ export class CadastrarUnidadeComponent implements OnInit {
     private toastService: ToastService,
     private arquivoUnidadeService: ArquivoUnidadeService,
     private fileUtils: FileUtils,
-    private toolbarPrincipalService:ToolbarPrincipalService
+    private toolbarPrincipalService: ToolbarPrincipalService,
+    private instituicaoService: InstituicaoService
   ) { }
 
   ngOnInit() {
-
+    this.unidade.instituicao = new Instituicao();
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if (!this.perfilAcesso.insere) {
@@ -83,42 +85,44 @@ export class CadastrarUnidadeComponent implements OnInit {
           this.unidade = unidade;
           return this.arquivoUnidadeService.get(unidade.idUnidade)
         })
-      )
-        .subscribe((foto: any) => {
+      ).subscribe((foto: any) => {
           this.unidade.foto = foto;
           foto = this.fileUtils.convertBufferArrayToBase64(foto);
           this.unidade.urlFoto = foto.changingThisBreaksApplicationSecurity;
-        });
+      });
     }
 
     this.enderecoService.getAllEstados().subscribe(estados => {
       this.estados = estados;
     });
+
+    this.instituicaoService.getAll().subscribe((dados: Instituicao[]) => {
+      this.instituicoes = dados;
+    });
   }
 
   cancelar() {
-    this.router.navigate(['unidade'])
-
+    this.router.navigate(['unidade']);
   }
+
   atualizar() {
     this.tratarDados();
     this.unidadeService.alterar(this.unidade).pipe(
       switchMap((unidadeRetorno: Unidade) => {
         if (this.unidade.isFotoChanged && this.unidade.foto) {
-          return this.arquivoUnidadeService.alterarComIdUnidade(this.unidade.foto, unidadeRetorno.idUnidade)
+          return this.arquivoUnidadeService.alterarComIdUnidade(this.unidade.foto, unidadeRetorno.idUnidade);
         } else {
           return new Observable(obs => obs.next());
         }
       })
 
     ).subscribe(() => {
-      if(this.unidade.idUnidade === this.toolbarPrincipalService.unidadeSelecionada.id){
-        localStorage.removeItem("logo");
+      if (this.unidade.idUnidade === this.toolbarPrincipalService.unidadeSelecionada.id) {
+        localStorage.removeItem('logo');
       }
-      this.router.navigate(['unidade'])
+      this.router.navigate(['unidade']);
       this.toastService.showSucesso('Unidade atualizada com sucesso');
-    })
-
+    });
   }
 
   limpar() {

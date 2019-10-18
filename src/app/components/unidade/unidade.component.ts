@@ -7,8 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { UploadFotoComponent } from '../upload-foto/upload-foto.component';
-import { Indicadores } from 'src/app/core/indicadores';
-import { IndicadoresService } from 'src/app/services/indicadores/indicadores.service';
+
 
 
 @Component({
@@ -21,23 +20,21 @@ export class UnidadeComponent implements OnInit {
 
  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
+  unidades: Unidade[];
+  unidade: Unidade = new Unidade();
+  mostrarTabela = false;
+  msg: string;
 
-  unidades:Unidade[];
-  unidade:Unidade = new Unidade()
-  mostrarTabela: boolean = false;
-  msg:string;
-
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: PerfilAcesso;
 
   displayedColumns: string[] = ['sigla', 'nome', 'tipo', 'acoes'];
   dataSource: MatTableDataSource<Unidade> = new MatTableDataSource();
-  
+
   constructor(
     private unidadeService: UnidadeService,
     private router: Router,
     private dialog: MatDialog,
-    private activatedRoute:ActivatedRoute
-
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -46,7 +43,6 @@ export class UnidadeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.getAll();
   }
- 
 
   limpar() {
     this.mostrarTabela = false;

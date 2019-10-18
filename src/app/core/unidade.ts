@@ -1,3 +1,5 @@
+import { Instituicao } from './instituicao';
+
 export class Unidade {
 
     idUnidade: number
@@ -25,7 +27,7 @@ export class Unidade {
 	inscricaoMunicipal:string
 	homePage:string
 	foto?:any;
-   urlFoto?:any;
-   isFotoChanged?:boolean;
-	
+    urlFoto?:any;
+    isFotoChanged?:boolean;
+	instituicao: Instituicao
 }
