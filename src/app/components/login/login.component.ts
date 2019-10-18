@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit, AfterContentChecked {
   usuario: Login = new Login();
   error: any;
   usuarioLogado: UsuarioLogado;
+  hide = true;
 
   constructor(
     private autenticadorService: AutenticadorService,
