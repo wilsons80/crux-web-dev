@@ -42,6 +42,11 @@ export class CadastrarProjetoComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.projeto.programa = new Programa();
+    this.projeto.iniciativa = new Iniciativa();
+
+    
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){

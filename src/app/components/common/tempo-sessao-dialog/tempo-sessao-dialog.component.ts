@@ -4,6 +4,7 @@ import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { timer, Subscription } from 'rxjs';
 import { take, map } from 'rxjs/operators';
+import { LogoutService } from 'src/app/services/logout/logout.service';
 
 @Component({
   selector: 'app-tempo-sessao-dialog',
@@ -23,6 +24,7 @@ export class TempoSessaoDialogComponent implements OnInit, OnDestroy {
     private router:Router,
     private autenticadorService:AutenticadorService,
     private dialogRef: MatDialogRef<TempoSessaoDialogComponent>,
+    private logoutService:LogoutService,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
      this.tempo = data.tempo;
   }
@@ -34,6 +36,7 @@ export class TempoSessaoDialogComponent implements OnInit, OnDestroy {
         this.tempoDown = info;
         if(this.tempoDown === 0){
           this.sessaoExpirada = true;
+          this.logoutService.logout();
         }
       })
   }

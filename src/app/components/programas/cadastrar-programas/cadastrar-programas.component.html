@@ -1,131 +1,131 @@
 <mat-toolbar class="subtitulo">Programa</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
-    <form #formCadastro="ngForm">
+  <form #formCadastro="ngForm">
 
-        <!-- DADOS INICIAIS -->
-        <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
-        <div fxLayout="row" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Nome :" [(ngModel)]="programa.nome" required>
-             </mat-form-field>
-        </div>
+    <!-- DADOS INICIAIS -->
+    <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
+    <div fxLayout="row" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+      <mat-form-field style="margin-bottom: 20px" fxFlex="45%" fxFlexOffset="20px">
+        <input #nome matInput maxlength="200" name="nome" placeholder="Nome :" [(ngModel)]="programa.nome" required>
+        <mat-hint align="end">{{nome.value.length}} / 200</mat-hint>
+      </mat-form-field>
 
-        <div fxLayout="row" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="descricao" placeholder="Descrição:" [(ngModel)]="programa.descricao" required>
-             </mat-form-field>
-        </div>
+      <mat-form-field fxFlex="48%" fxFlexOffset="20px">
+        <input #descricao matInput maxlength="200" name="descricao" placeholder="Descrição:"
+          [(ngModel)]="programa.descricao">
+        <mat-hint align="end">{{descricao.value.length}} / 200</mat-hint>
+      </mat-form-field>
+    </div>
 
-        <!-- DATA -->
+    <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+      <!-- DATA-->
+      <div fxLayout="column" fxFlex="45%">
         <mat-toolbar class="titulopartes">Data</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                    <input matInput name= "dtImplantacao" [matDatepicker]="dtImplantacao" placeholder="Data de Início" [(ngModel)]="programa.dataInicio" required>
-                    <mat-datepicker-toggle matSuffix [for]="dtImplantacao"></mat-datepicker-toggle>
-                    <mat-datepicker #dtImplantacao></mat-datepicker>
-             </mat-form-field>
+          <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+            <input matInput name="dtImplantacao" [matDatepicker]="dtImplantacao" placeholder="Data de Implantação"
+              [(ngModel)]="programa.dataInicio" required>
+            <mat-datepicker-toggle matSuffix [for]="dtImplantacao"></mat-datepicker-toggle>
+            <mat-datepicker #dtImplantacao></mat-datepicker>
+          </mat-form-field>
 
-             <mat-form-field fxFlex= "46%">
-                    <input matInput name= "dtTermino" [matDatepicker]="dtTermino" placeholder="Data Fim" [(ngModel)]="programa.dataFim">
-                    <mat-datepicker-toggle matSuffix [for]="dtTermino"></mat-datepicker-toggle>
-                    <mat-datepicker #dtTermino></mat-datepicker>
-             </mat-form-field>
+          <mat-form-field fxFlex="46%">
+            <input matInput name="dtTermino" [matDatepicker]="dtTermino" placeholder="Data Fim"
+              [(ngModel)]="programa.dataFim">
+            <mat-datepicker-toggle matSuffix [for]="dtTermino"></mat-datepicker-toggle>
+            <mat-datepicker #dtTermino></mat-datepicker>
+          </mat-form-field>
 
         </div>
+      </div>
 
-         <!-- FUNCIONARIO -->
-         <mat-toolbar class="titulopartes">Funcionário</mat-toolbar>
-         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
-                        <mat-label>Funcionario:</mat-label>
-                        <mat-select [(ngModel)]="programa.idCoordenador" name="funcionarios" required>
-                            <mat-option *ngFor="let f of funcionarios" [value]="f.id" >
-                              {{f.nome}}
-                            </mat-option>
-                        </mat-select>
-                </mat-form-field>
+      <!-- COORDENADOR -->
+      <div fxLayout="column" fxFlex="55%">
+        <mat-toolbar class="titulopartes">Coordenador</mat-toolbar>
+        <mat-form-field style="margin: 0 40px 0 20px" fxFlex="85%">
+          <mat-label>Funcionário:</mat-label>
+          <mat-select [(ngModel)]="programa.idCoordenador" name="funcionarios">
+            <mat-option *ngFor="let f of funcionarios" [value]="f.id">
+              {{f.nome}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
 
-         </div>
 
-           <!-- FAIXA ETÁRIA -->
+    <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+      <!-- FAIXA ETÁRIA -->
+      <div fxLayout="column" fxFlex="15%">
         <mat-toolbar class="titulopartes">Faixa Etária</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+        <div fxLayout="row" fxLayoutGap="30px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                  <input matInput type="number" maxlength="2"  name="faixainicio" placeholder="Faixa Etária Início :" [(ngModel)]="programa.faixaEtariaInicio" required>
-             </mat-form-field>
+          <mat-form-field fxFlex="30%" fxFlexOffset="20px">
+            <input matInput type="number" maxlength="2" name="faixainicio" placeholder="Inicial:"
+              [(ngModel)]="programa.faixaEtariaInicio">
+          </mat-form-field>
 
-             <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                  <input matInput type="number" maxlength="2"  name="faixafim" placeholder="Faixa Etária Fim:" [(ngModel)]="programa.faixaEtariaFim" required>
-             </mat-form-field>
+          <mat-form-field fxFlex="30%" fxFlexOffset="20px">
+            <input matInput type="number" maxlength="2" name="faixafim" placeholder="Final:"
+              [(ngModel)]="programa.faixaEtariaFim">
+          </mat-form-field>
 
         </div>
+      </div>
 
-         <!-- OBJETIVO -->
-         <mat-toolbar class="titulopartes">Objetivo</mat-toolbar>
-         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
-                        <mat-label>Objetivo:</mat-label>
-                        <mat-select [(ngModel)]="programa.objetivo.idObjetivo" name="objetivo" required>
-                            <mat-option *ngFor="let o of objetivos" [value]="o.idObjetivo" >
-                              {{o.nome}}
-                            </mat-option>
-                        </mat-select>
-                </mat-form-field>
+      <!-- OBJETIVOS -->
+      <div fxLayout="column" fxFlex="35%">
+        <mat-toolbar class="titulopartes">Objetivo</mat-toolbar>
+        <mat-form-field style="margin-left: 20px" fxFlex="95%">
+          <mat-label>Objetivos:</mat-label>
+          <mat-select [(ngModel)]="programa.objetivo.idObjetivo" name="objetivo" required>
+            <mat-option *ngFor="let o of objetivos" [value]="o.idObjetivo">
+              {{o.nome}}
+            </mat-option>
+          </mat-select>
+          <mat-hint *ngIf="objetivos?.length === 0"  align="start">Nenhum objetivo cadastrado</mat-hint>
+        </mat-form-field>
+      </div>
 
-         </div>
+      <!-- INICIATIVAS -->
+      <div fxLayout="column" fxFlex="55%">
+        <mat-toolbar class="titulopartes">Iniciativa</mat-toolbar>
+        <mat-form-field style="margin-left: 20px; margin-right: 20px; margin-bottom: 20px" fxFlex="85%">
+          <mat-label>Iniciativas:</mat-label>
+          <mat-select [(ngModel)]="programa.iniciativa.id" name="iniciativa" required>
+            <mat-option *ngFor="let i of iniciativas" [value]="i.id">
+              {{i.nome}}
+            </mat-option>
+          </mat-select>
+          <mat-hint *ngIf="iniciativas?.length === 0"  align="start">Nenhuma iniciativa cadastrada</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
 
-         <!-- INICIATIVA -->
-         <mat-toolbar class="titulopartes">Iniciativa</mat-toolbar>
-         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
-                        <mat-label>Iniciativa:</mat-label>
-                        <mat-select [(ngModel)]="programa.iniciativa.id" name="iniciativa" required>
-                            <mat-option *ngFor="let i of iniciativas" [value]="i.id" >
-                              {{i.nome}}
-                            </mat-option>
-                        </mat-select>
-                </mat-form-field>
+    <!-- BOTOES -->
+    <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+      <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button name="botaoConfirmar" fxFlex="20%"
+        color="primary" [disabled]="formCadastro.invalid" (click)="cadastrar()"> Cadastrar
+      </button>
 
-         </div>
+      <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button name="botaoConfirmar" fxFlex="20%"
+        color="primary" [disabled]="formCadastro.invalid" (click)="atualizar()">
+        Atualizar
+      </button>
 
-       <!-- BOTOES -->
-   <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-    <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button
-            name="botaoConfirmar"
-            fxFlex="20%"
-            color="primary"
-            [disabled]="formCadastro.invalid"
-            (click)="cadastrar()"> Cadastrar
-    </button>
+      <button *ngIf="mostrarBotaoLimpar()" mat-raised-button fxFlex="20%" (click)="limpar()">
+        Limpar
+      </button>
+      <button mat-raised-button fxFlex="20%" (click)="cancelar()">
+        Cancelar
+      </button>
 
-    <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button
-            name="botaoConfirmar"
-            fxFlex="20%"
-            color="primary"
-            [disabled]="formCadastro.invalid"
-            (click)="atualizar()">
-            Atualizar
-    </button>
-
-    <button *ngIf="mostrarBotaoLimpar()" 
-            mat-raised-button 
-            fxFlex="20%" 
-            (click)="limpar()">
-            Limpar
-    </button>
-    <button 
-            mat-raised-button 
-            fxFlex="20%" 
-            (click)="cancelar()">
-            Cancelar
-    </button>
-
-</div>
-    </form>
+    </div>
+  </form>
 
 
 </div>
-

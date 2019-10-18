@@ -31,12 +31,12 @@
 
         </div>
 
-         <!-- DADOS INICIAIS -->
+         <!-- DATA -->
         <mat-toolbar class="titulopartes">Datas</mat-toolbar>
         <div fxLayout="row"  fxLayoutGap="50px" class="espaco" 
         fxFlexFill>
         <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
-            <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início:" [(ngModel)]="acoes.dataInicio">
+            <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início:" [(ngModel)]="acoes.dataInicio" required>
             <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
             <mat-datepicker #dataInicio></mat-datepicker>
         </mat-form-field>

@@ -55,7 +55,7 @@ export class CadastrarAcoesAtividadeComponent implements OnInit {
     idAcoesAtividade = this.activatedRoute.snapshot.queryParams.idAcoesAtividade ? this.activatedRoute.snapshot.queryParams.idAcoesAtividade : null;
     if (idAcoesAtividade) {
       this.isAtualizar = true;
-      this.atividadeService.getById(idAcoesAtividade).subscribe((acoes: Acoes) => {
+      this.acoesAtividadeService.getById(idAcoesAtividade).subscribe((acoes: Acoes) => {
         this.acoes = acoes
       });
     }

@@ -5,81 +5,91 @@
 
         <!-- DADOS INICIAIS -->
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
-        <div fxLayout="row" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Nome :" [(ngModel)]="projeto.nome" required>
+        <div fxLayout="row" fxFlexFill>
+            <mat-form-field style="margin-bottom: 10px" fxFlex= "46%" fxFlexOffset="20px" >
+                  <input #nome matInput maxlength="200"  name="nome" placeholder="Nome :" [(ngModel)]="projeto.nome" required>
+                  <mat-hint align="end">{{nome.value.length}} / 200</mat-hint>
+             </mat-form-field>
+
+             <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
+                  <input #descricao matInput maxlength="200"  name="descricao" placeholder="Descrição:" [(ngModel)]="projeto.descricao" >
+                  <mat-hint align="end">{{descricao.value.length}} / 200</mat-hint>
              </mat-form-field>
         </div>
 
-        <div fxLayout="row" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="descricao" placeholder="Descrição:" [(ngModel)]="projeto.descricao" required>
-             </mat-form-field>
-        </div>
-
-        <!-- DATAS PREVISTAS -->
-        <mat-toolbar class="titulopartes">Datas Previstas</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                    <input matInput name= "dtPrevistaImplantacao" [matDatepicker]="dataPrevisaoInicio" placeholder="Data Prevista de Início" [(ngModel)]="projeto.dataPrevisaoInicio" required>
-                    <mat-datepicker-toggle matSuffix [for]="dataPrevisaoInicio"></mat-datepicker-toggle>
-                    <mat-datepicker #dataPrevisaoInicio></mat-datepicker>
-             </mat-form-field>
+                <!--DATAS -->
+                <div fxLayout="column" fxFlex="45%">
+                        <mat-toolbar class="titulopartes">Datas</mat-toolbar>
+                        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-             <mat-form-field fxFlex= "46%">
-                    <input matInput name= "dtPrevistaTermino" [matDatepicker]="dataPrevisaoTermino" placeholder="Data Prevista de Fim" [(ngModel)]="projeto.dataPrevisaoTermino">
-                    <mat-datepicker-toggle matSuffix [for]="dataPrevisaoTermino"></mat-datepicker-toggle>
-                    <mat-datepicker #dataPrevisaoTermino></mat-datepicker>
-             </mat-form-field>
+                                <mat-form-field fxFlex= "40%" fxFlexOffset="20px" >
+                                        <input matInput name= "dtImplantacao" [matDatepicker]="dataInicio" placeholder="Data de Início:" [(ngModel)]="projeto.dataInicio">
+                                        <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
+                                        <mat-datepicker #dataInicio></mat-datepicker>
+                                 </mat-form-field>
+                    
+                                 <mat-form-field fxFlex= "40%">
+                                        <input matInput name= "dtTermino" [matDatepicker]="dataTermino" placeholder="Data de Fim:" [(ngModel)]="projeto.dataFim">
+                                        <mat-datepicker-toggle matSuffix [for]="dataTermino"></mat-datepicker-toggle>
+                                        <mat-datepicker #dataTermino></mat-datepicker>
+                                 </mat-form-field>
+                    
+                            </div>
+                </div>
 
+                <!-- DATAS PREVISTAS -->
+                <div fxLayout="column" fxFlex="55%">
+                        <mat-toolbar class="titulopartes">Datas Previstas</mat-toolbar>
+                        <div fxLayout="row" fxLayoutGap="50px" style="margin: 0 20px 20px 0" fxFlexFill>
+
+                                <mat-form-field fxFlex= "40%" fxFlexOffset="20px" >
+                                        <input matInput name= "dtPrevistaImplantacao" [matDatepicker]="dataPrevisaoInicio" placeholder="Data Prevista de Início:" [(ngModel)]="projeto.dataPrevisaoInicio" required>
+                                        <mat-datepicker-toggle matSuffix [for]="dataPrevisaoInicio"></mat-datepicker-toggle>
+                                        <mat-datepicker #dataPrevisaoInicio></mat-datepicker>
+                                 </mat-form-field>
+                    
+                                 <mat-form-field  fxFlex= "40%">
+                                        <input style="margin-right: 20px" matInput name= "dtPrevistaTermino" [matDatepicker]="dataPrevisaoTermino" placeholder="Data Prevista de Fim:" [(ngModel)]="projeto.dataPrevisaoTermino">
+                                        <mat-datepicker-toggle matSuffix [for]="dataPrevisaoTermino"></mat-datepicker-toggle>
+                                        <mat-datepicker #dataPrevisaoTermino></mat-datepicker>
+                                 </mat-form-field>
+                    
+                            </div>
+                </div>
         </div>
 
-        <!-- DATAS  -->
-        <mat-toolbar class="titulopartes">Data</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                    <input matInput name= "dtImplantacao" [matDatepicker]="dataInicio" placeholder="Data de Início" [(ngModel)]="projeto.dataInicio" required>
-                    <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
-                    <mat-datepicker #dataInicio></mat-datepicker>
-             </mat-form-field>
+                <!-- PROGRAMA-->
+                <div fxLayout="column" fxFlex="45%">
+                        <mat-toolbar class="titulopartes">Programa</mat-toolbar>
+                        <mat-form-field style="margin-left: 20px" fxFlex= "95%" >
+                                <mat-label>Programa:</mat-label>
+                                <mat-select [(ngModel)]="projeto.programa.id" name="objetivo" required>
+                                    <mat-option *ngFor="let o of programas" [value]="o.id" >
+                                      {{o.nome}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-hint *ngIf="programas?.length === 0"  align="start">Nenhum programa cadastrado</mat-hint>
+                        </mat-form-field>
+                </div>
 
-             <mat-form-field fxFlex= "46%">
-                    <input matInput name= "dtTermino" [matDatepicker]="dataTermino" placeholder="Data de Fim" [(ngModel)]="projeto.dataFim">
-                    <mat-datepicker-toggle matSuffix [for]="dataTermino"></mat-datepicker-toggle>
-                    <mat-datepicker #dataTermino></mat-datepicker>
-             </mat-form-field>
-
+                <!-- INICIATIVA -->
+                <div fxLayout="column" fxFlex="55%">
+                        <mat-toolbar class="titulopartes">Iniciativa</mat-toolbar>
+                        <mat-form-field style="margin: 0 50px 0 20px">
+                                <mat-label>Iniciativa:</mat-label>
+                                <mat-select [(ngModel)]="projeto.iniciativa.id" name="iniciativa">
+                                    <mat-option *ngFor="let i of iniciativas" [value]="i.id" >
+                                      {{i.nome}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-hint *ngIf="iniciativas?.length === 0"  align="start">Nenhuma iniciativa cadastrada</mat-hint>
+                        </mat-form-field>
+                </div>
         </div>
-
-         <!-- PROGRAMA -->
-         <mat-toolbar class="titulopartes">Programa</mat-toolbar>
-         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
-                        <mat-label>Programa:</mat-label>
-                        <mat-select [(ngModel)]="projeto.programa.id" name="objetivo" required>
-                            <mat-option *ngFor="let o of programas" [value]="o.id" >
-                              {{o.nome}}
-                            </mat-option>
-                        </mat-select>
-                </mat-form-field>
-
-         </div>
-
-         <!-- INICIATIVA -->
-         <mat-toolbar class="titulopartes">Iniciativa</mat-toolbar>
-         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                <mat-form-field fxFlexOffset="20px" fxFlex= "95%" >
-                        <mat-label>Iniciativa:</mat-label>
-                        <mat-select [(ngModel)]="projeto.iniciativa.id" name="iniciativa" required>
-                            <mat-option *ngFor="let i of iniciativas" [value]="i.id" >
-                              {{i.nome}}
-                            </mat-option>
-                        </mat-select>
-                </mat-form-field>
-
-         </div>
 
         <!-- BOTOES -->
    <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
