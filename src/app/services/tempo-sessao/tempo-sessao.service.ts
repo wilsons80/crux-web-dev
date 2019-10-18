@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TempoSessaoService {
 
-  tempoSessao:number= 40;
+  tempoSessao:any;
+  tempoAcabou = new EventEmitter();
   constructor() { }
-
 
 }
