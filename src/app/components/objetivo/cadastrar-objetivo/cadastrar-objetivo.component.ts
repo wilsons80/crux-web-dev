@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Objetivo } from 'src/app/core/objetivo';
@@ -29,8 +29,8 @@ export class CadastrarObjetivoComponent implements OnInit {
     private perspectivaService: PerspectivaService,
     private objetivoService: ObjetivoService,
     private activatedRoute: ActivatedRoute,
-    private location: Location,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router:Router
   ) {
     this.objetivo.perspectiva = new Perspectiva();
   }
@@ -72,23 +72,24 @@ export class CadastrarObjetivoComponent implements OnInit {
   cadastrar() {
 
     this.objetivoService.cadastrar(this.objetivo).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['objetivo']);
       this.toastService.showSucesso("Objetivo cadastrado com sucesso");
     });
   }
-
+  
   limpar() {
     this.objetivo = new Objetivo();
-  }
 
+  }
+  
   cancelar() {
-    this.location.back();
+    this.router.navigate(['objetivo']);
   }
-
-
+  
+  
   atualizar() {
     this.objetivoService.alterar(this.objetivo).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['objetivo']);
       this.toastService.showSucesso("Objetivo atualizado com sucesso");
     });
 

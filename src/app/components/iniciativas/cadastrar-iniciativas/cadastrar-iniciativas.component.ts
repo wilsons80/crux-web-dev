@@ -36,6 +36,8 @@ export class CadastrarIniciativasComponent implements OnInit {
 
   ngOnInit() {
 
+    this.iniciativa.metas = new Metas();
+
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if (!this.perfilAcesso.insere) {

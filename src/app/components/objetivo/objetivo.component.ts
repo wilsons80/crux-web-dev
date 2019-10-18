@@ -20,7 +20,7 @@ export class ObjetivoComponent implements OnInit {
   objetivo: Objetivo = new Objetivo();
   msg: string;
 
-  displayedColumns: string[] = ['nome', 'perspectiva', 'usuarioAlteracao', 'acoes'];
+  displayedColumns: string[] = ['nome', 'perspectiva', 'dataImplantacao', 'acoes'];
   dataSource: MatTableDataSource<Objetivo> = new MatTableDataSource();
 
   perfilAcesso: PerfilAcesso;
@@ -99,6 +99,7 @@ export class ObjetivoComponent implements OnInit {
 
   getAll() {
     this.objetivoService.getAll().subscribe((objetivos: Objetivo[]) => {
+      console.log("getall",objetivos)
       this.objetivos = objetivos;
       this.dataSource.data = objetivos ? objetivos : [];
       this.verificaMostrarTabela(objetivos);
