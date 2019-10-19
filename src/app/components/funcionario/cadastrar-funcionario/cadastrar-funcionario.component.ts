@@ -61,19 +61,18 @@ export class CadastrarFuncionarioComponent implements OnInit {
     if (idFuncionario) {
       this.isAtualizar = true;
       this.funcionarioService.getById(idFuncionario).pipe(
+
         switchMap((funcionario: Funcionario) => {
           this.funcionario = funcionario;
-
           if (this.funcionario.dtHrEntrevista) {
             this.formataHorario(this.funcionario.dtHrEntrevista);
           }
-
           return this.arquivoPessoaFisicaService.get(funcionario.pessoasFisica.id)
         })
       ).subscribe((foto: any) => {
         this.funcionario.pessoasFisica.foto = foto;
-        foto = this.fileUtils.convertBufferArrayToBase64(foto);
-        this.funcionario.pessoasFisica.urlFoto = foto.changingThisBreaksApplicationSecurity;
+        let fotoBase64:any = this.fileUtils.convertBufferArrayToBase64(foto);
+        this.funcionario.pessoasFisica.urlFoto = fotoBase64.changingThisBreaksApplicationSecurity;
       });
     }
   }
