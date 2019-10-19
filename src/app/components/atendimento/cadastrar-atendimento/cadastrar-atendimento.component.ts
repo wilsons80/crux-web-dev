@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Atendimento } from 'src/app/core/atendimento';
 import { Diagnostico } from 'src/app/core/diagnostico';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { AtendimentosService } from 'src/app/services/atendimentos/atendimentos.service';
 import { DiagnosticoAtendimentoService } from 'src/app/services/diagnostico-atendimento/diagnostico-atendimento.service';
@@ -24,7 +24,7 @@ export class CadastrarAtendimentoComponent implements OnInit {
   atendimento: Atendimento = new Atendimento();
 
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

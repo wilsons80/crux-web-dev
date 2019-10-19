@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Atendimento } from 'src/app/core/atendimento';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { AtendimentosService } from 'src/app/services/atendimentos/atendimentos.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
@@ -19,7 +19,7 @@ export class AtendimentoComponent implements OnInit {
   mostrarTabela: boolean = false;
   atendimento: Atendimento = new Atendimento();
   msg: string;
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   displayedColumns: string[] = ['DataAtendimento', 'Aluno', 'Diagnostico', 'acoes'];
