@@ -1,7 +1,8 @@
+import { Unidade } from './unidade';
 import { PessoaFisica } from './pessoa-fisica';
 
 export class UsuarioSistema {
-  idUsuario: number;
+  id: number;
 	nomeUsuario: string;
 	senhaUsuario: string;
 	descFimVigenciaUsuario: string;
@@ -13,5 +14,5 @@ export class UsuarioSistema {
 	stTrocaSenha: string;
 	pessoaFisica: PessoaFisica;
 	usuarioAlteracao: number;
-	idUnidade: number;
+	unidades: Unidade[];
 }
