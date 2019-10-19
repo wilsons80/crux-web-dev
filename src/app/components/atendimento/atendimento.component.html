@@ -9,7 +9,7 @@
                     <mat-label>Selecione um atendimento</mat-label>
                     <mat-select [(ngModel)]="atendimento" name="atendimento">
                         <mat-option *ngFor="let d of atendimentos" [value]="d">
-                            {{ d.dataAtendimento }} - {{ d.aluno.pessoaFisica.nome }}
+                            {{ d.dataAtendimento | dataSimples}} - {{ d.aluno.pessoaFisica.nome }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
