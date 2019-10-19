@@ -66,13 +66,15 @@ export class CadastrarParticipanteAtendimentoComponent implements OnInit {
       this.atendimentos = atendimentos;
     })
 
+    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
+      this.funcionarios = funcionarios;
+    })
+
     this.familiarAlunoService.getAll().subscribe((familiares: Familiares[]) => {
       this.familiares = familiares;
     })
 
-    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
-      this.funcionarios = funcionarios;
-    })
+    
 
     let idParticipanteAtendimento: number;
     idParticipanteAtendimento = this.activatedRoute.snapshot.queryParams.idParticipanteAtendimento ? this.activatedRoute.snapshot.queryParams.idParticipanteAtendimento : null;
@@ -94,7 +96,7 @@ export class CadastrarParticipanteAtendimentoComponent implements OnInit {
 
   cadastrar() {
     this.participantesAtendimentosService.cadastrar(this.participanteAtendimento).subscribe(() => {
-      this.router.navigate(['atendimento']);
+      this.router.navigate(['participanteatendimento']);
       this.toastService.showSucesso("Atendimento cadastrado com sucesso");
     });
   }
@@ -104,7 +106,7 @@ export class CadastrarParticipanteAtendimentoComponent implements OnInit {
   }
 
   cancelar() {
-    this.router.navigate(['atendimento']);
+    this.router.navigate(['participanteatendimento']);
   }
 
 

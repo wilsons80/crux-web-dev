@@ -130,7 +130,9 @@ export class CadastrarAcessoComponent implements OnInit {
 
   buscarPerfis() {
     this.moduloService.getGrupoModulo(this.cadastroAcesso.idUnidade, this.cadastroAcesso.idModulo)
-      .subscribe((perfis: GrupoModulo[]) => this.perfis = perfis);
+      .subscribe((perfis: GrupoModulo[]) => {
+        console.log("perfis", perfis)
+        this.perfis = perfis});
   }
 
 

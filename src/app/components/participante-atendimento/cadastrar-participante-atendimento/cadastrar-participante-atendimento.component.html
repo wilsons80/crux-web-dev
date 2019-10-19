@@ -30,12 +30,12 @@
                             {{i.pessoasFisica.nome }}
                         </mat-option>
                     </mat-select>
-                    <mat-hint *ngIf="atendimentos?.length === 0" align="start">Nenhum familiar
+                    <mat-hint *ngIf="familiares?.length === 0" align="start">Nenhum familiar
                         cadastrado</mat-hint>
                 </mat-form-field>
             </div>
 
-            <!-- FAMILIARES-->
+            <!-- FUNCIONARIO-->
             <div fxLayout="column" fxFlex="30%">
                 <mat-toolbar class="titulopartes">Funcionário</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
@@ -45,7 +45,7 @@
                             {{i.pessoasFisica.nome }}
                         </mat-option>
                     </mat-select>
-                    <mat-hint *ngIf="atendimentos?.length === 0" align="start">Nenhum funcionário
+                    <mat-hint *ngIf="funcionarios?.length === 0" align="start">Nenhum funcionário
                         cadastrado</mat-hint>
                 </mat-form-field>
             </div>

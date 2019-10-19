@@ -106,7 +106,7 @@ export class ParticipanteAtendimentoComponent implements OnInit {
   verificaMostrarTabela(participantesAtendimento: ParticipanteAtendimento[]) {
     if (!participantesAtendimento || participantesAtendimento.length == 0) {
       this.mostrarTabela = false;
-      this.msg = "Nenhum atendimento cadastrado."
+      this.msg = "Nenhum participante cadastrado."
     } else {
       this.mostrarTabela = true;
     }

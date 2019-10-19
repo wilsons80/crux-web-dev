@@ -4,7 +4,7 @@ import { PerfilAcesso } from './perfil-acesso';
 
 export class GrupoModulo {
 	
-	idGrupo: number;
+	id: number;
 	nome: string;
 	descricao: string;
 	modulo: Modulo;
