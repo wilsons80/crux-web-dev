@@ -1,5 +1,5 @@
 export class Modulo {
-	idModulo:number;
+	id:number;
 	descricao:string;
 	nome:string;
 	moduloPai: Modulo
