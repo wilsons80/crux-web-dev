@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { Produto } from 'src/app/core/produto';
 import { ProdutoService } from 'src/app/services/produto/produto.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -22,7 +22,7 @@ export class ProdutoComponent implements OnInit {
 
 
   displayedColumns: string[] = ['nome', 'codigoUnidadeMedida', 'nomeProdutoNotafiscal', 'acoes'];
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   dataSource: MatTableDataSource<Produto> = new MatTableDataSource();

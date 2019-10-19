@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { Unidade } from 'src/app/core/unidade';
 import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
@@ -20,7 +20,7 @@ import { InstituicaoService } from 'src/app/services/instituicao/instituicao.ser
 })
 export class CadastrarUnidadeComponent implements OnInit {
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 

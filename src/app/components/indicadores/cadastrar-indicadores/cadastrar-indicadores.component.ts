@@ -6,7 +6,7 @@ import { Indicadores } from 'src/app/core/indicadores';
 import { Objetivo } from 'src/app/core/objetivo';
 import { IndicadoresService } from 'src/app/services/indicadores/indicadores.service';
 import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-indicadores',
@@ -20,7 +20,7 @@ export class CadastrarIndicadoresComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { FileUtils } from 'src/app/utils/file-utils';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-funcionario',
@@ -26,7 +26,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

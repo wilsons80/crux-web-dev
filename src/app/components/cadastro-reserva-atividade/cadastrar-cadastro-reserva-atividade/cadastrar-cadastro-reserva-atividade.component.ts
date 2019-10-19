@@ -7,7 +7,7 @@ import { CadastroReservaAtividadeService } from 'src/app/services/cadastro-reser
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { CadastroReservaAtividade } from './../../../core/cadastro-reserva-atividade';
 import { PessoaFisicaService } from './../../../services/pessoa-fisica/pessoa-fisica.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-cadastro-reserva-atividade',
@@ -20,9 +20,9 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
   pessoas: PessoaFisica[];
   atividades: Atividade[];
 
-  isAtualizar: boolean = false;
+  isAtualizar = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

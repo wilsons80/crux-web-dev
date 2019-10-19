@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Cargo } from 'src/app/core/cargo';
 import { CargosService } from 'src/app/services/cargos/cargos.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cargo',
@@ -21,7 +21,7 @@ export class CargoComponent implements OnInit {
 
   mostrarTabela = false;
 
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
   displayedColumns: string[] = ['codigo', 'nome', 'tipoCargo','acoes'];
   dataSource: MatTableDataSource<Cargo> = new MatTableDataSource();

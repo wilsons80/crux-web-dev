@@ -6,7 +6,7 @@ import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Objetivo } from 'src/app/core/objetivo';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-questionario',
@@ -19,7 +19,7 @@ export class CadastrarQuestionarioComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

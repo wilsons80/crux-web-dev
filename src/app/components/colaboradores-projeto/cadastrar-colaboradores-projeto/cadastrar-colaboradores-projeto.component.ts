@@ -9,7 +9,7 @@ import { ColaboradoresProjetoService } from 'src/app/services/colaboradores-proj
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { ProjetoService } from 'src/app/services/projeto/projeto.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-colaboradores-projeto',
@@ -23,7 +23,7 @@ export class CadastrarColaboradoresProjetoComponent implements OnInit {
   projetos: Projeto[];
   cargos: Cargo[];
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

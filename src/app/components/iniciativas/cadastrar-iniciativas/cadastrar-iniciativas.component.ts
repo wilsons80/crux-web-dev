@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { Metas } from 'src/app/core/metas';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { IniciativaService } from 'src/app/services/iniciativa/iniciativa.service';
 import { MetasService } from 'src/app/services/metas/metas.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -20,7 +20,7 @@ export class CadastrarIniciativasComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

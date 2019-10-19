@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AcessoUnidade } from 'src/app/core/acesso-unidade';
 import { CadastroAcesso } from 'src/app/core/cadastro-acesso';
 import { Modulo } from 'src/app/core/modulo';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { UsuarioUnidade } from 'src/app/core/usuario-unidade';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
@@ -24,9 +24,9 @@ export class CadastrarAcessoComponent implements OnInit {
   modulos: Modulo[];
   perfis: GrupoModulo[];
   unidades: AcessoUnidade;
-  isAtualizar: boolean = false;
+  isAtualizar = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

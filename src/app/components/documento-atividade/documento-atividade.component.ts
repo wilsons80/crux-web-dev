@@ -1,33 +1,33 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from "@angular/material";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Atividade } from "src/app/core/atividade";
-import { DocumentoAtividade } from "src/app/core/documento-atividade";
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
-import { AtividadeService } from "src/app/services/atividade/atividade.service";
-import { DocumentoAtividadeService } from "src/app/services/documento-atividade/documento-atividade.service";
-import { ConfirmDialogComponent } from "../common/confirm-dialog/confirm-dialog.component";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Atividade } from 'src/app/core/atividade';
+import { DocumentoAtividade } from 'src/app/core/documento-atividade';
+import { Acesso } from 'src/app/core/acesso';
+import { AtividadeService } from 'src/app/services/atividade/atividade.service';
+import { DocumentoAtividadeService } from 'src/app/services/documento-atividade/documento-atividade.service';
+import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: "app-documento-atividade",
-  templateUrl: "./documento-atividade.component.html",
-  styleUrls: ["./documento-atividade.component.css"]
+  selector: 'app-documento-atividade',
+  templateUrl: './documento-atividade.component.html',
+  styleUrls: ['./documento-atividade.component.css']
 })
 export class DocumentoAtividadeComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   listaAtividade: Atividade[];
-  mostrarTabela: boolean = false;
+  mostrarTabela = false;
   msg: string;
   atividade: Atividade;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   displayedColumns: string[] = [
-    "descricao",
-    "atividade",
-    "acoes"
+    'descricao',
+    'atividade',
+    'acoes'
   ];
   dataSource: MatTableDataSource<DocumentoAtividade> = new MatTableDataSource();
 
@@ -44,8 +44,8 @@ export class DocumentoAtividadeComponent implements OnInit {
 
     if (!this.perfilAcesso.altera && !this.perfilAcesso.deleta) {
       this.displayedColumns = [
-        "descricao",
-        "atividade"
+        'descricao',
+        'atividade'
       ];
     }
     this.dataSource.paginator = this.paginator;
@@ -57,7 +57,7 @@ export class DocumentoAtividadeComponent implements OnInit {
   limpar() {
     this.mostrarTabela = false;
     this.dataSource.data = [];
-    this.msg = "";
+    this.msg = '';
   }
 
   consultar() {
@@ -65,21 +65,21 @@ export class DocumentoAtividadeComponent implements OnInit {
       (documentoAtividade: DocumentoAtividade[]) => {
         if (!documentoAtividade) {
           this.mostrarTabela = false;
-          this.msg = "Nenhum registro para a pesquisa selecionada";
+          this.msg = 'Nenhum registro para a pesquisa selecionada';
         } else {
           this.dataSource.data = documentoAtividade;
           this.mostrarTabela = true;
         }
       },
       () => {
-        this.msg = "Nenhum registro para a pesquisa selecionada";
+        this.msg = 'Nenhum registro para a pesquisa selecionada';
         this.limpar();
       }
     );
   }
 
   atualizar(documentoAtividade: DocumentoAtividade) {
-    this.router.navigate(["/documentoatividade/cadastrar"], {
+    this.router.navigate(['/documentoatividade/cadastrar'], {
       queryParams: { idDocumentoAtividade: documentoAtividade.id }
     });
   }
@@ -92,8 +92,8 @@ export class DocumentoAtividadeComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       pergunta: `Certeza que desse excluir o documento da atividade?`,
-      textoConfirma: "SIM",
-      textoCancela: "NÃO"
+      textoConfirma: 'SIM',
+      textoCancela: 'NÃO'
     };
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);

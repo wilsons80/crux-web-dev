@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { ProgramaService } from 'src/app/services/programa/programa.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Programa } from './../../core/programa';
@@ -24,7 +24,7 @@ export class ProgramasComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'objetivo', 'dataInicio', 'dataFim', 'acoes'];
   dataSource: MatTableDataSource<Programa> = new MatTableDataSource();
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   constructor(

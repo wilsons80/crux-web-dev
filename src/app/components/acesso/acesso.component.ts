@@ -12,7 +12,7 @@ import { AcessoService } from './../../services/acesso/acesso.service';
 import { ControleMenuService } from './../../services/controle-menu/controle-menu.service';
 import { ModuloService } from './../../services/modulo/modulo.service';
 import { UsuarioService } from './../../services/usuario/usuario.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { switchMap } from 'rxjs/operators';
 import { Menu } from 'src/app/core/menu';
 
@@ -38,7 +38,7 @@ export class AcessoComponent implements OnInit {
   dataSource: MatTableDataSource<PerfilAcessoUsuario> = new MatTableDataSource();
   msg: string;
 
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
   constructor(
     private dialog: MatDialog,

@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { IndicadoresService } from 'src/app/services/indicadores/indicadores.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-metas',
@@ -20,7 +20,7 @@ export class CadastrarMetasComponent implements OnInit {
   indicadores: Indicadores[];
   metas: Metas = new Metas();
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

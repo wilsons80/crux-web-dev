@@ -5,7 +5,7 @@ import { UsuarioSistema } from 'src/app/core/usuario-sistema';
 import { UsuarioSistemaService } from 'src/app/services/usuario-sistema/usuario-sistema.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'usuario',
@@ -26,7 +26,7 @@ export class UsuarioComponent implements OnInit {
   dataSource: MatTableDataSource<UsuarioSistema> = new MatTableDataSource();
 
 
- perfilAcesso:PerfilAcesso;
+ perfilAcesso: Acesso;
 
  
  constructor(

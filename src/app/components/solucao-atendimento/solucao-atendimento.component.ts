@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { Solucoes } from 'src/app/core/solucoes';
 import { SolucaoAtendimentoService } from 'src/app/services/solucao-atendimento/solucao-atendimento.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -23,7 +23,7 @@ export class SolucaoAtendimentoComponent implements OnInit {
   displayedColumns: string[] = ['descricao', 'acoes'];
   dataSource: MatTableDataSource<Solucoes> = new MatTableDataSource();
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   constructor(

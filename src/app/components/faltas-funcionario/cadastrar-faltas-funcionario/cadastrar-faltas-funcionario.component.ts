@@ -6,7 +6,7 @@ import { Funcionario } from 'src/app/core/funcionario';
 import { FaltasFuncionarioService } from 'src/app/services/faltas-funcionario/faltas-funcionario.service';
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 @Component({
   selector: 'app-cadastrar-faltas-funcionario',
   templateUrl: './cadastrar-faltas-funcionario.component.html',
@@ -17,11 +17,11 @@ export class CadastrarFaltasFuncionarioComponent implements OnInit {
   funcionarios: Funcionario[];
   faltasFuncionario: FaltasFuncionario = new FaltasFuncionario();
 
-  perfilAcesso: PerfilAcesso;
-  mostrarBotaoCadastrar = true
+  perfilAcesso: Acesso;
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
-  isAtualizar: boolean = false;
+  isAtualizar = false;
 
   constructor(
     private funcionarioService: FuncionarioService,

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
 import { CondicoesMoradiaService } from 'src/app/services/condicoes-moradia/condicoes-moradia.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'cadastrar-condicao-moradia',
@@ -17,7 +17,7 @@ export class CadastrarCondicaoMoradiaComponent implements OnInit {
   condicaoMoradia: CondicoesMoradia = new CondicoesMoradia();
   isAtualizar = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

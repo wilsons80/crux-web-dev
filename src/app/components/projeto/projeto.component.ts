@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Projeto } from 'src/app/core/projeto';
 import { ProjetoService } from 'src/app/services/projeto/projeto.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-projeto',
@@ -24,9 +24,8 @@ export class ProjetoComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'programa','dataPrevisaoInicio', 'dataInicio', 'dataFim', 'acoes'];
   dataSource: MatTableDataSource<Projeto> = new MatTableDataSource();
 
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
-  
   constructor(
     private projetoService: ProjetoService,
     private router: Router,

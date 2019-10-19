@@ -6,7 +6,7 @@ import { PlanosAcaoService } from 'src/app/services/planosAcao/planos-acao.servi
 import { PlanosAcao } from './../../../core/planos-acao';
 import { IniciativaService } from './../../../services/iniciativa/iniciativa.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-planos-acao',
@@ -20,7 +20,7 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

@@ -13,4 +13,5 @@ export class UsuarioSistema {
 	stTrocaSenha: string;
 	pessoaFisica: PessoaFisica;
 	usuarioAlteracao: number;
+	idUnidade: number;
 }

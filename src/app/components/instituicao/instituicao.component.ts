@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
 import { Instituicao } from 'src/app/core/instituicao';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InstituicaoService } from 'src/app/services/instituicao/instituicao.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -18,7 +18,7 @@ export class InstituicaoComponent implements OnInit {
   instituicoes: Instituicao[];
   instituicao: Instituicao = new Instituicao();
   msg: string;
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
   mostrarTabela = false;
 

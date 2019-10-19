@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { GrausInstrucaoService } from 'src/app/services/graus-instrucao/graus-instrucao.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
@@ -20,7 +20,7 @@ export class GrausInstrucaoComponent implements OnInit {
   grausInstrucao: GrausInstrucao = new GrausInstrucao();
   msg: string;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   displayedColumns: string[] = ['descricao', 'acoes'];

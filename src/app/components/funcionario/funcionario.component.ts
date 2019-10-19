@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Funcionario } from 'src/app/core/funcionario';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
@@ -19,7 +19,7 @@ export class FuncionarioComponent implements OnInit {
   mostrarTabela: boolean = false;
   funcionario: Funcionario = new Funcionario();
   msg: string;
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   displayedColumns: string[] = ['matricula', 'nome', 'dataAdmissao', 'tipoFuncionario', 'cargo', 'acoes'];

@@ -8,7 +8,7 @@ import { TalentosService } from 'src/app/services/talentos/talentos.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { PessoaFisica } from './../../../core/pessoa-fisica';
 import { Questionario } from './../../../core/questionario';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-talento',
@@ -22,7 +22,7 @@ export class CadastrarTalentoComponent implements OnInit {
   questionarios: Questionario[];
 
   isAtualizar: boolean = false;
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

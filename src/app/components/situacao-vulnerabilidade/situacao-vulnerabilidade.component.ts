@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { SituacoesVulnerabilidade } from 'src/app/core/situacoes-vulnerabilidade';
 import { SituacaoVulnerabilidadeService } from 'src/app/services/situacao-vulnerabilidade/situacao-vulnerabilidade.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -27,7 +27,7 @@ export class SituacaoVulnerabilidadeComponent implements OnInit {
 
   dataSource: MatTableDataSource<SituacoesVulnerabilidade> = new MatTableDataSource();
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   constructor(

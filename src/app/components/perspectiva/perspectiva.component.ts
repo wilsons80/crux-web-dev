@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Perspectiva } from 'src/app/core/perspectiva';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { PerspectivaService } from './../../services/perspectiva/perspectiva.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-perspectiva',
@@ -22,7 +22,7 @@ export class PerspectivaComponent implements OnInit {
 
   displayedColumns: string[] = ['nome', 'dtImplantacao', 'dtTermino', 'unidade', 'acoes'];
   dataSource: MatTableDataSource<Perspectiva> = new MatTableDataSource();
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
   
   constructor(

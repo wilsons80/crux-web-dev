@@ -4,7 +4,7 @@ import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
 import { CondicoesMoradiaService } from 'src/app/services/condicoes-moradia/condicoes-moradia.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'condicao-moradia',
@@ -20,7 +20,7 @@ export class CondicaoMoradiaComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
   
   displayedColumns: string[] = ['descricao', 'acoes'];

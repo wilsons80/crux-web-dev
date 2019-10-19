@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AcaoCompetencia } from 'src/app/core/acao-competencia';
 import { AcoesCompetenciaService } from 'src/app/services/acoes-competencia/acoes-competencia.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from './../../core/perfil-acesso';
+import { Acesso } from '../../core/acesso';
 
 @Component({
   selector: 'app-acao-competencia',
@@ -20,7 +20,7 @@ export class AcaoCompetenciaComponent implements OnInit {
   acaoCompetencia: AcaoCompetencia = new AcaoCompetencia();
   msg: string;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
   displayedColumns: string[] = ['descricao', 'dataInicio', 'acoes'];
 

@@ -3,7 +3,7 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter, SimpleChange
 import { Familiares } from 'src/app/core/familiares';
 import { ResponsaveisAluno } from 'src/app/core/responsaveis-aluno';
 import { TipoResponsaveis } from 'src/app/core/tipo-responsaveis';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { ActivatedRoute } from '@angular/router';
 import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcast-event.service';
 
@@ -29,7 +29,7 @@ export class ListaResponsaveisComponent implements OnInit {
   dataSource: MatTableDataSource<ResponsaveisAluno> = new MatTableDataSource();
 
   tipoResponsavel: TipoResponsaveis = new TipoResponsaveis();
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   
   constructor(private activatedRoute: ActivatedRoute) { }
 

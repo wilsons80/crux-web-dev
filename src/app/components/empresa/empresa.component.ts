@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Empresa } from 'src/app/core/empresa';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { EmpresaService } from 'src/app/services/empresa/empresa.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
@@ -16,14 +16,14 @@ export class EmpresaComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   empresas: Empresa[];
-  mostrarTabela: boolean = false;
+  mostrarTabela = false;
   empresa: Empresa = new Empresa();
   msg: string;
 
 
   displayedColumns: string[] = ['codigo', 'nomeRazaoSocial', 'cnpj', 'telefone', 'ativa', 'acoes'];
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
 

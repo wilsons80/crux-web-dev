@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CursoFormacao } from 'src/app/core/curso-formacao';
 import { CursoFormacaoService } from 'src/app/services/curso-formacao/curso-formacao.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-curso-formacao',
@@ -24,7 +24,7 @@ export class CursoFormacaoComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'dataInicio', 'dataFim', 'acoes'];
 
 
- perfilAcesso:PerfilAcesso;
+ perfilAcesso: Acesso;
 
  
  dataSource: MatTableDataSource<CursoFormacao> = new MatTableDataSource();

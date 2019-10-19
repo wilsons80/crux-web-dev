@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Atividade } from 'src/app/core/atividade';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Acoes } from './../../../core/acoes';
@@ -18,8 +18,8 @@ export class CadastrarAcoesAtividadeComponent implements OnInit {
 
   atividades: Atividade[];
 
-  perfilAcesso: PerfilAcesso;
-  mostrarBotaoCadastrar = true
+  perfilAcesso: Acesso;
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
   isAtualizar: boolean = false;

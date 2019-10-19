@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { ColaboradoresProjeto } from 'src/app/core/colaboradores-projeto';
 import { ColaboradoresProjetoService } from 'src/app/services/colaboradores-projeto/colaboradores-projeto.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-colaboradores-projeto',
@@ -20,7 +20,7 @@ export class ColaboradoresProjetoComponent implements OnInit {
   colaboradores: ColaboradoresProjeto = new ColaboradoresProjeto();
   msg:string;
 
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
   displayedColumns: string[] = ['nome', 'projeto', 'cargo','dataInicio', 'acoes'];
   dataSource: MatTableDataSource<ColaboradoresProjeto> = new MatTableDataSource();

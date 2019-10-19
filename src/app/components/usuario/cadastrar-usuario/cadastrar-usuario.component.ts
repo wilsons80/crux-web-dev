@@ -8,7 +8,7 @@ import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisi
 import { FileUtils } from 'src/app/utils/file-utils';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'cadastrar-usuario',
@@ -17,7 +17,7 @@ import { PerfilAcesso } from 'src/app/core/perfil-acesso';
 })
 export class CadastrarUsuarioComponent implements OnInit {
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

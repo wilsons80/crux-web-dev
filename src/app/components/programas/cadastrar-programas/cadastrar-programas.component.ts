@@ -8,7 +8,7 @@ import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
 import { ProgramaService } from 'src/app/services/programa/programa.service';
 import { Programa } from './../../../core/programa';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-programas',
@@ -28,7 +28,7 @@ export class CadastrarProgramasComponent implements OnInit {
   isAtualizar: boolean = false;
 
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

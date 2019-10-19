@@ -5,7 +5,7 @@ import { AtividadeService } from "src/app/services/atividade/atividade.service";
 import { DocumentoAtividadeService } from "src/app/services/documento-atividade/documento-atividade.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastService } from "src/app/services/toast/toast.service";
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: "app-cadastrar-documento-atividade",
@@ -16,9 +16,9 @@ export class CadastrarDocumentoAtividadeComponent implements OnInit {
   documentoAtividade: DocumentoAtividade = new DocumentoAtividade();
   atividades: Atividade[];
 
-  isAtualizar: boolean = false;
+  isAtualizar = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

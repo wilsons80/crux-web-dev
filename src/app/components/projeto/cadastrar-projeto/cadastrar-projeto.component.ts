@@ -8,7 +8,7 @@ import { IniciativaService } from 'src/app/services/iniciativa/iniciativa.servic
 import { ProgramaService } from 'src/app/services/programa/programa.service';
 import { ProjetoService } from 'src/app/services/projeto/projeto.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-projeto',
@@ -22,7 +22,7 @@ export class CadastrarProjetoComponent implements OnInit {
   projeto: Projeto = new Projeto();
 
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

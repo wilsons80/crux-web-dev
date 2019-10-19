@@ -6,7 +6,7 @@ import { AcoesCompetenciaService } from 'src/app/services/acoes-competencia/acoe
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { AcaoCompetencia } from './../../../core/acao-competencia';
 import { TalentosService } from './../../../services/talentos/talentos.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 @Component({
   selector: 'app-cadastrar-acao-competencia',
   templateUrl: './cadastrar-acao-competencia.component.html',
@@ -17,10 +17,10 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
   talentos: Talento[];
   acaoCompetencia: AcaoCompetencia = new AcaoCompetencia();
 
-  isAtualizar: boolean = false;
+  isAtualizar = false;
 
-  perfilAcesso: PerfilAcesso;
-  mostrarBotaoCadastrar = true
+  perfilAcesso: Acesso;
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
   constructor(
@@ -64,7 +64,7 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
   cadastrar() {
     this.acoesCompetenciaService.cadastrar(this.acaoCompetencia).subscribe(() => {
       this.router.navigate(['acaocompetencia'])
-      this.toastService.showSucesso("Ação competência cadastrada com sucesso");
+      this.toastService.showSucesso('Ação competência cadastrada com sucesso');
     });
   }
 
@@ -80,7 +80,7 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
   atualizar() {
     this.acoesCompetenciaService.alterar(this.acaoCompetencia).subscribe(() => {
       this.router.navigate(['acaocompetencia'])
-      this.toastService.showSucesso("Ação competência atualizada com sucesso");
+      this.toastService.showSucesso('Ação competência atualizada com sucesso');
     });
   }
 

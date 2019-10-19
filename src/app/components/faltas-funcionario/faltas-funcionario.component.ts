@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@a
 import { ActivatedRoute, Router } from '@angular/router';
 import { FaltasFuncionario } from 'src/app/core/faltas-funcionario';
 import { Funcionario } from 'src/app/core/funcionario';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { FaltasFuncionarioService } from 'src/app/services/faltas-funcionario/faltas-funcionario.service';
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -19,7 +19,7 @@ export class FaltasFuncionarioComponent implements OnInit {
 
   listaFaltasFuncionario: FaltasFuncionario[];
   listaFuncionarios: Funcionario[];
-  mostrarTabela: boolean = false;
+  mostrarTabela = false;
   faltasFuncionario: FaltasFuncionario = new FaltasFuncionario();
   msg: string;
   funcionario: Funcionario;
@@ -27,7 +27,7 @@ export class FaltasFuncionarioComponent implements OnInit {
   displayedColumns: string[] = ['funcionarioFaltou', 'funcionarioCadastrouFalta', 'dataFaltaFuncionario', 'acoes'];
   dataSource: MatTableDataSource<FaltasFuncionario> = new MatTableDataSource();
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
 

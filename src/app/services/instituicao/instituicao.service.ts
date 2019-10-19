@@ -12,5 +12,5 @@ export class InstituicaoService extends BaseService<Instituicao> {
   constructor(http: HttpClient) {
     super(http, Rotas.INSTITUICAO);
   }
-  
+
 }

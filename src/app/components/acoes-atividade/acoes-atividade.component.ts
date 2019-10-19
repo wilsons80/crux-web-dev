@@ -1,7 +1,7 @@
 import { Acoes } from './../../core/acoes';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { AcoesAtividadeService } from 'src/app/services/acoes-atividade/acoes-atividade.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
@@ -18,7 +18,7 @@ export class AcoesAtividadeComponent implements OnInit {
   listaAcoesAtividade: Acoes[];
   acoesAtividade: Acoes = new Acoes();
   msg:string;
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
   mostrarTabela = false;
 

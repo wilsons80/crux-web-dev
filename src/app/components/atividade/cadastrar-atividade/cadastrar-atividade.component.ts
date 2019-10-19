@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Atividade } from 'src/app/core/atividade';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { PlanosAcao } from 'src/app/core/planos-acao';
 import { Projeto } from 'src/app/core/projeto';
 import { Unidade } from 'src/app/core/unidade';
@@ -24,7 +24,7 @@ export class CadastrarAtividadeComponent implements OnInit {
   projetos: Projeto[];
   unidades: Unidade[];
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

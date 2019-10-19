@@ -4,7 +4,7 @@ import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@a
 import { ColaboradoresProgramaService } from 'src/app/services/colaboradores-programa/colaboradores-programa.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-colaboradores-programa',
@@ -19,7 +19,7 @@ export class ColaboradoresProgramaComponent implements OnInit {
   mostrarTabela: boolean = false;
   colaboradores: ColaboradoresPrograma = new ColaboradoresPrograma();
   msg:string;
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
   
   displayedColumns: string[] = ['nome', 'programa', 'cargo','dataInicio', 'acoes'];

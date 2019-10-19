@@ -4,7 +4,7 @@ import { Aluno } from 'src/app/core/aluno';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-aluno',
@@ -24,7 +24,7 @@ export class AlunoComponent implements OnInit {
   displayedColumns: string[] = ['matricula', 'nome', 'turno', 'serie', 'dataEntrada', 'dataDesligamento', 'acoes'];
   dataSource: MatTableDataSource<Aluno> = new MatTableDataSource();
 
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
   constructor(
     private alunoService: AlunoService,

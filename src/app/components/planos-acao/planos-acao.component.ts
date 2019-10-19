@@ -4,7 +4,7 @@ import { MatTableDataSource, MatDialog, MatDialogConfig, MatPaginator } from '@a
 import { PlanosAcaoService } from 'src/app/services/planosAcao/planos-acao.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-planos-acao',
@@ -23,7 +23,7 @@ export class PlanosAcaoComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'iniciativa', 'dataInicio','dataFim', 'acoes'];
   dataSource: MatTableDataSource<PlanosAcao> = new MatTableDataSource();
 
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
   
   constructor(

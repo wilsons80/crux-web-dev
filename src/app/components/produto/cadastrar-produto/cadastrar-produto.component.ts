@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Produto } from 'src/app/core/produto';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { ProdutoService } from './../../../services/produto/produto.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -17,7 +17,7 @@ export class CadastrarProdutoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

@@ -5,7 +5,7 @@ import { Familiares } from 'src/app/core/familiares';
 import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-aluno.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-familiar-aluno',
@@ -18,7 +18,7 @@ export class FamiliarAlunoComponent implements OnInit {
  
   familiares: Familiares[];
   familiar: Familiares = new Familiares();
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   
   situacaoParentesco: SituacaoParentesco = new SituacaoParentesco();
 

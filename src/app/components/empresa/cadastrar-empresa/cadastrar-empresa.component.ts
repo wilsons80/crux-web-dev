@@ -9,7 +9,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { EmpresaService } from 'src/app/services/empresa/empresa.service';
 import { EnderecoService } from 'src/app/services/endereco/endereco.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'cadastrar-empresa',
@@ -20,8 +20,8 @@ export class CadastrarEmpresaComponent implements OnInit {
 
   categoriaEmpresa: CategoriaEmpresa;
 
-  perfilAcesso: PerfilAcesso;
-  mostrarBotaoCadastrar = true
+  perfilAcesso: Acesso;
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
   categoriasEmpresa: any [] = [

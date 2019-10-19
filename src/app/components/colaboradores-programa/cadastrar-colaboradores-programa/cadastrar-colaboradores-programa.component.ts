@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { CargosService } from 'src/app/services/cargos/cargos.service';
 import { Funcionario } from 'src/app/core/funcionario';
 import { Cargo } from 'src/app/core/cargo';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-colaboradores-programa',
@@ -23,7 +23,7 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
   programas:Programa[];
   cargos:Cargo[];
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

@@ -8,7 +8,7 @@ import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastro-reserva-atividade',
@@ -20,11 +20,11 @@ export class CadastroReservaAtividadeComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   listaAtividade: Atividade[];
-  mostrarTabela: boolean = false;
+  mostrarTabela = false;
   msg: string;
   atividade: Atividade;
 
-  perfilAcesso:PerfilAcesso;
+  perfilAcesso: Acesso;
 
   displayedColumns: string[] = [
     "id",

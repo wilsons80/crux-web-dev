@@ -6,7 +6,7 @@ import { Perspectiva } from 'src/app/core/perspectiva';
 import { ObjetivoService } from 'src/app/services/objetivo/objetivo.service';
 import { PerspectivaService } from 'src/app/services/perspectiva/perspectiva.service';
 import { ToastService } from './../../../services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-objetivo',
@@ -18,10 +18,10 @@ export class CadastrarObjetivoComponent implements OnInit {
   perspectivas: Perspectiva[];
   objetivo: Objetivo = new Objetivo();
 
-  isAtualizar: boolean = false;
+  isAtualizar = false;
 
-  perfilAcesso: PerfilAcesso;
-  mostrarBotaoCadastrar = true
+  perfilAcesso: Acesso;
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
 
@@ -30,7 +30,7 @@ export class CadastrarObjetivoComponent implements OnInit {
     private objetivoService: ObjetivoService,
     private activatedRoute: ActivatedRoute,
     private toastService: ToastService,
-    private router:Router
+    private router: Router
   ) {
     this.objetivo.perspectiva = new Perspectiva();
   }

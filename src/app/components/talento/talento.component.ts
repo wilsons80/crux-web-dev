@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { Talento } from 'src/app/core/talento';
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
@@ -27,7 +27,7 @@ export class TalentoComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'dataRespostaTalento', 'nrNotaCompetencia', 'acoes'];
   dataSource: MatTableDataSource<Talento> = new MatTableDataSource();
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   constructor(

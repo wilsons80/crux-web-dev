@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Metas } from 'src/app/core/metas';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { MetasService } from 'src/app/services/metas/metas.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
@@ -21,8 +21,7 @@ export class MetasComponent implements OnInit {
   msg: string;
 
   displayedColumns: string[] = ['nome', 'indicadores', 'dataInicio', 'dataFim', 'acoes'];
-  perfilAcesso: PerfilAcesso;
-
+  perfilAcesso: Acesso;
 
 
   dataSource: MatTableDataSource<Metas> = new MatTableDataSource();

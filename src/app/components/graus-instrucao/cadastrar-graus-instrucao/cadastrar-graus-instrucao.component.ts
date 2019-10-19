@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
 import { GrausInstrucaoService } from 'src/app/services/graus-instrucao/graus-instrucao.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-graus-instrucao',
@@ -17,7 +17,7 @@ export class CadastrarGrausInstrucaoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

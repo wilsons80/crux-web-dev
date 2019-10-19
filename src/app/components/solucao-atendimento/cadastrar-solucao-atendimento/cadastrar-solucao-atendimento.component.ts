@@ -4,7 +4,7 @@ import { SolucaoAtendimentoService } from 'src/app/services/solucao-atendimento/
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-solucao-atendimento',
@@ -17,7 +17,7 @@ export class CadastrarSolucaoAtendimentoComponent implements OnInit {
   isAtualizar = false;
 
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

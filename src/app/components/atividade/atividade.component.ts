@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Atividade } from 'src/app/core/atividade';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-atividade',
@@ -17,8 +17,8 @@ export class AtividadeComponent implements OnInit {
 
   atividades: Atividade[];
   atividade: Atividade = new Atividade();
-  msg:string;
-  perfilAcesso:PerfilAcesso;
+  msg: string;
+  perfilAcesso: Acesso;
 
   mostrarTabela = false;
 
@@ -29,7 +29,7 @@ export class AtividadeComponent implements OnInit {
     private atividadeService: AtividadeService,
     private router: Router,
     private dialog: MatDialog,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {

@@ -6,7 +6,7 @@ import { Unidade } from 'src/app/core/unidade';
 import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { PerspectivaService } from './../../../services/perspectiva/perspectiva.service';
 import { ToastService } from './../../../services/toast/toast.service';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-perspectiva',
@@ -20,7 +20,7 @@ export class CadastrarPerspectivaComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

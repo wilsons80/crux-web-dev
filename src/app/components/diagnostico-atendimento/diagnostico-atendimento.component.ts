@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Diagnostico } from 'src/app/core/diagnostico';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { DiagnosticoAtendimentoService } from 'src/app/services/diagnostico-atendimento/diagnostico-atendimento.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
@@ -22,7 +22,7 @@ export class DiagnosticoAtendimentoComponent implements OnInit {
 
   displayedColumns: string[] = ['descricao', 'acoes'];
   dataSource: MatTableDataSource<Diagnostico> = new MatTableDataSource();
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   constructor(

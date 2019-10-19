@@ -6,7 +6,7 @@ import { CursoFormacaoService } from 'src/app/services/curso-formacao/curso-form
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { PessoaFisica } from './../../../core/pessoa-fisica';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-curso-formacao',
@@ -20,7 +20,7 @@ export class CadastrarCursoFormacaoComponent implements OnInit {
 
   isAtualizar: boolean = false;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

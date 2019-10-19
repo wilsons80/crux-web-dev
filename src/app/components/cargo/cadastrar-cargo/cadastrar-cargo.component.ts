@@ -5,7 +5,7 @@ import { Cargo } from 'src/app/core/cargo';
 import { CargosService } from 'src/app/services/cargos/cargos.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { TipoCargo } from 'src/app/core/tipo-cargo';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-cargo',
@@ -16,11 +16,11 @@ export class CadastrarCargoComponent implements OnInit {
 
   cargo: Cargo = new Cargo();
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 
-  isAtualizar: boolean = false;
+  isAtualizar = false;
 
   tiposCargo = [
     {tipo: TipoCargo.ESTAGIARIO, descricao: 'ESTAGIÁRIO'},

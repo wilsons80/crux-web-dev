@@ -4,7 +4,7 @@ import { SituacaoVulnerabilidadeService } from 'src/app/services/situacao-vulner
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Location } from '@angular/common';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-situacao-vulnerabilidade',
@@ -17,7 +17,7 @@ export class CadastrarSituacaoVulnerabilidadeComponent implements OnInit {
   isAtualizar = false;
 
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

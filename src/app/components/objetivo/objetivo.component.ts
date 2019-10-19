@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Objetivo } from 'src/app/core/objetivo';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { ObjetivoService } from './../../services/objetivo/objetivo.service';
 
@@ -23,7 +23,7 @@ export class ObjetivoComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'perspectiva', 'dataImplantacao', 'acoes'];
   dataSource: MatTableDataSource<Objetivo> = new MatTableDataSource();
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   constructor(

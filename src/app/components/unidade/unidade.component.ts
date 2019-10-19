@@ -1,4 +1,4 @@
-import { PerfilAcesso } from './../../core/perfil-acesso';
+import { Acesso } from '../../core/acesso';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Unidade } from 'src/app/core/unidade';
 import { MatTableDataSource, MatDialog, MatDialogConfig, MatPaginator } from '@angular/material';
@@ -25,7 +25,7 @@ export class UnidadeComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
   displayedColumns: string[] = ['sigla', 'nome', 'tipo', 'acoes'];
   dataSource: MatTableDataSource<Unidade> = new MatTableDataSource();

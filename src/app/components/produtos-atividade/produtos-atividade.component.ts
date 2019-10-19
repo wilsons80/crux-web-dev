@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Atividade } from 'src/app/core/atividade';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { ProdutosAtividade } from 'src/app/core/produtos-atividade';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
@@ -21,7 +21,7 @@ export class ProdutosAtividadeComponent implements OnInit {
   msg: string;
   atividade: Atividade;
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
 
 
   displayedColumns: string[] = [

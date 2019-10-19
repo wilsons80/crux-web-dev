@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { ArquivoUnidadeService } from 'src/app/services/arquivo/arquivo.service';
@@ -18,7 +18,7 @@ import { ArquivoInstituicaoService } from 'src/app/services/arquivo/arquivo-inst
 })
 export class CadastrarInstituicaoComponent implements OnInit {
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 

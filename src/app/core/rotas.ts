@@ -40,5 +40,8 @@ export enum Rotas {
     CADASTRO_RESERVA_ATIVIDADE      = 'api/cadastroreservaatividade/',
     UNIDADE                         = 'api/unidade/',
     ACOES_ATIVIDADE                 = 'api/acao/',
-    INSTITUICAO                     = 'api/instituicao/'
+    INSTITUICAO                     = 'api/instituicao/',
+    PERFIL_ACESSO                   = 'api/perfilacesso/',
+    GRUPO_MODULO                    = 'api/grupomodulo/',
+    MODULO                          = 'api/modulo/'
 }

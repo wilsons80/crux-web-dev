@@ -8,7 +8,7 @@ import { ProdutoService } from 'src/app/services/produto/produto.service';
 import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { ProdutosAtividade } from './../../../core/produtos-atividade';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-produtos-atividade',
@@ -21,7 +21,7 @@ export class CadastrarProdutosAtividadeComponent implements OnInit {
   produtos: Produto[];
   atividades: Atividade[];
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 

@@ -16,7 +16,7 @@ import { GrausInstrucao } from 'src/app/core/graus-instrucao';
 import { Familiares } from 'src/app/core/familiares';
 import { ArquivoPessoaFisicaService } from 'src/app/services/arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
-import { PerfilAcesso } from 'src/app/core/perfil-acesso';
+import { Acesso } from 'src/app/core/acesso';
 import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcast-event.service';
 
 @Component({
@@ -31,7 +31,7 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
   familiar: Familiares = new Familiares();
   familiares: Familiares[];
 
-  perfilAcesso: PerfilAcesso;
+  perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
