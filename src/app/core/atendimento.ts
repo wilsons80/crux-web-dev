@@ -7,10 +7,8 @@ export class Atendimento {
 	descDiagnostico: string;
 	descSolucao: string;
 	dataAtendimento: Date;
-	
 	solucoes: Solucoes;
 	aluno: Aluno;
     diagnostico: Diagnostico;
-    
 	usuarioAlteracao: number;
 }
