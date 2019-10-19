@@ -48,6 +48,25 @@
             </div>
         </mat-step>
 
+        <!-- ------------------ UNIDADES ------------------------ -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroUnidades">
+            <form #formCadastroUnidades="ngForm">
+                <ng-template matStepLabel>UNIDADES</ng-template>
+                <unidade [usuarioSistema]="usuarioSistema"></unidade>
+            </form>
+
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                    Próximo
+                </button>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>
+
+
     </mat-horizontal-stepper>
 </div>
 
@@ -57,7 +76,8 @@
             name="botaoConfirmar"
             fxFlex="20%"
             color="primary"
-            [disabled]="formCadastroDadosPessoais.invalid ||  formCadastroDocumentos.invalid || formCadastroDadosUsuario.invalid"
+            [disabled]="formCadastroDadosPessoais.invalid ||  formCadastroDocumentos.invalid || 
+                        formCadastroDadosUsuario.invalid || formCadastroUnidades.invalid"
             (click)="cadastrar()"> Cadastrar
     </button>
 
@@ -65,7 +85,8 @@
             name="botaoConfirmar"
             fxFlex="20%"
             color="primary"
-            [disabled]="formCadastroDadosPessoais.invalid ||  formCadastroDocumentos.invalid || formCadastroDadosUsuario.invalid"
+            [disabled]="formCadastroDadosPessoais.invalid ||  formCadastroDocumentos.invalid || 
+                        formCadastroDadosUsuario.invalid || formCadastroUnidades.invalid"
             (click)="atualizar()">
             Atualizar
     </button>
@@ -84,5 +105,3 @@
     </button>
 
 </div>
-
-
