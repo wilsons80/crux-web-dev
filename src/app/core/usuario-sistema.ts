@@ -1,5 +1,6 @@
 import { Unidade } from './unidade';
 import { PessoaFisica } from './pessoa-fisica';
+import { UsuariosUnidades } from './usuarios-unidades';
 
 export class UsuarioSistema {
   id: number;
@@ -14,5 +15,5 @@ export class UsuarioSistema {
 	stTrocaSenha: string;
 	pessoaFisica: PessoaFisica;
 	usuarioAlteracao: number;
-	unidades: Unidade[];
+	unidades: UsuariosUnidades[];
 }

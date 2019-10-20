@@ -43,5 +43,6 @@ export enum Rotas {
     INSTITUICAO                     = 'api/instituicao/',
     PERFIL_ACESSO                   = 'api/perfilacesso/',
     GRUPO_MODULO                    = 'api/grupomodulo/',
-    MODULO                          = 'api/modulo/'
+    MODULO                          = 'api/modulo/',
+    USUARIO_UNIDADE                 = 'api/usuariounidade/'
 }
