@@ -1,3 +1,4 @@
+import { UsuarioUnidadeService } from 'src/app/services/usuario-unidade/usuario-unidade.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AcessoUnidade } from 'src/app/core/acesso-unidade';
@@ -11,6 +12,7 @@ import { GrupoModulo } from './../../../core/grupo-modulo';
 import { AcessoService } from './../../../services/acesso/acesso.service';
 import { ModuloService } from './../../../services/modulo/modulo.service';
 import { UsuarioService } from './../../../services/usuario/usuario.service';
+import { UsuariosUnidades } from 'src/app/core/usuarios-unidades';
 
 @Component({
   selector: 'app-cadastrar-acesso',
@@ -23,11 +25,12 @@ export class CadastrarAcessoComponent implements OnInit {
   usuarios: UsuarioUnidade[];
   modulos: Modulo[];
   perfis: GrupoModulo[];
-  unidades: AcessoUnidade;
+  unidades: UsuariosUnidades[];
+
   isAtualizar = false;
 
   perfilAcesso: Acesso;
-  mostrarBotaoCadastrar = true
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
   labelBotao: string;
@@ -38,10 +41,10 @@ export class CadastrarAcessoComponent implements OnInit {
     private acessoService: AcessoService,
     private moduloService: ModuloService,
     private toastService: ToastService,
-    private unidadeService: UnidadeService,
     private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private usuarioUnidadeService: UsuarioUnidadeService
   ) { }
 
   ngOnInit() {
@@ -55,10 +58,10 @@ export class CadastrarAcessoComponent implements OnInit {
       this.mostrarBotaoAtualizar = false;
     }
 
-    this.unidadeService.getUnidadesComAcesso()
-      .subscribe((acessoUnidade: AcessoUnidade) => {
-        this.unidades = acessoUnidade;
-      });
+    this.usuarioUnidadeService.getUnidadesUsuarioTemAcesso()
+      .subscribe((usuarioUnidade: UsuariosUnidades[]) => {
+        this.unidades = usuarioUnidade;
+    });
 
     this.cadastroAcesso.idGrupoModulo = this.activatedRoute.snapshot.queryParams.idGrupoModulo ? Number(this.activatedRoute.snapshot.queryParams.idGrupoModulo) : null;
     this.cadastroAcesso.idUnidade = this.activatedRoute.snapshot.queryParams.idUnidade ? Number(this.activatedRoute.snapshot.queryParams.idUnidade) : null;
