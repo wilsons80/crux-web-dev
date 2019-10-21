@@ -112,7 +112,7 @@ export class CadastrarParticipanteAtendimentoComponent implements OnInit {
 
   atualizar() {
     this.participantesAtendimentosService.alterar(this.participanteAtendimento).subscribe(() => {
-      this.router.navigate(['atendimento']);
+      this.router.navigate(['participanteatendimento']);
       this.toastService.showSucesso("Atendimento atualizado com sucesso");
     });
 
