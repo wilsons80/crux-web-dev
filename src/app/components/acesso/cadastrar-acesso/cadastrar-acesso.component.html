@@ -40,7 +40,7 @@
                 <mat-select name="modulo" [(ngModel)]="cadastroAcesso.idModulo" required
                     [disabled]="!cadastroAcesso.idUsuario || isAtualizar" (selectionChange)="buscarPerfis()">
                     <mat-option *ngFor="let m of modulos" [value]="m.id">
-                        {{m.nome}}
+                        {{m.descricao}}
                     </mat-option>
                 </mat-select>
 

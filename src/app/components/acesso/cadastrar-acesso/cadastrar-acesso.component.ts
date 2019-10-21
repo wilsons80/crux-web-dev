@@ -58,7 +58,7 @@ export class CadastrarAcessoComponent implements OnInit {
       this.mostrarBotaoAtualizar = false;
     }
 
-    this.usuarioUnidadeService.getUnidadesUsuarioTemAcesso()
+    this.usuarioUnidadeService.getUnidadesUsuarioLogadoTemAcesso()
       .subscribe((usuarioUnidade: UsuariosUnidades[]) => {
         this.unidades = usuarioUnidade;
     });

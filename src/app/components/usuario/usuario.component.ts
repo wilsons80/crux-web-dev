@@ -33,7 +33,7 @@ export class UsuarioComponent implements OnInit {
    private usuarioSistemaService: UsuarioSistemaService,
    private router: Router,
    private dialog: MatDialog,
-   private activatedRoute:ActivatedRoute
+   private activatedRoute: ActivatedRoute
   ) {
     this.initObjetos();
   }

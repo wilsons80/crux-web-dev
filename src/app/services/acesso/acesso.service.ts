@@ -17,9 +17,9 @@ export class AcessoService {
     return this.http.get(menuRootPath);
   }
 
-  getPerfilAcessoDoUsuario(idUsuario:number|string, idModulo:number|string){
-    if(idUsuario == undefined) idUsuario = "";
-    if(idModulo == undefined) idModulo = "";
+  getPerfilAcessoDoUsuario(idUsuario: number|string, idModulo: number|string){
+    if (idUsuario === undefined) { idUsuario = ''; }
+    if (idModulo === undefined) { idModulo = ''; }
 
     return this.http.get(acessoRootPath + `perfil/unidadelogada`, {params: {
        usuario: `${idUsuario}`,

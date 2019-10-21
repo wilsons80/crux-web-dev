@@ -41,10 +41,11 @@ export class CadastrarUsuarioComponent implements OnInit {
     if(!this.perfilAcesso.insere){
       this.mostrarBotaoCadastrar = false;
     }
-    
+
     if(!this.perfilAcesso.altera){
       this.mostrarBotaoAtualizar = false;
     }
+
     this.limpar();
 
     let id: number;

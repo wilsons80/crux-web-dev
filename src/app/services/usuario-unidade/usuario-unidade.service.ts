@@ -13,7 +13,11 @@ export class UsuarioUnidadeService extends BaseService<UsuariosUnidades> {
     super(http, Rotas.USUARIO_UNIDADE);
   }
 
-  getUnidadesUsuarioTemAcesso() {
+  getUnidadesUsuarioLogadoTemAcesso() {
     return this.http.get(Rotas.USUARIO_UNIDADE + `usuario` );
+  }
+
+  getUnidadesUsuarioTemAcesso(idUsuario: number) {
+    return this.http.get(Rotas.USUARIO_UNIDADE + `usuario/${idUsuario}` );
   }
 }

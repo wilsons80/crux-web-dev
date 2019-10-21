@@ -12,4 +12,19 @@ export class GrupoModuloService extends BaseService<GrupoModulo> {
   constructor(http: HttpClient) {
     super(http, Rotas.GRUPO_MODULO);
   }
+
+  getAllByUnidade(idUnidade: number) {
+    return this.http.get(`${Rotas.GRUPO_MODULO}unidade/${idUnidade}`);
+  }
+
+
+  getAllByUnidadeAndModulo(idUnidade: number|string, idModulo: number|string) {
+    if (idUnidade === undefined) { idUnidade = ''; }
+    if (idModulo === undefined) { idModulo = ''; }
+
+    return this.http.get(`${Rotas.GRUPO_MODULO}unidade`, {params: {
+       idunidade: `${idUnidade}`,
+       idmodulo: `${idModulo}`
+    }});
+  }
 }
