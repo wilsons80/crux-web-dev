@@ -3,7 +3,7 @@
     <form #formulario="ngForm">
 
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field fxFlex="30%" fxFlexOffset="20px">
+            <mat-form-field fxFlex="25%" fxFlexOffset="20px">
                 <mat-label>Unidade</mat-label>
                 <mat-select [(ngModel)]="grupoModulo.unidade.idUnidade" name="unidade" required 
                             (selectionChange)="carregarGruposModulosDaUnidade()"> 
@@ -22,7 +22,7 @@
                 </mat-select>
             </mat-form-field>
         
-            <mat-form-field fxFlex="40%">
+            <mat-form-field fxFlex="45%">
                 <mat-label>Permissão</mat-label>
                 <mat-select [(ngModel)]="grupoModulo.perfilAcesso.id" name="perfilAcesso" required>
                     <mat-option *ngFor="let m of perfisAcesso" [value]="m.id">
@@ -30,11 +30,10 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-
         </div>
         
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field fxFlex="52%" fxFlexOffset="20px">
+            <mat-form-field fxFlex="100%" fxFlexOffset="20px">
                 <input type="text" 
                        matInput maxlength="100" 
                        [(ngModel)]="grupoModulo.nome"
@@ -42,7 +41,6 @@
                        placeholder="Nome do Grupo do módulo da unidade" 
                        required/>
             </mat-form-field>
-                    
         </div>            
     
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 20px;" fxFlexFill>
@@ -54,7 +52,8 @@
                             cdkTextareaAutosize
                             #autosize="cdkTextareaAutosize"
                             cdkAutosizeMinRows="2"
-                            maxlength="200">
+                            maxlength="200"
+                            required>
                     </textarea>
               <mat-hint align="end">{{descricao.value.length}} / 200</mat-hint>
             </mat-form-field>
