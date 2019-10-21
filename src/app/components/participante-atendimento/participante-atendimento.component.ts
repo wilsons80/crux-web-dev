@@ -21,7 +21,7 @@ export class ParticipanteAtendimentoComponent implements OnInit {
   msg: string;
   perfilAcesso: PerfilAcesso;
 
-  displayedColumns: string[] = ['Atendimento', 'Familiares', 'Funcionario', 'acoes'];
+  displayedColumns: string[] = ['data','Atendimento', 'Familiares', 'Funcionario', 'acoes'];
   dataSource: MatTableDataSource<ParticipanteAtendimento> = new MatTableDataSource();
 
   constructor(
@@ -65,7 +65,7 @@ export class ParticipanteAtendimentoComponent implements OnInit {
 
 
   atualizar(participanteAtendimento: ParticipanteAtendimento) {
-    this.router.navigate(['/participanteAtendimento/cadastrar'], { queryParams: { idParticipanteAtendimento: participanteAtendimento.id } });
+    this.router.navigate(['/participanteatendimento/cadastrar'], { queryParams: { idParticipanteAtendimento: participanteAtendimento.id } });
   }
 
   deletar(participanteAtendimento: ParticipanteAtendimento) {
