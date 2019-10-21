@@ -64,7 +64,7 @@ export class UnidadeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.carregarLista();
 
-    this.usuarioUnidadeService.getUnidadesUsuarioTemAcesso().subscribe((unidades: any[]) => {
+    this.usuarioUnidadeService.getUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: any[]) => {
       this.unidadesComboCadastro = unidades;
     });
 

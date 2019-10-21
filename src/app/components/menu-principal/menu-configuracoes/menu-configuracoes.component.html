@@ -22,6 +22,9 @@
         <!-- UNIDADE -->
         <sub-menu *ngIf="verificaAcesso(getModulos().UNIDADE)" icone="business" titulo="Unidade" rota="unidade" toolTip="Unidade"></sub-menu>
 
+        <!-- MODULO DA UNIDADE -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().GRUPO_MODULO)" icone="view_module" titulo="Módulos da Unidade" rota="grupomodulo" toolTip="Módulos da Unidade"></sub-menu>
+
         <!-- ACESSO -->
         <sub-menu *ngIf="verificaAcesso(getModulos().ACESSO)" icone="lock" titulo="Acesso" rota="acesso" toolTip="Acesso"></sub-menu>
         

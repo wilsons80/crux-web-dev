@@ -6,7 +6,8 @@ import localePt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatIconModule, MatInputModule, MatMenuModule, MatPaginatorIntl, MatSidenavModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatIconModule, MatInputModule,
+         MatMenuModule, MatPaginatorIntl, MatSidenavModule, MatSnackBarModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -80,6 +81,7 @@ import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 import { TempoSessaoDialogComponent } from './components/common/tempo-sessao-dialog/tempo-sessao-dialog.component';
 import { InstituicaoModule } from './components/instituicao/instituicao.module';
+import { GrupoModuloModule } from './components/grupo-modulo/grupo-modulo.module';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -179,7 +181,8 @@ registerLocaleData(localePt, 'pt-BR');
     CadastroReservaAtividadeModule,
     TempoSessaoModule,
     AcoesAtividadeModule,
-    InstituicaoModule
+    InstituicaoModule,
+    GrupoModuloModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },
