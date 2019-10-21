@@ -32,7 +32,7 @@ export class AcessoComponent implements OnInit {
   usuarios: UsuarioUnidade[];
   modulos: Modulo[];
 
-  mostrarTabela: boolean = false;
+  mostrarTabela = false;
 
   displayedColumns: string[] = ['nomeUsuario', 'nomeModulo', 'nomeUnidade', 'nomeGrupoModulo', 'acoes'];
   dataSource: MatTableDataSource<PerfilAcessoUsuario> = new MatTableDataSource();
@@ -48,7 +48,7 @@ export class AcessoComponent implements OnInit {
     public controleMenuService: ControleMenuService,
     private acessoService: AcessoService,
     private router: Router,
-    private menuService:MenuService
+    private menuService: MenuService
   ) { }
 
   ngOnInit() {
@@ -63,10 +63,10 @@ export class AcessoComponent implements OnInit {
       .subscribe((perfilAcessoUsuario: PerfilAcessoUsuario[]) => {
 
         if (_.isEmpty(perfilAcessoUsuario)) {
-          this.mostrarTabela = false
-          this.msg = "Nenhum registro para a pesquisa selecionada"
+          this.mostrarTabela = false;
+          this.msg = 'Nenhum registro para a pesquisa selecionada';
         } else {
-          this.dataSource.data = perfilAcessoUsuario
+          this.dataSource.data = perfilAcessoUsuario;
           this.mostrarTabela = true;
         }
       })
