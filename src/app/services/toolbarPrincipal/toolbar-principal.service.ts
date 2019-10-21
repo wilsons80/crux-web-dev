@@ -18,20 +18,17 @@ export class ToolbarPrincipalService {
   idPessoaFisica: number;
   username: string;
   nomeUsuario: string;
-  logo:any;
+  logo: any;
   loadingCompleto = true;
 
   constructor(private http: HttpClient,
-              private unidadeService: UnidadeService) { }
-
-  getPorUsuario() {
-    return this.unidadeService.getUnidadesComAcesso();
-  }
+              private unidadeService: UnidadeService
+              ) { }
 
   setarPropriedadesUsuarioLogado(usuarioLogado: UsuarioLogado) {
     this.unidades = usuarioLogado.unidades;
     if (usuarioLogado.unidadeLogada) {
-      this.unidadeSelecionada = _.filter(this.unidades, unidade => unidade.id == usuarioLogado.unidadeLogada.id)[0];
+      this.unidadeSelecionada = _.filter(this.unidades, unidade => unidade.id === usuarioLogado.unidadeLogada.id)[0];
     }
     this.username = usuarioLogado.username;
     this.nomeUsuario = usuarioLogado.nomeUsuario;

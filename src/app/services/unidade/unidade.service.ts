@@ -6,6 +6,7 @@ import { BaseService } from '../base/base.service';
 import { FaltasFuncionario } from 'src/app/core/faltas-funcionario';
 import { Rotas } from 'src/app/core/rotas';
 
+const rotaPath = Rotas.UNIDADE;
 
 @Injectable({
   providedIn: 'root'
@@ -13,30 +14,24 @@ import { Rotas } from 'src/app/core/rotas';
 export class UnidadeService extends BaseService<Unidade> {
 
   constructor(http: HttpClient) {
-    super(http, Rotas.UNIDADE);
+    super(http, rotaPath);
   }
 
 
   getUnidadeSetandoLogada(idUnidade: number) {
-    return this.http.get(Rotas.UNIDADE + `logada/${idUnidade}`);
+    return this.http.get(rotaPath + `logada/${idUnidade}`);
   }
 
   getAllTiposUnidade() {
-    return this.http.get(Rotas.UNIDADE + `tiposunidade`);
+    return this.http.get(rotaPath + `tiposunidade`);
   }
 
   getAllClassificadorSituacaoImovel() {
-    return this.http.get(Rotas.UNIDADE + `classificadorimovel`);
+    return this.http.get(rotaPath + `classificadorimovel`);
   }
 
-  getUnidadesComAcesso() {
-    return this.http.get(Rotas.UNIDADE + `usuario`);
-  }
-
-
-
-  getAllUnidadesUsuarioLogadoTemAcesso(){
-    return this.http.get(Rotas.UNIDADE);
+  getAllUnidadesUsuarioLogadoTemAcesso() {
+    return this.http.get(rotaPath);
   }
 
 }
