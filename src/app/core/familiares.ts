@@ -14,11 +14,8 @@ export class Familiares {
 
 	dataCadastro: Date;
     dataDesligamento: Date;
+    
     usuariosSistema: number;
-
-    transportaAluno: boolean;
-    tutelaAluno: boolean;
-    responsavelFinanceiroPeloAluno: boolean;
 
     responsaveis: ResponsaveisAluno[];
 }

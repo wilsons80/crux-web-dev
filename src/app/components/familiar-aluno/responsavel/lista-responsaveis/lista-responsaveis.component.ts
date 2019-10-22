@@ -55,6 +55,7 @@ export class ListaResponsaveisComponent implements OnInit {
 
   atualizar(responsavel) {
     this.onResponsavel.emit(responsavel);
+    this.onAdicionar.emit(true);
   }
 
   deletar(responsavel: any): void {

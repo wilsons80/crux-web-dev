@@ -16,15 +16,6 @@
       <mat-datepicker #dataDesvinculacao></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field fxFlex="30%">
-      <mat-label>Tipo Responsável</mat-label>
-      <mat-select [(ngModel)]="responsavel.tipoResponsavel" name="tipoResponsavel">
-          <mat-option *ngFor="let m of tipoResponsavel.tipos" [value]="m.flag">
-              {{m.tipo}}
-          </mat-option>
-      </mat-select>
-    </mat-form-field>
-
     <mat-form-field fxFlex="34%" fxFlexOffset="20px">
           <mat-label>Aluno tem o mesmo endereço do responsável</mat-label>
           <mat-select [(ngModel)]="responsavel.mesmoEnderResponsavel" name="mesmoEnderResponsavel">
@@ -35,6 +26,20 @@
       </mat-form-field>
   </div>
 
+  <div fxLayout="row"  fxLayoutGap="50px" fxFlexFill>
+    <div fxFlexOffset="20px" fxFlex= "30%"> 
+      <mat-checkbox name="transportaAluno" [(ngModel)]="responsavel.transportaAluno">Autorização para levar e buscar o aluno.</mat-checkbox>
+    </div>
+    <div fxFlex= "30%"> 
+      <mat-checkbox name="tutelaAluno" [(ngModel)]="responsavel.tutelaAluno">Tem a tutela do aluno.</mat-checkbox>
+    </div>
+    <div fxFlex= "30%"> 
+      <mat-checkbox name="responsavelFinanceiroPeloAluno" [(ngModel)]="responsavel.responsavelFinanceiroPeloAluno">Responsável financeiro pelo aluno.</mat-checkbox>
+    </div>
+  </div>
+  <br/>
+
+  
   <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 20px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Descrição do grau de parentesco</mat-label>
@@ -75,11 +80,12 @@
             name="botaoLimpar"
             fxFlex="20%"
             color="primary"
-            (click)="limpar()">
+            (click)="initObjetos()">
         Limpar
     </button>               
 
     <button mat-raised-button
+            *ngIf="!responsavel.id"
             name="botaoAdicionar"
             fxFlex="20%"
             color="primary"

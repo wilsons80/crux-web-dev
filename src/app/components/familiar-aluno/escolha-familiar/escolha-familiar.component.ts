@@ -119,7 +119,6 @@ export class EscolhaFamiliarComponent implements OnInit {
   selecionar(event: any) {
     this.aluno = this.autoComplete.value;
     this.alunoSelecionado = true;
-
   }
 
   limparSelecao() {

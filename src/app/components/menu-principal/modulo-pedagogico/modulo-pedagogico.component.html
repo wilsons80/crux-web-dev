@@ -38,9 +38,6 @@
         <!-- FAMILIARES -->
         <sub-menu *ngIf="verificaAcesso(getModulos().FAMILIAR_ALUNO)" icone="supervised_user_circle" titulo="Familiar" rota="familiaraluno" toolTip="Familiar do Aluno"></sub-menu>
 
-        <!-- RESPONSÁVEL DO ALUNO -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().RESPONSAVEL_ALUNO)" icone="supervisor_account" titulo="Responsável" rota="responsavelaluno" toolTip="Responsável do Aluno"></sub-menu>
-
         <!-- SITUACAO DE VULNERABILIDADE -->
         <sub-menu *ngIf="verificaAcesso(getModulos().SITUACAO_VULNERABILIDADE)" icone="sentiment_dissatisfied" titulo="Situação de Vulnerabilidade" rota="situacaovulnerabilidade" toolTip="Situação de Vulnerabilidade"></sub-menu>
 
@@ -49,12 +46,6 @@
 
         <!-- SOLUÇÕES DE ATENDIMENTO -->
         <sub-menu *ngIf="verificaAcesso(getModulos().SOLUCAO_ATENDIMENTO)" icone="insert_invitation" titulo="Soluções de Atendimentos" rota="solucaoatendimento" toolTip="Soluções de Atendimentos"></sub-menu>
-
-        <!-- VULNERABILIDADE DO FAMILIAR -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().VULNERABILIDADE_FAMILIAR)" icone="show_chart" titulo="Vulnerabilidade do Familiar" rota="vulnerabilidadefamiliar" toolTip="Vulnerabilidade do Familiar"></sub-menu>
-
-        <!-- VULNERABILIDADE DO ALUNO -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().VULNERABILIDADE_ALUNO)" icone="sentiment_very_dissatisfied" titulo="Vulnerabilidade do Aluno" rota="vulnerabilidadealuno" toolTip="Vulnerabilidade do Aluno"></sub-menu>
 
         <!-- ENTIDADES SOCIAIS -->
         <sub-menu *ngIf="verificaAcesso(getModulos().ENTIDADE_SOCIAL)" icone="home_work" titulo="Entidade Social" rota="entidadesocial" toolTip="Entidade Social"></sub-menu>

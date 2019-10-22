@@ -10,9 +10,12 @@ export class ResponsaveisAluno {
 	dataVinculacao: Date;
 	mesmoEnderResponsavel: string;
 
-    tipoResponsavel: TipoResponsaveis;
 	aluno: Aluno;
 	familiar: Familiares;
 
+	transportaAluno: boolean;
+    tutelaAluno: boolean;
+	responsavelFinanceiroPeloAluno: boolean;
+	
     usuarioAlteracao: number;
 } 

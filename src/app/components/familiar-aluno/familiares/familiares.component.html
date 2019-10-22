@@ -1,12 +1,12 @@
 <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 20px">
 
     <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Nome: </th>
+        <th mat-header-cell *matHeaderCellDef> Familiar </th>
         <td mat-cell *matCellDef="let element"> {{element.pessoasFisica.nome}} </td>
     </ng-container>
 
     <ng-container matColumnDef="situacao">
-        <th mat-header-cell *matHeaderCellDef> Situação:  </th>
+        <th mat-header-cell *matHeaderCellDef> Situação  </th>
         <td mat-cell *matCellDef="let element"> {{situacaoParentesco.getSituacaoParentesco(element.situacaoParentesco)}} </td>
     </ng-container>
 
@@ -26,7 +26,7 @@
     </ng-container>
 
     <ng-container matColumnDef="datacadastro">
-        <th mat-header-cell *matHeaderCellDef> Data Cadastro:  </th>
+        <th mat-header-cell *matHeaderCellDef> Data Cadastro  </th>
         <td mat-cell *matCellDef="let element"> {{element.dataCadastro | dataSimples}} </td>
     </ng-container>
 

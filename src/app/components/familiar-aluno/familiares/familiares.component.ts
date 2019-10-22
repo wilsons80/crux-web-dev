@@ -5,6 +5,7 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-aluno.service';
 import { Router } from '@angular/router';
 import { SituacaoParentesco } from 'src/app/core/situacao-parentesco';
+import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcast-event.service';
 
 @Component({
   selector: 'familiares',

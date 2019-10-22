@@ -1,14 +1,21 @@
+<div style="text-align: center; border-style: solid; border-color: coral;margin-bottom: 15px;">
+  <span style="color: blue">
+    Responvável vigente: {{mensagemResponsavelVigente}}
+  </span>
+</div>
+
 <mat-accordion>
 
   <mat-expansion-panel [expanded]="openFormCadastro"
                        (closed)="openFormCadastro = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Dados do responsável
+        Responsábilidade
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <cadastrar-responsavel [responsavel]="responsavel" 
+    <cadastrar-responsavel #cadastrarResponsavel
+                           [responsavel]="responsavel" 
                            [familiar]="familiar">
     </cadastrar-responsavel>
   </mat-expansion-panel>
@@ -19,14 +26,14 @@
                        (closed)="openFormCadastro = true">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Lista de responsáveis ( {{familiar.responsaveis.length}} )
+        Períodos como responsável ( {{familiar.responsaveis.length}} )
       </mat-panel-title>
     </mat-expansion-panel-header>
     
     
-    <lista-responsaveis [familiar]="familiar"  
-                        #listaResponsaveis
-                        (onResponsavel)="onGetResponsavel($event)"
+    <lista-responsaveis #listaResponsaveis
+                        [familiar]="familiar"  
+                        (onResponsavel)="cadastrarResponsavel.carregarResponsavel($event)"
                         (onAdicionar)="onGetAdicionar($event)">
     </lista-responsaveis>
 

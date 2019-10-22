@@ -5,6 +5,7 @@ import { ResponsaveisAluno } from 'src/app/core/responsaveis-aluno';
 import { TipoResponsaveis } from 'src/app/core/tipo-responsaveis';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-aluno.service';
+import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcast-event.service';
 
 @Component({
   selector: 'responsavel',
@@ -15,34 +16,42 @@ export class ResponsavelComponent implements OnInit {
 
   @Input() familiar: Familiares;
 
-  responsavel: ResponsaveisAluno = new ResponsaveisAluno();
   mensagemResponsavelVigente: string = null;
-
   openFormCadastro = true;
 
   constructor(private familiarAlunoService: FamiliarAlunoService) { }
 
   ngOnInit() {
-    this.mostrarResponsavelVigente();
-  }
-
-  onGetResponsavel(responsavel) {
-    this.responsavel = responsavel;
+    BroadcastEventService.get('ON_RESPONSAVEL_VIGENTE_ALUNO').subscribe((idAluno: number) => {
+      this.mostrarResponsavelVigente(idAluno);
+    });
   }
 
   onGetAdicionar(evento) {
     this.openFormCadastro = evento;
   }
 
-  mostrarResponsavelVigente() {
-    if (this.familiar && this.familiar.aluno ) {
-      this.familiarAlunoService.getResponsavelVigente(this.familiar.aluno.id).subscribe((responsavel: any) => {
+  private mostrarResponsavelVigente(idAluno: number) {
+    this.familiarAlunoService.getResponsavelVigente(idAluno).subscribe((responsavel: any) => {
+      BroadcastEventService.get('ON_RESPONSAVEL_VIGENTE').emit(responsavel);
 
+      if (responsavel) {
         this.mensagemResponsavelVigente = responsavel.familiar.pessoasFisica.nome +
-                                          ' - Início: ' + responsavel.dataVinculacao +
-                                          ' - Fim: ' + responsavel.dataDesvinculacao;
+                                          ' - Início: ' + this.dateToString(responsavel.dataVinculacao) +
+                                          ' - Fim: ' + this.dateToString(responsavel.dataDesvinculacao);
 
-      });
+      } else {
+        this.mensagemResponsavelVigente = 'Aluno sem responsável vigente no momento.';
+      }
+    });
+  }
+
+
+  dateToString(data) {
+    if (data) {
+      const dataFormate = new Date(data);
+      return dataFormate.toLocaleDateString();
     }
+    return '';
   }
 }
