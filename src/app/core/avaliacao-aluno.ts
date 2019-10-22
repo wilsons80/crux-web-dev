@@ -8,7 +8,7 @@ export class AvaliacaoAluno {
 	dataAvaliacao: Date;
 	
 	atividadesAluno: AtividadeAluno;
-	Avaliacao: Avaliacao;
+	avaliacao: Avaliacao;
 	notaAvaliacao: NotaAvaliacao;
 
     usuarioAlteracao: number;
