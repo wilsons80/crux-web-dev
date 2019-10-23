@@ -139,13 +139,13 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
 
 
   mostrarBotaoLimpar(){
-    if(this.isAtualizar) return false;
-    if(!this.mostrarBotaoAtualizar) return false;
-    if(!this.mostrarBotaoCadastrar) return false;
+    if (this.isAtualizar) { return false; }
+    if (!this.mostrarBotaoAtualizar) { return false; }
+    if (!this.mostrarBotaoCadastrar) { return false; }
 
     return true;
   }
-  
+
   limpar() {
     this.familiar = new Familiares();
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Familiares } from 'src/app/core/familiares';
-import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-aluno.service';
 
 @Component({
   selector: 'vulnerabilidade',
@@ -13,7 +12,7 @@ export class VulnerabilidadeComponent implements OnInit {
 
   openFormCadastro = true;
 
-  constructor(private familiarAlunoService: FamiliarAlunoService) {
+  constructor() {
   }
 
   ngOnInit() {
