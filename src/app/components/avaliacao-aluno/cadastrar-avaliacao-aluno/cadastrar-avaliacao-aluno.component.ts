@@ -1,3 +1,5 @@
+import { AvaliacaoAtividadeService } from 'src/app/services/avaliacao-atividade/avaliacao-atividade.service';
+import { AtividadeAlunoService } from './../../../services/atividade-aluno/atividade-aluno.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Acesso } from 'src/app/core/acesso';
@@ -15,19 +17,19 @@ import { NotaAvaliacao } from './../../../core/nota-avaliacao';
 })
 export class CadastrarAvaliacaoAlunoComponent implements OnInit {
 
-  atividadesAluno: AtividadeAluno;
-  avaliacoesAluno: AvaliacaoAluno[];
+  atividadesAluno: AtividadeAluno[];
+  avaliacoes: Avaliacao[];
   avaliacao: Avaliacao;
   notaAvaliacao: NotaAvaliacao;
 
   avaliacaoAluno: AvaliacaoAluno = new AvaliacaoAluno();
 
   notasAvaliacao = [
-    { id: 1, tipo: NotaAvaliacao.INACEITAVEL, descricao: "Inaceitável - Dê o grau 1 se você achar nenhuma evidência da competência" },
-    { id: 2, tipo: NotaAvaliacao.INSATISFATORIO, descricao: "Insatisfatório - Dê o grau 2 se você achar pouca a evidência da competência" },
-    { id: 3, tipo: NotaAvaliacao.INDUSTRIAS, descricao: "Médio - Dê o grau 3 se você achar média a evidência da competência" },
-    { id: 5, tipo: NotaAvaliacao.EXCELENTE, descricao: "Excelente -  Dê o grau 5 se você achar forte a evidência da competência" },
-    { id: 4, tipo: NotaAvaliacao.OUTRO, descricao: "Bom - Dê o grau 4 se você achar boa a evidência da competência" },
+    { id: 1, tipo: NotaAvaliacao.INACEITAVEL, descricao: "INACEITÁVEL - DÊ O GRAU 1 SE VOCÊ ACHAR NENHUMA EVIDÊNCIA DA COMPETÊNCIA" },
+    { id: 2, tipo: NotaAvaliacao.INSATISFATORIO, descricao: "INSATISFATÓRIO - DÊ O GRAU 2 SE VOCÊ ACHAR POUCA A EVIDÊNCIA DA COMPETÊNCIA" },
+    { id: 3, tipo: NotaAvaliacao.INDUSTRIAS, descricao: "MÉDIO - DÊ O GRAU 3 SE VOCÊ ACHAR MÉDIA A EVIDÊNCIA DA COMPETÊNCIA" },
+    { id: 5, tipo: NotaAvaliacao.EXCELENTE, descricao: "EXCELENTE -  DÊ O GRAU 5 SE VOCÊ ACHAR FORTE A EVIDÊNCIA DA COMPETÊNCIA" },
+    { id: 4, tipo: NotaAvaliacao.OUTRO, descricao: "BOM - DÊ O GRAU 4 SE VOCÊ ACHAR BOA A EVIDÊNCIA DA COMPETÊNCIA" },
   ]
   perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
@@ -37,6 +39,8 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
 
   constructor(
     private avaliacaoAlunoService: AvaliacaoAlunoService,
+    private avaliacaoAtividadeService: AvaliacaoAtividadeService,
+    private atividadeAlunoService: AtividadeAlunoService,
     private activatedRoute: ActivatedRoute,
     private toastService: ToastService,
     private router: Router
@@ -59,8 +63,12 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
       this.mostrarBotaoAtualizar = false;
     }
 
-    this.avaliacaoAlunoService.getAll().subscribe((avaliacoesAluno: AvaliacaoAluno[]) => {
-      this.avaliacoesAluno = avaliacoesAluno;
+    this.avaliacaoAtividadeService.getAll().subscribe((avaliacoes: Avaliacao[]) => {
+      this.avaliacoes = avaliacoes;
+    })
+
+    this.atividadeAlunoService.getAll().subscribe((atividadesAluno: AtividadeAluno[]) => {
+      this.atividadesAluno = atividadesAluno;
     })
 
     let idAvaliacaoAluno: number;

@@ -109,7 +109,7 @@ export class AvaliacaoAlunoComponent implements OnInit {
   verificaMostrarTabela(avaliacaoAlunos: AvaliacaoAluno[]) {
     if (!avaliacaoAlunos || avaliacaoAlunos.length == 0) {
       this.mostrarTabela = false;
-      this.msg = "Nenhuma avaliação cadastrado."
+      this.msg = "Nenhuma avaliação cadastrada."
     } else {
       this.mostrarTabela = true;
     }

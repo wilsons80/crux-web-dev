@@ -1,1 +1,99 @@
-<p>cadastrar-avaliacao-aluno works!</p>
+<!-- descriaoAvaliacao: string;
+dataAvaliacao: Date;
+
+atividadesAluno: AtividadeAluno;
+avaliacao: Avaliacao;
+notaAvaliacao: NotaAvaliacao;
+
+usuarioAlteracao: number; -->
+
+<mat-toolbar class="subtitulo">Avaliação Aluno</mat-toolbar>
+
+<div class="painel-principal" style="padding: 10px;">
+    <form #formCadastro="ngForm">
+
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+            <!-- Atividade-->
+            <div fxLayout="column" fxFlex="45%">
+                <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
+                <mat-form-field style="margin: 0 20px 20px 20px">
+                    <mat-label>Atividades:</mat-label>
+                    <mat-select [(ngModel)]="avaliacaoAluno.atividadesAluno.id" name="atividadesAluno" required>
+                        <mat-option *ngFor="let i of atividadesAluno" [value]="i.id">
+                            {{i.atividade.descricao}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="atividadesAluno?.length === 0" align="start">Nenhuma atividade do aluno
+                        cadastrada</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="column" fxFlex="45%">
+                <mat-toolbar class="titulopartes">Avaliação</mat-toolbar>
+                <mat-form-field style="margin: 0 20px 20px 20px">
+                    <mat-label>Avaliações:</mat-label>
+                    <mat-select [(ngModel)]="avaliacaoAluno.avaliacao.id" name="avaliacao" required>
+                        <mat-option *ngFor="let i of avaliacoes" [value]="i.id">
+                            {{i.nome}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="avaliacoes?.length === 0" align="start">Nenhuma avaliação 
+                        cadastrada</mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-toolbar class="titulopartes">Dados Avaliação</mat-toolbar>
+      
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+            <mat-form-field fxFlexOffset="20px" fxFlex="60%">
+                <input #descriaoAvaliacao matInput maxlength="200" name="numeroAulas" placeholder="Descrição:"
+                    [(ngModel)]="avaliacaoAluno.descriaoAvaliacao">
+                <mat-hint align="end">{{descriaoAvaliacao.value.length}} / 200</mat-hint>
+            </mat-form-field>
+
+
+            <mat-form-field fxFlex="15%">
+                    <input style="margin-left: 20px" matInput name="dataAvaliacao"
+                        [matDatepicker]="dataAvaliacao" placeholder="Data da Avaliação:"
+                        [(ngModel)]="avaliacaoAluno.dataAvaliacao" >
+                    <mat-datepicker-toggle matSuffix [for]="dataAvaliacao"></mat-datepicker-toggle>
+                    <mat-datepicker #dataAvaliacao></mat-datepicker>
+                </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                <mat-form-field fxFlexOffset="20px" fxFlex="50%" style="margin: 0 20px 20px 20px">
+                        <mat-label>Notas Avaliação:</mat-label>
+                        <mat-select [(ngModel)]="avaliacaoAluno.notaAvaliacao" name="avaliacao">
+                            <mat-option *ngFor="let i of notasAvaliacao" [value]="i.id">
+                                {{i.descricao}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+        </div>
+
+        <!-- BOTOES -->
+        <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+            fxFlexFill>
+            <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button name="botaoConfirmar" fxFlex="20%"
+                color="primary" [disabled]="formCadastro.invalid" (click)="cadastrar()"> Cadastrar
+            </button>
+
+            <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button name="botaoConfirmar" fxFlex="20%"
+                color="primary" [disabled]="formCadastro.invalid" (click)="atualizar()">
+                Atualizar
+            </button>
+
+            <button *ngIf="mostrarBotaoLimpar()" mat-raised-button fxFlex="20%" (click)="limpar()">
+                Limpar
+            </button>
+            <button mat-raised-button fxFlex="20%" (click)="cancelar()">
+                Cancelar
+            </button>
+
+        </div>
+    </form>
+
+</div>
