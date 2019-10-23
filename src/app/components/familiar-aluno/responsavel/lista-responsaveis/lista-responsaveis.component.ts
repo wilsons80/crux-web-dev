@@ -5,7 +5,6 @@ import { ResponsaveisAluno } from 'src/app/core/responsaveis-aluno';
 import { TipoResponsaveis } from 'src/app/core/tipo-responsaveis';
 import { Acesso } from 'src/app/core/acesso';
 import { ActivatedRoute } from '@angular/router';
-import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcast-event.service';
 
 
 @Component({
@@ -39,7 +38,6 @@ export class ListaResponsaveisComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.carregarListaResponsaveis();
   }
-
 
   carregarListaResponsaveis() {
     if (this.familiar && this.familiar.responsaveis) {
