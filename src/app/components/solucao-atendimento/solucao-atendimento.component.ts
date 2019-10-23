@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@a
 import { ActivatedRoute, Router } from '@angular/router';
 import { Acesso } from 'src/app/core/acesso';
 import { Solucoes } from 'src/app/core/solucoes';
-import { SolucaoAtendimentoService } from 'src/app/services/solucao-atendimento/solucao-atendimento.service';
+import { SolucaoService } from 'src/app/services/solucao/solucao.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -27,7 +27,7 @@ export class SolucaoAtendimentoComponent implements OnInit {
 
 
   constructor(
-    private solucaoService: SolucaoAtendimentoService,
+    private solucaoService: SolucaoService,
     private router: Router,
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute
@@ -51,8 +51,8 @@ export class SolucaoAtendimentoComponent implements OnInit {
     if (this.solucao.id) {
       this.solucaoService.getById(this.solucao.id).subscribe((retorno: Solucoes) => {
         if (!retorno) {
-          this.mostrarTabela = false
-          this.msg = "Nenhum registro para a pesquisa selecionada";
+          this.mostrarTabela = false;
+          this.msg = 'Nenhum registro para a pesquisa selecionada';
         } else {
           this.dataSource.data = [retorno];
           this.mostrarTabela = true;

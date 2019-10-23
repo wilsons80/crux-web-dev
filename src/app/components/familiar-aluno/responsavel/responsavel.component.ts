@@ -1,9 +1,5 @@
-import { SimpleChanges } from '@angular/core';
 import { Familiares } from 'src/app/core/familiares';
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { ResponsaveisAluno } from 'src/app/core/responsaveis-aluno';
-import { TipoResponsaveis } from 'src/app/core/tipo-responsaveis';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, Input } from '@angular/core';
 import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-aluno.service';
 import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcast-event.service';
 

@@ -15,11 +15,11 @@ import { Acesso } from 'src/app/core/acesso';
 export class FamiliarAlunoComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
- 
+
   familiares: Familiares[];
   familiar: Familiares = new Familiares();
   perfilAcesso: Acesso;
-  
+
   situacaoParentesco: SituacaoParentesco = new SituacaoParentesco();
 
   mostrarTabela = false;

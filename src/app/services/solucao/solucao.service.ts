@@ -7,7 +7,7 @@ import { Rotas } from 'src/app/core/rotas';
 @Injectable({
   providedIn: 'root'
 })
-export class SolucaoAtendimentoService  extends BaseService<Solucoes> {
+export class SolucaoService  extends BaseService<Solucoes> {
 
   constructor(http: HttpClient) {
     super(http, Rotas.SOLUCOES);

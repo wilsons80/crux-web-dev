@@ -1,10 +1,9 @@
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Familiares } from './../../../../core/familiares';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ResponsaveisAluno } from 'src/app/core/responsaveis-aluno';
 import { TipoResponsaveis } from 'src/app/core/tipo-responsaveis';
 import { Aluno } from 'src/app/core/aluno';
-import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcast-event.service';
 
 @Component({

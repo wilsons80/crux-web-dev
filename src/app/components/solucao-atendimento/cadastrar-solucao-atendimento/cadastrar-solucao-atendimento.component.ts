@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Solucoes } from 'src/app/core/solucoes';
-import { SolucaoAtendimentoService } from 'src/app/services/solucao-atendimento/solucao-atendimento.service';
+import { SolucaoService } from 'src/app/services/solucao/solucao.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -18,11 +18,11 @@ export class CadastrarSolucaoAtendimentoComponent implements OnInit {
 
 
   perfilAcesso: Acesso;
-  mostrarBotaoCadastrar = true
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
   constructor(
-    private solucaoService: SolucaoAtendimentoService,
+    private solucaoService: SolucaoService,
     private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService: ToastService

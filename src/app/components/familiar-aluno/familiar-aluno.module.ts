@@ -16,6 +16,9 @@ import { ResponsavelComponent } from './responsavel/responsavel.component';
 import { CadastrarResponsavelComponent } from './responsavel/cadastrar-responsavel/cadastrar-responsavel.component';
 import { MatExpansionModule } from '@angular/material';
 import { ListaResponsaveisComponent } from './responsavel/lista-responsaveis/lista-responsaveis.component';
+import { VulnerabilidadeComponent } from './vulnerabilidade/vulnerabilidade.component';
+import { CadastrarVulnerabilidadeComponent } from './vulnerabilidade/cadastrar-vulnerabilidade/cadastrar-vulnerabilidade.component';
+import { ListarVulnerabilidadeComponent } from './vulnerabilidade/listar-vulnerabilidade/listar-vulnerabilidade.component';
 
 
 @NgModule({
@@ -23,7 +26,15 @@ import { ListaResponsaveisComponent } from './responsavel/lista-responsaveis/lis
                  CadastrarFamiliarAlunoComponent,
                  DadosAlunoComponent,
                  FamiliaresComponent,
-                 EscolhaFamiliarComponent, ParentescoComponent, ProfissionalComponent, ResponsavelComponent, CadastrarResponsavelComponent, ListaResponsaveisComponent],
+                 EscolhaFamiliarComponent,
+                 ParentescoComponent,
+                 ProfissionalComponent,
+                 ResponsavelComponent,
+                 CadastrarResponsavelComponent,
+                 ListaResponsaveisComponent,
+                 VulnerabilidadeComponent,
+                 CadastrarVulnerabilidadeComponent,
+                 ListarVulnerabilidadeComponent],
   imports: [
     CommonModule,
     FamiliarAlunoRoutingModule,
