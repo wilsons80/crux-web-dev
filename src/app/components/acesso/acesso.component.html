@@ -24,7 +24,7 @@
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
                     <mat-label>Selecione um modulo</mat-label>
                     <mat-select [(ngModel)]="cadastroAcesso.idModulo" name="modulo">
-                        <mat-option *ngFor="let m of modulos" [value]="m.idModulo">
+                        <mat-option *ngFor="let m of modulos" [value]="m.id">
                             {{m.descricao}}
                         </mat-option>
                     </mat-select>

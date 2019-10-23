@@ -129,7 +129,7 @@ export class UnidadeComponent implements OnInit {
   }
 
   carregarLista() {
-    if (this.usuarioSistema && this.usuarioSistema.id) {
+    if (this.usuarioSistema) {
         if (!this.usuarioSistema.unidades || this.usuarioSistema.unidades.length === 0) {
           this.mostrarTabela = false;
           this.msg = 'Nenhum responsável cadastrado.';

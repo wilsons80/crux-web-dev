@@ -37,7 +37,7 @@ export class CadastrarUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
-
+    
     if(!this.perfilAcesso.insere){
       this.mostrarBotaoCadastrar = false;
     }
@@ -90,6 +90,7 @@ export class CadastrarUsuarioComponent implements OnInit {
 
   limpar() {
     this.usuarioSistema = new UsuarioSistema();
+    this.usuarioSistema.unidades = [];
     this.usuarioSistema.pessoaFisica = new PessoaFisica();
   }
 
