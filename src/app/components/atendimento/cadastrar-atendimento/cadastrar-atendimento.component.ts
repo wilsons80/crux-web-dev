@@ -9,7 +9,7 @@ import { DiagnosticoAtendimentoService } from 'src/app/services/diagnostico-aten
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Aluno } from './../../../core/aluno';
 import { Solucoes } from './../../../core/solucoes';
-import { SolucaoAtendimentoService } from './../../../services/solucao-atendimento/solucao-atendimento.service';
+import { SolucaoService } from '../../../services/solucao/solucao.service';
 
 @Component({
   selector: 'app-cadastrar-atendimento',
@@ -25,14 +25,14 @@ export class CadastrarAtendimentoComponent implements OnInit {
 
 
   perfilAcesso: Acesso;
-  mostrarBotaoCadastrar = true
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
-  isAtualizar: boolean = false;
+  isAtualizar = false;
 
   constructor(
     private atendimentoService: AtendimentosService,
-    private solucaoAtendimentoService: SolucaoAtendimentoService,
+    private solucaoAtendimentoService: SolucaoService,
     private diagnosticoAtendimentoService: DiagnosticoAtendimentoService,
     private alunoService: AlunoService,
     private activatedRoute: ActivatedRoute,

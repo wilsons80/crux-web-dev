@@ -1,6 +1,7 @@
 import { Aluno } from './aluno';
 import { PessoaFisica } from './pessoa-fisica';
 import { ResponsaveisAluno } from './responsaveis-aluno';
+import { VulnerabilidadesFamiliar } from './vulnerabilidades-familiar';
 
 export class Familiares {
     id: number;
@@ -14,8 +15,9 @@ export class Familiares {
 
 	dataCadastro: Date;
     dataDesligamento: Date;
-    
+
     usuariosSistema: number;
 
     responsaveis: ResponsaveisAluno[];
+    vulnerabilidades: VulnerabilidadesFamiliar[];
 }

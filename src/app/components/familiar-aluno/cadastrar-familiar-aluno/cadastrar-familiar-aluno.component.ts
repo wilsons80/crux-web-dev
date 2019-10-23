@@ -50,6 +50,7 @@ export class CadastrarFamiliarAlunoComponent implements OnInit {
     this.familiar.pessoasFisica.grausInstrucao = new GrausInstrucao();
     this.familiar.pessoasFisica.condicoesMoradia = new CondicoesMoradia();
     this.familiar.responsaveis = [];
+    this.familiar.vulnerabilidades = [];
 
     this.perfilAcesso = this.route.snapshot.data.perfilAcesso[0];
 

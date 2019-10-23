@@ -75,8 +75,6 @@ import { UnidadeModule } from './components/unidade/unidade.module';
 import { UniformeEntregueAlunoModule } from './components/uniforme-entregue-aluno/uniforme-entregue-aluno.module';
 import { UploadFotoModule } from './components/upload-foto/upload-foto.module';
 import { UsuarioModule } from './components/usuario/usuario.module';
-import { VulnerabilidadeAlunoModule } from './components/vulnerabilidade-aluno/vulnerabilidade-aluno.module';
-import { VulnerabilidadeFamiliarModule } from './components/vulnerabilidade-familiar/vulnerabilidade-familiar.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 import { TempoSessaoDialogComponent } from './components/common/tempo-sessao-dialog/tempo-sessao-dialog.component';
@@ -159,8 +157,6 @@ registerLocaleData(localePt, 'pt-BR');
     SituacaoVulnerabilidadeModule,
     DiagnosticoAtendimentoModule,
     SolucaoAtendimentoModule,
-    VulnerabilidadeFamiliarModule,
-    VulnerabilidadeAlunoModule,
     EntidadeSocialModule,
     EncaminhamentoAlunoModule,
     ReprovacaoAlunoModule,
