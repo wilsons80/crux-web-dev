@@ -1,13 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
-import { AvaliacaoAluno } from 'src/app/core/avaliacao-aluno';
+import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Acesso } from 'src/app/core/acesso';
+import { AvaliacaoAluno } from 'src/app/core/avaliacao-aluno';
 import { AvaliacaoAlunoService } from 'src/app/services/avaliacao-aluno/avaliacao-aluno.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { AtividadeAluno } from 'src/app/core/atividade-aluno';
-import { Avaliacao } from 'src/app/core/avaliacao';
-import { NotaAvaliacao } from 'src/app/core/nota-avaliacao';
 
 @Component({
   selector: 'app-avaliacao-aluno',
@@ -24,7 +21,7 @@ export class AvaliacaoAlunoComponent implements OnInit {
   msg: string;
   perfilAcesso: Acesso;
 
-  displayedColumns: string[] = ['aluno', 'dataAvaliacao', 'avaliacao', 'notaAvaliacao',  'acoes'];
+  displayedColumns: string[] = ['aluno', 'dataAvaliacao', 'avaliacao', 'notaAvaliacao', 'acoes'];
   dataSource: MatTableDataSource<AvaliacaoAluno> = new MatTableDataSource();
 
   constructor(
