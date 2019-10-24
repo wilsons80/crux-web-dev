@@ -32,21 +32,23 @@
 
         <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 20px">
 
+
             <ng-container matColumnDef="aluno">
                 <th mat-header-cell *matHeaderCellDef> Aluno: </th>
-                <td mat-cell *matCellDef="let element"> {{element.aluno.pessoaFisica.nome}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.atividadesAluno.aluno.pessoaFisica.nome}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="avaliacao">
+                    <th mat-header-cell *matHeaderCellDef> Avaliação: </th>
+                    <td mat-cell *matCellDef="let element"> {{element.avaliacoes.nome }} </td>
+                </ng-container>
+
+            <ng-container matColumnDef="dataAvaliacao">
+                <th mat-header-cell *matHeaderCellDef> Data Avaliação: </th>
+                <td mat-cell *matCellDef="let element"> {{element.dataAvaliacao | dataSimples}} </td>
             </ng-container>
 
-
-            <ng-container matColumnDef="dataInicioAlunoTrabalhando">
-                <th mat-header-cell *matHeaderCellDef> Data Início: </th>
-                <td mat-cell *matCellDef="let element"> {{element.dataInicioAlunoTrabalhando | dataSimples}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="nomeEmpreendimento">
-                <th mat-header-cell *matHeaderCellDef> nomeEmpreendimento: </th>
-                <td mat-cell *matCellDef="let element"> {{element.nomeEmpreendimento }} </td>
-            </ng-container>
+            
 
             <ng-container matColumnDef="acoes">
                 <th mat-header-cell *matHeaderCellDef> Ações </th>

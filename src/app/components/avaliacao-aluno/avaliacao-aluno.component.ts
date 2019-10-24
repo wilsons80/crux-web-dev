@@ -21,7 +21,7 @@ export class AvaliacaoAlunoComponent implements OnInit {
   msg: string;
   perfilAcesso: Acesso;
 
-  displayedColumns: string[] = ['aluno', 'dataAvaliacao', 'avaliacao', 'notaAvaliacao', 'acoes'];
+  displayedColumns: string[] = ['aluno',  'avaliacao', 'dataAvaliacao','acoes'];
   dataSource: MatTableDataSource<AvaliacaoAluno> = new MatTableDataSource();
 
   constructor(
