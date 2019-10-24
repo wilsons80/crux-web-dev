@@ -14,7 +14,7 @@
                 <mat-icon class="nao-foto"></mat-icon>
             </button> -->
 
-            <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="10px">
+            <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="10px" *ngIf="autenticadorService?.usuarioEstaLogado" >
                 <label *ngIf="menuPrincipalService.expandido" >Sessão: </label>
                 <tempo-sessao></tempo-sessao>
             </div>

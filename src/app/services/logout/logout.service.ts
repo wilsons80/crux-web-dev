@@ -1,3 +1,4 @@
+import { TempoSessaoService } from 'src/app/services/tempo-sessao/tempo-sessao.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AutenticadorService } from '../autenticador/autenticador.service';
@@ -18,7 +19,8 @@ export class LogoutService {
     private autenticadorService:AutenticadorService,
     private menuPrincipalService:MenuPrincipalService,
     private router:Router,
-    private toolbarPrincipalService:ToolbarPrincipalService
+    private toolbarPrincipalService:ToolbarPrincipalService,
+    private tempoSessaoService:TempoSessaoService
     ) { }
 
   logoutService(){
@@ -31,6 +33,7 @@ export class LogoutService {
       this.menuPrincipalService.logout();
       this.router.navigate(['login']);
       this.toolbarPrincipalService.apagaPropriedadesdoUsuarioLogado();
+      this.tempoSessaoService.tempoSessao = 0;
     });
   }
 
