@@ -25,7 +25,7 @@ export class CadastarAlunoComponent implements OnInit {
   isAtualizar = false;
 
   perfilAcesso: Acesso;
-  mostrarBotaoCadastrar = true
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
   constructor(
@@ -40,18 +40,18 @@ export class CadastarAlunoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.aluno.pessoaFisica = this.pessoaFisica;
+    this.aluno.vulnerabilidades = [];
 
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
       this.mostrarBotaoCadastrar = false;
     }
-    
+
     if(!this.perfilAcesso.altera){
       this.mostrarBotaoAtualizar = false;
     }
-
-    this.aluno.pessoaFisica = this.pessoaFisica;
 
     let idAluno: number;
     idAluno = this.activatedRoute.snapshot.queryParams.id ? this.activatedRoute.snapshot.queryParams.id : null;

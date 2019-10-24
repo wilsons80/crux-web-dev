@@ -74,6 +74,25 @@
             </div>
         </mat-step>
 
+        <!-- ------------------ VULNERABILIDADE ------------------------ -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroVulnerabilidade">
+            <form #formCadastroVulnerabilidade="ngForm">
+                <ng-template matStepLabel>VULNERABILIDADE</ng-template>
+                <vulnerabilidade-aluno [aluno]="aluno"></vulnerabilidade-aluno>
+            </form>
+
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                    Próximo
+                </button>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>  
+    
+
         <!-- OUTRAS INFORMAÇOES -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutrasInformacoes">
             <form #formCadastroOutrasInformacoes="ngForm">
@@ -99,7 +118,8 @@
             fxFlex="20%"
             color="primary"
             [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-                      formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid"
+                        formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid ||
+                        formCadastroVulnerabilidade.invalid"
             (click)="cadastrar()"> Cadastrar
     </button>
 
@@ -108,7 +128,8 @@
             fxFlex="20%"
             color="primary"
             [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-                      formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid"
+                        formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid || 
+                        formCadastroVulnerabilidade.invalid"
             (click)="atualizar()">
             Atualizar
     </button>

@@ -1,3 +1,4 @@
+import { VulnerabilidadesAluno } from './vulnerabilidades-aluno';
 import { Unidade } from './unidade';
 import { PessoaFisica } from './pessoa-fisica';
 
@@ -26,4 +27,6 @@ export class Aluno {
 	descBuscaEscola: string;
 	publicoPrioritario: string;
 	matriculaAluno: string;
+
+	vulnerabilidades: VulnerabilidadesAluno[];
 }
