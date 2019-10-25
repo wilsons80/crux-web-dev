@@ -7,12 +7,12 @@
 
     <ng-container matColumnDef="dataIdentificacao">
         <th mat-header-cell *matHeaderCellDef> Data Identificação </th>
-        <td mat-cell *matCellDef="let element"> {{element.dataVinculacao | dataSimples}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.dataIdentificacao | dataSimples}} </td>
     </ng-container>
 
     <ng-container matColumnDef="dataSolucao">
         <th mat-header-cell *matHeaderCellDef> Data Solução</th>
-        <td mat-cell *matCellDef="let element"> {{element.dataDesvinculacao | dataSimples}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.dataSolucao | dataSimples}} </td>
     </ng-container>
 
     <ng-container matColumnDef="vulnerabilidade">

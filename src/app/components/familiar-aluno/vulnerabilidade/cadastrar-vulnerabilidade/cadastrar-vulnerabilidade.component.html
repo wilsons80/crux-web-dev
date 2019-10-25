@@ -13,18 +13,18 @@
 
         <mat-form-field fxFlex="15%" fxFlexOffset="20px">
             <input matInput name="dataSolucao" 
-                [matDatepicker]="dataSolucao" 
-                placeholder="Data de Solução:"
-                [(ngModel)]="vulnerabilidade.dataSolucao">
+                   [matDatepicker]="dataSolucao" 
+                   placeholder="Data de Solução"
+                   [(ngModel)]="vulnerabilidade.dataSolucao">
             <mat-datepicker-toggle matSuffix [for]="dataSolucao"></mat-datepicker-toggle>
             <mat-datepicker #dataSolucao></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field fxFlex="35%" fxFlexOffset="20px">
             <mat-label>Situação de Vulnerabilidade</mat-label>
-            <mat-select [(ngModel)]="vulnerabilidade.situacoesVulnerabilidade" 
+            <mat-select [(ngModel)]="vulnerabilidade.situacoesVulnerabilidade.id" 
                         name="situacoesVulnerabilidade">
-                <mat-option *ngFor="let m of situacaoVulnerabilidades" [value]="m">
+                <mat-option *ngFor="let m of situacaoVulnerabilidades" [value]="m.id">
                     {{m.descricao}}
                 </mat-option>
             </mat-select>
@@ -32,8 +32,8 @@
 
         <mat-form-field fxFlex="35%" fxFlexOffset="20px">
             <mat-label>Solução</mat-label>
-            <mat-select [(ngModel)]="vulnerabilidade.solucoes" name="solucoes">
-                <mat-option *ngFor="let m of solucoes" [value]="m">
+            <mat-select [(ngModel)]="vulnerabilidade.solucoes.id" name="solucoes">
+                <mat-option *ngFor="let m of solucoes" [value]="m.id">
                     {{m.descricao}}
                 </mat-option>
             </mat-select>

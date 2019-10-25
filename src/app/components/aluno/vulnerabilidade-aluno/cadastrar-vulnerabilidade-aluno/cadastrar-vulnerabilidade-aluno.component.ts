@@ -47,6 +47,9 @@ export class CadastrarVulnerabilidadeAlunoComponent implements OnInit {
 
   initObjetos() {
     this.vulnerabilidade = new VulnerabilidadesAluno();
+    this.vulnerabilidade.situacoesVulnerabilidade = new SituacoesVulnerabilidade();
+    this.vulnerabilidade.solucoes = new Solucoes();
+
     this.vulnerabilidade.aluno = new Aluno();
   }
 

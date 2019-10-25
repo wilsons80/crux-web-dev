@@ -52,14 +52,14 @@ export class CadastrarEmpresaComponent implements OnInit {
   
   empresa: Empresa = new Empresa();
 
-  isAtualizar: boolean = false;
+  isAtualizar = false;
 
   constructor(
     private empresaService: EmpresaService,
     private activatedRoute: ActivatedRoute,
     private location: Location,
-    private toastService:ToastService,
-    private enderecoService:EnderecoService
+    private toastService: ToastService,
+    private enderecoService: EnderecoService
   ) { }
 
 

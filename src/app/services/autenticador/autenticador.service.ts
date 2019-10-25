@@ -1,3 +1,4 @@
+import { ToastService } from './../toast/toast.service';
 import { MenuPrincipalService } from './../menuPrincipal/menu-principal.service';
 import { ArquivoPessoaFisicaService } from './../arquivo-pessoa-fisica/arquivo-pessoa-fisica.service';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +12,6 @@ import { UsuarioLogado } from 'src/app/core/usuario-logado';
 import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 import { MenuService } from 'src/app/services/menu/menu.service';
 import { ParametrosService } from '../parametros/parametros.service';
-import { TempoSessaoService } from '../tempo-sessao/tempo-sessao.service';
 import { TrocaSenha } from './../../core/troca-senha';
 import { Usuario } from './../../core/usuario';
 import { FileUtils } from './../../utils/file-utils';
@@ -35,12 +35,12 @@ export class AutenticadorService {
   constructor(
     private http: HttpClient,
     private toolbarPrincipalService: ToolbarPrincipalService,
+    private toastService: ToastService,
     private arquivoService: ArquivoUnidadeService,
     private fileUtils: FileUtils,
     private parametros: ParametrosService,
     private menuService: MenuService,
     private controleMenuService: ControleMenuService,
-    private tempoSessaoService: TempoSessaoService,
     private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
     private menuPrincipalService: MenuPrincipalService,
   ) {

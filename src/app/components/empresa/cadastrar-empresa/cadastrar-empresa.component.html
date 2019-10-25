@@ -36,7 +36,7 @@
 
             <mat-form-field fxFlex="40%">
                 <input matInput maxlength="200" name="nomeFantasia" placeholder="Nome Fantasia:"
-                    [(ngModel)]="empresa.nomeFantasia" required>
+                    [(ngModel)]="empresa.nomeFantasia">
             </mat-form-field>
 
             <mat-slide-toggle fxFlexOffset="20px" name="campoAtiva" [(ngModel)]="empresa.ativa">Ativa</mat-slide-toggle>
@@ -106,11 +106,13 @@
                     [textMask]="{mask: maskCep}">
             </mat-form-field>
 
-            <mat-form-field fxFlex="81%">
-                <input matInput maxlength="200" name="endereco" placeholder="Endereço:" [(ngModel)]="empresa.endereco"
-                    required>
+            <mat-form-field fxFlex="45%">
+                <input matInput maxlength="200" 
+                       name="endereco" 
+                       placeholder="Endereço" 
+                       [(ngModel)]="empresa.endereco"
+                       required>
             </mat-form-field>
-
 
             <mat-form-field fxFlex="5%" fxFlexOffset="20px">
                 <mat-label>UF:</mat-label>
@@ -121,8 +123,13 @@
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field fxFlex="30%">
+            <mat-form-field fxFlex="20%">
                 <input matInput maxlength="200" name="bairro" placeholder="Bairro:" [(ngModel)]="empresa.bairro">
+            </mat-form-field>
+
+            <mat-form-field fxFlex="20%">
+                <input matInput maxlength="200" name="cidade" 
+                       placeholder="Cidade" [(ngModel)]="empresa.cidade">
             </mat-form-field>
 
         </div>
@@ -139,42 +146,52 @@
             <mat-form-field fxFlex="40%">
                 <input matInput [(ngModel)]="empresa.email" name="email" placeholder="Email:">
             </mat-form-field>
+
             <mat-checkbox name="autorizaEmail" [(ngModel)]="empresa.autorizaEmail">Autorizo o recebimento de emails.</mat-checkbox>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" fxFlexFill>
+            <mat-form-field fxFlexOffset="20px" fxFlex="100%">
+                <input matInput 
+                       [(ngModel)]="empresa.homePage" 
+                       name="homePage" 
+                       placeholder="Home page da entidade social">
+            </mat-form-field>
         </div>
 
        <!-- BOTOES -->
    <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-    <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button
-            name="botaoConfirmar"
-            fxFlex="20%"
-            color="primary"
-            [disabled]="formCadastro.invalid"
-            (click)="cadastrar()"> Cadastrar
-    </button>
+        <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button
+                name="botaoConfirmar"
+                fxFlex="20%"
+                color="primary"
+                [disabled]="formCadastro.invalid"
+                (click)="cadastrar()"> Cadastrar
+        </button>
 
-    <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button
-            name="botaoConfirmar"
-            fxFlex="20%"
-            color="primary"
-            [disabled]="formCadastro.invalid"
-            (click)="atualizar()">
-            Atualizar
-    </button>
+        <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button
+                name="botaoConfirmar"
+                fxFlex="20%"
+                color="primary"
+                [disabled]="formCadastro.invalid"
+                (click)="atualizar()">
+                Atualizar
+        </button>
 
-    <button *ngIf="mostrarBotaoLimpar()" 
-            mat-raised-button 
-            fxFlex="20%" 
-            (click)="limpar()">
-            Limpar
-    </button>
-    <button 
-            mat-raised-button 
-            fxFlex="20%" 
-            (click)="cancelar()">
-            Cancelar
-    </button>
+        <button *ngIf="mostrarBotaoLimpar()" 
+                mat-raised-button 
+                fxFlex="20%" 
+                (click)="limpar()">
+                Limpar
+        </button>
+        <button 
+                mat-raised-button 
+                fxFlex="20%" 
+                (click)="cancelar()">
+                Cancelar
+        </button>
 
-</div>
+   </div>
     </form>
 
 
