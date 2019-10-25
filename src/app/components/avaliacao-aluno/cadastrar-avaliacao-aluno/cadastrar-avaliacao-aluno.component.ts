@@ -51,7 +51,7 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
   ngOnInit() {
 
     this.avaliacaoAluno.atividadesAluno = new AtividadeAluno();
-    this.avaliacaoAluno.avaliacao = new Avaliacao();
+    this.avaliacaoAluno.avaliacoes = new Avaliacao();
 
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 

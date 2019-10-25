@@ -31,6 +31,7 @@ const tokenRootPath = 'api/token/';
 export class AutenticadorService {
   tempoSessao$ = new EventEmitter();
   usuarioLogado: UsuarioLogado;
+  usuarioEstaLogado = false;
 
   constructor(
     private http: HttpClient,
@@ -75,6 +76,7 @@ export class AutenticadorService {
     localStorage.removeItem('expires_at');
     localStorage.removeItem('logo');
     localStorage.removeItem('fotoPerfil');
+    this.usuarioEstaLogado = false
   }
 
   refreshToken() {

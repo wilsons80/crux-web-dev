@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit, AfterContentChecked {
 
     ).subscribe((menu: Menu[]) => {
 
+      this.autenticadorService.usuarioEstaLogado = true;
+
       if (this.usuarioLogado.trocarSenha ) {
         this.router.navigate(['novasenha']);
       } else {

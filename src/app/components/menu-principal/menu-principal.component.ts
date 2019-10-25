@@ -1,3 +1,4 @@
+import { AutenticadorService } from './../../services/autenticador/autenticador.service';
 import { ToolbarPrincipalService } from 'src/app/services/toolbarPrincipal/toolbar-principal.service';
 import { Modulos } from './../../core/modulos';
 import { ControleMenuService } from './../../services/controle-menu/controle-menu.service';
@@ -26,6 +27,7 @@ export class MenuPrincipalComponent implements OnInit {
     private controleMenuService: ControleMenuService,
     private toolbarPrincipalService: ToolbarPrincipalService,
     public menuPrincipalService: MenuPrincipalService,
+    public autenticadorService: AutenticadorService,
     ) { }
 
 
