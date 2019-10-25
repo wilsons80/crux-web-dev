@@ -5,8 +5,8 @@
         <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
             <mat-form-field fxFlex="40%" fxFlexOffset="20px">
                 <mat-label>Selecione um aluno</mat-label>
-                <mat-select [(ngModel)]="encaminhamentoAluno.aluno" name="aluno">
-                    <mat-option *ngFor="let d of alunos" [value]="d">
+                <mat-select [(ngModel)]="encaminhamentoAluno.aluno.id" name="aluno" required>
+                    <mat-option *ngFor="let d of alunos" [value]="d.id">
                         {{d.pessoaFisica.nome}}
                     </mat-option>
                 </mat-select>
@@ -14,8 +14,8 @@
 
             <mat-form-field fxFlex="40%">
                 <mat-label>Selecione uma entidade social</mat-label>
-                <mat-select [(ngModel)]="encaminhamentoAluno.entidadeSocial" name="entidadeSocial">
-                    <mat-option *ngFor="let d of entidadesSociais" [value]="d">
+                <mat-select [(ngModel)]="encaminhamentoAluno.entidadeSocial.id" name="entidadeSocial" required>
+                    <mat-option *ngFor="let d of entidadesSociais" [value]="d.id">
                         {{d.empresa.nomeFantasia}}
                     </mat-option>
                 </mat-select>
@@ -25,7 +25,8 @@
                 <input matInput name="dataEncaminhaAluno" 
                         [matDatepicker]="dataEncaminhaAluno" 
                         placeholder="Data de encaminhamento"
-                        [(ngModel)]="encaminhamentoAluno.dataEncaminhaAluno">
+                        [(ngModel)]="encaminhamentoAluno.dataEncaminhaAluno"
+                        required>
                 <mat-datepicker-toggle matSuffix [for]="dataEncaminhaAluno"></mat-datepicker-toggle>
                 <mat-datepicker #dataEncaminhaAluno></mat-datepicker>
             </mat-form-field>            
