@@ -12,4 +12,15 @@ export class EncaminhamentoAlunoService extends BaseService<EncaminhamentoAluno>
   constructor(http: HttpClient) {
     super(http, Rotas.ENCAMINHAMENTO_ALUNO);
   }
+
+  getAllFiltro(idAluno: number|string, idEntidadeSocial: number|string) {
+    if (idAluno === undefined) { idAluno = ''; }
+    if (idEntidadeSocial === undefined) { idEntidadeSocial = ''; }
+
+    return this.http.get(Rotas.ENCAMINHAMENTO_ALUNO , { params: {
+       aluno: `${idAluno}`,
+       entidadesocial: `${idEntidadeSocial}`
+    }});
+  }
+
 }

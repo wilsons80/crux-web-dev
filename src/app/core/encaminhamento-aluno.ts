@@ -7,6 +7,6 @@ export class EncaminhamentoAluno {
 	descricao: string;
 	dataEncaminhaAluno: Date;
 	aluno: Aluno;
-	entidadesSociais: EntidadesSociais;
+	entidadeSocial: EntidadesSociais;
     usuarioAlteracao: number;
 }

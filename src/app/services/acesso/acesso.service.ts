@@ -27,11 +27,11 @@ export class AcessoService {
     }});
   }
 
-  cadastrarAcesso(cadastroAcesso:CadastroAcesso){
+  cadastrarAcesso(cadastroAcesso: CadastroAcesso){
     return this.http.post(acessoRootPath , cadastroAcesso);
   }
 
-  alterar(cadastroAcesso:CadastroAcesso){
+  alterar(cadastroAcesso: CadastroAcesso){
     return this.http.put(acessoRootPath , cadastroAcesso);
   }
   
