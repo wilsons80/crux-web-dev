@@ -29,7 +29,8 @@ export class CadastrarEncaminhamentoAlunoComponent implements OnInit {
 
   isAtualizar = false;
 
-  alunoSelecionado:Aluno = null;
+  alunoSelecionado: Aluno = null;
+  entidadeSocialSelecionada: EntidadesSociais = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -95,6 +96,9 @@ export class CadastrarEncaminhamentoAlunoComponent implements OnInit {
     this.encaminhamentoAluno.aluno = new Aluno();
     this.encaminhamentoAluno.entidadeSocial = new EntidadesSociais();
     this.encaminhamentoAluno.entidadeSocial.empresa = new Empresa();
+
+    this.entidadeSocialSelecionada = null;
+    this.alunoSelecionado = null;
   }
 
   cancelar() {
@@ -113,5 +117,8 @@ export class CadastrarEncaminhamentoAlunoComponent implements OnInit {
     this.alunoSelecionado = _.find(this.alunos, (a: Aluno) => a.id === idAluno);
   }
 
+  mostrarDadosEntidadeSocial(idEntidadeSocial) {
+    this.entidadeSocialSelecionada = _.find(this.entidadesSociais, (e: EntidadesSociais) => e.id === idEntidadeSocial);
+  }
 
 }

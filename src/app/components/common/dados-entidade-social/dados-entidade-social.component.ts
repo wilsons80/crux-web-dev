@@ -1,5 +1,5 @@
-import { EntidadesSociais } from './../../../core/entidades-sociais';
 import { Component, OnInit, Input } from '@angular/core';
+import { EntidadesSociais } from 'src/app/core/entidades-sociais';
 
 @Component({
   selector: 'dados-entidade-social',

@@ -2,23 +2,35 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
         
     <mat-form-field fxFlex="15%" fxFlexOffset="20px">
-        <input matInput name="dataPrevisaoInicio" [matDatepicker]="dataPrevisaoInicio"
-            placeholder="Data de Previsão de Início:" [(ngModel)]="atividade.dataPrevisaoInicio" disabled>
+        <input matInput name="dataPrevisaoInicio" 
+               [matDatepicker]="dataPrevisaoInicio"
+               placeholder="Data de Previsão de Início" 
+               [(ngModel)]="atividade.dataPrevisaoInicio" 
+               disabled>
         <mat-datepicker-toggle matSuffix [for]="dataPrevisaoInicio"></mat-datepicker-toggle>
         <mat-datepicker #dataPrevisaoInicio></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field fxFlex="15%" fxFlexOffset="20px">
-        <input matInput name="dataPrevisaoTermino" [matDatepicker]="dataPrevisaoTermino"
-            placeholder="Data de Previsão de Fim:" [(ngModel)]="atividade.dataPrevisaoTermino" disabled>
+        <input matInput name="dataPrevisaoTermino" 
+               [matDatepicker]="dataPrevisaoTermino"
+               placeholder="Data de Previsão de Fim" 
+               [(ngModel)]="atividade.dataPrevisaoTermino" 
+               disabled>
         <mat-datepicker-toggle matSuffix [for]="dataPrevisaoTermino"></mat-datepicker-toggle>
         <mat-datepicker #dataPrevisaoTermino></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field style="margin: 0 0 0 20px" fxFlex="45%" appearance="outline">
         <mat-label>Descrição atividade:</mat-label>
-        <textarea #observacoes matInput name="atividade" [(ngModel)]="atividade.descricao" cdkTextareaAutosize
-            #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" maxlength="200" disabled></textarea>
+        <textarea #observacoes matInput name="atividade" 
+                  [(ngModel)]="atividade.descricao" 
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize" 
+                  cdkAutosizeMinRows="3" 
+                  maxlength="200" 
+                  disabled>
+        </textarea>
     </mat-form-field>
 
 
