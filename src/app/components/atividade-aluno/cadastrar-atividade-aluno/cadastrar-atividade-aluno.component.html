@@ -43,12 +43,12 @@
             </div>
         </div>
 
-        <div *ngIf="alunoSelecionado">
-            <dados-aluno [aluno]="alunoSelecionado"></dados-aluno>    
+        <div *ngIf="atividadeAluno.aluno.id">
+            <dados-aluno [aluno]="atividadeAluno.aluno"></dados-aluno>    
         </div>
        
-        <div *ngIf="atividadeSelecionada">
-            <dados-atividade [atividade]=atividadeSelecionada></dados-atividade>
+        <div *ngIf="atividadeAluno.atividade.id">
+            <dados-atividade [atividade]=atividadeAluno.atividade></dados-atividade>
         </div>
 
         <!-- OUTRAS INFORMACOES-->

@@ -14,7 +14,7 @@ export enum Rotas {
     FREQUENCIA_ALUNO                = 'api/frequenciaaluno/',
     PARTICIPANTE_ATENDIMENTO        = 'api/participanteatendimento/',
     PESSOA_FISICA                   = 'api/pessoafisica/',
-    REPROVACAO_ALUNO                = 'api/reprovacaoalino/',
+    REPROVACAO_ALUNO                = 'api/reprovacaoaluno/',
     SITUACAO_VULNERABILIDADE        = 'api/situacoesvulnerabilidade/',
     SOLUCOES                        = 'api/solucoes/',
     UNIFORME_ALUNO                  = 'api/uniformealuno/',
