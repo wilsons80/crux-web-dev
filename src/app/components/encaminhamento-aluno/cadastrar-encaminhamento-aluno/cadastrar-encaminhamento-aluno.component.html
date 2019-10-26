@@ -19,7 +19,7 @@
                 <mat-label>Selecione uma entidade social</mat-label>
                 <mat-select [(ngModel)]="encaminhamentoAluno.entidadeSocial.id" 
                             (selectionChange)="mostrarDadosEntidadeSocial($event.value)"
-                            name="entidadeSocial" 
+                            name="entidadeSocial" (selectionChange)="mostrarDadosAluno($event.value)"
                             required>
                     <mat-option *ngFor="let d of entidadesSociais" [value]="d.id">
                         {{d.empresa.nomeFantasia}}
