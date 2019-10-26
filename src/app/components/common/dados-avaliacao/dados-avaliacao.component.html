@@ -1,0 +1,43 @@
+<mat-toolbar class="titulopartes">Dados da Avaliação</mat-toolbar>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+        
+    <mat-form-field fxFlex="15%" fxFlexOffset="20px">
+        <input matInput name="dataPrevisaoInicio" 
+               placeholder="Nome:" 
+               [(ngModel)]="avaliacao.nome" 
+               disabled>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="15%" fxFlexOffset="20px">
+        <input matInput name="dataInicio" 
+               [matDatepicker]="dataInicio"
+               placeholder="Data de Início" 
+               [(ngModel)]="avaliacao.dataInicio" 
+               disabled>
+        <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
+        <mat-datepicker #dataInicio></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="15%" fxFlexOffset="20px">
+        <input matInput name="dataFim" 
+               [matDatepicker]="dataFim"
+               placeholder="Data de Fim" 
+               [(ngModel)]="avaliacao.dataFim" 
+               disabled>
+        <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+        <mat-datepicker #dataFim></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field style="margin: 0 0 0 20px" fxFlex="45%" appearance="outline">
+        <mat-label>Descrição avaliação:</mat-label>
+        <textarea #observacoes matInput name="atividade" 
+                  [(ngModel)]="avaliacao.descricao" 
+                  cdkTextareaAutosize
+                  #autosize="cdkTextareaAutosize" 
+                  cdkAutosizeMinRows="3" 
+                  maxlength="200" 
+                  disabled>
+        </textarea>
+    </mat-form-field>
+</div>
+

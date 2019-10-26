@@ -3,12 +3,14 @@
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
 
+         <!-- ALUNO ATIVIDADE-->
         <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <!-- Atividade-->
                 <mat-form-field  fxFlex="90%"  fxFlexOffset="20px">
                     <mat-label>Aluno - Atividade:</mat-label>
-                    <mat-select [(ngModel)]="avaliacaoAluno.atividadesAluno.id" name="atividadesAluno" required>
+                    <mat-select [(ngModel)]="avaliacaoAluno.atividadesAluno.id" 
+                                (selectionChange)="mostrarAlunoAtividade($event.value)"
+                                name="atividadesAluno" required>
                         <mat-option *ngFor="let i of atividadesAluno" [value]="i.id">
                             {{i.aluno.pessoaFisica.nome}} - {{i.atividade.descricao}}
                         </mat-option>
@@ -18,13 +20,21 @@
                 </mat-form-field>
         </div>
 
+        <div *ngIf="avaliacaoAluno.atividadesAluno.aluno && avaliacaoAluno.atividadesAluno.atividade">
+            <dados-aluno [aluno]=avaliacaoAluno.atividadesAluno.aluno></dados-aluno>
+            <dados-atividade [atividade]=avaliacaoAluno.atividadesAluno.atividade></dados-atividade>
+        </div>
+
         <mat-toolbar class="titulopartes">Dados Avaliação</mat-toolbar>
       
         <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
                 <mat-form-field fxFlexOffset="20px" fxFlex="40%" style="margin: 0 20px 20px 20px">
                         <mat-label>Avaliações:</mat-label>
-                        <mat-select [(ngModel)]="avaliacaoAluno.avaliacoes.id" name="avaliacao" required>
+                        <mat-select [(ngModel)]="avaliacaoAluno.avaliacoes.id" 
+                                    name="avaliacao" 
+                                    (selectionChange)="mostrarDadosAvaliacao($event.value)"
+                                    required>
                             <mat-option *ngFor="let i of avaliacoes" [value]="i.id">
                                 {{i.nome}}
                             </mat-option>
@@ -59,6 +69,10 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
+        </div>
+
+        <div *ngIf="avaliacaoAluno.avaliacoes?.id">
+            <dados-avaliacao [avaliacao]=avaliacaoAluno.avaliacoes></dados-avaliacao>
         </div>
 
         <!-- BOTOES -->

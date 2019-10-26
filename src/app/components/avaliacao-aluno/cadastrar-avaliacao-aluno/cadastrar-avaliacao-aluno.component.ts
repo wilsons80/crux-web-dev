@@ -1,14 +1,20 @@
-import { AvaliacaoAtividadeService } from 'src/app/services/avaliacao-atividade/avaliacao-atividade.service';
-import { AtividadeAlunoService } from './../../../services/atividade-aluno/atividade-aluno.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import _ from 'lodash';
 import { Acesso } from 'src/app/core/acesso';
 import { AtividadeAluno } from 'src/app/core/atividade-aluno';
 import { Avaliacao } from 'src/app/core/avaliacao';
 import { AvaliacaoAlunoService } from 'src/app/services/avaliacao-aluno/avaliacao-aluno.service';
+import { AvaliacaoAtividadeService } from 'src/app/services/avaliacao-atividade/avaliacao-atividade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { AvaliacaoAluno } from './../../../core/avaliacao-aluno';
 import { NotaAvaliacao } from './../../../core/nota-avaliacao';
+import { AtividadeAlunoService } from './../../../services/atividade-aluno/atividade-aluno.service';
+import { Atividade } from 'src/app/core/atividade';
+import { Aluno } from 'src/app/core/aluno';
+import { AtividadeService } from 'src/app/services/atividade/atividade.service';
+import { AlunoService } from 'src/app/services/aluno/aluno.service';
+
 
 @Component({
   selector: 'app-cadastrar-avaliacao-aluno',
@@ -19,8 +25,11 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
 
   atividadesAluno: AtividadeAluno[];
   avaliacoes: Avaliacao[];
-  avaliacao: Avaliacao;
   notaAvaliacao: NotaAvaliacao;
+  
+  aluno:Aluno;
+  atividade:Atividade;
+  avaliacao: Avaliacao;
 
   avaliacaoAluno: AvaliacaoAluno = new AvaliacaoAluno();
 
@@ -49,19 +58,9 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
 
 
   ngOnInit() {
-
-    this.avaliacaoAluno.atividadesAluno = new AtividadeAluno();
-    this.avaliacaoAluno.avaliacoes = new Avaliacao();
-
-    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
-
-    if (!this.perfilAcesso.insere) {
-      this.mostrarBotaoCadastrar = false;
-    }
-
-    if (!this.perfilAcesso.altera) {
-      this.mostrarBotaoAtualizar = false;
-    }
+    this.inicializarObjetos();
+    
+    this.verificarPerfil();
 
     this.avaliacaoAtividadeService.getAll().subscribe((avaliacoes: Avaliacao[]) => {
       this.avaliacoes = avaliacoes;
@@ -80,6 +79,21 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
       });
     }
 
+  }
+  inicializarObjetos() {
+    this.avaliacaoAluno.atividadesAluno = new AtividadeAluno();
+    this.avaliacaoAluno.avaliacoes = new Avaliacao();
+  }
+  verificarPerfil() {
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+    
+    if (!this.perfilAcesso.insere) {
+      this.mostrarBotaoCadastrar = false;
+    }
+
+    if (!this.perfilAcesso.altera) {
+      this.mostrarBotaoAtualizar = false;
+    }
   }
   mostrarBotaoLimpar() {
     if (this.isAtualizar) return false;
@@ -111,6 +125,20 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
       this.toastService.showSucesso("Avaliação aluno atualizado com sucesso");
     });
 
+  }
+
+  mostrarAlunoAtividade(idAtividadeAluno:number) {
+    
+    this.avaliacaoAluno.atividadesAluno = _.cloneDeep(_.find(this.atividadesAluno, (aa: AtividadeAluno) => aa.id === idAtividadeAluno));
+    
+  }
+
+  mostrarDadosAvaliacao(idAvaliacao:number) {
+
+    console.log("opa", _.find(this.avaliacoes, (a: Avaliacao) => a.id === idAvaliacao));
+    
+
+    this.avaliacaoAluno.avaliacoes = _.cloneDeep (_.find(this.avaliacoes, (a: Avaliacao) => a.id === idAvaliacao));
   }
 
 }
