@@ -1,3 +1,4 @@
+import { DadosAtividadeModule } from './../common/dados-atividade/dados-atividade.module';
 import { AtividadeAlunoComponent } from './atividade-aluno.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,9 @@ import { DadosAlunoModule } from '../common/dados-aluno/dados-aluno.module';
     CommonModule,
     AtividadeAlunoRoutingModule,
     MaterialCommonModule,
-    DadosAlunoModule
+    DadosAlunoModule,
+    DadosAtividadeModule,
+    
   ]
 })
 export class AtividadeAlunoModule { }

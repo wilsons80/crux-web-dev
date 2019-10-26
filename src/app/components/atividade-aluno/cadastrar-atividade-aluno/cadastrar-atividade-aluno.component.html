@@ -12,8 +12,8 @@
                     <mat-label>Alunos:</mat-label>
                     <mat-select 
                         [(ngModel)]="atividadeAluno.aluno.id" 
-                        (selectionChange)="mostrarDadosAluno($event.value)"
                             name="aluno" 
+                            (selectionChange)="mostrarDadosAluno($event.value)"
                             required>
                         <mat-option  *ngFor="let i of alunos" [value]="i.id">
                             {{i.pessoaFisica.nome}}
@@ -30,7 +30,10 @@
                 <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
                     <mat-label>Atividades:</mat-label>
-                    <mat-select [(ngModel)]="atividadeAluno.atividade.id" name="atividade" required>
+                    <mat-select [(ngModel)]="atividadeAluno.atividade.id" 
+                                name="atividade" 
+                                (selectionChange)="mostrarDadosAtividade($event.value)"
+                                required>
                         <mat-option *ngFor="let i of atividades" [value]="i.id">
                             {{i.descricao}}
                         </mat-option>
@@ -43,6 +46,10 @@
 
         <div *ngIf="alunoSelecionado">
             <dados-aluno [aluno]="alunoSelecionado"></dados-aluno>    
+        </div>
+       
+        <div *ngIf="atividadeSelecionada">
+            <dados-atividade [atividade]=atividadeSelecionada></dados-atividade>
         </div>
 
         <!-- OUTRAS INFORMACOES-->

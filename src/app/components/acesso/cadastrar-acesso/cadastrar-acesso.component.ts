@@ -79,6 +79,9 @@ export class CadastrarAcessoComponent implements OnInit {
   }
 
   unidadeSelecionada() {
+
+    console.log("opaaaa");
+    
     if (!this.isAtualizar) {
       this.limparCamposDependendentesUnidade();
       this.moduloService.getModulosPorUnidade(this.cadastroAcesso.idUnidade).subscribe((modulos: Modulo[]) => this.modulos = modulos);

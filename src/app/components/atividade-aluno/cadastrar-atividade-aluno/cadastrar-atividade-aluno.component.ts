@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Acesso } from 'src/app/core/acesso';
@@ -9,6 +10,7 @@ import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { AlunoService } from './../../../services/aluno/aluno.service';
 import _ from 'lodash';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cadastrar-atividade-aluno',
@@ -20,8 +22,9 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
   atividadeAluno: AtividadeAluno = new AtividadeAluno();
   alunos: Aluno[];
   atividades: Atividade[];
-
+  
   alunoSelecionado: Aluno;
+  atividadeSelecionada: Atividade;
 
   perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
@@ -55,23 +58,36 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
       this.mostrarBotaoAtualizar = false;
     }
 
-    this.alunoService.getAll().subscribe((alunos: Aluno[]) => {
-      this.alunos = alunos;
-    })
-
-    this.atividadeService.getAll().subscribe((atividades: Atividade[]) => {
-      this.atividades = atividades;
-    })
-
     let idAtividadeAluno: number;
     idAtividadeAluno = this.activatedRoute.snapshot.queryParams.idAtividadeAluno ? this.activatedRoute.snapshot.queryParams.idAtividadeAluno : null;
-    if (idAtividadeAluno) {
-      this.isAtualizar = true;
-      this.atividadeAlunoService.getById(idAtividadeAluno).subscribe((atividadeAluno: AtividadeAluno) => {
-        this.atividadeAluno = atividadeAluno
-      });
-    }
+   
 
+    this.alunoService.getAll().pipe(
+
+      switchMap((alunos: Aluno[]) => {
+        this.alunos = alunos;
+        return  this.atividadeService.getAll()
+      }),
+
+      switchMap((atividades: Atividade[]) => {
+        this.atividades = atividades;
+        
+        if(idAtividadeAluno){
+          this.isAtualizar = true;
+          return this.atividadeAlunoService.getById(idAtividadeAluno);
+        }
+          return new Observable(ob => ob.next());
+      }),
+      
+    ).subscribe((atividadeAluno: AtividadeAluno)=> {
+      if(atividadeAluno){
+        this.atividadeAluno = atividadeAluno
+        this.mostrarDadosAluno(this.atividadeAluno.aluno.id)
+        this.mostrarDadosAtividade(this.atividadeAluno.atividade.id)
+      }
+    })
+
+ 
   }
   mostrarBotaoLimpar() {
     if (this.isAtualizar) return false;
@@ -107,6 +123,10 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
 
   mostrarDadosAluno(idAluno){
     this.alunoSelecionado = _.find(this.alunos, (a:Aluno) => a.id === idAluno);
+  }
+  
+  mostrarDadosAtividade(idAtividade){
+    this.atividadeSelecionada = _.find(this.atividades, (a:Atividade) => a.id === idAtividade);
   }
 
 }
