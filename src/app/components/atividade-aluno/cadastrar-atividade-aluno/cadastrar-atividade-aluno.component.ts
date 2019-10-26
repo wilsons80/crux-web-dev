@@ -122,11 +122,11 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
   }
 
   mostrarDadosAluno(idAluno) {
-    this.atividadeAluno.aluno = _.find(this.alunos, (a: Aluno) => a.id === idAluno);
+    this.atividadeAluno.aluno = _.cloneDeep(_.find(this.alunos, (a: Aluno) => a.id === idAluno));
   }
 
   mostrarDadosAtividade(idAtividade) {
-    this.atividadeAluno.atividade = _.find(this.atividades, (a: Atividade) => a.id === idAtividade);
+    this.atividadeAluno.atividade = _.cloneDeep(_.find(this.atividades, (a: Atividade) => a.id === idAtividade));
   }
 
 }
