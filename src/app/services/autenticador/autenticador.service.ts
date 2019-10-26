@@ -81,7 +81,6 @@ export class AutenticadorService {
 
   refreshToken() {
     this.parametros.getTimeExpiredToken().subscribe((valor: number) => {
-      this.tempoSessao$.emit({valor});
       if (moment().isBetween(this.getExpiration().subtract(valor, 'minutes'), this.getExpiration())) {
         return this.http.get(tokenRootPath + `refresh-token`)
           .pipe(
@@ -91,6 +90,7 @@ export class AutenticadorService {
               this.usuarioLogado = usuarioLogado;
               this.setSession(usuarioLogado);
               this.toolbarPrincipalService.setarPropriedadesUsuarioLogado(usuarioLogado);
+              this.usuarioEstaLogado = true;
               return this.getLogoUnidade(usuarioLogado.unidadeLogada);
             }),
 
@@ -111,6 +111,7 @@ export class AutenticadorService {
             /** Foto Perfil */
           ).subscribe((arquivoPFRetorno) => {
             this.setFotoPerfil(arquivoPFRetorno);
+            this.tempoSessao$.emit({valor});
           });
       }
     });
