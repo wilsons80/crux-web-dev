@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Familiares } from 'src/app/core/familiares';
 import { Acesso } from 'src/app/core/acesso';
 import { Aluno } from 'src/app/core/aluno';
@@ -10,7 +10,7 @@ import { FileUtils } from 'src/app/utils/file-utils';
   templateUrl: './dados-aluno.component.html',
   styleUrls: ['./dados-aluno.component.css']
 })
-export class DadosAlunoComponent implements OnInit {
+export class DadosAlunoComponent implements OnInit,OnChanges {
 
   @Input() aluno: Aluno;
 
@@ -18,9 +18,14 @@ export class DadosAlunoComponent implements OnInit {
               private fileUtils: FileUtils) { }
 
   ngOnInit() {
-    this.carregarDadosAluno();
+    
   }
 
+  ngOnChanges(changes:SimpleChanges): void {
+   if(changes['aluno']){
+    this.carregarDadosAluno();
+   }
+  }
 
   getBackground() {
     if (this.aluno.pessoaFisica && this.aluno.pessoaFisica.urlFoto) {
