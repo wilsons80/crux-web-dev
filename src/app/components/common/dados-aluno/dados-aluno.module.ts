@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DadosAlunoComponent } from '../../familiar-aluno/dados-aluno/dados-aluno.component';
+import { DadosAlunoComponent } from './dados-aluno.component';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 
 @NgModule({
   declarations: [DadosAlunoComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialCommonModule
   ],
   exports:[DadosAlunoComponent]
 })

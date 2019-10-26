@@ -41,7 +41,11 @@
             </div>
         </div>
 
-        <!-- DATA-->
+        <div *ngIf="alunoSelecionado">
+            <dados-aluno [aluno]="alunoSelecionado"></dados-aluno>    
+        </div>
+
+        <!-- OUTRAS INFORMACOES-->
         <mat-toolbar class="titulopartes">Outras Informações</mat-toolbar>
 
         <div fxLayout="row">

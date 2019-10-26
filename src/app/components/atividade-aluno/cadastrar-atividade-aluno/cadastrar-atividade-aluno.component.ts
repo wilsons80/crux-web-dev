@@ -106,7 +106,6 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
   }
 
   mostrarDadosAluno(idAluno){
-    console.log("aluno", _.find(this.alunos, (a:Aluno) => a.id === idAluno))
     this.alunoSelecionado = _.find(this.alunos, (a:Aluno) => a.id === idAluno);
   }
 
