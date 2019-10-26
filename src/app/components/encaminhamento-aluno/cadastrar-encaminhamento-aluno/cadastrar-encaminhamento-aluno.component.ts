@@ -1,16 +1,16 @@
-import { EncaminhamentoAlunoService } from './../../../services/encaminhamento-aluno/encaminhamento-aluno.service';
-import { EntidadesSociais } from 'src/app/core/entidades-sociais';
-import { Aluno } from './../../../core/aluno';
-import { Component, OnInit } from '@angular/core';
-import { EncaminhamentoAluno } from 'src/app/core/encaminhamento-aluno';
-import { Acesso } from 'src/app/core/acesso';
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { ToastService } from 'src/app/services/toast/toast.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import _ from 'lodash';
+import { Acesso } from 'src/app/core/acesso';
+import { Empresa } from 'src/app/core/empresa';
+import { EncaminhamentoAluno } from 'src/app/core/encaminhamento-aluno';
+import { EntidadesSociais } from 'src/app/core/entidades-sociais';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { EntidadeSocialService } from 'src/app/services/entidade-social/entidade-social.service';
-import { Empresa } from 'src/app/core/empresa';
-
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { Aluno } from './../../../core/aluno';
+import { EncaminhamentoAlunoService } from './../../../services/encaminhamento-aluno/encaminhamento-aluno.service';
 @Component({
   selector: 'cadastrar-encaminhamento-aluno',
   templateUrl: './cadastrar-encaminhamento-aluno.component.html',
@@ -28,6 +28,8 @@ export class CadastrarEncaminhamentoAlunoComponent implements OnInit {
   mostrarBotaoAtualizar = true;
 
   isAtualizar = false;
+
+  alunoSelecionado:Aluno = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -106,5 +108,10 @@ export class CadastrarEncaminhamentoAlunoComponent implements OnInit {
       this.toastService.showSucesso('Encaminhamento aluno atualizado com sucesso');
     });
   }
+
+  mostrarDadosAluno(idAluno) {
+    this.alunoSelecionado = _.find(this.alunos, (a: Aluno) => a.id === idAluno);
+  }
+
 
 }

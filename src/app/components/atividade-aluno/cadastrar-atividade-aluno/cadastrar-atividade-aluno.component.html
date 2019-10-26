@@ -10,8 +10,12 @@
                 <mat-toolbar class="titulopartes">Aluno</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
                     <mat-label>Alunos:</mat-label>
-                    <mat-select [(ngModel)]="atividadeAluno.aluno.id" name="aluno" required>
-                        <mat-option *ngFor="let i of alunos" [value]="i.id">
+                    <mat-select 
+                        [(ngModel)]="atividadeAluno.aluno.id" 
+                        (selectionChange)="mostrarDadosAluno($event.value)"
+                            name="aluno" 
+                            required>
+                        <mat-option  *ngFor="let i of alunos" [value]="i.id">
                             {{i.pessoaFisica.nome}}
                         </mat-option>
                     </mat-select>

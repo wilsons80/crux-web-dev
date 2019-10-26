@@ -8,6 +8,7 @@ import { AtividadeAlunoService } from 'src/app/services/atividade-aluno/atividad
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { AlunoService } from './../../../services/aluno/aluno.service';
+import _ from 'lodash';
 
 @Component({
   selector: 'app-cadastrar-atividade-aluno',
@@ -19,6 +20,8 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
   atividadeAluno: AtividadeAluno = new AtividadeAluno();
   alunos: Aluno[];
   atividades: Atividade[];
+
+  alunoSelecionado: Aluno;
 
   perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
@@ -100,6 +103,11 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
       this.toastService.showSucesso("Atividade aluno atualizado com sucesso");
     });
 
+  }
+
+  mostrarDadosAluno(idAluno){
+    console.log("aluno", _.find(this.alunos, (a:Aluno) => a.id === idAluno))
+    this.alunoSelecionado = _.find(this.alunos, (a:Aluno) => a.id === idAluno);
   }
 
 }
