@@ -12,4 +12,17 @@ export class AtividadeAlunoService extends BaseService<AtividadeAluno> {
   constructor(http: HttpClient) {
     super(http, Rotas.ATIVIDADE_ALUNO);
   }
+
+  getByAluno(idAluno:number){
+    return this.http.get(Rotas.ATIVIDADE_ALUNO + `aluno/${idAluno}`)
+  }
+ 
+  getByAtividade(idAtividade:number){
+    return this.http.get(Rotas.ATIVIDADE_ALUNO + `atividade/${idAtividade}`)
+  }
+ 
+  getByAlunoEAtividade(idAluno:number,idAtivdade:number){
+    return this.http.get(Rotas.ATIVIDADE_ALUNO + `aluno/${idAluno}/atividade/${idAtivdade}`)
+  }
+
 }
