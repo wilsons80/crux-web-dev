@@ -4,6 +4,7 @@ import { AlunoTrabalhandoRoutingModule } from './aluno-trabalhando-routing.modul
 import { AlunoTrabalhandoComponent } from './aluno-trabalhando.component';
 import { CadastrarAlunoTrabalhandoComponent } from './cadastrar-aluno-trabalhando/cadastrar-aluno-trabalhando.component';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { DadosAlunoModule } from '../common/dados-aluno/dados-aluno.module';
 
 
 
@@ -12,7 +13,8 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     AlunoTrabalhandoRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    DadosAlunoModule
   ]
 })
 export class AlunoTrabalhandoModule { }
