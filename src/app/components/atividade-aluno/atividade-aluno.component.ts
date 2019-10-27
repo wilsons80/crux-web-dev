@@ -50,6 +50,7 @@ export class AtividadeAlunoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.limpar();
 
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
     this.dataSource.paginator = this.paginator;
@@ -68,8 +69,8 @@ export class AtividadeAlunoComponent implements OnInit {
 
   limpar() {
     this.mostrarTabela = false;
-    this.aluno = null;
-    this.atividade = null;
+    this.aluno = new Aluno()  ;
+    this.atividade = new Atividade();
     this.dataSource.data = [];
   }
 
