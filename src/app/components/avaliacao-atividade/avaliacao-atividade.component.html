@@ -3,10 +3,10 @@
     <div class="painel-consultar">
         <form #formConsultarDepartamento="ngForm">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
-                <mat-icon>account_tree</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione uma avaliação</mat-label>
-                    <mat-select [(ngModel)]="avaliacao" name="avaliacao">
+                    <mat-icon matPrefix>search</mat-icon>
+                    <mat-label  fxFlexOffset="20px" >Selecione uma avaliação</mat-label>
+                    <mat-select  fxFlexOffset="20px" [(ngModel)]="avaliacao" name="avaliacao">
                         <mat-option *ngFor="let d of avaliacoes" [value]="d">
                             {{d.nome}}
                         </mat-option>
@@ -48,7 +48,7 @@
                         <mat-icon>delete</mat-icon>
                     </button>
                     <button mat-button (click)="atualizar(element)">
-                        <mat-icon>create</mat-icon>
+                        <mat-icon>search</mat-icon>
                     </button>
                 </td>
             </ng-container>

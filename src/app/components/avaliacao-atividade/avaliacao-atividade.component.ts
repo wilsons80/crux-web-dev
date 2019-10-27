@@ -4,6 +4,8 @@ import { Avaliacao } from 'src/app/core/avaliacao';
 import { AvaliacaoAtividadeService } from 'src/app/services/avaliacao-atividade/avaliacao-atividade.service';
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { AtividadeService } from 'src/app/services/atividade/atividade.service';
+import { Atividade } from 'src/app/core/atividade';
 
 @Component({
   selector: 'app-avaliacao-atividade',
@@ -15,6 +17,7 @@ export class AvaliacaoAtividadeComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   avaliacoes: Avaliacao[];
+  atividades: Atividade[];
   mostrarTabela = false;
   avaliacao: Avaliacao = new Avaliacao();
   msg: string;
@@ -99,7 +102,7 @@ export class AvaliacaoAtividadeComponent implements OnInit {
   verificaMostrarTabela(avaliacoes: Avaliacao[]) {
     if(!avaliacoes || avaliacoes.length == 0) {
       this.mostrarTabela = false; 
-      this.msg = "Nenhuma meta cadastrada.";
+      this.msg = "Nenhuma avaliação cadastrada.";
     } else{
       this.mostrarTabela = true;
     }

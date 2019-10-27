@@ -7,7 +7,8 @@
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
             <mat-form-field fxFlex= "95%" fxFlexOffset="20px" >
-                <input matInput maxlength="200"  name="nome" placeholder="Nome da Avaliação" [(ngModel)]="avaliacao.nome" required>
+                <input #nome matInput maxlength="200"  name="nome" placeholder="Nome da Avaliação" [(ngModel)]="avaliacao.nome" required>
+                <mat-hint align="end">{{nome.value.length}} / 200</mat-hint>
             </mat-form-field>
         </div>
 
@@ -15,13 +16,13 @@
         <mat-toolbar class="titulopartes">Data</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex= "50%" fxFlexOffset="20px" >
+            <mat-form-field fxFlex= "30%" fxFlexOffset="20px" >
                 <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início" [(ngModel)]="avaliacao.dataInicio" required>
                 <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
                 <mat-datepicker #dataInicio></mat-datepicker>
              </mat-form-field>
 
-             <mat-form-field fxFlex= "50%">
+             <mat-form-field   fxFlex= "30%">
                 <input matInput name= "dataFim" [matDatepicker]="dataFim" placeholder="Data Fim" [(ngModel)]="avaliacao.dataFim">
                 <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
                 <mat-datepicker #dataFim></mat-datepicker>
@@ -31,8 +32,11 @@
 
          <mat-toolbar class="titulopartes">Descrição</mat-toolbar>
          <div fxLayout="row" fxLayoutGap="100px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-            <mat-form-field fxFlex="95%" fxFlexOffset="20px">
-                    <input matInput maxlength="200" name="nome" placeholder="Descrição da atividade" [(ngModel)]="avaliacao.descricao">
+            <mat-form-field fxFlexOffset="20px"  fxFlex="45%" appearance="outline">
+                <mat-label>Descrição da atividade:</mat-label>
+                <textarea #observacoes matInput name="observacoes" [(ngModel)]="avaliacao.descricao" cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" maxlength="200"></textarea>
+                    <mat-hint align="end">{{observacoes.value.length}} / 200</mat-hint>
             </mat-form-field>
         </div>
 
