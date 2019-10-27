@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { UniformeEntregueAlunoRoutingModule } from './uniforme-entregue-aluno-routing.module';
 import { CadastrarUniformeEntregueAlunoComponent } from './cadastrar-uniforme-entregue-aluno/cadastrar-uniforme-entregue-aluno.component';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { DadosAlunoModule } from '../common/dados-aluno/dados-aluno.module';
+import { DadosAtividadeModule } from '../common/dados-atividade/dados-atividade.module';
 
 
 @NgModule({
@@ -12,7 +14,9 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     UniformeEntregueAlunoRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    DadosAlunoModule,
+    DadosAtividadeModule
   ]
 })
 export class UniformeEntregueAlunoModule { }
