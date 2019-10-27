@@ -42,8 +42,7 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
 
   ngOnInit() {
 
-    this.atividadeAluno.aluno = new Aluno();
-    this.atividadeAluno.atividade = new Atividade();
+    this.limpar();
 
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
@@ -55,38 +54,27 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
       this.mostrarBotaoAtualizar = false;
     }
 
+    this.alunoService.getAll().subscribe((alunos: Aluno[]) => {
+      this.alunos = alunos;
+    });
+
+    this.atividadeService.getAll().subscribe((atividades: Atividade[]) => {
+      this.atividades = atividades;
+    });
+
+
     let idAtividadeAluno: number;
-    idAtividadeAluno = this.activatedRoute.snapshot.queryParams.idAtividadeAluno ? this.activatedRoute.snapshot.queryParams.idAtividadeAluno : null;
+    idAtividadeAluno = this.activatedRoute.snapshot.queryParams.idAtividadeAluno ?
+                       this.activatedRoute.snapshot.queryParams.idAtividadeAluno : null;
 
-
-    this.alunoService.getAll().pipe(
-
-      switchMap((alunos: Aluno[]) => {
-        this.alunos = alunos;
-        return  this.atividadeService.getAll()
-      }),
-
-      switchMap((atividades: Atividade[]) => {
-        this.atividades = atividades;
-
-        if(idAtividadeAluno){
-          this.isAtualizar = true;
-          return this.atividadeAlunoService.getById(idAtividadeAluno);
-        }
-
-        return new Observable(ob => ob.next());
-      }),
-
-    ).subscribe((atividadeAluno: AtividadeAluno)=> {
-      if(atividadeAluno){
-        this.atividadeAluno = atividadeAluno
-        this.mostrarDadosAluno(this.atividadeAluno.aluno.id)
-        this.mostrarDadosAtividade(this.atividadeAluno.atividade.id)
-      }
-    })
-
- 
+    if(idAtividadeAluno) {
+      this.isAtualizar = true;
+      this.atividadeAlunoService.getById(idAtividadeAluno).subscribe((atividadeAluno: AtividadeAluno) => {
+        this.atividadeAluno = atividadeAluno;
+      });
+    }
   }
+
   mostrarBotaoLimpar() {
     if (this.isAtualizar) { return false; }
     if (!this.mostrarBotaoAtualizar) { return false; }

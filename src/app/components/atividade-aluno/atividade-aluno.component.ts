@@ -26,11 +26,10 @@ export class AtividadeAlunoComponent implements OnInit {
   atividadeAluno: AtividadeAluno = new AtividadeAluno();
 
   alunos: Aluno[];
-  aluno:Aluno;
+  aluno: Aluno;
 
-  atividades:Atividade[];
-  atividade:Atividade;
-  
+  atividades: Atividade[];
+  atividade: Atividade;
 
   msg: string;
   perfilAcesso: Acesso;
@@ -51,18 +50,19 @@ export class AtividadeAlunoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
     this.dataSource.paginator = this.paginator;
 
-    this.alunoService.getAll().subscribe((alunos:Aluno[]) => {
+    this.alunoService.getAll().subscribe((alunos: Aluno[]) => {
       this.alunos = alunos;
-    })
+    });
 
-    this.atividadeService.getAll().subscribe((atividades:Atividade[]) => {
+    this.atividadeService.getAll().subscribe((atividades: Atividade[]) => {
       this.atividades = atividades;
-    })
+    });
 
-    this.getAll();
+    this.consultar();
   }
 
 
@@ -74,55 +74,16 @@ export class AtividadeAlunoComponent implements OnInit {
   }
 
   consultar() {
-
-    if(!this.aluno && !this.atividade) {this.getAll()}
-
-    if(this.aluno && !this.atividade) {this.getPorAluno()}
-   
-    if(!this.aluno && this.atividade) {this.getPorAtividade()}
-   
-    if(this.aluno && this.atividade) {this.getPorAlunoEAtividade()}
-
-  }
-  getPorAlunoEAtividade() {
-    this.atividadeAlunoService.getByAlunoEAtividade(this.aluno.id, this.atividade.id).subscribe((atividadeAluno: AtividadeAluno[]) => {
-    
+    this.atividadeAlunoService.getAllFiltro(this.aluno.id, this.atividade.id).subscribe((atividadeAluno: AtividadeAluno[]) => {
       if (_.isEmpty(atividadeAluno)) {
-        this.mostrarTabela = false
-        this.msg = "Nenhum registro para a pesquisa selecionada"
+        this.mostrarTabela = false;
+        this.msg = 'Nenhum registro para a pesquisa selecionada';
       } else {
         this.dataSource.data = atividadeAluno;
         this.mostrarTabela = true;
       }
-    })
+    });
   }
-
-  getPorAtividade() {
-    this.atividadeAlunoService.getByAtividade(this.atividade.id).subscribe((atividadeAluno: AtividadeAluno[]) => {
-    
-      if (_.isEmpty(atividadeAluno)) {
-        this.mostrarTabela = false
-        this.msg = "Nenhum registro para a pesquisa selecionada"
-      } else {
-        this.dataSource.data = atividadeAluno;
-        this.mostrarTabela = true;
-      }
-    })
-    
-  }
-  getPorAluno() {
-    this.atividadeAlunoService.getByAluno(this.aluno.id).subscribe((atividadeAluno: AtividadeAluno[]) => {
-    
-      if (_.isEmpty(atividadeAluno)) {
-        this.mostrarTabela = false
-        this.msg = "Nenhum registro para a pesquisa selecionada"
-      } else {
-        this.dataSource.data = atividadeAluno;
-        this.mostrarTabela = true;
-      }
-    })
-  }
-
 
   atualizar(atividadeAluno: AtividadeAluno) {
     this.router.navigate(['/atividadealuno/cadastrar'], { queryParams: { idAtividadeAluno: atividadeAluno.id } });
@@ -154,19 +115,11 @@ export class AtividadeAlunoComponent implements OnInit {
     );
   }
 
-  getAll() {
-
-      this.atividadeAlunoService.getAll().subscribe((atividadesAlunos: AtividadeAluno[]) => {
-        this.atividadesAlunos = atividadesAlunos;
-        this.dataSource.data = atividadesAlunos ? atividadesAlunos : [];
-        this.verificaMostrarTabela(atividadesAlunos);
-      })
-  }
 
   verificaMostrarTabela(atividadesAlunos: AtividadeAluno[]) {
-    if (!atividadesAlunos || atividadesAlunos.length == 0) {
+    if (!atividadesAlunos || atividadesAlunos.length === 0) {
       this.mostrarTabela = false;
-      this.msg = "Nenhuma Atividade Aluno cadastrada."
+      this.msg = 'Nenhuma Atividade Aluno cadastrada.';
     } else {
       this.mostrarTabela = true;
     }

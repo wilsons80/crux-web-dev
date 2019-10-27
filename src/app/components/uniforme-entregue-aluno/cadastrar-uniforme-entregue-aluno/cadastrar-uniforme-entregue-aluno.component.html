@@ -1,1 +1,116 @@
-<p>cadastrar-uniforme-entregue-aluno works!</p>
+<mat-toolbar class="subtitulo">Entrega de uniforme</mat-toolbar>
+
+<div class="painel-principal" style="padding: 10px;">
+    <form #formCadastro="ngForm">
+
+        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+            <div fxLayout="column" fxFlex="45%">
+                <mat-toolbar class="titulopartes">Aluno</mat-toolbar>
+                <mat-form-field style="margin: 0 20px 20px 20px">
+                    <mat-label>Alunos:</mat-label>
+                    <mat-select [(ngModel)]="uniformeAluno.atividadesAluno.aluno.id" 
+                                name="aluno" 
+                                (selectionChange)="mostrarDadosAluno($event.value)"
+                                required>
+                        <mat-option  *ngFor="let i of alunos" [value]="i.id">
+                            {{i.pessoaFisica.nome}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="alunos?.length === 0" align="start">Nenhum aluno cadastrado</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="column" fxFlex="45%">
+                <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
+                <mat-form-field style="margin: 0 20px 20px 20px">
+                    <mat-label>Atividades:</mat-label>
+                    <mat-select [(ngModel)]="uniformeAluno.atividadesAluno.atividade.id" 
+                                name="atividade" 
+                                (selectionChange)="mostrarDadosAtividade($event.value)"
+                                required>
+                        <mat-option *ngFor="let i of atividades" [value]="i.id">
+                            {{i.descricao}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="atividades?.length === 0" align="start">Nenhuma atividade cadastrada</mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <!-- OUTRAS INFORMACOES-->
+        <mat-toolbar class="titulopartes">Outras Informações</mat-toolbar>
+
+        <div fxLayout="row">
+
+            <mat-form-field fxFlex="20%" fxFlexOffset="20px">
+                <input matInput 
+                        name="nomeUniforme" 
+                        maxlength="45"
+                        placeholder="Nome do uniforme"
+                        [(ngModel)]="uniformeAluno.nomeUniforme">
+            </mat-form-field>
+        
+            <mat-form-field style="margin: 0 0 0 20px" fxFlex="15%" >
+                <input style="margin-left: 20px" 
+                       matInput 
+                       name="dataUniformeEntregue"
+                       [matDatepicker]="dataUniformeEntregue" 
+                       placeholder="Data entrega do uniforme"
+                       [(ngModel)]="uniformeAluno.dataUniformeEntregue">
+                <mat-datepicker-toggle matSuffix [for]="dataUniformeEntregue"></mat-datepicker-toggle>
+                <mat-datepicker #dataUniformeEntregue></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="20%">
+                <input matInput 
+                        name="nomeUniforme" 
+                        maxlength="45"
+                        placeholder="Nome do uniforme"
+                        [(ngModel)]="uniformeAluno.nomeUniforme">
+            </mat-form-field>
+
+            <mat-form-field fxFlex="20%">
+                <input matInput 
+                        name="qtdUniformeEntregue" 
+                        maxlength="10"
+                        placeholder="Quantidade de uniforme entregue"
+                        [(ngModel)]="uniformeAluno.qtdUniformeEntregue"
+                        pattern="[0-9]+$">
+            </mat-form-field>
+        </div>
+
+
+        <div *ngIf="uniformeAluno.atividadesAluno.aluno.id">
+            <dados-aluno [aluno]="uniformeAluno.atividadesAluno.aluno"></dados-aluno>    
+        </div>
+        
+        <div *ngIf="uniformeAluno.atividadesAluno.atividade.id">
+            <dados-atividade [atividade]=uniformeAluno.atividadesAluno.atividade></dados-atividade>
+        </div>
+
+
+        <!-- BOTOES -->
+        <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+            fxFlexFill>
+            <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button name="botaoConfirmar" fxFlex="20%"
+                color="primary" [disabled]="formCadastro.invalid" (click)="cadastrar()"> Cadastrar
+            </button>
+
+            <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button name="botaoConfirmar" fxFlex="20%"
+                color="primary" [disabled]="formCadastro.invalid" (click)="atualizar()">
+                Atualizar
+            </button>
+
+            <button *ngIf="mostrarBotaoLimpar()" mat-raised-button fxFlex="20%" (click)="limpar()">
+                Limpar
+            </button>
+            <button mat-raised-button fxFlex="20%" (click)="cancelar()">
+                Cancelar
+            </button>
+
+        </div>
+    </form>
+
+</div>
