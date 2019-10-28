@@ -13,32 +13,10 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-
-                <mat-form-field fxFlex="30%" fxFlexOffset="20px" class="mat-form-field-invalid: dataDoFato.errors.max">
-                    <mat-icon matPrefix>search</mat-icon>
-                    <mat-label fxFlexOffset="20px">Selecione um data de matricula do aluno</mat-label>
-                    <input matInput fxFlexOffset="20px"
-                           [max]="maxDate"
-                           [min]="minDate"
-                           name="datareferencia"
-                           #datareferencia="ngModel"
-                           [matDatepicker]="datareferencia" 
-                           placeholder="Data de referência da matricula do aluno"
-                           [(ngModel)]="filtroBusca.dataReferencia">
-                    <mat-datepicker-toggle matSuffix [for]="datareferencia"></mat-datepicker-toggle>
-                    <mat-datepicker #datareferencia></mat-datepicker>
-                </mat-form-field>
-            </div>
-
-            <div *ngIf="isFiltroSelecionado() && !isAtividadeVigente()"
-                  style="text-align: center; border-style: solid; border-color: coral;margin-bottom: 15px;">
-                <span style="color: blue">
-                    A atividade não está vigente na data selecionada.
-                </span>
             </div>
 
             <div dir="rtl" class="botoes" fxLayoutGap="20px" style="padding-top: 10px; padding-bottom: 10px;" fxFlexFill>
-                <button mat-raised-button fxFlex="20%" (click)="consultar()" *ngIf="isAtividadeVigente()">
+                <button mat-raised-button fxFlex="20%" (click)="consultar()" *ngIf="filtroBusca.atividade.id">
                     CONSULTAR
                 </button>
 
@@ -51,10 +29,18 @@
                 <dados-atividade [atividade]=filtroBusca.atividade></dados-atividade>
             </div>                
 
+            <div *ngIf="mostrarTabela" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
+                <mat-form-field fxFlex="100%" fxFlexOffset="20px">
+                    <mat-icon matPrefix>search</mat-icon>
+                    <mat-label fxFlexOffset="20px">Informe um valor para filtrar</mat-label>
+                    <input fxFlexOffset="20px" matInput (keyup)="applyFilter($event.target.value)" >
+                </mat-form-field>
+            </div>
+
             <table *ngIf="mostrarTabela; else tabelaSemDados" matSort matSortDisableClear 
                    mat-table 
                    [dataSource]="dataSource" 
-                   style="margin-top: 20px">
+                   style="margin-top: 10px">
 
                 <ng-container matColumnDef="aluno">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Aluno </th>
@@ -122,6 +108,13 @@
                         </mat-form-field>
                     </td>
                 </ng-container>
+                
+                <ng-container matColumnDef="datamatricula">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de matrícula </th>
+                    <td mat-cell *matCellDef="let element; let i = index"> 
+                        {{element.atividadesAluno.dataInicioAtividade | dataSimples}}
+                    </td>
+                </ng-container>
 
                 <ng-container matColumnDef="acoes">
                     <th mat-header-cell *matHeaderCellDef> Ações </th>
@@ -149,7 +142,7 @@
             </div>
         </ng-template>
 
-        <div fxLayout="row" *ngIf="perfilAcesso.insere && isFiltroSelecionado() && isAtividadeVigente()" 
+        <div fxLayout="row" *ngIf="perfilAcesso.insere && filtroBusca.atividade.id" 
              fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-top: 50px">
             <div>
                 <button matTooltip="Adicionar nova entrega de uniforme" mat-fab color="primary" (click)="novo()">

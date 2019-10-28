@@ -13,16 +13,12 @@ export class UniformeEntregeAlunoService extends BaseService<UniformeAluno> {
     super(http, Rotas.UNIFORME_ALUNO);
   }
 
-  alterarAll(uniformesAluno: UniformeAluno[], idAtividade: number, data: Date ) {
-    return this.http.put(`${Rotas.UNIFORME_ALUNO}atividade/${idAtividade}`, uniformesAluno, { params : {
-      data: `${data.getTime()}`
-    }});
+  alterarAll(uniformesAluno: UniformeAluno[], idAtividade: number) {
+    return this.http.put(`${Rotas.UNIFORME_ALUNO}atividade/${idAtividade}`, uniformesAluno);
   }
 
-  getAllAlunosMatriculadosNaAtividadeNoPeriodo(idAtividade: number, dataReferencia: Date) {
-    return this.http.get(Rotas.UNIFORME_ALUNO + 'matriculado/atividade/' + idAtividade, { params: {
-      dataReferencia: `${dataReferencia.getTime()}`
-    }});
+  getAllAlunosMatriculadosNaAtividade(idAtividade: number) {
+    return this.http.get(Rotas.UNIFORME_ALUNO + 'matriculado/atividade/' + idAtividade);
   }
 
 }

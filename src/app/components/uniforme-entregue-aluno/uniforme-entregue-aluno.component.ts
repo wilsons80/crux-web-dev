@@ -15,7 +15,6 @@ import * as _ from 'lodash';
 import { ToastService } from 'src/app/services/toast/toast.service';
 
 class FiltroBusca {
-  dataReferencia: Date;
   atividade: Atividade = new Atividade();
 }
 
@@ -46,7 +45,7 @@ export class UniformeEntregueAlunoComponent implements OnInit {
   perfilAcesso: Acesso;
 
   mostrarTabela = false;
-  displayedColumns: string[] = ['aluno', 'uniforme', 'dataUniformeEntregue', 'qtdUniformeEntregue', 'acoes'];
+  displayedColumns: string[] = ['aluno', 'uniforme', 'dataUniformeEntregue', 'qtdUniformeEntregue', 'datamatricula', 'acoes'];
   dataSource: MatTableDataSource<UniformeAluno> = new MatTableDataSource();
 
   constructor(
@@ -70,6 +69,10 @@ export class UniformeEntregueAlunoComponent implements OnInit {
     });
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
   limpar() {
     this.filtroBusca = new FiltroBusca();
     this.mostrarTabela = false;
@@ -88,7 +91,7 @@ export class UniformeEntregueAlunoComponent implements OnInit {
   }
 
   atualizar() {
-    this.uniformeEntregeAlunoService.alterarAll(this.uniformesAluno, this.filtroBusca.atividade.id, this.filtroBusca.dataReferencia)
+    this.uniformeEntregeAlunoService.alterarAll(this.uniformesAluno, this.filtroBusca.atividade.id)
     .subscribe(() => {
       this.router.navigate(['uniformeentregue']);
       this.toastService.showSucesso('Entrega de uniforme atualizada com sucesso');
@@ -121,18 +124,16 @@ export class UniformeEntregueAlunoComponent implements OnInit {
   }
 
   consultar() {
-    this.atividadeAlunoService.getAllAlunosMatriculadosNaAtividadeNoPeriodo(this.filtroBusca.atividade.id,
-                                                                            this.filtroBusca.dataReferencia)
+    this.atividadeAlunoService.getAllAlunosMatriculadosNaAtividade(this.filtroBusca.atividade.id)
     .subscribe((atividadesAluno: AtividadeAluno[]) => {
 
       if (atividadesAluno && atividadesAluno.length === 0) {
         this.mostrarTabela = false;
-        this.toastService.showAlerta('Não há alunos matriculados nessa atividade no período informado.');
+        this.toastService.showAlerta('Não há alunos matriculados nessa atividade.');
       } else {
         this.atividadesAlunos = atividadesAluno;
 
-        this.uniformeEntregeAlunoService.getAllAlunosMatriculadosNaAtividadeNoPeriodo(this.filtroBusca.atividade.id,
-                                                                                      this.filtroBusca.dataReferencia)
+        this.uniformeEntregeAlunoService.getAllAlunosMatriculadosNaAtividade(this.filtroBusca.atividade.id)
         .subscribe((uniformesAluno: UniformeAluno[]) => {
             this.uniformesAluno = uniformesAluno ? uniformesAluno : [];
             this.dataSource.data = this.uniformesAluno;
@@ -142,23 +143,6 @@ export class UniformeEntregueAlunoComponent implements OnInit {
         });
       }
     });
-  }
-
-
-  isAtividadeVigente() {
-    if (!!this.filtroBusca.atividade.id  && !!this.filtroBusca.dataReferencia) {
-      if (this.filtroBusca.dataReferencia.getTime() >= new Date(this.filtroBusca.atividade.dataInicio).getTime() &&
-          (this.filtroBusca.atividade.dataFim === undefined
-          ||
-          this.filtroBusca.dataReferencia.getTime() <= new Date(this.filtroBusca.atividade.dataFim).getTime()
-          )) {
-        return true;
-      }
-    }
-  }
-
-  isFiltroSelecionado() {
-    return !!this.filtroBusca.atividade.id  && !!this.filtroBusca.dataReferencia;
   }
 
   novo() {
