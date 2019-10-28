@@ -80,7 +80,13 @@ import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portugue
 import { TempoSessaoDialogComponent } from './components/common/tempo-sessao-dialog/tempo-sessao-dialog.component';
 import { InstituicaoModule } from './components/instituicao/instituicao.module';
 import { GrupoModuloModule } from './components/grupo-modulo/grupo-modulo.module';
+import { TextMaskModule } from 'angular2-text-mask';
 
+/*
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter,
+  MomentDateModule} from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+*/
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -178,13 +184,18 @@ registerLocaleData(localePt, 'pt-BR');
     TempoSessaoModule,
     AcoesAtividadeModule,
     InstituicaoModule,
-    GrupoModuloModule
+    GrupoModuloModule,
+    TextMaskModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
-
+    /*
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    */
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,4 @@
+import { AtividadeAlunoService } from './../../services/atividade-aluno/atividade-aluno.service';
 import { UniformeEntregeAlunoService } from './../../services/uniforme-entregue-aluno/uniforme-entrege-aluno.service';
 import { UniformeAluno } from 'src/app/core/uniforme-aluno';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -7,9 +8,16 @@ import { Aluno } from 'src/app/core/aluno';
 import { Atividade } from 'src/app/core/atividade';
 import { Acesso } from 'src/app/core/acesso';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { MatDatepicker, MatDatepickerInputEvent} from '@angular/material';
+import * as _ from 'lodash';
+import { ToastService } from 'src/app/services/toast/toast.service';
+
+class FiltroBusca {
+  dataReferencia: Date;
+  atividade: Atividade = new Atividade();
+}
 
 @Component({
   selector: 'app-uniforme-entregue-aluno',
@@ -18,59 +26,77 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 })
 export class UniformeEntregueAlunoComponent implements OnInit {
 
+  public maskData = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
+
+  // Campos de busca
+  filtroBusca: FiltroBusca = new FiltroBusca();
+
+  uniformeAluno: UniformeAluno = new UniformeAluno();
+  uniformesAluno: UniformeAluno[];
+
+  maxDate = new Date(9999, 12, 31);
+  minDate = new Date(1111, 1, 1);
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  alunos: Aluno[];
-  aluno: Aluno = new Aluno();
-
+  atividadesAlunos: AtividadeAluno[];
   atividades: Atividade[];
-  atividade: Atividade = new Atividade();
 
   msg: string;
   perfilAcesso: Acesso;
 
   mostrarTabela = false;
-
-  displayedColumns: string[] = ['aluno', 'uniforme', 'dataUniformeEntregue', 'qtdUniformeEntregue',
-                                'atividade', 'dataInicioAtividade', 'dataCadastroAtividade', 'acoes'];
-
+  displayedColumns: string[] = ['aluno', 'uniforme', 'dataUniformeEntregue', 'qtdUniformeEntregue', 'acoes'];
   dataSource: MatTableDataSource<UniformeAluno> = new MatTableDataSource();
 
   constructor(
     private uniformeEntregeAlunoService: UniformeEntregeAlunoService,
+    private atividadeAlunoService: AtividadeAlunoService,
     private atividadeService: AtividadeService,
-    private alunoService: AlunoService,
+    private toastService: ToastService,
     private router: Router,
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.limpar();
+
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
     this.dataSource.paginator = this.paginator;
 
-    this.alunoService.getAll().subscribe((alunos: Aluno[]) => {
-      this.alunos = alunos;
-    });
-
-    this.atividadeService.getAll().subscribe((atividades: Atividade[]) => {
+    this.atividadeService.getAllVigentesAndFuturas().subscribe((atividades: Atividade[]) => {
       this.atividades = atividades;
     });
-
-    this.consultar();
   }
 
   limpar() {
+    this.filtroBusca = new FiltroBusca();
     this.mostrarTabela = false;
-    this.aluno = null;
-    this.atividade = null;
+    this.msg = null;
+    this.uniformesAluno = [];
     this.dataSource.data = [];
+    this.uniformeAluno = new UniformeAluno();
   }
 
-
-  atualizar(uniformeAluno: UniformeAluno) {
-    this.router.navigate(['/uniformeentregue/cadastrar'], { queryParams: { id: uniformeAluno.id } });
+  editar(uniformeAluno: UniformeAluno) {
+    uniformeAluno.disabilitado = !uniformeAluno.disabilitado;
   }
+
+  cancelar() {
+    this.router.navigate(['uniformeentregue']);
+  }
+
+  atualizar() {
+    this.uniformeEntregeAlunoService.alterarAll(this.uniformesAluno, this.filtroBusca.atividade.id, this.filtroBusca.dataReferencia)
+    .subscribe(() => {
+      this.router.navigate(['uniformeentregue']);
+      this.toastService.showSucesso('Entrega de uniforme atualizada com sucesso');
+    });
+
+    this.uniformesAluno.forEach(u => u.disabilitado = true);
+  }
+
 
   deletar(auniformeAluno: UniformeAluno) {
     this.chamaCaixaDialogo(auniformeAluno);
@@ -87,9 +113,7 @@ export class UniformeEntregueAlunoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        this.uniformeEntregeAlunoService.excluir(uniformeAluno.id).subscribe(() => {
-          this.consultar();
-        });
+        this.excluir(uniformeAluno);
       } else {
         dialogRef.close();
       }
@@ -97,19 +121,72 @@ export class UniformeEntregueAlunoComponent implements OnInit {
   }
 
   consultar() {
-    this.uniformeEntregeAlunoService.getAllFiltro(this.aluno.id, this.atividade.id).subscribe((uniformeAluno: UniformeAluno[]) => {
-      this.dataSource.data = uniformeAluno ? uniformeAluno : [];
-      this.verificaMostrarTabela(uniformeAluno);
+    this.atividadeAlunoService.getAllAlunosMatriculadosNaAtividadeNoPeriodo(this.filtroBusca.atividade.id,
+                                                                            this.filtroBusca.dataReferencia)
+    .subscribe((atividadesAluno: AtividadeAluno[]) => {
+
+      if (atividadesAluno && atividadesAluno.length === 0) {
+        this.mostrarTabela = false;
+        this.toastService.showAlerta('Não há alunos matriculados nessa atividade no período informado.');
+      } else {
+        this.atividadesAlunos = atividadesAluno;
+
+        this.uniformeEntregeAlunoService.getAllAlunosMatriculadosNaAtividadeNoPeriodo(this.filtroBusca.atividade.id,
+                                                                                      this.filtroBusca.dataReferencia)
+        .subscribe((uniformesAluno: UniformeAluno[]) => {
+            this.uniformesAluno = uniformesAluno ? uniformesAluno : [];
+            this.dataSource.data = this.uniformesAluno;
+            this.mostrarTabela = true;
+
+            this.uniformesAluno.forEach(u => u.disabilitado = true);
+        });
+      }
     });
   }
 
-  verificaMostrarTabela(uniformeAluno: UniformeAluno[]) {
-    if (!uniformeAluno || uniformeAluno.length === 0) {
-      this.mostrarTabela = false;
-      this.msg = 'Nenhum uniforme entregue para alunos.';
-    } else {
-      this.mostrarTabela = true;
+
+  isAtividadeVigente() {
+    if (!!this.filtroBusca.atividade.id  && !!this.filtroBusca.dataReferencia) {
+      if (this.filtroBusca.dataReferencia.getTime() >= new Date(this.filtroBusca.atividade.dataInicio).getTime() &&
+          (this.filtroBusca.atividade.dataFim === undefined
+          ||
+          this.filtroBusca.dataReferencia.getTime() <= new Date(this.filtroBusca.atividade.dataFim).getTime()
+          )) {
+        return true;
+      }
     }
+  }
+
+  isFiltroSelecionado() {
+    return !!this.filtroBusca.atividade.id  && !!this.filtroBusca.dataReferencia;
+  }
+
+  novo() {
+    this.mostrarTabela = true;
+    this.uniformeAluno = new UniformeAluno();
+    this.uniformeAluno.atividadesAluno = new AtividadeAluno();
+    this.uniformeAluno.atividadesAluno.aluno = new Aluno();
+    this.uniformeAluno.atividadesAluno.atividade = new Atividade();
+
+    if (this.uniformesAluno === undefined) {
+      this.uniformesAluno = [];
+    }
+
+    this.uniformesAluno.push(this.uniformeAluno);
+    this.dataSource.data = this.uniformesAluno;
+  }
+
+  private excluir(uniformeAluno) {
+    this.uniformesAluno = this.uniformesAluno.filter(a => a !== uniformeAluno);
+    this.dataSource.data = this.uniformesAluno;
+  }
+
+
+  getAtividadeAluno(element: UniformeAluno, id) {
+    const atividadeAluno = _.find(this.atividadesAlunos, (a: AtividadeAluno) => a.id === id);
+
+    const uniformeAluno = _.find(this.uniformesAluno, (u: UniformeAluno) => u === element);
+    uniformeAluno.atividadesAluno = atividadeAluno;
   }
 
 }

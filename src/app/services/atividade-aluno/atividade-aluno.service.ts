@@ -23,4 +23,14 @@ export class AtividadeAlunoService extends BaseService<AtividadeAluno> {
     }});
   }
 
+  getAllAlunosMatriculadosNaAtividadeNoPeriodo(idAtividade: number, data: Date) {
+    return this.http.get(Rotas.ATIVIDADE_ALUNO + 'matriculado/atividade/' + idAtividade , { params: {
+      data: `${data.getTime()}`
+   }});
+  }
+
+  getAtividadeAlunoNaData(idAtividade: number, idAluno: number, data: Date) {
+    return this.http.get(Rotas.ATIVIDADE_ALUNO + `aluno/${idAluno}/atividade/${idAtividade}/data/${data.getTime()}`);
+  }
+  
 }
