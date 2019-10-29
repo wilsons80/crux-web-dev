@@ -75,17 +75,18 @@ export class AtividadeAlunoComponent implements OnInit {
   }
 
   consultar() {
-    /*
-    this.atividadeAlunoService.getAllFiltro(this.aluno.id, this.atividade.id).subscribe((atividadeAluno: AtividadeAluno[]) => {
-      if (_.isEmpty(atividadeAluno)) {
-        this.mostrarTabela = false;
-        this.msg = 'Nenhum registro para a pesquisa selecionada';
-      } else {
-        this.dataSource.data = atividadeAluno;
-        this.mostrarTabela = true;
-      }
-    });
-    */
+    if (this.atividade.id) {
+      this.atividadeAlunoService.getAllAlunosMatriculadosNaAtividade(this.atividade.id)
+      .subscribe((atividadeAluno: AtividadeAluno[]) => {
+        if (_.isEmpty(atividadeAluno)) {
+          this.mostrarTabela = false;
+          this.msg = 'Nenhum registro para a pesquisa selecionada';
+        } else {
+          this.dataSource.data = atividadeAluno;
+          this.mostrarTabela = true;
+        }
+      });
+    }
   }
 
   atualizar(atividadeAluno: AtividadeAluno) {

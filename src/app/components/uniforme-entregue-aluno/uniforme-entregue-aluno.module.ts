@@ -14,7 +14,7 @@ import { DadosAtividadeModule } from '../common/dados-atividade/dados-atividade.
     UniformeEntregueAlunoRoutingModule,
     MaterialCommonModule,
     DadosAlunoModule,
-    DadosAtividadeModule
+    DadosAtividadeModule,
   ]
 })
 export class UniformeEntregueAlunoModule { }

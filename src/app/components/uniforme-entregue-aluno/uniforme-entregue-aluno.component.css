@@ -10,3 +10,9 @@
 .mat-select-disabled .mat-select-value {
     color: rgba(0, 0, 0, 0.78);
 }
+
+
+th.mat-sort-header-sorted {
+   color: black;
+}
+  

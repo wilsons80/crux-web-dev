@@ -7,7 +7,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatIconModule, MatInputModule,
-         MatMenuModule, MatPaginatorIntl, MatSidenavModule, MatSnackBarModule } from '@angular/material';
+         MatMenuModule, MatPaginatorIntl, MatSidenavModule, MatSnackBarModule, MatTableModule, MatSortModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -185,7 +185,8 @@ registerLocaleData(localePt, 'pt-BR');
     AcoesAtividadeModule,
     InstituicaoModule,
     GrupoModuloModule,
-    TextMaskModule
+    TextMaskModule,
+
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },

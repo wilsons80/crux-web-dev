@@ -2,7 +2,7 @@ import { AtividadeAlunoService } from './../../services/atividade-aluno/atividad
 import { UniformeEntregeAlunoService } from './../../services/uniforme-entregue-aluno/uniforme-entrege-aluno.service';
 import { UniformeAluno } from 'src/app/core/uniforme-aluno';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig, MatSort } from '@angular/material';
 import { AtividadeAluno } from 'src/app/core/atividade-aluno';
 import { Aluno } from 'src/app/core/aluno';
 import { Atividade } from 'src/app/core/atividade';
@@ -37,6 +37,7 @@ export class UniformeEntregueAlunoComponent implements OnInit {
   minDate = new Date(1111, 1, 1);
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   atividadesAlunos: AtividadeAluno[];
   atividades: Atividade[];
@@ -45,7 +46,7 @@ export class UniformeEntregueAlunoComponent implements OnInit {
   perfilAcesso: Acesso;
 
   mostrarTabela = false;
-  displayedColumns: string[] = ['aluno', 'uniforme', 'dataUniformeEntregue', 'qtdUniformeEntregue', 'datamatricula', 'acoes'];
+  displayedColumns: string[] = ['nome', 'nomeUniforme', 'dataUniformeEntregue', 'qtdUniformeEntregue', 'datamatricula', 'acoes'];
   dataSource: MatTableDataSource<UniformeAluno> = new MatTableDataSource();
 
   constructor(
@@ -62,7 +63,9 @@ export class UniformeEntregueAlunoComponent implements OnInit {
     this.limpar();
 
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
     this.atividadeService.getAllVigentesAndFuturas().subscribe((atividades: Atividade[]) => {
       this.atividades = atividades;
@@ -72,7 +75,7 @@ export class UniformeEntregueAlunoComponent implements OnInit {
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
+
   limpar() {
     this.filtroBusca = new FiltroBusca();
     this.mostrarTabela = false;
