@@ -58,20 +58,31 @@ export class TalentoComponent implements OnInit {
   }
 
   consultar() {
-    this.talentosService.getByIdPessoaFisica(this.pessoaFisica.id).subscribe((talentos: Talento[]) => {
-      if (!talentos) {
-        this.mostrarTabela = false
-        this.msg = "Nenhum registro para a pesquisa selecionada"
-      } else {
-        this.dataSource.data = talentos;
-        this.mostrarTabela = true;
-      }
-    },
+    if (this.pessoaFisica.id) {
+      this.talentosService.getByIdPessoaFisica(this.pessoaFisica.id).subscribe((talentos: Talento[]) => {
+        if (!talentos) {
+          this.mostrarTabela = false;
+          this.msg = 'Nenhum registro para a pesquisa selecionada'
+        } else {
+          this.dataSource.data = talentos;
+          this.mostrarTabela = true;
+        }
+      },
       () => {
-        this.msg = "Nenhum registro para a pesquisa selecionada"
-        this.limpar()
-      }
-    )
+          this.msg = 'Nenhum registro para a pesquisa selecionada'
+          this.limpar();
+        });
+    } else {
+      this.talentosService.getAll().subscribe((talentos: Talento[]) => {
+        if (!talentos) {
+          this.mostrarTabela = false;
+          this.msg = 'Nenhum registro para a pesquisa selecionada';
+        } else {
+          this.dataSource.data = talentos;
+          this.mostrarTabela = true;
+        }
+      });
+    }
 
   }
 
