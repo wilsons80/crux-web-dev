@@ -1,3 +1,4 @@
+import { ColaboradoresAtividade } from 'src/app/core/colaboradores-atividade';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Atividade } from 'src/app/core/atividade';
@@ -50,13 +51,11 @@ export class CadastrarAtividadeComponent implements OnInit {
     private toastService: ToastService,
     private router: Router
   ) {
-    this.atividade.unidade = new Unidade();
-    this.atividade.projeto = new Projeto();
-    this.atividade.planosAcao = new PlanosAcao();
   }
 
 
   ngOnInit() {
+    this.initObjetos();
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if (!this.perfilAcesso.insere) {
@@ -88,6 +87,14 @@ export class CadastrarAtividadeComponent implements OnInit {
     }
 
   }
+  
+  initObjetos() {
+    this.atividade = new Atividade();
+    this.atividade.unidade = new Unidade();
+    this.atividade.projeto = new Projeto();
+    this.atividade.planosAcao = new PlanosAcao();
+    this.atividade.colaboradoresAtividade = [];
+  }
 
   mostrarBotaoLimpar() {
     if (this.isAtualizar) return false;
@@ -105,7 +112,7 @@ export class CadastrarAtividadeComponent implements OnInit {
   }
 
   limpar() {
-    this.atividade = new Atividade();
+    this.initObjetos();
   }
 
   cancelar() {

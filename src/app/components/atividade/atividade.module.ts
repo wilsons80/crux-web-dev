@@ -1,24 +1,26 @@
-import { MaterialCommonModule } from './../../material-modules/material-common.module';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { MatExpansionModule } from '@angular/material';
+import { MaterialCommonModule } from './../../material-modules/material-common.module';
 import { AtividadeRoutingModule } from './atividade-routing.module';
 import { AtividadeComponent } from './atividade.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatDatepickerModule, MatTooltipModule, MatPaginatorModule, MatSlideToggleModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
-import { TextMaskModule } from 'angular2-text-mask';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
-import { MatPaginatedTabHeader } from '@angular/material/tabs/typings/paginated-tab-header';
 import { CadastrarAtividadeComponent } from './cadastrar-atividade/cadastrar-atividade.component';
+import { ColaboradoresAtividadeComponent } from './cadastrar-atividade/colaboradores-atividade/colaboradores-atividade.component';
+import { DadosAtividadeComponent } from './cadastrar-atividade/dados-atividade/dados-atividade.component';
+import { CadastrarColaboradoresAtividadeComponent } from './cadastrar-atividade/colaboradores-atividade/cadastrar-colaboradores-atividade/cadastrar-colaboradores-atividade.component';
+import { DadosFuncionarioModule } from '../common/dados-funcionario/dados-funcionario.module';
+import { ListarColaboradoresAtividadeComponent } from './cadastrar-atividade/colaboradores-atividade/listar-colaboradores-atividade/listar-colaboradores-atividade.component';
+
 
 
 @NgModule({
-  declarations: [AtividadeComponent, CadastrarAtividadeComponent],
+  declarations: [AtividadeComponent, CadastrarAtividadeComponent, DadosAtividadeComponent, ColaboradoresAtividadeComponent, CadastrarColaboradoresAtividadeComponent, ListarColaboradoresAtividadeComponent],
   imports: [
     CommonModule,
     AtividadeRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    MatExpansionModule,
+    DadosFuncionarioModule
   ]
 })
 export class AtividadeModule { }

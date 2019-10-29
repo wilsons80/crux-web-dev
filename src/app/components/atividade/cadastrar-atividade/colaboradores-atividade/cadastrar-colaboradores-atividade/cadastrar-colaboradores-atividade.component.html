@@ -1,0 +1,84 @@
+<div class="painel-principal" style="padding: 10px;">
+    <div class="painel-consultar">
+        <form #formConsultar="ngForm">
+            <div fxLayout="column" fxLayoutAlign="space-around stretch" fxFlexFill>
+
+                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+                        <mat-label>Selecione um funcionário</mat-label>
+                        <mat-select [(ngModel)]="colaboradorAtividade.funcionario" name="funcionario" [disabled]=isAtualizar >
+                            <mat-option *ngFor="let d of listaDeFuncionarios" [value]="d">
+                                {{d.pessoasFisica.nome}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-hint *ngIf="listaDeFuncionarios?.length === 0" align="start">Nenhum funcionário cadastrado
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="colaboradorAtividade.funcionario" style="margin-right: 50px">
+                    <dados-funcionario [funcionario]=colaboradorAtividade.funcionario></dados-funcionario>
+                </div>
+
+                <div fxLayout="row" *ngIf="colaboradorAtividade.funcionario"
+                    style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+                        <mat-label>Selecione um cargo</mat-label>
+                        <mat-select [(ngModel)]="colaboradorAtividade.cargo" name="cargo">
+                            <mat-option *ngFor="let d of listaDeCargos" [value]="d">
+                                {{d.nome}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-hint *ngIf="listaDeFuncionarios?.length === 0" align="start">Nenhum cargo cadastrado
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" *ngIf="colaboradorAtividade.cargo" fxLayoutGap="50px"
+                    style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+                    <mat-form-field fxFlex="15%" fxFlexOffset="20px">
+                        <input matInput name="dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Entrada:"
+                            [(ngModel)]="colaboradorAtividade.dtEntradaAtividade">
+                        <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
+                        <mat-datepicker #dataInicio></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="15%">
+                        <input matInput name="dataFim" [matDatepicker]="dataFim" placeholder="Data de Saída:"
+                            [(ngModel)]="colaboradorAtividade.dtSaidaAtividade">
+                        <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+                        <mat-datepicker #dataFim></mat-datepicker>
+                    </mat-form-field>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div dir="rtl" *ngIf="colaboradorAtividade.dtEntradaAtividade" fxLayout="row" fxLayoutAlign="center center"
+    fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+
+
+        <button *ngIf="!isAtualizar" mat-raised-button name="botaoLimpar" fxFlex="20%" color="primary" (click)="zerarCombos()">
+            Limpar
+        </button>
+
+        <button *ngIf="!isAtualizar" mat-raised-button name="botaoAdicionar" fxFlex="20%" color="primary" [disabled]=formConsultar.invalid
+            (click)="adicionar()">
+            Adicionar
+        </button>
+
+        <button *ngIf="isAtualizar" mat-raised-button name="botaoLimpar" fxFlex="20%" color="primary" (click)="cancelar()">
+            Cancelar
+        </button>
+
+
+        <button *ngIf="isAtualizar" mat-raised-button name="botaoAdicionar" fxFlex="20%" color="primary"
+            [disabled]=formConsultar.invalid (click)="atualizar()">
+            Atualizar
+        </button>
+
+</div>
