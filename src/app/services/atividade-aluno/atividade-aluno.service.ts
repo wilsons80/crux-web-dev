@@ -13,14 +13,8 @@ export class AtividadeAlunoService extends BaseService<AtividadeAluno> {
     super(http, Rotas.ATIVIDADE_ALUNO);
   }
 
-  getAllFiltro(idAluno: number|string, idAtividade: number|string) {
-    if (idAluno === undefined) { idAluno = ''; }
-    if (idAtividade === undefined) { idAtividade = ''; }
-
-    return this.http.get(Rotas.ATIVIDADE_ALUNO , { params: {
-       aluno: `${idAluno}`,
-       entidadesocial: `${idAtividade}`
-    }});
+  getAllAlunosMatriculadosNaAtividade(idAtividade: number) {
+    return this.http.get(Rotas.ATIVIDADE_ALUNO + 'matriculado/atividade/' + idAtividade );
   }
 
 }

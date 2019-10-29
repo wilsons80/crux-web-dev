@@ -75,6 +75,7 @@ export class AtividadeAlunoComponent implements OnInit {
   }
 
   consultar() {
+    /*
     this.atividadeAlunoService.getAllFiltro(this.aluno.id, this.atividade.id).subscribe((atividadeAluno: AtividadeAluno[]) => {
       if (_.isEmpty(atividadeAluno)) {
         this.mostrarTabela = false;
@@ -84,6 +85,7 @@ export class AtividadeAlunoComponent implements OnInit {
         this.mostrarTabela = true;
       }
     });
+    */
   }
 
   atualizar(atividadeAluno: AtividadeAluno) {

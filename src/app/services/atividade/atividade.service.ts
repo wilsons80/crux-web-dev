@@ -12,4 +12,13 @@ export class AtividadeService extends BaseService<Atividade> {
     constructor(http: HttpClient) {
       super(http, Rotas.ATIVIDADE);
     }
+
+    getAllVigentesAndPassadas() {
+      return this.http.get(Rotas.ATIVIDADE + 'vigente-e-passadas');
+    }
+
+    getAllVigentesAndFuturas() {
+      return this.http.get(Rotas.ATIVIDADE + 'vigente-e-futuras');
+    }
+
 }

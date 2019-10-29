@@ -7,4 +7,6 @@ export class UniformeAluno {
 	qtdUniformeEntregue: number;
 	atividadesAluno: AtividadeAluno;
 	usuarioAlteracao: number;
+
+	disabilitado: boolean;
 }
