@@ -46,7 +46,8 @@ export class UniformeEntregueAlunoComponent implements OnInit {
   perfilAcesso: Acesso;
 
   mostrarTabela = false;
-  displayedColumns: string[] = ['nome', 'nomeUniforme', 'dataUniformeEntregue', 'qtdUniformeEntregue', 'datamatricula', 'acoes'];
+  displayedColumns: string[] = ['nome', 'nomeUniforme', 'dataUniformeEntregue', 'qtdUniformeEntregue',
+                                'datamatricula', 'dataterminomatricula', 'acoes'];
   dataSource: MatTableDataSource<UniformeAluno> = new MatTableDataSource();
 
   constructor(
