@@ -126,7 +126,7 @@ export class FrequenciaAlunoComponent implements OnInit {
       return;
     }
 
-    this.frequenciaAlunoService.getAlunosMatriculados(this.filtroBusca.atividade.id, 
+    this.frequenciaAlunoService.getAlunosMatriculados(this.filtroBusca.atividade.id,
                                                       this.filtroBusca.dataReferencia)
     .subscribe((frequenciasAluno: FrequenciaAluno[]) => {
         this.frequenciasAluno = frequenciasAluno ? frequenciasAluno : [];
@@ -147,33 +147,20 @@ export class FrequenciaAlunoComponent implements OnInit {
     .subscribe((frequenciasAluno: FrequenciaAluno[]) => {
         this.frequenciasAluno = frequenciasAluno ? frequenciasAluno : [];
         this.dataSource.data = this.frequenciasAluno;
-        this.mostrarTabela = true;
+
+        this.mostrarTabela = false;
+        if (this.frequenciasAluno.length > 0) {
+          this.mostrarTabela = true;
+        }
 
         this.frequenciasAluno.forEach(u => u.disabilitado = true);
     });
-
-    /*
-    this.atividadeAlunoService.getAllAlunosMatriculadosNaAtividade(this.filtroBusca.atividade.id)
-    .subscribe((atividadesAluno: AtividadeAluno[]) => {
-
-      if (atividadesAluno && atividadesAluno.length === 0) {
-        this.mostrarTabela = false;
-        this.toastService.showAlerta('Não há alunos matriculados nessa atividade.');
-      } else {
-        this.atividadesAlunos = atividadesAluno;
-
-        this.frequenciaAlunoService.getAllFilter(this.filtroBusca.atividade.id, this.filtroBusca.dataReferencia)
-        .subscribe((frequenciasAluno: FrequenciaAluno[]) => {
-            this.frequenciasAluno = frequenciasAluno ? frequenciasAluno : [];
-            this.dataSource.data = this.frequenciasAluno;
-            this.mostrarTabela = true;
-
-            this.frequenciasAluno.forEach(u => u.disabilitado = true);
-        });
-      }
-    });
-    */
   }
+
+  isFiltroPreenchido() {
+    return this.filtroBusca.dataReferencia && this.filtroBusca.atividade.id;
+  }
+
 
   novo() {
     this.mostrarTabela = true;

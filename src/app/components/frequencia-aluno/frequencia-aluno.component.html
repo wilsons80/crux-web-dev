@@ -1,4 +1,4 @@
-<mat-toolbar class="subtitulo">Entrega de uniforme</mat-toolbar>
+<mat-toolbar class="subtitulo">Frequência de alunos</mat-toolbar>
 <div class="painel-principal" style="padding: 10px;">
     <div class="painel-consultar">
         <form #formulario="ngForm">
@@ -26,7 +26,7 @@
                            [(ngModel)]="filtroBusca.dataReferencia">
                     <mat-datepicker-toggle matSuffix [for]="datareferencia"></mat-datepicker-toggle>
                     <mat-datepicker #datareferencia></mat-datepicker>
-                </mat-form-field>                
+                </mat-form-field>
             </div>
 
             <div dir="rtl" class="botoes" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 20px;" fxFlexFill>
@@ -39,7 +39,7 @@
             </div>
 
             <div *ngIf="filtroBusca.atividade.id">
-                <dados-atividade [atividade]=filtroBusca.atividade></dados-atividade>
+                <dados-atividade [atividade]="filtroBusca.atividade"></dados-atividade>
             </div>
 
             <div *ngIf="mostrarTabela" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
@@ -50,12 +50,12 @@
                 </mat-form-field>
             </div>
 
-            <div dir="rtl" class="botoes" fxLayoutGap="20px" fxFlexFill>
-                <button mat-raised-button fxFlex="20%" (click)="gerarListaFrequencia()" 
+            <div *ngIf="!mostrarTabela && isFiltroPreenchido()" dir="rtl" class="botoes" fxLayoutGap="20px" fxFlexFill>
+                <button mat-raised-button fxFlex="20%" (click)="gerarListaFrequencia()"
                         *ngIf="filtroBusca.atividade.id">
                     GERAR LISTA FREQUÊNCIA
                 </button>
-            </div>            
+            </div>
             <table [fxHide]="!mostrarTabela"
                    matSort
                    mat-table
@@ -131,7 +131,7 @@
     </div>
 
     <!-- BOTOES -->
-    <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+    <div *ngIf="mostrarTabela" dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
 
         <button *ngIf="perfilAcesso.altera" mat-raised-button name="botaoConfirmar" fxFlex="20%"
             color="primary" [disabled]="formulario.invalid" (click)="atualizar()">
