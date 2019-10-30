@@ -5,6 +5,7 @@ import { FrequenciaAlunoRoutingModule } from './frequencia-aluno-routing.module'
 import { CadastrarFrequenciaAlunoComponent } from './cadastrar-frequencia-aluno/cadastrar-frequencia-aluno.component';
 import { FrequenciaAlunoComponent } from './frequencia-aluno.component';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { DadosAtividadeModule } from '../common/dados-atividade/dados-atividade.module';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     FrequenciaAlunoRoutingModule,
+    DadosAtividadeModule,
     MaterialCommonModule
   ]
 })

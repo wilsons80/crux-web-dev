@@ -10,7 +10,6 @@ import { Acesso } from 'src/app/core/acesso';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
-import { MatDatepicker, MatDatepickerInputEvent} from '@angular/material';
 import * as _ from 'lodash';
 import { ToastService } from 'src/app/services/toast/toast.service';
 
