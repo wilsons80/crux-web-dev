@@ -6,8 +6,10 @@
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     <mat-form-field fxFlex="95%" fxFlexOffset="20px">
                         <mat-label>Selecione um funcionário</mat-label>
-                        <mat-select [(ngModel)]="colaboradorAtividade.funcionario" name="funcionario" [disabled]=isAtualizar >
-                            <mat-option *ngFor="let d of listaDeFuncionarios" [value]="d">
+                        <mat-select [(ngModel)]="colaboradorAtividade.funcionario.id" name="funcionario" [disabled]=isAtualizar 
+                            (selectionChange)=mostrarDadosFuncionario($event.value)
+                        >
+                            <mat-option *ngFor="let d of listaDeFuncionarios" [value]="d.id">
                                 {{d.pessoasFisica.nome}}
                             </mat-option>
                         </mat-select>
@@ -16,16 +18,16 @@
                     </mat-form-field>
                 </div>
 
-                <div *ngIf="colaboradorAtividade.funcionario" style="margin-right: 50px">
+                <div *ngIf="colaboradorAtividade.funcionario.id" style="margin-right: 50px">
                     <dados-funcionario [funcionario]=colaboradorAtividade.funcionario></dados-funcionario>
                 </div>
 
-                <div fxLayout="row" *ngIf="colaboradorAtividade.funcionario"
+                <div fxLayout="row" *ngIf="colaboradorAtividade.funcionario.id"
                     style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     <mat-form-field fxFlex="95%" fxFlexOffset="20px">
                         <mat-label>Selecione um cargo</mat-label>
-                        <mat-select [(ngModel)]="colaboradorAtividade.cargo" name="cargo">
-                            <mat-option *ngFor="let d of listaDeCargos" [value]="d">
+                        <mat-select [(ngModel)]="colaboradorAtividade.cargo.id" name="cargo">
+                            <mat-option *ngFor="let d of listaDeCargos" [value]="d.id">
                                 {{d.nome}}
                             </mat-option>
                         </mat-select>
@@ -34,7 +36,7 @@
                     </mat-form-field>
                 </div>
 
-                <div fxLayout="row" *ngIf="colaboradorAtividade.cargo" fxLayoutGap="50px"
+                <div fxLayout="row" *ngIf="colaboradorAtividade.cargo.id" fxLayoutGap="50px"
                     style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
                     <mat-form-field fxFlex="15%" fxFlexOffset="20px">

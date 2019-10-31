@@ -75,7 +75,7 @@ export class EntidadeSocialComponent implements OnInit {
   chamaCaixaDialogo(entidadeSocial: EntidadesSociais) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a entidade social ?`,
+      pergunta: `Certeza que deseja excluir a entidade social ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

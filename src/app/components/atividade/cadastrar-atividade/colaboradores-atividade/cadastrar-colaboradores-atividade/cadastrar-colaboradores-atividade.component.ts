@@ -22,6 +22,7 @@ export class CadastrarColaboradoresAtividadeComponent implements OnInit {
   listaDeCargos: Cargo[];
 
   isAtualizar: Boolean = false;
+  isMostrarFuncionario: Boolean = false;
 
   constructor(
     private funcionarioService: FuncionarioService,
@@ -30,6 +31,8 @@ export class CadastrarColaboradoresAtividadeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.colaboradorAtividade.funcionario = new Funcionario();
+    this.colaboradorAtividade.cargo = new Cargo();
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => this.listaDeFuncionarios = funcionarios);
     this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.listaDeCargos = cargos)
   }
@@ -37,14 +40,15 @@ export class CadastrarColaboradoresAtividadeComponent implements OnInit {
 
   zerarCombos() {
     this.colaboradorAtividade = new ColaboradoresAtividade();
-    this.colaboradorAtividade.funcionario = null;
-    this.colaboradorAtividade.cargo = null;
+    this.colaboradorAtividade.funcionario = new Funcionario();
+    this.colaboradorAtividade.cargo = new Cargo();
     this.colaboradorAtividade.dtEntradaAtividade = null;
     this.colaboradorAtividade.dtSaidaAtividade = null;
+    this.isMostrarFuncionario = false;
   }
 
   adicionar() {
-    const funcionarioJaCadastrado = _.find(this.colaboradoresAtividade, (colaboradoresAtividade: ColaboradoresAtividade) => colaboradoresAtividade.funcionario === this.colaboradorAtividade.funcionario);
+    const funcionarioJaCadastrado = _.find(this.colaboradoresAtividade, (colaboradoresAtividade: ColaboradoresAtividade) => colaboradoresAtividade.funcionario.id === this.colaboradorAtividade.funcionario.id);
 
     if (_.isEmpty(funcionarioJaCadastrado)) {
       const colaboradorAtividade = new ColaboradoresAtividade();
@@ -69,7 +73,12 @@ export class CadastrarColaboradoresAtividadeComponent implements OnInit {
   }
 
   cancelar() {
-    this.zerarCombos()
+    this.zerarCombos();
+    this.isAtualizar = false;
+  }
+
+  mostrarDadosFuncionario(idFuncionario:number) {
+    this.colaboradorAtividade.funcionario = _.cloneDeep(_.find(this.listaDeFuncionarios, (f: Funcionario) => f.id === idFuncionario));
   }
 
 }

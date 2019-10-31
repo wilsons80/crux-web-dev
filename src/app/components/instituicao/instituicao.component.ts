@@ -73,7 +73,7 @@ export class InstituicaoComponent implements OnInit {
   chamaCaixaDialogo(instituicao: Instituicao) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a instituição ?`,
+      pergunta: `Certeza que deseja excluir a instituição ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

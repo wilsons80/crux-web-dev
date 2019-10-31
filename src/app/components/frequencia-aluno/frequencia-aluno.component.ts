@@ -105,7 +105,7 @@ export class FrequenciaAlunoComponent implements OnInit {
   chamaCaixaDialogo(frequenciaAluno: FrequenciaAluno) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a frequencia do aluno ?`,
+      pergunta: `Certeza que deseja excluir a frequencia do aluno ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

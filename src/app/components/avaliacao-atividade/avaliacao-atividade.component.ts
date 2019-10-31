@@ -72,7 +72,7 @@ export class AvaliacaoAtividadeComponent implements OnInit {
   chamaCaixaDialogo(avaliacao: Avaliacao) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a avaliação: ${avaliacao.nome}?`,
+      pergunta: `Certeza que deseja excluir a avaliação: ${avaliacao.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

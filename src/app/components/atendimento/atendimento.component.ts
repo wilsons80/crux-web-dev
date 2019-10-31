@@ -76,7 +76,7 @@ export class AtendimentoComponent implements OnInit {
   chamaCaixaDialogo(atendimento: Atendimento) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o atendimento ?`,
+      pergunta: `Certeza que deseja excluir o atendimento ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

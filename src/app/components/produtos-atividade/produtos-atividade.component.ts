@@ -88,7 +88,7 @@ export class ProdutosAtividadeComponent implements OnInit {
   chamaCaixaDialogo(produtosAtividade: ProdutosAtividade) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o produto da atividade?`,
+      pergunta: `Certeza que deseja excluir o produto da atividade?`,
       textoConfirma: "SIM",
       textoCancela: "NÃO"
     };

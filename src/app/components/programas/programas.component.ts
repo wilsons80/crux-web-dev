@@ -77,7 +77,7 @@ export class ProgramasComponent implements OnInit {
   chamaCaixaDialogo(programa: Programa) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o programa ${programa.nome}?`,
+      pergunta: `Certeza que deseja excluir o programa ${programa.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

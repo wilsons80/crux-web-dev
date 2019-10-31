@@ -2,56 +2,52 @@
 
 <div class="painel-principal" style="padding: 10px;">
 
-    <mat-horizontal-stepper #stepper style="background: transparent; padding: 10px">
-       
-       <!-- DADOS ATIVIDADE -->
-        <mat-step [stepControl]="formCadastroDadosAtividade">
-            <form #formCadastroDadosAtividade="ngForm">
-                <ng-template matStepLabel>DADOS DA ATIVIDADE</ng-template>
-                    <dados-atividade [atividade]=atividade></dados-atividade>
-            </form>
-        </mat-step>
+    
+        <!-- <mat-tab label="First"> Content 1 </mat-tab>
+        <mat-tab label="Second"> Content 2 </mat-tab>
+        <mat-tab label="Third"> Content 3 </mat-tab> -->
 
-        <!-- DADOS COLABORADORES ATIVIDADE -->
-        <mat-step [stepControl]="formCadastroColaboradoresAtividade">
-            <form #formCadastroColaboradoresAtividade="ngForm">
-                <ng-template matStepLabel>COLABORADORES DA ATIVIDADE</ng-template>
-                <colaboradores-atividade [colaboradoresAtividade]=atividade.colaboradoresAtividade></colaboradores-atividade>
-            </form>
-        </mat-step>
-    </mat-horizontal-stepper>
+        <mat-tab-group>
 
-<!-- BOTOES -->
-<div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-        <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button
-                name="botaoConfirmar"
-                fxFlex="20%"
+                <!-- DADOS ATIVIDADE -->
+                <mat-tab label="DADOS DA ATIVIDADE">
+                    <form #formCadastroDadosAtividade="ngForm">
+                        <dados-atividade [atividade]=atividade></dados-atividade>
+                    </form>
+                </mat-tab>
+
+                <!-- DADOS COLABORADORES ATIVIDADE -->
+                <mat-tab label="COLABORADORES" >
+                    <form #formCadastroColaboradoresAtividade="ngForm">
+                        <colaboradores-atividade [colaboradoresAtividade]=atividade.colaboradoresAtividade>
+                        </colaboradores-atividade>
+                    </form>
+                </mat-tab>
+
+        </mat-tab-group>
+
+        <!-- BOTOES -->
+        <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+            fxFlexFill>
+            <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button name="botaoConfirmar" fxFlex="20%"
                 color="primary"
                 [disabled]="formCadastroDadosAtividade.invalid || formCadastroColaboradoresAtividade.invalid"
                 (click)="cadastrar()"> Cadastrar
-        </button>
-    
-        <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button
-                name="botaoConfirmar"
-                fxFlex="20%"
+            </button>
+
+            <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button name="botaoConfirmar" fxFlex="20%"
                 color="primary"
                 [disabled]="formCadastroDadosAtividade.invalid || formCadastroColaboradoresAtividade.invalid"
                 (click)="atualizar()">
                 Atualizar
-        </button>
-    
-        <button *ngIf="mostrarBotaoLimpar()" 
-                mat-raised-button 
-                fxFlex="20%" 
-                (click)="limpar()">
+            </button>
+
+            <button *ngIf="mostrarBotaoLimpar()" mat-raised-button fxFlex="20%" (click)="limpar()">
                 Limpar
-        </button>
-        <button 
-                mat-raised-button 
-                fxFlex="20%" 
-                (click)="cancelar()">
+            </button>
+            <button mat-raised-button fxFlex="20%" (click)="cancelar()">
                 Cancelar
-        </button>
-    
-    </div>
+            </button>
+
+        </div>
 </div>

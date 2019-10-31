@@ -23,7 +23,7 @@ export class ListarColaboradoresAtividadeComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
   
-  displayedColumns: string[] = ['foto', 'matricula', 'nome', 'cargo', 'tipoCargo', 'acoes'];
+  displayedColumns: string[] = ['matricula', 'nome', 'cargo', 'tipoCargo', 'acoes'];
   dataSource: MatTableDataSource<ColaboradoresAtividade> = new MatTableDataSource();
 
   perfilAcesso: Acesso;

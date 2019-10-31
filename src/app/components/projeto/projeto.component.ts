@@ -73,7 +73,7 @@ export class ProjetoComponent implements OnInit {
   chamaCaixaDialogo(projeto: Projeto) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o projeto ${projeto.nome}?`,
+      pergunta: `Certeza que deseja excluir o projeto ${projeto.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

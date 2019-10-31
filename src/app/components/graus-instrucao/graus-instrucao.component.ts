@@ -79,7 +79,7 @@ export class GrausInstrucaoComponent implements OnInit {
   chamaCaixaDialogo(grausInstrucao: GrausInstrucao) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o grausInstrucao?`,
+      pergunta: `Certeza que deseja excluir o grausInstrucao?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

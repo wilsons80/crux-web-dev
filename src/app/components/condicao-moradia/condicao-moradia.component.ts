@@ -74,7 +74,7 @@ export class CondicaoMoradiaComponent implements OnInit {
   chamaCaixaDialogo(condicaoMoradia: CondicoesMoradia) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a condição de moradia: ${condicaoMoradia.descricao}?`,
+      pergunta: `Certeza que deseja excluir a condição de moradia: ${condicaoMoradia.descricao}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

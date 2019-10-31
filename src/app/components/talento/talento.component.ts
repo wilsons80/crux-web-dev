@@ -98,7 +98,7 @@ export class TalentoComponent implements OnInit {
   chamaCaixaDialogo(talento: Talento) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o talento do funcionario?`,
+      pergunta: `Certeza que deseja excluir o talento do funcionario?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

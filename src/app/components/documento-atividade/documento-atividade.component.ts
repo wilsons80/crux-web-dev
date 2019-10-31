@@ -91,7 +91,7 @@ export class DocumentoAtividadeComponent implements OnInit {
   chamaCaixaDialogo(documentoAtividade: DocumentoAtividade) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o documento da atividade?`,
+      pergunta: `Certeza que deseja excluir o documento da atividade?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

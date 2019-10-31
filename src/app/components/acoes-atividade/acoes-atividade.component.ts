@@ -73,7 +73,7 @@ export class AcoesAtividadeComponent implements OnInit {
   chamaCaixaDialogo(acoesAtividade: Acoes) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a ação atividade?`,
+      pergunta: `Certeza que deseja excluir a ação atividade?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

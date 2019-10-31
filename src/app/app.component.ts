@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { AutenticadorService } from './services/autenticador/autenticador.service';
+import { Component, ViewChild, HostListener } from '@angular/core';
 import { MatDrawer } from '@angular/material';
 import { LoadingIndicatorService } from 'src/app/services/loadingIndicator/loading-indicator.service';
 import { LoadingPopupService } from './services/loadingPopup/loading-popup.service';
@@ -34,6 +35,7 @@ export class AppComponent {
     loadingPopupService: LoadingPopupService,
     public toolbarPrincipalService: ToolbarPrincipalService,
     private authGuard: AuthGuard,
+    private autenticadorService: AutenticadorService,
   ) {
 
     const subs = loadingIndicatorService.onLoadingChanged
@@ -66,5 +68,13 @@ export class AppComponent {
   close() {
     this.menuPrincipal.close();
   }
+
+//   @HostListener('document:keypress', ['$event']) 
+//   onKeydownHandler(event: KeyboardEvent) {
+//     if(this.autenticadorService.usuarioEstaLogado){
+//       this.autenticadorService.refreshToken();
+//     }
+// }
+
 
 }

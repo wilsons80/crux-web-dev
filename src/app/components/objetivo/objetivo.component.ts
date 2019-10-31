@@ -78,7 +78,7 @@ export class ObjetivoComponent implements OnInit {
   chamaCaixaDialogo(objetivo: Objetivo) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o objetivo ${objetivo.nome}?`,
+      pergunta: `Certeza que deseja excluir o objetivo ${objetivo.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

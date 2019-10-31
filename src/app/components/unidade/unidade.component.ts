@@ -78,7 +78,7 @@ export class UnidadeComponent implements OnInit {
   chamaCaixaDialogo(unidade: Unidade) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a unidade?`,
+      pergunta: `Certeza que deseja excluir a unidade?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     }; 

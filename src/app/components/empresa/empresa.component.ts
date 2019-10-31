@@ -79,7 +79,7 @@ export class EmpresaComponent implements OnInit {
   chamaCaixaDialogo(empresa: Empresa) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a empresa?`,
+      pergunta: `Certeza que deseja excluir a empresa?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

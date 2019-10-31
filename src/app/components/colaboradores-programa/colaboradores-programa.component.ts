@@ -76,7 +76,7 @@ export class ColaboradoresProgramaComponent implements OnInit {
   chamaCaixaDialogo(colaboradores: ColaboradoresPrograma) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o colaborador?`,
+      pergunta: `Certeza que deseja excluir o colaborador?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

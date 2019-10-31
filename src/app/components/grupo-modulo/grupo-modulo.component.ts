@@ -109,7 +109,7 @@ export class GrupoModuloComponent implements OnInit {
   chamaCaixaDialogo(grupoModulo: GrupoModulo) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o módulo ?`,
+      pergunta: `Certeza que deseja excluir o módulo ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

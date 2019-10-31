@@ -76,7 +76,7 @@ export class FamiliarAlunoComponent implements OnInit {
   chamaCaixaDialogo(familiar: Familiares) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o familiar ?`,
+      pergunta: `Certeza que deseja excluir o familiar ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };
