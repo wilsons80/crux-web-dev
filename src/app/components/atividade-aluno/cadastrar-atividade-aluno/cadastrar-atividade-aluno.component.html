@@ -55,25 +55,30 @@
         <div fxLayout="row">
             <mat-form-field style="margin: 0 0 0 20px" fxFlex="15%" >
                 <input style="margin-left: 20px" matInput name="dataInicioAtividade"
-                    [matDatepicker]="dataInicioAtividade" placeholder="Data Início da atividade:"
-                    [(ngModel)]="atividadeAluno.dataInicioAtividade">
+                       [matDatepicker]="dataInicioAtividade" 
+                       placeholder="Data Início da atividade:"
+                       [(ngModel)]="atividadeAluno.dataInicioAtividade"
+                       required>
                 <mat-datepicker-toggle matSuffix [for]="dataInicioAtividade"></mat-datepicker-toggle>
                 <mat-datepicker #dataInicioAtividade></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field style="margin: 0 0 0 20px" fxFlex="15%" >
-                <input style="margin-left: 20px" matInput name="dataDesvinculacao" [matDatepicker]="dataDesvinculacao"
-                    placeholder="Data de desvinculação:" [(ngModel)]="atividadeAluno.dataDesvinculacao">
+                <input style="margin-left: 20px" matInput name="dataDesvinculacao" 
+                       [matDatepicker]="dataDesvinculacao"
+                       placeholder="Data de desvinculação" 
+                       [(ngModel)]="atividadeAluno.dataDesvinculacao">
                 <mat-datepicker-toggle matSuffix [for]="dataDesvinculacao"></mat-datepicker-toggle>
                 <mat-datepicker #dataDesvinculacao></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field style="margin: 0 0 0 20px" fxFlex="45%" appearance="outline">
+            <mat-form-field style="margin: 0 0 0 20px" fxFlex="70%">
                 <mat-label>Descrição desligamento:</mat-label>
-                <textarea #descricao matInput name="descricao" [(ngModel)]="atividadeAluno.descDesligamento"
-                    cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3"
-                    maxlength="200"></textarea>
-                <mat-hint align="end">{{descricao.value.length}} / 200</mat-hint>
+                <input #descricao 
+                       matInput name="descricao" 
+                       [(ngModel)]="atividadeAluno.descDesligamento"
+                       maxlength="200">
+                <mat-hint align="start">{{descricao.value.length}} / 200</mat-hint>
             </mat-form-field>
 
         </div>

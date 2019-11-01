@@ -84,11 +84,44 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
   }
 
   cadastrar() {
+    if (!this.validarDatas() ) { return; }
+
     this.atividadeAlunoService.cadastrar(this.atividadeAluno).subscribe(() => {
       this.router.navigate(['atividadealuno']);
       this.toastService.showSucesso('Atividade aluno cadastrada com sucesso');
     });
   }
+
+  validarDatas(): boolean {
+    if (this.atividadeAluno.dataInicioAtividade.getTime() < new Date(this.atividadeAluno.atividade.dataInicio).getTime()) {
+      this.toastService.showAlerta('A data de início informada não pode ser menor que a data de início da atividade selecionada.');
+      return false;
+    }
+
+    if (this.atividadeAluno.atividade.dataFim) {
+      if (this.atividadeAluno.dataInicioAtividade &&
+        this.atividadeAluno.dataInicioAtividade.getTime() > new Date(this.atividadeAluno.atividade.dataFim).getTime()) {
+        this.toastService.showAlerta('A data de início informada não pode ser menor que a data de início da atividade selecionada.');
+        return false;
+      }
+    }
+
+    if (this.atividadeAluno.atividade.dataFim &&
+        this.atividadeAluno.dataDesvinculacao &&
+        new Date(this.atividadeAluno.dataDesvinculacao).getTime() > new Date(this.atividadeAluno.atividade.dataFim).getTime()) {
+      this.toastService.showAlerta('A data de desvinculação informada não pode ser maior que a data de fim da atividade selecionada.');
+      return false;
+    }
+
+    if (this.atividadeAluno.dataDesvinculacao &&
+        new Date(this.atividadeAluno.dataDesvinculacao).getTime() < new Date(this.atividadeAluno.atividade.dataInicio).getTime()) {
+      this.toastService.showAlerta('A data de desvinculação informada não pode ser menor que a data de início da atividade selecionada.');
+      return false;
+    }
+
+    return true;
+  }
+
 
   limpar() {
     this.atividadeAluno = new AtividadeAluno();
