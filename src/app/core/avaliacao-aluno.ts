@@ -11,5 +11,7 @@ export class AvaliacaoAluno {
 	avaliacoes: Avaliacao;
 	notaAvaliacao: NotaAvaliacao;
 
-    usuarioAlteracao: number;
+	usuarioAlteracao: number;
+	
+	desabilitado: boolean;
 }

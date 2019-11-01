@@ -13,5 +13,23 @@ export class AvaliacaoAlunoService extends BaseService<AvaliacaoAluno> {
   constructor(http: HttpClient) {
     super(http, Rotas.AVALIACAO_ALUNO);
   }
-  
+
+  alterarAll(frequenciasAluno: AvaliacaoAluno[], idAtividade: number, idAvaliacao: number) {
+    return this.http.put(`${Rotas.AVALIACAO_ALUNO}avaliacao/atividade/${idAtividade}`, frequenciasAluno, { params: {
+      avaliacao: `${idAvaliacao}`}
+    });
+  }
+
+  getListaAvaliacoes(idAtividade: number, idAvaliacao: number) {
+    return this.http.get(Rotas.AVALIACAO_ALUNO + 'avaliacao/atividade/' + idAtividade, { params: {
+      avaliacao: `${idAvaliacao}`}
+    });
+  }
+
+  getAlunosMatriculados(idAtividade: number, idAvaliacao: number) {
+    return this.http.get(Rotas.AVALIACAO_ALUNO + 'matriculado/atividade/' + idAtividade, { params: {
+      avaliacao: `${idAvaliacao}`}
+    });
+  }
+
 }
