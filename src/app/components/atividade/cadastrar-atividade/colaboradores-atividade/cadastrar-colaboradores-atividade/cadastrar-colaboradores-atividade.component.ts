@@ -81,4 +81,8 @@ export class CadastrarColaboradoresAtividadeComponent implements OnInit {
     this.colaboradorAtividade.funcionario = _.cloneDeep(_.find(this.listaDeFuncionarios, (f: Funcionario) => f.id === idFuncionario));
   }
 
+  setCargo(idCargo:number){
+    this.colaboradorAtividade.cargo = _.cloneDeep(_.find(this.listaDeCargos, (c: Cargo) => c.id === idCargo));
+  }
+
 }

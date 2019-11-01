@@ -26,7 +26,8 @@
                     style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     <mat-form-field fxFlex="95%" fxFlexOffset="20px">
                         <mat-label>Selecione um cargo</mat-label>
-                        <mat-select [(ngModel)]="colaboradorAtividade.cargo.id" name="cargo">
+                        <mat-select [(ngModel)]="colaboradorAtividade.cargo.id" name="cargo"
+                        (selectionChange)=setCargo($event.value)>
                             <mat-option *ngFor="let d of listaDeCargos" [value]="d.id">
                                 {{d.nome}}
                             </mat-option>
