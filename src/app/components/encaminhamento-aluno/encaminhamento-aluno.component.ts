@@ -99,7 +99,7 @@ export class EncaminhamentoAlunoComponent implements OnInit {
   chamaCaixaDialogo(encaminhamentoAluno: EncaminhamentoAluno) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o encaminhamento do aluno ?`,
+      pergunta: `Certeza que deseja excluir o encaminhamento do aluno ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

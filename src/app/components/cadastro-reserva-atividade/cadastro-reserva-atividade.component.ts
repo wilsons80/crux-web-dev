@@ -93,7 +93,7 @@ export class CadastroReservaAtividadeComponent implements OnInit {
   chamaCaixaDialogo(cadastroReservaAtividade: CadastroReservaAtividade) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a reserva da atividade?`,
+      pergunta: `Certeza que deseja excluir a reserva da atividade?`,
       textoConfirma: "SIM",
       textoCancela: "NÃO"
     };

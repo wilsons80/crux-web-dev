@@ -77,7 +77,7 @@ export class AcaoCompetenciaComponent implements OnInit {
   chamaCaixaDialogo(acaoCompetencia: AcaoCompetencia) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a ação competência?`,
+      pergunta: `Certeza que deseja excluir a ação competência?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

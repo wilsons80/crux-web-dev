@@ -75,7 +75,7 @@ export class IndicadoresComponent implements OnInit {
   chamaCaixaDialogo(indicadores: Indicadores) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o departamento ${indicadores.nome}?`,
+      pergunta: `Certeza que deseja excluir o departamento ${indicadores.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

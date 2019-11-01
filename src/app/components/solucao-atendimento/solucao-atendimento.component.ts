@@ -75,7 +75,7 @@ export class SolucaoAtendimentoComponent implements OnInit {
   chamaCaixaDialogo(retorno: Solucoes) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a solução de atendimento: ${retorno.descricao}?`,
+      pergunta: `Certeza que deseja excluir a solução de atendimento: ${retorno.descricao}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

@@ -73,7 +73,7 @@ export class PerspectivaComponent implements OnInit {
   chamaCaixaDialogo(perspectiva: Perspectiva) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a perspectiva ${perspectiva.nmPerspectiva}?`,
+      pergunta: `Certeza que deseja excluir a perspectiva ${perspectiva.nmPerspectiva}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

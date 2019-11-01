@@ -74,7 +74,7 @@ export class DepartamentoComponent implements OnInit {
   chamaCaixaDialogo(departamento: Departamento) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o departamento ${departamento.cdUnidadeDepartamento}?`,
+      pergunta: `Certeza que deseja excluir o departamento ${departamento.cdUnidadeDepartamento}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

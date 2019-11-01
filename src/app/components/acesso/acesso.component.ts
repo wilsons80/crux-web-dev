@@ -97,7 +97,7 @@ export class AcessoComponent implements OnInit {
   chamaCaixaDialogo(perfilAcessoUsuario: PerfilAcessoUsuario) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: 'Certeza que desse excluir o acesso?',
+      pergunta: 'Certeza que deseja excluir o acesso?',
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

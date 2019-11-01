@@ -75,7 +75,7 @@ export class AlunoTrabalhandoComponent implements OnInit {
   chamaCaixaDialogo(alunoTrabalhando: AlunoTrabalhando) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o aluno trabalhando ?`,
+      pergunta: `Certeza que deseja excluir o aluno trabalhando ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

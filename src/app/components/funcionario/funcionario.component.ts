@@ -76,7 +76,7 @@ export class FuncionarioComponent implements OnInit {
   chamaCaixaDialogo(funcionario: Funcionario) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o Funcionario ?`,
+      pergunta: `Certeza que deseja excluir o Funcionario ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

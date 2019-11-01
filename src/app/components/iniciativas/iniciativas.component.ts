@@ -78,7 +78,7 @@ export class IniciativasComponent implements OnInit {
   chamaCaixaDialogo(iniciativa: Iniciativa) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a iniciativa ${iniciativa.nome}?`,
+      pergunta: `Certeza que deseja excluir a iniciativa ${iniciativa.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

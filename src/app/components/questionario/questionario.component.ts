@@ -77,7 +77,7 @@ export class QuestionarioComponent implements OnInit {
   chamaCaixaDialogo(questionario: Questionario) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o questionario?`,
+      pergunta: `Certeza que deseja excluir o questionario?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

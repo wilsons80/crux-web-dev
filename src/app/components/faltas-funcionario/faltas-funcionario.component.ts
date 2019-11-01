@@ -90,7 +90,7 @@ export class FaltasFuncionarioComponent implements OnInit {
   chamaCaixaDialogo(faltasFuncionario: FaltasFuncionario) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a falta do funcionario?`,
+      pergunta: `Certeza que deseja excluir a falta do funcionario?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

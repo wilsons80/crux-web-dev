@@ -73,7 +73,7 @@ export class DiagnosticoAtendimentoComponent implements OnInit {
   chamaCaixaDialogo(retorno: Diagnostico) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o diagnóstico de atendimento: ${retorno.descricao}?`,
+      pergunta: `Certeza que deseja excluir o diagnóstico de atendimento: ${retorno.descricao}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

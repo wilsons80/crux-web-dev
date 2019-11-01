@@ -83,7 +83,7 @@ export class UsuarioComponent implements OnInit {
   chamaCaixaDialogo(usuarioSistema: UsuarioSistema) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o usuário ?`,
+      pergunta: `Certeza que deseja excluir o usuário ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

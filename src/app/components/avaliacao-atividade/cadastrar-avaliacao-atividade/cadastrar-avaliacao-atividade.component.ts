@@ -4,6 +4,7 @@ import { AvaliacaoAtividadeService } from 'src/app/services/avaliacao-atividade/
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'app-cadastrar-avaliacao-atividade',
@@ -14,6 +15,10 @@ export class CadastrarAvaliacaoAtividadeComponent implements OnInit {
 
   avaliacao: Avaliacao = new Avaliacao();
   isAtualizar = false;
+
+  perfilAcesso: Acesso;
+  mostrarBotaoCadastrar = true;
+  mostrarBotaoAtualizar = true;
 
   constructor(
     private avaliacaoService: AvaliacaoAtividadeService,
@@ -60,5 +65,13 @@ export class CadastrarAvaliacaoAtividadeComponent implements OnInit {
 
   getNomeBotao() {
     return this.isAtualizar ? 'Atualizar' : 'Cadastrar';
+  }
+
+  mostrarBotaoLimpar() {
+    if (this.isAtualizar) { return false; }
+    if (!this.mostrarBotaoAtualizar) { return false; }
+    if (!this.mostrarBotaoCadastrar) { return false; }
+
+    return true;
   }
 }

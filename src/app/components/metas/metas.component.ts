@@ -75,7 +75,7 @@ export class MetasComponent implements OnInit {
   chamaCaixaDialogo(metas: Metas) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a meta ${metas.nome}?`,
+      pergunta: `Certeza que deseja excluir a meta ${metas.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

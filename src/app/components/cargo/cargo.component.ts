@@ -75,7 +75,7 @@ export class CargoComponent implements OnInit {
   chamaCaixaDialogo(cargo: Cargo) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir o cargo ${cargo.nome}?`,
+      pergunta: `Certeza que deseja excluir o cargo ${cargo.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

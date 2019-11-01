@@ -111,7 +111,7 @@ export class UniformeEntregueAlunoComponent implements OnInit {
   chamaCaixaDialogo(uniformeAluno: UniformeAluno) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a entregue de uniforme ?`,
+      pergunta: `Certeza que deseja excluir a entregue de uniforme ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

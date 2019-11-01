@@ -80,7 +80,7 @@ export class SituacaoVulnerabilidadeComponent implements OnInit {
   chamaCaixaDialogo(situacao: SituacoesVulnerabilidade) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a situação de vulnerabilidade ${situacao.descricao}?`,
+      pergunta: `Certeza que deseja excluir a situação de vulnerabilidade ${situacao.descricao}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

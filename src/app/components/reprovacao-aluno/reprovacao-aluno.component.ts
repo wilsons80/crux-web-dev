@@ -79,7 +79,7 @@ export class ReprovacaoAlunoComponent implements OnInit {
   chamaCaixaDialogo(reprovacaoAluno: ReprovacaoAluno) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que desse excluir a reprovação do aluno ?`,
+      pergunta: `Certeza que deseja excluir a reprovação do aluno ?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatExpansionModule } from '@angular/material';
+import { MatExpansionModule, MatTabsModule } from '@angular/material';
 import { MaterialCommonModule } from './../../material-modules/material-common.module';
 import { AtividadeRoutingModule } from './atividade-routing.module';
 import { AtividadeComponent } from './atividade.component';
@@ -20,7 +20,8 @@ import { ListarColaboradoresAtividadeComponent } from './cadastrar-atividade/col
     AtividadeRoutingModule,
     MaterialCommonModule,
     MatExpansionModule,
-    DadosFuncionarioModule
+    DadosFuncionarioModule,
+    MatTabsModule
   ]
 })
 export class AtividadeModule { }
