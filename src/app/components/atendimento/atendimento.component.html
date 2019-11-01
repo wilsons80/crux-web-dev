@@ -4,10 +4,10 @@
         <form #formConsultar="ngForm">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
 
-                <mat-icon>perm_phone_msg</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione um atendimento</mat-label>
-                    <mat-select [(ngModel)]="atendimento" name="atendimento">
+                        <mat-icon matPrefix>search</mat-icon>
+                    <mat-label   fxFlexOffset="20px">Selecione um atendimento</mat-label>
+                    <mat-select   fxFlexOffset="20px" [(ngModel)]="atendimento" name="atendimento">
                         <mat-option *ngFor="let d of atendimentos" [value]="d">
                             {{ d.dataAtendimento | dataSimples}} - {{ d.aluno.pessoaFisica.nome }}
                         </mat-option>

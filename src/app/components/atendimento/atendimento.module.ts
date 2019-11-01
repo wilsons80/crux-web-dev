@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AtendimentoRoutingModule } from './atendimento-routing.module';
 import { CadastrarAtendimentoComponent } from './cadastrar-atendimento/cadastrar-atendimento.component';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { DadosAlunoModule } from '../common/dados-aluno/dados-aluno.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     AtendimentoRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    DadosAlunoModule
   ]
 })
 export class AtendimentoModule { }
