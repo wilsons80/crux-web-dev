@@ -10,6 +10,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { Aluno } from './../../../core/aluno';
 import { Solucoes } from './../../../core/solucoes';
 import { SolucaoService } from '../../../services/solucao/solucao.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-cadastrar-atendimento',
@@ -109,6 +110,10 @@ export class CadastrarAtendimentoComponent implements OnInit {
       this.toastService.showSucesso("Atendimento atualizado com sucesso");
     });
 
+  }
+
+  mostrarDadosAluno(idAluno:number) {
+    this.atendimento.aluno = _.find(this.alunos, (a: Aluno) => a.id === idAluno);
   }
 
 }

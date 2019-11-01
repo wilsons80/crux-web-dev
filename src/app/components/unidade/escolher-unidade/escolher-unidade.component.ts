@@ -1,7 +1,7 @@
 import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { switchMap } from 'rxjs/operators';
 import { AcessoUnidade } from 'src/app/core/acesso-unidade';
 import { Unidade } from 'src/app/core/unidade';

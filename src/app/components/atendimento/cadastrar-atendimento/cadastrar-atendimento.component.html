@@ -6,7 +6,7 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
             <!-- DATA DO ATENDIMENTO-->
-            <div fxLayout="column" fxFlex="35%">
+            <div fxLayout="column" fxFlex="15%">
                 <mat-toolbar class="titulopartes">Data do atendimento</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
                     <input matInput name="dataAtendimento" [matDatepicker]="dataAtendimento" placeholder="Data:"
@@ -17,11 +17,13 @@
             </div>
 
             <!-- ALUNO -->
-            <div fxLayout="column" fxFlex="55%">
+            <div fxLayout="column" fxFlex="80%">
                 <mat-toolbar class="titulopartes">Aluno</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
                     <mat-label>Alunos:</mat-label>
-                    <mat-select [(ngModel)]="atendimento.aluno.id" name="aluno" required>
+                    <mat-select [(ngModel)]="atendimento.aluno.id" name="aluno" required
+                        (selectionChange)="mostrarDadosAluno($event.value)"
+                    >
                         <mat-option *ngFor="let i of alunos" [value]="i.id">
                             {{i.pessoaFisica.nome}}
                         </mat-option>
@@ -32,6 +34,10 @@
             </div>
         </div>
 
+        <div *ngIf="atendimento.aluno.id">
+                <dados-aluno [aluno]=atendimento.aluno></dados-aluno>
+            </div>
+            
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
             <!--  DIAGNOSTICO-->

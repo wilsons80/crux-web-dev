@@ -2,7 +2,6 @@ import { MenuService } from 'src/app/services/menu/menu.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import _ from 'lodash';
 import { Modulo } from 'src/app/core/modulo';
 import { PerfilAcessoUsuario } from 'src/app/core/perfil-acesso-usuario';
 import { CadastroAcesso } from '../../core/cadastro-acesso';
@@ -15,6 +14,7 @@ import { UsuarioService } from './../../services/usuario/usuario.service';
 import { Acesso } from 'src/app/core/acesso';
 import { switchMap } from 'rxjs/operators';
 import { Menu } from 'src/app/core/menu';
+import * as _ from 'lodash';
 
 
 @Component({

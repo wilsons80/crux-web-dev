@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { Acesso } from 'src/app/core/acesso';
 import { Empresa } from 'src/app/core/empresa';
 import { EncaminhamentoAluno } from 'src/app/core/encaminhamento-aluno';

@@ -1,14 +1,13 @@
-import { AlunoTrabalhandoService } from 'src/app/services/aluno-trabalhando/aluno-trabalhando.service';
-import { AlunoTrabalhando } from 'src/app/core/aluno-trabalhando';
 import { Component, OnInit } from '@angular/core';
-import { Aluno } from 'src/app/core/aluno';
-import { Acesso } from 'src/app/core/acesso';
-import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Acesso } from 'src/app/core/acesso';
+import { Aluno } from 'src/app/core/aluno';
+import { AlunoTrabalhando } from 'src/app/core/aluno-trabalhando';
+import { AlunoTrabalhandoService } from 'src/app/services/aluno-trabalhando/aluno-trabalhando.service';
+import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { Diagnostico } from 'src/app/core/diagnostico';
-import { Solucoes } from 'src/app/core/solucoes';
-import { Atendimento } from 'src/app/core/atendimento';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-cadastrar-aluno-trabalhando',
@@ -85,7 +84,7 @@ export class CadastrarAlunoTrabalhandoComponent implements OnInit {
   }
 
   cancelar() {
-    this.router.navigate(['atendimento']);
+    this.router.navigate(['alunotrabalhando']);
   }
 
 
@@ -95,6 +94,10 @@ export class CadastrarAlunoTrabalhandoComponent implements OnInit {
       this.toastService.showSucesso("Aluno trabalhando atualizado com sucesso");
     });
 
+  }
+
+  mostrarDadosAluno(idAluno:number) {
+    this.alunoTrabalhando.aluno = _.find(this.alunos, (a: Aluno) => a.id === idAluno);
   }
 
 }

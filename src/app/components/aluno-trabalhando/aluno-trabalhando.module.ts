@@ -14,7 +14,7 @@ import { DadosAlunoModule } from '../common/dados-aluno/dados-aluno.module';
     CommonModule,
     AlunoTrabalhandoRoutingModule,
     MaterialCommonModule,
-    DadosAlunoModule
+    DadosAlunoModule,
   ]
 })
 export class AlunoTrabalhandoModule { }

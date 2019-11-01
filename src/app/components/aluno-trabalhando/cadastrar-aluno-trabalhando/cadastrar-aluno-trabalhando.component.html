@@ -1,4 +1,4 @@
-<mat-toolbar class="subtitulo">Atendimento</mat-toolbar>
+<mat-toolbar class="subtitulo">Aluno Trabalhando</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
@@ -6,11 +6,13 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
             <!-- ALUNO-->
-            <div fxLayout="column" fxFlex="45%">
+            <div fxLayout="column" fxFlex="75%">
                 <mat-toolbar class="titulopartes">Aluno</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
                     <mat-label>Alunos:</mat-label>
-                    <mat-select [(ngModel)]="alunoTrabalhando.aluno.id" name="aluno" required>
+                    <mat-select [(ngModel)]="alunoTrabalhando.aluno.id" name="aluno" required
+                    (selectionChange)="mostrarDadosAluno($event.value)"
+                    >
                         <mat-option *ngFor="let i of alunos" [value]="i.id">
                             {{i.pessoaFisica.nome}}
                         </mat-option>
@@ -18,19 +20,26 @@
                     <mat-hint *ngIf="alunos?.length === 0" align="start">Nenhuma aluno
                         cadastrado</mat-hint>
                 </mat-form-field>
+
+                <div *ngIf="alunoTrabalhando.aluno.id">
+                        <dados-aluno [aluno]=alunoTrabalhando.aluno></dados-aluno>
+                    </div>
             </div>
-            <div fxLayout="column" fxFlex="45%">
+
+            
+            
+            <div fxLayout="column" fxFlex="20%">
                 <mat-toolbar class="titulopartes">Data</mat-toolbar>
                 <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-                    <mat-form-field fxFlex="45%">
-                        <input style="margin-left: 20px" matInput name="dataInicioAlunoTrabalhando"
+                    <mat-form-field  style="margin-left: 20px" fxFlex="35%">
+                        <input  matInput name="dataInicioAlunoTrabalhando"
                             [matDatepicker]="dataInicioAlunoTrabalhando" placeholder="Data Início:"
                             [(ngModel)]="alunoTrabalhando.dataInicioAlunoTrabalhando" >
                         <mat-datepicker-toggle matSuffix [for]="dataInicioAlunoTrabalhando"></mat-datepicker-toggle>
                         <mat-datepicker #dataInicioAlunoTrabalhando></mat-datepicker>
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="45%">
+                    <mat-form-field fxFlex="35%">
                         <input matInput name="dataFimAlunoTrabalhando" [matDatepicker]="dataFimAlunoTrabalhando"
                             placeholder="Data Fim:" [(ngModel)]="alunoTrabalhando.dataFimAlunoTrabalhando" >
                         <mat-datepicker-toggle matSuffix [for]="dataFimAlunoTrabalhando"></mat-datepicker-toggle>
