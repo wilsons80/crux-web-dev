@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from "@angular/router";
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { Observable, of } from "rxjs";
 import { switchMap } from 'rxjs/operators';
 import { Acesso } from '../core/acesso';

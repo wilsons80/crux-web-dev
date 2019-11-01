@@ -4,7 +4,7 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { VulnerabilidadesFamiliar } from 'src/app/core/vulnerabilidades-familiar';
 import { Acesso } from 'src/app/core/acesso';
 import { ActivatedRoute } from '@angular/router';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { ColaboradoresAtividade } from 'src/app/core/colaboradores-atividade';
 
 @Component({

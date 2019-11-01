@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Acesso } from 'src/app/core/acesso';
@@ -9,8 +8,7 @@ import { AtividadeAlunoService } from 'src/app/services/atividade-aluno/atividad
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { AlunoService } from './../../../services/aluno/aluno.service';
-import _ from 'lodash';
-import { switchMap } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-cadastrar-atividade-aluno',
@@ -65,9 +63,9 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
 
     let idAtividadeAluno: number;
     idAtividadeAluno = this.activatedRoute.snapshot.queryParams.idAtividadeAluno ?
-                       this.activatedRoute.snapshot.queryParams.idAtividadeAluno : null;
+      this.activatedRoute.snapshot.queryParams.idAtividadeAluno : null;
 
-    if(idAtividadeAluno) {
+    if (idAtividadeAluno) {
       this.isAtualizar = true;
       this.atividadeAlunoService.getById(idAtividadeAluno).subscribe((atividadeAluno: AtividadeAluno) => {
         this.atividadeAluno = atividadeAluno;

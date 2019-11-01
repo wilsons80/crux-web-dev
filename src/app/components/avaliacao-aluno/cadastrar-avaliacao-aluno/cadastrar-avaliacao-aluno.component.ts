@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { Acesso } from 'src/app/core/acesso';
+import { Aluno } from 'src/app/core/aluno';
+import { Atividade } from 'src/app/core/atividade';
 import { AtividadeAluno } from 'src/app/core/atividade-aluno';
 import { Avaliacao } from 'src/app/core/avaliacao';
 import { AvaliacaoAlunoService } from 'src/app/services/avaliacao-aluno/avaliacao-aluno.service';
@@ -10,10 +12,6 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { AvaliacaoAluno } from './../../../core/avaliacao-aluno';
 import { NotaAvaliacao } from './../../../core/nota-avaliacao';
 import { AtividadeAlunoService } from './../../../services/atividade-aluno/atividade-aluno.service';
-import { Atividade } from 'src/app/core/atividade';
-import { Aluno } from 'src/app/core/aluno';
-import { AtividadeService } from 'src/app/services/atividade/atividade.service';
-import { AlunoService } from 'src/app/services/aluno/aluno.service';
 
 
 @Component({
@@ -26,9 +24,9 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
   atividadesAluno: AtividadeAluno[];
   avaliacoes: Avaliacao[];
   notaAvaliacao: NotaAvaliacao;
-  
-  aluno:Aluno;
-  atividade:Atividade;
+
+  aluno: Aluno;
+  atividade: Atividade;
   avaliacao: Avaliacao;
 
   avaliacaoAluno: AvaliacaoAluno = new AvaliacaoAluno();
@@ -59,7 +57,7 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
 
   ngOnInit() {
     this.inicializarObjetos();
-    
+
     this.verificarPerfil();
 
     this.avaliacaoAtividadeService.getAll().subscribe((avaliacoes: Avaliacao[]) => {
@@ -86,7 +84,7 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
   }
   verificarPerfil() {
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
-    
+
     if (!this.perfilAcesso.insere) {
       this.mostrarBotaoCadastrar = false;
     }
@@ -127,18 +125,14 @@ export class CadastrarAvaliacaoAlunoComponent implements OnInit {
 
   }
 
-  mostrarAlunoAtividade(idAtividadeAluno:number) {
-    
+  mostrarAlunoAtividade(idAtividadeAluno: number) {
+
     this.avaliacaoAluno.atividadesAluno = _.cloneDeep(_.find(this.atividadesAluno, (aa: AtividadeAluno) => aa.id === idAtividadeAluno));
-    
+
   }
 
-  mostrarDadosAvaliacao(idAvaliacao:number) {
-
-    console.log("opa", _.find(this.avaliacoes, (a: Avaliacao) => a.id === idAvaliacao));
-    
-
-    this.avaliacaoAluno.avaliacoes = _.cloneDeep (_.find(this.avaliacoes, (a: Avaliacao) => a.id === idAvaliacao));
+  mostrarDadosAvaliacao(idAvaliacao: number) {
+    this.avaliacaoAluno.avaliacoes = _.cloneDeep(_.find(this.avaliacoes, (a: Avaliacao) => a.id === idAvaliacao));
   }
 
 }

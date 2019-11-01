@@ -9,8 +9,8 @@ import { Aluno } from 'src/app/core/aluno';
 import { Atividade } from 'src/app/core/atividade';
 import { AlunoService } from 'src/app/services/aluno/aluno.service';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
+import * as _ from 'lodash';
 
-import _ from 'lodash';
 
 
 @Component({

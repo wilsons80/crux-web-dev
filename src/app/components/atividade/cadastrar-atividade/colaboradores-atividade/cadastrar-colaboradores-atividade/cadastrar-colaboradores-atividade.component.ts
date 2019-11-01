@@ -4,7 +4,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { FuncionarioService } from './../../../../../services/funcionario/funcionario.service';
 import { Funcionario } from 'src/app/core/funcionario';
 import { Component, OnInit, Input } from '@angular/core';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import { ColaboradoresAtividade } from 'src/app/core/colaboradores-atividade';
 
 @Component({
