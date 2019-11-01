@@ -24,8 +24,3 @@ a:hover, a:active{
     background-position: center;
 }
 
-.fixo{
-    position: sticky !important;
-    top: 0 !important; /* Sets the sticky toolbar to be on top */
-    z-index: 1000 !important; /* Ensure that your app's content doesn't overlap the toolbar */
-  }
