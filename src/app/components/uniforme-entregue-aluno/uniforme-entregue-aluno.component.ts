@@ -46,7 +46,7 @@ export class UniformeEntregueAlunoComponent implements OnInit {
 
   mostrarTabela = false;
   displayedColumns: string[] = ['nome', 'nomeUniforme', 'dataUniformeEntregue', 'qtdUniformeEntregue',
-                                'datamatricula', 'dataterminomatricula', 'acoes'];
+                                'datamatricula', 'acoes'];
   dataSource: MatTableDataSource<UniformeAluno> = new MatTableDataSource();
 
   constructor(

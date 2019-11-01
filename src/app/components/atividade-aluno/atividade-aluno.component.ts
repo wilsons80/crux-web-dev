@@ -75,8 +75,19 @@ export class AtividadeAlunoComponent implements OnInit {
   }
 
   consultar() {
-    if (this.atividade.id) {
-      this.atividadeAlunoService.getAllAlunosMatriculadosNaAtividade(this.atividade.id)
+    if (this.atividade.id || this.aluno.id) {
+      this.atividadeAlunoService.getFilter(this.atividade.id, this.aluno.id)
+      .subscribe((atividadeAluno: AtividadeAluno[]) => {
+        if (_.isEmpty(atividadeAluno)) {
+          this.mostrarTabela = false;
+          this.msg = 'Nenhum registro para a pesquisa selecionada';
+        } else {
+          this.dataSource.data = atividadeAluno;
+          this.mostrarTabela = true;
+        }
+      });
+    } else {
+      this.atividadeAlunoService.getAll()
       .subscribe((atividadeAluno: AtividadeAluno[]) => {
         if (_.isEmpty(atividadeAluno)) {
           this.mostrarTabela = false;

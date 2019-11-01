@@ -45,6 +45,7 @@ export class FrequenciaAlunoComponent implements OnInit {
   msg: string;
   perfilAcesso: Acesso;
 
+  mostrarBotaoGerarListaFrequencia = false;
   mostrarTabela = false;
   displayedColumns: string[] = ['nome', 'matriculaAluno', 'datafrequencia', 'justificativa', 'frequencia',  'acoes'];
   dataSource: MatTableDataSource<FrequenciaAluno> = new MatTableDataSource();
@@ -133,7 +134,7 @@ export class FrequenciaAlunoComponent implements OnInit {
         this.dataSource.data = this.frequenciasAluno;
         this.mostrarTabela = true;
 
-        this.frequenciasAluno.forEach(u => u.disabilitado = false);
+        this.frequenciasAluno.forEach(u => u.disabilitado = !!u.id);
     });
   }
 
@@ -143,11 +144,12 @@ export class FrequenciaAlunoComponent implements OnInit {
       return;
     }
 
-    this.frequenciaAlunoService.getFrequencia(this.filtroBusca.atividade.id, this.filtroBusca.dataReferencia)
+    this.frequenciaAlunoService.getListaFrequencia(this.filtroBusca.atividade.id, this.filtroBusca.dataReferencia)
     .subscribe((frequenciasAluno: FrequenciaAluno[]) => {
         this.frequenciasAluno = frequenciasAluno ? frequenciasAluno : [];
         this.dataSource.data = this.frequenciasAluno;
 
+        this.mostrarBotaoGerarListaFrequencia = true;
         this.mostrarTabela = false;
         if (this.frequenciasAluno.length > 0) {
           this.mostrarTabela = true;
