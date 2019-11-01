@@ -18,6 +18,7 @@
                     <mat-icon matPrefix>search</mat-icon>
                     <mat-label fxFlexOffset="20px">Informe a data de frequência</mat-label>
                     <input matInput
+                           fxFlexOffset="20px"
                            [max]="maxDate"
                            [min]="minDate"
                            #datareferencia="ngModel"
@@ -42,20 +43,29 @@
                 <dados-atividade [atividade]="filtroBusca.atividade"></dados-atividade>
             </div>
 
-            <div *ngIf="mostrarTabela" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
-                <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-icon matPrefix>search</mat-icon>
-                    <mat-label fxFlexOffset="20px">Informe um valor para filtrar</mat-label>
-                    <input fxFlexOffset="20px" matInput (keyup)="applyFilter($event.target.value)" >
-                </mat-form-field>
-            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
 
-            <div *ngIf="!mostrarTabela && isFiltroPreenchido()" dir="rtl" class="botoes" fxLayoutGap="20px" fxFlexFill>
-                <button mat-raised-button fxFlex="20%" (click)="gerarListaFrequencia()"
-                        *ngIf="filtroBusca.atividade.id">
-                    GERAR LISTA FREQUÊNCIA
-                </button>
+                <div fxFlex="80%">
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill *ngIf="mostrarTabela" >
+                        <mat-form-field fxFlexOffset="20px" style="width: 100%" >
+                            <mat-icon matPrefix>search</mat-icon>
+                            <mat-label fxFlexOffset="20px">Informe um valor para filtrar</mat-label>
+                            <input fxFlexOffset="20px" matInput (keyup)="applyFilter($event.target.value)" >
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxFlex="20%">
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill 
+                         *ngIf="mostrarBotaoGerarListaFrequencia && isFiltroPreenchido()" class="botoes">
+                        <button mat-raised-button (click)="gerarListaFrequencia()">
+                            GERAR LISTA FREQUÊNCIA
+                        </button>
+                    </div>
+                </div>
+
             </div>
+    
             <table [fxHide]="!mostrarTabela"
                    matSort
                    mat-table
@@ -86,9 +96,11 @@
                 <ng-container matColumnDef="justificativa" >
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Justificativa </th>
                     <td mat-cell *matCellDef="let element; let i = index" style="width: 400px">
-                        <mat-form-field style="width: 95%">
+                        <span [fxHide]="!element.disabilitado" style="width: 95%">
+                            {{element.justificativa}}    
+                        </span>
+                        <mat-form-field style="width: 95%" [fxHide]="element.disabilitado">
                             <input matInput
-                                   [disabled]="element.disabilitado"
                                    maxlength="45"
                                    [ngModelOptions]="{standalone: true}"
                                    [(ngModel)]="element.justificativa">

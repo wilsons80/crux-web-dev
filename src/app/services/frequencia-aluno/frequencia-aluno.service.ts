@@ -19,7 +19,7 @@ export class FrequenciaAlunoService extends BaseService<FrequenciaAluno> {
     });
   }
 
-  getFrequencia(idAtividade: number, dataReferencia: Date) {
+  getListaFrequencia(idAtividade: number, dataReferencia: Date) {
     return this.http.get(Rotas.FREQUENCIA_ALUNO + 'frequencia/atividade/' + idAtividade, { params: {
       datafrequencia: `${dataReferencia.getTime()}`   }
     });
