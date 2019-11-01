@@ -17,4 +17,16 @@ export class AtividadeAlunoService extends BaseService<AtividadeAluno> {
     return this.http.get(Rotas.ATIVIDADE_ALUNO + 'matriculado/atividade/' + idAtividade );
   }
 
+
+  getFilter(idAtividade: string|number, idAluno: string|number) {
+    idAtividade = idAtividade || '';
+    idAluno = idAluno || '';
+
+    return this.http.get(Rotas.ATIVIDADE_ALUNO + 'matriculado', { params: {
+        atividade: `${idAtividade}` ,
+        aluno: `${idAluno}`
+      }
+    });
+  }
+
 }
