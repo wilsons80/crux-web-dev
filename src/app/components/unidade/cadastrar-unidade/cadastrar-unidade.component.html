@@ -14,7 +14,7 @@
 
                     <mat-form-field fxFlex="24%" fxFlexOffset="20px">
                         <input #siglaUnidade matInput maxlength="50" [(ngModel)]="unidade.siglaUnidade"
-                            name="siglaUnidade" placeholder="Sigla:" required>
+                            name="siglaUnidade" placeholder="Sigla:" focus required>
                         <mat-hint align="end">{{siglaUnidade.value.length}} / 50</mat-hint>
                     </mat-form-field>
 

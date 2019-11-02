@@ -205,7 +205,7 @@ export class AvaliacaoAlunoComponent implements OnInit {
   }
 
 
-  getAtividadeAluno(element: AvaliacaoAluno, idAtividadeAluno) {
+  getAtividadeAluno(element: AvaliacaoAluno, idAtividadeAluno:number) {
     const atividadeAlunoEncontrado = _.find(this.atividadesAlunos, (a: AtividadeAluno) => a.id === idAtividadeAluno);
 
     const alunoJaAvaliado = _.find(this.avaliacoesAluno, (avaliacao: AvaliacaoAluno) => avaliacao.atividadesAluno.aluno.id === atividadeAlunoEncontrado.aluno.id);
@@ -217,7 +217,7 @@ export class AvaliacaoAlunoComponent implements OnInit {
     const atividadeAluno: AtividadeAluno = new AtividadeAluno();
     Object.assign(atividadeAluno, atividadeAlunoEncontrado);
 
-    const avaliacaoAlunoEncontrada = _.find(this.atividadesAlunos, (u: AvaliacaoAluno) => u === element);
+    const avaliacaoAlunoEncontrada:any = _.find(this.atividadesAlunos, (u: AvaliacaoAluno) => u === element);
     avaliacaoAlunoEncontrada.atividadesAluno = atividadeAluno;
   }
 
