@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { CadastrarEntidadeSocialComponent } from './cadastrar-entidade-social/cadastrar-entidade-social.component';
 import { EntidadeSocialRoutingModule } from './entidade-social-routing.module';
 import { EntidadeSocialComponent } from './entidade-social.component';
-import { CadastrarEntidadeSocialComponent } from './cadastrar-entidade-social/cadastrar-entidade-social.component';
-import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { SharedDirectivesModule } from 'src/app/directives/shared-directives.module';
+
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     EntidadeSocialRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    SharedDirectivesModule
   ]
 })
 export class EntidadeSocialModule { }

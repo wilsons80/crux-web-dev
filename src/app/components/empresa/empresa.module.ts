@@ -1,15 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NgModule } from '@angular/core';
+import { SharedDirectivesModule } from 'src/app/directives/shared-directives.module';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { CadastrarEmpresaComponent } from './cadastrar-empresa/cadastrar-empresa.component';
 import { EmpresaRoutingModule } from './empresa-routing.module';
 import { EmpresaComponent } from './empresa.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatDatepickerModule, MatPaginatorModule, MatTooltipModule, MatCheckboxModule, MatSlideToggleModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
-import { TextMaskModule } from 'angular2-text-mask';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
-import { CadastrarEmpresaComponent } from './cadastrar-empresa/cadastrar-empresa.component';
-import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+
 
 
 @NgModule({
@@ -17,7 +13,8 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     EmpresaRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    SharedDirectivesModule
   ]
 })
 export class EmpresaModule { }

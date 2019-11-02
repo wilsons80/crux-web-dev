@@ -31,7 +31,7 @@
 
             <mat-form-field fxFlex="10%" fxFlexOffset="20px">
                 <input matInput [(ngModel)]="empresa.cnpj" name="cnpj" placeholder="CNPJ:"
-                    [textMask]="{mask: maskCNPJ}">
+                    [textMask]="{mask: maskCNPJ}" [cnpjValidator]>
             </mat-form-field>
 
             <mat-form-field fxFlex="40%">

@@ -12,6 +12,7 @@ import { AcademicoComponent } from './academico/academico.component';
 import { EscolarComponent } from './escolar/escolar.component';
 import { AtendimentoApoioComponent } from './atendimento-apoio/atendimento-apoio.component';
 import { NgxCurrencyModule } from "ngx-currency";
+import { SharedDirectivesModule } from 'src/app/directives/shared-directives.module';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,14 @@ import { NgxCurrencyModule } from "ngx-currency";
     FuncionalComponent,
     AcademicoComponent,
     EscolarComponent,
-    AtendimentoApoioComponent
+    AtendimentoApoioComponent,
   ],
   imports: [
     CommonModule,
     MatButtonModule,
     MaterialCommonModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    SharedDirectivesModule
   ],
   exports:[
     DadosPessoaisComponent,

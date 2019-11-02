@@ -2,7 +2,7 @@
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex="30%">
         <input matInput [(ngModel)]="pessoaFisica.cpf" name="cpf" placeholder="CPF:"
-            [textMask]="{mask: mascaraCpf}" required>
+            [textMask]="{mask: mascaraCpf}" [cpfValidator] required>
     </mat-form-field>
 </div>
 
