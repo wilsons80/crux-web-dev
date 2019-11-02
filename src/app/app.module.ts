@@ -82,6 +82,7 @@ import { InstituicaoModule } from './components/instituicao/instituicao.module';
 import { GrupoModuloModule } from './components/grupo-modulo/grupo-modulo.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { DadosFamiliarComponent } from './components/common/dados-familiar/dados-familiar.component';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 /*
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter,
@@ -193,6 +194,7 @@ registerLocaleData(localePt, 'pt-BR');
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: STEPPER_GLOBAL_OPTIONS,useValue: { showError: true }}
     /*
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
