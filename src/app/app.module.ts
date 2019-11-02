@@ -81,6 +81,7 @@ import { TempoSessaoDialogComponent } from './components/common/tempo-sessao-dia
 import { InstituicaoModule } from './components/instituicao/instituicao.module';
 import { GrupoModuloModule } from './components/grupo-modulo/grupo-modulo.module';
 import { TextMaskModule } from 'angular2-text-mask';
+import { DadosFamiliarComponent } from './components/common/dados-familiar/dados-familiar.component';
 
 /*
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter,

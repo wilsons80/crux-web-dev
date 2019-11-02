@@ -6,6 +6,8 @@ import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-a
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Acesso } from 'src/app/core/acesso';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-familiar-aluno',
@@ -112,5 +114,46 @@ export class FamiliarAlunoComponent implements OnInit {
   }
 
 
+  isTutela(familiar: Familiares) {
+    const hoje = new Date().getTime();
+
+    const responsavel = _.find(familiar.responsaveis, (r) =>
+                        r.dataDesvinculacao === undefined
+                        ||
+                        (hoje >= new Date(r.dataVinculacao).getTime()
+                         &&
+                         hoje <= new Date(r.dataDesvinculacao).getTime()
+                        ) );
+
+    return (responsavel && responsavel.tutelaAluno) ? 'Sim' : 'Não';
+  }
+
+  isResponsavelFinanceiro(familiar: Familiares) {
+    const hoje = new Date().getTime();
+
+    const responsavel = _.find(familiar.responsaveis, (r) =>
+                        r.dataDesvinculacao === undefined
+                        ||
+                        (hoje >= new Date(r.dataVinculacao).getTime()
+                         &&
+                         hoje <= new Date(r.dataDesvinculacao).getTime()
+                        ) );
+
+    return (responsavel && responsavel.responsavelFinanceiroPeloAluno) ? 'Sim' : 'Não';
+  }
+
+  isTransportaAluno(familiar: Familiares) {
+    const hoje = new Date().getTime();
+
+    const responsavel = _.find(familiar.responsaveis, (r) =>
+                        r.dataDesvinculacao === undefined
+                        ||
+                        (hoje >= new Date(r.dataVinculacao).getTime()
+                         &&
+                         hoje <= new Date(r.dataDesvinculacao).getTime()
+                        ) );
+
+    return (responsavel && responsavel.transportaAluno) ? 'Sim' : 'Não';
+  }
 
 }
