@@ -1,5 +1,4 @@
 import { Aluno } from './aluno';
-import { TipoResponsaveis } from './tipo-responsaveis';
 import { Familiares } from './familiares';
 
 export class ResponsaveisAluno {

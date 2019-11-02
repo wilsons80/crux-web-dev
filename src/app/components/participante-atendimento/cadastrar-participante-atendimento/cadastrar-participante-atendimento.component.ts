@@ -10,6 +10,7 @@ import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-a
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { ParticipantesAtendimentosService } from 'src/app/services/participantes-atendimentos/participantes-atendimentos.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-cadastrar-participante-atendimento',
@@ -116,6 +117,14 @@ export class CadastrarParticipanteAtendimentoComponent implements OnInit {
       this.toastService.showSucesso("Atendimento atualizado com sucesso");
     });
 
+  }
+
+  setFuncionario(idFuncionario: number){
+    this.participanteAtendimento.funcionario = _.cloneDeep(_.find(this.funcionarios, (f: Funcionario) => f.id === idFuncionario));
+  }
+
+  setFamiliar(idFamiliar: number){
+    this.participanteAtendimento.familiar = _.cloneDeep(_.find(this.familiares, (f: Familiares) => f.id === idFamiliar));
   }
 
 }

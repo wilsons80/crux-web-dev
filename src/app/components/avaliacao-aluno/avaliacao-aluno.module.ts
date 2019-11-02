@@ -6,12 +6,11 @@ import { DadosAlunoModule } from './../common/dados-aluno/dados-aluno.module';
 import { DadosAtividadeModule } from './../common/dados-atividade/dados-atividade.module';
 import { AvaliacaoAlunoRoutingModule } from './avaliacao-aluno-routing.module';
 import { AvaliacaoAlunoComponent } from './avaliacao-aluno.component';
-import { CadastrarAvaliacaoAlunoComponent } from './cadastrar-avaliacao-aluno/cadastrar-avaliacao-aluno.component';
 
 
 
 @NgModule({
-  declarations: [AvaliacaoAlunoComponent, CadastrarAvaliacaoAlunoComponent],
+  declarations: [AvaliacaoAlunoComponent],
   imports: [
     CommonModule,
     AvaliacaoAlunoRoutingModule,

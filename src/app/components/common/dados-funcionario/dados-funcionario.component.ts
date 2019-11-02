@@ -15,7 +15,7 @@ export class DadosFuncionarioComponent implements OnInit {
   @Input() funcionario: Funcionario;
 
   constructor(private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
-    private fileUtils: FileUtils) { }
+              private fileUtils: FileUtils) { }
 
   ngOnInit() { }
 

@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { ParticipanteAtendimentoRoutingModule } from './participante-atendimento-routing.module';
 import { CadastrarParticipanteAtendimentoComponent } from './cadastrar-participante-atendimento/cadastrar-participante-atendimento.component';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { DadosFuncionarioModule } from '../common/dados-funcionario/dados-funcionario.module';
+import { DadosFamiliarModule } from '../common/dados-familiar/dados-familiar.module';
 
 
 @NgModule({
@@ -12,7 +14,9 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     ParticipanteAtendimentoRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    DadosFuncionarioModule,
+    DadosFamiliarModule
   ]
 })
 export class ParticipanteAtendimentoModule { }

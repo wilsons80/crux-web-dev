@@ -25,7 +25,9 @@
                 <mat-toolbar class="titulopartes">Familiar</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
                     <mat-label>Familiares:</mat-label>
-                    <mat-select [(ngModel)]="participanteAtendimento.familiar.id" name="familiar">
+                    <mat-select [(ngModel)]="participanteAtendimento.familiar.id" 
+                                 name="familiar"
+                                 (selectionChange)=setFamiliar($event.value)>
                         <mat-option *ngFor="let i of familiares" [value]="i.id">
                             {{i.pessoasFisica.nome }}
                         </mat-option>
@@ -40,7 +42,10 @@
                 <mat-toolbar class="titulopartes">Funcionário</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
                     <mat-label>Funcionarios:</mat-label>
-                    <mat-select [(ngModel)]="participanteAtendimento.funcionario.id" name="funcionario" required>
+                    <mat-select [(ngModel)]="participanteAtendimento.funcionario.id" 
+                                name="funcionario" 
+                                (selectionChange)=setFuncionario($event.value)
+                                required>
                         <mat-option *ngFor="let i of funcionarios" [value]="i.id">
                             {{i.pessoasFisica.nome }}
                         </mat-option>
@@ -52,7 +57,13 @@
             
         </div>
 
-       
+       <div *ngIf="participanteAtendimento.funcionario.id">
+         <dados-funcionario [funcionario]="participanteAtendimento.funcionario"></dados-funcionario>
+       </div>
+
+       <div *ngIf="participanteAtendimento.familiar.id">
+           <dados-familiar [familiar]="participanteAtendimento.familiar"></dados-familiar>
+       </div>
 
 
         <!-- BOTOES -->
