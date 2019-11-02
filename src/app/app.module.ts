@@ -1,23 +1,24 @@
-import { AcoesAtividadeModule } from './components/acoes-atividade/acoes-atividade.module';
-import { TempoSessaoModule } from './components/tempo-sessao/tempo-sessao.module';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatIconModule, MatInputModule,
-         MatMenuModule, MatPaginatorIntl, MatSidenavModule, MatSnackBarModule, MatTableModule, MatSortModule } from '@angular/material';
+import { DateAdapter, MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatIconModule, MatInputModule, MatMenuModule, MatPaginatorIntl, MatSidenavModule, MatSnackBarModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { TextMaskModule } from 'angular2-text-mask';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AcaoCompetenciaModule } from './components/acao-competencia/acao-competencia.module';
 import { AcessoRestritoComponent } from './components/acesso-restrito/acesso-restrito.component';
 import { AcessoModule } from './components/acesso/acesso.module';
+import { AcoesAtividadeModule } from './components/acoes-atividade/acoes-atividade.module';
 import { AlunoTrabalhandoModule } from './components/aluno-trabalhando/aluno-trabalhando.module';
 import { AlunoModule } from './components/aluno/aluno.module';
 import { AtendimentoModule } from './components/atendimento/atendimento.module';
@@ -36,6 +37,7 @@ import { HttpErrorToastComponent } from './components/common/http-error-toast/ht
 import { HttpMgmtModule } from './components/common/http-mgmt/http-mgmt.module';
 import { LoadingPopupModule } from './components/common/loading-popup/loading-popup.module';
 import { PaginaNaoEncontradaComponent } from './components/common/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { TempoSessaoDialogComponent } from './components/common/tempo-sessao-dialog/tempo-sessao-dialog.component';
 import { CondicaoMoradiaModule } from './components/condicao-moradia/condicao-moradia.module';
 import { CursoFormacaoModule } from './components/curso-formacao/curso-formacao.module';
 import { DepartamentoModule } from './components/departamento/departamento.module';
@@ -49,9 +51,11 @@ import { FamiliarAlunoModule } from './components/familiar-aluno/familiar-aluno.
 import { FrequenciaAlunoModule } from './components/frequencia-aluno/frequencia-aluno.module';
 import { FuncionarioModule } from './components/funcionario/funcionario.module';
 import { GrausInstrucaoModule } from './components/graus-instrucao/graus-instrucao.module';
+import { GrupoModuloModule } from './components/grupo-modulo/grupo-modulo.module';
 import { HomeModule } from './components/home/home.module';
 import { IndicadoresModule } from './components/indicadores/indicadores.module';
 import { IniciativasModule } from './components/iniciativas/iniciativas.module';
+import { InstituicaoModule } from './components/instituicao/instituicao.module';
 import { LoginModule } from './components/login/login.module';
 import { MenuPrincipalModule } from './components/menu-principal/menu-principal.module';
 import { MetasModule } from './components/metas/metas.module';
@@ -70,6 +74,7 @@ import { ResponsavelAlunoModule } from './components/responsavel-aluno/responsav
 import { SituacaoVulnerabilidadeModule } from './components/situacao-vulnerabilidade/situacao-vulnerabilidade.module';
 import { SolucaoAtendimentoModule } from './components/solucao-atendimento/solucao-atendimento.module';
 import { TalentoModule } from './components/talento/talento.module';
+import { TempoSessaoModule } from './components/tempo-sessao/tempo-sessao.module';
 import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar-principal.module';
 import { UnidadeModule } from './components/unidade/unidade.module';
 import { UniformeEntregueAlunoModule } from './components/uniforme-entregue-aluno/uniforme-entregue-aluno.module';
@@ -77,18 +82,18 @@ import { UploadFotoModule } from './components/upload-foto/upload-foto.module';
 import { UsuarioModule } from './components/usuario/usuario.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
-import { TempoSessaoDialogComponent } from './components/common/tempo-sessao-dialog/tempo-sessao-dialog.component';
-import { InstituicaoModule } from './components/instituicao/instituicao.module';
-import { GrupoModuloModule } from './components/grupo-modulo/grupo-modulo.module';
-import { TextMaskModule } from 'angular2-text-mask';
-import { DadosFamiliarComponent } from './components/common/dados-familiar/dados-familiar.component';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
-/*
-import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS, MomentDateAdapter,
-  MomentDateModule} from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
-*/
+export const MY_FORMATS = {
+  parse: {
+      dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+      dateInput: 'DD/MM/YYYY',
+      monthYearLabel: 'MM YYYY',
+      dateA11yLabel: 'DD/MM/YYYY',
+      monthYearA11yLabel: 'MM YYYY',
+  },
+};
 
 registerLocaleData(localePt, 'pt-BR');
 @NgModule({
@@ -194,12 +199,11 @@ registerLocaleData(localePt, 'pt-BR');
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
-    { provide: STEPPER_GLOBAL_OPTIONS,useValue: { showError: true }}
-    /*
+    { provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } },
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-    */
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+
   ],
   bootstrap: [AppComponent]
 })

@@ -12,7 +12,7 @@
              </mat-form-field>
 
             <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                  <input matInput maxlength="200"  name="nome" placeholder="Nome da Iniciativa:" [(ngModel)]="cursoFormacao.nomeInstuicao" required>
+                  <input matInput maxlength="200" name="nomeInstuicao" auto placeholder="Nome da Instituição:" [(ngModel)]="cursoFormacao.nomeInstuicao" required>
              </mat-form-field>
 
         </div>
@@ -22,7 +22,7 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
             <mat-form-field fxFlex= "45%" fxFlexOffset="20px" >
-                    <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início" [(ngModel)]="cursoFormacao.dataInicio" required>
+                    <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início" [(ngModel)]="cursoFormacao.dataInicio"  required>
                     <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
                     <mat-datepicker #dataInicio></mat-datepicker>
              </mat-form-field>
@@ -85,10 +85,3 @@
 
 
 </div>
-
-
-
-
-
-
-
