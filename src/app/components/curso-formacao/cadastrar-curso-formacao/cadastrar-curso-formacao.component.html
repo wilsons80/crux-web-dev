@@ -20,40 +20,6 @@
 
                 </div>
 
-                <!-- DATA -->
-                <!-- <mat-toolbar class="titulopartes">Data</mat-toolbar>
-                                                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                                
-                                                        <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                                                                <input matInput name="dataInicio" [matDatepicker]="dataInicio"
-                                                                        placeholder="Data de Início" [(ngModel)]="cursoFormacao.dataInicio" required>
-                                                                <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
-                                                                <mat-datepicker #dataInicio></mat-datepicker>
-                                                        </mat-form-field>
-                                
-                                                        <mat-form-field fxFlex="46%">
-                                                                <input matInput name="dtTermino" [matDatepicker]="dtTermino" placeholder="Data Fim"
-                                                                        [(ngModel)]="cursoFormacao.dataFim">
-                                                                <mat-datepicker-toggle matSuffix [for]="dtTermino"></mat-datepicker-toggle>
-                                                                <mat-datepicker #dtTermino></mat-datepicker>
-                                                        </mat-form-field>
-                                
-                                                </div> -->
-
-                <!-- PESSOA FISICA -->
-                <!-- <mat-toolbar class="titulopartes">Pessoa</mat-toolbar>
-                <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                        <mat-form-field fxFlexOffset="20px" fxFlex="95%">
-                                <mat-label>Pessoa:</mat-label>
-                                <mat-select [(ngModel)]="cursoFormacao.pessoaFisica" name="pessoaFisica" required>
-                                        <mat-option *ngFor="let m of listaPessoaFisica" [value]="m">
-                                                {{m.nome}}
-                                        </mat-option>
-                                </mat-select>
-                        </mat-form-field>
-
-                </div> -->
-
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
                         <!-- PESSOA -->
@@ -69,6 +35,7 @@
                                                                 {{m.nome}}
                                                         </mat-option>
                                                 </mat-select>
+                                                <mat-hint *ngIf="listaPessoaFisica?.length === 0"  align="start">Nenhuma pessoa física cadastrada</mat-hint>
                                         </mat-form-field>
                                 </div>
                         </div>

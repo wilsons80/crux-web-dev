@@ -4,10 +4,10 @@
         <form #formConsultarDepartamento="ngForm">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
 
-                <mat-icon>search</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione um Questionário</mat-label>
-                    <mat-select [(ngModel)]="questionario" name="questionario">
+                        <mat-icon matPrefix>search</mat-icon>
+                    <mat-label fxFlexOffset="20px" >Selecione um Questionário</mat-label>
+                    <mat-select fxFlexOffset="20px" [(ngModel)]="questionario" name="questionario">
                         <mat-option *ngFor="let d of listaQuestionario" [value]="d">
                             {{d.descricao}}
                         </mat-option>
