@@ -24,10 +24,9 @@ export class ListaResponsaveisComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['nome', 'dataVinculacao', 'dataDesvinculacao', 'tipoResponsavel', 'aluno', 'acoes'];
+  displayedColumns: string[] = ['nome', 'dataVinculacao', 'dataDesvinculacao', 'aluno', 'acoes'];
   dataSource: MatTableDataSource<ResponsaveisAluno> = new MatTableDataSource();
 
-  tipoResponsavel: TipoResponsaveis = new TipoResponsaveis();
   perfilAcesso: Acesso;
   
   constructor(private activatedRoute: ActivatedRoute) { }

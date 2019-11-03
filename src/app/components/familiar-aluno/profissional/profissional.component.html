@@ -50,7 +50,7 @@
 <!-- CONTATO -->
 <mat-toolbar class="titulopartes">Contato</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="30px" fxFlexFill>
-    <mat-form-field fxFlex="30%">
+    <mat-form-field fxFlex="30%" fxFlexOffset="20px">
         <input matInput [(ngModel)]="familiar.pessoasFisica.telefoneComercial" name="telefoneComercial"
                placeholder="Telefone Comercial:" [textMask]="{mask: maskPhone}">
     </mat-form-field>
@@ -60,7 +60,7 @@
 <!-- BENEFICIOS -->
 <mat-toolbar class="titulopartes">Benefícios</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-  <mat-form-field fxFlex="20%" fxFlexOffset="20px">
+  <mat-form-field fxFlex="30%" fxFlexOffset="20px">
     <mat-label>Situação Trabalho</mat-label>
     <mat-select [(ngModel)]="familiar.pessoasFisica.situacaoTrabalho" name="situacaoTrabalho">
         <mat-option *ngFor="let m of SITUACAO_TRABALHO" [value]="m">
@@ -70,7 +70,7 @@
   </mat-form-field>
 
 
-  <mat-form-field fxFlex="25%" fxFlexOffset="20px">
+  <mat-form-field fxFlex="70%" fxFlexOffset="20px">
     <mat-label>Classificador do motivo de não trabalhar</mat-label>
     <mat-select [(ngModel)]="familiar.pessoasFisica.classificadorMotivoNaoTrab" name="classificadorMotivoNaoTrab">
         <mat-option *ngFor="let m of MOTIVO_NAO_TRABALHA" [value]="m.flag">

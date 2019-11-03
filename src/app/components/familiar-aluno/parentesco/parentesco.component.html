@@ -1,14 +1,21 @@
 <mat-toolbar class="titulopartes">Dados parentesco</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-  <mat-form-field fxFlex="15%" fxFlexOffset="20px">
+  <mat-form-field fxFlex="20%" fxFlexOffset="20px">
       <input matInput name="dataCadastro" [matDatepicker]="dataCadastro" placeholder="Data de cadastro:"
              [(ngModel)]="familiar.dataCadastro" required>
       <mat-datepicker-toggle matSuffix [for]="dataCadastro"></mat-datepicker-toggle>
       <mat-datepicker #dataCadastro></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field fxFlex="25%">
+  <mat-form-field fxFlex="20%">
+    <input matInput name="dataDesligamento" [matDatepicker]="dataDesligamento" placeholder="Data de desligamento:"
+           [(ngModel)]="familiar.dataDesligamento">
+    <mat-datepicker-toggle matSuffix [for]="dataDesligamento"></mat-datepicker-toggle>
+    <mat-datepicker #dataDesligamento></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="30%">
     <mat-label>Situação parentesco</mat-label>
     <mat-select [(ngModel)]="familiar.situacaoParentesco" name="situacaoParentesco">
         <mat-option *ngFor="let m of situacaoParentesco.situacao" [value]="m.flag">
@@ -17,12 +24,6 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field fxFlex="15%">
-    <input matInput name="dataDesligamento" [matDatepicker]="dataDesligamento" placeholder="Data de desligamento:"
-           [(ngModel)]="familiar.dataDesligamento">
-    <mat-datepicker-toggle matSuffix [for]="dataDesligamento"></mat-datepicker-toggle>
-    <mat-datepicker #dataDesligamento></mat-datepicker>
-  </mat-form-field>
 
 </div>
 

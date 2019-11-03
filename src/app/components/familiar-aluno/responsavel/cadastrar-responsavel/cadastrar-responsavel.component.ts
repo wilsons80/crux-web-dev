@@ -16,8 +16,6 @@ export class CadastrarResponsavelComponent implements OnInit {
   @Input() responsavel: ResponsaveisAluno = new ResponsaveisAluno();
   @Input() familiar: Familiares;
 
-  tipoResponsavel: TipoResponsaveis = new TipoResponsaveis();
-
   responsavelVigente: ResponsaveisAluno = new ResponsaveisAluno();
 
   sim_nao: any[] = [

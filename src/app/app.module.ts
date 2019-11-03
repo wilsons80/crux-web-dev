@@ -70,7 +70,6 @@ import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
 import { QuestionarioModule } from './components/questionario/questionario.module';
 import { ReprovacaoAlunoModule } from './components/reprovacao-aluno/reprovacao-aluno.module';
-import { ResponsavelAlunoModule } from './components/responsavel-aluno/responsavel-aluno.module';
 import { SituacaoVulnerabilidadeModule } from './components/situacao-vulnerabilidade/situacao-vulnerabilidade.module';
 import { SolucaoAtendimentoModule } from './components/solucao-atendimento/solucao-atendimento.module';
 import { TalentoModule } from './components/talento/talento.module';
@@ -166,7 +165,6 @@ registerLocaleData(localePt, 'pt-BR');
     TalentoModule,
     AcaoCompetenciaModule,
     FamiliarAlunoModule,
-    ResponsavelAlunoModule,
     SituacaoVulnerabilidadeModule,
     DiagnosticoAtendimentoModule,
     SolucaoAtendimentoModule,

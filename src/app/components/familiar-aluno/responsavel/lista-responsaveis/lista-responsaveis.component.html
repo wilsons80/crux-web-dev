@@ -16,14 +16,9 @@
         <td mat-cell *matCellDef="let element"> {{element.dataDesvinculacao | dataSimples}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="tipoResponsavel">
-        <th mat-header-cell *matHeaderCellDef> Tipo responsável </th>
-        <td mat-cell *matCellDef="let element"> {{tipoResponsavel.getTipoResponsavel(element.tipoResponsavel)}} </td>
-    </ng-container>
-
     <ng-container matColumnDef="aluno">
         <th mat-header-cell *matHeaderCellDef> Aluno</th>
-        <td mat-cell *matCellDef="let element"> {{element.aluno.pessoaFisica.nome}} </td>
+        <td mat-cell *matCellDef="let element" style="width: 350px"> {{element.aluno.pessoaFisica.nome}} </td>
     </ng-container>
 
     <ng-container matColumnDef="acoes">
