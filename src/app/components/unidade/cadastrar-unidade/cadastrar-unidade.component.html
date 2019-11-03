@@ -106,43 +106,13 @@
 
         </div>
 
-
         <!-- ENDEREÇO -->
-        <mat-toolbar class="titulopartes">Endereço</mat-toolbar>
-        <div fxLayout="row" class="espaco" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-
-            <mat-form-field fxFlex="10%" fxFlexOffset="20px">
-                <input type="text" matInput [(ngModel)]="unidade.cep" name="cep" placeholder="CEP:"
-                    [textMask]="{mask: maskCep}" />
-            </mat-form-field>
-
-            <mat-form-field fxFlex="60%">
-                <input #endereco matInput maxlength="200" [(ngModel)]="unidade.endereco" name="endereco"
-                    placeholder="Endereço:">
-                <mat-hint align="end">{{endereco.value.length}} / 200</mat-hint>
-            </mat-form-field>
-
-            <mat-form-field fxFlex="5%" fxFlexOffset="20px">
-                <mat-label>UF: </mat-label>
-                <mat-select name="uf" [(ngModel)]="unidade.uf">
-                    <mat-option *ngFor="let e of estados" [value]="e">
-                        {{e}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field fxFlex="25%">
-                <input #cidade matInput maxlength="200" [(ngModel)]="unidade.cidade" name="cidade"
-                    placeholder="Cidade:">
-                <mat-hint align="end">{{cidade.value.length}} / 200</mat-hint>
-            </mat-form-field>
-
-            <mat-form-field fxFlex="20%" style="padding-right: 20px">
-                <input #bairro matInput maxlength="200" [(ngModel)]="unidade.bairro" name="bairro"
-                    placeholder="Bairro:">
-                <mat-hint align="end">{{bairro.value.length}} / 200</mat-hint>
-            </mat-form-field>
-        </div>
+        <cadastro-endereco [cep]="unidade.cep" 
+                           [endereco]="unidade.endereco"      
+                           [cidade]="unidade.cidade"      
+                           [bairro]="unidade.bairro"      
+                           [uf]="unidade.uf">    
+        </cadastro-endereco>
 
         <!-- CONTATO -->
         <mat-toolbar class="titulopartes">Contato</mat-toolbar>

@@ -5,6 +5,7 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
 import { CadastrarEmpresaComponent } from './cadastrar-empresa/cadastrar-empresa.component';
 import { EmpresaRoutingModule } from './empresa-routing.module';
 import { EmpresaComponent } from './empresa.component';
+import { CadastroEnderecoModule } from '../common/cadastro-endereco/cadastro-endereco.module';
 
 
 
@@ -14,7 +15,8 @@ import { EmpresaComponent } from './empresa.component';
     CommonModule,
     EmpresaRoutingModule,
     MaterialCommonModule,
-    SharedDirectivesModule
+    SharedDirectivesModule,
+    CadastroEnderecoModule
   ]
 })
 export class EmpresaModule { }

@@ -133,41 +133,14 @@
 
         </div>
 
-        <!-- ETAPA 1 - ENDEREÇO -->
-        <mat-toolbar class="titulopartes">Endereço</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-            <mat-form-field fxFlex="10%" fxFlexOffset="20px">
-                <input type="text" matInput [(ngModel)]="entidadeSocial.empresa.cep" name="cep" placeholder="CEP:"
-                    [textMask]="{mask: maskCep}">
-            </mat-form-field>
+        <!-- ENDEREÇO -->
+        <cadastro-endereco [cep]="entidadeSocial.empresa.cep" 
+                           [endereco]="entidadeSocial.empresa.endereco"      
+                           [cidade]="entidadeSocial.empresa.cidade"      
+                           [bairro]="entidadeSocial.empresa.bairro"      
+                           [uf]="entidadeSocial.empresa.uf">    
+        </cadastro-endereco>
 
-            <mat-form-field fxFlex="45%">
-                <input matInput maxlength="200" 
-                       name="endereco" 
-                       placeholder="Endereço" 
-                       [(ngModel)]="entidadeSocial.empresa.endereco"
-                       required>
-            </mat-form-field>
-
-            <mat-form-field fxFlex="5%" fxFlexOffset="20px">
-                <mat-label>UF:</mat-label>
-                <mat-select [(ngModel)]="entidadeSocial.empresa.uf" name="ufEndereco">
-                    <mat-option *ngFor="let m of ufs" [value]="m">
-                        {{m}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field fxFlex="20%">
-                <input matInput maxlength="200" name="bairro" placeholder="Bairro:" [(ngModel)]="entidadeSocial.empresa.bairro">
-            </mat-form-field>
-
-            <mat-form-field fxFlex="20%">
-                <input matInput maxlength="200" name="cidade" 
-                       placeholder="Cidade" [(ngModel)]="entidadeSocial.empresa.cidade">
-            </mat-form-field>
-
-        </div>
 
         <!-- CONTATO -->
         <mat-toolbar class="titulopartes">Contato</mat-toolbar>

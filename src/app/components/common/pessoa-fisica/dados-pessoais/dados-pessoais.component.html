@@ -86,39 +86,27 @@
 
 
     <!-- ETAPA 1 - ENDEREÇO -->
-    <mat-toolbar class="titulopartes">Endereço</mat-toolbar>
-    <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-        <mat-form-field fxFlex="10%" fxFlexOffset="20px">
-            <input type="text" matInput [(ngModel)]="pessoaFisica.cep" name="cep" placeholder="CEP:"
-                [textMask]="{mask: maskCep}" />
-        </mat-form-field>
+    <cadastro-endereco [cep]="pessoaFisica.cep"
+                       [endereco]="pessoaFisica.endereco"
+                       [cidade]="pessoaFisica.cidadeNaturalidade"
+                       [bairro]="pessoaFisica.bairro"
+                       [uf]="pessoaFisica.ufEndereco">
+    </cadastro-endereco>
 
-        <mat-form-field fxFlex="81%">
-            <input matInput maxlength="200" required name="endereco" placeholder="Endereço:" [(ngModel)]="pessoaFisica.endereco">
-        </mat-form-field>
-    </div>
+    <div fxLayout="row" class="espaco" fxLayoutGap="20px" 
+         style="margin-top: 10px; margin-bottom: 10px" 
+         fxFlexFill>
 
-    <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-
-        <mat-form-field fxFlex="5%" fxFlexOffset="20px">
-            <mat-label>UF:</mat-label>
-            <mat-select [(ngModel)]="pessoaFisica.ufEndereco" name="ufEndereco">
-                <mat-option *ngFor="let m of ufs" [value]="m">
-                    {{m}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <mat-form-field fxFlex="42%">
-            <input matInput maxlength="200" name="bairro" placeholder="Bairro:" [(ngModel)]="pessoaFisica.bairro">
-        </mat-form-field>
-
-        <mat-form-field fxFlex="40%">
-            <input matInput maxlength="200" name="pontoReferencia" placeholder="Ponto de Referência:"
+        <mat-form-field fxFlex="100%" fxFlexOffset="20px">
+        <input matInput maxlength="200" 
+                name="pontoReferencia" 
+                #campoPontoReferencia
+                placeholder="Ponto de Referência"
                 [(ngModel)]="pessoaFisica.pontoReferencia">
+            <mat-hint align="end">{{campoPontoReferencia.value.length}} / 200</mat-hint>               
         </mat-form-field>
-
     </div>
+
 
     <!-- ETAPA 1 - CONTATO -->
     <mat-toolbar class="titulopartes">Contato</mat-toolbar>

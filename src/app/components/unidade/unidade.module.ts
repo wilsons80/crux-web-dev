@@ -6,6 +6,7 @@ import { CadastrarUnidadeComponent } from './cadastrar-unidade/cadastrar-unidade
 import { EscolherUnidadeComponent } from './escolher-unidade/escolher-unidade.component';
 import { UnidadeRoutingModule } from './unidade-routing.module';
 import { UnidadeComponent } from './unidade.component';
+import { CadastroEnderecoModule } from '../common/cadastro-endereco/cadastro-endereco.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UnidadeComponent } from './unidade.component';
     CommonModule,
     UnidadeRoutingModule,
     MaterialCommonModule,
-    SharedDirectivesModule
+    SharedDirectivesModule,
+    CadastroEnderecoModule
   ],
 
 })

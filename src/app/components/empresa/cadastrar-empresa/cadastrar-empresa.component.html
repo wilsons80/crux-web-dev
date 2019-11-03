@@ -7,36 +7,34 @@
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex="10%" fxFlexOffset="20px">
+            <mat-form-field fxFlex="20%" fxFlexOffset="20px">
                 <input matInput maxlength="6" name="codigo" placeholder="Código da Empresa:"
                     [(ngModel)]="empresa.codigo" required>
             </mat-form-field>
 
-            <mat-form-field fxFlex="40%">
+            <mat-form-field fxFlex="60%">
                 <input matInput maxlength="200" name="nomeRazaoSocial" placeholder="Razão Social:"
                     [(ngModel)]="empresa.nomeRazaoSocial" required>
             </mat-form-field>
 
-            <div fxFlex="40%" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" fxFlexFill>
-
-                <mat-form-field fxFlexOffset="20px" fxFlex="20%">
-                    <input matInput [(ngModel)]="empresa.valorIcms" name="valorIcms" placeholder="Valor ICMS:">
-                    <span matSuffix>%</span>
-                </mat-form-field>
-            </div>
+            <mat-form-field fxFlexOffset="20px" fxFlex="20%">
+                <input matInput [(ngModel)]="empresa.valorIcms" name="valorIcms" placeholder="Valor ICMS:">
+                <span matSuffix>%</span>
+            </mat-form-field>
 
         </div>
-        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center"
-            style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-            <mat-form-field fxFlex="10%" fxFlexOffset="20px">
-                <input matInput [(ngModel)]="empresa.cnpj" name="cnpj" placeholder="CNPJ:"
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center"
+             style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+            <mat-form-field fxFlex="20%" fxFlexOffset="20px">
+                <input matInput [(ngModel)]="empresa.cnpj" name="cnpj" placeholder="CNPJ"
                     [textMask]="{mask: maskCNPJ}" [cnpjValidator]>
             </mat-form-field>
 
-            <mat-form-field fxFlex="40%">
-                <input matInput maxlength="200" name="nomeFantasia" placeholder="Nome Fantasia:"
-                    [(ngModel)]="empresa.nomeFantasia">
+            <mat-form-field fxFlex="54%">
+                <input matInput maxlength="200" name="nomeFantasia" placeholder="Nome Fantasia"
+                       [(ngModel)]="empresa.nomeFantasia">
             </mat-form-field>
 
             <mat-slide-toggle fxFlexOffset="20px" name="campoAtiva" [(ngModel)]="empresa.ativa">Ativa</mat-slide-toggle>
@@ -99,40 +97,12 @@
         </div>
 
         <!-- ETAPA 1 - ENDEREÇO -->
-        <mat-toolbar class="titulopartes">Endereço</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-            <mat-form-field fxFlex="10%" fxFlexOffset="20px">
-                <input type="text" matInput [(ngModel)]="empresa.cep" name="cep" placeholder="CEP:"
-                    [textMask]="{mask: maskCep}">
-            </mat-form-field>
-
-            <mat-form-field fxFlex="45%">
-                <input matInput maxlength="200" 
-                       name="endereco" 
-                       placeholder="Endereço" 
-                       [(ngModel)]="empresa.endereco"
-                       required>
-            </mat-form-field>
-
-            <mat-form-field fxFlex="5%" fxFlexOffset="20px">
-                <mat-label>UF:</mat-label>
-                <mat-select [(ngModel)]="empresa.uf" name="ufEndereco">
-                    <mat-option *ngFor="let m of ufs" [value]="m">
-                        {{m.nome}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field fxFlex="20%">
-                <input matInput maxlength="200" name="bairro" placeholder="Bairro:" [(ngModel)]="empresa.bairro">
-            </mat-form-field>
-
-            <mat-form-field fxFlex="20%">
-                <input matInput maxlength="200" name="cidade" 
-                       placeholder="Cidade" [(ngModel)]="empresa.cidade">
-            </mat-form-field>
-
-        </div>
+        <cadastro-endereco [cep]="empresa.cep" 
+                           [endereco]="empresa.endereco"      
+                           [cidade]="empresa.cidade"      
+                           [bairro]="empresa.bairro"      
+                           [uf]="empresa.uf">    
+        </cadastro-endereco>
 
         <!-- CONTATO -->
         <mat-toolbar class="titulopartes">Contato</mat-toolbar>

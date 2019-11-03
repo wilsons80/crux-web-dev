@@ -13,6 +13,7 @@ import { EscolarComponent } from './escolar/escolar.component';
 import { AtendimentoApoioComponent } from './atendimento-apoio/atendimento-apoio.component';
 import { NgxCurrencyModule } from "ngx-currency";
 import { SharedDirectivesModule } from 'src/app/directives/shared-directives.module';
+import { CadastroEnderecoModule } from '../cadastro-endereco/cadastro-endereco.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SharedDirectivesModule } from 'src/app/directives/shared-directives.mod
     MatButtonModule,
     MaterialCommonModule,
     NgxCurrencyModule,
-    SharedDirectivesModule
+    SharedDirectivesModule,
+    CadastroEnderecoModule
   ],
   exports:[
     DadosPessoaisComponent,
