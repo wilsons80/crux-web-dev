@@ -19,24 +19,24 @@
 
          <!-- DEPARTAMENTO SUPERIOR / UNIDADE -->
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                            <mat-form-field fxFlexOffset="20px" fxFlex= "45%" >
-                                    <mat-label>Unidade:</mat-label>
-                                    <mat-select [(ngModel)]="departamento.unidade.idUnidade" name="unidade" required>
-                                        <mat-option *ngFor="let u of unidades" [value]="u.idUnidade" >
-                                          {{u.nomeUnidade}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
+            <mat-form-field fxFlexOffset="20px" fxFlex= "45%" >
+                <mat-label>Unidade:</mat-label>
+                <mat-select [(ngModel)]="departamento.unidade.idUnidade" name="unidade" required>
+                    <mat-option *ngFor="let u of unidades" [value]="u.idUnidade" >
+                        {{u.nomeUnidade}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
-                                <mat-form-field fxFlex= "46%" fxFlexOffset="20px">
-                                        <mat-label>Departamento Superior: </mat-label>
-                                        <mat-select name="departamentoSuperior" [(ngModel)]="departamento.departamentoSuperior.idDepartamento" [disabled]="!departamento.unidade">
-                                            <mat-option *ngFor="let d of departamentos" [value]="d.idDepartamento">
-                                                {{d.nmDepartamento}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                </div>
+            <mat-form-field fxFlex= "46%" fxFlexOffset="20px">
+                <mat-label>Departamento Superior: </mat-label>
+                <mat-select name="departamentoSuperior" [(ngModel)]="departamento.departamentoSuperior.idDepartamento" [disabled]="!departamento.unidade">
+                    <mat-option *ngFor="let d of departamentos" [value]="d.idDepartamento">
+                        {{d.nmDepartamento}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
         <!-- ENDEREÇO -->
         <mat-toolbar class="titulopartes">Endereço </mat-toolbar>
@@ -46,7 +46,12 @@
            </mat-form-field>
 
            <mat-form-field fxFlex= "24%">
-                <input matInput  [(ngModel)]="departamento.nrTelefoneDepartamento" name="nrTelefoneDepartamento" placeholder="Telefone:" [textMask]="{mask: maskPhone}">
+                <input matInput  
+                       [(ngModel)]="departamento.nrTelefoneDepartamento" 
+                       name="nrTelefoneDepartamento" 
+                       placeholder="Telefone" 
+                       [textMask]="{mask: maskPhone}"
+                       pattern="^(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$">
         </mat-form-field>
         </div>
 

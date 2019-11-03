@@ -51,8 +51,12 @@
 <mat-toolbar class="titulopartes">Contato</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="30px" fxFlexFill>
     <mat-form-field fxFlex="30%" fxFlexOffset="20px">
-        <input matInput [(ngModel)]="familiar.pessoasFisica.telefoneComercial" name="telefoneComercial"
-               placeholder="Telefone Comercial:" [textMask]="{mask: maskPhone}">
+        <input matInput 
+               [(ngModel)]="familiar.pessoasFisica.telefoneComercial" 
+               name="telefoneComercial"
+               placeholder="Telefone Comercial" 
+               pattern="^(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$"
+               [textMask]="{mask: maskPhone}">
     </mat-form-field>
 </div>
 

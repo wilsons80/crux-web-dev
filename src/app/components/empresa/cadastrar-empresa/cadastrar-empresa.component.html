@@ -109,8 +109,11 @@
 
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px" fxFlexFill>
             <mat-form-field fxFlexOffset="20px" fxFlex="20%">
-                <input matInput [(ngModel)]="empresa.telefone" name="telefone" placeholder="Telefone:"
-                    [textMask]="{mask: maskPhone}" required>
+                <input matInput [(ngModel)]="empresa.telefone" 
+                       name="telefone" placeholder="Telefone"
+                       [textMask]="{mask: maskPhone}" 
+                       pattern="^(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$"
+                       required>
             </mat-form-field>
 
             <mat-form-field fxFlex="40%">
