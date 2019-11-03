@@ -12,15 +12,13 @@
                 <label *ngIf="menuPrincipalService.expandido" >Sessão: </label>
                 <tempo-sessao></tempo-sessao>
             </div>
+
+            <button mat-button [routerLink]="['/home']" routerLinkActive="router-link-active">
+                <mat-icon>home</mat-icon>
+            </button>            
         </div>
 
         <mat-divider style="margin-top: 10px"></mat-divider>
-
-        <!-- HOME -->
-        <a mat-list-item (click)="fecharMenu()" [routerLink]="['/home']" routerLinkActive="router-link-active">
-            <mat-icon>home</mat-icon>
-            <span *ngIf="menuPrincipalService.expandido" class="nav-caption">Home</span>
-        </a>
 
         <!-- MENU ADMINISTRATIVO -->
         <modulo-administrativo *ngIf="verificaAcesso(getModulos().ADMINISTRATIVO)"></modulo-administrativo>
