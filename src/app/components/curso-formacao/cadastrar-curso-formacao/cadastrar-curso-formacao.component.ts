@@ -34,7 +34,7 @@ export class CadastrarCursoFormacaoComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.cursoFormacao.pessoaFisica = new PessoaFisica();
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){

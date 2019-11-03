@@ -78,7 +78,7 @@ export class CursoFormacaoComponent implements OnInit {
   chamaCaixaDialogo(cursoFormacao: CursoFormacao) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que deseja excluir a cursoFormacao?`,
+      pergunta: `Certeza que deseja excluir a curso de formação?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };
