@@ -1,26 +1,26 @@
-<mat-toolbar class="fixo">
-    <mat-toolbar-row>
-        <button mat-fab #botao fxLayoutAlign="center center" class="botao"
-        [style.background-image]="getBackground()">
-        <mat-icon class="nao-foto"></mat-icon>
-    </button>
-    </mat-toolbar-row>
-  
-    <mat-toolbar-row fxLayoutAlign="center center" fxLayout="column">
-        <div style="font-size: medium" fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="10px" *ngIf="autenticadorService?.usuarioEstaLogado">
-            <label *ngIf="menuPrincipalService.expandido" >Sessão: </label>
-            <tempo-sessao></tempo-sessao>
-        </div>    
-        <button mat-button [routerLink]="['/home']" routerLinkActive="router-link-active">
-            <mat-icon>home</mat-icon>
-        </button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-
 <div fxLayout="column" fxLayoutAlign="start center" fxFlexFill>
     <mat-nav-list>
 
+        <div fxLayout="column" fxLayoutGap="20px" >
+            <!-- FOTO PERFIL -->
+            <button mat-fab #botao fxLayoutAlign="center center" class="botao"
+                [style.background-image]="getBackground()">
+                <mat-icon class="nao-foto"></mat-icon>
+            </button>
 
+            <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="10px" *ngIf="autenticadorService?.usuarioEstaLogado" >
+                <label *ngIf="menuPrincipalService.expandido" >Sessão: </label>
+                <tempo-sessao></tempo-sessao>
+            </div>
+        </div>
+
+        <mat-divider style="margin-top: 10px"></mat-divider>
+
+        <!-- HOME -->
+        <a mat-list-item (click)="fecharMenu()" [routerLink]="['/home']" routerLinkActive="router-link-active">
+            <mat-icon>home</mat-icon>
+            <span *ngIf="menuPrincipalService.expandido" class="nav-caption">Home</span>
+        </a>
 
         <!-- MENU ADMINISTRATIVO -->
         <modulo-administrativo *ngIf="verificaAcesso(getModulos().ADMINISTRATIVO)"></modulo-administrativo>
