@@ -1,5 +1,15 @@
 <!-- ENDEREÇO -->
-<mat-toolbar class="titulopartes">Endereço</mat-toolbar>
+<mat-toolbar class="titulopartes">
+    Endereço
+</mat-toolbar>
+
+
+<div fxLayoutAlign="end end">
+    <a mat-button role="button" href="http://www.buscacep.correios.com.br/" target="_blank">
+        <mat-icon>open_in_new</mat-icon>Buscar CEP
+    </a>
+</div>
+
 <div fxLayout="row" class="espaco" fxLayoutGap="20px" 
      style="margin-top: 10px; margin-bottom: 10px" 
      fxFlexFill>
@@ -9,7 +19,9 @@
                 [(ngModel)]="cep" 
                 name="cep" 
                 placeholder="CEP"
-                [textMask]="{mask: maskCep}" />
+                (change)="onChangeCep()"
+                [textMask]="{mask: maskCep}"
+                pattern="^\d{2}\.?\d{3}-?\d{3}$" />
     </mat-form-field>
     
     <mat-form-field fxFlex="85%">
