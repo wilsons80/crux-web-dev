@@ -7,6 +7,7 @@ import { FaltasFuncionarioService } from 'src/app/services/faltas-funcionario/fa
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Acesso } from 'src/app/core/acesso';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-cadastrar-faltas-funcionario',
   templateUrl: './cadastrar-faltas-funcionario.component.html',
@@ -93,6 +94,14 @@ export class CadastrarFaltasFuncionarioComponent implements OnInit {
       this.toastService.showSucesso("Falta atualizada com sucesso");
     });
 
+  }
+
+  mostrarDadosFuncionarioQueFaltou(idFuncionario:number) {
+    this.faltasFuncionario.funcionarioFaltou = _.cloneDeep(_.find(this.funcionarios, (f: Funcionario) => f.id === idFuncionario));
+  }
+  
+  mostrarDadosFuncionario(idFuncionario:number) {
+    this.faltasFuncionario.funcionarioCadastrouFalta = _.cloneDeep(_.find(this.funcionarios, (f: Funcionario) => f.id === idFuncionario));
   }
 
 }

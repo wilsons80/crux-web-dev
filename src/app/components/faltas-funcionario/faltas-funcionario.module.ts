@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FaltasFuncionarioRoutingModule } from './faltas-funcionario-routing.module';
 import { FaltasFuncionarioComponent } from './faltas-funcionario.component';
+import { DadosFuncionarioModule } from '../common/dados-funcionario/dados-funcionario.module';
 
 
 
@@ -12,7 +13,8 @@ import { FaltasFuncionarioComponent } from './faltas-funcionario.component';
   imports: [
     CommonModule,
     FaltasFuncionarioRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    DadosFuncionarioModule
   ]
 })
 export class FaltasFuncionarioModule { }

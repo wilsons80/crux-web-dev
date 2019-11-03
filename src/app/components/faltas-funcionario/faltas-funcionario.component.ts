@@ -55,7 +55,7 @@ export class FaltasFuncionarioComponent implements OnInit {
   limpar() {
     this.mostrarTabela = false;
     this.faltasFuncionario = new FaltasFuncionario()
-    this.funcionario = new Funcionario()
+    this.funcionario = null;
     this.dataSource.data = [];
     this.msg = '';
   }
@@ -72,7 +72,6 @@ export class FaltasFuncionarioComponent implements OnInit {
     },
       () => {
         this.msg = "Nenhum registro para a pesquisa selecionada"
-        this.limpar()
       }
     )
 
