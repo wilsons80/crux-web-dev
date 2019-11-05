@@ -14,8 +14,8 @@ export class EncaminhamentoAlunoService extends BaseService<EncaminhamentoAluno>
   }
 
   getAllFiltro(idAluno: number|string, idEntidadeSocial: number|string) {
-    if (idAluno === undefined) { idAluno = ''; }
-    if (idEntidadeSocial === undefined) { idEntidadeSocial = ''; }
+    if (!idAluno) { idAluno = ''; }
+    if (!idEntidadeSocial) { idEntidadeSocial = ''; }
 
     return this.http.get(Rotas.ENCAMINHAMENTO_ALUNO , { params: {
        aluno: `${idAluno}`,

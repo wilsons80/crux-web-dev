@@ -19,8 +19,8 @@ export class GrupoModuloService extends BaseService<GrupoModulo> {
 
 
   getAllByUnidadeAndModulo(idUnidade: number|string, idModulo: number|string) {
-    if (idUnidade === undefined) { idUnidade = ''; }
-    if (idModulo === undefined) { idModulo = ''; }
+    if (!idUnidade) { idUnidade = ''; }
+    if (!idModulo) { idModulo = ''; }
 
     return this.http.get(`${Rotas.GRUPO_MODULO}unidade`, {params: {
        idunidade: `${idUnidade}`,
