@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cargo } from 'src/app/core/cargo';
 import { CargosService } from 'src/app/services/cargos/cargos.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -31,7 +31,7 @@ export class CadastrarCargoComponent implements OnInit {
   constructor(
     private cargoService: CargosService,
     private activatedRoute: ActivatedRoute,
-    private location: Location,
+    private router: Router,
     private toastService: ToastService
   ) { }
 
@@ -68,7 +68,7 @@ export class CadastrarCargoComponent implements OnInit {
   }
   cadastrar() {
     this.cargoService.cadastrar(this.cargo).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['cargo']);
       this.toastService.showSucesso("Cargo cadastrada com sucesso");
     });
   }
@@ -78,13 +78,13 @@ export class CadastrarCargoComponent implements OnInit {
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['cargo']);
   }
 
 
   atualizar() {
     this.cargoService.alterar(this.cargo).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['cargo']);
       this.toastService.showSucesso("Cargo cadastrada com sucesso");
     });
 

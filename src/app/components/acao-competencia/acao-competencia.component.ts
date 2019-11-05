@@ -107,7 +107,7 @@ export class AcaoCompetenciaComponent implements OnInit {
   verificaMostrarTabela(acaoCompetencias: AcaoCompetencia[]) {
     if (!acaoCompetencias || acaoCompetencias.length == 0) {
       this.mostrarTabela = false;
-      this.msg = "Nenhuma acaoCompetencia cadastrada."
+      this.msg = "Nenhuma ação competência cadastrada."
     } else {
       this.mostrarTabela = true;
     }

@@ -15,7 +15,7 @@ import { Acesso } from 'src/app/core/acesso';
 export class CadastrarAcaoCompetenciaComponent implements OnInit {
 
   talentos: Talento[];
-  acaoCompetencia: AcaoCompetencia = new AcaoCompetencia();
+  acaoCompetencia: AcaoCompetencia;
 
   isAtualizar = false;
 
@@ -35,6 +35,8 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
 
   ngOnInit() {
 
+    this.inicializarObjetos();
+
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
@@ -45,8 +47,6 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
       this.mostrarBotaoAtualizar = false;
     }
 
-    this.acaoCompetencia.talentosPf = new Talento();
-    
     this.talentoService.getAll().subscribe((talentos: Talento[]) => {
       this.talentos = talentos;
     });
@@ -61,6 +61,11 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
     }
 
   }
+  inicializarObjetos() {
+    this.acaoCompetencia = new AcaoCompetencia();
+    this.acaoCompetencia.talentosPf = new Talento();
+
+  }
   cadastrar() {
     this.acoesCompetenciaService.cadastrar(this.acaoCompetencia).subscribe(() => {
       this.router.navigate(['acaocompetencia'])
@@ -69,7 +74,7 @@ export class CadastrarAcaoCompetenciaComponent implements OnInit {
   }
 
   limpar() {
-    this.acaoCompetencia = new AcaoCompetencia()
+   this.inicializarObjetos();
   }
 
   cancelar() {

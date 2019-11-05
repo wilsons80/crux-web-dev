@@ -21,7 +21,7 @@ import { Funcionario } from 'src/app/core/funcionario';
 export class CadastrarTalentoComponent implements OnInit {
 
   funcionarios: Funcionario[];
-  talento: Talento = new Talento();
+  talento: Talento;
   questionarios: Questionario[];
 
   isAtualizar: boolean = false;
@@ -40,6 +40,8 @@ export class CadastrarTalentoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.inicializarObjetos();
+    
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
@@ -49,9 +51,6 @@ export class CadastrarTalentoComponent implements OnInit {
     if(!this.perfilAcesso.altera){
       this.mostrarBotaoAtualizar = false;
     }
-
-    this.talento.questionario = new Questionario();
-    this.talento.funcionario = new Funcionario();
 
     this.questionarioService.getAll().subscribe((questionarios: Questionario[]) => {
       this.questionarios = questionarios;
@@ -71,6 +70,11 @@ export class CadastrarTalentoComponent implements OnInit {
     }
 
   }
+  inicializarObjetos() {
+    this.talento = new Talento();
+    this.talento.questionario = new Questionario();
+    this.talento.funcionario = new Funcionario();
+  }
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;
     if(!this.mostrarBotaoAtualizar) return false;
@@ -86,7 +90,7 @@ export class CadastrarTalentoComponent implements OnInit {
   }
 
   limpar() {
-    this.talento = new Talento();
+    this.inicializarObjetos();
   }
 
   cancelar() {

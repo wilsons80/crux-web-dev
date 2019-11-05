@@ -26,7 +26,7 @@ export class CadastrarUnidadeComponent implements OnInit {
 
   estados: any;
 
-  unidade: Unidade = new Unidade();
+  unidade: Unidade;
   instituicoes: Instituicao[];
   isAtualizar = false;
 
@@ -67,7 +67,7 @@ export class CadastrarUnidadeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.unidade.instituicao = new Instituicao();
+    this.inicializarObjetos();
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if (!this.perfilAcesso.insere) {
@@ -101,6 +101,10 @@ export class CadastrarUnidadeComponent implements OnInit {
       this.instituicoes = dados;
     });
   }
+  inicializarObjetos() {
+    this.unidade = new Unidade();
+    this.unidade.instituicao = new Instituicao();
+  }
 
   cancelar() {
     this.router.navigate(['unidade']);
@@ -127,7 +131,7 @@ export class CadastrarUnidadeComponent implements OnInit {
   }
 
   limpar() {
-    this.unidade = new Unidade();
+    this.inicializarObjetos();
   }
 
   cadastrar() {

@@ -46,7 +46,6 @@ export class CadastrarAcoesAtividadeComponent implements OnInit {
       this.mostrarBotaoAtualizar = false;
     }
     this.atividadeService.getAll().subscribe((atividades: Atividade[]) => {
-      console.log("dadsas", atividades);
       this.atividades = atividades;
     })
 
