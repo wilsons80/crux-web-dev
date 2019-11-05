@@ -6,13 +6,13 @@
         <!-- CADASTRO DE RESERVA -->
         <mat-toolbar class="titulopartes">Cadastro de Reserva</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px"  fxFlexFill>
-            <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                <input matInput maxlength="200" name="descricao" placeholder="Descrição do Cadastro de Reserva:"
+            <mat-form-field fxFlex="75%" fxFlexOffset="20px">
+                <input matInput maxlength="200" name="descricao" placeholder="Descrição"
                     [(ngModel)]="cadastroReserva.descricaoCadastroReserva" >
             </mat-form-field>
 
-            <mat-form-field fxFlex="45%" >
-                <input matInput name="dataCadastroReserva" [matDatepicker]="dataCadastroReserva" placeholder="Data do Cadastro de Reserva:"
+            <mat-form-field fxFlex="20%" >
+                <input matInput name="dataCadastroReserva" [matDatepicker]="dataCadastroReserva" placeholder="Data do Cadastro "
                     [(ngModel)]="cadastroReserva.dataCadastroReserva" >
                 <mat-datepicker-toggle matSuffix [for]="dataCadastroReserva"></mat-datepicker-toggle>
                 <mat-datepicker #dataCadastroReserva></mat-datepicker>
@@ -23,13 +23,13 @@
         <!-- CANCELAMENTO -->
         <mat-toolbar class="titulopartes">Cancelamento do Cadastro Reserva</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-            <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-                <input matInput maxlength="200" name="descricaoCancelamentoCadastro" placeholder="Descrição do Cancelamento do Cadastro:"
+            <mat-form-field fxFlex="75%" fxFlexOffset="20px">
+                <input matInput maxlength="200" name="descricaoCancelamentoCadastro" placeholder="Descrição do Cancelamento"
                     [(ngModel)]="cadastroReserva.descricaoCancelamentoCadastro">
             </mat-form-field>
 
-            <mat-form-field fxFlex="45%" >
-                <input matInput name="dataCancelamentoCadastro" [matDatepicker]="dataCancelamentoCadastro" placeholder="Data do Cancelamento do Cadastro:"
+            <mat-form-field fxFlex="20%" >
+                <input matInput name="dataCancelamentoCadastro" [matDatepicker]="dataCancelamentoCadastro" placeholder="Data do Cancelamento"
                     [(ngModel)]="cadastroReserva.dataCancelamentoCadastro" >
                 <mat-datepicker-toggle matSuffix [for]="dataCancelamentoCadastro"></mat-datepicker-toggle>
                 <mat-datepicker #dataCancelamentoCadastro></mat-datepicker>
@@ -37,46 +37,43 @@
 
         </div>
         
-        <!-- ATIVIDADE -->
-        <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-            <mat-form-field fxFlexOffset="20px" fxFlex="45%">
-                <mat-label>Atividade:</mat-label>
-                <mat-select [(ngModel)]="cadastroReserva.atividade.id" name="atividade" required>
-                    <mat-option *ngFor="let m of atividades" [value]="m.id">
-                        {{m.descricao}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
 
-            <mat-form-field fxFlex="15%" >
-                <input matInput name="dataCadastroAtividade" [matDatepicker]="dataCadastroAtividade" placeholder="Data de Cadastro da Atividade:"
-                    [(ngModel)]="cadastroReserva.dataCadastroAtividade" >
-                <mat-datepicker-toggle matSuffix [for]="dataCadastroAtividade"></mat-datepicker-toggle>
-                <mat-datepicker #dataCadastroAtividade></mat-datepicker>
-            </mat-form-field>
-           
-            <mat-form-field fxFlex="15%" >
-                <input matInput name="dtAlteracaoAtividade" [matDatepicker]="dtAlteracaoAtividade" placeholder="Data de Alteração da Atividade:"
-                    [(ngModel)]="cadastroReserva.dtAlteracaoAtividade" >
-                <mat-datepicker-toggle matSuffix [for]="dtAlteracaoAtividade"></mat-datepicker-toggle>
-                <mat-datepicker #dtAlteracaoAtividade></mat-datepicker>
-            </mat-form-field>
+            <div fxFlex="50%">
+                <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="100%">
+                        <mat-label>Atividade:</mat-label>
+                        <mat-select [(ngModel)]="cadastroReserva.atividade.id" 
+                                    (selectionChange)=mostrarDadosAtividade($event.value)
+                                    name="atividade" 
+                                    required>
+                            <mat-option *ngFor="let m of atividades" [value]="m.id">
+                                {{m.descricao}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
 
+            <div fxFlex="50%">
+                <mat-toolbar class="titulopartes">Funcionário</mat-toolbar>
+                <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="100%">
+                        <mat-label>Nome</mat-label>
+                        <mat-select [(ngModel)]="cadastroReserva.pessoasFisica.id" name="pessoafisica" required>
+                            <mat-option *ngFor="let m of pessoas" [value]="m.id">
+                                {{m.nome}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                 </div>
+            </div>
         </div>
 
-         <!-- PESSOA -->
-         <mat-toolbar class="titulopartes">Pessoa</mat-toolbar>
-         <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-             <mat-form-field fxFlexOffset="20px" fxFlex="45%">
-                 <mat-label>Pessoas:</mat-label>
-                 <mat-select [(ngModel)]="cadastroReserva.pessoasFisica.id" name="pessoafisica" required>
-                     <mat-option *ngFor="let m of pessoas" [value]="m.id">
-                         {{m.nome}}
-                     </mat-option>
-                 </mat-select>
-             </mat-form-field>
-          </div>
+        <div *ngIf="cadastroReserva.atividade.id">
+            <dados-atividade [atividade]="cadastroReserva.atividade"></dados-atividade>
+        </div>
 
 
         <!-- BOTOES -->

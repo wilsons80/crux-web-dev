@@ -51,6 +51,12 @@ export class CadastroReservaAtividadeComponent implements OnInit {
     this.atividadeService.getAll().subscribe((listaAtividade: Atividade[]) => {
       this.listaAtividade = listaAtividade;
     });
+
+    this.cadastroReservaAtividadeService.getAll().subscribe(
+      (cadastroReservaAtividade: CadastroReservaAtividade[]) => {
+        this.dataSource.data = cadastroReservaAtividade;
+        this.mostrarTabela = true;
+      });
   }
 
   limpar() {
