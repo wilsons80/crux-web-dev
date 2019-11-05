@@ -4,15 +4,19 @@
         <form #formConsultar="ngForm">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
 
-                <mat-icon>search</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione um funcionário</mat-label>
-                    <mat-select [(ngModel)]="pessoaFisica" name="pessoaFisica">
-                        <mat-option *ngFor="let d of listaPessoas" [value]="d">
-                            {{d.nome}}
+                    <mat-icon matPrefix>search</mat-icon>
+                    <mat-label fxFlexOffset="20px">Selecione um funcionário</mat-label>
+                    <mat-select fxFlexOffset="20px" [(ngModel)]="funcionario" name="pessoaFisica" required>
+                        <mat-option *ngFor="let d of funcionarios" [value]="d">
+                            {{d.pessoasFisica.nome}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+            </div>
+
+            <div *ngIf="funcionario">
+                <dados-funcionario [funcionario]=funcionario></dados-funcionario>
             </div>
 
 
@@ -33,8 +37,8 @@
         <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 20px">
 
             <ng-container matColumnDef="nome">
-                <th mat-header-cell *matHeaderCellDef> Descrição: </th>
-                <td mat-cell *matCellDef="let element"> {{element.pessoasFisica.nome}} </td>
+                <th mat-header-cell *matHeaderCellDef> Nome: </th>
+                <td mat-cell *matCellDef="let element"> {{element.funcionario.pessoasFisica.nome}} </td>
             </ng-container>
 
             <ng-container matColumnDef="dataRespostaTalento">

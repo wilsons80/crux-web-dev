@@ -17,17 +17,15 @@
                                 name="senha"
                                 [(ngModel)]="usuario.senha"
                                 placeholder="Insira sua senha" 
-                                [type]="hide ? 'password' : 'text'"
+                                type="password"
                                 required
                                 >
-                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                </button>
+                                <mat-icon matSuffix>lock</mat-icon>
                 </mat-form-field>
 
                 <div class="elemento" fxLayout="column" fxLayoutAlign="space-around center"
                         style=" padding-bottom: 20px;  padding-top: 20px;">
-                        <button mat-raised-button style="width: 100%" color="primary" (click)="login()"
+                        <button  mat-raised-button style="width: 100%" color="primary" (click)="login()"
                                 [disabled]="formLogin.invalid">
                                 ACESSAR</button>
                 </div>

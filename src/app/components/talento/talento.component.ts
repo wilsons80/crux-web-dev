@@ -7,6 +7,8 @@ import { Talento } from 'src/app/core/talento';
 import { PessoaFisicaService } from 'src/app/services/pessoa-fisica/pessoa-fisica.service';
 import { TalentosService } from 'src/app/services/talentos/talentos.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
+import { Funcionario } from 'src/app/core/funcionario';
 
 @Component({
   selector: 'app-talento',
@@ -17,11 +19,11 @@ export class TalentoComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  listaPessoas: PessoaFisica[];
+  funcionarios: Funcionario[];
   listaTalentos: Talento[];
   mostrarTabela: boolean = false;
   msg: string;
-  pessoaFisica: PessoaFisica;
+  funcionario: Funcionario;
   talento: Talento = new Talento()
 
   displayedColumns: string[] = ['nome', 'dataRespostaTalento', 'nrNotaCompetencia', 'acoes'];
@@ -32,7 +34,7 @@ export class TalentoComponent implements OnInit {
 
   constructor(
     private talentosService: TalentosService,
-    private pessoaFisicaService: PessoaFisicaService,
+    private funcionarioService: FuncionarioService,
     private router: Router,
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute
@@ -42,8 +44,8 @@ export class TalentoComponent implements OnInit {
   ngOnInit() {
     this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
     this.dataSource.paginator = this.paginator;
-    this.pessoaFisicaService.getAll().subscribe((listaPessoas: PessoaFisica[]) => {
-      this.listaPessoas = listaPessoas;
+    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
+      this.funcionarios = funcionarios;
     })
 
   }
@@ -52,14 +54,14 @@ export class TalentoComponent implements OnInit {
   limpar() {
     this.mostrarTabela = false;
     this.talento = new Talento()
-    this.pessoaFisica = null;
+    this.funcionario = null;
     this.dataSource.data = [];
     this.msg = '';
   }
 
   consultar() {
-    if (this.pessoaFisica.id) {
-      this.talentosService.getByIdPessoaFisica(this.pessoaFisica.id).subscribe((talentos: Talento[]) => {
+    if (this.funcionario && this.funcionario.pessoasFisica && this.funcionario.pessoasFisica.id) {
+      this.talentosService.getByIdPessoaFisica(this.funcionario.pessoasFisica.id).subscribe((talentos: Talento[]) => {
         if (!talentos) {
           this.mostrarTabela = false;
           this.msg = 'Nenhum registro para a pesquisa selecionada'
@@ -70,7 +72,6 @@ export class TalentoComponent implements OnInit {
       },
       () => {
           this.msg = 'Nenhum registro para a pesquisa selecionada'
-          this.limpar();
         });
     } else {
       this.talentosService.getAll().subscribe((talentos: Talento[]) => {
