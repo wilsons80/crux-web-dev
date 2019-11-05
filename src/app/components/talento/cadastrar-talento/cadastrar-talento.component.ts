@@ -1,3 +1,4 @@
+import { FuncionarioService } from './../../../services/funcionario/funcionario.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,6 +10,8 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { PessoaFisica } from './../../../core/pessoa-fisica';
 import { Questionario } from './../../../core/questionario';
 import { Acesso } from 'src/app/core/acesso';
+import * as _ from 'lodash';
+import { Funcionario } from 'src/app/core/funcionario';
 
 @Component({
   selector: 'app-cadastrar-talento',
@@ -17,7 +20,7 @@ import { Acesso } from 'src/app/core/acesso';
 })
 export class CadastrarTalentoComponent implements OnInit {
 
-  pessoas: PessoaFisica[];
+  funcionarios: Funcionario[];
   talento: Talento = new Talento();
   questionarios: Questionario[];
 
@@ -29,10 +32,10 @@ export class CadastrarTalentoComponent implements OnInit {
   constructor(
     private questionarioService: QuestionarioService,
     private talentosService: TalentosService,
+    private funcionarioService: FuncionarioService,
     private pessoaFisicaService: PessoaFisicaService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private location: Location,
     private toastService: ToastService
   ) { }
 
@@ -48,14 +51,14 @@ export class CadastrarTalentoComponent implements OnInit {
     }
 
     this.talento.questionario = new Questionario();
-    this.talento.pessoasFisica = new PessoaFisica();
+    this.talento.funcionario = new Funcionario();
 
     this.questionarioService.getAll().subscribe((questionarios: Questionario[]) => {
       this.questionarios = questionarios;
     });
 
-    this.pessoaFisicaService.getAll().subscribe((pessoas: PessoaFisica[]) => {
-      this.pessoas = pessoas;
+    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
+      this.funcionarios = funcionarios;
     });
 
     let idTalento: number;
@@ -87,16 +90,20 @@ export class CadastrarTalentoComponent implements OnInit {
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['talento']);
   }
 
 
   atualizar() {
     this.talentosService.alterar(this.talento).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['talento']);
       this.toastService.showSucesso("Talento atualizado com sucesso");
     });
 
+  }
+
+  mostrarFuncionario(idFuncionario:number) {
+    this.talento.funcionario =_.cloneDeep(_.find(this.funcionarios, (f: Funcionario) => f.id === idFuncionario));
   }
 
 
