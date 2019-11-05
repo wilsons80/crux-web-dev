@@ -26,6 +26,7 @@ export class ProdutosAtividadeComponent implements OnInit {
 
   displayedColumns: string[] = [
     "descricao",
+    "atividade",
     "dataAquisicao",
     "valorProduto",
     "acoes"
