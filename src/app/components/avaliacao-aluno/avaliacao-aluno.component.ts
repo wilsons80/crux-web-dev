@@ -84,9 +84,18 @@ export class AvaliacaoAlunoComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
+    this.dataSource.filterPredicate = (data: any, filter) => {
+      const dataStr = data.atividadesAluno.aluno.pessoaFisica.nome +
+                      data.atividadesAluno.aluno.matriculaAluno +
+                      data.dataAvaliacao +
+                      data.avaliacoes.nome +
+                      this.getNota(data.notaAvaliacao);
+      return dataStr.toUpperCase().indexOf(filter.toUpperCase()) !== -1;
+    };
+
     this.avaliacaoAtividadeService.getAll().subscribe((avaliacoes: Avaliacao[]) => {
       this.avaliacoes = avaliacoes;
-    })
+    });
 
     this.atividadeService.getAllVigentesAndPassadas().subscribe((atividades: Atividade[]) => {
       this.atividades = atividades;
