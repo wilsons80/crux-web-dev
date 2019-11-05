@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ProdutosAtividadeRoutingModule } from './produtos-atividade-routing.module';
 import { CadastrarProdutosAtividadeComponent } from './cadastrar-produtos-atividade/cadastrar-produtos-atividade.component';
 import { ProdutosAtividadeComponent } from './produtos-atividade.component';
+import { DadosAtividadeModule } from '../common/dados-atividade/dados-atividade.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ProdutosAtividadeComponent } from './produtos-atividade.component';
     CommonModule,
     ProdutosAtividadeRoutingModule,
     MaterialCommonModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    DadosAtividadeModule
   ]
 })
 export class ProdutosAtividadeModule { }
