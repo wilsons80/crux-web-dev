@@ -45,17 +45,17 @@
                 <ng-container matColumnDef="nome">
                     <th mat-header-cell *matHeaderCellDef> Aluno </th>
                     <td mat-cell *matCellDef="let element;  let i = index" style="width: 300px">
-                        <div *ngIf="uniformeAluno.id; else comboTemplate">
-                            {{element.atividadesAluno.aluno?.pessoaFisica?.nome}}
+                        <div *ngIf="element.id; else comboNomeTemplate">
+                            {{element.atividadesAluno.aluno.pessoaFisica.nome}}
                         </div>
-                        <ng-template #comboTemplate>
+                        <ng-template #comboNomeTemplate>
                             <mat-form-field style="width: 95%">
                                 <mat-select [(ngModel)]="element.atividadesAluno.id"
                                             (selectionChange)="getAtividadeAluno(element, $event.value)"
-                                            [ngModelOptions]="{standalone: true}"
-                                            [disabled]="element.disabilitado"
+                                            [ngModelOptions]="{standalone: true}"                                            
                                             required>
-                                    <mat-option *ngFor="let i of atividadesAlunos" [value]="i.id" ngDefaultControl>
+                                    <mat-option *ngFor="let i of atividadesAlunos" [value]="i.id" 
+                                                ngDefaultControl>
                                         {{i.aluno.pessoaFisica.nome}}
                                     </mat-option>
                                 </mat-select>
@@ -67,31 +67,42 @@
                 <ng-container matColumnDef="nomeUniforme">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Uniforme </th>
                     <td mat-cell *matCellDef="let element; let i = index">
-                        <mat-form-field>
-                            <input matInput
-                                   [ngModelOptions]="{standalone: true}"
-                                   maxlength="45"
-                                   [disabled]="element.disabilitado"
-                                   [(ngModel)]="element.nomeUniforme">
-                        </mat-form-field>
+                        <div *ngIf="element.id; else comboUniformeTemplate">
+                            {{element.nomeUniforme}}
+                        </div>
+                        <ng-template #comboUniformeTemplate>
+                            <mat-form-field>
+                                <input matInput
+                                       [ngModelOptions]="{standalone: true}"
+                                       maxlength="45"
+                                       [disabled]="element.disabilitado"
+                                       [(ngModel)]="element.nomeUniforme">
+                            </mat-form-field>
+                        </ng-template>
                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="dataUniformeEntregue">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de entrega </th>
                     <td mat-cell *matCellDef="let element; let i = index">
-                        <mat-form-field>
-                            <input matInput
-                                   [disabled]="element.disabilitado"
-                                   [max]="maxDate"
-                                   [min]="minDate"
-                                   #datareferencia="ngModel"
-                                   [matDatepicker]="datareferencia"
-                                   [ngModelOptions]="{standalone: true}"
-                                   [(ngModel)]="element.dataUniformeEntregue">
-                            <mat-datepicker-toggle matSuffix [for]="datareferencia"></mat-datepicker-toggle>
-                            <mat-datepicker #datareferencia></mat-datepicker>
-                        </mat-form-field>
+                            <div *ngIf="element.id; else comboDataEntregaTemplate">
+                                {{element.dataUniformeEntregue | dataSimples}}
+                            </div>
+                            <ng-template #comboDataEntregaTemplate>
+                                <mat-form-field>
+                                    <input matInput
+                                        [disabled]="element.disabilitado"
+                                        [max]="maxDate"
+                                        [min]="minDate"
+                                        #datareferencia="ngModel"
+                                        [matDatepicker]="datareferencia"
+                                        [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="element.dataUniformeEntregue">
+                                    <mat-datepicker-toggle matSuffix [for]="datareferencia"></mat-datepicker-toggle>
+                                    <mat-datepicker #datareferencia></mat-datepicker>
+                                </mat-form-field>
+
+                            </ng-template>
                     </td>
                 </ng-container>
 

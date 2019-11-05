@@ -12,9 +12,10 @@ import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Aluno } from 'src/app/core/aluno';
 import * as _ from 'lodash';
+import { Moment } from 'moment';
 
 class FiltroBusca {
-  dataReferencia: Date;
+  dataReferencia: Moment;
   atividade: Atividade = new Atividade();
 }
 
@@ -66,6 +67,15 @@ export class FrequenciaAlunoComponent implements OnInit {
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.dataSource.filterPredicate = (data: any, filter) => {
+      const dataStr = data.atividadesAluno.aluno.pessoaFisica.nome +
+                      data.atividadesAluno.aluno.matriculaAluno +
+                      data.dataFrequencia +
+                      data.justificativa +
+                      data.frequencia;
+      return dataStr.toUpperCase().indexOf(filter.toUpperCase()) !== -1;
+    };
 
     this.atividadeService.getAllVigentesAndPassadas().subscribe((atividades: Atividade[]) => {
       this.atividades = atividades;
@@ -175,7 +185,7 @@ export class FrequenciaAlunoComponent implements OnInit {
       this.frequenciasAluno = [];
     }
 
-    this.frequenciaAluno.dataFrequencia = this.filtroBusca.dataReferencia;
+    this.frequenciaAluno.dataFrequencia = this.filtroBusca.dataReferencia.toDate();
     this.frequenciaAluno.frequencia = true;
 
     this.frequenciasAluno.push(this.frequenciaAluno);
