@@ -52,6 +52,11 @@ export class DocumentoAtividadeComponent implements OnInit {
     this.atividadeService.getAll().subscribe((listaAtividade: Atividade[]) => {
       this.listaAtividade = listaAtividade;
     });
+
+    this.documentoAtividadeService.getAll().subscribe((documentoAtividade: DocumentoAtividade[]) => {
+      this.dataSource.data = documentoAtividade;
+      this.mostrarTabela = true;
+    });
   }
 
   limpar() {

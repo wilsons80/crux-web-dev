@@ -9,14 +9,21 @@
  
               <mat-form-field  fxFlex= "55%" fxFlexOffset="20px" >
                  <mat-label>Selecione uma atividade:</mat-label>
-                 <mat-select [(ngModel)]="documentoAtividade.atividade.id" name="atividade" required>
+                 <mat-select [(ngModel)]="documentoAtividade.atividade.id" 
+                             (selectionChange)=mostrarDadosAtividade($event.value)
+                             name="atividade" 
+                             required>
                      <mat-option *ngFor="let m of atividades" [value]="m.id" >
                        {{m.descricao}}
                      </mat-option>
                  </mat-select>
-         </mat-form-field>
+                </mat-form-field>
  
          </div>
+
+        <div *ngIf="documentoAtividade.atividade.id">
+            <dados-atividade [atividade]="documentoAtividade.atividade"></dados-atividade>
+        </div> 
 
         <!-- DADOS INICIAIS -->
         <mat-toolbar class="titulopartes">Dados</mat-toolbar>

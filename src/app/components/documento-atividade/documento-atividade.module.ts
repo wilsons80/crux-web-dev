@@ -1,3 +1,4 @@
+import { DadosAtividadeModule } from './../common/dados-atividade/dados-atividade.module';
 import { MaterialCommonModule } from './../../material-modules/material-common.module';
 import { DocumentoAtividadeComponent } from './documento-atividade.component';
 import { NgModule } from '@angular/core';
@@ -14,7 +15,8 @@ import { CadastrarDocumentoAtividadeComponent } from './cadastrar-documento-ativ
   imports: [
     CommonModule,
     DocumentoAtividadeRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    DadosAtividadeModule
   ]
 })
 export class DocumentoAtividadeModule { }
