@@ -16,7 +16,7 @@ import { Acesso } from 'src/app/core/acesso';
 export class CadastrarIndicadoresComponent implements OnInit {
 
   objetivos: Objetivo[];
-  indicadores: Indicadores = new Indicadores();
+  indicadores: Indicadores;
 
   isAtualizar: boolean = false;
 
@@ -30,12 +30,12 @@ export class CadastrarIndicadoresComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private location: Location,
     private toastService:ToastService
-  ) {
-    this.indicadores.objetivo = new Objetivo();
-  }
+  ) {}
 
 
   ngOnInit() {
+
+    this.inicializarObjetos();
 
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
@@ -61,6 +61,10 @@ export class CadastrarIndicadoresComponent implements OnInit {
     }
 
   }
+  inicializarObjetos() {
+    this.indicadores = new Indicadores();
+    this.indicadores.objetivo = new Objetivo();
+  }
   cadastrar() {
     this.indicadoresService.cadastrar(this.indicadores).subscribe(() => {
       this.location.back();
@@ -69,7 +73,7 @@ export class CadastrarIndicadoresComponent implements OnInit {
   }
 
   limpar() {
-    this.indicadores = new Indicadores()
+    this.inicializarObjetos();
   }
 
   cancelar() {
