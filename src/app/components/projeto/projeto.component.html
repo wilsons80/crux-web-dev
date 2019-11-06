@@ -4,10 +4,11 @@
         <form #formConsultarDepartamento="ngForm">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
 
-                <mat-icon>search</mat-icon>
+                
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione um projeto</mat-label>
-                    <mat-select [(ngModel)]="projeto" name="projeto">
+                        <mat-icon matPrefix>search</mat-icon>
+                    <mat-label fxFlexOffset="20px">Selecione um projeto:</mat-label>
+                    <mat-select fxFlexOffset="20px" [(ngModel)]="projeto" name="projeto">
                         <mat-option *ngFor="let d of projetos" [value]="d">
                             {{d.nome}}
                         </mat-option>

@@ -18,6 +18,22 @@
       </mat-form-field>
     </div>
 
+     <!-- Coordenador -->
+     <mat-toolbar class="titulopartes">Coordenador</mat-toolbar>
+     <div fxLayout="row" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+       <mat-form-field style="margin: 0 40px 0 20px" fxFlex="85%">
+          <mat-label>Funcionário:</mat-label>
+          <mat-select [(ngModel)]="programa.idCoordenador" name="funcionarios"
+          (selectionChange)=mostrarDadosFuncionario($event.value);
+          >
+            <mat-option *ngFor="let f of funcionarios" [value]="f.id">
+              {{f.pessoasFisica.nome}}
+            </mat-option>
+          </mat-select>
+          <mat-hint *ngIf="funcionarios?.length === 0"  align="start">Nenhum funcionário cadastrado</mat-hint>
+        </mat-form-field>
+     </div>
+
     <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
       <!-- DATA-->
@@ -42,43 +58,31 @@
         </div>
       </div>
 
-      <!-- COORDENADOR -->
+      <!-- FAIXA ETÁRIA -->
       <div fxLayout="column" fxFlex="55%">
-        <mat-toolbar class="titulopartes">Coordenador</mat-toolbar>
-        <mat-form-field style="margin: 0 40px 0 20px" fxFlex="85%">
-          <mat-label>Funcionário:</mat-label>
-          <mat-select [(ngModel)]="programa.idCoordenador" name="funcionarios">
-            <mat-option *ngFor="let f of funcionarios" [value]="f.id">
-              {{f.nome}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-toolbar class="titulopartes">Faixa Etária</mat-toolbar>
+        <div fxLayout="row" fxLayoutGap="30px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+            <mat-form-field fxFlex="30%" fxFlexOffset="20px">
+              <input matInput type="number" maxlength="2" name="faixainicio" placeholder="Inicial:"
+                [(ngModel)]="programa.faixaEtariaInicio">
+            </mat-form-field>
+  
+            <mat-form-field fxFlex="30%" fxFlexOffset="20px">
+              <input matInput type="number" maxlength="2" name="faixafim" placeholder="Final:"
+                [(ngModel)]="programa.faixaEtariaFim">
+            </mat-form-field>
+  
+          </div>
       </div>
     </div>
 
 
     <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-      <!-- FAIXA ETÁRIA -->
-      <div fxLayout="column" fxFlex="15%">
-        <mat-toolbar class="titulopartes">Faixa Etária</mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="30px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-
-          <mat-form-field fxFlex="30%" fxFlexOffset="20px">
-            <input matInput type="number" maxlength="2" name="faixainicio" placeholder="Inicial:"
-              [(ngModel)]="programa.faixaEtariaInicio">
-          </mat-form-field>
-
-          <mat-form-field fxFlex="30%" fxFlexOffset="20px">
-            <input matInput type="number" maxlength="2" name="faixafim" placeholder="Final:"
-              [(ngModel)]="programa.faixaEtariaFim">
-          </mat-form-field>
-
-        </div>
-      </div>
-
+      
       <!-- OBJETIVOS -->
-      <div fxLayout="column" fxFlex="35%">
+      <div fxLayout="column" fxFlex="46%">
         <mat-toolbar class="titulopartes">Objetivo</mat-toolbar>
         <mat-form-field style="margin-left: 20px" fxFlex="95%">
           <mat-label>Objetivos:</mat-label>
@@ -92,7 +96,7 @@
       </div>
 
       <!-- INICIATIVAS -->
-      <div fxLayout="column" fxFlex="55%">
+      <div fxLayout="column" fxFlex="46%">
         <mat-toolbar class="titulopartes">Iniciativa</mat-toolbar>
         <mat-form-field style="margin-left: 20px; margin-right: 20px; margin-bottom: 20px" fxFlex="85%">
           <mat-label>Iniciativas:</mat-label>
