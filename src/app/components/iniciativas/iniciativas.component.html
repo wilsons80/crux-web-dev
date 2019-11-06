@@ -4,10 +4,10 @@
         <form #formConsultar="ngForm">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
 
-                <mat-icon>search</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione uma iniciativa</mat-label>
-                    <mat-select [(ngModel)]="iniciativa" name="unidade">
+                        <mat-icon matPrefix>search</mat-icon>
+                    <mat-label fxFlexOffset="20px">Selecione uma iniciativa:</mat-label>
+                    <mat-select fxFlexOffset="20px" [(ngModel)]="iniciativa" name="iniciativa">
                         <mat-option *ngFor="let d of iniciativas" [value]="d">
                             {{d.nome}}
                         </mat-option>
