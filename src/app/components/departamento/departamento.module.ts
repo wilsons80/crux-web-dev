@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatSelectModule, MatTableModule, MatToolbarModule, MatTooltipModule, MatPaginatorModule } from '@angular/material';
-import { TextMaskModule } from 'angular2-text-mask';
+import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { DadosUnidadeModule } from '../common/dados-unidade/dados-unidade.module';
+import { DadosDepartamentoModule } from './../common/dados-departamento/dados-departamento.module';
+import { CadastrarDepartamentoComponent } from './cadastrar-departamento/cadastrar-departamento.component';
 import { DepartamentoRoutingModule } from './departamento-routing.module';
 import { DepartamentoComponent } from './departamento.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { CadastrarDepartamentoComponent } from './cadastrar-departamento/cadastrar-departamento.component';
-import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 
 
 
@@ -19,7 +17,9 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     DepartamentoRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    DadosUnidadeModule,
+    DadosDepartamentoModule
   ],
   exports: []
 })

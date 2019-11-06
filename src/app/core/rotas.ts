@@ -1,5 +1,5 @@
 export enum Rotas {
-    ROTA_DEPARTAMENTO               = 'api/departamento/',
+    DEPARTAMENTO                    = 'api/departamento/',
     ALUNO_TRABALHANDO               = 'api/alunostrabalhando/',
     ALUNO                           = 'api/aluno/',
     ATENDIMENTO                     = 'api/atendimento/',

@@ -10,7 +10,7 @@ import { Rotas } from 'src/app/core/rotas';
 export class DepartamentoService extends BaseService<Departamento> {
 
   constructor(http: HttpClient) {
-    super(http, Rotas.ROTA_DEPARTAMENTO);
+    super(http, Rotas.DEPARTAMENTO);
   }
 
 }
