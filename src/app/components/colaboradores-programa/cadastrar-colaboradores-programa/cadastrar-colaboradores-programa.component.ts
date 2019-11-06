@@ -18,7 +18,7 @@ import { Acesso } from 'src/app/core/acesso';
 })
 export class CadastrarColaboradoresProgramaComponent implements OnInit {
 
-  colaboradoresPrograma: ColaboradoresPrograma = new ColaboradoresPrograma()
+  colaboradoresPrograma: ColaboradoresPrograma;
   funcionarios: Funcionario[];
   programas:Programa[];
   cargos:Cargo[];
@@ -41,6 +41,8 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
 
   ngOnInit() {
 
+    this.inicializarObjetos();
+
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
@@ -50,11 +52,6 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
     if(!this.perfilAcesso.altera){
       this.mostrarBotaoAtualizar = false;
     }
-
-
-    this.colaboradoresPrograma.funcionario = new Funcionario();
-    this.colaboradoresPrograma.cargo = new Cargo();
-    this.colaboradoresPrograma.programa = new Programa();
 
     this.funcionarioService.getAll().subscribe((funcionarios:Funcionario[]) => {
       this.funcionarios = funcionarios;
@@ -78,6 +75,12 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
     }
 
   }
+  inicializarObjetos() {
+    this.colaboradoresPrograma = new ColaboradoresPrograma();
+    this.colaboradoresPrograma.funcionario = new Funcionario();
+    this.colaboradoresPrograma.cargo = new Cargo();
+    this.colaboradoresPrograma.programa = new Programa();
+  }
   cadastrar() {
     this.colaboradoresProgramaService.cadastrar(this.colaboradoresPrograma).subscribe(() => {
       this.router.navigate(['colaboradoresprograma']);
@@ -86,7 +89,7 @@ export class CadastrarColaboradoresProgramaComponent implements OnInit {
   }
   
   limpar() {
-    this.colaboradoresPrograma = new ColaboradoresPrograma();
+    this.inicializarObjetos();
   }
   
   cancelar() {
