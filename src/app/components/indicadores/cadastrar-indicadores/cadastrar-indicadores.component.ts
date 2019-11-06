@@ -28,7 +28,7 @@ export class CadastrarIndicadoresComponent implements OnInit {
     private indicadoresService: IndicadoresService,
     private objetivoService: ObjetivoService,
     private activatedRoute: ActivatedRoute,
-    private location: Location,
+    private router:Router,
     private toastService:ToastService
   ) {}
 
@@ -67,7 +67,7 @@ export class CadastrarIndicadoresComponent implements OnInit {
   }
   cadastrar() {
     this.indicadoresService.cadastrar(this.indicadores).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['indicadores']);
       this.toastService.showSucesso("Indicador cadastrado com sucesso");
     });
   }
@@ -77,14 +77,14 @@ export class CadastrarIndicadoresComponent implements OnInit {
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['indicadores']);
   }
 
 
 
   atualizar() {
     this.indicadoresService.alterar(this.indicadores).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['indicadores']);
       this.toastService.showSucesso("Indicador atualizado com sucesso");
     });
 

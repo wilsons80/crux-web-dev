@@ -4,7 +4,7 @@ import { Indicadores } from 'src/app/core/indicadores';
 import { Metas } from 'src/app/core/metas';
 import { IniciativaService } from 'src/app/services/iniciativa/iniciativa.service';
 import { MetasService } from 'src/app/services/metas/metas.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { IndicadoresService } from 'src/app/services/indicadores/indicadores.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -18,7 +18,7 @@ import { Acesso } from 'src/app/core/acesso';
 export class CadastrarMetasComponent implements OnInit {
 
   indicadores: Indicadores[];
-  metas: Metas = new Metas();
+  metas: Metas;
 
   perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
@@ -30,14 +30,15 @@ export class CadastrarMetasComponent implements OnInit {
     private indicadoresService: IndicadoresService,
     private metasService: MetasService,
     private activatedRoute: ActivatedRoute,
-    private location: Location,
+    private router:Router,
     private toastService:ToastService
   ) {
-    this.metas.indicadores = new Indicadores();
   }
 
 
   ngOnInit() {
+
+    this.inicializarObjetos();
 
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
@@ -63,6 +64,10 @@ export class CadastrarMetasComponent implements OnInit {
     }
 
   }
+  inicializarObjetos() {
+    this.metas = new Metas();
+    this.metas.indicadores = new Indicadores();
+  }
   
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;
@@ -73,23 +78,23 @@ export class CadastrarMetasComponent implements OnInit {
   }
   cadastrar() {
     this.metasService.cadastrar(this.metas).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['metas']);
       this.toastService.showSucesso("Meta cadastrada com sucesso");
     });
   }
 
   limpar() {
-    this.metas = new Metas();
+    this.inicializarObjetos();
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['metas']);
   }
 
 
   atualizar() {
     this.metasService.alterar(this.metas).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['metas']);
       this.toastService.showSucesso("Meta atualizada com sucesso");
     });
 
