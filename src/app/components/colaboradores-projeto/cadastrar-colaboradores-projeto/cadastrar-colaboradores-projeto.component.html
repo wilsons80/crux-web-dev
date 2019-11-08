@@ -11,14 +11,14 @@
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
                     <mat-form-field fxFlex="35%" fxFlexOffset="20px">
-                        <input matInput name="dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início:"
+                        <input matInput name="dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início"
                             [(ngModel)]="colaboradoresProjeto.dataInicio" required>
                         <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
                         <mat-datepicker #dataInicio></mat-datepicker>
                     </mat-form-field>
 
                     <mat-form-field fxFlex="35%" fxFlexOffset="20px">
-                        <input matInput name="dataFim" [matDatepicker]="dataFim" placeholder="Data Fim:"
+                        <input matInput name="dataFim" [matDatepicker]="dataFim" placeholder="Data Fim"
                             [(ngModel)]="colaboradoresProjeto.dataFim" >
                         <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
                         <mat-datepicker #dataFim></mat-datepicker>
@@ -30,10 +30,10 @@
             <div id="data" fxLayout="column" fxLayoutAlign="start stretch" fxFlex="50%" fxFlexFill>
                 <mat-toolbar class="titulopartes">Funcionário</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
-                    <mat-label>Funcionários:</mat-label>
+                    <mat-label>Matricula - Funcionário</mat-label>
                     <mat-select [(ngModel)]="colaboradoresProjeto.funcionario.id" name="funcionario" required>
                         <mat-option *ngFor="let m of funcionarios" [value]="m.id">
-                            {{m.pessoasFisica.nome}}
+                            {{m.matricula}} - {{m.pessoasFisica.nome}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -47,7 +47,7 @@
             <div id="data" fxLayout="column" fxLayoutAlign="start stretch" fxFlex="50%">
                 <mat-toolbar class="titulopartes">Projeto</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
-                    <mat-label>Projetos:</mat-label>
+                    <mat-label>Projetos</mat-label>
                     <mat-select [(ngModel)]="colaboradoresProjeto.projeto.id" name="projeto" required>
                         <mat-option *ngFor="let m of projetos" [value]="m.id">
                             {{m.nome}}
@@ -60,10 +60,10 @@
             <div id="data" fxLayout="column" fxLayoutAlign="start stretch" fxFlex="50%" fxFlexFill>
                 <mat-toolbar class="titulopartes">Cargo</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
-                    <mat-label>Cargos:</mat-label>
+                    <mat-label>Código - Cargo</mat-label>
                     <mat-select [(ngModel)]="colaboradoresProjeto.cargo.id" name="cargo" required>
                         <mat-option *ngFor="let m of cargos" [value]="m.id">
-                            {{m.nome}}
+                            {{m.codigo}} - {{m.nome}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -91,15 +91,15 @@
             Atualizar
     </button>
 
-    <button *ngIf="mostrarBotaoLimpar()" 
-            mat-raised-button 
-            fxFlex="20%" 
+    <button *ngIf="mostrarBotaoLimpar()"
+            mat-raised-button
+            fxFlex="20%"
             (click)="limpar()">
             Limpar
     </button>
-    <button 
-            mat-raised-button 
-            fxFlex="20%" 
+    <button
+            mat-raised-button
+            fxFlex="20%"
             (click)="cancelar()">
             Cancelar
     </button>
