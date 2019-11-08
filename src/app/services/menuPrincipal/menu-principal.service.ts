@@ -5,7 +5,7 @@ import { Injectable,EventEmitter } from '@angular/core';
 })
 export class MenuPrincipalService {
 
-  expandido:boolean = false;
+  expandido:boolean = true;
 
   fotoPerfil:any;
 
