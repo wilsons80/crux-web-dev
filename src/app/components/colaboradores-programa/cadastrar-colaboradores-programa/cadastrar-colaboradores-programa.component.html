@@ -30,10 +30,10 @@
             <div id="data" fxLayout="column" fxLayoutAlign="start stretch" fxFlex="50%" fxFlexFill>
                 <mat-toolbar class="titulopartes">Funcionários</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
-                    <mat-label>Funcionário:</mat-label>
+                    <mat-label>>Matrícula - Funcionário</mat-label>
                     <mat-select [(ngModel)]="colaboradoresPrograma.funcionario.id" name="funcionario" required>
                         <mat-option *ngFor="let m of funcionarios" [value]="m.id">
-                            {{m.pessoasFisica.nome}}
+                            {{m.matricula}} - {{m.pessoasFisica.nome}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -47,7 +47,7 @@
             <div id="data" fxLayout="column" fxLayoutAlign="start stretch" fxFlex="50%">
                 <mat-toolbar class="titulopartes">Programas</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
-                    <mat-label>Programa:</mat-label>
+                    <mat-label>Programa</mat-label>
                     <mat-select [(ngModel)]="colaboradoresPrograma.programa.id" name="programa" required>
                         <mat-option *ngFor="let m of programas" [value]="m.id">
                             {{m.nome}}
@@ -60,10 +60,10 @@
             <div id="data" fxLayout="column" fxLayoutAlign="start stretch" fxFlex="50%" fxFlexFill>
                 <mat-toolbar class="titulopartes">Cargos</mat-toolbar>
                 <mat-form-field style="margin-left: 20px; margin-right: 20px">
-                    <mat-label>Cargo:</mat-label>
+                    <mat-label>Código - Cargo</mat-label>
                     <mat-select [(ngModel)]="colaboradoresPrograma.cargo.id" name="cargo" required>
                         <mat-option *ngFor="let m of cargos" [value]="m.id">
-                            {{m.nome}}
+                            {{m.codigo}} - {{m.nome}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -91,15 +91,15 @@
             Atualizar
     </button>
 
-    <button *ngIf="mostrarBotaoLimpar()" 
-            mat-raised-button 
-            fxFlex="20%" 
+    <button *ngIf="mostrarBotaoLimpar()"
+            mat-raised-button
+            fxFlex="20%"
             (click)="limpar()">
             Limpar
     </button>
-    <button 
-            mat-raised-button 
-            fxFlex="20%" 
+    <button
+            mat-raised-button
+            fxFlex="20%"
             (click)="cancelar()">
             Cancelar
     </button>
