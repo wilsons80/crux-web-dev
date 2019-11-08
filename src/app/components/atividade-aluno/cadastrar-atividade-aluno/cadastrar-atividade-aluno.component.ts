@@ -133,6 +133,8 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
 
 
   atualizar() {
+    if (!this.validarDatas() ) { return; }
+
     this.atividadeAlunoService.alterar(this.atividadeAluno).subscribe(() => {
       this.router.navigate(['atividadealuno']);
       this.toastService.showSucesso('Atividade aluno atualizado com sucesso');

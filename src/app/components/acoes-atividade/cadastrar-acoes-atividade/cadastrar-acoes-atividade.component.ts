@@ -6,6 +6,7 @@ import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Acoes } from './../../../core/acoes';
 import { AcoesAtividadeService } from './../../../services/acoes-atividade/acoes-atividade.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-cadastrar-acoes-atividade',
@@ -71,10 +72,42 @@ export class CadastrarAcoesAtividadeComponent implements OnInit {
   }
 
   cadastrar() {
+    if (!this.validarDatas() ) { return; }
+
     this.acoesAtividadeService.cadastrar(this.acoes).subscribe(() => {
       this.router.navigate(['acoesatividade'])
       this.toastService.showSucesso("Ações atividade cadastrada com sucesso");
     });
+  }
+
+  validarDatas(): boolean {
+    if (this.acoes.dataInicio.getTime() < new Date(this.acoes.atividade.dataInicio).getTime()) {
+      this.toastService.showAlerta('A data de início informada não pode ser menor que a data de início da atividade selecionada.');
+      return false;
+    }
+
+    if (this.acoes.atividade.dataFim) {
+      if (this.acoes.dataInicio &&
+        this.acoes.dataInicio.getTime() > new Date(this.acoes.atividade.dataFim).getTime()) {
+        this.toastService.showAlerta('A data de início informada não pode ser menor que a data de início da atividade selecionada.');
+        return false;
+      }
+    }
+
+    if (this.acoes.atividade.dataFim &&
+        this.acoes.dataFim &&
+        new Date(this.acoes.dataFim).getTime() > new Date(this.acoes.atividade.dataFim).getTime()) {
+      this.toastService.showAlerta('A data de fim informada não pode ser maior que a data de fim da atividade selecionada.');
+      return false;
+    }
+
+    if (this.acoes.dataFim &&
+        new Date(this.acoes.dataFim).getTime() < new Date(this.acoes.atividade.dataInicio).getTime()) {
+      this.toastService.showAlerta('A data de fim informada não pode ser menor que a data de início da atividade selecionada.');
+      return false;
+    }
+
+    return true;
   }
 
   limpar() {
@@ -87,16 +120,22 @@ export class CadastrarAcoesAtividadeComponent implements OnInit {
 
 
   atualizar() {
+    if (!this.validarDatas() ) { return; }
+
     this.acoesAtividadeService.alterar(this.acoes).subscribe(() => {
       this.router.navigate(['acoesatividade'])
       this.toastService.showSucesso("Ações atividade atualizada com sucesso");
     });
 
   }
-  
+
   getNomeAtividade(){
     if(this.atividades)
     return this.atividades.length === 0 ? 'Nenhuma atividade cadastrada' : 'Atividade'
+  }
+
+  mostrarDadosAtividade(idAtividade) {
+    this.acoes.atividade = _.cloneDeep(_.find(this.atividades, (a: Atividade) => a.id === idAtividade));
   }
 
 }

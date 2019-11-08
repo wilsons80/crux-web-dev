@@ -4,23 +4,25 @@
 
     <!-- DADOS INICIAIS -->
     <form #formCadastro="ngForm">
-        <div fxLayout="row"  fxLayoutGap="50px" class="espaco" 
+        <div fxLayout="row"  fxLayoutGap="50px" class="espaco"
            fxFlexFill>
 
             <div id="row_dados" fxLayout="column" fxFlex="45%">
                 <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
                  <mat-form-field style="margin-left: 20px; margin-bottom: 20px" >
                         <input #nome matInput maxlength="50" [(ngModel)]="acoes.nome"
-                            name="Nome" placeholder="Nome:" required>
+                               name="Nome" placeholder="Nome:" required>
                         <mat-hint align="end">{{nome.value.length}} / 200</mat-hint>
-                    </mat-form-field> 
+                    </mat-form-field>
             </div>
-      
+
             <div id="row_dados" fxLayout="column" fxFlex="55%">
                 <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
                  <mat-form-field style="margin-right: 20px;margin-left: 10px"  fxFlex= "95%" >
                         <mat-label>Atividades</mat-label>
-                        <mat-select [(ngModel)]="acoes.atividade.id" name="atividade" required>
+                        <mat-select [(ngModel)]="acoes.atividade.id"
+                                    (selectionChange)="mostrarDadosAtividade($event.value)"
+                                    name="atividade" required>
                             <mat-option *ngFor="let u of atividades" [value]="u.id" >
                               {{u.descricao}}
                             </mat-option>
@@ -33,31 +35,34 @@
 
          <!-- DATA -->
         <mat-toolbar class="titulopartes">Datas</mat-toolbar>
-        <div fxLayout="row"  fxLayoutGap="50px" class="espaco" 
-        fxFlexFill>
-        <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
-            <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início:" [(ngModel)]="acoes.dataInicio" required>
-            <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
-            <mat-datepicker #dataInicio></mat-datepicker>
-        </mat-form-field>
+        <div fxLayout="row"  fxLayoutGap="50px" class="espaco" fxFlexFill>
+            <mat-form-field fxFlex= "20%" fxFlexOffset="20px">
+                <input matInput name= "dataPrevisaoInicio" [matDatepicker]="dataPrevisaoInicio" placeholder="Data Previsão de Início:" [(ngModel)]="acoes.dataPrevisaoInicio">
+                <mat-datepicker-toggle matSuffix [for]="dataPrevisaoInicio"></mat-datepicker-toggle>
+                <mat-datepicker #dataPrevisaoInicio></mat-datepicker>
+            </mat-form-field>
 
-        <mat-form-field fxFlex= "20%"  >
-            <input matInput name= "dataFim" [matDatepicker]="dataFim" placeholder="Data Fim:" [(ngModel)]="acoes.dataFim">
-            <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
-            <mat-datepicker #dataFim></mat-datepicker>
-        </mat-form-field>
-        
-        <mat-form-field fxFlex= "20%"  >
-            <input matInput name= "dataPrevisaoInicio" [matDatepicker]="dataPrevisaoInicio" placeholder="Data Previsão de Início:" [(ngModel)]="acoes.dataPrevisaoInicio">
-            <mat-datepicker-toggle matSuffix [for]="dataPrevisaoInicio"></mat-datepicker-toggle>
-            <mat-datepicker #dataPrevisaoInicio></mat-datepicker>
-        </mat-form-field>
-        
-        <mat-form-field fxFlex= "20%"  >
-            <input matInput name= "dataPrevisaoFim" [matDatepicker]="dataPrevisaoFim" placeholder="Data Previsão de Fim:" [(ngModel)]="acoes.dataPrevisaoFim">
-            <mat-datepicker-toggle matSuffix [for]="dataPrevisaoFim"></mat-datepicker-toggle>
-            <mat-datepicker #dataPrevisaoFim></mat-datepicker>
-        </mat-form-field>
+            <mat-form-field fxFlex= "20%"  >
+                <input matInput name= "dataPrevisaoFim" [matDatepicker]="dataPrevisaoFim" placeholder="Data Previsão de Fim:" [(ngModel)]="acoes.dataPrevisaoFim">
+                <mat-datepicker-toggle matSuffix [for]="dataPrevisaoFim"></mat-datepicker-toggle>
+                <mat-datepicker #dataPrevisaoFim></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
+                <input matInput name= "dataInicio" [matDatepicker]="dataInicio" placeholder="Data de Início:" [(ngModel)]="acoes.dataInicio" required>
+                <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
+                <mat-datepicker #dataInicio></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field fxFlex= "20%"  >
+                <input matInput name= "dataFim" [matDatepicker]="dataFim" placeholder="Data Fim:" [(ngModel)]="acoes.dataFim">
+                <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
+                <mat-datepicker #dataFim></mat-datepicker>
+            </mat-form-field>
+       </div>
+
+       <div *ngIf="acoes.atividade.id">
+          <dados-atividade [atividade]=acoes.atividade></dados-atividade>
        </div>
 
         <!-- BOTOES -->

@@ -66,10 +66,28 @@ export class UniformeEntregueAlunoComponent implements OnInit {
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.filterPredicate = this.createFilter();
 
     this.atividadeService.getAllVigentesAndFuturas().subscribe((atividades: Atividade[]) => {
       this.atividades = atividades;
     });
+  }
+
+  public createFilter(): (data: any, filter: any) => boolean {
+    const filterFunction = (data, filter) => {
+      const searchData = JSON.parse(filter);
+      let status = false;
+      for (const key in searchData) {
+        if (data[key].indexOf(searchData[key]) !== -1) {
+          status = true;
+        } else {
+          status = false;
+          break;
+        }
+      }
+      return status;
+    };
+    return filterFunction;
   }
 
   applyFilter(filterValue: string) {
