@@ -15,7 +15,8 @@ import { Acesso } from 'src/app/core/acesso';
 })
 export class CadastrarCursoFormacaoComponent implements OnInit {
 
-  cursoFormacao: CursoFormacao = new CursoFormacao();
+  cursoFormacao: CursoFormacao ;
+
   listaPessoaFisica:PessoaFisica[];
 
   isAtualizar: boolean = false;
@@ -34,7 +35,7 @@ export class CadastrarCursoFormacaoComponent implements OnInit {
 
 
   ngOnInit() {
-    this.cursoFormacao.pessoaFisica = new PessoaFisica();
+    this.inicializarObjetos();
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
@@ -59,6 +60,10 @@ export class CadastrarCursoFormacaoComponent implements OnInit {
     }
 
   }
+  inicializarObjetos() {
+    this.cursoFormacao = new CursoFormacao();
+    this.cursoFormacao.pessoaFisica = new PessoaFisica();
+  }
 
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;
@@ -76,7 +81,7 @@ export class CadastrarCursoFormacaoComponent implements OnInit {
   }
 
   limpar() {
-    this.cursoFormacao = new CursoFormacao();
+      this.inicializarObjetos();
    }
 
   cancelar() {

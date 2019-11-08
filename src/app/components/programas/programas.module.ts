@@ -1,3 +1,4 @@
+import { DadosFuncionarioModule } from './../common/dados-funcionario/dados-funcionario.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -17,7 +18,8 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
   imports: [
     CommonModule,
     ProgramasRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    DadosFuncionarioModule
   ]
 })
 export class ProgramasModule { }

@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { PlanosAcaoService } from 'src/app/services/planosAcao/planos-acao.service';
 import { PlanosAcao } from './../../../core/planos-acao';
@@ -16,7 +16,7 @@ import { Acesso } from 'src/app/core/acesso';
 export class CadastrarPlanosAcaoComponent implements OnInit {
 
   iniciativas: Iniciativa[];
-  planosAcao: PlanosAcao = new PlanosAcao();
+  planosAcao: PlanosAcao;
 
   isAtualizar: boolean = false;
 
@@ -28,14 +28,16 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
     private iniciativaService: IniciativaService,
     private planosAcaoService: PlanosAcaoService,
     private activatedRoute: ActivatedRoute,
-    private location: Location,
+    private router:Router,
     private toastService:ToastService
   ) {
-    this.planosAcao.iniciativa = new Iniciativa();
   }
 
 
   ngOnInit() {
+
+    this.inicializarObjetos();
+
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
@@ -59,6 +61,10 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
     }
 
   }
+  inicializarObjetos() {
+    this.planosAcao = new PlanosAcao();
+    this.planosAcao.iniciativa = new Iniciativa();
+  }
 
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;
@@ -70,23 +76,23 @@ export class CadastrarPlanosAcaoComponent implements OnInit {
   
   cadastrar() {
     this.planosAcaoService.cadastrar(this.planosAcao).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['planosacao']);
       this.toastService.showSucesso("Plano de ação cadastrado com sucesso");
     });
   }
 
   limpar() {
-    this.planosAcao = new PlanosAcao();
+    this.inicializarObjetos();
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['planosacao']);
   }
 
 
   atualizar() {
     this.planosAcaoService.alterar(this.planosAcao).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['planosacao']);
       this.toastService.showSucesso("Plano de ação atualizado com sucesso");
     });
 

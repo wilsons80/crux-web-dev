@@ -16,7 +16,7 @@ import { Acesso } from 'src/app/core/acesso';
 export class CadastrarObjetivoComponent implements OnInit {
 
   perspectivas: Perspectiva[];
-  objetivo: Objetivo = new Objetivo();
+  objetivo: Objetivo;
 
   isAtualizar = false;
 
@@ -32,11 +32,13 @@ export class CadastrarObjetivoComponent implements OnInit {
     private toastService: ToastService,
     private router: Router
   ) {
-    this.objetivo.perspectiva = new Perspectiva();
   }
 
 
   ngOnInit() {
+
+    this.inicializarObjetos();
+
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
@@ -61,6 +63,11 @@ export class CadastrarObjetivoComponent implements OnInit {
 
   }
 
+  inicializarObjetos() {
+    this.objetivo = new Objetivo();
+    this.objetivo.perspectiva = new Perspectiva();
+  }
+
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;
     if(!this.mostrarBotaoAtualizar) return false;
@@ -78,8 +85,7 @@ export class CadastrarObjetivoComponent implements OnInit {
   }
   
   limpar() {
-    this.objetivo = new Objetivo();
-
+   this.inicializarObjetos();
   }
   
   cancelar() {

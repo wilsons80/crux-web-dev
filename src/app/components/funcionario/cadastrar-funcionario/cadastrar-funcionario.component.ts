@@ -11,6 +11,9 @@ import { switchMap } from 'rxjs/operators';
 import { FileUtils } from 'src/app/utils/file-utils';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
 import { Acesso } from 'src/app/core/acesso';
+import { Unidade } from 'src/app/core/unidade';
+import { Cargo } from 'src/app/core/cargo';
+import { Empresa } from 'src/app/core/empresa';
 
 @Component({
   selector: 'app-cadastrar-funcionario',
@@ -19,9 +22,6 @@ import { Acesso } from 'src/app/core/acesso';
 })
 export class CadastrarFuncionarioComponent implements OnInit {
 
-  grauInstrucao: GrausInstrucao = new GrausInstrucao();
-  funcionarioEntrevistador: Funcionario = new Funcionario();
-  pessoaFisica: PessoaFisica = new PessoaFisica();
   funcionario: Funcionario = new Funcionario();
 
   isAtualizar: boolean = false;
@@ -43,6 +43,8 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   ngOnInit() {
 
+    this.inicializarObjetos();
+
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
@@ -52,9 +54,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
     if(!this.perfilAcesso.altera){
       this.mostrarBotaoAtualizar = false;
     }
-    this.pessoaFisica.grausInstrucao = this.grauInstrucao;
-    this.funcionario.pessoasFisica = this.pessoaFisica;
-    this.funcionario.funcionarioEntrevistador = this.funcionarioEntrevistador;
+ 
 
     let idFuncionario: number;
     idFuncionario = this.activatedRoute.snapshot.queryParams.idFuncionario ? this.activatedRoute.snapshot.queryParams.idFuncionario : null;
@@ -75,6 +75,15 @@ export class CadastrarFuncionarioComponent implements OnInit {
         this.funcionario.pessoasFisica.urlFoto = fotoBase64.changingThisBreaksApplicationSecurity;
       });
     }
+  }
+  inicializarObjetos() {
+    this.funcionario = new Funcionario();
+    this.funcionario.pessoasFisica = new PessoaFisica();
+    this.funcionario.pessoasFisica.grausInstrucao = new GrausInstrucao();
+    this.funcionario.funcionarioEntrevistador = new Funcionario();
+    this.funcionario.unidade = new Unidade();
+    this.funcionario.cargo = new Cargo();
+    this.funcionario.empresaFuncionario = new Empresa();
   }
 
 
@@ -115,7 +124,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
   }
 
   limpar() {
-    this.funcionario = new Funcionario()
+    this.inicializarObjetos();
   }
 
   cancelar() {

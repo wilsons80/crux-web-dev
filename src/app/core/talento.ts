@@ -1,5 +1,6 @@
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { Questionario } from './questionario';
+import { Funcionario } from './funcionario';
 
 export class Talento {
 
@@ -8,7 +9,7 @@ export class Talento {
     dataRespostaTalento: Date;
     nrNotaCompetencia: number;
     observacao: string;
-    pessoasFisica: PessoaFisica;
     questionario: Questionario;
     usuariosAlteracao: number;
+    funcionario:Funcionario;
 }

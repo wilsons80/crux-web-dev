@@ -16,7 +16,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 export class CadastrarIniciativasComponent implements OnInit {
 
   metas: Metas[];
-  iniciativa: Iniciativa = new Iniciativa();
+  iniciativa: Iniciativa;
 
   isAtualizar: boolean = false;
 
@@ -36,7 +36,7 @@ export class CadastrarIniciativasComponent implements OnInit {
 
   ngOnInit() {
 
-    this.iniciativa.metas = new Metas();
+    this.inicializarObjetos();
 
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
@@ -63,6 +63,10 @@ export class CadastrarIniciativasComponent implements OnInit {
     }
 
   }
+  inicializarObjetos() {
+    this.iniciativa = new Iniciativa();
+    this.iniciativa.metas = new Metas();
+  }
 
   mostrarBotaoLimpar() {
     if (this.isAtualizar) return false;
@@ -80,7 +84,7 @@ export class CadastrarIniciativasComponent implements OnInit {
   }
 
   limpar() {
-    this.iniciativa = new Iniciativa();
+    this.inicializarObjetos();
   }
 
   cancelar() {

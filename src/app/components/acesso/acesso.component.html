@@ -7,10 +7,10 @@
 
             <!-- USUÁRIO -->
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
-                <mat-icon>search</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione um usuário</mat-label>
-                    <mat-select [(ngModel)]="cadastroAcesso.idUsuario" name="usuario">
+                    <mat-icon matPrefix>search</mat-icon>
+                    <mat-label fxFlexOffset="20px">Selecione um usuário:</mat-label>
+                    <mat-select fxFlexOffset="20px" [(ngModel)]="cadastroAcesso.idUsuario" name="usuario">
                         <mat-option *ngFor="let u of usuarios" [value]="u.idUsuario">
                             {{u.nomeCompleto}}
                         </mat-option>
@@ -20,10 +20,10 @@
 
             <!-- MODULOS -->
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
-                <mat-icon>search</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione um modulo</mat-label>
-                    <mat-select [(ngModel)]="cadastroAcesso.idModulo" name="modulo">
+                        <mat-icon matPrefix>search</mat-icon>
+                    <mat-label fxFlexOffset="20px">Selecione um módulo:</mat-label>
+                    <mat-select fxFlexOffset="20px" [(ngModel)]="cadastroAcesso.idModulo" name="modulo">
                         <mat-option *ngFor="let m of modulos" [value]="m.id">
                             {{m.descricao}}
                         </mat-option>

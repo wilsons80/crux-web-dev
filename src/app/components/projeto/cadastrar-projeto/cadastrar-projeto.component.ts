@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Iniciativa } from 'src/app/core/iniciativa';
 import { Programa } from 'src/app/core/programa';
 import { Projeto } from 'src/app/core/projeto';
@@ -19,7 +19,7 @@ export class CadastrarProjetoComponent implements OnInit {
 
   iniciativas: Iniciativa[];
   programas: Programa[];
-  projeto: Projeto = new Projeto();
+  projeto: Projeto;
 
 
   perfilAcesso: Acesso;
@@ -33,20 +33,17 @@ export class CadastrarProjetoComponent implements OnInit {
     private programaService: ProgramaService,
     private projetoService: ProjetoService,
     private activatedRoute: ActivatedRoute,
-    private location: Location,
+    private router:Router,
     private toastService: ToastService
   ) {
-    this.projeto.programa = new Programa();
-    this.projeto.iniciativa = new Iniciativa();
+    
   }
 
 
   ngOnInit() {
 
-    this.projeto.programa = new Programa();
-    this.projeto.iniciativa = new Iniciativa();
+    this.inicializarObjetos()
 
-    
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
@@ -74,6 +71,11 @@ export class CadastrarProjetoComponent implements OnInit {
     }
 
   }
+  inicializarObjetos() {
+    this.projeto = new Projeto();
+    this.projeto.programa = new Programa();
+    this.projeto.iniciativa = new Iniciativa();
+  }
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;
     if(!this.mostrarBotaoAtualizar) return false;
@@ -84,23 +86,23 @@ export class CadastrarProjetoComponent implements OnInit {
 
   cadastrar() {
     this.projetoService.cadastrar(this.projeto).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['projeto']);
       this.toastService.showSucesso("Projeto cadastrado com sucesso");
     });
   }
 
   limpar() {
-    this.projeto = new Projeto();
+    this.inicializarObjetos();
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['projeto']);
   }
 
 
   atualizar() {
     this.projetoService.alterar(this.projeto).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['projeto']);
       this.toastService.showSucesso("Projeto atualizado com sucesso");
     });
 

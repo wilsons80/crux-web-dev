@@ -19,22 +19,31 @@
 
          <!-- DEPARTAMENTO SUPERIOR / UNIDADE -->
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+            
+              <!--UNIDADE -->
             <mat-form-field fxFlexOffset="20px" fxFlex= "45%" >
                 <mat-label>Unidade:</mat-label>
-                <mat-select [(ngModel)]="departamento.unidade.idUnidade" name="unidade" required>
-                    <mat-option *ngFor="let u of unidades" [value]="u.idUnidade" >
-                        {{u.nomeUnidade}}
+                <mat-select [(ngModel)]="departamento.unidade.idUnidade" name="unidade" 
+                (selectionChange)="mostrarUnidade($event.value)"
+                required>
+                    <mat-option *ngFor="let u of unidades" [value]="u.idUnidade">
+                       {{u.siglaUnidade}} - {{u.nomeUnidade}}
                     </mat-option>
                 </mat-select>
+                <mat-hint *ngIf="unidades?.length === 0"  align="start">Nenhuma unidade cadastrada</mat-hint>
             </mat-form-field>
 
+             <!-- DEPARTAMENTO SUPERIOR -->
             <mat-form-field fxFlex= "46%" fxFlexOffset="20px">
                 <mat-label>Departamento Superior: </mat-label>
-                <mat-select name="departamentoSuperior" [(ngModel)]="departamento.departamentoSuperior.idDepartamento" [disabled]="!departamento.unidade">
+                <mat-select name="departamentoSuperior" [(ngModel)]="departamento.departamentoSuperior.idDepartamento" 
+                (selectionChange)="mostrarDepartamento($event.value)"
+                >
                     <mat-option *ngFor="let d of departamentos" [value]="d.idDepartamento">
-                        {{d.nmDepartamento}}
+                        {{d.cdUnidadeDepartamento}} - {{d.nmDepartamento}}
                     </mat-option>
                 </mat-select>
+                <mat-hint *ngIf="departamentos?.length === 0"  align="start">Nenhum departamento cadastrado</mat-hint>
             </mat-form-field>
         </div>
 

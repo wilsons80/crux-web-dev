@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -16,7 +17,7 @@ import { Acesso } from 'src/app/core/acesso';
 export class CadastrarPerspectivaComponent implements OnInit {
 
   unidades: Unidade[];
-  perspectiva: Perspectiva = new Perspectiva();
+  perspectiva: Perspectiva;
 
   isAtualizar: boolean = false;
 
@@ -29,14 +30,17 @@ export class CadastrarPerspectivaComponent implements OnInit {
     private unidadeService: UnidadeService,
     private perspectivaService: PerspectivaService,
     private activatedRoute: ActivatedRoute,
-    private location: Location,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router:Router
   ) {
-    this.perspectiva.unidade = new Unidade();
+    
   }
 
 
   ngOnInit() {
+
+    this.inicializarObjetos();
+    
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
@@ -60,9 +64,13 @@ export class CadastrarPerspectivaComponent implements OnInit {
     }
 
   }
+  inicializarObjetos() {
+    this.perspectiva = new Perspectiva();
+    this.perspectiva.unidade = new Unidade();
+  }
   cadastrar() {
     this.perspectivaService.cadastrar(this.perspectiva).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['perspectiva']);
       this.toastService.showSucesso("Perspectiva cadastrada com sucesso");
     });
   }
@@ -76,18 +84,18 @@ export class CadastrarPerspectivaComponent implements OnInit {
   }
 
   limpar() {
-    this.perspectiva = new Perspectiva();
+    this.inicializarObjetos();
   }
 
   cancelar() {
-    this.location.back();
+    this.router.navigate(['perspectiva']);
   }
 
 
 
   atualizar() {
     this.perspectivaService.alterar(this.perspectiva).subscribe(() => {
-      this.location.back();
+      this.router.navigate(['perspectiva']);
       this.toastService.showSucesso("Perspectiva atualizada com sucesso");
     });
 

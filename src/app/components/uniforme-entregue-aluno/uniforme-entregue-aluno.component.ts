@@ -68,6 +68,16 @@ export class UniformeEntregueAlunoComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.filterPredicate = this.createFilter();
 
+    this.dataSource.filterPredicate = (data: any, filter) => {
+      const dataStr = data.atividadesAluno.aluno.pessoaFisica.nome +
+                      data.nomeUniforme +
+                      data.dataUniformeEntregue +
+                      data.qtdUniformeEntregue +
+                      data.atividadesAluno.dataInicioAtividade;
+      return dataStr.toUpperCase().indexOf(filter.toUpperCase()) !== -1;
+    };
+
+
     this.atividadeService.getAllVigentesAndFuturas().subscribe((atividades: Atividade[]) => {
       this.atividades = atividades;
     });

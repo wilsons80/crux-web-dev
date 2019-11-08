@@ -9,6 +9,9 @@ import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/pr
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { ProdutosAtividade } from './../../../core/produtos-atividade';
 import { Acesso } from 'src/app/core/acesso';
+import * as _ from 'lodash';
+
+
 
 @Component({
   selector: 'app-cadastrar-produtos-atividade',
@@ -93,6 +96,7 @@ export class CadastrarProdutosAtividadeComponent implements OnInit {
 
   limpar() {
     this.produtosAtividade = new ProdutosAtividade();
+    this.produtosAtividade.atividade = new Atividade();
   }
 
   cancelar() {
@@ -106,6 +110,10 @@ export class CadastrarProdutosAtividadeComponent implements OnInit {
       this.toastService.showSucesso("Produto Atividade atualizado com sucesso");
     });
 
+  }
+
+  mostrarDadosAtividade(idAtividade: number) {
+    this.produtosAtividade.atividade = _.cloneDeep(_.find(this.atividades, (ati: Atividade) => ati.id === idAtividade));
   }
 
 }

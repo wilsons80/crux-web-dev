@@ -75,7 +75,7 @@ export class PlanosAcaoComponent implements OnInit {
   chamaCaixaDialogo(planosAcao: PlanosAcao) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que deseja excluir o departamento ${planosAcao.nome}?`,
+      pergunta: `Certeza que deseja excluir o plano de ação ${planosAcao.nome}?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
     };

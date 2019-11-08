@@ -8,6 +8,8 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { CadastroReservaAtividade } from './../../../core/cadastro-reserva-atividade';
 import { PessoaFisicaService } from './../../../services/pessoa-fisica/pessoa-fisica.service';
 import { Acesso } from 'src/app/core/acesso';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-cadastrar-cadastro-reserva-atividade',
@@ -86,6 +88,7 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
 
   limpar() {
     this.cadastroReserva = new CadastroReservaAtividade();
+    this.cadastroReserva.atividade = new Atividade();
   }
 
   cancelar() {
@@ -101,4 +104,7 @@ export class CadastrarCadastroReservaAtividadeComponent implements OnInit {
 
   }
 
+  mostrarDadosAtividade(idAtividade: number) {
+    this.cadastroReserva.atividade = _.cloneDeep(_.find(this.atividades, (ati: Atividade) => ati.id === idAtividade));
+  }
 }

@@ -25,7 +25,8 @@ export class ProdutosAtividadeComponent implements OnInit {
 
 
   displayedColumns: string[] = [
-    "id",
+    "descricao",
+    "atividade",
     "dataAquisicao",
     "valorProduto",
     "acoes"
@@ -45,6 +46,11 @@ export class ProdutosAtividadeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.atividadeService.getAll().subscribe((listaAtividade: Atividade[]) => {
       this.listaAtividade = listaAtividade;
+    });
+
+    this.produtosAtividadeService.getAll().subscribe((produtosAtividade: ProdutosAtividade[]) => {
+      this.dataSource.data = produtosAtividade;
+      this.mostrarTabela = true;
     });
   }
 

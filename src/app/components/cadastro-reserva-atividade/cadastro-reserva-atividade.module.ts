@@ -1,3 +1,4 @@
+import { DadosAtividadeModule } from './../common/dados-atividade/dados-atividade.module';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,8 @@ import { NgxCurrencyModule } from 'ngx-currency';
     CommonModule,
     CadastroReservaAtividadeRoutingModule,
     MaterialCommonModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    DadosAtividadeModule
   ]
 })
 export class CadastroReservaAtividadeModule { }

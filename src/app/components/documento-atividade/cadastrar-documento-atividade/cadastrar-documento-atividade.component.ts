@@ -6,6 +6,8 @@ import { DocumentoAtividadeService } from "src/app/services/documento-atividade/
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastService } from "src/app/services/toast/toast.service";
 import { Acesso } from 'src/app/core/acesso';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: "app-cadastrar-documento-atividade",
@@ -102,4 +104,9 @@ export class CadastrarDocumentoAtividadeComponent implements OnInit {
         );
       });
   }
+
+  mostrarDadosAtividade(idAtividade: number) {
+    this.documentoAtividade.atividade = _.cloneDeep(_.find(this.atividades, (ati: Atividade) => ati.id === idAtividade));
+  }
+
 }
