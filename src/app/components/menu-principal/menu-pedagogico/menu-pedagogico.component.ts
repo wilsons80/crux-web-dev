@@ -5,14 +5,14 @@ import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-princi
 import { animacaoMenu } from './../../../animations';
 
 @Component({
-  selector: 'modulo-administrativo',
-  templateUrl: './modulo-administrativo.component.html',
-  styleUrls: ['./modulo-administrativo.component.css'],
+  selector: 'menu-pedagogico',
+  templateUrl: './menu-pedagogico.component.html',
+  styleUrls: ['./menu-pedagogico.component.css'],
   animations: [
     animacaoMenu
   ]
 })
-export class ModuloAdministrativoComponent implements OnInit {
+export class MenuPedagogicoComponent implements OnInit {
 
   currentState = "hidden"
   isMostrarSubMenu: boolean = false;

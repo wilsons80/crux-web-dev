@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Modulos } from 'src/app/core/modulos';
-import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
-import { animacaoMenu } from './../../../animations';
+import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
+import { Modulos } from 'src/app/core/modulos';
+import { animacaoMenu } from 'src/app/animations';
 
 @Component({
-  selector: 'modulo-administrativo',
-  templateUrl: './modulo-administrativo.component.html',
-  styleUrls: ['./modulo-administrativo.component.css'],
+  selector: 'menu-gestao-pessoas',
+  templateUrl: './menu-gestao-pessoas.component.html',
+  styleUrls: ['./menu-gestao-pessoas.component.css'],
   animations: [
     animacaoMenu
   ]
 })
-export class ModuloAdministrativoComponent implements OnInit {
+export class MenuGestaoPessoasComponent implements OnInit {
 
   currentState = "hidden"
   isMostrarSubMenu: boolean = false;

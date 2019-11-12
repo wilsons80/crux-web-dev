@@ -1,0 +1,34 @@
+<a mat-list-item (click)="toggle()" style="width: fit-content;">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}"
+            class="submenu">
+            <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="Tabelas de Referência">
+                <mat-icon>supervisor_account</mat-icon>
+                <span *ngIf="menuPrincipalService.expandido" class="nav-caption">Tabelas de Referência</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start stretch">
+                <mat-icon *ngIf="menuPrincipalService.expandido" style="padding-top: 2px">{{getIcone()}}</mat-icon>
+            </div>
+        </div>
+    </a>
+    
+    <mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
+    
+        <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
+    
+            <!-- SOLUÇOES ATENDIMENTO -->
+            <div style="padding-left: 15px">
+                <sub-menu icone="library_books" titulo="Soluções de Atendimentos" rota="solucaoatendimento" toolTip="Soluções de Atendimentos"></sub-menu>
+            </div>
+    
+            <!-- SITUACAO VULNERABILIDADE-->
+            <div style="padding-left: 15px">
+                <sub-menu icone="library_books" titulo="Situação de Vulnerabilidade" rota="situacaovulnerabilidade" toolTip="Situação de Vulnerabilidade"></sub-menu>
+            </div>
+    
+            <!-- CONDICOES MORADIA -->
+            <div style="padding-left: 15px">
+                <sub-menu icone="library_books" titulo="Condição de Moradia" rota="condicaomoradia" toolTip="Condição de Moradia"></sub-menu>
+            </div>
+    
+        </div>
+    </mat-nav-list>

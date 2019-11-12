@@ -1,0 +1,28 @@
+<a mat-list-item (click)="toggle()" >
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
+        <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="Estratégico">
+            <mat-icon>supervisor_account</mat-icon>
+            <span *ngIf="menuPrincipalService.expandido"  class="nav-caption">Estratégico</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-icon *ngIf="menuPrincipalService.expandido" style="padding-top: 2px">{{getIcone()}}</mat-icon>
+        </div>
+    </div>
+</a>
+<mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
+
+    <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
+
+        <!-- CURSO DE FORMACAO -->
+      <!--  <sub-menu *ngIf="verificaAcesso(getModulos().CURSO_FORMACAO)"  icone="library_books" titulo="Curso de Formação" rota="cursoformacao" toolTip="Curso de Formação"></sub-menu> -->
+      <sub-menu  icone="library_books" titulo="Perspectiva" rota="Perspectiva" toolTip="Perspectiva"></sub-menu>
+      <sub-menu  icone="library_books" titulo="Objetivos" rota="Objetivos" toolTip="Objetivos"></sub-menu>
+      <sub-menu  icone="library_books" titulo="Indicadores" rota="Indicadores" toolTip="Indicadores"></sub-menu>
+      <sub-menu  icone="library_books" titulo="Metas" rota="Metas" toolTip="Metas"></sub-menu>
+      <sub-menu  icone="library_books" titulo="Planos de Ação" rota="planosacao" toolTip="Planos de Ação"></sub-menu>
+      <sub-menu  icone="library_books" titulo="Programas" rota="programas" toolTip="Programas"></sub-menu>
+      <sub-menu  icone="library_books" titulo="Colaboradores do Programa" rota="colaboradoresprograma" toolTip="Colaboradores do Programa"></sub-menu>
+      <sub-menu  icone="library_books" titulo="Projetos" rota="projetos" toolTip="Projetos"></sub-menu>
+
+    </div>
+</mat-nav-list>

@@ -9,6 +9,17 @@ import { RouterModule } from '@angular/router';
 import { MenuConfiguracoesComponent } from './menu-configuracoes/menu-configuracoes.component';
 import { MenuPrincipalComponent } from './menu-principal.component';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
+import { MenuOrganizacaoInternaComponent } from './menu-organizacao-interna/menu-organizacao-interna.component';
+import { MenuEstrategicoComponent } from './menu-estrategico/menu-estrategico.component';
+import { MenuGestaoPessoasComponent } from './menu-gestao-pessoas/menu-gestao-pessoas.component';
+import { MenuSecretariaComponent } from './menu-secretaria/menu-secretaria.component';
+import { MenuSapComponent } from './menu-sap/menu-sap.component';
+import { MenuPedagogicoComponent } from './menu-pedagogico/menu-pedagogico.component';
+import { TbOrganizacaoInternaComponent } from './menu-organizacao-interna/tb-organizacao-interna/tb-organizacao-interna.component';
+import { TbReferenciaGestaoPessoasComponent } from './menu-gestao-pessoas/tb-referencia-gestao-pessoas/tb-referencia-gestao-pessoas.component';
+import { TbReferenciaSecretariaComponent } from './menu-secretaria/tb-referencia-secretaria/tb-referencia-secretaria.component';
+import { TbReferenciaSapComponent } from './menu-sap/tb-referencia-sap/tb-referencia-sap.component';
+import { TbReferenciaOrganizacaoInternaComponent } from './menu-organizacao-interna/tb-referencia-organizacao-interna/tb-referencia-organizacao-interna.component';
 
 
 
@@ -19,6 +30,17 @@ import { SubMenuComponent } from './sub-menu/sub-menu.component';
     SubMenuComponent,
     ModuloAdministrativoComponent,
     ModuloPedagogicoComponent,
+    MenuOrganizacaoInternaComponent,
+    MenuEstrategicoComponent,
+    MenuGestaoPessoasComponent,
+    MenuSecretariaComponent,
+    MenuSapComponent,
+    MenuPedagogicoComponent,
+    TbOrganizacaoInternaComponent,
+    TbReferenciaGestaoPessoasComponent,
+    TbReferenciaSecretariaComponent,
+    TbReferenciaSapComponent,
+    TbReferenciaOrganizacaoInternaComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,28 @@
+<a mat-list-item (click)="toggle()" >
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
+        <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="Gestão de Pessoas">
+            <mat-icon>supervisor_account</mat-icon>
+            <span *ngIf="menuPrincipalService.expandido"  class="nav-caption">Gestão de Pessoas</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-icon *ngIf="menuPrincipalService.expandido" style="padding-top: 2px">{{getIcone()}}</mat-icon>
+        </div>
+    </div>
+</a>
+<mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
+
+    <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
+
+        <!-- CURSO DE FORMACAO -->
+      <!--  <sub-menu *ngIf="verificaAcesso(getModulos().CURSO_FORMACAO)"  icone="library_books" titulo="Curso de Formação" rota="cursoformacao" toolTip="Curso de Formação"></sub-menu> -->
+       <sub-menu icone="library_books" titulo="Colaboradores" rota="funcionario" toolTip="Colaboradores"></sub-menu>
+       <sub-menu icone="library_books" titulo="Acordo de Desempenho" rota="metas" toolTip="Acordo de Desempenho"></sub-menu>
+       <sub-menu icone="library_books" titulo="Avaliação de Desempenho" rota="" toolTip="Avaliação de Desempenho"></sub-menu>
+       <sub-menu icone="library_books" titulo="Plano de Des. Individual" rota="" toolTip="Plano de Desenvolvimento Individual"></sub-menu>
+       <sub-menu icone="library_books" titulo="Faltas do Funcionário" rota="faltasfuncionario" toolTip="Faltas do Funcionário"></sub-menu>
+
+       <tb-referencia-gestao-pessoas></tb-referencia-gestao-pessoas>
+
+    </div>
+</mat-nav-list>
+

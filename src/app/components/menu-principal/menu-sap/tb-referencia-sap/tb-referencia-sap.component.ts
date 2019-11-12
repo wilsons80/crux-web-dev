@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Modulos } from 'src/app/core/modulos';
-import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
+import { animacaoMenu } from 'src/app/animations';
 import { MenuPrincipalService } from 'src/app/services/menuPrincipal/menu-principal.service';
-import { animacaoMenu } from './../../../animations';
+import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
+import { Modulos } from 'src/app/core/modulos';
 
 @Component({
-  selector: 'modulo-administrativo',
-  templateUrl: './modulo-administrativo.component.html',
-  styleUrls: ['./modulo-administrativo.component.css'],
+  selector: 'tb-referencia-sap',
+  templateUrl: './tb-referencia-sap.component.html',
+  styleUrls: ['./tb-referencia-sap.component.css'],
   animations: [
     animacaoMenu
   ]
+
 })
-export class ModuloAdministrativoComponent implements OnInit {
+export class TbReferenciaSapComponent implements OnInit {
 
   currentState = "hidden"
   isMostrarSubMenu: boolean = false;
