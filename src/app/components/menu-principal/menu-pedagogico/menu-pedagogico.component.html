@@ -1,7 +1,7 @@
 <a mat-list-item (click)="toggle()">
     <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
         <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="Pedagógico">
-            <mat-icon>supervisor_account</mat-icon>
+            <mat-icon>local_library</mat-icon>
             <span *ngIf="menuPrincipalService.expandido" class="nav-caption">Pedagógico</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="start stretch">
@@ -14,35 +14,35 @@
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
         <!-- TURMA -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().ATIVIDADE)" icone="library_books" titulo="Turmas" rota="atividade"
+        <sub-menu *ngIf="verificaAcesso(getModulos().ATIVIDADE)" icone="chrome_reader_mode" titulo="Turmas" rota="atividade"
             toolTip="Turmas"></sub-menu>
 
         <!-- ATIVIDADE ALUNO -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().ATIVIDADE_ALUNO)" icone="library_books" titulo="Alunos da Turma"
+        <sub-menu *ngIf="verificaAcesso(getModulos().ATIVIDADE_ALUNO)" icone="sports_handball" titulo="Alunos da Turma"
             rota="atividadealuno" toolTip="Alunos da Turma"></sub-menu>
 
         <!-- AVALIACAO ATIVIDADE -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().AVALIACAO_ATIVIDADE)" icone="library_books"
+        <sub-menu *ngIf="verificaAcesso(getModulos().AVALIACAO_ATIVIDADE)" icone="done_all"
             titulo="Avaliação da Turma" rota="avaliacaoatividade" toolTip="Avaliação da Turma"></sub-menu>
 
         <!-- AVALIACAO ALUNO -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().AVALIACAO_ALUNO)" icone="library_books" titulo="Avaliação do Aluno"
+        <sub-menu *ngIf="verificaAcesso(getModulos().AVALIACAO_ALUNO)" icone="done" titulo="Avaliação do Aluno"
             rota="avaliacaoaluno" toolTip="Avaliação do Aluno"></sub-menu>
 
         <!-- FREQUENCIA ALUNO-->
-        <sub-menu *ngIf="verificaAcesso(getModulos().FREQUENCIA_ALUNO)" icone="library_books"
+        <sub-menu *ngIf="verificaAcesso(getModulos().FREQUENCIA_ALUNO)" icone="check_circle_outline"
             titulo="Frequência do Aluno" rota="frequenciaaluno" toolTip="Frequência do Aluno"></sub-menu>
 
         <!-- ALUNO TRABALHANDO -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().ALUNO_TRABALHANDO)" icone="library_books"
+        <sub-menu *ngIf="verificaAcesso(getModulos().ALUNO_TRABALHANDO)" icone="accessibility"
             titulo="Cadastro Menor Aprendiz" rota="alunotrabalhando" toolTip="Cadastro Menor Aprendiz"></sub-menu>
 
         <!-- REPROVACAO ALUNO  -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().REPROVACAO_ALUNO)" icone="library_books"
+        <sub-menu *ngIf="verificaAcesso(getModulos().REPROVACAO_ALUNO)" icone="event_busy"
             titulo="Reprovações do Aluno " rota="reprovacaoaluno" toolTip="Reprovações do Aluno"></sub-menu>
 
         <!-- PRODUTOS ATIVIDADE -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().PRODUTOS_ATIVIDADE)" icone="library_books" titulo="Bens e Produtos"
+        <sub-menu *ngIf="verificaAcesso(getModulos().PRODUTOS_ATIVIDADE)" icone="work" titulo="Bens e Produtos"
             rota="produtosatividade" toolTip="Bens e Produtos"></sub-menu>
 
     </div>
