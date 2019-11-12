@@ -14,19 +14,19 @@
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
        <!-- FUNCIONARIO -->
-       <sub-menu *ngIf="verificaAcesso(getModulos().FUNCIONARIO)" icone="library_books" titulo="Colaboradores" rota="funcionario" toolTip="Colaboradores"></sub-menu>
+       <sub-menu *ngIf="verificaAcesso(getModulos().FUNCIONARIO)" icone="directions_walk" titulo="Colaboradores" rota="funcionario" toolTip="Colaboradores"></sub-menu>
        
        <!-- ACORDO DESEMPENHO -->
-       <sub-menu *ngIf="verificaAcesso(getModulos().METAS_FUNCAO)" icone="library_books" titulo="Acordo de Desempenho" rota="home" toolTip="Acordo de Desempenho"></sub-menu>
+       <sub-menu *ngIf="verificaAcesso(getModulos().METAS_FUNCAO)" icone="cancel" titulo="Acordo de Desempenho" rota="home" toolTip="Acordo de Desempenho"></sub-menu>
        
        <!-- AVALIACAO DESEMPENHO -->
-       <sub-menu *ngIf="verificaAcesso(getModulos().AVALIACAO_DESEMPENHO)" icone="library_books" titulo="Avaliação de Desempenho" rota="home" toolTip="Avaliação de Desempenho"></sub-menu>
+       <sub-menu *ngIf="verificaAcesso(getModulos().AVALIACAO_DESEMPENHO)" icone="cancel" titulo="Avaliação de Desempenho" rota="home" toolTip="Avaliação de Desempenho"></sub-menu>
        
        <!-- PLANO DESENVOLVIMENTO INDIVIDUAL -->
-       <sub-menu *ngIf="verificaAcesso(getModulos().PLANO_DESENVOLVIMENTO_INDIVIDUAL)" icone="library_books" titulo="Plano de Des. Individual" rota="home" toolTip="Plano de Desenvolvimento Individual"></sub-menu>
+       <sub-menu *ngIf="verificaAcesso(getModulos().PLANO_DESENVOLVIMENTO_INDIVIDUAL)" icone="cancel" titulo="Plano de Des. Individual" rota="home" toolTip="Plano de Desenvolvimento Individual"></sub-menu>
        
        <!-- FALTAS FUNCIONÁRIO -->
-       <sub-menu *ngIf="verificaAcesso(getModulos().FALTAS_FUNCIONARIO)" icone="library_books" titulo="Faltas do Funcionário" rota="faltasfuncionario" toolTip="Faltas do Funcionário"></sub-menu>
+       <sub-menu *ngIf="verificaAcesso(getModulos().FALTAS_FUNCIONARIO)" icone="warning" titulo="Faltas do Funcionário" rota="faltasfuncionario" toolTip="Faltas do Funcionário"></sub-menu>
        
        <!-- TABELAS REFERENCIA -->
        <tb-referencia-gestao-pessoas></tb-referencia-gestao-pessoas>
