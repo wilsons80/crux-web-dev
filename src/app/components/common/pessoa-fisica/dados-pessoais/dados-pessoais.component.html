@@ -45,12 +45,12 @@
 
                 <mat-form-field fxFlex="30%">
                     <input matInput maxlength="200" name="cidadeNaturalidade" placeholder="Cidade:"
-                        [(ngModel)]="pessoaFisica.cidadeNaturalidade">
+                        [(ngModel)]="pessoaFisica.cidade">
                 </mat-form-field>
 
                 <mat-form-field fxFlex="5%">
                     <mat-label>UF:</mat-label>
-                    <mat-select [(ngModel)]="pessoaFisica.ufNascimento" name="ufNascimento">
+                    <mat-select [(ngModel)]="pessoaFisica.uf" name="ufNascimento">
                         <mat-option *ngFor="let m of ufs" [value]="m">
                             {{m}}
                         </mat-option>
