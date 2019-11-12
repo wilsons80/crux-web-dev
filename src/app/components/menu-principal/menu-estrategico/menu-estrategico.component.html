@@ -15,30 +15,33 @@
 
       <!-- PERSPECTIVA-->
       <sub-menu *ngIf="verificaAcesso(getModulos().PERSPECTIVA)" icone="pages" titulo="Perspectiva" rota="perspectiva" toolTip="Perspectiva"></sub-menu>
-     
+
       <!-- OBJETIVOS -->
       <sub-menu  *ngIf="verificaAcesso(getModulos().OBJETIVO)"  icone="my_location" titulo="Objetivos" rota="objetivo" toolTip="Objetivos"></sub-menu>
-      
+
       <!-- INDICADORES -->
       <sub-menu *ngIf="verificaAcesso(getModulos().INDICADORES)"  icone="trending_up" titulo="Indicadores" rota="indicadores" toolTip="Indicadores"></sub-menu>
-      
+
       <!-- METAS -->
       <sub-menu  *ngIf="verificaAcesso(getModulos().METAS)"  icone="account_tree" titulo="Metas" rota="metas" toolTip="Metas"></sub-menu>
-      
+
+      <!-- INICIATIVAS -->
+      <sub-menu *ngIf="verificaAcesso(getModulos().INICIATIVAS)" icone="highlight" titulo="Iniciativas" rota="iniciativas" toolTip="Iniciativas"></sub-menu>
+
       <!-- PLANOS DE ACAO -->
       <sub-menu  *ngIf="verificaAcesso(getModulos().PLANOS_ACAO)"  icone="list_alt" titulo="Planos de Ação" rota="planosacao" toolTip="Planos de Ação"></sub-menu>
-      
+
       <!-- PROGRAMAS -->
       <sub-menu  *ngIf="verificaAcesso(getModulos().PROGRAMAS)"  icone="apps" titulo="Programas" rota="programas" toolTip="Programas"></sub-menu>
-      
+
       <!-- COLABORADORES PROGRAMAS -->
       <sub-menu  *ngIf="verificaAcesso(getModulos().COLABORADORES_PROGRAMA)"  icone="people_outline" titulo="Colaboradores do Programa" rota="colaboradoresprograma" toolTip="Colaboradores do Programa"></sub-menu>
-      
+
       <!-- PROJETOS -->
       <sub-menu *ngIf="verificaAcesso(getModulos().PROJETO)"   icone="folder_open" titulo="Projetos" rota="projeto" toolTip="Projetos"></sub-menu>
-      
+
       <!-- COLABORADORES PROJETO -->
       <sub-menu  *ngIf="verificaAcesso(getModulos().COLABORADORES_PROJETO)"  icone="people_outline" titulo="Colaboradores do Projeto" rota="colaboradoresprojeto" toolTip="Colaboradores do Projeto"></sub-menu>
-      
+
     </div>
 </mat-nav-list>
