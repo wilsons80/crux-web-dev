@@ -16,7 +16,7 @@
      
     <mat-form-field fxFlex="15%" fxFlexOffset="20px">
          <input type="text" matInput 
-                [(ngModel)]="cep" 
+                [(ngModel)]="dadosEndereco.cep" 
                 name="cep" 
                 placeholder="CEP"
                 (change)="onChangeCep()"
@@ -27,7 +27,7 @@
     <mat-form-field fxFlex="85%">
         <input #campoEndereco 
                 matInput maxlength="200" 
-                [(ngModel)]="endereco" 
+                [(ngModel)]="dadosEndereco.endereco" 
                 name="endereco"
                 placeholder="Endereço">
         <mat-hint align="end">{{campoEndereco.value.length}} / 200</mat-hint>
@@ -42,7 +42,8 @@
      <mat-form-field fxFlex="45%" fxFlexOffset="20px">
         <input #campoCidade 
                matInput maxlength="200" 
-               [(ngModel)]="cidade" name="cidade"
+               [(ngModel)]="dadosEndereco.cidade" 
+               name="cidade"
                placeholder="Cidade">
         <mat-hint align="end">{{campoCidade.value.length}} / 200</mat-hint>
     </mat-form-field>
@@ -50,7 +51,7 @@
     <mat-form-field fxFlex="45%" style="padding-right: 20px">
         <input #campoBairro 
                matInput maxlength="200" 
-               [(ngModel)]="bairro" 
+               [(ngModel)]="dadosEndereco.bairro" 
                name="bairro"
                placeholder="Bairro">
         <mat-hint align="end">{{campoBairro.value.length}} / 200</mat-hint>
@@ -58,7 +59,7 @@
 
     <mat-form-field fxFlex="10%">
         <mat-label>UF</mat-label>
-        <mat-select name="uf" [(ngModel)]="uf">
+        <mat-select name="uf" [(ngModel)]="dadosEndereco.uf">
             <mat-option *ngFor="let e of ufs" [value]="e">
                 {{e}}
             </mat-option>

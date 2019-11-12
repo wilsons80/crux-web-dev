@@ -86,12 +86,7 @@
 
 
     <!-- ETAPA 1 - ENDEREÇO -->
-    <cadastro-endereco [cep]="pessoaFisica.cep"
-                       [endereco]="pessoaFisica.endereco"
-                       [cidade]="pessoaFisica.cidadeNaturalidade"
-                       [bairro]="pessoaFisica.bairro"
-                       [uf]="pessoaFisica.ufEndereco">
-    </cadastro-endereco>
+    <cadastro-endereco [dadosEndereco]="pessoaFisica"></cadastro-endereco>
 
     <div fxLayout="row" class="espaco" fxLayoutGap="20px" 
          style="margin-top: 10px; margin-bottom: 10px" 

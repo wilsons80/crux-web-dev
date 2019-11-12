@@ -97,11 +97,7 @@
         </div>
 
         <!-- ETAPA 1 - ENDEREÇO -->
-        <cadastro-endereco [cep]="empresa.cep" 
-                           [endereco]="empresa.endereco"      
-                           [cidade]="empresa.cidade"      
-                           [bairro]="empresa.bairro"      
-                           [uf]="empresa.uf">    
+        <cadastro-endereco [dadosEndereco]="empresa">    
         </cadastro-endereco>
 
         <!-- CONTATO -->

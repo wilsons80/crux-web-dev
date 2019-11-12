@@ -1,3 +1,4 @@
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { Component, OnInit, Input } from '@angular/core';
 import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -14,11 +15,7 @@ export class CadastroEnderecoComponent implements OnInit {
     {nome: 'DF'}
   ];
 
-  @Input() cep;
-  @Input() uf;
-  @Input() endereco;
-  @Input() cidade;
-  @Input() bairro;
+  @Input() dadosEndereco;
 
   public maskCep = [/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
 
@@ -38,22 +35,22 @@ export class CadastroEnderecoComponent implements OnInit {
 
   enderecoBuilder(endereco) {
     if (endereco && endereco.sucesso) {
-      this.uf       = endereco.uf;
-      this.cidade   = endereco.localidade.toUpperCase() + ' ' + endereco.complemento.toUpperCase();
-      this.bairro   = endereco.bairro.toUpperCase();
-      this.endereco = endereco.logradouro.toUpperCase();
+      this.dadosEndereco.uf       = endereco.uf;
+      this.dadosEndereco.cidade   = endereco.localidade.toUpperCase() + ' ' + endereco.complemento.toUpperCase();
+      this.dadosEndereco.bairro   = endereco.bairro.toUpperCase();
+      this.dadosEndereco.endereco = endereco.logradouro.toUpperCase();
     } else {
-      this.uf       = null;
-      this.cidade   = null;
-      this.bairro   = null;
-      this.endereco = null;
+      this.dadosEndereco.uf       = null;
+      this.dadosEndereco.cidade   = null;
+      this.dadosEndereco.bairro   = null;
+      this.dadosEndereco.endereco = null;
       this.toastService.showAlerta('Cep inexistente ou endereço não encontrado.');
     }
   }
 
   onChangeCep() {
-    if (this.cep && this.validaCep(this.cep)) {
-      this.enderecoService.getEnderecoPorCep(this.cep).subscribe(
+    if (this.dadosEndereco.cep && this.validaCep(this.dadosEndereco.cep)) {
+      this.enderecoService.getEnderecoPorCep(this.dadosEndereco.cep).subscribe(
           (dados) => {
             this.enderecoBuilder(dados);
           },

@@ -9,7 +9,7 @@ export class PessoaFisica{
     classificadorMotivoNaoTrab:string;
     descricaoPessoaFisicaAtendidoOrgaoRede: string;
     bairro:string;
-    cidadeNaturalidade:string;
+    cidade:string;
     condicaoMoradia:string;
     cor:string;
     cursoEscola:string;
@@ -52,7 +52,7 @@ export class PessoaFisica{
     tituloEleitor:string;
     zonaTitulo:string;
     ufCi:string;
-    ufEndereco:string;
+    uf:string;
     ufNascimento:string;
    // Classificador indicativo se a pessoa física é atendida por outro órgão da
    // rede de apoio social / pessoal

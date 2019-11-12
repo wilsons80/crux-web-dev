@@ -19,7 +19,6 @@ import { Acesso } from 'src/app/core/acesso';
 })
 export class CadastarAlunoComponent implements OnInit {
 
-  pessoaFisica: PessoaFisica = new PessoaFisica();
   aluno: Aluno = new Aluno();
 
   isAtualizar = false;
@@ -36,12 +35,13 @@ export class CadastarAlunoComponent implements OnInit {
     private arquivoPessoaFisicaService: ArquivoPessoaFisicaService,
     private fileUtils: FileUtils,
   ) {
-    this.pessoaFisica.grausInstrucao = new GrausInstrucao();
   }
-
+  
   ngOnInit() {
-    this.aluno.pessoaFisica = this.pessoaFisica;
+    this.aluno = new Aluno();
+    this.aluno.pessoaFisica = new PessoaFisica();
     this.aluno.vulnerabilidades = [];
+    this.aluno.pessoaFisica.grausInstrucao = new GrausInstrucao();
 
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
