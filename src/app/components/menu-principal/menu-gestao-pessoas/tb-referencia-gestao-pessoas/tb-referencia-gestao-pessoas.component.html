@@ -1,0 +1,35 @@
+<a mat-list-item (click)="toggle()" style="width: fit-content;">
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}"
+            class="submenu">
+            <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="Tabelas de Referência">
+                <mat-icon>table_chart</mat-icon>
+                <span *ngIf="menuPrincipalService.expandido" class="nav-caption">Tabelas de Referência</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start stretch">
+                <mat-icon *ngIf="menuPrincipalService.expandido" style="padding-top: 2px">{{getIcone()}}</mat-icon>
+            </div>
+        </div>
+    </a>
+    
+    <mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
+    
+        <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
+    
+            
+            <!-- CARGO -->
+            <div style="padding-left: 15px">
+                <sub-menu  *ngIf="verificaAcesso(getModulos().CARGO)" icone="view_compact" titulo="Cargos" rota="cargo" toolTip="Cargos"></sub-menu>
+            </div>
+           
+            <!-- FUNÇÕES - AINDA NAO TEM -->
+            <div style="padding-left: 15px">
+                <sub-menu  *ngIf="verificaAcesso(getModulos().FUNCOES)" icone="cancel" titulo="Funções" rota="home" toolTip="Funções"></sub-menu>
+            </div>
+    
+            <!-- COMPETÊNCIA - AINDA NAO TEM -->
+            <div style="padding-left: 15px">
+                <sub-menu  *ngIf="verificaAcesso(getModulos().COMPETENCIA)" icone="cancel" titulo="Atributos da Avaliação de Desempenho" rota="home" toolTip="Atributos da Avaliação de Desempenho"></sub-menu>
+            </div>
+    
+        </div>
+    </mat-nav-list>

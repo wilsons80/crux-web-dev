@@ -1,0 +1,30 @@
+<a mat-list-item (click)="toggle()" >
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
+        <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="SAP">
+            <mat-icon>history</mat-icon>
+            <span *ngIf="menuPrincipalService.expandido"  class="nav-caption">SAP</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-icon *ngIf="menuPrincipalService.expandido" style="padding-top: 2px">{{getIcone()}}</mat-icon>
+        </div>
+    </div>
+</a>
+<mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
+
+    <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
+
+       <!-- ATENDIMENTO -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().ATENDIMENTO)" icone="perm_phone_msg" titulo="Atendimento" rota="atendimento" toolTip="Atendimento"></sub-menu>
+      
+       <!-- DIAGNOSTICO ATENDIMENTO -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().DIAGNOSTICO_ATENDIMENTO)" icone="ballot" titulo="Diagnóstico de Atendimento" rota="diagnosticoatendimento" toolTip="Diagnóstico de Atendimento"></sub-menu>
+      
+       <!-- PARTICIPANTE ATENDIMENTO -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().PARTICIPANTE_ATENDIMENTO)" icone="people_outline" titulo="Participante do Atendimento" rota="participanteatendimento" toolTip="Participante do Atendimento"></sub-menu>
+
+       <!-- TABELAS REFERENCIA -->
+       <tb-referencia-sap></tb-referencia-sap>
+
+    </div>
+</mat-nav-list>
+

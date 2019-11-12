@@ -1,0 +1,36 @@
+<a mat-list-item (click)="toggle()" >
+    <div fxLayout="row" fxLayoutAlign="space-between stretch" [ngClass]="{'expandido': menuPrincipalService.expandido}">
+        <div fxLayout="row" fxLayoutAlign="start stretch" matTooltip="Gestão de Pessoas">
+            <mat-icon>supervised_user_circle</mat-icon>
+            <span *ngIf="menuPrincipalService.expandido"  class="nav-caption">Gestão de Pessoas</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start stretch">
+            <mat-icon *ngIf="menuPrincipalService.expandido" style="padding-top: 2px">{{getIcone()}}</mat-icon>
+        </div>
+    </div>
+</a>
+<mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
+
+    <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
+
+       <!-- FUNCIONARIO -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().FUNCIONARIO)" icone="assessment" titulo="Colaboradores" rota="funcionario" toolTip="Colaboradores"></sub-menu>
+       
+       <!-- ACORDO DESEMPENHO -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().METAS_FUNCAO)" icone="trending_up" titulo="Acordo de Desempenho" rota="home" toolTip="Acordo de Desempenho"></sub-menu>
+       
+       <!-- AVALIACAO DESEMPENHO -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().AVALIACAO_DESEMPENHO)" icone="assignment" titulo="Avaliação de Desempenho" rota="home" toolTip="Avaliação de Desempenho"></sub-menu>
+       
+       <!-- PLANO DESENVOLVIMENTO INDIVIDUAL -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().PLANO_DESENVOLVIMENTO_INDIVIDUAL)" icone="assignment_ind" titulo="Plano de Des. Individual" rota="home" toolTip="Plano de Desenvolvimento Individual"></sub-menu>
+       
+       <!-- FALTAS FUNCIONÁRIO -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().FALTAS_FUNCIONARIO)" icone="warning" titulo="Faltas do Funcionário" rota="faltasfuncionario" toolTip="Faltas do Funcionário"></sub-menu>
+       
+       <!-- TABELAS REFERENCIA -->
+       <tb-referencia-gestao-pessoas></tb-referencia-gestao-pessoas>
+
+    </div>
+</mat-nav-list>
+

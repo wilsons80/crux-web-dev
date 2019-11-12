@@ -13,23 +13,20 @@
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
+        <!-- ACESSO -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().ACESSO)" icone="lock" titulo="Acesso" rota="acesso" toolTip="Acesso"></sub-menu>
+        
         <!-- USUARIO -->
         <sub-menu *ngIf="verificaAcesso(getModulos().USUARIO)" icone="person_add" titulo="Usuário" rota="usuariosistema" toolTip="Usuário"></sub-menu>
-
-        <!-- INSTITUICAO -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().INSTITUICAO)" icone="store" titulo="Intituição" rota="instituicao" toolTip="Intituição"></sub-menu>
-
-        <!-- UNIDADE -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().UNIDADE)" icone="business" titulo="Unidade" rota="unidade" toolTip="Unidade"></sub-menu>
 
         <!-- MODULO DA UNIDADE -->
         <sub-menu *ngIf="verificaAcesso(getModulos().GRUPO_MODULO)" icone="view_module" titulo="Módulos da Unidade" rota="grupomodulo" toolTip="Módulos da Unidade"></sub-menu>
 
-        <!-- ACESSO -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().ACESSO)" icone="lock" titulo="Acesso" rota="acesso" toolTip="Acesso"></sub-menu>
+         <!-- ALTERAR SENHA -->
+         <sub-menu icone="cached" titulo="Alterar Senha" rota="novasenha" toolTip="Alterar Senha"></sub-menu>
+
         
-        <!-- ALTERAR SENHA -->
-        <sub-menu icone="cached" titulo="Alterar Senha" rota="novasenha" toolTip="Alterar Senha"></sub-menu>
+        
 
     </div>
 </mat-nav-list>
