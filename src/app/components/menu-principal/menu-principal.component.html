@@ -15,12 +15,12 @@
 
             <button mat-button [routerLink]="['/home']" routerLinkActive="router-link-active">
                 <mat-icon>home</mat-icon>
-            </button>            
+            </button>
         </div>
 
         <mat-divider style="margin-top: 10px"></mat-divider>
 
-        <!-- MENU ADMINISTRATIVO -->
+        <!-- MENU ORGANIZACAO INTERNA -->
         <menu-organizacao-interna *ngIf="verificaAcesso(getModulos().ORGANIZACAO_INTERNA)"></menu-organizacao-interna>
 
         <!-- ESTRATÉGICO -->
@@ -28,7 +28,6 @@
 
         <!-- GESTÃO DE PESSOAS -->
         <menu-gestao-pessoas *ngIf="verificaAcesso(getModulos().GESTAO_PESSOA)"></menu-gestao-pessoas>
-
 
         <!-- SECRETARIA -->
         <menu-secretaria *ngIf="verificaAcesso(getModulos().SECRETARIA)"></menu-secretaria>
@@ -38,12 +37,6 @@
 
         <!-- PEDAGÓGICO -->
         <menu-pedagogico *ngIf="verificaAcesso(getModulos().PEDAGOGICO)"></menu-pedagogico>
-
-        <!-- MENU ADMINISTRATIVO -->
-        <!-- <modulo-administrativo *ngIf="verificaAcesso(getModulos().ADMINISTRATIVO)"></modulo-administrativo> -->
-
-        <!-- MENU PEDAGÓGICO -->
-        <!-- <modulo-pedagogico *ngIf="verificaAcesso(getModulos().PEDAGOGICO)"></modulo-pedagogico> -->
 
         <mat-divider></mat-divider>
 

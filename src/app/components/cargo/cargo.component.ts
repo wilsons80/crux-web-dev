@@ -5,6 +5,8 @@ import { Cargo } from 'src/app/core/cargo';
 import { CargosService } from 'src/app/services/cargos/cargos.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Acesso } from 'src/app/core/acesso';
+import { TipoCargo } from 'src/app/core/tipo-cargo';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-cargo',
@@ -26,6 +28,12 @@ export class CargoComponent implements OnInit {
   displayedColumns: string[] = ['codigo', 'nome', 'tipoCargo','acoes'];
   dataSource: MatTableDataSource<Cargo> = new MatTableDataSource();
 
+  tiposCargo = [
+    {tipo: TipoCargo.ESTAGIARIO, descricao: 'ESTAGIÁRIO'},
+    {tipo: TipoCargo.FUNCIONARIO, descricao: 'FUNCIONÁRIO'},
+    {tipo: TipoCargo.VOLUNTARIO, descricao: 'VOLUNTÁRIO'},
+  ]
+
   constructor(
     private cargoService: CargosService,
     private router: Router,
@@ -41,6 +49,10 @@ export class CargoComponent implements OnInit {
     this.getAll();
   }
 
+  getDescricaoTipoCargo(tipoCargo) {
+    const cargo = _.find(this.tiposCargo, {tipo: tipoCargo})
+    return cargo ? cargo.descricao : "";
+  }
   limpar() {
     this.mostrarTabela = false;
     this.cargo = new Cargo()
