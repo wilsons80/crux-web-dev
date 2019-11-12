@@ -17,17 +17,17 @@
     
             <!-- SOLUÇOES ATENDIMENTO -->
             <div style="padding-left: 15px">
-                <sub-menu icone="library_books" titulo="Soluções de Atendimentos" rota="solucaoatendimento" toolTip="Soluções de Atendimentos"></sub-menu>
+                <sub-menu *ngIf="verificaAcesso(getModulos().SOLUCAO_ATENDIMENTO)" icone="library_books" titulo="Soluções de Atendimentos" rota="solucaoatendimento" toolTip="Soluções de Atendimentos"></sub-menu>
             </div>
     
             <!-- SITUACAO VULNERABILIDADE-->
             <div style="padding-left: 15px">
-                <sub-menu icone="library_books" titulo="Situação de Vulnerabilidade" rota="situacaovulnerabilidade" toolTip="Situação de Vulnerabilidade"></sub-menu>
+                <sub-menu *ngIf="verificaAcesso(getModulos().SITUACAO_VULNERABILIDADE)" icone="library_books" titulo="Situação de Vulnerabilidade" rota="situacaovulnerabilidade" toolTip="Situação de Vulnerabilidade"></sub-menu>
             </div>
     
             <!-- CONDICOES MORADIA -->
             <div style="padding-left: 15px">
-                <sub-menu icone="library_books" titulo="Condição de Moradia" rota="condicaomoradia" toolTip="Condição de Moradia"></sub-menu>
+                <sub-menu *ngIf="verificaAcesso(getModulos().CONDICOES_MORADIA)" icone="library_books" titulo="Condição de Moradia" rota="condicaomoradia" toolTip="Condição de Moradia"></sub-menu>
             </div>
     
         </div>

@@ -12,14 +12,22 @@
 <mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
-        <!-- CURSO DE FORMACAO -->
-       <!-- <sub-menu *ngIf="verificaAcesso(getModulos().CURSO_FORMACAO)"  icone="library_books" titulo="Curso de Formação" rota="cursoformacao" toolTip="Curso de Formação"></sub-menu> -->
+            <!-- *ngIf="verificaAcesso(getModulos().CURSO_FORMACAO)"  -->
       
-       <sub-menu  icone="library_books" titulo="Instituição" rota="instituicao" toolTip="Instituição"></sub-menu>
-       <sub-menu  icone="library_books" titulo="Unidade" rota="unidade" toolTip="Unidade"></sub-menu>
-       <sub-menu  icone="library_books" titulo="Departamento" rota="departamento" toolTip="Departamento"></sub-menu>
-       <sub-menu  icone="library_books" titulo="Parceiros" rota="empresa" toolTip="Parceiros"></sub-menu>
-       <tb-referencia-organizacao-interna></tb-referencia-organizacao-interna>
+       <!-- INSTITUICAO -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().INSTITUICAO)" icone="library_books" titulo="Instituição" rota="instituicao" toolTip="Instituição"></sub-menu>
+       
+       <!-- UNIDADE -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().UNIDADE)" icone="library_books" titulo="Unidade" rota="unidade" toolTip="Unidade"></sub-menu>
+       
+       <!-- DEPARTAMENTO -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().DEPARTAMENTO)" icone="library_books" titulo="Departamento" rota="departamento" toolTip="Departamento"></sub-menu>
+       
+       <!-- EMPRESA -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().EMPRESA)" icone="library_books" titulo="Parceiros" rota="empresa" toolTip="Parceiros"></sub-menu>
+       
+       <!-- TABELA REFERENCIA -->
+       <tb-referencia-organizacao-interna *ngIf="verificaAcesso(getModulos().TB_REFERENCIA_ORGANIZACAO_INTERNA)"></tb-referencia-organizacao-interna>
 
     </div>
 </mat-nav-list>

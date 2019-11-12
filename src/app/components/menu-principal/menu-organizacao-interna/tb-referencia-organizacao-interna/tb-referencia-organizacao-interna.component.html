@@ -15,10 +15,9 @@
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
-        <!-- CURSO DE FORMACAO -->
-        <!--  <sub-menu *ngIf="verificaAcesso(getModulos().CURSO_FORMACAO)"  icone="library_books" titulo="Curso de Formação" rota="cursoformacao" toolTip="Curso de Formação"></sub-menu> -->
+            <!-- PRODUTO -->
         <div style="padding-left: 15px">
-            <sub-menu icone="library_books" titulo="Cadastro de Bens e Produtos" rota="produto" toolTip="Cadastro de Bens e Produtos"></sub-menu>
+            <sub-menu *ngIf="verificaAcesso(getModulos().PRODUTO)" icone="library_books" titulo="Cadastro de Bens e Produtos" rota="produto" toolTip="Cadastro de Bens e Produtos"></sub-menu>
         </div>
 
     </div>
