@@ -15,7 +15,6 @@ import { MenuGestaoPessoasComponent } from './menu-gestao-pessoas/menu-gestao-pe
 import { MenuSecretariaComponent } from './menu-secretaria/menu-secretaria.component';
 import { MenuSapComponent } from './menu-sap/menu-sap.component';
 import { MenuPedagogicoComponent } from './menu-pedagogico/menu-pedagogico.component';
-import { TbOrganizacaoInternaComponent } from './menu-organizacao-interna/tb-organizacao-interna/tb-organizacao-interna.component';
 import { TbReferenciaGestaoPessoasComponent } from './menu-gestao-pessoas/tb-referencia-gestao-pessoas/tb-referencia-gestao-pessoas.component';
 import { TbReferenciaSecretariaComponent } from './menu-secretaria/tb-referencia-secretaria/tb-referencia-secretaria.component';
 import { TbReferenciaSapComponent } from './menu-sap/tb-referencia-sap/tb-referencia-sap.component';
@@ -36,7 +35,6 @@ import { TbReferenciaOrganizacaoInternaComponent } from './menu-organizacao-inte
     MenuSecretariaComponent,
     MenuSapComponent,
     MenuPedagogicoComponent,
-    TbOrganizacaoInternaComponent,
     TbReferenciaGestaoPessoasComponent,
     TbReferenciaSecretariaComponent,
     TbReferenciaSapComponent,

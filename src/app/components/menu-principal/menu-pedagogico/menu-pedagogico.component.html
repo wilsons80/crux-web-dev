@@ -12,10 +12,29 @@
 <mat-nav-list [ngClass]="{'expandido': menuPrincipalService.expandido}">
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
+       <!-- TURMA -->
+       <sub-menu icone="library_books" titulo="Turmas" rota="atividade" toolTip="Turmas"></sub-menu>
 
-        <!-- CURSO DE FORMACAO -->
-      <!--  <sub-menu *ngIf="verificaAcesso(getModulos().CURSO_FORMACAO)"  icone="library_books" titulo="Curso de Formação" rota="cursoformacao" toolTip="Curso de Formação"></sub-menu> -->
+       <!-- ATIVIDADE ALUNO -->
+       <sub-menu icone="library_books" titulo="Alunos da Turma" rota="atividadealuno" toolTip="Alunos da Turma"></sub-menu>
 
+       <!-- AVALIACAO ATIVIDADE -->
+       <sub-menu icone="library_books" titulo="Avaliação da Turma" rota="avaliacaoatividade" toolTip="Avaliação da Turma"></sub-menu>
+
+       <!-- AVALIACAO ALUNO -->
+       <sub-menu icone="library_books" titulo="Avaliação do Aluno" rota="avaliacaoaluno" toolTip="Avaliação do Aluno"></sub-menu>
+
+       <!-- FREQUENCIA ALUNO-->
+       <sub-menu icone="library_books" titulo="Frequência do Aluno" rota="frequenciaaluno" toolTip="Frequência do Aluno"></sub-menu>
+
+       <!-- ALUNO TRABALHANDO -->
+       <sub-menu icone="library_books" titulo="Cadastro Menor Aprendiz" rota="alunotrabalhando" toolTip="Cadastro Menor Aprendiz"></sub-menu>
+
+       <!-- REPROVACAO ALUNO  -->
+       <sub-menu icone="library_books" titulo="Reprovações do Aluno " rota="reprovacaoaluno" toolTip="Reprovações do Aluno"></sub-menu>
+
+       <!-- PRODUTOS ATIVIDADE -->
+       <sub-menu icone="library_books" titulo="Bens e Produtos" rota="produtosatividade" toolTip="Bens e Produtos"></sub-menu>
 
     </div>
 </mat-nav-list>
