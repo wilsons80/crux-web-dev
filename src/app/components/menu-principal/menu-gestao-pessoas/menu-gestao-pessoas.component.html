@@ -13,14 +13,22 @@
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
-        <!-- CURSO DE FORMACAO -->
-      <!--  <sub-menu *ngIf="verificaAcesso(getModulos().CURSO_FORMACAO)"  icone="library_books" titulo="Curso de Formação" rota="cursoformacao" toolTip="Curso de Formação"></sub-menu> -->
+       <!-- FUNCIONARIO -->
        <sub-menu icone="library_books" titulo="Colaboradores" rota="funcionario" toolTip="Colaboradores"></sub-menu>
+       
+       <!-- METAS -->
        <sub-menu icone="library_books" titulo="Acordo de Desempenho" rota="metas" toolTip="Acordo de Desempenho"></sub-menu>
-       <sub-menu icone="library_books" titulo="Avaliação de Desempenho" rota="" toolTip="Avaliação de Desempenho"></sub-menu>
-       <sub-menu icone="library_books" titulo="Plano de Des. Individual" rota="" toolTip="Plano de Desenvolvimento Individual"></sub-menu>
+       
+       <!-- AVALIACAO DESEMPENHO -->
+       <sub-menu icone="library_books" titulo="Avaliação de Desempenho" rota="home" toolTip="Avaliação de Desempenho"></sub-menu>
+       
+       <!-- PLANO DESENVOLVIMENTO INDIVIDUAL -->
+       <sub-menu icone="library_books" titulo="Plano de Des. Individual" rota="home" toolTip="Plano de Desenvolvimento Individual"></sub-menu>
+       
+       <!-- FALTAS FUNCIONÁRIO -->
        <sub-menu icone="library_books" titulo="Faltas do Funcionário" rota="faltasfuncionario" toolTip="Faltas do Funcionário"></sub-menu>
-
+       
+       <!-- TABELAS REFERENCIA -->
        <tb-referencia-gestao-pessoas></tb-referencia-gestao-pessoas>
 
     </div>
