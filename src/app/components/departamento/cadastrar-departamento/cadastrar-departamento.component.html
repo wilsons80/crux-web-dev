@@ -8,13 +8,23 @@
         <!-- DADOS INICIAIS -->
         <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                <mat-form-field fxFlex= "20%" fxFlexOffset="20px" >
+                <mat-form-field fxFlex= "10%" fxFlexOffset="20px" >
                         <input  matInput maxlength="6"  name="cdUnidadeDepartamento" placeholder="Sigla:" [(ngModel)]="departamento.cdUnidadeDepartamento" required >
                </mat-form-field>
 
-               <mat-form-field fxFlex= "72%"  >
+               <mat-form-field fxFlex= "60%"  >
                     <input matInput maxlength="100"  name="nmDepartamento" placeholder="Nome do Departamento:" [(ngModel)]="departamento.nmDepartamento" required>
                </mat-form-field>
+
+               <mat-form-field fxFlex= "15%">
+                <input matInput  
+                       [(ngModel)]="departamento.nrTelefoneDepartamento" 
+                       name="nrTelefoneDepartamento" 
+                       placeholder="Telefone" 
+                       [textMask]="{mask: maskPhone}"
+                       pattern="^(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$">
+        </mat-form-field>
+
         </div>
 
          <!-- DEPARTAMENTO SUPERIOR / UNIDADE -->
@@ -45,23 +55,6 @@
                 </mat-select>
                 <mat-hint *ngIf="departamentos?.length === 0"  align="start">Nenhum departamento cadastrado</mat-hint>
             </mat-form-field>
-        </div>
-
-        <!-- ENDEREÇO -->
-        <mat-toolbar class="titulopartes">Endereço </mat-toolbar>
-        <div fxLayout="row" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-           <mat-form-field fxFlex= "70%" fxFlexOffset="20px">
-               <input type="text" matInput  maxlength="200" [(ngModel)]="departamento.dsEnderecoDepartamento" name="dsEnderecoDepartamento" placeholder="Endereço:" />
-           </mat-form-field>
-
-           <mat-form-field fxFlex= "24%">
-                <input matInput  
-                       [(ngModel)]="departamento.nrTelefoneDepartamento" 
-                       name="nrTelefoneDepartamento" 
-                       placeholder="Telefone" 
-                       [textMask]="{mask: maskPhone}"
-                       pattern="^(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$">
-        </mat-form-field>
         </div>
 
          <!-- BOTOES -->
