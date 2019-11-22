@@ -17,7 +17,6 @@ import { Acesso } from 'src/app/core/acesso';
 })
 export class CadastrarProjetoComponent implements OnInit {
 
-  iniciativas: Iniciativa[];
   programas: Programa[];
   projeto: Projeto;
 
@@ -53,9 +52,6 @@ export class CadastrarProjetoComponent implements OnInit {
     if(!this.perfilAcesso.altera){
       this.mostrarBotaoAtualizar = false;
     }
-    this.iniciativaService.getAll().subscribe((iniciativas: Iniciativa[]) => {
-      this.iniciativas = iniciativas;
-    })
 
     this.programaService.getAll().subscribe((programas: Programa[]) => {
       this.programas = programas;
