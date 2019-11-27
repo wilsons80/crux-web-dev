@@ -24,6 +24,9 @@
        
        <!-- EMPRESA -->
        <sub-menu *ngIf="verificaAcesso(getModulos().EMPRESA)" icone="group_add" titulo="Parceiros" rota="empresa" toolTip="Parceiros"></sub-menu>
+
+       <!-- CBO -->
+       <sub-menu *ngIf="verificaAcesso(getModulos().CBO)" icone="copyright" titulo="CBO" rota="cbo" toolTip="Código de Classificação Brasileira de Ocupações"></sub-menu>
        
        <!-- TABELA REFERENCIA -->
        <tb-referencia-organizacao-interna *ngIf="verificaAcesso(getModulos().TB_REFERENCIA_ORGANIZACAO_INTERNA)"></tb-referencia-organizacao-interna>

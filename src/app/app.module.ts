@@ -81,6 +81,8 @@ import { UploadFotoModule } from './components/upload-foto/upload-foto.module';
 import { UsuarioModule } from './components/usuario/usuario.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
+import { CboComponent } from './components/cbo/cbo.component';
+import { CadastrarCboComponent } from './components/cbo/cadastrar-cbo/cadastrar-cbo.component';
 
 export const MY_FORMATS = {
   parse: {
@@ -108,6 +110,8 @@ registerLocaleData(localePt, 'pt-BR');
     ConfirmDialogComponent,
     AcessoRestritoComponent,
     TempoSessaoDialogComponent,
+    CboComponent,
+    CadastrarCboComponent,
   ],
   imports: [
     BrowserModule,
