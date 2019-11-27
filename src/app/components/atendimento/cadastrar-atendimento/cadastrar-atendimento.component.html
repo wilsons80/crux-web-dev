@@ -22,8 +22,7 @@
                 <mat-form-field style="margin: 0 20px 20px 20px">
                     <mat-label>Alunos:</mat-label>
                     <mat-select [(ngModel)]="atendimento.aluno.id" name="aluno" required
-                        (selectionChange)="mostrarDadosAluno($event.value)"
-                    >
+                        (selectionChange)="mostrarDadosAluno($event.value)">
                         <mat-option *ngFor="let i of alunos" [value]="i.id">
                             {{i.pessoaFisica.nome}}
                         </mat-option>
@@ -63,26 +62,25 @@
 
             </div>
 
-           <!--  DIAGNOSTICO-->
+           <!--  SOLUÇÃO-->
            <div fxLayout="column" fxFlex="45%">
                 <mat-toolbar class="titulopartes">Solução</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
-                        <mat-label>Soluções:</mat-label>
-                        <mat-select [(ngModel)]="atendimento.solucoes.id" name="solucoes" required>
-                                <mat-option *ngFor="let i of solucoes" [value]="i.id">
-                                        {{i.descricao}}
-                                </mat-option>
-                        </mat-select>
-                        <mat-hint *ngIf="solucoes?.length === 0" align="start">Nenhuma solução
-                                cadastrada</mat-hint>
+                    <mat-label>Soluções</mat-label>
+                    <mat-select [(ngModel)]="atendimento.solucoes.id" name="solucoes">
+                            <mat-option *ngFor="let i of solucoes" [value]="i.id">
+                                {{i.descricao}}
+                            </mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="solucoes?.length === 0" align="start">Nenhuma solução cadastrada</mat-hint>
                 </mat-form-field>
 
                 <mat-form-field style="margin: 0 0 0 20px" fxFlex="45%" appearance="outline">
-                        <mat-label>Descrição solução:</mat-label>
-                        <textarea #descSolucao matInput name="observacoes" [(ngModel)]="atendimento.descSolucao" cdkTextareaAutosize
-                            #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" maxlength="200"></textarea>
-                            <mat-hint align="end">{{descSolucao.value.length}} / 200</mat-hint>
-                    </mat-form-field>
+                    <mat-label>Descrição solução:</mat-label>
+                    <textarea #descSolucao matInput name="observacoes" [(ngModel)]="atendimento.descSolucao" cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" maxlength="200"></textarea>
+                        <mat-hint align="end">{{descSolucao.value.length}} / 200</mat-hint>
+                </mat-form-field>
 
             </div>
 
