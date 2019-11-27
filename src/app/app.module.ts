@@ -83,6 +83,7 @@ import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 import { CboComponent } from './components/cbo/cbo.component';
 import { CadastrarCboComponent } from './components/cbo/cadastrar-cbo/cadastrar-cbo.component';
+import { CboModule } from './components/cbo/cbo.module';
 
 export const MY_FORMATS = {
   parse: {
@@ -195,6 +196,7 @@ registerLocaleData(localePt, 'pt-BR');
     InstituicaoModule,
     GrupoModuloModule,
     TextMaskModule,
+    CboModule
 
   ],
   providers: [
