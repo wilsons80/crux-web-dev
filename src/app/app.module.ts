@@ -82,6 +82,7 @@ import { UsuarioModule } from './components/usuario/usuario.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 import { CboModule } from './components/cbo/cbo.module';
+import { TipoOcorrenciaAlunoComponent } from './components/tipo-ocorrencia-aluno/tipo-ocorrencia-aluno.component';
 
 export const MY_FORMATS = {
   parse: {
@@ -108,7 +109,8 @@ registerLocaleData(localePt, 'pt-BR');
     PaginaNaoEncontradaComponent,
     ConfirmDialogComponent,
     AcessoRestritoComponent,
-    TempoSessaoDialogComponent
+    TempoSessaoDialogComponent,
+    TipoOcorrenciaAlunoComponent
   ],
   imports: [
     BrowserModule,

@@ -45,5 +45,15 @@
         <sub-menu *ngIf="verificaAcesso(getModulos().PRODUTOS_ATIVIDADE)" icone="work" titulo="Bens e Produtos"
             rota="produtosatividade" toolTip="Bens e Produtos"></sub-menu>
 
+
+        <!-- TIPO_OCORRENCIA_ALUNO -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().TIPO_OCORRENCIA_ALUNO)" icone="block" titulo="Tipo de ocorrência do aluno"
+            rota="tipoocorrenciaaluno" toolTip="Tipo de ocorrência do aluno"></sub-menu>
+
+        <!-- OCORRENCIA_ALUNO -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().OCORRENCIA_ALUNO)" icone="how_to_reg" titulo="Ocorrência do aluno"
+            rota="ocorrenciaaluno" toolTip="Ocorrência do aluno"></sub-menu>
+
+
     </div>
 </mat-nav-list>

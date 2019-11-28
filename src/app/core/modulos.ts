@@ -70,4 +70,6 @@ export enum Modulos{
     , COMPETENCIA                           = 'COMPETENCIA'
     , ATRIBUTO_AVALIACAO_DESEMPENHO         = 'ATRIBUTO_AVALIACAO_DESEMPENHO'
     , CBO                                   = 'CBO'
+    , TIPO_OCORRENCIA_ALUNO                 = 'TIPOOCORRENCIA'
+    , OCORRENCIA_ALUNO                      = 'OCORRENCIA_ALUNO'
 }
