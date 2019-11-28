@@ -1,3 +1,5 @@
+import { Cbo } from './../../../core/cbo';
+import { CboService } from './../../../services/cbo/cbo.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,8 +18,10 @@ export class CadastrarCargoComponent implements OnInit {
 
   cargo: Cargo = new Cargo();
 
+  cbos: Cbo[] = [];
+
   perfilAcesso: Acesso;
-  mostrarBotaoCadastrar = true
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
   isAtualizar = false;
@@ -32,18 +36,22 @@ export class CadastrarCargoComponent implements OnInit {
     private cargoService: CargosService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private cboService: CboService
   ) { }
 
 
   ngOnInit() {
+
+    this.limpar();
+
 
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if(!this.perfilAcesso.insere){
       this.mostrarBotaoCadastrar = false;
     }
-    
+
     if(!this.perfilAcesso.altera){
       this.mostrarBotaoAtualizar = false;
     }
@@ -54,11 +62,16 @@ export class CadastrarCargoComponent implements OnInit {
     if (idCargo) {
       this.isAtualizar = true;
       this.cargoService.getById(idCargo).subscribe((cargo: Cargo) => {
-        this.cargo = cargo
+        this.cargo = cargo;
       });
     }
 
+    this.cboService.getAll().subscribe((cbos: Cbo[]) => {
+      this.cbos = cbos;
+    });
+
   }
+
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;
     if(!this.mostrarBotaoAtualizar) return false;
@@ -75,6 +88,7 @@ export class CadastrarCargoComponent implements OnInit {
 
   limpar() {
     this.cargo = new Cargo();
+    this.cargo.cbo = new Cbo();
   }
 
   cancelar() {
