@@ -43,6 +43,6 @@ export enum Rotas {
     MODULO                          = 'api/modulo/',
     USUARIO_UNIDADE                 = 'api/usuariounidade/',
     CBO                             = 'api/cbo/',
-    OCORRENCIA_ALUNO                = 'api/ocorrenciaaluno',
-    TIPO_OCORRENCIA_ALUNO           = 'api/tipoocorrenciaaluno'
+    OCORRENCIA_ALUNO                = 'api/ocorrenciaaluno/',
+    TIPO_OCORRENCIA_ALUNO           = 'api/tipoocorrenciaaluno/'
 }
