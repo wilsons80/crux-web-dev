@@ -114,4 +114,7 @@ export class CboComponent implements OnInit {
   }
 
 
+  getNumeroFormater(valor: string) {
+    return valor.substr(0,5) + '-' + valor.substr(5,1);
+  }
 }
