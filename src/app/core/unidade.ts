@@ -30,4 +30,10 @@ export class Unidade {
     urlFoto?:any;
     isFotoChanged?:boolean;
 	instituicao: Instituicao
+
+	numeroCnas:string;
+	numeroCdca:string;
+	dataVigenciaCdca:Date;
+	numeroCas:string;
+	dataVigenciaCas:Date;
 }
