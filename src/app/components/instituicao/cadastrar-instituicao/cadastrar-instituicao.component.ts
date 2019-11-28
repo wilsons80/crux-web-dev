@@ -70,7 +70,7 @@ export class CadastrarInstituicaoComponent implements OnInit {
 
 
   cancelar() {
-    this.router.navigate(['unidade']);
+    this.router.navigate(['instituicao']);
   }
 
   atualizar() {
