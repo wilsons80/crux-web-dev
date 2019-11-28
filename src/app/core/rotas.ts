@@ -42,5 +42,5 @@ export enum Rotas {
     GRUPO_MODULO                    = 'api/grupomodulo/',
     MODULO                          = 'api/modulo/',
     USUARIO_UNIDADE                 = 'api/usuariounidade/',
-    CBO                             = 'api/cbo'
+    CBO                             = 'api/cbo/'
 }

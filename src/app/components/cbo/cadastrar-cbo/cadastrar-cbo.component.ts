@@ -20,6 +20,7 @@ export class CadastrarCboComponent implements OnInit {
 
   isAtualizar = false;
 
+  public maskNumeroCBO  = [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/];
 
   constructor(
     private cboService: CboService,
@@ -64,7 +65,7 @@ export class CadastrarCboComponent implements OnInit {
 
   cadastrar() {
     this.cboService.cadastrar(this.cbo).subscribe(() => {
-      this.router.navigate(['cargo']);
+      this.router.navigate(['cbo']);
       this.toastService.showSucesso('CBO cadastradO com sucesso');
     });
   }
