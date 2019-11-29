@@ -9,6 +9,7 @@ import { ProgramaService } from 'src/app/services/programa/programa.service';
 import { ProjetoService } from 'src/app/services/projeto/projeto.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Acesso } from 'src/app/core/acesso';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-cadastrar-projeto',
@@ -71,6 +72,7 @@ export class CadastrarProjetoComponent implements OnInit {
     this.projeto = new Projeto();
     this.projeto.programa = new Programa();
     this.projeto.iniciativa = new Iniciativa();
+    this.projeto.projetoUnidades = [];
   }
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;

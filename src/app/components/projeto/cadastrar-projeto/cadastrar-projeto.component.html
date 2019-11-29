@@ -1,119 +1,137 @@
 <mat-toolbar class="subtitulo">Projetos</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
-    <form #formCadastro="ngForm">
 
-        <!-- DADOS INICIAIS -->
-        <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
-        <div fxLayout="row" fxFlexFill>
-            <mat-form-field style="margin-bottom: 10px" fxFlex= "46%" fxFlexOffset="20px" >
-                  <input #nome matInput maxlength="200"  name="nome" placeholder="Nome :" [(ngModel)]="projeto.nome" required>
-                  <mat-hint align="end">{{nome.value.length}} / 200</mat-hint>
-             </mat-form-field>
+        <mat-horizontal-stepper #stepper style="background: transparent; padding: 10px">
 
-             <mat-form-field fxFlex= "46%" fxFlexOffset="20px" >
-                  <input #descricao matInput maxlength="200"  name="descricao" placeholder="Descrição:" [(ngModel)]="projeto.descricao" >
-                  <mat-hint align="end">{{descricao.value.length}} / 200</mat-hint>
-             </mat-form-field>
-        </div>
 
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                <!------------------ DADOS PROJETO ------------------------>
+                <mat-step [stepControl]="formCadastroDadosProjeto">
+                        <form #formCadastroDadosProjeto="ngForm" state="dadosProjeto">
+                                <ng-template matStepLabel>DADOS DO PROJETO</ng-template>
 
-                <!--DATAS -->
-                <div fxLayout="column" fxFlex="45%">
-                        <mat-toolbar class="titulopartes">Datas</mat-toolbar>
-                        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                                <dados-projeto [projeto]=projeto></dados-projeto>
+                                <div dir="rtl" fxLayoutGap="20px"
+                                        style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                                        <button mat-mini-fab name="botaoConfirmar"  color="primary"
+                                                matStepperNext>
+                                                <mat-icon>chevron_right</mat-icon>
+                                        </button>
+                                </div>
+                        </form>
+                </mat-step>
 
-                                <mat-form-field fxFlex= "40%" fxFlexOffset="20px" >
-                                        <input matInput name= "dtImplantacao" [matDatepicker]="dataInicio" placeholder="Data de Início:" [(ngModel)]="projeto.dataInicio">
-                                        <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
-                                        <mat-datepicker #dataInicio></mat-datepicker>
-                                 </mat-form-field>
-                    
-                                 <mat-form-field fxFlex= "40%">
-                                        <input matInput name= "dtTermino" [matDatepicker]="dataTermino" placeholder="Data de Fim:" [(ngModel)]="projeto.dataFim">
-                                        <mat-datepicker-toggle matSuffix [for]="dataTermino"></mat-datepicker-toggle>
-                                        <mat-datepicker #dataTermino></mat-datepicker>
-                                 </mat-form-field>
-                    
-                            </div>
-                </div>
+                <!------------------  Unidade ------------------------>
+                <mat-step [stepControl]="formCadastroColaboradores">
+                        <form #formCadastroColaboradores="ngForm" matStepperIcon="phone">
+                                <ng-template matStepLabel>UNIDADE</ng-template>
 
-                <!-- DATAS PREVISTAS -->
-                <div fxLayout="column" fxFlex="55%">
-                        <mat-toolbar class="titulopartes">Datas Previstas</mat-toolbar>
-                        <div fxLayout="row" fxLayoutGap="50px" style="margin: 0 20px 20px 0" fxFlexFill>
+                                <unidades-projeto [projetoUnidades]=projeto.projetoUnidades></unidades-projeto>
 
-                                <mat-form-field fxFlex= "40%" fxFlexOffset="20px" >
-                                        <input matInput name= "dtPrevistaImplantacao" [matDatepicker]="dataPrevisaoInicio" placeholder="Data Prevista de Início:" [(ngModel)]="projeto.dataPrevisaoInicio" required>
-                                        <mat-datepicker-toggle matSuffix [for]="dataPrevisaoInicio"></mat-datepicker-toggle>
-                                        <mat-datepicker #dataPrevisaoInicio></mat-datepicker>
-                                 </mat-form-field>
-                    
-                                 <mat-form-field  fxFlex= "40%">
-                                        <input style="margin-right: 20px" matInput name= "dtPrevistaTermino" [matDatepicker]="dataPrevisaoTermino" placeholder="Data Prevista de Fim:" [(ngModel)]="projeto.dataPrevisaoTermino">
-                                        <mat-datepicker-toggle matSuffix [for]="dataPrevisaoTermino"></mat-datepicker-toggle>
-                                        <mat-datepicker #dataPrevisaoTermino></mat-datepicker>
-                                 </mat-form-field>
-                    
-                            </div>
-                </div>
-        </div>
+                                <div dir="rtl" fxLayoutGap="20px"
+                                        style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                                        <button mat-mini-fab name="botaoConfirmar"  color="primary"
+                                                matStepperNext>
+                                                <mat-icon>chevron_right</mat-icon>
+                                        </button>
+                                        <button mat-mini-fab name="botaoConfirmar"  color="primary"
+                                        matStepperPrevious>
+                                        <mat-icon>chevron_left</mat-icon>
+                                </button>
+                                </div>
+                        </form>
+                </mat-step>
+   
+                <!------------------  Colaboradores do Projeto ------------------------>
+                <mat-step [stepControl]="formCadastroColaboradores">
+                        <form #formCadastroColaboradores="ngForm" matStepperIcon="phone">
+                                <ng-template matStepLabel>COLABORADORES</ng-template>
 
-        <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                                <div dir="rtl" fxLayoutGap="20px"
+                                        style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                                        <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
+                                                matStepperNext>
+                                                Próximo
+                                        </button>
+                                </div>
+                        </form>
+                </mat-step>
+                
+                <!------------------  Parcerias do Projeto ------------------------>
+                <mat-step [stepControl]="formCadastroParcerias">
+                        <form #formCadastroParcerias="ngForm" matStepperIcon="phone">
+                                <ng-template matStepLabel>PARCERIAS</ng-template>
 
-                <!-- PROGRAMA-->
-                <div fxLayout="column" fxFlex="45%">
-                        <mat-toolbar class="titulopartes">Programa</mat-toolbar>
-                        <mat-form-field style="margin-left: 20px" fxFlex= "95%" >
-                                <mat-label>Programa:</mat-label>
-                                <mat-select [(ngModel)]="projeto.programa.id" name="objetivo" required>
-                                    <mat-option *ngFor="let o of programas" [value]="o.id" >
-                                      {{o.nome}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-hint *ngIf="programas?.length === 0"  align="start">Nenhum programa cadastrado</mat-hint>
-                        </mat-form-field>
-                </div>
+                                <div dir="rtl" fxLayoutGap="20px"
+                                        style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                                        <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
+                                                matStepperNext>
+                                                Próximo
+                                        </button>
+                                </div>
+                        </form>
+                </mat-step>
+              
+                <!------------------  Composição Recursos Humanos do Projeto ------------------------>
+                <mat-step [stepControl]="formCadastroRH">
+                        <form #formCadastroRH="ngForm" matStepperIcon="phone">
+                                <ng-template matStepLabel>RECURSOS HUMANOS</ng-template>
 
-        </div>
+                                <div dir="rtl" fxLayoutGap="20px"
+                                        style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                                        <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
+                                                matStepperNext>
+                                                Próximo
+                                        </button>
+                                </div>
+                        </form>
+                </mat-step>
+               
+                <!------------------  Materiais do Projeto ------------------------>
+                <mat-step [stepControl]="formCadastroMateriais">
+                        <form #formCadastroMateriais="ngForm" matStepperIcon="phone">
+                                <ng-template matStepLabel>MATERIAIS</ng-template>
+
+                                <div dir="rtl" fxLayoutGap="20px"
+                                        style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                                        <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
+                                                matStepperNext>
+                                                Próximo
+                                        </button>
+                                </div>
+                        </form>
+                </mat-step>
+
+                <ng-template matStepperIcon="dadosProjeto">
+                        <mat-icon>call_end</mat-icon>
+                </ng-template>
+
+        </mat-horizontal-stepper>
+
+
 
         <!-- BOTOES -->
-   <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-    <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button
-            name="botaoConfirmar"
-            fxFlex="20%"
-            color="primary"
-            [disabled]="formCadastro.invalid"
-            (click)="cadastrar()"> Cadastrar
-    </button>
+        <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button name="botaoConfirmar"
+                        fxFlex="20%" color="primary" (click)="cadastrar()"> Cadastrar
+                </button>
 
-    <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button
-            name="botaoConfirmar"
-            fxFlex="20%"
-            color="primary"
-            [disabled]="formCadastro.invalid"
-            (click)="atualizar()">
-            Atualizar
-    </button>
+                <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button name="botaoConfirmar"
+                        fxFlex="20%" color="primary" (click)="atualizar()">
+                        Atualizar
+                </button>
 
-    <button *ngIf="mostrarBotaoLimpar()" 
-            mat-raised-button 
-            fxFlex="20%" 
-            (click)="limpar()">
-            Limpar
-    </button>
-    <button 
-            mat-raised-button 
-            fxFlex="20%" 
-            (click)="cancelar()">
-            Cancelar
-    </button>
+                <button *ngIf="mostrarBotaoLimpar()" mat-raised-button fxFlex="20%" (click)="limpar()">
+                        Limpar
+                </button>
+                <button mat-raised-button fxFlex="20%" (click)="cancelar()">
+                        Cancelar
+                </button>
 
-</div>
-    </form>
+        </div>
 
 
 </div>
 
-
+<pre>{{projeto | json}}</pre>

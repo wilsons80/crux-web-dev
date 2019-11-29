@@ -1,5 +1,7 @@
+import { ProjetoUnidade } from './projeto-unidade';
 import { Programa } from './programa';
 import { Iniciativa } from './iniciativa';
+import { Unidade } from './unidade';
 
 export class Projeto {
 
@@ -13,5 +15,8 @@ export class Projeto {
 	iniciativa:Iniciativa;
 	programa:Programa;
 	usuarioAlteracao:number;
+
+	projetoUnidades:ProjetoUnidade[];
 	
 }
+

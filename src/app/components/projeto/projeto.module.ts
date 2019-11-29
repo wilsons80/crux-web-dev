@@ -1,3 +1,4 @@
+import { UnidadesMultiplasModule } from './../common/unidades-multiplas/unidades-multiplas.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,14 +11,17 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
 import { CadastrarProjetoComponent } from './cadastrar-projeto/cadastrar-projeto.component';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { DadosProjetoComponent } from './cadastrar-projeto/dados-projeto/dados-projeto.component';
+import { UnidadesProjetoComponent } from './cadastrar-projeto/unidades-projeto/unidades-projeto.component';
 
 
 @NgModule({
-  declarations: [ProjetoComponent, CadastrarProjetoComponent],
+  declarations: [ProjetoComponent, CadastrarProjetoComponent, DadosProjetoComponent, UnidadesProjetoComponent],
   imports: [
     CommonModule,
     ProjetoRoutingModule,
-    MaterialCommonModule
+    MaterialCommonModule,
+    UnidadesMultiplasModule
   ]
 })
 export class ProjetoModule { }

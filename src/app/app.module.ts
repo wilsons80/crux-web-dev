@@ -85,6 +85,7 @@ import { CboModule } from './components/cbo/cbo.module';
 import { TipoOcorrenciaAlunoComponent } from './components/tipo-ocorrencia-aluno/tipo-ocorrencia-aluno.component';
 import { TipoOcorrenciaAlunoModule } from './components/tipo-ocorrencia-aluno/tipo-ocorrencia-aluno.module';
 import { OcorrenciaAlunoModule } from './components/ocorrencia-aluno/ocorrencia-aluno.module';
+import { UnidadesMultiplasComponent } from './components/common/unidades-multiplas/unidades-multiplas.component';
 
 export const MY_FORMATS = {
   parse: {
