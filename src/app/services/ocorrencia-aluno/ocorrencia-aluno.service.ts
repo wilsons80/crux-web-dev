@@ -13,4 +13,16 @@ export class OcorrenciaAlunoService extends BaseService<OcorrenciaAluno> {
     super(http, Rotas.OCORRENCIA_ALUNO);
   }
 
+
+  getFilter(idTipoOcorrencia: string|number, idAluno: string|number) {
+    idTipoOcorrencia = idTipoOcorrencia || '';
+    idAluno = idAluno || '';
+
+    return this.http.get(Rotas.OCORRENCIA_ALUNO + 'filter', { params: {
+        tipoocorrencia: `${idTipoOcorrencia}` ,
+        aluno: `${idAluno}`
+      }
+    });
+  }
+
 }

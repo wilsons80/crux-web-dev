@@ -8,7 +8,7 @@ import { Modulos } from 'src/app/core/modulos';
 
 
 const routes: Routes = [
-  { path: 'correnciaaluno/cadastrar', component: CadastrarOcorrenciaAlunoComponent,canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.OCORRENCIA_ALUNO} },
+  { path: 'ocorrenciaaluno/cadastrar', component: CadastrarOcorrenciaAlunoComponent,canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.OCORRENCIA_ALUNO} },
   { path: 'ocorrenciaaluno', component: OcorrenciaAlunoComponent,canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.OCORRENCIA_ALUNO} },
 ];
 
