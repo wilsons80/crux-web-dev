@@ -14,10 +14,13 @@ import { MaterialCommonModule } from 'src/app/material-modules/material-common.m
 import { DadosProjetoComponent } from './cadastrar-projeto/dados-projeto/dados-projeto.component';
 import { UnidadesProjetoComponent } from './cadastrar-projeto/unidades-projeto/unidades-projeto.component';
 import { ColaboradoresProjetoComponent } from './cadastrar-projeto/colaboradores-projeto/colaboradores-projeto.component';
+import { ParceriasProjetoComponent } from './cadastrar-projeto/parcerias-projeto/parcerias-projeto.component';
+import { ComposicaoRhProjetoComponent } from './cadastrar-projeto/composicao-rh-projeto/composicao-rh-projeto.component';
+import { MateriaisProjetoComponent } from './cadastrar-projeto/materiais-projeto/materiais-projeto.component';
 
 
 @NgModule({
-  declarations: [ProjetoComponent, CadastrarProjetoComponent, DadosProjetoComponent, UnidadesProjetoComponent, ColaboradoresProjetoComponent],
+  declarations: [ProjetoComponent, CadastrarProjetoComponent, DadosProjetoComponent, UnidadesProjetoComponent, ColaboradoresProjetoComponent, ParceriasProjetoComponent, ComposicaoRhProjetoComponent, MateriaisProjetoComponent],
   imports: [
     CommonModule,
     ProjetoRoutingModule,

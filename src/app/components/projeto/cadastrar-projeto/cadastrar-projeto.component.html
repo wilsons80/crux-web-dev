@@ -23,7 +23,7 @@
                 <!------------------  Unidade ------------------------>
                 <mat-step [stepControl]="formCadastroColaboradores">
                         <form #formCadastroColaboradores="ngForm" matStepperIcon="phone">
-                                <ng-template matStepLabel>UNIDADE</ng-template>
+                                <ng-template matStepLabel>UNIDADES</ng-template>
 
                                 <unidades-projeto [projetoUnidades]=projeto.projetoUnidades></unidades-projeto>
 
@@ -60,12 +60,14 @@
                 <mat-step [stepControl]="formCadastroParcerias">
                         <form #formCadastroParcerias="ngForm" matStepperIcon="phone">
                                 <ng-template matStepLabel>PARCERIAS</ng-template>
-
+                                <parcerias-projeto></parcerias-projeto>
                                 <div dir="rtl" fxLayoutGap="20px"
                                         style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                                        <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                                                matStepperNext>
-                                                Próximo
+                                        <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                                                <mat-icon>chevron_right</mat-icon>
+                                        </button>
+                                        <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+                                                <mat-icon>chevron_left</mat-icon>
                                         </button>
                                 </div>
                         </form>
@@ -75,12 +77,14 @@
                 <mat-step [stepControl]="formCadastroRH">
                         <form #formCadastroRH="ngForm" matStepperIcon="phone">
                                 <ng-template matStepLabel>RECURSOS HUMANOS</ng-template>
-
+                                <composicao-rh-projeto></composicao-rh-projeto>
                                 <div dir="rtl" fxLayoutGap="20px"
                                         style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                                        <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                                                matStepperNext>
-                                                Próximo
+                                        <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                                                <mat-icon>chevron_right</mat-icon>
+                                        </button>
+                                        <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+                                                <mat-icon>chevron_left</mat-icon>
                                         </button>
                                 </div>
                         </form>
@@ -90,20 +94,15 @@
                 <mat-step [stepControl]="formCadastroMateriais">
                         <form #formCadastroMateriais="ngForm" matStepperIcon="phone">
                                 <ng-template matStepLabel>MATERIAIS</ng-template>
-
+                                <materiais-projeto></materiais-projeto>
                                 <div dir="rtl" fxLayoutGap="20px"
                                         style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                                        <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary"
-                                                matStepperNext>
-                                                Próximo
+                                        <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+                                                <mat-icon>chevron_left</mat-icon>
                                         </button>
                                 </div>
                         </form>
                 </mat-step>
-
-                <ng-template matStepperIcon="dadosProjeto">
-                        <mat-icon>call_end</mat-icon>
-                </ng-template>
 
         </mat-horizontal-stepper>
 
@@ -112,11 +111,11 @@
         <!-- BOTOES -->
         <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
-                <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" mat-raised-button name="botaoConfirmar"
+                <button *ngIf="!isAtualizar && mostrarBotaoCadastrar" [disabled]=formCadastroDadosProjeto.invalid mat-raised-button name="botaoConfirmar"
                         fxFlex="20%" color="primary" (click)="cadastrar()"> Cadastrar
                 </button>
 
-                <button *ngIf="isAtualizar && mostrarBotaoAtualizar" mat-raised-button name="botaoConfirmar"
+                <button *ngIf="isAtualizar && mostrarBotaoAtualizar" [disabled]=formCadastroDadosProjeto.invalid mat-raised-button name="botaoConfirmar"
                         fxFlex="20%" color="primary" (click)="atualizar()">
                         Atualizar
                 </button>
@@ -133,4 +132,4 @@
 
 </div>
 
-<pre>{{projeto | json}}</pre>
+<!-- <pre>{{projeto | json}}</pre> -->
