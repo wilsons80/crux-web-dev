@@ -12,5 +12,9 @@ export class FuncionarioService extends BaseService<Funcionario> {
   constructor(http: HttpClient) {
     super(http, Rotas.FUNCIONARIOS);
   }
+
+  getByPessoaFisica(idPessoaFisica: number) {
+    return this.http.get(Rotas.FUNCIONARIOS + 'pessoafisica/' + idPessoaFisica);
+  }
 }
 

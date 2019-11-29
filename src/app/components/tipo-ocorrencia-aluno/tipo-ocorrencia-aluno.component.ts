@@ -49,7 +49,6 @@ export class TipoOcorrenciaAlunoComponent implements OnInit {
     this.mostrarTabela = false;
     this.dataSource.data = [];
     this.msg = '';
-    this.tiposOcorrenciasAluno = [];
     this.tipoOcorrenciaAluno = new TipoOcorrenciaAluno();
   }
 
