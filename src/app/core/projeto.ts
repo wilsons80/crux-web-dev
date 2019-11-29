@@ -1,3 +1,6 @@
+import { ComposicaoRhProjeto } from './composicao-rh-projeto';
+import { ParceriaProjeto } from './parceria-projeto';
+import { ColaboradorProjeto } from './colaborador-projeto';
 import { ProjetoUnidade } from './projeto-unidade';
 import { Programa } from './programa';
 import { Iniciativa } from './iniciativa';
@@ -15,8 +18,10 @@ export class Projeto {
 	iniciativa:Iniciativa;
 	programa:Programa;
 	usuarioAlteracao:number;
-
 	projetoUnidades:ProjetoUnidade[];
+	colaboradoresProjeto:ColaboradorProjeto[];
+	parceriasProjeto:ParceriaProjeto[];
+	ComposicaoRhProjeto
 	
 }
 
