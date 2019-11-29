@@ -99,7 +99,7 @@ export class OcorrenciaAlunoComponent implements OnInit {
   verificaMostrarTabela(ocorrenciasAluno: OcorrenciaAluno[]) {
     if (!ocorrenciasAluno || ocorrenciasAluno.length === 0) {
       this.mostrarTabela = false;
-      this.msg = 'Nenhum tipo de ocorrência cadastrada.';
+      this.msg = 'Nenhuma ocorrência cadastrada.';
     } else {
       this.mostrarTabela = true;
     }
