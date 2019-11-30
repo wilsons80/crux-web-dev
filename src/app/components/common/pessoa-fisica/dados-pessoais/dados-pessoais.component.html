@@ -9,7 +9,7 @@
         <div id="row_dados" fxFlex="85%" fxFlexFill>
 
             <div fxLayout="row" fxLayoutGap="5px">
-                <mat-form-field fxFlex="55%" fxFlexOffset="20px">
+                <mat-form-field fxFlex="58%" fxFlexOffset="20px">
                     <input matInput maxlength="255" name="nome" placeholder="Nome Completo:"
                         [(ngModel)]="pessoaFisica.nome" required>
                 </mat-form-field>
@@ -62,7 +62,7 @@
 
             <div fxLayout="row" fxLayoutGap="20px" fxFlexFill>
 
-                <mat-form-field fxFlex="20%" fxFlexOffset="20px">
+                <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                     <mat-label>Possui deficiência:</mat-label>
                     <mat-select [(ngModel)]="pessoaFisica.ehDeficiente" name="ehDeficiente">
                         <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
@@ -80,7 +80,7 @@
                     </mat-select>
                 </mat-form-field>  
 
-                <mat-form-field fxFlex="20%">
+                <mat-form-field fxFlex="75%">
                     <input matInput maxlength="200" name="raca" placeholder="Raça: Brancos, Pardos, Negros, Indígenas e Amarelos" 
                            [(ngModel)]="pessoaFisica.raca">
                 </mat-form-field>                
