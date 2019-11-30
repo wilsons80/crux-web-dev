@@ -17,9 +17,7 @@ import { FuncionarioService } from './../../../services/funcionario/funcionario.
 })
 export class CadastrarProgramasComponent implements OnInit {
 
-  objetivos: Objetivo[];
-  funcionarios: Funcionario[];
-  programa: Programa;
+  programa: Programa = new Programa();
 
   isAtualizar: boolean = false;
 
@@ -28,10 +26,8 @@ export class CadastrarProgramasComponent implements OnInit {
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
 
-  funcionario: Funcionario = new Funcionario();
 
   constructor(
-    private objetivoService: ObjetivoService,
     private programaService: ProgramaService,
     private funcionarioService: FuncionarioService,
     private activatedRoute: ActivatedRoute,
@@ -55,14 +51,6 @@ export class CadastrarProgramasComponent implements OnInit {
       this.mostrarBotaoAtualizar = false;
     }
 
-    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
-      this.funcionarios = funcionarios;
-    })
-
-    this.objetivoService.getAll().subscribe((objetivos: Objetivo[]) => {
-      this.objetivos = objetivos;
-    })
-
     let idPrograma: number;
     idPrograma = this.activatedRoute.snapshot.queryParams.idPrograma ? this.activatedRoute.snapshot.queryParams.idPrograma : null;
     if (idPrograma) {
@@ -76,7 +64,7 @@ export class CadastrarProgramasComponent implements OnInit {
   inicializarObjetos() {
     this.programa = new Programa();
     this.programa.objetivo = new Objetivo();
-
+    this.programa.unidades = [];
   }
 
   mostrarBotaoLimpar() {
@@ -86,6 +74,7 @@ export class CadastrarProgramasComponent implements OnInit {
 
     return true;
   }
+
   cadastrar() {
     this.programaService.cadastrar(this.programa).subscribe(() => {
       this.router.navigate(['programas']);
@@ -108,10 +97,6 @@ export class CadastrarProgramasComponent implements OnInit {
       this.toastService.showSucesso("Programa atualizado com sucesso");
     });
 
-  }
-
-  mostrarDadosFuncionario(idFuncionario: number) {
-    this.funcionario = _.cloneDeep(_.find(this.funcionarios, (f: Funcionario) => f.id === idFuncionario));
   }
 
 }

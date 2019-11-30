@@ -1,4 +1,5 @@
 import { Objetivo } from './objetivo';
+import { Unidade } from './unidade';
 
 export class Programa {
 	id: number;
@@ -11,4 +12,6 @@ export class Programa {
 	faixaEtariaInicio: number;
 	objetivo: Objetivo;
 	usuarioAlteracao: number;
+
+	unidades:Unidade[];
 }
