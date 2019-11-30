@@ -72,7 +72,7 @@ export class CadastrarProjetoComponent implements OnInit {
     this.projeto = new Projeto();
     this.projeto.programa = new Programa();
     this.projeto.iniciativa = new Iniciativa();
-    this.projeto.projetoUnidades = [];
+    this.projeto.unidades = [];
   }
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;

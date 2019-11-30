@@ -25,7 +25,7 @@
                         <form #formCadastroColaboradores="ngForm" matStepperIcon="phone">
                                 <ng-template matStepLabel>UNIDADES</ng-template>
 
-                                <unidades-projeto [projetoUnidades]=projeto.projetoUnidades></unidades-projeto>
+                                <unidades-multiplas [unidades]="projeto.unidades"></unidades-multiplas>
 
                                 <div dir="rtl" fxLayoutGap="20px"
                                         style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
