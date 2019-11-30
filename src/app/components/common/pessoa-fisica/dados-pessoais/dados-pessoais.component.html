@@ -3,16 +3,18 @@
 
     <mat-toolbar class="titulopartes">Dados Iniciais</mat-toolbar>
 
-    <div fxLayout="row" style="margin-bottom: 20px" class="espaco" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexFill>
+    <div fxLayout="row" style="margin-bottom: 20px" class="espaco" fxLayoutAlign="start start" fxLayoutGap="20px"
+        fxFlexFill>
 
         <div id="row_dados" fxFlex="85%" fxFlexFill>
 
-            <div fxLayout="row" fxLayoutGap="5px" >
-                <mat-form-field fxFlex="55%" fxFlexOffset="20px" >
+            <div fxLayout="row" fxLayoutGap="5px">
+                <mat-form-field fxFlex="55%" fxFlexOffset="20px">
                     <input matInput maxlength="255" name="nome" placeholder="Nome Completo:"
                         [(ngModel)]="pessoaFisica.nome" required>
                 </mat-form-field>
-                <mat-form-field fxFlex="20%" fxFlexOffset="20px" >
+
+                <mat-form-field fxFlex="20%" fxFlexOffset="20px">
                     <mat-label>Estado Civil:</mat-label>
                     <mat-select [(ngModel)]="pessoaFisica.estadoCivil" name="estadoCivil">
                         <mat-option *ngFor="let m of estadoCivil" [value]="m.tipo">
@@ -57,14 +59,56 @@
                     </mat-select>
                 </mat-form-field>
             </div>
+
+            <div fxLayout="row" fxLayoutGap="20px" fxFlexFill>
+
+                <mat-form-field fxFlex="20%" fxFlexOffset="20px">
+                    <mat-label>Possui deficiência:</mat-label>
+                    <mat-select [(ngModel)]="pessoaFisica.ehDeficiente" name="ehDeficiente">
+                        <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
+                            {{m.tipo}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>  
+
+                <mat-form-field fxFlex="20%" >
+                    <mat-label>Cursando nível superior:</mat-label>
+                    <mat-select [(ngModel)]="pessoaFisica.cursandoNivelSuperior" name="cursandoNivelSuperior">
+                        <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
+                            {{m.tipo}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>  
+
+                <mat-form-field fxFlex="20%">
+                    <input matInput maxlength="200" name="raca" placeholder="Raça: Brancos, Pardos, Negros, Indígenas e Amarelos" 
+                           [(ngModel)]="pessoaFisica.raca">
+                </mat-form-field>                
+    
+            </div>
+
+            <div fxLayout="row" fxLayoutGap="20px" fxFlexFill>
+                <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+                    <input matInput maxlength="200" name="descricaoDeficiencia" placeholder="Descrição da deficiência" 
+                            [(ngModel)]="pessoaFisica.descricaoDeficiencia">
+                </mat-form-field>                
+
+                <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+                    <input matInput maxlength="200" name="tipoSangue" placeholder="Descrição do tipo de sangue" 
+                            [(ngModel)]="pessoaFisica.tipoSangue">
+                </mat-form-field>                
+            </div>
+
+
         </div>
 
         <!-- FOTO PERFIL -->
         <div fxFlex="16%" style="text-align: end">
-            <button name="fotoPerfil"  mat-raised-button class="botao"  (click)="uploadFile.click()"  [style.background-image]="getBackground()" >
+            <button name="fotoPerfil" mat-raised-button class="botao" (click)="uploadFile.click()"
+                [style.background-image]="getBackground()">
                 <mat-icon class="nao-foto"></mat-icon>
             </button>
-            <input #uploadFile type="file" style="display:none;" (change)="fileChangeEvent($event)"/>
+            <input #uploadFile type="file" style="display:none;" (change)="fileChangeEvent($event)" />
         </div>
     </div>
 
@@ -88,17 +132,12 @@
     <!-- ETAPA 1 - ENDEREÇO -->
     <cadastro-endereco [dadosEndereco]="pessoaFisica"></cadastro-endereco>
 
-    <div fxLayout="row" class="espaco" fxLayoutGap="20px" 
-         style="margin-top: 10px; margin-bottom: 10px" 
-         fxFlexFill>
+    <div fxLayout="row" class="espaco" fxLayoutGap="20px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
         <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-        <input matInput maxlength="200" 
-                name="pontoReferencia" 
-                #campoPontoReferencia
-                placeholder="Ponto de Referência"
-                [(ngModel)]="pessoaFisica.pontoReferencia">
-            <mat-hint align="end">{{campoPontoReferencia.value.length}} / 200</mat-hint>               
+            <input matInput maxlength="200" name="pontoReferencia" #campoPontoReferencia
+                placeholder="Ponto de Referência" [(ngModel)]="pessoaFisica.pontoReferencia">
+            <mat-hint align="end">{{campoPontoReferencia.value.length}} / 200</mat-hint>
         </mat-form-field>
     </div>
 
@@ -107,31 +146,28 @@
     <mat-toolbar class="titulopartes">Contato</mat-toolbar>
     <div fxLayout="row" fxLayoutGap="30px" fxFlexFill>
         <mat-form-field fxFlexOffset="20px" fxFlex="20%">
-            <input matInput 
-                   [(ngModel)]="pessoaFisica.telefoneResidencial" 
-                   name="telefoneResidencial"
-                   placeholder="Telefone Residencial" 
-                   [textMask]="{mask: maskPhone}"
-                   pattern="^(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$">
+            <input matInput [(ngModel)]="pessoaFisica.telefoneResidencial" name="telefoneResidencial"
+                placeholder="Telefone Residencial" [textMask]="{mask: maskPhone}"
+                pattern="^(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$">
         </mat-form-field>
 
-<!--         <mat-form-field fxFlex="30%">
+        <!--         <mat-form-field fxFlex="30%">
             <input matInput [(ngModel)]="pessoaFisica.telefoneComercial" name="telefoneComercial"
                 placeholder="Telefone Comercial:" [textMask]="{mask: maskPhone}">
         </mat-form-field>
  -->
         <mat-form-field fxFlex="20%">
-            <input matInput 
-                   [(ngModel)]="pessoaFisica.celular" 
-                   name="celular" placeholder="Celular"
-                   [textMask]="{mask: maskCelular}" 
-                   required
-                   pattern="^(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$">
+            <input matInput [(ngModel)]="pessoaFisica.celular" name="celular" placeholder="Celular"
+                [textMask]="{mask: maskCelular}" required
+                pattern="^(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$">
         </mat-form-field>
 
         <mat-form-field fxFlexOffset="20px" fxFlex="40%">
-            <input maxlength="100" matInput [(ngModel)]="pessoaFisica.email" type="email" name="email" placeholder="Email:" email>
+            <input maxlength="100" matInput [(ngModel)]="pessoaFisica.email" type="email" name="email"
+                placeholder="Email:" email>
         </mat-form-field>
         <!-- <mat-checkbox name="autorizaEmail" [(ngModel)]="pessoaFisica.autorizaEmail">Autorizo o recebimento de
             emails.</mat-checkbox> -->
     </div>
+
+</div>

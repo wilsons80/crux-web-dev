@@ -70,6 +70,7 @@ export class FuncionalComponent implements OnInit {
     this.funcionario.cargo = new Cargo();
     this.funcionario.unidade = new Unidade();
     this.funcionario.funcionarioEntrevistador = new Funcionario();
+    this.funcionario.departamento = new Departamento();
 
 
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[])=> {

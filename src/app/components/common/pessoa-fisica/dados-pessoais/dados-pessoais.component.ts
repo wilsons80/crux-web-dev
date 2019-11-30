@@ -36,6 +36,11 @@ export class DadosPessoaisComponent implements OnInit {
     {sigla:  'F', descricao:  'FEMININO'}
   ]
 
+  sim_nao: any[] = [
+    {tipo: 'Sim', flag: 'S'},
+    {tipo: 'Não', flag: 'N'}
+  ];  
+
   condicoesMoradia: CondicoesMoradia[];
 
   tipoEscola: any[] = [
