@@ -71,5 +71,21 @@ export class PessoaFisica{
    foto?:any;
    urlFoto?:any;
    isFotoChanged?:boolean;
-    
+
+   ehDeficiente: string;
+   cursandoNivelSuperior: string;
+   descricaoDeficiencia: string;
+   tipoSangue: string;
+   raca: string;
+
+   numeroReservista: string;
+   regiaoMilitarReservista: string;
+   ufRegiaoMilitar: string;
+   numeroCNH: string;
+   categoriaCNH: string;
+   numeroPisPasep: string;
+   ufCTS: string;
+   dataEmissaoCI: Date;
+   vencimentoCNH: Date;
+
 }

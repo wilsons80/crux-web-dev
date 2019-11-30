@@ -1,3 +1,5 @@
+import { Departamento } from './../../../../core/departamento';
+import { DepartamentoService } from './../../../../services/departamento/departamento.service';
 import { Empresa } from './../../../../core/empresa';
 import { CargosService } from './../../../../services/cargos/cargos.service';
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
@@ -44,17 +46,23 @@ export class FuncionalComponent implements OnInit {
     {id: ConclusaoParecer.NAO_CONTINUAR, descricao: 'NÃO DAR CONTINUIDADE AO PROCESSO SELETIVO'},
   ]
 
+  sim_nao: any[] = [
+    {tipo: 'Sim', flag: 'S'},
+    {tipo: 'Não', flag: 'N'}
+  ];
+
   funcionarios: Funcionario[];
   unidades: Unidade[];
   cargos: Cargo[];
   empresas: Empresa[];
+  departamentos: Departamento[];
 
   constructor(
     private funcionarioService: FuncionarioService,
     private unidadeService: UnidadeService,
     private cargosService: CargosService,
-    private empresaService: EmpresaService
-
+    private empresaService: EmpresaService,
+    private departamentoService: DepartamentoService
     ) { }
 
   ngOnInit() {
@@ -62,6 +70,7 @@ export class FuncionalComponent implements OnInit {
     this.funcionario.cargo = new Cargo();
     this.funcionario.unidade = new Unidade();
     this.funcionario.funcionarioEntrevistador = new Funcionario();
+    this.funcionario.departamento = new Departamento();
 
 
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[])=> {
@@ -80,6 +89,9 @@ export class FuncionalComponent implements OnInit {
       this.empresas = empresas;
     });
 
+    this.departamentoService.getAll().subscribe((departamentos: Departamento[]) => {
+      this.departamentos = departamentos;
+    });
   }
 
   mostrarCamposEntrevista(){

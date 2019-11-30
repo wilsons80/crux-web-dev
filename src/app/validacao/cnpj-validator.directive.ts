@@ -11,7 +11,7 @@ export class CnpjValidatorDirective implements Validator {
   @Input() cnpjValidator = true;
 
   public validate(control: AbstractControl): ValidationErrors {
-    let viewValue = control.value ? control.value : '';
+    let viewValue = control.value ? control.value.toString() : '';
     
     if(viewValue.length === 18){
       viewValue = control.value.replace(/[^\d]+/g, '');

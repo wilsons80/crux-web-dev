@@ -14,7 +14,7 @@
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
        <!-- FUNCIONARIO -->
-       <sub-menu *ngIf="verificaAcesso(getModulos().FUNCIONARIO)" icone="assessment" titulo="Colaboradores" rota="funcionario" toolTip="Colaboradores"></sub-menu>
+       <sub-menu *ngIf="verificaAcesso(getModulos().FUNCIONARIO)" icone="accessibility" titulo="Colaboradores" rota="funcionario" toolTip="Colaboradores"></sub-menu>
        
        <!-- ACORDO DESEMPENHO -->
        <sub-menu *ngIf="verificaAcesso(getModulos().METAS_FUNCAO)" icone="trending_up" titulo="Acordo de Desempenho" rota="home" toolTip="Acordo de Desempenho"></sub-menu>

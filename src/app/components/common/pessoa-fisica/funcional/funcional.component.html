@@ -114,6 +114,23 @@
     </mat-form-field>
 </div>
 
+
+
+<!-- EMPRESA -->
+<mat-toolbar class="titulopartes">Empresa</mat-toolbar>
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+        <mat-label>Selecione a Empresa</mat-label>
+        <mat-select name="empresaFuncionario" [(ngModel)]="funcionario.empresaFuncionario.id" required>
+            <mat-option *ngFor="let u of empresas" [value]="u.id">
+                {{u.nomeFantasia}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>
+
 <!-- CARGO -->
 <mat-toolbar class="titulopartes">Cargo</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
@@ -129,17 +146,28 @@
 
 </div>
 
-<!-- EMPRESA -->
-<mat-toolbar class="titulopartes">Empresa</mat-toolbar>
+
+<!-- DEPARTAMENTO -->
+<mat-toolbar class="titulopartes">Departamento</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
-        <mat-label>Selecione a Empresa</mat-label>
-        <mat-select name="empresaFuncionario" [(ngModel)]="funcionario.empresaFuncionario.id" required>
-            <mat-option *ngFor="let u of empresas" [value]="u.id">
-                {{u.nomeFantasia}}
+    <mat-form-field fxFlex="65%" fxFlexOffset="20px">
+        <mat-label>Selecione o Departamento</mat-label>
+        <mat-select name="departamento" [(ngModel)]="funcionario.departamento.idDepartamento">
+            <mat-option *ngFor="let u of departamentos" [value]="u.idDepartamento">
+                {{u.nmDepartamento}}
             </mat-option>
         </mat-select>
     </mat-form-field>
+
+
+    <mat-form-field fxFlex="35%" fxFlexOffset="20px">
+        <mat-label>Desconta vale transporte:</mat-label>
+        <mat-select [(ngModel)]="funcionario.descontaValeTransporte" name="descontaValeTransporte">
+            <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
+                {{m.tipo}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>   
 
 </div>

@@ -12,9 +12,9 @@ export class CpfValidatorDirective implements Validator {
   @Input() cpfValidator = true;
 
   public validate(control: AbstractControl): ValidationErrors {
-    let viewValue = control.value ? control.value : '';
-    
-    if(viewValue.length === 14){
+    let viewValue = control.value ? control.value.toString() : '';
+
+    if(viewValue.length === 14) {
       viewValue = control.value.replace(/[^\d]+/g, '');
     }
 

@@ -14,6 +14,7 @@ import { Acesso } from 'src/app/core/acesso';
 import { Unidade } from 'src/app/core/unidade';
 import { Cargo } from 'src/app/core/cargo';
 import { Empresa } from 'src/app/core/empresa';
+import { Departamento } from 'src/app/core/departamento';
 
 @Component({
   selector: 'app-cadastrar-funcionario',
@@ -84,6 +85,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
     this.funcionario.unidade = new Unidade();
     this.funcionario.cargo = new Cargo();
     this.funcionario.empresaFuncionario = new Empresa();
+    this.funcionario.departamento = new Departamento();
   }
 
 
