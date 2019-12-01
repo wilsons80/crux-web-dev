@@ -72,4 +72,5 @@ export enum Modulos{
     , CBO                                   = 'CBO'
     , TIPO_OCORRENCIA_ALUNO                 = 'TIPOOCORRENCIA'
     , OCORRENCIA_ALUNO                      = 'OCORRENCIA_ALUNO'
+    , TIPOS_CONTRATACOES                    = 'TIPOS_CONTRATACOES'
 }

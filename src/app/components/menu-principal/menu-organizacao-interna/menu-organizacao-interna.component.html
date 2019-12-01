@@ -27,6 +27,9 @@
 
        <!-- CBO -->
        <sub-menu *ngIf="verificaAcesso(getModulos().CBO)" icone="copyright" titulo="CBO" rota="cbo" toolTip="Código de Classificação Brasileira de Ocupações"></sub-menu>
+
+        <!-- TIPOS CONTRATAÇÕES -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().TIPOS_CONTRATACOES)" icone="cancel" titulo="Tipos contratações" rota="tiposcontratacoes" toolTip="Tipos contratações"></sub-menu>
        
        <!-- TABELA REFERENCIA -->
        <tb-referencia-organizacao-interna *ngIf="verificaAcesso(getModulos().TB_REFERENCIA_ORGANIZACAO_INTERNA)"></tb-referencia-organizacao-interna>

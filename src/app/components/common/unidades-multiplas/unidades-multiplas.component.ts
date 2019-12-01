@@ -39,12 +39,9 @@ export class UnidadesMultiplasComponent implements OnInit {
   unidade: Unidade = new Unidade();
 
   constructor(
-    private usuarioSistemaService: UsuarioSistemaService,
     private activatedRoute: ActivatedRoute,
     private toastService: ToastService,
-    private unidadeService: UnidadeService,
     private usuarioUnidadeService: UsuarioUnidadeService,
-    private router: Router,
   ) { }
 
   ngOnInit() {

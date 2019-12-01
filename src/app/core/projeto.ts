@@ -18,10 +18,10 @@ export class Projeto {
 	iniciativa:Iniciativa;
 	programa:Programa;
 	usuarioAlteracao:number;
-	projetoUnidades:ProjetoUnidade[];
-	colaboradoresProjeto:ColaboradorProjeto[];
-	parceriasProjeto:ParceriaProjeto[];
-	ComposicaoRhProjeto
+	unidades:Unidade[];
+	// colaboradoresProjeto:ColaboradorProjeto[];
+	// parceriasProjeto:ParceriaProjeto[];
+	// ComposicaoRhProjeto
 	
 }
 
