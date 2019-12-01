@@ -78,7 +78,8 @@ export class CadastrarAlocacaoComponent implements OnInit {
     this.alocacao.projeto = new Projeto();
   }
 
-  carregarResponsavel(alocacao) {
+  carregarAlocacao(alocacao: AlocacaoFuncionario) {
+    this.tipoAlocacao = alocacao.programa || alocacao.projeto ? (alocacao.programa ? 'programa' : 'projeto') : null;
     this.alocacao = alocacao;
   }
 
@@ -93,4 +94,5 @@ export class CadastrarAlocacaoComponent implements OnInit {
   isPrograma() {
     return this.tipoAlocacao === 'programa';
   }
+
 }
