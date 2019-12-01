@@ -68,14 +68,14 @@ export class TiposContratacoesComponent implements OnInit {
 
 
   atualizar(tiposContratacoes: TiposContratacoes) {
-    this.router.navigate(['/tiposContratacoes/cadastrar'], { queryParams: { idTiposContratacoes: tiposContratacoes.id } });
+    this.router.navigate(['/tiposcontratacoes/cadastrar'], { queryParams: { idTiposContratacoes: tiposContratacoes.id } });
   }
 
-  deletar(atividade: Atividade) {
-    this.chamaCaixaDialogo(atividade);
+  deletar(tiposContratacoes: TiposContratacoes) {
+    this.chamaCaixaDialogo(tiposContratacoes);
   }
 
-  chamaCaixaDialogo(atividade: Atividade) {
+  chamaCaixaDialogo(tiposContratacoes: TiposContratacoes) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       pergunta: `Certeza que deseja excluir tipo contratação?`,
@@ -86,7 +86,7 @@ export class TiposContratacoesComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        this.tiposContratacoesService.excluir(this.tiposContratacoes.id).subscribe(() => {
+        this.tiposContratacoesService.excluir(tiposContratacoes.id).subscribe(() => {
           this.tiposContratacoes.id = null;
           this.consultar();
         })
