@@ -2,7 +2,7 @@
 <table *ngIf="mostrarTabela; else tabelaSemDados" mat-table [dataSource]="dataSource" style="margin-top: 20px">
 
     <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef style="width: 60%"> Nome </th>
+        <th mat-header-cell *matHeaderCellDef style="width: 50%"> Nome </th>
         <td mat-cell *matCellDef="let element"> {{element.pessoaFisica?.nome}} </td>
     </ng-container>
 
@@ -13,12 +13,12 @@
 
     <ng-container matColumnDef="sexo">
         <th mat-header-cell *matHeaderCellDef> Sexo</th>
-        <td mat-cell *matCellDef="let element"> {{element.pessoaFisica.sexo}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.pessoaFisica.sexo === 'M' ? 'Masculino' : 'Feminino'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="possuiDeficiencia">
         <th mat-header-cell *matHeaderCellDef> Possui deficiência</th>
-        <td mat-cell *matCellDef="let element"> {{element.pessoaFisica.ehDeficiente}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.pessoaFisica.ehDeficiente === 'S' ? 'Sim' : 'Não'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="acoes">
