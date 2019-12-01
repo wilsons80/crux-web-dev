@@ -1,5 +1,5 @@
 import { TiposContratacoesService } from './../../../../services/tipos-contratacoes/tipos-contratacoes.service';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, SimpleChanges } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Cargo } from 'src/app/core/cargo';
 import { ColaboradoresProjeto } from 'src/app/core/colaboradores-projeto';
@@ -12,6 +12,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { Acesso } from 'src/app/core/acesso';
 import { ActivatedRoute } from '@angular/router';
 import { TiposContratacoes } from 'src/app/core/tipos-contratacoes';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'colaboradores-projeto',
@@ -27,7 +28,7 @@ export class ColaboradoresProjetoComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['siglaUnidade', 'nomeUnidade', 'nomeFantasia', 'cnpj', 'acoes'];
+  displayedColumns: string[] = ['nome', 'cpf', 'cargo', 'acoes'];
   dataSource: MatTableDataSource<ColaboradoresProjeto> = new MatTableDataSource();
 
   openFormCadastro = false;
@@ -54,13 +55,20 @@ export class ColaboradoresProjetoComponent implements OnInit {
 
   ngOnInit() {
     
-
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => this.funcionarios = funcionarios);
     this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.cargos = cargos);
     this.projetoService.getAll().subscribe((projetos: Projeto[]) => this.projetos = projetos);
     this.tiposContratacoesService.getAll().subscribe((tiposContratacoes: TiposContratacoes[]) => this.listaTiposContratacoes = tiposContratacoes);
 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes["listaColaboradoresProjeto"] && !_.isEmpty (changes["listaColaboradoresProjeto"].currentValue)){
+      this.carregarLista();
+    }
+    
+    
   }
   
   limpar() {
