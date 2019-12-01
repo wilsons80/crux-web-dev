@@ -23,7 +23,7 @@ import { EmpresaService } from 'src/app/services/empresa/empresa.service';
 })
 export class FuncionalComponent implements OnInit {
 
-  @Input() funcionario:Funcionario
+  @Input() funcionario: Funcionario;
 
   tiposFuncionario = [
     {id: TipoFuncionario.CANDIDATO_VAGA_FUNCIONARIO, descricao:'CANDIDATO A VAGA DE FUNCIONÁRIO'},

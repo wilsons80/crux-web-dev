@@ -1,25 +1,26 @@
-import { SharedPipesModule } from 'src/app/pipes/shared-pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FuncionarioRoutingModule } from './funcionario-routing.module';
 import { FuncionarioComponent } from './funcionario.component';
 import { CadastrarFuncionarioComponent } from './cadastrar-funcionario/cadastrar-funcionario.component';
-import { MatButtonModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, MatTableModule, MatListModule, MatTooltipModule, MatPaginatorModule, MatStepperModule, MatDatepickerModule, MatCheckboxModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
-import { TextMaskModule } from 'angular2-text-mask';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { PessoaFisicaModule } from '../common/pessoa-fisica/pessoa-fisica.module';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { DependentesComponent } from './dependentes/dependentes.component';
+import { AlocacaoComponent } from './alocacao/alocacao.component';
+import { ListarAlocacaoComponent } from './alocacao/listar-alocacao/listar-alocacao.component';
+import { CadastrarAlocacaoComponent } from './alocacao/cadastrar-alocacao/cadastrar-alocacao.component';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 
 @NgModule({
-  declarations: [FuncionarioComponent, CadastrarFuncionarioComponent],
+  declarations: [FuncionarioComponent, CadastrarFuncionarioComponent, DependentesComponent, AlocacaoComponent, ListarAlocacaoComponent, CadastrarAlocacaoComponent],
   imports: [
     CommonModule,
+    NgxCurrencyModule,
     FuncionarioRoutingModule,
     PessoaFisicaModule,
-    MaterialCommonModule
+    MaterialCommonModule,
   ]
 })
 export class FuncionarioModule { }

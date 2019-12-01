@@ -11,15 +11,15 @@ import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 })
 export class DocumentosComponent implements OnInit {
 
+  @Input() pessoaFisica: PessoaFisica;
 
   public mascaraCpf = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/,];
   public mascaraNIS = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/, /\d/, '.', /\d/, /\d/, '-', /\d/];
     
-  ufs:any[] =[
+  ufs: any[] = [
     {nome: 'DF'}
   ]
 
-  @Input() pessoaFisica:PessoaFisica;
   constructor(
     private enderecoService:EnderecoService
   ) { }

@@ -7,8 +7,9 @@ import { PessoaFisica } from './pessoa-fisica';
 import { Empresa } from './empresa';
 import { Time } from '@angular/common';
 import { Departamento } from './departamento';
+import { AlocacaoFuncionario } from './alocacao-funcionario';
 
-export class Funcionario{
+export class Funcionario {
     id: number;
 	matricula: string;
 	dataAdmissao: Date;
@@ -27,4 +28,5 @@ export class Funcionario{
 	horaEntrevista?: string;
 	descontaValeTransporte: boolean;
 	departamento: Departamento;
+	alocacoesFuncionario: AlocacaoFuncionario[];
 }
