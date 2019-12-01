@@ -88,7 +88,7 @@ export class ColaboradoresProjetoComponent implements OnInit {
   }
   
   deletar(colaboradoresProjeto: ColaboradoresProjeto): void {
-    const index = this.listaColaboradoresProjeto.indexOf(this.listaColaboradoresProjeto.find(cp => cp === colaboradoresProjeto));
+    const index = this.listaColaboradoresProjeto.indexOf(this.listaColaboradoresProjeto.find(cp => cp.funcionario.id === colaboradoresProjeto.funcionario.id));
     if (index >= 0) {
       this.listaColaboradoresProjeto.splice(index, 1);
       this.carregarLista();
