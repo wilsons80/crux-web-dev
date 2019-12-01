@@ -43,7 +43,7 @@
                 <mat-step [stepControl]="formCadastroColaboradores">
                         <form #formCadastroColaboradores="ngForm" matStepperIcon="phone">
                                 <ng-template matStepLabel>COLABORADORES</ng-template>
-                                <colaboradores-projeto></colaboradores-projeto>
+                                <colaboradores-projeto [listaColaboradoresProjeto]=projeto.colaboradoresProjeto></colaboradores-projeto>
                                 <div dir="rtl" fxLayoutGap="20px"
                                         style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
                                         <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>

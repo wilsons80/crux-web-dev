@@ -29,7 +29,6 @@ export class CadastrarProjetoComponent implements OnInit {
   isAtualizar: boolean = false;
 
   constructor(
-    private iniciativaService: IniciativaService,
     private programaService: ProgramaService,
     private projetoService: ProjetoService,
     private activatedRoute: ActivatedRoute,
@@ -73,6 +72,7 @@ export class CadastrarProjetoComponent implements OnInit {
     this.projeto.programa = new Programa();
     this.projeto.iniciativa = new Iniciativa();
     this.projeto.unidades = [];
+    this.projeto.colaboradoresProjeto = [];
   }
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;

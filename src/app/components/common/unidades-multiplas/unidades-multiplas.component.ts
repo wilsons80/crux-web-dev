@@ -1,14 +1,10 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { Unidade } from 'src/app/core/unidade';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { UsuariosUnidades } from 'src/app/core/usuarios-unidades';
-import { Acesso } from 'src/app/core/acesso';
-import { UsuarioSistemaService } from 'src/app/services/usuario-sistema/usuario-sistema.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Unidade } from 'src/app/core/unidade';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { UsuarioUnidadeService } from 'src/app/services/usuario-unidade/usuario-unidade.service';
-import { UsuarioSistema } from 'src/app/core/usuario-sistema';
+import { Acesso } from 'src/app/core/acesso';
 
 @Component({
   selector: 'unidades-multiplas',
@@ -27,11 +23,9 @@ export class UnidadesMultiplasComponent implements OnInit {
   displayedColumns: string[] = ['siglaUnidade', 'nomeUnidade', 'nomeFantasia', 'cnpj', 'acoes'];
   dataSource: MatTableDataSource<Unidade> = new MatTableDataSource();
 
-  openFormCadastro = true;
+  openFormCadastro = false;
 
   perfilAcesso: Acesso;
-  mostrarBotaoCadastrar = true;
-  mostrarBotaoAtualizar = true;
 
   isAtualizar = false;
 
@@ -46,21 +40,7 @@ export class UnidadesMultiplasComponent implements OnInit {
 
   ngOnInit() {
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
-
-    if (!this.perfilAcesso.insere) {
-      this.mostrarBotaoCadastrar = false;
-    }
-
-    if (!this.perfilAcesso.altera) {
-      this.mostrarBotaoAtualizar = false;
-    }
-    this.limpar();
-
-
-
-    this.dataSource.paginator = this.paginator;
-    this.carregarLista();
-
+    
     this.usuarioUnidadeService.getUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: any[]) => {
       this.unidadesComboCadastro = unidades;
     });
@@ -71,16 +51,6 @@ export class UnidadesMultiplasComponent implements OnInit {
     this.unidade = new Unidade();
   }
 
-
-  mostrarBotaoLimpar() {
-    if (this.isAtualizar) { return false; }
-    if (!this.mostrarBotaoAtualizar) { return false; }
-    if (!this.mostrarBotaoCadastrar) { return false; }
-
-    return true;
-  }
-
-
   isUnidadeJaAdicionada(): boolean {
     const unidadeAdicionada = this.unidades.find((u: Unidade) => u.idUnidade === this.unidade.idUnidade);
 
@@ -89,7 +59,6 @@ export class UnidadesMultiplasComponent implements OnInit {
   }
 
   adicionar() {
-
     if (this.isUnidadeJaAdicionada()) {
       this.toastService.showAlerta('Unidade já adicionada');
       return;
@@ -98,13 +67,12 @@ export class UnidadesMultiplasComponent implements OnInit {
     const unidadeAdicionada = new Unidade();
     Object.assign(unidadeAdicionada, this.unidade);
 
-
     this.unidades.push(unidadeAdicionada);
     this.limpar();
   }
 
   deletar(unidade: Unidade): void {
-    const index = this.unidades.indexOf( this.unidades.find(uni => uni === unidade));
+    const index = this.unidades.indexOf(this.unidades.find(uni => uni === unidade));
     if (index >= 0) {
       this.unidades.splice(index, 1);
       this.carregarLista();
@@ -112,8 +80,8 @@ export class UnidadesMultiplasComponent implements OnInit {
   }
 
   novo() {
-     this.openFormCadastro = !this.openFormCadastro;
-     this.limpar();
+    this.openFormCadastro = !this.openFormCadastro;
+    this.limpar();
   }
 
   carregarLista() {
