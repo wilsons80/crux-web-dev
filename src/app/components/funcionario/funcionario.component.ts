@@ -5,6 +5,7 @@ import { Funcionario } from 'src/app/core/funcionario';
 import { Acesso } from 'src/app/core/acesso';
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { TipoFuncionario } from 'src/app/core/tipo-funcionario';
 
 @Component({
   selector: 'app-funcionario',
@@ -21,6 +22,7 @@ export class FuncionarioComponent implements OnInit {
   msg: string;
   perfilAcesso: Acesso;
 
+  tiposFuncionario: TipoFuncionario = new TipoFuncionario();
 
   displayedColumns: string[] = ['matricula', 'nome', 'dataAdmissao', 'tipoFuncionario', 'cargo', 'acoes'];
   dataSource: MatTableDataSource<Funcionario> = new MatTableDataSource();

@@ -14,7 +14,7 @@ export class Funcionario {
 	matricula: string;
 	dataAdmissao: Date;
 	dataDemissao: Date;
-	tipoFuncionario: TipoFuncionario;
+	tipoFuncionario: string;
 	salarioPretendido: number;
 	cargo: Cargo;
     pessoasFisica: PessoaFisica;

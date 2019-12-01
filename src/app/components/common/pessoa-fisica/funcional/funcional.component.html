@@ -27,7 +27,7 @@
         <mat-label>Tipo de Funcionário:</mat-label>
         <mat-select [(ngModel)]="funcionario.tipoFuncionario" name="tipoFuncionario"
             (selectionChange)="zerarCamposEntrevista()">
-            <mat-option *ngFor="let m of tiposFuncionario" [value]="m.id">
+            <mat-option *ngFor="let m of tiposFuncionario.tipos" [value]="m.tipo">
                 {{m.descricao}}
             </mat-option>
         </mat-select>

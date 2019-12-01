@@ -25,14 +25,7 @@ export class FuncionalComponent implements OnInit {
 
   @Input() funcionario: Funcionario;
 
-  tiposFuncionario = [
-    {id: TipoFuncionario.CANDIDATO_VAGA_FUNCIONARIO, descricao:'CANDIDATO A VAGA DE FUNCIONÁRIO'},
-    {id: TipoFuncionario.COLABORADOR, descricao:'COLABORADOR'},
-    {id: TipoFuncionario.ESTAGIARIO, descricao:'ESTAGIÁRIO'},
-    {id: TipoFuncionario.FUNCIONARIO, descricao:'FUNCIONÁRIO'},
-    {id: TipoFuncionario.INSTRUTOR, descricao:'INSTRUTOR'},
-    {id: TipoFuncionario.VOLUNTARIO, descricao:'VOLUNTÁRIO'},
-  ]
+  tiposFuncionario: TipoFuncionario = new TipoFuncionario();
 
   listaParecer = [
     {id: ParecerEntrevistador.TOTALMENTO_ADEQUADO_PERFIL, descricao:'TOTALMENTE ADEQUADO AO PERFIL'},
@@ -95,7 +88,8 @@ export class FuncionalComponent implements OnInit {
   }
 
   mostrarCamposEntrevista(){
-    return this.funcionario.tipoFuncionario === TipoFuncionario.CANDIDATO_VAGA_FUNCIONARIO;
+    const tipoFuncionario = this.tiposFuncionario.getTipo('D');
+    return this.funcionario.tipoFuncionario === tipoFuncionario.tipo;
   }
 
   zerarCamposEntrevista(){
