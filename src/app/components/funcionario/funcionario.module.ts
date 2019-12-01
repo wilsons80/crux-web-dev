@@ -1,3 +1,4 @@
+import { CadastroEnderecoModule } from './../common/cadastro-endereco/cadastro-endereco.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,16 +12,21 @@ import { AlocacaoComponent } from './alocacao/alocacao.component';
 import { ListarAlocacaoComponent } from './alocacao/listar-alocacao/listar-alocacao.component';
 import { CadastrarAlocacaoComponent } from './alocacao/cadastrar-alocacao/cadastrar-alocacao.component';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { ListarDependentesComponent } from './dependentes/listar-dependentes/listar-dependentes.component';
+import { CadastrarDependentesComponent } from './dependentes/cadastrar-dependentes/cadastrar-dependentes.component';
+import { SharedDirectivesModule } from 'src/app/directives/shared-directives.module';
 
 
 @NgModule({
-  declarations: [FuncionarioComponent, CadastrarFuncionarioComponent, DependentesComponent, AlocacaoComponent, ListarAlocacaoComponent, CadastrarAlocacaoComponent],
+  declarations: [FuncionarioComponent, CadastrarFuncionarioComponent, DependentesComponent, AlocacaoComponent, ListarAlocacaoComponent, CadastrarAlocacaoComponent, ListarDependentesComponent, CadastrarDependentesComponent],
   imports: [
     CommonModule,
     NgxCurrencyModule,
     FuncionarioRoutingModule,
     PessoaFisicaModule,
     MaterialCommonModule,
+    CadastroEnderecoModule,
+    SharedDirectivesModule
   ]
 })
 export class FuncionarioModule { }

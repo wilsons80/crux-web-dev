@@ -15,6 +15,8 @@ import { Unidade } from 'src/app/core/unidade';
 import { Cargo } from 'src/app/core/cargo';
 import { Empresa } from 'src/app/core/empresa';
 import { Departamento } from 'src/app/core/departamento';
+import { Dependentes } from 'src/app/core/dependentes';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-cadastrar-funcionario',
@@ -25,10 +27,10 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   funcionario: Funcionario = new Funcionario();
 
-  isAtualizar: boolean = false;
+  isAtualizar = false;
 
   perfilAcesso: Acesso;
-  mostrarBotaoCadastrar = true
+  mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
   constructor(
@@ -91,6 +93,7 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   cadastrar() {
     this.tratarDados();
+
     this.funcionarioService.cadastrar(this.funcionario).pipe(
       switchMap((funcionarioRetorno: Funcionario) => {
         if (this.funcionario.pessoasFisica.isFotoChanged && this.funcionario.pessoasFisica.foto) {
@@ -108,14 +111,25 @@ export class CadastrarFuncionarioComponent implements OnInit {
 
   tratarDados() {
     this.funcionario.dtHrEntrevista = this.getDataHora(this.funcionario.dtHrEntrevista, this.funcionario.horaEntrevista)
+    this.retirarMascara(this.funcionario.pessoasFisica);
 
-    this.funcionario.pessoasFisica.cep = this.funcionario.pessoasFisica.cep ? this.retiraMascara(this.funcionario.pessoasFisica.cep.toString()) : null
-    this.funcionario.pessoasFisica.celular = this.funcionario.pessoasFisica.celular ? this.retiraMascara(this.funcionario.pessoasFisica.celular.toString()) : null
-    this.funcionario.pessoasFisica.cpf = this.funcionario.pessoasFisica.cpf ? this.retiraMascara(this.funcionario.pessoasFisica.cpf.toString()) : null
-    this.funcionario.pessoasFisica.telefoneResidencial = this.funcionario.pessoasFisica.telefoneResidencial ? this.retiraMascara(this.funcionario.pessoasFisica.telefoneResidencial.toString()) : null
-
+    _.forEach(this.funcionario.dependentes, (d: Dependentes) => {
+      this.retirarMascara(d.pessoaFisica);
+    });
 
   }
+
+  getApenasNumeros(objeto) {
+    return objeto.replace(/\D/g, '');
+  }
+
+
+  private retirarMascara(pessoaFisica: PessoaFisica) {
+    pessoaFisica.cep = pessoaFisica.cep ? this.getApenasNumeros(pessoaFisica.cep.toString()) : null
+    pessoaFisica.celular = pessoaFisica.celular ? this.getApenasNumeros(pessoaFisica.celular.toString()) : null
+    pessoaFisica.cpf = pessoaFisica.cpf ? this.getApenasNumeros(pessoaFisica.cpf.toString()) : null
+    pessoaFisica.telefoneResidencial = pessoaFisica.telefoneResidencial ? this.getApenasNumeros(pessoaFisica.telefoneResidencial.toString()) : null
+  }  
 
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;
@@ -151,10 +165,6 @@ export class CadastrarFuncionarioComponent implements OnInit {
       this.toastService.showSucesso('Funcionário atualizado com sucesso');
     });
 
-  }
-
-  retiraMascara(objeto) {
-    return objeto.replace(/\D/g, '');
   }
 
   getDataHora(data: Date, hora: string) {

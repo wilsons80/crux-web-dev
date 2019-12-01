@@ -8,6 +8,7 @@ import { Empresa } from './empresa';
 import { Time } from '@angular/common';
 import { Departamento } from './departamento';
 import { AlocacaoFuncionario } from './alocacao-funcionario';
+import { Dependentes } from './dependentes';
 
 export class Funcionario {
     id: number;
@@ -29,4 +30,5 @@ export class Funcionario {
 	descontaValeTransporte: boolean;
 	departamento: Departamento;
 	alocacoesFuncionario: AlocacaoFuncionario[];
+	dependentes: Dependentes[];
 }

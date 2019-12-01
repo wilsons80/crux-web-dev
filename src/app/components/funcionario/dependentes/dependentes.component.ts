@@ -9,10 +9,27 @@ import { Funcionario } from 'src/app/core/funcionario';
 export class DependentesComponent implements OnInit {
 
   @Input() funcionario: Funcionario;
+  
+  openFormCadastro = true;
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  onGetAdicionar(evento) {
+    this.openFormCadastro = evento;
+  }
+
+  dateToString(data) {
+    if (data) {
+      const dataFormate = new Date(data);
+      return dataFormate.toLocaleDateString();
+    }
+    return '';
+  }
+
+
+
 
 }

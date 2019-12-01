@@ -1,3 +1,4 @@
+import { PessoaFisica } from './../../core/pessoa-fisica';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +7,9 @@ import { Acesso } from 'src/app/core/acesso';
 import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { TipoFuncionario } from 'src/app/core/tipo-funcionario';
+import * as _ from 'lodash';
+import { Departamento } from 'src/app/core/departamento';
+import { Dependentes } from 'src/app/core/dependentes';
 
 @Component({
   selector: 'app-funcionario',
@@ -65,7 +69,6 @@ export class FuncionarioComponent implements OnInit {
     }
 
   }
-
 
   atualizar(Funcionario: Funcionario) {
     this.router.navigate(['/funcionario/cadastrar'], { queryParams: { idFuncionario: Funcionario.id } });
