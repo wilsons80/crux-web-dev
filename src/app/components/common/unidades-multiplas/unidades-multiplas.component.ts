@@ -1,10 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, SimpleChanges } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Unidade } from 'src/app/core/unidade';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { UsuarioUnidadeService } from 'src/app/services/usuario-unidade/usuario-unidade.service';
 import { Acesso } from 'src/app/core/acesso';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'unidades-multiplas',
@@ -45,6 +46,14 @@ export class UnidadesMultiplasComponent implements OnInit {
       this.unidadesComboCadastro = unidades;
     });
 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes["unidades"] && !_.isEmpty (changes["unidades"].currentValue)){
+      this.carregarLista();
+    }
+    
+    
   }
 
   limpar() {
