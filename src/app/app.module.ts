@@ -86,6 +86,7 @@ import { TipoOcorrenciaAlunoComponent } from './components/tipo-ocorrencia-aluno
 import { TipoOcorrenciaAlunoModule } from './components/tipo-ocorrencia-aluno/tipo-ocorrencia-aluno.module';
 import { OcorrenciaAlunoModule } from './components/ocorrencia-aluno/ocorrencia-aluno.module';
 import { UnidadesMultiplasComponent } from './components/common/unidades-multiplas/unidades-multiplas.component';
+import { TiposContratacoesModule } from './components/tipos-contratacoes/tipos-contratacoes.module';
 
 export const MY_FORMATS = {
   parse: {
@@ -198,7 +199,8 @@ registerLocaleData(localePt, 'pt-BR');
     TextMaskModule,
     CboModule,
     TipoOcorrenciaAlunoModule,
-    OcorrenciaAlunoModule
+    OcorrenciaAlunoModule,
+    TiposContratacoesModule
 
   ],
   providers: [

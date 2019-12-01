@@ -38,6 +38,8 @@ export class ProgramasComponent implements OnInit {
   ngOnInit() {
     this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
 
+    console.log("acesso", this.perfilAcesso);
+    
 
     this.dataSource.paginator = this.paginator;
     this.getAll();
