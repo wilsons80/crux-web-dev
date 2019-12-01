@@ -10,9 +10,9 @@ import { ControlContainer, NgForm } from '@angular/forms';
 })
 export class DadosProfissionaisComponent implements OnInit {
 
-  @Input() pessoaFisica:PessoaFisica;
+  @Input() pessoaFisica: PessoaFisica;
   
-  situacaoTrabalho:any[] =[
+  situacaoTrabalho: any[] = [
     {tipo: 'CARTEIRA ASSINADA'},
     {tipo: 'SEM CARTEIRA ASSINADA'},
     {tipo: 'AUTÔNOMO'},

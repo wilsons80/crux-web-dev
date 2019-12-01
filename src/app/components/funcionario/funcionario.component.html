@@ -39,7 +39,7 @@
               </ng-container>
 
             <ng-container matColumnDef="nome">
-                <th mat-header-cell *matHeaderCellDef> Nome: </th>
+                <th mat-header-cell *matHeaderCellDef style="width: 25%"> Nome: </th>
                 <td mat-cell *matCellDef="let element"> {{element.pessoasFisica?.nome}} </td>
               </ng-container>
 
@@ -50,7 +50,7 @@
 
               <ng-container matColumnDef="tipoFuncionario">
                 <th mat-header-cell *matHeaderCellDef> Tipo:  </th>
-                <td mat-cell *matCellDef="let element"> {{element.tipoFuncionario }} </td>
+                <td mat-cell *matCellDef="let element"> {{element.tipoFuncionario ? tiposFuncionario.getTipo(element.tipoFuncionario).descricao : ''}} </td>
               </ng-container>
 
               <ng-container matColumnDef="cargo">

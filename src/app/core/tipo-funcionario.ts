@@ -1,8 +1,16 @@
-export enum TipoFuncionario{
-    FUNCIONARIO = "F",
-    VOLUNTARIO = "V",
-    ESTAGIARIO = "E",
-    COLABORADOR = "C",
-    INSTRUTOR = "I",
-    CANDIDATO_VAGA_FUNCIONARIO = "D"
+export class TipoFuncionario {
+     tipos = [
+        {tipo: 'D', descricao: 'Candidato a vaga de funcionário'},
+        {tipo: 'C', descricao: 'Colaborador'},
+        {tipo: 'E', descricao: 'Estagiário'},
+        {tipo: 'F', descricao: 'Funcionário'},
+        {tipo: 'I', descricao: 'Instrutor'},
+        {tipo: 'V', descricao: 'Voluntário'},
+      ]
+
+
+     getTipo(tipo: string) {
+        const tipoFuncionario = this.tipos.find( d => d.tipo.includes(tipo));
+        return tipoFuncionario ? tipoFuncionario : null;
+      }
 }

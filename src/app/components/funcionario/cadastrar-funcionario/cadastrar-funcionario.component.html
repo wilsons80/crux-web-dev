@@ -99,6 +99,33 @@
             </div>
         </mat-step>
 
+        <!--  ALOCACAO -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAlocacao">
+            <form #formCadastroAlocacao="ngForm">
+                <ng-template matStepLabel>ALOCACAO</ng-template>
+                <alocacao [funcionario]="funcionario"></alocacao>
+            </form>
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>   
+        
+        <!--  DEPENDENTES -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroDependente">
+            <form #formCadastroDependente="ngForm">
+                <ng-template matStepLabel>DEPENDENTES</ng-template>
+                <dependentes [funcionario]="funcionario"></dependentes>
+            </form>
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>          
        
     </mat-horizontal-stepper>
 </div>
@@ -112,7 +139,8 @@
             fxFlex="20%"
             color="primary"
             [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-            formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid"
+            formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid ||
+            formCadastroAlocacao.invalid || formCadastroDependente.invalid"
             (click)="cadastrar()"> Cadastrar
     </button>
 
@@ -121,7 +149,8 @@
             fxFlex="20%"
             color="primary"
             [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-            formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid"
+            formCadastroDadosProfissionais.invalid || formCadastroFuncional.invalid ||
+            formCadastroAlocacao.invalid || formCadastroDependente.invalid"
             (click)="atualizar()">
             Atualizar
     </button>
