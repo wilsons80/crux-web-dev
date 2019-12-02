@@ -91,6 +91,7 @@ export class CadastrarDependentesComponent implements OnInit {
       this.dependentesService.getAllByCpf(cpf).subscribe((dependente: Dependentes) => {
         if (this.funcionario.pessoasFisica.cpf !== dependente.pessoaFisica.cpf) {
           this.outroResponsavelPeloDependente = dependente;
+          this.dependente.pessoaFisica.cpf = null;
         } else {
           this.outroResponsavelPeloDependente = null;
         }
