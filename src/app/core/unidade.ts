@@ -36,4 +36,5 @@ export class Unidade {
 	dataVigenciaCdca:Date;
 	numeroCas:string;
 	dataVigenciaCas:Date;
+	unidadeLogada:boolean;
 }

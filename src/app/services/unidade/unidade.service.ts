@@ -34,4 +34,11 @@ export class UnidadeService extends BaseService<Unidade> {
     return this.http.get(rotaPath);
   }
 
+  getUnidadeLogada(){
+    return this.http.get(rotaPath + `/unidadelogada`);
+  }
+
 }
+
+
+

@@ -1,3 +1,4 @@
+import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { Component, Input, OnInit, ViewChild, SimpleChanges } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
@@ -32,11 +33,13 @@ export class UnidadesMultiplasComponent implements OnInit {
 
   unidadesComboCadastro: any[];
   unidade: Unidade = new Unidade();
+  
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private toastService: ToastService,
     private usuarioUnidadeService: UsuarioUnidadeService,
+    private unidadeService:UnidadeService,
   ) { }
 
   ngOnInit() {
@@ -49,10 +52,14 @@ export class UnidadesMultiplasComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes["unidades"] && !_.isEmpty (changes["unidades"].currentValue)){
-      this.carregarLista();
+
+    if(changes["unidades"] && _.isEmpty (changes["unidades"].currentValue)){
+      this.unidadeService.getUnidadeLogada().subscribe((unidade:Unidade) => {
+        this.unidades.push(unidade)
+        this.carregarLista();
+      });
     }
-    
+    this.carregarLista();
     
   }
 
