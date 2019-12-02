@@ -13,6 +13,7 @@ import { Acesso } from 'src/app/core/acesso';
 import { ActivatedRoute } from '@angular/router';
 import { TiposContratacoes } from 'src/app/core/tipos-contratacoes';
 import * as _ from 'lodash';
+import { Unidade } from 'src/app/core/unidade';
 
 @Component({
   selector: 'colaboradores-projeto',
@@ -22,6 +23,7 @@ import * as _ from 'lodash';
 export class ColaboradoresProjetoComponent implements OnInit {
 
   @Input() listaColaboradoresProjeto: ColaboradoresProjeto[];
+  @Input() unidades: Unidade[];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
