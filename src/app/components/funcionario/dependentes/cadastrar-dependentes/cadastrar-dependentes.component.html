@@ -1,3 +1,10 @@
+<div style="text-align: center; border-style: solid; border-color: coral;margin-bottom: 15px;"
+     *ngIf="outroResponsavelPeloDependente">
+    <span style="color: blue">
+      O colaborador '{{outroResponsavelPeloDependente.pessoaFisica.nome}}' já é responsável por este dependente. 
+    </span>
+</div>
+
 <div ngModelGroup="dadosDependentes">    
     <mat-toolbar class="titulopartes">Dados Pessoais</mat-toolbar>
     <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
@@ -12,6 +19,8 @@
         <mat-form-field fxFlex="20%">
             <input matInput [(ngModel)]="dependente.pessoaFisica.cpf" 
                    name="cpf" 
+                   #cpf
+                   (change)="verificarDependente(cpf.value)"
                    placeholder="CPF"
                    [textMask]="{mask: mascaraCpf}" 
                    [cpfValidator]>

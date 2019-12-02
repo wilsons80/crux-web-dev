@@ -5,6 +5,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { NgForm, ControlContainer } from '@angular/forms';
+import { DependentesService } from 'src/app/services/dependentes/dependentes.service';
 
 @Component({
   selector: 'cadastrar-dependentes',
@@ -35,9 +36,12 @@ export class CadastrarDependentesComponent implements OnInit {
   sexo: any[] =[
     {sigla:  'M', descricao:  'MASCULINO'},
     {sigla:  'F', descricao:  'FEMININO'}
-  ]  
+  ];
+
+  outroResponsavelPeloDependente: Dependentes = null;
 
   constructor(private toastService: ToastService,
+              private dependentesService: DependentesService,
               private enderecoService: EnderecoService) {
   }
 
@@ -71,9 +75,26 @@ export class CadastrarDependentesComponent implements OnInit {
             &&
            (!!formulario.controls.nome.value &&
            !!formulario.controls.cpf.value &&
-           
+
            !!formulario.controls.celular.value);
            */
   }
 
+  getApenasNumeros(valor) {
+    return valor.replace(/\D/g, '');
+  }
+
+  verificarDependente(cpf) {
+    if (cpf) {
+      cpf = this.getApenasNumeros(cpf);
+
+      this.dependentesService.getAllByCpf(cpf).subscribe((dependente: Dependentes) => {
+        if (this.funcionario.pessoasFisica.cpf !== dependente.pessoaFisica.cpf) {
+          this.outroResponsavelPeloDependente = dependente;
+        } else {
+          this.outroResponsavelPeloDependente = null;
+        }
+      });
+    }
+  }
 }
