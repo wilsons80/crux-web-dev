@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
+import { tap } from 'rxjs/operators';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { Dependentes } from 'src/app/core/dependentes';
 import { Funcionario } from 'src/app/core/funcionario';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -38,10 +40,12 @@ export class CadastrarDependentesComponent implements OnInit {
     {sigla:  'F', descricao:  'FEMININO'}
   ];
 
-  outroResponsavelPeloDependente: Dependentes = null;
+  mensagemDependente: string = null;
+  outroResponsavelPeloDependente: Funcionario = null;
 
   constructor(private toastService: ToastService,
               private dependentesService: DependentesService,
+              private funcionarioService: FuncionarioService,
               private enderecoService: EnderecoService) {
   }
 
@@ -63,6 +67,7 @@ export class CadastrarDependentesComponent implements OnInit {
   initObjetos() {
     this.dependente = new Dependentes();
     this.dependente.pessoaFisica = new PessoaFisica();
+    this.mensagemDependente = null;
   }
 
   carregarDependente(dependente: Dependentes) {
@@ -85,17 +90,27 @@ export class CadastrarDependentesComponent implements OnInit {
   }
 
   verificarDependente(cpf) {
+    this.mensagemDependente = null;
+
     if (cpf) {
       cpf = this.getApenasNumeros(cpf);
 
       this.dependentesService.getAllByCpf(cpf).subscribe((dependente: Dependentes) => {
-        if (this.funcionario.pessoasFisica.cpf !== dependente.pessoaFisica.cpf) {
-          this.outroResponsavelPeloDependente = dependente;
-          this.dependente.pessoaFisica.cpf = null;
+        if (dependente && this.funcionario.pessoasFisica.cpf !== dependente.pessoaFisica.cpf) {
+
+          this.funcionarioService.getById(dependente.idFuncionario).subscribe((funcionario: Funcionario) => {
+            this.outroResponsavelPeloDependente = funcionario;
+            this.dependente.pessoaFisica.cpf = null;
+
+            this.mensagemDependente = `O colaborador(a) '${funcionario.pessoasFisica.nome}' já é responsável por este dependente: (${cpf}).`; 
+          });
+
         } else {
           this.outroResponsavelPeloDependente = null;
         }
       });
     }
   }
+
+
 }

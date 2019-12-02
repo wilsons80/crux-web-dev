@@ -1,7 +1,7 @@
 <div style="text-align: center; border-style: solid; border-color: coral;margin-bottom: 15px;"
      *ngIf="outroResponsavelPeloDependente">
     <span style="color: blue">
-      O colaborador '{{outroResponsavelPeloDependente.pessoaFisica.nome}}' já é responsável por este dependente (cpf.value). 
+      {{mensagemDependente}}
     </span>
 </div>
 
@@ -11,6 +11,7 @@
 
         <mat-form-field fxFlex="40%" fxFlexOffset="20px">
             <input matInput maxlength="255" 
+                   #nomeDependente
                    name="nomeDependente"
                    placeholder="Nome" 
                    [(ngModel)]="dependente.pessoaFisica.nome">
