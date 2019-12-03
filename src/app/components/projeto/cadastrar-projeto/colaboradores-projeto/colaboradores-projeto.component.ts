@@ -42,10 +42,10 @@ export class ColaboradoresProjetoComponent implements OnInit {
 
   unidadesComboCadastro: any[];
   colaboradoresProjeto: ColaboradoresProjeto = new ColaboradoresProjeto();
-  funcionarios: Funcionario[];
-  cargos: Cargo[];
-  projetos: Projeto[];
-  listaTiposContratacoes: TiposContratacoes[];
+  funcionarios: Funcionario[] = [];
+  cargos: Cargo[] =[];
+  projetos: Projeto[] = [];
+  listaTiposContratacoes: TiposContratacoes[] = [];
 
   constructor(
     private toastService: ToastService,
