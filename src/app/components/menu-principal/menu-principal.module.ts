@@ -19,6 +19,7 @@ import { TbReferenciaGestaoPessoasComponent } from './menu-gestao-pessoas/tb-ref
 import { TbReferenciaSecretariaComponent } from './menu-secretaria/tb-referencia-secretaria/tb-referencia-secretaria.component';
 import { TbReferenciaSapComponent } from './menu-sap/tb-referencia-sap/tb-referencia-sap.component';
 import { TbReferenciaOrganizacaoInternaComponent } from './menu-organizacao-interna/tb-referencia-organizacao-interna/tb-referencia-organizacao-interna.component';
+import { MenuProgramaProjetoComponent } from './menu-programa-projeto/menu-programa-projeto.component';
 
 
 
@@ -39,6 +40,7 @@ import { TbReferenciaOrganizacaoInternaComponent } from './menu-organizacao-inte
     TbReferenciaSecretariaComponent,
     TbReferenciaSapComponent,
     TbReferenciaOrganizacaoInternaComponent,
+    MenuProgramaProjetoComponent,
   ],
   imports: [
     CommonModule,
