@@ -20,7 +20,7 @@ export class FuncionarioService extends BaseService<Funcionario> {
   getPorIntituicao(idsUnidades: number[]) {
     let params = new HttpParams();
     params = params.append('ids', idsUnidades.join(', '));
-    return this.http.get(Rotas.FUNCIONARIOS + 'pessoafisica/',  { params: params });
+    return this.http.get(Rotas.FUNCIONARIOS + 'porinstituicao',  { params: params });
   }
 
 }
