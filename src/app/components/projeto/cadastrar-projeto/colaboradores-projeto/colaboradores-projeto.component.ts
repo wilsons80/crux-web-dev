@@ -56,16 +56,24 @@ export class ColaboradoresProjetoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    const idsUnidade:number[] = this.unidades.map( (u:Unidade) => u.idUnidade);
+
+    this.funcionarioService.getPorIntituicao(idsUnidade).subscribe((funcionarios: Funcionario[]) => this.funcionarios = funcionarios);
     
-    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
-    this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => this.funcionarios = funcionarios);
-    this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.cargos = cargos);
-    this.projetoService.getAll().subscribe((projetos: Projeto[]) => this.projetos = projetos);
-    this.tiposContratacoesService.getAll().subscribe((tiposContratacoes: TiposContratacoes[]) => this.listaTiposContratacoes = tiposContratacoes);
+    // this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+    // this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => this.funcionarios = funcionarios);
+    // this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.cargos = cargos);
+    // this.projetoService.getAll().subscribe((projetos: Projeto[]) => this.projetos = projetos);
+    // this.tiposContratacoesService.getAll().subscribe((tiposContratacoes: TiposContratacoes[]) => this.listaTiposContratacoes = tiposContratacoes);
 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if(changes["listaColaboradoresProjeto"] && !_.isEmpty (changes["listaColaboradoresProjeto"].currentValue)){
+      this.carregarLista();
+    }
+   
     if(changes["listaColaboradoresProjeto"] && !_.isEmpty (changes["listaColaboradoresProjeto"].currentValue)){
       this.carregarLista();
     }
