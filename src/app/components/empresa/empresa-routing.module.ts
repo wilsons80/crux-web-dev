@@ -9,8 +9,8 @@ import { Modulos } from 'src/app/core/modulos';
 
 
 const routes: Routes = [
-  { path: 'empresa/cadastrar', component: CadastrarEmpresaComponent,canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.EMPRESA} },
-  { path: 'empresa', component: EmpresaComponent,canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.EMPRESA} }
+  { path: 'empresa/cadastrar', component: CadastrarEmpresaComponent,canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.PARCERIAS} },
+  { path: 'empresa', component: EmpresaComponent,canActivate: [AuthGuard],resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.PARCERIAS} }
 ];
 
 @NgModule({

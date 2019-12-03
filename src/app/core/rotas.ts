@@ -47,4 +47,5 @@ export enum Rotas {
     TIPO_OCORRENCIA_ALUNO           = 'api/tipoocorrenciaaluno/',
     TIPOS_CONTRATACOES              = 'api/tiposcontratacoes/',
     DEPENDENTES                     = 'api/dependentes/',
+    PRESTACAO_CONTAS                = 'api/prestacaocontas'
 }

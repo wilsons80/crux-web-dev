@@ -23,8 +23,11 @@
         <!-- MENU ORGANIZACAO INTERNA -->
         <menu-organizacao-interna *ngIf="verificaAcesso(getModulos().ORGANIZACAO_INTERNA)"></menu-organizacao-interna>
 
-        <!-- ESTRATÉGICO -->
-        <menu-estrategico *ngIf="verificaAcesso(getModulos().ESTRATEGICO)"></menu-estrategico>
+         <!-- PROGRAMAS E PROJETOS -->
+        <menu-programa-projeto *ngIf="verificaAcesso(getModulos().PROGRAMAS_PROJETOS)"></menu-programa-projeto>
+
+        <!-- GESTAO DESEMPENHO -->
+        <menu-estrategico *ngIf="verificaAcesso(getModulos().GESTAO_DESEMPENHO)"></menu-estrategico>
 
         <!-- GESTÃO DE PESSOAS -->
         <menu-gestao-pessoas *ngIf="verificaAcesso(getModulos().GESTAO_PESSOA)"></menu-gestao-pessoas>
