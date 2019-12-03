@@ -7,6 +7,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
 import { UsuarioUnidadeService } from 'src/app/services/usuario-unidade/usuario-unidade.service';
 import { Acesso } from 'src/app/core/acesso';
 import * as _ from 'lodash';
+import {UnidadeSelecionadaService} from '../../../services/unidadeSelecionada/unidade-selecionada.service';
 
 @Component({
   selector: 'unidades-multiplas',
@@ -40,6 +41,7 @@ export class UnidadesMultiplasComponent implements OnInit {
     private toastService: ToastService,
     private usuarioUnidadeService: UsuarioUnidadeService,
     private unidadeService:UnidadeService,
+    private unidadeSelecionadaService:UnidadeSelecionadaService
   ) { }
 
   ngOnInit() {
@@ -55,7 +57,8 @@ export class UnidadesMultiplasComponent implements OnInit {
 
     if(changes["unidades"] && _.isEmpty (changes["unidades"].currentValue)){
       this.unidadeService.getUnidadeLogada().subscribe((unidade:Unidade) => {
-        this.unidades.push(unidade)
+        this.unidades.push(unidade);
+        this.unidadeSelecionadaService.unidadesSelecionadas.emit(this.unidades);
         this.carregarLista();
       });
     }
@@ -84,6 +87,7 @@ export class UnidadesMultiplasComponent implements OnInit {
     Object.assign(unidadeAdicionada, this.unidade);
 
     this.unidades.push(unidadeAdicionada);
+    this.unidadeSelecionadaService.unidadesSelecionadas.emit(this.unidades);
     this.limpar();
   }
 
@@ -92,6 +96,7 @@ export class UnidadesMultiplasComponent implements OnInit {
     if (index >= 0) {
       this.unidades.splice(index, 1);
       this.carregarLista();
+      this.unidadeSelecionadaService.unidadesSelecionadas.emit(this.unidades);
     }
   }
 

@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TiposContratacoes } from 'src/app/core/tipos-contratacoes';
 import * as _ from 'lodash';
 import { Unidade } from 'src/app/core/unidade';
+import { UnidadeSelecionadaService } from 'src/app/services/unidadeSelecionada/unidade-selecionada.service';
 
 @Component({
   selector: 'colaboradores-projeto',
@@ -21,7 +22,7 @@ import { Unidade } from 'src/app/core/unidade';
   styleUrls: ['./colaboradores-projeto.component.css']
 })
 export class ColaboradoresProjetoComponent implements OnInit {
-
+  
   @Input() listaColaboradoresProjeto: ColaboradoresProjeto[];
   @Input() unidades: Unidade[];
 
@@ -52,16 +53,23 @@ export class ColaboradoresProjetoComponent implements OnInit {
     private cargosService: CargosService,
     private projetoService: ProjetoService,
     private activatedRoute:ActivatedRoute,
-    private tiposContratacoesService:TiposContratacoesService
-  ) { }
+    private tiposContratacoesService:TiposContratacoesService,
+    private unidadeSelecionadaService:UnidadeSelecionadaService
+  ) { 
+
+    this.unidadeSelecionadaService.unidadesSelecionadas.subscribe((unidades: Unidade[]) => {
+      this.unidades = unidades
+      this.getfuncionarios();
+    })
+
+  }
 
   ngOnInit() {
 
-    const idsUnidade:number[] = this.unidades.map( (u:Unidade) => u.idUnidade);
-
-    this.funcionarioService.getPorIntituicao(idsUnidade).subscribe((funcionarios: Funcionario[]) => this.funcionarios = funcionarios);
+   
     
-    // this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+
     // this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => this.funcionarios = funcionarios);
     // this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.cargos = cargos);
     // this.projetoService.getAll().subscribe((projetos: Projeto[]) => this.projetos = projetos);
@@ -133,4 +141,13 @@ export class ColaboradoresProjetoComponent implements OnInit {
     || !this.colaboradoresProjeto.dataInicio || !this.colaboradoresProjeto.projeto
   }
   
+  getfuncionarios() {
+    const idsUnidades:number[] = this.unidades.map((u:Unidade) => u.idUnidade);
+    this.funcionarioService.getPorIntituicao(idsUnidades).subscribe((funcionarios:Funcionario[]) => {
+      this.funcionarios = funcionarios;
+      console.log("func", this.funcionarios);
+      
+    })
+  }
+
 }
