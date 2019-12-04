@@ -48,5 +48,6 @@ export enum Rotas {
     TIPOS_CONTRATACOES              = 'api/tiposcontratacoes/',
     DEPENDENTES                     = 'api/dependentes/',
     PRESTACAO_CONTAS                = 'api/prestacaocontas/',
-    NIVEIS_TURMAS                   = 'api/niveisturmas/'
+    NIVEIS_TURMAS                   = 'api/niveisturmas/',
+    TURMAS                          = 'api/turmas/'
 }
