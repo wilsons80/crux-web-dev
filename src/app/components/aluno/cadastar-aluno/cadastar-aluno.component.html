@@ -18,6 +18,23 @@
             </form>
         </mat-step>
 
+        <!--  ACADEMICO -->
+        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAcademico">
+            <form #formCadastroAcademico="ngForm">
+                <ng-template matStepLabel>ACADEMICO</ng-template>
+                <academico [aluno]="aluno"></academico>
+            </form>
+
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
+                    Próximo
+                </button>
+                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
+                    voltar
+                </button>
+            </div>
+        </mat-step>
+
         <!-- ------------------ ESCOLARIDADE ------------------------ -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
             <form #formCadastroEscolaridade="ngForm">
@@ -47,24 +64,6 @@
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
                 fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                    Próximo
-                </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
-                </button>
-            </div>
-        </mat-step>
-
-
-        <!--  FUNCIONAL -->
-        <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAcademico">
-            <form #formCadastroAcademico="ngForm">
-                    <ng-template matStepLabel>ACADEMICO</ng-template>
-                    <academico [aluno]="aluno"></academico>
-            </form>
-
-            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
                 <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
                     Próximo
                 </button>
