@@ -28,8 +28,6 @@ import { AvaliacaoAlunoModule } from './components/avaliacao-aluno/avaliacao-alu
 import { AvaliacaoAtividadeModule } from './components/avaliacao-atividade/avaliacao-atividade.module';
 import { CadastroReservaAtividadeModule } from './components/cadastro-reserva-atividade/cadastro-reserva-atividade.module';
 import { CargoModule } from './components/cargo/cargo.module';
-import { ColaboradoresProgramaModule } from './components/colaboradores-programa/colaboradores-programa.module';
-import { ColaboradoresProjetoModule } from './components/colaboradores-projeto/colaboradores-projeto.module';
 import { AuthInterceptor } from './components/common/auth-interceptor/auth-interceptor';
 import { ConfirmDialogComponent } from './components/common/confirm-dialog/confirm-dialog.component';
 import { ExceptionHandlerModule } from './components/common/exception-handler/exception-handler.module';
@@ -188,8 +186,6 @@ registerLocaleData(localePt, 'pt-BR');
     CondicaoMoradiaModule,
     UsuarioModule,
     DocumentoAtividadeModule,
-    ColaboradoresProgramaModule,
-    ColaboradoresProjetoModule,
     ProdutosAtividadeModule,
     CadastroReservaAtividadeModule,
     TempoSessaoModule,
