@@ -82,11 +82,10 @@ import { UsuarioModule } from './components/usuario/usuario.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 import { CboModule } from './components/cbo/cbo.module';
-import { TipoOcorrenciaAlunoComponent } from './components/tipo-ocorrencia-aluno/tipo-ocorrencia-aluno.component';
 import { TipoOcorrenciaAlunoModule } from './components/tipo-ocorrencia-aluno/tipo-ocorrencia-aluno.module';
 import { OcorrenciaAlunoModule } from './components/ocorrencia-aluno/ocorrencia-aluno.module';
-import { UnidadesMultiplasComponent } from './components/common/unidades-multiplas/unidades-multiplas.component';
 import { TiposContratacoesModule } from './components/tipos-contratacoes/tipos-contratacoes.module';
+import { NiveisTurmasModule } from './components/niveis-turmas/niveis-turmas.module';
 
 export const MY_FORMATS = {
   parse: {
@@ -200,7 +199,8 @@ registerLocaleData(localePt, 'pt-BR');
     CboModule,
     TipoOcorrenciaAlunoModule,
     OcorrenciaAlunoModule,
-    TiposContratacoesModule
+    TiposContratacoesModule,
+    NiveisTurmasModule
 
   ],
   providers: [
