@@ -84,6 +84,7 @@ import { TipoOcorrenciaAlunoModule } from './components/tipo-ocorrencia-aluno/ti
 import { OcorrenciaAlunoModule } from './components/ocorrencia-aluno/ocorrencia-aluno.module';
 import { TiposContratacoesModule } from './components/tipos-contratacoes/tipos-contratacoes.module';
 import { NiveisTurmasModule } from './components/niveis-turmas/niveis-turmas.module';
+import { TurmasModule } from './components/turmas/turmas.module';
 
 export const MY_FORMATS = {
   parse: {
@@ -196,7 +197,8 @@ registerLocaleData(localePt, 'pt-BR');
     TipoOcorrenciaAlunoModule,
     OcorrenciaAlunoModule,
     TiposContratacoesModule,
-    NiveisTurmasModule
+    NiveisTurmasModule,
+    TurmasModule
 
   ],
   providers: [
