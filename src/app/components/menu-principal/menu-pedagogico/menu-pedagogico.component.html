@@ -54,6 +54,9 @@
         <sub-menu *ngIf="verificaAcesso(getModulos().OCORRENCIA_ALUNO)" icone="how_to_reg" titulo="Ocorrência do aluno"
             rota="ocorrenciaaluno" toolTip="Ocorrência do aluno"></sub-menu>
 
+        <!-- NIVEIS TURMAS -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().NIVEIS_TURMAS)" icone="timeline" titulo="Níveis de turmas" 
+            rota="niveisturmas" toolTip="Níveis de Turmas"></sub-menu>
 
     </div>
 </mat-nav-list>

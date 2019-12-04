@@ -75,4 +75,5 @@ export enum Modulos{
     , TIPOS_CONTRATACOES                    = 'TIPOS_CONTRATACOES'
     , PRESTACAO_CONTAS                      = 'PRESTACAO_CONTAS'
     , PROGRAMAS_PROJETOS                    = 'PROGRAMAS_PROJETOS'
+    , NIVEIS_TURMAS                         = 'NIVEIS_TURMAS'
 }
