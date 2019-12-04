@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NgxCurrencyModule } from 'ngx-currency';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
 import { UnidadesMultiplasModule } from './../common/unidades-multiplas/unidades-multiplas.module';
 import { CadastrarProjetoComponent } from './cadastrar-projeto/cadastrar-projeto.component';
@@ -19,15 +20,16 @@ import { ProjetoComponent } from './projeto.component';
     CadastrarProjetoComponent,
     DadosProjetoComponent,
     ColaboradoresProjetoComponent,
-    ParceriasProjetoComponent, 
+    ParceriasProjetoComponent,
     ComposicaoRhProjetoComponent,
-    MateriaisProjetoComponent
+    MateriaisProjetoComponent,
   ],
   imports: [
     CommonModule,
     ProjetoRoutingModule,
     MaterialCommonModule,
-    UnidadesMultiplasModule
+    UnidadesMultiplasModule,
+    NgxCurrencyModule
   ]
 })
 export class ProjetoModule { }

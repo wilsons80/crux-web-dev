@@ -32,7 +32,7 @@ export class ParceriasProjetoComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['nome', 'cpf', 'cargo', 'acoes'];
+  displayedColumns: string[] = ['codigo', 'nomeRazaoSocial', 'cnpj','acoes'];
   dataSource: MatTableDataSource<ParceriasProjeto> = new MatTableDataSource();
 
   openFormCadastro = false;
@@ -60,7 +60,8 @@ export class ParceriasProjetoComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes["listaEmpresas"] && !_.isEmpty(changes["listaEmpresas"].currentValue)) {
+    if (changes["listaParceiros"] && !_.isEmpty(changes["listaParceiros"].currentValue)) {
+      console.log("dasdas", changes);
       this.carregarLista();
     }
 
@@ -70,15 +71,15 @@ export class ParceriasProjetoComponent implements OnInit {
     this.parceriasProjeto = new ParceriasProjeto();
   }
 
-  isUnidadeJaAdicionada(): boolean {
-    const unidadeAdicionada = this.listaParceiros.find((e: ParceriasProjeto) => e.id === this.parceriasProjeto.id);
+  isJaAdicionada(): boolean {
+    const unidadeAdicionada = this.listaParceiros.find((e: ParceriasProjeto) => e.empresa.id === this.parceriasProjeto.empresa.id);
 
     return !!unidadeAdicionada;
 
   }
 
   adicionar() {
-    if (this.isUnidadeJaAdicionada()) {
+    if (this.isJaAdicionada()) {
       this.toastService.showAlerta('Parceiro já adicionado');
       return;
     }

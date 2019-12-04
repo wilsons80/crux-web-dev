@@ -2,6 +2,7 @@ import { Iniciativa } from './iniciativa';
 import { Programa } from './programa';
 import { Unidade } from './unidade';
 import { ColaboradoresProjeto } from './colaboradores-projeto';
+import { ParceriasProjeto } from './parcerias-projeto';
 
 export class Projeto {
 
@@ -17,7 +18,7 @@ export class Projeto {
 	usuarioAlteracao: number;
 	unidades: Unidade[];
 	colaboradoresProjeto:ColaboradoresProjeto[];
-	// parceriasProjeto:ParceriaProjeto[];
+	parceriasProjeto:ParceriasProjeto[];
 	// ComposicaoRhProjeto
 
 }

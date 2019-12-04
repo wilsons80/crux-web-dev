@@ -60,7 +60,7 @@
                 <mat-step [stepControl]="formCadastroParcerias">
                         <form #formCadastroParcerias="ngForm" matStepperIcon="phone">
                                 <ng-template matStepLabel>PARCERIAS</ng-template>
-                                <parcerias-projeto></parcerias-projeto>
+                                <parcerias-projeto [listaParceiros]= projeto.parceriasProjeto></parcerias-projeto>
                                 <div dir="rtl" fxLayoutGap="20px"
                                         style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
                                         <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
