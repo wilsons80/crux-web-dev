@@ -3,6 +3,7 @@ import { Programa } from './programa';
 import { Unidade } from './unidade';
 import { ColaboradoresProjeto } from './colaboradores-projeto';
 import { ParceriasProjeto } from './parcerias-projeto';
+import { ComposicaoRhProjeto } from './composicao-rh-projeto';
 
 export class Projeto {
 
@@ -19,6 +20,7 @@ export class Projeto {
 	unidades: Unidade[];
 	colaboradoresProjeto:ColaboradoresProjeto[];
 	parceriasProjeto:ParceriasProjeto[];
+	composicaoRhProjeto:ComposicaoRhProjeto[];
 	// ComposicaoRhProjeto
 
 }

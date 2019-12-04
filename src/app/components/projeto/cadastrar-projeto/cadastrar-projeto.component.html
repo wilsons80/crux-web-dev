@@ -39,8 +39,10 @@
                         </form>
                 </mat-step>
 
+                
+
                 <!------------------  Colaboradores do Projeto ------------------------>
-                <mat-step [stepControl]="formCadastroColaboradores">
+                <!-- <mat-step [stepControl]="formCadastroColaboradores">
                         <form #formCadastroColaboradores="ngForm" matStepperIcon="phone">
                                 <ng-template matStepLabel>COLABORADORES</ng-template>
                                 <colaboradores-projeto [unidades]=projeto.unidades [listaColaboradoresProjeto]=projeto.colaboradoresProjeto></colaboradores-projeto>
@@ -54,7 +56,7 @@
                                         </button>
                                 </div>
                         </form>
-                </mat-step>
+                </mat-step> -->
 
                 <!------------------  Parcerias do Projeto ------------------------>
                 <mat-step [stepControl]="formCadastroParcerias">
@@ -76,8 +78,8 @@
                 <!------------------  Composição Recursos Humanos do Projeto ------------------------>
                 <mat-step [stepControl]="formCadastroRH">
                         <form #formCadastroRH="ngForm" matStepperIcon="phone">
-                                <ng-template matStepLabel>RECURSOS HUMANOS</ng-template>
-                                <composicao-rh-projeto></composicao-rh-projeto>
+                                <ng-template matStepLabel>COMPOSIÇÃO REC. HUMANOS</ng-template>
+                                <composicao-rh-projeto [listaComposicaoRhProjeto]=projeto.composicaoRhProjeto></composicao-rh-projeto>
                                 <div dir="rtl" fxLayoutGap="20px"
                                         style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
                                         <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
@@ -132,4 +134,4 @@
 
 </div>
 
-<!-- <pre>{{projeto | json}}</pre> -->
+<!-- <pre>{{projeto?.composicaoRhProjeto | json}}</pre> -->
