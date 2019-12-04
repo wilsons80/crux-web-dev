@@ -51,19 +51,31 @@ export class UnidadesMultiplasComponent implements OnInit {
       this.unidadesComboCadastro = unidades;
     });
 
+    if(!_.isEmpty(this.unidades)){
+      this.unidadeSelecionadaService.unidadesSelecionadas.emit(this.unidades);
+    }
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
 
     if(changes["unidades"] && _.isEmpty (changes["unidades"].currentValue)){
-      this.unidadeService.getUnidadeLogada().subscribe((unidade:Unidade) => {
-        this.unidades.push(unidade);
-        this.unidadeSelecionadaService.unidadesSelecionadas.emit(this.unidades);
-        this.carregarLista();
-      });
+      this.carregaUnidade();
+    }
+
+    if(changes["unidades"] && !_.isEmpty (changes["unidades"].currentValue)){
+      this.unidadeSelecionadaService.unidadesSelecionadas.emit(this.unidades);
     }
     this.carregarLista();
     
+  }
+
+  private carregaUnidade() {
+    this.unidadeService.getUnidadeLogada().subscribe((unidade: Unidade) => {
+      this.unidades.push(unidade);
+      this.unidadeSelecionadaService.unidadesSelecionadas.emit(this.unidades);
+      this.carregarLista();
+    });
   }
 
   limpar() {

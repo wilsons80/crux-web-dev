@@ -66,14 +66,9 @@ export class ColaboradoresProjetoComponent implements OnInit {
 
   ngOnInit() {
 
-   
-    
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
-
-    // this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => this.funcionarios = funcionarios);
-    // this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.cargos = cargos);
-    // this.projetoService.getAll().subscribe((projetos: Projeto[]) => this.projetos = projetos);
-    // this.tiposContratacoesService.getAll().subscribe((tiposContratacoes: TiposContratacoes[]) => this.listaTiposContratacoes = tiposContratacoes);
+    this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.cargos = cargos);
+    this.tiposContratacoesService.getAll().subscribe((tiposContratacoes: TiposContratacoes[]) => this.listaTiposContratacoes = tiposContratacoes);
 
   }
 
@@ -81,11 +76,6 @@ export class ColaboradoresProjetoComponent implements OnInit {
     if(changes["listaColaboradoresProjeto"] && !_.isEmpty (changes["listaColaboradoresProjeto"].currentValue)){
       this.carregarLista();
     }
-   
-    if(changes["listaColaboradoresProjeto"] && !_.isEmpty (changes["listaColaboradoresProjeto"].currentValue)){
-      this.carregarLista();
-    }
-    
     
   }
   
@@ -93,15 +83,15 @@ export class ColaboradoresProjetoComponent implements OnInit {
     this.colaboradoresProjeto = new ColaboradoresProjeto();
   }
   
-  isUnidadeJaAdicionada(): boolean {
-    const unidadeAdicionada = this.listaColaboradoresProjeto.find((cp: ColaboradoresProjeto) => cp.id === this.colaboradoresProjeto.id);
+  isJaAdicionada(): boolean {
+    const unidadeAdicionada = this.listaColaboradoresProjeto.find((cp: ColaboradoresProjeto) => cp.funcionario.id === this.colaboradoresProjeto.funcionario.id);
     
     return !!unidadeAdicionada;
     
   }
   
   adicionar() {
-    if (this.isUnidadeJaAdicionada()) {
+    if (this.isJaAdicionada()) {
       this.toastService.showAlerta('Colaborador já adicionado');
       return;
     }
