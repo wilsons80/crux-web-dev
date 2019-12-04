@@ -1,6 +1,4 @@
 import { TempoSessaoModule } from './../tempo-sessao/tempo-sessao.module';
-import { ModuloPedagogicoComponent } from './modulo-pedagogico/modulo-pedagogico.component';
-import { ModuloAdministrativoComponent } from './modulo-administrativo/modulo-administrativo.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -28,8 +26,6 @@ import { MenuProgramaProjetoComponent } from './menu-programa-projeto/menu-progr
     MenuPrincipalComponent,
     MenuConfiguracoesComponent,
     SubMenuComponent,
-    ModuloAdministrativoComponent,
-    ModuloPedagogicoComponent,
     MenuOrganizacaoInternaComponent,
     MenuEstrategicoComponent,
     MenuGestaoPessoasComponent,
