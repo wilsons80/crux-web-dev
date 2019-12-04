@@ -1,8 +1,8 @@
 import { GrausInstrucaoService } from './../../../../services/graus-instrucao/graus-instrucao.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 import { GrausInstrucao } from 'src/app/core/graus-instrucao';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 
 @Component({
   selector: 'escolaridade',
@@ -17,20 +17,20 @@ export class EscolaridadeComponent implements OnInit {
   grausInstrucao: GrausInstrucao[];
 
   formaIngresso: any[] = [
-    {tipo: 'CRAS'},
-    {tipo: 'DEMANDA ESPONTÂNEA'},
-    {tipo: 'SOLICITAÇÃO JUDICIAL'},
-    {tipo: 'OUTRO'},
+    { tipo: 'CRAS' },
+    { tipo: 'DEMANDA ESPONTÂNEA' },
+    { tipo: 'SOLICITAÇÃO JUDICIAL' },
+    { tipo: 'OUTRO' },
   ];
 
-  tipoEscola: any[] =[
-    {id: 'P' ,tipo: 'PÚBLICO'},
-    {id: 'R' ,tipo: 'PRIVADO'},
+  tipoEscola: any[] = [
+    { id: 'P', tipo: 'PÚBLICO' },
+    { id: 'R', tipo: 'PRIVADO' },
   ];
 
-  nivelEscolaridade: any[] =[
-    {id: 'C' ,tipo: 'COMPLETO'},
-    {id: 'I' ,tipo: 'CURSANDO'},
+  nivelEscolaridade: any[] = [
+    { id: 'C', tipo: 'COMPLETO' },
+    { id: 'I', tipo: 'CURSANDO' },
   ]
 
   constructor(private grausInstrucaoService: GrausInstrucaoService) {
@@ -38,7 +38,10 @@ export class EscolaridadeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.grausInstrucaoService.getAll().subscribe((graus: GrausInstrucao[]) => this.grausInstrucao = graus);
+    this.pessoaFisica.grausInstrucao = new GrausInstrucao();
+
+    this.grausInstrucaoService.getAll()
+      .subscribe((graus: GrausInstrucao[]) => this.grausInstrucao = graus);
   }
 
 }
