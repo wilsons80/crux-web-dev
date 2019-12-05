@@ -12,4 +12,18 @@ export class TurmasService  extends BaseService<Turmas> {
   constructor(http: HttpClient) {
     super(http, Rotas.TURMAS);
   }
+
+  getFilter(idPrograma: string|number, idProjeto: string|number, idUnidade: string|number) {
+    idPrograma = idPrograma || '';
+    idProjeto = idProjeto || '';
+    idUnidade = idUnidade || '';
+
+    return this.http.get(Rotas.TURMAS + 'filter', { params: {
+        programa: `${idPrograma}` ,
+        projeto: `${idPrograma}` ,
+        unidade: `${idUnidade}`
+      }
+    });
+
+  }
 }
