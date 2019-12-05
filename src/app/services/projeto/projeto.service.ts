@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Projeto } from 'src/app/core/projeto';
+import { BaseService } from '../base/base.service';
+import { Rotas } from 'src/app/core/rotas';
 
 
 const rootPath = 'api/projeto/';
@@ -8,27 +10,18 @@ const rootPath = 'api/projeto/';
 @Injectable({
   providedIn: 'root'
 })
-export class ProjetoService {
+export class ProjetoService extends BaseService<Projeto> {
 
-  constructor(private http: HttpClient) { }
-
-  getAll() {
-    return this.http.get(rootPath);
+  constructor(http: HttpClient) {
+    super(http, Rotas.PROJETO);
   }
 
-  getById(id:number) {
-    return this.http.get(rootPath + `${id}`);
-  }
- 
-  cadastrar(projeto:Projeto) {
-    return this.http.post(rootPath, projeto);
+  getAllIntituicaoLogada() {
+    return this.http.get(`${Rotas.PROJETO}instituicao/logada`);
   }
 
-  alterar(projeto:Projeto) {
-    return this.http.put(rootPath, projeto);
+  getAllPorPrograma(idPrograma: number) {
+    return this.http.get(`${Rotas.PROJETO}programa/${idPrograma}`);
   }
 
-  excluir(id:number) {
-    return this.http.delete(rootPath+ `${id}`);
-  }
 }

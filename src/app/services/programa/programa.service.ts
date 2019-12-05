@@ -1,35 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BaseService } from '../base/base.service';
+import { Rotas } from 'src/app/core/rotas';
 import { Programa } from 'src/app/core/programa';
 
-
-const rootPath = 'api/programa/';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProgramaService {
+export class ProgramaService extends BaseService<Programa> {
 
-  constructor(private http: HttpClient) { }
-
-  getAll() {
-    return this.http.get(rootPath);
+  constructor(http: HttpClient) {
+    super(http, Rotas.PROGRAMA);
   }
 
-  getById(id:number) {
-    return this.http.get(rootPath + `${id}`);
-  }
- 
-  cadastrar(programa:Programa) {
-    return this.http.post(rootPath, programa);
-  }
-
-  alterar(programa:Programa) {
-    return this.http.put(rootPath, programa);
-  }
-
-  excluir(id:number) {
-    return this.http.delete(rootPath+ `${id}`);
+  getAllProgramasIntituicaoLogada() {
+    return this.http.get(`${Rotas.PROGRAMA}instituicao/logada`);
   }
 
 }
