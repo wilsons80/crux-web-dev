@@ -36,6 +36,7 @@
     "@angular/router": "~8.2.0",
     "@types/jwt-decode": "^2.2.1",
     "@types/mocha": "^5.2.7",
+    "angular-dual-listbox": "^5.0.1",
     "angular2-text-mask": "^9.0.0",
     "cross-env": "^5.2.0",
     "ejs": "^2.5.6",
