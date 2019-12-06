@@ -20,7 +20,7 @@
 
                     <mat-form-field fxFlex="50%" fxFlexOffset="20px">
                         <mat-label>Cargo:</mat-label>
-                        <mat-select [(ngModel)]="colaboradoresProjeto.cargo" name="cargo" required>
+                        <mat-select [(ngModel)]="colaboradoresProjeto.cargo" name="cargo" required (selectionChange)="verificaComposicaoCargo()">
                             <mat-option *ngFor="let m of cargos" [value]="m">
                                 {{m.nome}}
                             </mat-option>
@@ -63,7 +63,7 @@
                         Limpar
                     </button>
     
-                    <button mat-raised-button name="botaoAdicionar" [disabled]=formulario.invalid fxFlex="20%" color="primary" (click)="adicionar()">
+                    <button mat-raised-button name="botaoAdicionar" [disabled]=formulario.invalid  fxFlex="20%" color="primary" (click)="adicionar()">
                         Adicionar
                     </button>
     

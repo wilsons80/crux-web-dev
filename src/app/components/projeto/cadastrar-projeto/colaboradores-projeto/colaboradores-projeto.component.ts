@@ -1,20 +1,22 @@
-import { TiposContratacoesService } from './../../../../services/tipos-contratacoes/tipos-contratacoes.service';
-import { Component, Input, OnInit, ViewChild, SimpleChanges } from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { Cargo } from 'src/app/core/cargo';
+import { Component, OnInit, Input, ViewChild, SimpleChanges } from '@angular/core';
 import { ColaboradoresProjeto } from 'src/app/core/colaboradores-projeto';
-import { Funcionario } from 'src/app/core/funcionario';
-import { Projeto } from 'src/app/core/projeto';
-import { CargosService } from 'src/app/services/cargos/cargos.service';
-import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
-import { ProjetoService } from 'src/app/services/projeto/projeto.service';
-import { ToastService } from 'src/app/services/toast/toast.service';
-import { Acesso } from 'src/app/core/acesso';
-import { ActivatedRoute } from '@angular/router';
-import { TiposContratacoes } from 'src/app/core/tipos-contratacoes';
-import * as _ from 'lodash';
 import { Unidade } from 'src/app/core/unidade';
+import { ComposicaoRhProjeto } from 'src/app/core/composicao-rh-projeto';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { Acesso } from 'src/app/core/acesso';
+import { Funcionario } from 'src/app/core/funcionario';
+import { Cargo } from 'src/app/core/cargo';
+import { Projeto } from 'src/app/core/projeto';
+import { TiposContratacoes } from 'src/app/core/tipos-contratacoes';
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
+import { CargosService } from 'src/app/services/cargos/cargos.service';
+import { ActivatedRoute } from '@angular/router';
+import { TiposContratacoesService } from 'src/app/services/tipos-contratacoes/tipos-contratacoes.service';
 import { UnidadeSelecionadaService } from 'src/app/services/unidadeSelecionada/unidade-selecionada.service';
+import { ComposicaoRhProjetoService } from 'src/app/services/composicao-rh-projeto/composicao-rh-projeto.service';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'colaboradores-projeto',
@@ -25,6 +27,8 @@ export class ColaboradoresProjetoComponent implements OnInit {
   
   @Input() listaColaboradoresProjeto: ColaboradoresProjeto[];
   @Input() unidades: Unidade[];
+  
+  listaComposicaoRhProjeto: ComposicaoRhProjeto[];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -46,15 +50,16 @@ export class ColaboradoresProjetoComponent implements OnInit {
   cargos: Cargo[] =[];
   projetos: Projeto[] = [];
   listaTiposContratacoes: TiposContratacoes[] = [];
+  composicaoSelecionada:ComposicaoRhProjeto;
 
   constructor(
     private toastService: ToastService,
     private funcionarioService: FuncionarioService,
     private cargosService: CargosService,
-    private projetoService: ProjetoService,
     private activatedRoute:ActivatedRoute,
     private tiposContratacoesService:TiposContratacoesService,
-    private unidadeSelecionadaService:UnidadeSelecionadaService
+    private unidadeSelecionadaService:UnidadeSelecionadaService,
+    private composicaoRhProjetoService:ComposicaoRhProjetoService
   ) { 
 
     this.unidadeSelecionadaService.unidadesSelecionadas.subscribe((unidades: Unidade[]) => {
@@ -66,21 +71,35 @@ export class ColaboradoresProjetoComponent implements OnInit {
 
   ngOnInit() {
 
+    this.composicaoRhProjetoService.composicaoRhProjetoChange.subscribe((listaComposicaoRhProjeto: ComposicaoRhProjeto[])=>{
+      this.listaComposicaoRhProjeto = listaComposicaoRhProjeto;
+      this.excluirFuncionarioDeComposicaoDeletada();
+    })
+
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
     this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.cargos = cargos);
     this.tiposContratacoesService.getAll().subscribe((tiposContratacoes: TiposContratacoes[]) => this.listaTiposContratacoes = tiposContratacoes);
 
+  }
+  
+  excluirFuncionarioDeComposicaoDeletada() {
+    _.forEach(this.listaColaboradoresProjeto, (colaboradores:ColaboradoresProjeto) => {
+      const composicaoAindaExiste = _.filter(this.listaComposicaoRhProjeto, (composicao:ComposicaoRhProjeto) => colaboradores.cargo.id == composicao.cargo.id);
+      if(!composicaoAindaExiste){
+        this.deletar(colaboradores);
+      }
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes["listaColaboradoresProjeto"] && !_.isEmpty (changes["listaColaboradoresProjeto"].currentValue)){
       this.carregarLista();
     }
-    
   }
   
   limpar() {
     this.colaboradoresProjeto = new ColaboradoresProjeto();
+    this.composicaoSelecionada = null;
   }
   
   isJaAdicionada(): boolean {
@@ -89,10 +108,24 @@ export class ColaboradoresProjetoComponent implements OnInit {
     return !!unidadeAdicionada;
     
   }
+
+  isNumeroMaximoDeColaboradoresExcedido() {
+    const listaJaPreenchidaColaboradoresCargo = _.filter(this.listaColaboradoresProjeto, (colaborador:ColaboradoresProjeto) => colaborador.cargo.id == this.colaboradoresProjeto.cargo.id);
+    if(listaJaPreenchidaColaboradoresCargo.length === this.composicaoSelecionada.qtd){
+      return true;
+    }
+  
+    return false;
+  }
   
   adicionar() {
     if (this.isJaAdicionada()) {
       this.toastService.showAlerta('Colaborador já adicionado');
+      return;
+    }
+
+    if (this.isNumeroMaximoDeColaboradoresExcedido()) {
+      this.toastService.showAlerta(`Número máximo(${this.composicaoSelecionada.qtd}) de funcionários excedido para o cargo ${this.colaboradoresProjeto.cargo.nome}`);
       return;
     }
     
@@ -102,6 +135,7 @@ export class ColaboradoresProjetoComponent implements OnInit {
     this.listaColaboradoresProjeto.push(colaboradorSelecionado);
     this.limpar();
   }
+
   
   deletar(colaboradoresProjeto: ColaboradoresProjeto): void {
     const index = this.listaColaboradoresProjeto.indexOf(this.listaColaboradoresProjeto.find(cp => cp.funcionario.id === colaboradoresProjeto.funcionario.id));
@@ -138,6 +172,20 @@ export class ColaboradoresProjetoComponent implements OnInit {
       console.log("func", this.funcionarios);
       
     })
+  }
+
+  verificaComposicaoCargo(){
+    if(this.colaboradoresProjeto.cargo ){
+      this.composicaoSelecionada = _.find(this.listaComposicaoRhProjeto , c => c.cargo.id === this.colaboradoresProjeto.cargo.id);
+      if(!this.composicaoSelecionada){
+        this.toastService.showAlerta(`Não existe nenhuma composição definida para o cargo ${this.colaboradoresProjeto.cargo.nome}`);
+        this.colaboradoresProjeto.cargo = null;
+      }
+    }
+
+    
+    
+
   }
 
 }

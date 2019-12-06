@@ -4,17 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import { Acesso } from 'src/app/core/acesso';
 import { Cargo } from 'src/app/core/cargo';
-import { Funcionario } from 'src/app/core/funcionario';
-import { Projeto } from 'src/app/core/projeto';
-import { TiposContratacoes } from 'src/app/core/tipos-contratacoes';
-import { Unidade } from 'src/app/core/unidade';
-import { CargosService } from 'src/app/services/cargos/cargos.service';
-import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
-import { ProjetoService } from 'src/app/services/projeto/projeto.service';
-import { ToastService } from 'src/app/services/toast/toast.service';
-import { UnidadeSelecionadaService } from 'src/app/services/unidadeSelecionada/unidade-selecionada.service';
-import { TiposContratacoesService } from '../../../../services/tipos-contratacoes/tipos-contratacoes.service';
 import { ComposicaoRhProjeto } from 'src/app/core/composicao-rh-projeto';
+import { TiposContratacoes } from 'src/app/core/tipos-contratacoes';
+import { CargosService } from 'src/app/services/cargos/cargos.service';
+import { ComposicaoRhProjetoService } from 'src/app/services/composicao-rh-projeto/composicao-rh-projeto.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { TiposContratacoesService } from '../../../../services/tipos-contratacoes/tipos-contratacoes.service';
+import { ColaboradoresProjeto } from 'src/app/core/colaboradores-projeto';
+import { Projeto } from 'src/app/core/projeto';
 
 @Component({
   selector: 'composicao-rh-projeto',
@@ -24,7 +21,9 @@ import { ComposicaoRhProjeto } from 'src/app/core/composicao-rh-projeto';
 export class ComposicaoRhProjetoComponent implements OnInit {
 
   @Input() listaComposicaoRhProjeto: ComposicaoRhProjeto[];
+  @Input() projeto:Projeto;
 
+  colaboradoresProjeto:ColaboradoresProjeto[];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   mostrarTabela = false;
@@ -48,7 +47,8 @@ export class ComposicaoRhProjetoComponent implements OnInit {
     private cargosService: CargosService,
     private activatedRoute: ActivatedRoute,
     private tiposContratacoesService: TiposContratacoesService,
-  ) {}
+    private composicaoRhProjetoService: ComposicaoRhProjetoService
+  ) { }
 
   ngOnInit() {
 
@@ -62,7 +62,6 @@ export class ComposicaoRhProjetoComponent implements OnInit {
     if (changes["listaComposicaoRhProjeto"] && !_.isEmpty(changes["listaComposicaoRhProjeto"].currentValue)) {
       this.carregarLista();
     }
-
   }
 
   limpar() {
@@ -86,15 +85,29 @@ export class ComposicaoRhProjetoComponent implements OnInit {
     Object.assign(colaboradorSelecionado, this.composicaoRhProjeto);
 
     this.listaComposicaoRhProjeto.push(colaboradorSelecionado);
+    this.composicaoRhProjetoService.composicaoRhProjetoChange.emit(this.listaComposicaoRhProjeto);
     this.limpar();
   }
 
   deletar(composicaoRhProjeto: ComposicaoRhProjeto): void {
-    const index = this.listaComposicaoRhProjeto.indexOf(this.listaComposicaoRhProjeto.find(cp => cp.cargo.id === composicaoRhProjeto.cargo.id));
-    if (index >= 0) {
-      this.listaComposicaoRhProjeto.splice(index, 1);
-      this.carregarLista();
+    if(!this.verificaSeTemColaboradoresParaOCargo(composicaoRhProjeto)){
+      const index = this.listaComposicaoRhProjeto.indexOf(this.listaComposicaoRhProjeto.find(cp => cp.cargo.id === composicaoRhProjeto.cargo.id));
+      if (index >= 0) {
+        this.listaComposicaoRhProjeto.splice(index, 1);
+        this.composicaoRhProjetoService.composicaoRhProjetoChange.emit(this.listaComposicaoRhProjeto);
+        this.carregarLista();
+      }
+    }else{
+      this.toastService.showAlerta(`Composição não pode excluída pois possui colaboradores vinculados ao cargo ${composicaoRhProjeto.cargo.nome}`)
     }
+    
+  }
+  verificaSeTemColaboradoresParaOCargo(composicaoRhProjeto: ComposicaoRhProjeto) {
+    const colaboradoresDaComposicao = _.find(this.projeto.colaboradoresProjeto , (colaborador:ColaboradoresProjeto) => colaborador.cargo.id == composicaoRhProjeto.cargo.id);
+    if(colaboradoresDaComposicao){
+      return true;
+    }
+    return false;
   }
 
   novo() {
@@ -108,6 +121,7 @@ export class ComposicaoRhProjetoComponent implements OnInit {
       this.msg = 'Nenhum cargo adicionado.';
     } else {
       this.dataSource.data = this.listaComposicaoRhProjeto ? this.listaComposicaoRhProjeto : [];
+      this.composicaoRhProjetoService.composicaoRhProjetoChange.emit(this.listaComposicaoRhProjeto);
       this.mostrarTabela = true;
     }
   }
