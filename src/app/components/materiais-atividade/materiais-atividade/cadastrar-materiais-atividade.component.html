@@ -1,4 +1,4 @@
-<mat-toolbar class="subtitulo">Bens e Produtos</mat-toolbar>
+<mat-toolbar class="subtitulo">Cadastrar Material</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
@@ -10,40 +10,40 @@
             <mat-form-field fxFlex="50%" fxFlexOffset="20px">
                 <input matInput maxlength="200" name="descricao" 
                        placeholder="Descrição"
-                       [(ngModel)]="produtosAtividade.descricao" 
+                       [(ngModel)]="materiaisAtividade.descricao" 
                        required>
             </mat-form-field>
 
             <mat-form-field fxFlex="15%" >
                     <input matInput name="dataAquisicao" [matDatepicker]="dataAquisicao" placeholder="Data de Aquisição:"
-                        [(ngModel)]="produtosAtividade.dataAquisicao" >
+                        [(ngModel)]="materiaisAtividade.dataAquisicao" >
                     <mat-datepicker-toggle matSuffix [for]="dataAquisicao"></mat-datepicker-toggle>
                     <mat-datepicker #dataAquisicao></mat-datepicker>
             </mat-form-field>
             
             <mat-form-field fxFlex="20%" >
-                    <input matInput name="dataVendaProduto" [matDatepicker]="dataVendaProduto" placeholder="Data de Venda:"
-                        [(ngModel)]="produtosAtividade.dataVendaProduto" >
-                    <mat-datepicker-toggle matSuffix [for]="dataVendaProduto"></mat-datepicker-toggle>
-                    <mat-datepicker #dataVendaProduto></mat-datepicker>
+                    <input matInput name="dataVendaMAterial" [matDatepicker]="dataVendaMaterial" placeholder="Data de Venda:"
+                        [(ngModel)]="materiaisAtividade.dataVendaMaterial" >
+                    <mat-datepicker-toggle matSuffix [for]="dataVendaMaterial"></mat-datepicker-toggle>
+                    <mat-datepicker #dataVendaMaterial></mat-datepicker>
             </mat-form-field>
         </div>
 
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
            
             <mat-form-field fxFlex="50%" fxFlexOffset="20px">
-                <input matInput maxlength="200" name="descricaoOrigemProduto" placeholder="Descrição da Origem do Produto:"
-                    [(ngModel)]="produtosAtividade.descricaoOrigemProduto">
+                <input matInput maxlength="200" name="descricaoOrigemMaterial" placeholder="Descrição da Origem do Material:"
+                    [(ngModel)]="materiaisAtividade.descricaoOrigemMaterial">
             </mat-form-field>
 
             <mat-form-field fxFlex="15%" >
-                <input matInput maxlength="200" name="qtdProduto" placeholder="Quantidade do Produto:"
-                    [(ngModel)]="produtosAtividade.qtdProduto">
+                <input matInput maxlength="200" name="qtdMaterial" placeholder="Quantidade do Material:"
+                    [(ngModel)]="materiaisAtividade.qtdMaterial">
             </mat-form-field>
 
             <mat-form-field fxFlex="20%" >
-                <input matInput maxlength="200" name="qtdProdutoVendida" placeholder="Quantidade Vendida do Produto:"
-                    [(ngModel)]="produtosAtividade.qtdProdutoVendida">
+                <input matInput maxlength="200" name="qtdMaterialVendida" placeholder="Quantidade Vendida do Material:"
+                    [(ngModel)]="materiaisAtividade.qtdMaterialVendida">
             </mat-form-field>
 
             
@@ -55,15 +55,15 @@
                 <mat-toolbar class="titulopartes">Pagamento</mat-toolbar>
                 <div fxLayout="row" fxLayoutGap="50px">
                     <mat-form-field fxFlexOffset="20px" fxFlex="35%">
-                        <input currencyMask name="valorProduto" placeholder="Valor do Produto:" matInput
-                            [(ngModel)]="produtosAtividade.valorProduto"
+                        <input currencyMask name="valorMaterial" placeholder="Valor do Material:" matInput
+                            [(ngModel)]="materiaisAtividade.valorMaterial"
                             [options]="{ prefix: '', thousands: '.', decimal: ',' }" />
                         <span matPrefix>R$&nbsp;</span>
                     </mat-form-field>
 
                     <mat-form-field fxFlex="50%">
                         <mat-label>Forma de Pagamengo:</mat-label>
-                        <mat-select [(ngModel)]="produtosAtividade.formaPagamento" name="formaPagamento">
+                        <mat-select [(ngModel)]="materiaisAtividade.formaPagamento" name="formaPagamento">
                             <mat-option *ngFor="let m of formasPagamento" [value]="m.sigla">
                                 {{m.descricao}}
                             </mat-option>
@@ -72,13 +72,13 @@
                 </div>
         </div>
             
-        <!-- PRODUTO -->
+        <!-- MATERIAL -->
         <div fxLayout="column" fxFlex="35%" >
-            <mat-toolbar class="titulopartes">Produto</mat-toolbar>
+            <mat-toolbar class="titulopartes">Material</mat-toolbar>
             <mat-form-field style="margin: 0 20px 0 20px" fxFlex="40%">
-                <mat-label>Produtos:</mat-label>
-                <mat-select [(ngModel)]="produtosAtividade.produto.id" name="produto" required>
-                    <mat-option *ngFor="let m of produtos" [value]="m.id">
+                <mat-label>Materiais:</mat-label>
+                <mat-select [(ngModel)]="materiaisAtividade.material.id" name="material" required>
+                    <mat-option *ngFor="let m of materiais" [value]="m.id">
                         {{m.nome}}
                     </mat-option>
                 </mat-select>
@@ -90,7 +90,7 @@
             <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
             <mat-form-field style="margin: 0 20px 0 20px" fxFlex="40%">
                 <mat-label>Atividades</mat-label>
-                <mat-select [(ngModel)]="produtosAtividade.atividade.id" 
+                <mat-select [(ngModel)]="materiaisAtividade.atividade.id" 
                             (selectionChange)=mostrarDadosAtividade($event.value)
                             name="atividade" 
                             required>
@@ -103,8 +103,8 @@
 
     </div>
 
-    <div *ngIf="produtosAtividade.atividade.id">
-        <dados-atividade [atividade]="produtosAtividade.atividade"></dados-atividade>
+    <div *ngIf="materiaisAtividade.atividade.id">
+        <dados-atividade [atividade]="materiaisAtividade.atividade"></dados-atividade>
     </div>
 
     <!-- OBSERVACAO -->
@@ -114,13 +114,13 @@
             <mat-label>Observação:</mat-label>
             <textarea  matInput #message
                     name="observacoes"
-                    [(ngModel)]="produtosAtividade.observacao"
+                    [(ngModel)]="materiaisAtividade.observacao"
                     cdkTextareaAutosize
                     #autosize="cdkTextareaAutosize"
                     cdkAutosizeMinRows="2"
                     maxlength="200"
                     ></textarea>
-            <mat-hint align="end">{{produtosAtividade?.observacao?.length}} / 200</mat-hint>
+            <mat-hint align="end">{{materiaisAtividade?.observacao?.length}} / 200</mat-hint>
         </mat-form-field>
     </div>
 

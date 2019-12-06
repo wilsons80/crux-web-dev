@@ -1,3 +1,4 @@
+import { MateriaisAtividadeModule } from './components/materiais-atividade/materiais-atividade.module';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -6,7 +7,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { DateAdapter, MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatIconModule, MatInputModule, MatMenuModule, MatPaginatorIntl, MatSidenavModule, MatSnackBarModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
-import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +29,7 @@ import { AvaliacaoAlunoModule } from './components/avaliacao-aluno/avaliacao-alu
 import { AvaliacaoAtividadeModule } from './components/avaliacao-atividade/avaliacao-atividade.module';
 import { CadastroReservaAtividadeModule } from './components/cadastro-reserva-atividade/cadastro-reserva-atividade.module';
 import { CargoModule } from './components/cargo/cargo.module';
+import { CboModule } from './components/cbo/cbo.module';
 import { AuthInterceptor } from './components/common/auth-interceptor/auth-interceptor';
 import { ConfirmDialogComponent } from './components/common/confirm-dialog/confirm-dialog.component';
 import { ExceptionHandlerModule } from './components/common/exception-handler/exception-handler.module';
@@ -57,13 +59,13 @@ import { InstituicaoModule } from './components/instituicao/instituicao.module';
 import { LoginModule } from './components/login/login.module';
 import { MenuPrincipalModule } from './components/menu-principal/menu-principal.module';
 import { MetasModule } from './components/metas/metas.module';
+import { NiveisTurmasModule } from './components/niveis-turmas/niveis-turmas.module';
 import { NovaSenhaModule } from './components/nova-senha/nova-senha.module';
 import { ObjetivoModule } from './components/objetivo/objetivo.module';
+import { OcorrenciaAlunoModule } from './components/ocorrencia-aluno/ocorrencia-aluno.module';
 import { ParticipanteAtendimentoModule } from './components/participante-atendimento/participante-atendimento.module';
 import { PerspectivaModule } from './components/perspectiva/perspectiva.module';
 import { PlanosAcaoModule } from './components/planos-acao/planos-acao.module';
-import { ProdutoModule } from './components/produto/produto.module';
-import { ProdutosAtividadeModule } from './components/produtos-atividade/produtos-atividade.module';
 import { ProgramasModule } from './components/programas/programas.module';
 import { ProjetoModule } from './components/projeto/projeto.module';
 import { QuestionarioModule } from './components/questionario/questionario.module';
@@ -72,29 +74,27 @@ import { SituacaoVulnerabilidadeModule } from './components/situacao-vulnerabili
 import { SolucaoAtendimentoModule } from './components/solucao-atendimento/solucao-atendimento.module';
 import { TalentoModule } from './components/talento/talento.module';
 import { TempoSessaoModule } from './components/tempo-sessao/tempo-sessao.module';
+import { TipoOcorrenciaAlunoModule } from './components/tipo-ocorrencia-aluno/tipo-ocorrencia-aluno.module';
+import { TiposContratacoesModule } from './components/tipos-contratacoes/tipos-contratacoes.module';
 import { ToolBarPrincipalModule } from './components/tool-bar-principal/tool-bar-principal.module';
+import { TurmasModule } from './components/turmas/turmas.module';
 import { UnidadeModule } from './components/unidade/unidade.module';
 import { UniformeEntregueAlunoModule } from './components/uniforme-entregue-aluno/uniforme-entregue-aluno.module';
 import { UploadFotoModule } from './components/upload-foto/upload-foto.module';
 import { UsuarioModule } from './components/usuario/usuario.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
-import { CboModule } from './components/cbo/cbo.module';
-import { TipoOcorrenciaAlunoModule } from './components/tipo-ocorrencia-aluno/tipo-ocorrencia-aluno.module';
-import { OcorrenciaAlunoModule } from './components/ocorrencia-aluno/ocorrencia-aluno.module';
-import { TiposContratacoesModule } from './components/tipos-contratacoes/tipos-contratacoes.module';
-import { NiveisTurmasModule } from './components/niveis-turmas/niveis-turmas.module';
-import { TurmasModule } from './components/turmas/turmas.module';
+import { MaterialModule } from './components/material/material.module';
 
 export const MY_FORMATS = {
   parse: {
-      dateInput: 'DD/MM/YYYY',
+    dateInput: 'DD/MM/YYYY',
   },
   display: {
-      dateInput: 'DD/MM/YYYY',
-      monthYearLabel: 'MM YYYY',
-      dateA11yLabel: 'DD/MM/YYYY',
-      monthYearA11yLabel: 'MM YYYY',
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MM YYYY',
+    dateA11yLabel: 'DD/MM/YYYY',
+    monthYearA11yLabel: 'MM YYYY',
   },
 };
 
@@ -155,7 +155,7 @@ registerLocaleData(localePt, 'pt-BR');
     PlanosAcaoModule,
     ProgramasModule,
     ProjetoModule,
-    ProdutoModule,
+    MaterialModule,
     AtividadeModule,
     UploadFotoModule,
     FuncionarioModule,
@@ -186,7 +186,7 @@ registerLocaleData(localePt, 'pt-BR');
     CondicaoMoradiaModule,
     UsuarioModule,
     DocumentoAtividadeModule,
-    ProdutosAtividadeModule,
+    MateriaisAtividadeModule,
     CadastroReservaAtividadeModule,
     TempoSessaoModule,
     AcoesAtividadeModule,

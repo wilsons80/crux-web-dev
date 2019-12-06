@@ -3,9 +3,7 @@ import { CadastroReservaAtividadeService } from './../../services/cadastro-reser
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
 import { Atividade } from 'src/app/core/atividade';
-import { ProdutosAtividade } from 'src/app/core/produtos-atividade';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
-import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { Acesso } from 'src/app/core/acesso';
@@ -69,7 +67,7 @@ export class CadastroReservaAtividadeComponent implements OnInit {
   consultar() {
     this.cadastroReservaAtividadeService.getPorAtividade(this.atividade.id).subscribe(
       (cadastroReservaAtividade: CadastroReservaAtividade[]) => {
-        if (!ProdutosAtividade) {
+        if (!cadastroReservaAtividade) {
           this.mostrarTabela = false;
           this.msg = "Nenhum registro para a pesquisa selecionada";
         } else {

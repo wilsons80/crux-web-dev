@@ -3,17 +3,17 @@ import { MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource } from '@a
 import { ActivatedRoute, Router } from '@angular/router';
 import { Atividade } from 'src/app/core/atividade';
 import { Acesso } from 'src/app/core/acesso';
-import { ProdutosAtividade } from 'src/app/core/produtos-atividade';
 import { AtividadeService } from 'src/app/services/atividade/atividade.service';
-import { ProdutosAtividadeService } from 'src/app/services/produtos-atividade/produtos-atividade.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
+import { MateriaisAtividade } from 'src/app/core/materiais-atividade';
+import { MateriaisAtividadeService } from 'src/app/services/materiais-atividade/materiais-atividade.service';
 
 @Component({
-  selector: 'app-produtos-atividade',
-  templateUrl: './produtos-atividade.component.html',
-  styleUrls: ['./produtos-atividade.component.css']
+  selector: 'app-materiais-atividade',
+  templateUrl: './materiais-atividade.component.html',
+  styleUrls: ['./materiais-atividade.component.css']
 })
-export class ProdutosAtividadeComponent implements OnInit {
+export class MateriaisAtividadeComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   listaAtividade: Atividade[];
@@ -28,14 +28,14 @@ export class ProdutosAtividadeComponent implements OnInit {
     "descricao",
     "atividade",
     "dataAquisicao",
-    "valorProduto",
+    "valorMaterial",
     "acoes"
   ];
-  dataSource: MatTableDataSource<ProdutosAtividade> = new MatTableDataSource();
+  dataSource: MatTableDataSource<MateriaisAtividade> = new MatTableDataSource();
 
   constructor(
     private atividadeService: AtividadeService,
-    private produtosAtividadeService: ProdutosAtividadeService,
+    private materiaisatividadeService: MateriaisAtividadeService,
     private router: Router,
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute
@@ -48,8 +48,8 @@ export class ProdutosAtividadeComponent implements OnInit {
       this.listaAtividade = listaAtividade;
     });
 
-    this.produtosAtividadeService.getAll().subscribe((produtosAtividade: ProdutosAtividade[]) => {
-      this.dataSource.data = produtosAtividade;
+    this.materiaisatividadeService.getAll().subscribe((materiaisAtividade: MateriaisAtividade[]) => {
+      this.dataSource.data = materiaisAtividade;
       this.mostrarTabela = true;
     });
   }
@@ -62,13 +62,13 @@ export class ProdutosAtividadeComponent implements OnInit {
   }
 
   consultar() {
-    this.produtosAtividadeService.getPorAtividade(this.atividade.id).subscribe(
-      (produtosAtividade: ProdutosAtividade[]) => {
-        if (!ProdutosAtividade) {
+    this.materiaisatividadeService.getPorAtividade(this.atividade.id).subscribe(
+      (materiaisAtividade: MateriaisAtividade[]) => {
+        if (!MateriaisAtividade) {
           this.mostrarTabela = false;
           this.msg = "Nenhum registro para a pesquisa selecionada";
         } else {
-          this.dataSource.data = produtosAtividade;
+          this.dataSource.data = materiaisAtividade;
           this.mostrarTabela = true;
         }
       },
@@ -81,20 +81,20 @@ export class ProdutosAtividadeComponent implements OnInit {
     );
   }
 
-  atualizar(produtosAtividade: ProdutosAtividade) {
-    this.router.navigate(["/produtosatividade/cadastrar"], {
-      queryParams: { idProdutoAtividade: produtosAtividade.id }
+  atualizar(materiaisAtividade: MateriaisAtividade) {
+    this.router.navigate(["/materiaisatividade/cadastrar"], {
+      queryParams: { idMaterialAtividade: materiaisAtividade.id }
     });
   }
 
-  deletar(produtosAtividade: ProdutosAtividade) {
-    this.chamaCaixaDialogo(produtosAtividade);
+  deletar(materiaisAtividade: MateriaisAtividade) {
+    this.chamaCaixaDialogo(materiaisAtividade);
   }
 
-  chamaCaixaDialogo(produtosAtividade: ProdutosAtividade) {
+  chamaCaixaDialogo(materiaisAtividade: MateriaisAtividade) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      pergunta: `Certeza que deseja excluir o produto da atividade?`,
+      pergunta: `Certeza que deseja excluir o material da atividade?`,
       textoConfirma: "SIM",
       textoCancela: "NÃO"
     };
@@ -102,8 +102,8 @@ export class ProdutosAtividadeComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
       if (confirma) {
-        this.produtosAtividadeService
-          .excluir(produtosAtividade.id)
+        this.materiaisatividadeService
+          .excluir(materiaisAtividade.id)
           .subscribe(() => {
             this.consultar();
             this.atividade.id = null;

@@ -15,9 +15,9 @@
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
-            <!-- PRODUTO -->
+            <!-- MATERIAL -->
         <div style="padding-left: 15px">
-            <sub-menu *ngIf="verificaAcesso(getModulos().PRODUTO)" icone="unarchive" titulo="Cadastro de Bens e Produtos" rota="produto" toolTip="Cadastro de Bens e Produtos"></sub-menu>
+            <sub-menu *ngIf="verificaAcesso(getModulos().MATERIAL)" icone="unarchive" titulo="Cadastro de Materiais" rota="material" toolTip="Cadastro de Materiais"></sub-menu>
         </div>
 
     </div>

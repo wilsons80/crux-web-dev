@@ -33,7 +33,7 @@ export enum Rotas {
     PROGRAMA                        = 'api/programa/',
     PROJETO                         = 'api/projeto/',
     DOCUMENTO_ATIVIDADE             = 'api/documentosatividade/',
-    PRODUTO_ATIVIDADE               = 'api/produtosatividade/',
+    MATERIAIS_ATIVIDADE             = 'api/materiaisatividade/',
     CADASTRO_RESERVA_ATIVIDADE      = 'api/cadastroreservaatividade/',
     UNIDADE                         = 'api/unidade/',
     ACOES_ATIVIDADE                 = 'api/acao/',
@@ -49,5 +49,6 @@ export enum Rotas {
     DEPENDENTES                     = 'api/dependentes/',
     PRESTACAO_CONTAS                = 'api/prestacaocontas/',
     NIVEIS_TURMAS                   = 'api/niveisturmas/',
-    TURMAS                          = 'api/turmas/'
+    TURMAS                          = 'api/turmas/',
+    MATERIAIS                       = 'api/materiais/' 
 }
