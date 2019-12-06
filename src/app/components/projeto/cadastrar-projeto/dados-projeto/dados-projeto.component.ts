@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Projeto } from 'src/app/core/projeto';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { Projeto } from 'src/app/core/projeto';
+
 
 @Component({
   selector: 'dados-projeto',

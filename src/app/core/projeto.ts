@@ -17,11 +17,13 @@ export class Projeto {
 	iniciativa: Iniciativa;
 	programa: Programa;
 	usuarioAlteracao: number;
+	publicoAlvo:string;
+	justificativa:string;
+	objetivoGeral:string;
 	unidades: Unidade[];
 	colaboradoresProjeto:ColaboradoresProjeto[];
 	parceriasProjeto:ParceriasProjeto[];
 	composicaoRhProjeto:ComposicaoRhProjeto[];
-	// ComposicaoRhProjeto
 
 }
 
