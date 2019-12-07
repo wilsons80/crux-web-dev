@@ -9,6 +9,7 @@ import { TurmasService } from 'src/app/services/turmas/turmas.service';
 import * as _ from 'lodash';
 import { Turmas } from 'src/app/core/turmas';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { PessoaFisica } from 'src/app/core/pessoa-fisica';
 
 @Component({
   selector: 'cadastrar-colaboradores-turma',
@@ -48,6 +49,7 @@ export class CadastrarColaboradoresTurmaComponent implements OnInit {
 
   initObjeto() {
     this.colaboradorTurma.funcionario = new Funcionario();
+    this.colaboradorTurma.funcionario.pessoasFisica = new PessoaFisica();
     this.colaboradorTurma.cargo = new Cargo();
     this.colaboradorTurma.dataEntradaTurma = null;
     this.colaboradorTurma.dataSaidaTurma = null;
