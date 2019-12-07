@@ -142,8 +142,15 @@ export class ColaboradoresProjetoComponent implements OnInit {
     const colaboradorSelecionado = new ColaboradoresProjeto();
     Object.assign(colaboradorSelecionado, this.colaboradoresProjeto);
     
+    this.getObjetosCompletosParaLista(colaboradorSelecionado);
+
     this.listaColaboradoresProjeto.push(colaboradorSelecionado);
     this.limpar();
+  }
+
+  getObjetosCompletosParaLista(colaboradoresProjeto:ColaboradoresProjeto) {
+    colaboradoresProjeto.cargo = _.find(this.cargos, (cargo:Cargo) => cargo.id == colaboradoresProjeto.cargo.id);
+    colaboradoresProjeto.funcionario = _.find(this.funcionarios, (funcionario:Funcionario) => funcionario.id == colaboradoresProjeto.funcionario.id);
   }
 
   
@@ -188,19 +195,27 @@ export class ColaboradoresProjetoComponent implements OnInit {
     if(this.colaboradoresProjeto.cargo ){
       this.composicaoSelecionada = _.find(this.listaComposicaoRhProjeto , c => c.cargo.id === this.colaboradoresProjeto.cargo.id);
       if(!this.composicaoSelecionada){
-        this.toastService.showAlerta(`Não existe nenhuma composição definida para o cargo ${this.colaboradoresProjeto.cargo.nome}`);
-        this.colaboradoresProjeto.cargo = null;
+        this.toastService.showAlerta(`Não existe nenhuma composição definida para o cargo escolhido`);
+        const novoCargo = new Cargo();
+        novoCargo.id = null;
+        this.colaboradoresProjeto.cargo = novoCargo;
       }
     }
 
   }
 
   atualizarColaborador(colaboradoresProjeto: ColaboradoresProjeto) {
-    console.log("colaboradoresProjeto", colaboradoresProjeto);
+    this.preencherObjetosVazios(colaboradoresProjeto);
     this.colaboradoresProjeto = colaboradoresProjeto;
     this.openFormCadastro = true;
     this.isAtualizar = true;
 
+  }
+
+  preencherObjetosVazios(colaboradoresProjeto: ColaboradoresProjeto) {
+    if(!colaboradoresProjeto.tiposContratacoes){
+      colaboradoresProjeto.tiposContratacoes = new TiposContratacoes();
+    }
   }
 
   atualizar() {
