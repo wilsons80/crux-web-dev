@@ -32,7 +32,7 @@ export class ParceriasProjetoComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['codigo', 'nomeRazaoSocial', 'cnpj','acoes'];
+  displayedColumns: string[] = ['codigo', 'nomeRazaoSocial', 'cnpj', 'acoes'];
   dataSource: MatTableDataSource<ParceriasProjeto> = new MatTableDataSource();
 
   openFormCadastro = false;
@@ -41,22 +41,30 @@ export class ParceriasProjetoComponent implements OnInit {
 
   isAtualizar = false;
 
-  parceriasProjeto: ParceriasProjeto = new ParceriasProjeto();
+  parceriasProjeto: ParceriasProjeto;
   empresas: Empresa[];
 
   constructor(
     private toastService: ToastService,
     private activatedRoute: ActivatedRoute,
-    private empresaService:EmpresaService
+    private empresaService: EmpresaService
   ) {
-  
+
   }
 
   ngOnInit() {
 
-    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
-    this.empresaService.getAll().subscribe((empresas:Empresa[]) => this.empresas = empresas);
+    this.initObjetos();
 
+    this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
+    this.empresaService.getAll().subscribe((empresas: Empresa[]) => this.empresas = empresas);
+
+  }
+
+  initObjetos() {
+
+    this.parceriasProjeto = new ParceriasProjeto();
+    this.parceriasProjeto.empresa = new Empresa();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -68,7 +76,7 @@ export class ParceriasProjetoComponent implements OnInit {
   }
 
   limpar() {
-    this.parceriasProjeto = new ParceriasProjeto();
+    this.initObjetos();
   }
 
   isJaAdicionada(): boolean {
@@ -87,9 +95,18 @@ export class ParceriasProjetoComponent implements OnInit {
     const parceriaProjetoSelecionado = new ParceriasProjeto();
     Object.assign(parceriaProjetoSelecionado, this.parceriasProjeto);
 
+    this.getObjetosCompletosParaLista(parceriaProjetoSelecionado);
+
     this.listaParceiros.push(parceriaProjetoSelecionado);
     this.limpar();
   }
+
+  getObjetosCompletosParaLista(parceriaProjetoSelecionado: ParceriasProjeto) {
+    console.log("parceriaProjetoSelecionado.empresa", parceriaProjetoSelecionado);
+    parceriaProjetoSelecionado.empresa = _.find(this.empresas, (empresa: Empresa) => empresa.id == parceriaProjetoSelecionado.empresa.id);
+    
+  }
+
 
   deletar(parceriasProjeto: ParceriasProjeto): void {
     const index = this.listaParceiros.indexOf(this.listaParceiros.find(e => e.id === parceriasProjeto.id));
@@ -100,6 +117,7 @@ export class ParceriasProjetoComponent implements OnInit {
   }
 
   novo() {
+    this.isAtualizar = false;
     this.openFormCadastro = !this.openFormCadastro;
     this.limpar();
   }
@@ -113,5 +131,21 @@ export class ParceriasProjetoComponent implements OnInit {
       this.mostrarTabela = true;
     }
   }
+
+  atualizar() {
+    let parceiro: ParceriasProjeto = _.find(this.listaParceiros, (parceiro: ParceriasProjeto) => parceiro.id == this.parceriasProjeto.id);
+    parceiro = this.parceriasProjeto;
+    parceiro.id = null;
+    this.limpar();
+    this.openFormCadastro = false;
+    this.isAtualizar = false;
+  }
+
+  atualizarComposicao(parceiro: ParceriasProjeto) {
+    this.parceriasProjeto = parceiro;
+    this.openFormCadastro = true;
+    this.isAtualizar = true;
+  }
+
 
 }
