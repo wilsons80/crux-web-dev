@@ -88,12 +88,19 @@ export class ComposicaoRhProjetoComponent implements OnInit {
       return;
     }
 
-    const colaboradorSelecionado = new ComposicaoRhProjeto();
-    Object.assign(colaboradorSelecionado, this.composicaoRhProjeto);
+    const composicaoSelecionado = new ComposicaoRhProjeto();
+    Object.assign(composicaoSelecionado, this.composicaoRhProjeto);
 
-    this.listaComposicaoRhProjeto.push(colaboradorSelecionado);
+    this.getObjetosCompletosParaLista(composicaoSelecionado);
+
+    this.listaComposicaoRhProjeto.push(composicaoSelecionado);
     this.composicaoRhProjetoService.composicaoRhProjetoChange.emit(this.listaComposicaoRhProjeto);
     this.limpar();
+  }
+  
+  getObjetosCompletosParaLista(composicaoSelecionado:ComposicaoRhProjeto) {
+    composicaoSelecionado.cargo = _.find(this.cargos, (cargo:Cargo) => cargo.id == composicaoSelecionado.cargo.id);
+    composicaoSelecionado.tiposContratacoes = _.find(this.listaTiposContratacoes, (tiposContratacoes:TiposContratacoes) => tiposContratacoes.id == composicaoSelecionado.tiposContratacoes.id);
   }
 
   deletar(composicaoRhProjeto: ComposicaoRhProjeto): void {
@@ -118,6 +125,7 @@ export class ComposicaoRhProjetoComponent implements OnInit {
   }
 
   novo() {
+    this.isAtualizar = false;
     this.openFormCadastro = !this.openFormCadastro;
     this.limpar();
   }
@@ -147,10 +155,10 @@ export class ComposicaoRhProjetoComponent implements OnInit {
           é necessário retirar alguns colaboradores`)
     } else { 
     composicaoRhProjeto = this.composicaoRhProjeto;
-    console.log("dasda", composicaoRhProjeto);
     composicaoRhProjeto.id = null;
     this.limpar();
     this.openFormCadastro = false;
+    this.isAtualizar = false;
   }
 }
 
