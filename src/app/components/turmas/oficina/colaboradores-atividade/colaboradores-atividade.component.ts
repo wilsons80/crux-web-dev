@@ -9,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ColaboradoresAtividadeComponent implements OnInit {
 
-  @Input() turma: Turmas [];
+  @Input() turma: Turmas;
 
   openFormCadastro = false;
 
