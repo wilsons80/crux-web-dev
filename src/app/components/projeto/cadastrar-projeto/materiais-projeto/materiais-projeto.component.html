@@ -12,7 +12,7 @@
                 <mat-form-field fxFlex="50%" fxFlexOffset="20px">
                     <mat-label>Parceiro:</mat-label>
                     <mat-select [(ngModel)]="materiaisProjeto.parceriasProjeto.id" name="empresa" required>
-                        <mat-option *ngFor="let e of projeto.parceriasProjeto" [value]="e.id">
+                        <mat-option *ngFor="let e of projeto.parceriasProjeto" [value]="e">
                             {{e.empresa.nomeRazaoSocial}}
                         </mat-option>
                     </mat-select>
