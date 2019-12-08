@@ -97,6 +97,8 @@ export class ParceriasProjetoComponent implements OnInit {
 
     this.getObjetosCompletosParaLista(parceriaProjetoSelecionado);
 
+    
+
     this.listaParceiros.push(parceriaProjetoSelecionado);
     this.limpar();
   }
