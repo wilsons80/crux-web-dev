@@ -1,0 +1,27 @@
+<div class="painel-principal" style="padding: 10px;">
+    <mat-tab-group>
+
+        <!-- DADOS OFICINA -->
+        <mat-tab label="DADOS DA OFICINA">
+            <form #formCadastroDadosAtividade="ngForm">
+                <dados-atividade [atividade]=oficina></dados-atividade>
+            </form>
+        </mat-tab>
+
+        <!-- DADOS COLABORADORES ATIVIDADE -->
+        <mat-tab label="COLABORADORES">
+            <form #formCadastroColaboradoresAtividade="ngForm">
+                <colaboradores-atividade [turma]="turma"></colaboradores-atividade>
+            </form>
+        </mat-tab>
+
+        <!-- MATERIAIS DA ATIVIDADE -->
+        <mat-tab label="MATERIAIS">
+            <form #formCadastroMateriaisAtividade="ngForm">
+                <materiais-oficina [oficina]="oficina"></materiais-oficina>
+            </form>
+        </mat-tab>
+            
+    </mat-tab-group>
+
+</div>

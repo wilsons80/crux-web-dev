@@ -1,8 +1,10 @@
+import { Material } from './material';
 import { ColaboradoresAtividade } from './colaboradores-atividade';
 import { Funcionario } from './funcionario';
 import { PlanosAcao } from './planos-acao';
 import { Projeto } from './projeto';
 import { Unidade } from './unidade';
+import { MateriaisAtividade } from './materiais-atividade';
 export class Atividade {
     id: number;
     descricao: string;
@@ -33,7 +35,8 @@ export class Atividade {
     projeto: Projeto;
     unidade: Unidade;
 
-    colaboradoresAtividade:ColaboradoresAtividade[]
+    colaboradoresAtividade: ColaboradoresAtividade[];
+    materiaisAtividade: MateriaisAtividade[];
 
     usuarioAlteracao: number;
 }

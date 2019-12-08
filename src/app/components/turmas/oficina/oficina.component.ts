@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Turmas } from 'src/app/core/turmas';
+import { Material } from 'src/app/core/material';
 
 @Component({
   selector: 'oficina',
@@ -8,7 +8,7 @@ import { Turmas } from 'src/app/core/turmas';
 })
 export class OficinaComponent implements OnInit {
 
-  @Input() turma: Turmas;
+  @Input() materiais: Material[];
   
   constructor() { }
 

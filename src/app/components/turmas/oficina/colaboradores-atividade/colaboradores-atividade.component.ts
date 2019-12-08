@@ -1,6 +1,6 @@
+import { Turmas } from 'src/app/core/turmas';
+import { ColaboradoresAtividade } from './../../../../core/colaboradores-atividade';
 import { Component, OnInit, Input } from '@angular/core';
-import { Funcionario } from 'src/app/core/funcionario';
-import { ColaboradoresAtividade } from 'src/app/core/colaboradores-atividade';
 
 @Component({
   selector: 'colaboradores-atividade',
@@ -9,9 +9,7 @@ import { ColaboradoresAtividade } from 'src/app/core/colaboradores-atividade';
 })
 export class ColaboradoresAtividadeComponent implements OnInit {
 
-  @Input() colaboradoresAtividade:ColaboradoresAtividade [];
-  
-  
+  @Input() turma: Turmas [];
 
   openFormCadastro = true;
 

@@ -1,0 +1,33 @@
+<mat-accordion>
+
+    <mat-expansion-panel [expanded]="openFormCadastro" (closed)="openFormCadastro = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Oficina
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <cadastrar-materiais #cadastrarMateriais 
+                             [materiaisAtividade]="oficina.materiaisAtividade">
+        </cadastrar-materiais>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel [expanded]="!openFormCadastro" (opened)="listarMateriais.carregarLista()"
+        (closed)="openFormCadastro = true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Lista de Materiais ( {{oficina.materiaisAtividade?.length}} )
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <listar-materiais #listarMateriais 
+                          (onAtualizarMaterial)="cadastrarMateriais.atualizarMaterial($event)"
+                          [materiaisAtividade]="oficina.materiaisAtividade" 
+                          (onAdicionar)="onGetAdicionar($event)">
+        </listar-materiais>
+
+    </mat-expansion-panel>
+
+
+</mat-accordion>

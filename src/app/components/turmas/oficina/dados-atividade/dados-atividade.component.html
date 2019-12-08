@@ -92,7 +92,7 @@
      fxFlexFill>
 
      <!-- LOCAL EXECUÇÃO-->
-     <div id="coluna2" fxFlex="15%">
+     <div fxFlex="15%">
          <div fxLayout="row">
              <mat-form-field fxFlexOffset="20px">
                  <mat-label>Local de Execução:</mat-label>
@@ -173,7 +173,7 @@
          </div>
      </div>
 
-     <div fxFlex="90%">
+     <div fxFlex="75%">
          <div fxLayout="row" fxLayoutGap="20px">
              <div fxFlex="50%">
                  <label>Dias:</label>
@@ -192,9 +192,10 @@
      </div>
 
  </div>
+ 
  <!-- PLANO DE ACAO -->
  <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-     <div fxLayout="column" fxFlex="45%">
+     <div fxLayout="column" fxFlex="48%">
          <mat-toolbar class="titulopartes">Plano de Ação</mat-toolbar>
          <mat-form-field style="margin-left: 20px; margin-bottom: 20px">
              <mat-label>Planos de Ação:</mat-label>
@@ -209,7 +210,7 @@
      </div>
 
      <!-- PROJETO -->
-     <div fxLayout="column" fxFlex="55%">
+     <div fxLayout="column" fxFlex="48%">
          <mat-toolbar class="titulopartes">Projeto</mat-toolbar>
          <mat-form-field style="margin-left: 20px">
              <mat-label>Projetos:</mat-label>
@@ -226,7 +227,7 @@
  <!-- OBSERVAÇÕES -->
  <mat-toolbar class="titulopartes">Observações</mat-toolbar>
  <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-     <mat-form-field fxFlexOffset="20px" fxFlex="55%" appearance="outline">
+     <mat-form-field fxFlexOffset="20px" fxFlex="95%" appearance="outline">
          <mat-label>Observações:</mat-label>
          <textarea #observacoes matInput name="observacoes" [(ngModel)]="atividade.observacoes"
              cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"

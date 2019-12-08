@@ -16,7 +16,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 })
 export class DadosAtividadeComponent implements OnInit {
 
-  @Input() atividade:Atividade;
+  @Input() atividade: Atividade;
 
   listaPlanosAcao: PlanosAcao[];
   projetos: Projeto[];

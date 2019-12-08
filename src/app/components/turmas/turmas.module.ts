@@ -11,14 +11,39 @@ import { ColaboradoresTurmaComponent } from './colaboradores-turma/colaboradores
 import { OficinaComponent } from './oficina/oficina.component';
 import { CadastrarColaboradoresTurmaComponent } from './colaboradores-turma/cadastrar-colaboradores-turma/cadastrar-colaboradores-turma.component';
 import { ListarColaboradoresTurmaComponent } from './colaboradores-turma/listar-colaboradores-turma/listar-colaboradores-turma.component';
+import { CadastrarOficinasComponent } from './oficina/cadastrar-oficinas/cadastrar-oficinas.component';
+import { ListarOficinasComponent } from './oficina/listar-oficinas/listar-oficinas.component';
+import { DadosAtividadeComponent } from './oficina/dados-atividade/dados-atividade.component';
+import { ColaboradoresAtividadeComponent } from './oficina/colaboradores-atividade/colaboradores-atividade.component';
+import { MatExpansionModule, MatTabsModule } from '@angular/material';
+import { CadastrarColaboradoresAtividadeComponent } from './oficina/colaboradores-atividade/cadastrar-colaboradores-atividade/cadastrar-colaboradores-atividade.component';
+import { ListarColaboradoresAtividadeComponent } from './oficina/colaboradores-atividade/listar-colaboradores-atividade/listar-colaboradores-atividade.component';
+import { MateriaisOficinaComponent } from './oficina/materiais-oficina/materiais-oficina.component';
+import { CadastrarMateriaisComponent } from './oficina/materiais-oficina/cadastrar-materiais/cadastrar-materiais.component';
+import { ListarMateriaisComponent } from './oficina/materiais-oficina/listar-materiais/listar-materiais.component';
 
 @NgModule({
-  declarations: [TurmasComponent, CadastrarTurmasComponent, DadosTurmaComponent, ColaboradoresTurmaComponent, OficinaComponent, CadastrarColaboradoresTurmaComponent, ListarColaboradoresTurmaComponent],
+  declarations: [TurmasComponent, CadastrarTurmasComponent, 
+                 DadosTurmaComponent, ColaboradoresTurmaComponent, 
+                 OficinaComponent, 
+                 CadastrarColaboradoresTurmaComponent, 
+                 ListarColaboradoresTurmaComponent, 
+                 CadastrarOficinasComponent, 
+                 ListarOficinasComponent,
+                 DadosAtividadeComponent,
+                 ColaboradoresAtividadeComponent,
+                 CadastrarColaboradoresAtividadeComponent,
+                 ListarColaboradoresAtividadeComponent,
+                 MateriaisOficinaComponent,
+                 CadastrarMateriaisComponent,
+                 ListarMateriaisComponent],
   imports: [
     CommonModule,
     TurmasRoutingModule,
     MaterialCommonModule,
-    DadosFuncionarioModule
+    DadosFuncionarioModule,
+    MatExpansionModule,
+    MatTabsModule
   ]
 })
 export class TurmasModule { }
