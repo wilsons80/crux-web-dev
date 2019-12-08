@@ -4,7 +4,7 @@
             <div fxLayout="column" fxLayoutAlign="space-around stretch" fxFlexFill>
 
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field fxFlex="95%" fxFlexOffset="20px">
+                    <mat-form-field fxFlex="97%" fxFlexOffset="20px">
                         <mat-label>Selecione um material</mat-label>
                         <mat-select [(ngModel)]="materialAtividade.material.id" name="material" [disabled]=isAtualizar
                             required>
@@ -19,6 +19,18 @@
 
 
                 <div fxLayout="row" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+                    <mat-form-field fxFlexOffset="20px" fxFlex="15%">
+                        <input matInput name="dataAquisicao" [matDatepicker]="dataAquisicao"
+                            placeholder="Data de aquisição" [(ngModel)]="materialAtividade.dataAquisicao">
+                        <mat-datepicker-toggle matSuffix [for]="dataAquisicao"></mat-datepicker-toggle>
+                        <mat-datepicker #dataAquisicao></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field fxFlexOffset="20px" fxFlex="15%">
+                        <input matInput maxlength="2" name="qtdMaterial" placeholder="Quantidade origem do material"
+                            [(ngModel)]="materialAtividade.qtdMaterial">
+                    </mat-form-field>
+                    
                     <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                         <input currencyMask matInput maxlength="50" name="valorMaterial"
                             placeholder="Valor do material:" [(ngModel)]="materialAtividade.valorMaterial"
@@ -26,33 +38,20 @@
                         <span matPrefix>R$&nbsp;</span>
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="15%">
-                        <input matInput name="dataAquisicao" [matDatepicker]="dataAquisicao"
-                            placeholder="Data de aquisição" [(ngModel)]="materialAtividade.dataAquisicao">
-                        <mat-datepicker-toggle matSuffix [for]="dataAquisicao"></mat-datepicker-toggle>
-                        <mat-datepicker #dataAquisicao></mat-datepicker>
-                    </mat-form-field>
-
-
-                    <mat-form-field fxFlex="15%">
+                    <mat-form-field fxFlexOffset="20px" fxFlex="15%">
                         <input matInput name="dataVendaMaterial" [matDatepicker]="dataVendaMaterial"
                             placeholder="Data de venda" [(ngModel)]="materialAtividade.dataVendaMaterial">
                         <mat-datepicker-toggle matSuffix [for]="dataVendaMaterial"></mat-datepicker-toggle>
                         <mat-datepicker #dataVendaMaterial></mat-datepicker>
                     </mat-form-field>
 
-                    <mat-form-field fxFlexOffset="20px" fxFlex="20%">
-                        <input matInput maxlength="2" name="qtdMaterial" placeholder="Quantidade origem do material"
-                            [(ngModel)]="materialAtividade.qtdMaterial">
-                    </mat-form-field>
-
-                    <mat-form-field fxFlex="20%">
+                    <mat-form-field fxFlexOffset="20px" fxFlex="15%">
                         <input matInput maxlength="2" name="qtdMaterialVendida"
                             placeholder="Quantidade vendida do material"
                             [(ngModel)]="materialAtividade.qtdMaterialVendida">
                     </mat-form-field>
 
-                    <mat-form-field fxFlex="10%">
+                    <mat-form-field fxFlexOffset="20px" fxFlex="15%">
                         <mat-label>Forma de pagamento</mat-label>
                         <mat-select [(ngModel)]="materialAtividade.formaPagamento" name="formaPagamento">
                             <mat-option *ngFor="let d of formasPagamento" [value]="d.tipo">
@@ -62,10 +61,6 @@
                     </mat-form-field>
 
                 </div>
-
-
-
-
 
 
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
@@ -122,12 +117,6 @@
 
     <button *ngIf="isAtualizar" mat-raised-button name="botaoLimpar" fxFlex="20%" color="primary" (click)="cancelar()">
         Cancelar
-    </button>
-
-
-    <button *ngIf="isAtualizar" mat-raised-button name="botaoAdicionar" fxFlex="20%" color="primary"
-        [disabled]=formConsultar.invalid (click)="atualizar()">
-        Atualizar
     </button>
 
 </div>

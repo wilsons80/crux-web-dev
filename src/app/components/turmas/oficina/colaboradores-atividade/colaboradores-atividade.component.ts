@@ -11,7 +11,7 @@ export class ColaboradoresAtividadeComponent implements OnInit {
 
   @Input() turma: Turmas [];
 
-  openFormCadastro = true;
+  openFormCadastro = false;
 
   constructor() {
   }
