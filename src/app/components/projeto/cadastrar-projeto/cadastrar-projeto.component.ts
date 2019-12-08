@@ -21,7 +21,6 @@ export class CadastrarProjetoComponent implements OnInit {
   programas: Programa[];
   projeto: Projeto;
 
-
   perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true
   mostrarBotaoAtualizar = true;
@@ -74,7 +73,8 @@ export class CadastrarProjetoComponent implements OnInit {
     this.projeto.unidades = [];
     this.projeto.colaboradoresProjeto = [];
     this.projeto.parceriasProjeto = [];
-    this.projeto.composicaoRhProjeto = []
+    this.projeto.composicaoRhProjeto = [];
+    this.projeto.materiaisProjeto = [];
   }
   mostrarBotaoLimpar(){
     if(this.isAtualizar) return false;

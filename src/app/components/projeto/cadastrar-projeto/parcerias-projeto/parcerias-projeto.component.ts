@@ -76,7 +76,7 @@ export class ParceriasProjetoComponent implements OnInit {
   }
 
   limpar() {
-    this.initObjetos();
+    this.initObjetos(); 
   }
 
   isJaAdicionada(): boolean {
