@@ -99,7 +99,9 @@
                 <mat-step [stepControl]="formCadastroMateriais">
                         <form #formCadastroMateriais="ngForm" matStepperIcon="phone">
                                 <ng-template matStepLabel>MATERIAIS</ng-template>
-                                <materiais-projeto></materiais-projeto>
+                                <materiais-projeto [projeto]=projeto
+                                                    [listaMateriaisProjeto]=projeto.materiaisProjeto
+                                ></materiais-projeto>
                                 <div dir="rtl" fxLayoutGap="20px"
                                         style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
                                         <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
@@ -136,5 +138,3 @@
 
 
 </div>
-
-<!-- <pre>{{projeto?.composicaoRhProjeto | json}}</pre> -->

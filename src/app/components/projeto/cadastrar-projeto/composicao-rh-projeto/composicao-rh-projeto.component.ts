@@ -21,9 +21,9 @@ import { Projeto } from 'src/app/core/projeto';
 export class ComposicaoRhProjetoComponent implements OnInit {
 
   @Input() listaComposicaoRhProjeto: ComposicaoRhProjeto[];
-  @Input() projeto:Projeto;
+  @Input() projeto: Projeto;
 
-  colaboradoresProjeto:ColaboradoresProjeto[];
+  colaboradoresProjeto: ColaboradoresProjeto[];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   mostrarTabela = false;
@@ -38,9 +38,10 @@ export class ComposicaoRhProjetoComponent implements OnInit {
 
   isAtualizar = false;
 
-  composicaoRhProjeto: ComposicaoRhProjeto = new ComposicaoRhProjeto();
+  composicaoRhProjeto: ComposicaoRhProjeto;
   cargos: Cargo[] = [];
   listaTiposContratacoes: TiposContratacoes[] = [];
+
 
   constructor(
     private toastService: ToastService,
@@ -52,10 +53,16 @@ export class ComposicaoRhProjetoComponent implements OnInit {
 
   ngOnInit() {
 
+    this.initObjetos();
     this.perfilAcesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
     this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.cargos = cargos);
     this.tiposContratacoesService.getAll().subscribe((tiposContratacoes: TiposContratacoes[]) => this.listaTiposContratacoes = tiposContratacoes);
 
+  }
+  initObjetos() {
+    this.composicaoRhProjeto = new ComposicaoRhProjeto();
+    this.composicaoRhProjeto.cargo = new Cargo();
+    this.composicaoRhProjeto.tiposContratacoes = new TiposContratacoes();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -65,7 +72,7 @@ export class ComposicaoRhProjetoComponent implements OnInit {
   }
 
   limpar() {
-    this.composicaoRhProjeto = new ComposicaoRhProjeto();
+    this.initObjetos();
   }
 
   isJaAdicionada(): boolean {
@@ -81,36 +88,44 @@ export class ComposicaoRhProjetoComponent implements OnInit {
       return;
     }
 
-    const colaboradorSelecionado = new ComposicaoRhProjeto();
-    Object.assign(colaboradorSelecionado, this.composicaoRhProjeto);
+    const composicaoSelecionado = new ComposicaoRhProjeto();
+    Object.assign(composicaoSelecionado, this.composicaoRhProjeto);
 
-    this.listaComposicaoRhProjeto.push(colaboradorSelecionado);
+    this.getObjetosCompletosParaLista(composicaoSelecionado);
+
+    this.listaComposicaoRhProjeto.push(composicaoSelecionado);
     this.composicaoRhProjetoService.composicaoRhProjetoChange.emit(this.listaComposicaoRhProjeto);
     this.limpar();
   }
+  
+  getObjetosCompletosParaLista(composicaoSelecionado:ComposicaoRhProjeto) {
+    composicaoSelecionado.cargo = _.find(this.cargos, (cargo:Cargo) => cargo.id == composicaoSelecionado.cargo.id);
+    composicaoSelecionado.tiposContratacoes = _.find(this.listaTiposContratacoes, (tiposContratacoes:TiposContratacoes) => tiposContratacoes.id == composicaoSelecionado.tiposContratacoes.id);
+  }
 
   deletar(composicaoRhProjeto: ComposicaoRhProjeto): void {
-    if(!this.verificaSeTemColaboradoresParaOCargo(composicaoRhProjeto)){
+    if (!this.verificaSeTemColaboradoresParaOCargo(composicaoRhProjeto)) {
       const index = this.listaComposicaoRhProjeto.indexOf(this.listaComposicaoRhProjeto.find(cp => cp.cargo.id === composicaoRhProjeto.cargo.id));
       if (index >= 0) {
         this.listaComposicaoRhProjeto.splice(index, 1);
         this.composicaoRhProjetoService.composicaoRhProjetoChange.emit(this.listaComposicaoRhProjeto);
         this.carregarLista();
       }
-    }else{
+    } else {
       this.toastService.showAlerta(`Composição não pode excluída pois possui colaboradores vinculados ao cargo ${composicaoRhProjeto.cargo.nome}`)
     }
-    
+
   }
   verificaSeTemColaboradoresParaOCargo(composicaoRhProjeto: ComposicaoRhProjeto) {
-    const colaboradoresDaComposicao = _.find(this.projeto.colaboradoresProjeto , (colaborador:ColaboradoresProjeto) => colaborador.cargo.id == composicaoRhProjeto.cargo.id);
-    if(colaboradoresDaComposicao){
+    const colaboradoresDaComposicao = _.find(this.projeto.colaboradoresProjeto, (colaborador: ColaboradoresProjeto) => colaborador.cargo.id == composicaoRhProjeto.cargo.id);
+    if (colaboradoresDaComposicao) {
       return true;
     }
     return false;
   }
 
   novo() {
+    this.isAtualizar = false;
     this.openFormCadastro = !this.openFormCadastro;
     this.limpar();
   }
@@ -125,5 +140,34 @@ export class ComposicaoRhProjetoComponent implements OnInit {
       this.mostrarTabela = true;
     }
   }
+
+  atualizarComposicao(composicaoRhProjeto: ComposicaoRhProjeto) {
+    this.composicaoRhProjeto = composicaoRhProjeto;
+    this.openFormCadastro = true;
+    this.isAtualizar = true;
+
+  }
+
+  atualizar() {
+    let composicaoRhProjeto: ComposicaoRhProjeto = _.find(this.listaComposicaoRhProjeto, (composicao: ComposicaoRhProjeto) => composicao.id == this.composicaoRhProjeto.id);
+    if (this.verificaSeColaboradoresUltrapassaQuantidade(composicaoRhProjeto)) {
+      this.toastService.showAlerta(`Para alterar para quantidade para ${composicaoRhProjeto.qtd} 
+          é necessário retirar alguns colaboradores`)
+    } else { 
+    composicaoRhProjeto = this.composicaoRhProjeto;
+    composicaoRhProjeto.id = null;
+    this.limpar();
+    this.openFormCadastro = false;
+    this.isAtualizar = false;
+  }
+}
+
+verificaSeColaboradoresUltrapassaQuantidade(composicaoRhProjeto: ComposicaoRhProjeto) {
+  const colaboradoresDaComposicao: ColaboradoresProjeto[] = _.filter(this.projeto.colaboradoresProjeto, (colaborador: ColaboradoresProjeto) => colaborador.cargo.id == composicaoRhProjeto.cargo.id);
+  if (colaboradoresDaComposicao.length > composicaoRhProjeto.qtd) {
+    return true;
+  }
+  return false;
+}
 
 }

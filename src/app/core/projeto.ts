@@ -1,3 +1,4 @@
+import { MateriaisProjeto } from './materiais-projeto';
 import { Iniciativa } from './iniciativa';
 import { Programa } from './programa';
 import { Unidade } from './unidade';
@@ -24,6 +25,7 @@ export class Projeto {
 	colaboradoresProjeto:ColaboradoresProjeto[];
 	parceriasProjeto:ParceriasProjeto[];
 	composicaoRhProjeto:ComposicaoRhProjeto[];
+	materiaisProjeto:MateriaisProjeto[]
 
 }
 
