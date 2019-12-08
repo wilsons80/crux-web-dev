@@ -21,7 +21,7 @@ export class ProjetoComponent implements OnInit {
 
   mostrarTabela = false;
 
-  displayedColumns: string[] = ['nome', 'programa','dataPrevisaoInicio', 'dataInicio', 'dataFim', 'acoes'];
+  displayedColumns: string[] = ['nome', 'dataPrevisaoInicio', 'dataInicio', 'dataFim', 'acoes'];
   dataSource: MatTableDataSource<Projeto> = new MatTableDataSource();
 
   perfilAcesso: Acesso;

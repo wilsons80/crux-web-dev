@@ -27,7 +27,7 @@ export class MateriaisProjetoComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['parceiro', 'projeto', 'valor', 'acoes'];
+  displayedColumns: string[] = ['parceiro', 'material','dataInicio','dataFim', 'acoes'];
   dataSource: MatTableDataSource<MateriaisProjeto> = new MatTableDataSource();
 
   openFormCadastro = false;
@@ -38,7 +38,6 @@ export class MateriaisProjetoComponent implements OnInit {
 
 
   materiaisProjeto:MateriaisProjeto;
-  listaParceriasProjeto: ParceriasProjeto[] =[];
   materiais:Material[]= [];
 
   constructor(
@@ -89,18 +88,18 @@ export class MateriaisProjetoComponent implements OnInit {
   }
 
   getObjetosCompletosParaLista(materiaisProjetoSelecionado: MateriaisProjeto) {
-    materiaisProjetoSelecionado.parceriasProjeto = _.find(this.listaParceriasProjeto, (parceriasProjeto: ParceriasProjeto) => parceriasProjeto.id == materiaisProjetoSelecionado.parceriasProjeto.id);
+    materiaisProjetoSelecionado.parceriasProjeto = _.find(this.projeto.parceriasProjeto, (parceriasProjeto: ParceriasProjeto) => parceriasProjeto.id == materiaisProjetoSelecionado.parceriasProjeto.id);
     materiaisProjetoSelecionado.material = _.find(this.materiais, (material: Material) => material.id == materiaisProjetoSelecionado.material.id);
     
   }
 
 
-  deletar(parceriasProjeto: ParceriasProjeto): void {
-    // const index = this.listaParceiros.indexOf(this.listaParceiros.find(e => e.id === parceriasProjeto.id));
-    // if (index >= 0) {
-    //   this.listaParceiros.splice(index, 1);
-    //   this.carregarLista();
-    // }
+  deletar(materiaisProjeto: MateriaisProjeto): void {
+    const index = this.listaMateriaisProjeto.indexOf(this.listaMateriaisProjeto.find(e => e.id === materiaisProjeto.id));
+    if (index >= 0) {
+      this.listaMateriaisProjeto.splice(index, 1);
+      this.carregarLista();
+    }
   }
 
   novo() {
@@ -120,18 +119,18 @@ export class MateriaisProjetoComponent implements OnInit {
   }
 
   atualizar() {
-    // let parceiro: ParceriasProjeto = _.find(this.listaParceiros, (parceiro: ParceriasProjeto) => parceiro.id == this.parceriasProjeto.id);
-    // parceiro = this.parceriasProjeto;
-    // parceiro.id = null;
-    // this.limpar();
-    // this.openFormCadastro = false;
-    // this.isAtualizar = false;
+    let materiaisProjeto: MateriaisProjeto = _.find(this.listaMateriaisProjeto, (materiaisProjeto: MateriaisProjeto) => materiaisProjeto.id == this.materiaisProjeto.id);
+    materiaisProjeto = this.materiaisProjeto;
+    materiaisProjeto.id = null;
+    this.limpar();
+    this.openFormCadastro = false;
+    this.isAtualizar = false;
   }
 
-  atualizarComposicao(parceiro: ParceriasProjeto) {
-    // this.parceriasProjeto = parceiro;
-    // this.openFormCadastro = true;
-    // this.isAtualizar = true;
+  atualizarComposicao(materiaisProjeto: MateriaisProjeto) {
+    this.materiaisProjeto = materiaisProjeto;
+    this.openFormCadastro = true;
+    this.isAtualizar = true;
   }
 
 
