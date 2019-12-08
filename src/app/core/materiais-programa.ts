@@ -2,7 +2,7 @@ import { ParceriasPrograma } from './parcerias-programa';
 import { Material } from './material';
 import { Programa } from './programa';
 
-export class MateriaisProgramaTO {
+export class MateriaisPrograma {
 
 	id:number;
 	dataFim:Date;

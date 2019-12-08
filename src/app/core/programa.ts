@@ -1,5 +1,9 @@
+import { ColaboradoresPrograma } from './colaboradores-programa';
 import { Objetivo } from './objetivo';
 import { Unidade } from './unidade';
+import { ParceriasPrograma } from './parcerias-programa';
+import { ComposicaoRhPrograma } from './composicao-rh-programa';
+import { MateriaisPrograma } from './materiais-programa';
 
 export class Programa {
 	id: number;
@@ -12,6 +16,12 @@ export class Programa {
 	faixaEtariaInicio: number;
 	objetivo: Objetivo;
 	usuarioAlteracao: number;
-
+	publicoAlvo:string;
+	justificativa:string;
+	objetivoGeral:string;
 	unidades:Unidade[];
+	colaboradoresPrograma:ColaboradoresPrograma[];
+	parceriasPrograma:ParceriasPrograma[];
+	composicaoRhPrograma:ComposicaoRhPrograma[];
+	materiaisPrograma:MateriaisPrograma[]
 }
