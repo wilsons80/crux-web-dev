@@ -6,7 +6,6 @@ import { BaseService } from '../base/base.service';
 
 
 import { Rotas } from 'src/app/core/rotas';
-import {Departamento} from '../../core/departamento';
 import { Material } from 'src/app/core/material';
 
 @Injectable({

@@ -9,10 +9,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class OficinaComponent implements OnInit {
 
   @Input() turma: Turmas[];
-  
+
+  openFormCadastro = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+
+  onGetAdicionar(evento) {
+    this.openFormCadastro = evento;
+  }
 }
