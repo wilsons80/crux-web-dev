@@ -21,6 +21,7 @@ import { ListarColaboradoresAtividadeComponent } from './oficina/colaboradores-a
 import { MateriaisOficinaComponent } from './oficina/materiais-oficina/materiais-oficina.component';
 import { CadastrarMateriaisComponent } from './oficina/materiais-oficina/cadastrar-materiais/cadastrar-materiais.component';
 import { ListarMateriaisComponent } from './oficina/materiais-oficina/listar-materiais/listar-materiais.component';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 @NgModule({
   declarations: [TurmasComponent, CadastrarTurmasComponent, 
@@ -43,7 +44,8 @@ import { ListarMateriaisComponent } from './oficina/materiais-oficina/listar-mat
     MaterialCommonModule,
     DadosFuncionarioModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
+    NgxCurrencyModule
   ]
 })
 export class TurmasModule { }

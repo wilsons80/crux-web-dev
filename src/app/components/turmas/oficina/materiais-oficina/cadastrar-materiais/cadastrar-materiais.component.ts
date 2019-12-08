@@ -21,6 +21,13 @@ export class CadastrarMateriaisComponent implements OnInit {
   isAtualizar = false;
   isMostrarFuncionario = false;
 
+  formasPagamento = [
+    {tipo: 'D', descricao: 'Dinheiro'},
+    {tipo: 'C', descricao: 'Cartão'},
+    {tipo: 'D', descricao: 'Débito'},
+    {tipo: 'F', descricao: 'Desconto em folha'},
+  ];
+
   constructor(
     private atividadeService: AtividadeService,
     private materialService: MaterialService
