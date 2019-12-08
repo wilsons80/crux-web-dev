@@ -102,7 +102,6 @@ export class ParceriasProjetoComponent implements OnInit {
   }
 
   getObjetosCompletosParaLista(parceriaProjetoSelecionado: ParceriasProjeto) {
-    console.log("parceriaProjetoSelecionado.empresa", parceriaProjetoSelecionado);
     parceriaProjetoSelecionado.empresa = _.find(this.empresas, (empresa: Empresa) => empresa.id == parceriaProjetoSelecionado.empresa.id);
     
   }
