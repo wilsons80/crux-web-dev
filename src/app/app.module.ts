@@ -1,4 +1,3 @@
-import { MateriaisAtividadeModule } from './components/materiais-atividade/materiais-atividade.module';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -184,7 +183,6 @@ registerLocaleData(localePt, 'pt-BR');
     CondicaoMoradiaModule,
     UsuarioModule,
     DocumentoAtividadeModule,
-    MateriaisAtividadeModule,
     CadastroReservaAtividadeModule,
     TempoSessaoModule,
     AcoesAtividadeModule,

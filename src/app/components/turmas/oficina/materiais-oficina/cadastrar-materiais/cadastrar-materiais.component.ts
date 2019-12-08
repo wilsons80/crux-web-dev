@@ -34,7 +34,6 @@ export class CadastrarMateriaisComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.materialAtividade.atividade = new Atividade();
     this.materialAtividade.material = new Material();
     this.materialService.getAll().subscribe((materiais: Material[]) => this.listaDeMateriais = materiais)
   }
@@ -42,7 +41,6 @@ export class CadastrarMateriaisComponent implements OnInit {
 
   zerarCombos() {
     this.materialAtividade = new MateriaisAtividade();
-    this.materialAtividade.atividade = new Atividade();
     this.materialAtividade.material = new Material();
     this.isMostrarFuncionario = false;
   }
@@ -63,7 +61,7 @@ export class CadastrarMateriaisComponent implements OnInit {
     this.zerarCombos();
   }
 
-  atualizarColaborador(materialAtividade: MateriaisAtividade) {
+  atualizarMaterial(materialAtividade: MateriaisAtividade) {
     this.isAtualizar = true;
     this.materialAtividade = materialAtividade;
   }

@@ -7,7 +7,7 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <cadastrar-colaboradores-atividade #cadastrarColaboradores [colaboradoresAtividade]="colaboradoresAtividade">
+        <cadastrar-colaboradores-atividade #cadastrarColaboradores [colaboradoresAtividade]="turma.colaboradores">
         </cadastrar-colaboradores-atividade>
     </mat-expansion-panel>
 
@@ -16,13 +16,13 @@
         (closed)="openFormCadastro = true">
         <mat-expansion-panel-header>
             <mat-panel-title>
-                Lista de Colaboradores ( {{colaboradoresAtividade?.length}} )
+                Lista de Colaboradores ( {{turma.colaboradores?.length}} )
             </mat-panel-title>
         </mat-expansion-panel-header>
 
         <listar-colaboradores-atividade #listarColaboradores
                                         (onAtualizarColaborador)="cadastrarColaboradores.atualizarColaborador($event)"
-                                        [colaboradoresAtividade]="colaboradoresAtividade" 
+                                        [colaboradoresAtividade]="turma.colaboradores" 
                                         (onAdicionar)="onGetAdicionar($event)">
         </listar-colaboradores-atividade>
 

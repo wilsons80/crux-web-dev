@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class OficinaComponent implements OnInit {
 
-  @Input() turma: Turmas[];
+  @Input() turma: Turmas;
 
   openFormCadastro = false;
 

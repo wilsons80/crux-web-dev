@@ -23,6 +23,6 @@ export class ColaboradoresAtividadeComponent implements OnInit {
     this.openFormCadastro = evento;
   }
 
-  
+
 
 }

@@ -40,7 +40,7 @@
     <mat-form-field fxFlex="30%">
         <mat-label>Programa</mat-label>
         <mat-select [(ngModel)]="turma.programa.id" name="programa">
-            <mat-option *ngFor="let u of programs" [value]="u.id">
+            <mat-option *ngFor="let u of programas" [value]="u.id">
                 {{u.nome}}
             </mat-option>
         </mat-select>

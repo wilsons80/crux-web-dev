@@ -22,7 +22,7 @@ export class ListarMateriaisComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['atividade', 'material', 'datainicio', 'quantidade', 'acoes'];
+  displayedColumns: string[] = ['material', 'datainicio', 'quantidade', 'acoes'];
   dataSource: MatTableDataSource<MateriaisAtividade> = new MatTableDataSource();
 
   perfilAcesso: Acesso;

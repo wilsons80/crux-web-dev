@@ -12,17 +12,22 @@ import { Projeto } from 'src/app/core/projeto';
 })
 export class CadastrarOficinasComponent implements OnInit {
   
-  @Input() oficinas: Atividade[];
-
+  @Input() turma: Turmas;
   oficina: Atividade = new Atividade();
 
-  
+  isAtualizar = false;
   constructor() { }
   
   ngOnInit(): void {
     this.oficina.unidade = new Unidade();
     this.oficina.planosAcao = new PlanosAcao();
     this.oficina.projeto = new Projeto();
+  }
+
+
+  atualizarOficina(oficina: Atividade) {
+    this.isAtualizar = true;
+    this.oficina = oficina;
   }
 
 }
