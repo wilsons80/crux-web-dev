@@ -1,4 +1,3 @@
-import { MateriaisAtividadeModule } from './components/materiais-atividade/materiais-atividade.module';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -24,7 +23,6 @@ import { AlunoTrabalhandoModule } from './components/aluno-trabalhando/aluno-tra
 import { AlunoModule } from './components/aluno/aluno.module';
 import { AtendimentoModule } from './components/atendimento/atendimento.module';
 import { AtividadeAlunoModule } from './components/atividade-aluno/atividade-aluno.module';
-import { AtividadeModule } from './components/atividade/atividade.module';
 import { AvaliacaoAlunoModule } from './components/avaliacao-aluno/avaliacao-aluno.module';
 import { AvaliacaoAtividadeModule } from './components/avaliacao-atividade/avaliacao-atividade.module';
 import { CadastroReservaAtividadeModule } from './components/cadastro-reserva-atividade/cadastro-reserva-atividade.module';
@@ -156,7 +154,6 @@ registerLocaleData(localePt, 'pt-BR');
     ProgramasModule,
     ProjetoModule,
     MaterialModule,
-    AtividadeModule,
     UploadFotoModule,
     FuncionarioModule,
     EmpresaModule,
@@ -186,7 +183,6 @@ registerLocaleData(localePt, 'pt-BR');
     CondicaoMoradiaModule,
     UsuarioModule,
     DocumentoAtividadeModule,
-    MateriaisAtividadeModule,
     CadastroReservaAtividadeModule,
     TempoSessaoModule,
     AcoesAtividadeModule,

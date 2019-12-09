@@ -11,6 +11,7 @@ import { MateriaisProjetoComponent } from './cadastrar-projeto/materiais-projeto
 import { ParceriasProjetoComponent } from './cadastrar-projeto/parcerias-projeto/parcerias-projeto.component';
 import { ProjetoRoutingModule } from './projeto-routing.module';
 import { ProjetoComponent } from './projeto.component';
+import { DadosParceiroComponent } from './cadastrar-projeto/parcerias-projeto/dados-parceiro/dados-parceiro.component';
 
 
 
@@ -23,6 +24,7 @@ import { ProjetoComponent } from './projeto.component';
     ParceriasProjetoComponent,
     ComposicaoRhProjetoComponent,
     MateriaisProjetoComponent,
+    DadosParceiroComponent,
   ],
   imports: [
     CommonModule,

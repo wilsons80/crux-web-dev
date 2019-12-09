@@ -45,7 +45,7 @@ export class ColaboradoresProjetoComponent implements OnInit {
   isAtualizar = false;
 
   unidadesComboCadastro: any[];
-  colaboradoresProjeto: ColaboradoresProjeto = new ColaboradoresProjeto();
+  colaboradoresProjeto: ColaboradoresProjeto;
   funcionarios: Funcionario[] = [];
   cargos: Cargo[] =[];
   projetos: Projeto[] = [];
@@ -71,6 +71,8 @@ export class ColaboradoresProjetoComponent implements OnInit {
 
   ngOnInit() {
 
+    this.initObjetos();
+
     this.composicaoRhProjetoService.composicaoRhProjetoChange.subscribe((listaComposicaoRhProjeto: ComposicaoRhProjeto[])=>{
       this.listaComposicaoRhProjeto = listaComposicaoRhProjeto;
       this.excluirFuncionarioDeComposicaoDeletada();
@@ -80,6 +82,15 @@ export class ColaboradoresProjetoComponent implements OnInit {
     this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.cargos = cargos);
     this.tiposContratacoesService.getAll().subscribe((tiposContratacoes: TiposContratacoes[]) => this.listaTiposContratacoes = tiposContratacoes);
 
+  }
+  
+  initObjetos() {
+    this.colaboradoresProjeto = new ColaboradoresProjeto();
+    this.colaboradoresProjeto.cargo = new Cargo() ;
+    this.colaboradoresProjeto.dataFim = null; 
+    this.colaboradoresProjeto.dataInicio = null; 
+    this.colaboradoresProjeto.funcionario = new Funcionario();
+    this.colaboradoresProjeto.tiposContratacoes = new TiposContratacoes();
   }
   
   excluirFuncionarioDeComposicaoDeletada() {
@@ -98,8 +109,7 @@ export class ColaboradoresProjetoComponent implements OnInit {
   }
   
   limpar() {
-    this.colaboradoresProjeto = new ColaboradoresProjeto();
-    this.composicaoSelecionada = null;
+    this.initObjetos();
   }
   
   isJaAdicionada(): boolean {
@@ -132,8 +142,15 @@ export class ColaboradoresProjetoComponent implements OnInit {
     const colaboradorSelecionado = new ColaboradoresProjeto();
     Object.assign(colaboradorSelecionado, this.colaboradoresProjeto);
     
+    this.getObjetosCompletosParaLista(colaboradorSelecionado);
+
     this.listaColaboradoresProjeto.push(colaboradorSelecionado);
     this.limpar();
+  }
+
+  getObjetosCompletosParaLista(colaboradoresProjeto:ColaboradoresProjeto) {
+    colaboradoresProjeto.cargo = _.find(this.cargos, (cargo:Cargo) => cargo.id == colaboradoresProjeto.cargo.id);
+    colaboradoresProjeto.funcionario = _.find(this.funcionarios, (funcionario:Funcionario) => funcionario.id == colaboradoresProjeto.funcionario.id);
   }
 
   
@@ -146,6 +163,7 @@ export class ColaboradoresProjetoComponent implements OnInit {
   }
   
   novo() {
+    this.isAtualizar = false;
     this.openFormCadastro = !this.openFormCadastro;
     this.limpar();
   }
@@ -169,7 +187,6 @@ export class ColaboradoresProjetoComponent implements OnInit {
     const idsUnidades:number[] = this.unidades.map((u:Unidade) => u.idUnidade);
     this.funcionarioService.getPorIntituicao(idsUnidades).subscribe((funcionarios:Funcionario[]) => {
       this.funcionarios = funcionarios;
-      console.log("func", this.funcionarios);
       
     })
   }
@@ -178,14 +195,36 @@ export class ColaboradoresProjetoComponent implements OnInit {
     if(this.colaboradoresProjeto.cargo ){
       this.composicaoSelecionada = _.find(this.listaComposicaoRhProjeto , c => c.cargo.id === this.colaboradoresProjeto.cargo.id);
       if(!this.composicaoSelecionada){
-        this.toastService.showAlerta(`Não existe nenhuma composição definida para o cargo ${this.colaboradoresProjeto.cargo.nome}`);
-        this.colaboradoresProjeto.cargo = null;
+        this.toastService.showAlerta(`Não existe nenhuma composição definida para o cargo escolhido`);
+        const novoCargo = new Cargo();
+        novoCargo.id = null;
+        this.colaboradoresProjeto.cargo = novoCargo;
       }
     }
 
-    
-    
+  }
+
+  atualizarColaborador(colaboradoresProjeto: ColaboradoresProjeto) {
+    this.preencherObjetosVazios(colaboradoresProjeto);
+    this.colaboradoresProjeto = colaboradoresProjeto;
+    this.openFormCadastro = true;
+    this.isAtualizar = true;
 
   }
+
+  preencherObjetosVazios(colaboradoresProjeto: ColaboradoresProjeto) {
+    if(!colaboradoresProjeto.tiposContratacoes){
+      colaboradoresProjeto.tiposContratacoes = new TiposContratacoes();
+    }
+  }
+
+  atualizar() {
+    let colaborador: ColaboradoresProjeto = _.find(this.listaColaboradoresProjeto, (colaborador: ColaboradoresProjeto) => colaborador.id == this.colaboradoresProjeto.id);
+    colaborador = this.colaboradoresProjeto;
+    colaborador.id = null;
+    this.limpar();
+    this.openFormCadastro = false;
+    this.isAtualizar = false;
+}
 
 }
