@@ -193,13 +193,17 @@
 
  </div>
  
- <!-- PLANO DE ACAO -->
- <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-     <div fxLayout="column" fxFlex="48%">
+ <div fxLayout="row" 
+      fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" 
+      fxFlexFill
+      *ngIf="mostrarCampos">
+    
+     <!-- PLANO DE ACAO -->
+     <div fxLayout="column" fxFlex="33%">
          <mat-toolbar class="titulopartes">Plano de Ação</mat-toolbar>
          <mat-form-field style="margin-left: 20px; margin-bottom: 20px">
              <mat-label>Planos de Ação:</mat-label>
-             <mat-select [(ngModel)]="atividade.planosAcao.id" name="planosAcao" required>
+             <mat-select [(ngModel)]="atividade.planosAcao.id" name="planosAcao">
                  <mat-option *ngFor="let u of listaPlanosAcao" [value]="u.id">
                      {{u.nome}}
                  </mat-option>
@@ -210,11 +214,11 @@
      </div>
 
      <!-- PROJETO -->
-     <div fxLayout="column" fxFlex="48%">
+     <div fxLayout="column" fxFlex="33%">
          <mat-toolbar class="titulopartes">Projeto</mat-toolbar>
          <mat-form-field style="margin-left: 20px">
              <mat-label>Projetos:</mat-label>
-             <mat-select [(ngModel)]="atividade.projeto.id" name="projeto" required>
+             <mat-select [(ngModel)]="atividade.projeto.id" name="projeto">
                  <mat-option *ngFor="let u of projetos" [value]="u.id">
                      {{u.nome}}
                  </mat-option>
@@ -222,6 +226,21 @@
              <mat-hint *ngIf="projetos?.length === 0" align="start">Nenhum projeto cadastrado</mat-hint>
          </mat-form-field>
      </div>
+
+     <!-- PROGRAMA -->
+     <div fxLayout="column" fxFlex="33%">
+        <mat-toolbar class="titulopartes">Programa</mat-toolbar>
+        <mat-form-field style="margin-left: 20px">
+            <mat-label>Programas:</mat-label>
+            <mat-select [(ngModel)]="atividade.programa.id" name="programa">
+                <mat-option *ngFor="let u of programas" [value]="u.id">
+                    {{u.nome}}
+                </mat-option>
+            </mat-select>
+            <mat-hint *ngIf="programas?.length === 0" align="start">Nenhum programa cadastrado</mat-hint>
+        </mat-form-field>
+    </div>
+
  </div>
 
  <!-- OBSERVAÇÕES -->

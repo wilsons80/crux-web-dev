@@ -50,5 +50,6 @@ export enum Rotas {
     PRESTACAO_CONTAS                = 'api/prestacaocontas/',
     NIVEIS_TURMAS                   = 'api/niveisturmas/',
     TURMAS                          = 'api/turmas/',
-    MATERIAIS                       = 'api/materiais/' 
+    MATERIAIS                       = 'api/materiais/',
+    OFICINA                         = 'api/oficinas/'
 }

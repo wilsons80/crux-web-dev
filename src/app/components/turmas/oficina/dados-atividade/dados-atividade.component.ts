@@ -1,3 +1,5 @@
+import { ProgramaService } from 'src/app/services/programa/programa.service';
+import { Programa } from './../../../../core/programa';
 import { Component, OnInit, Input } from '@angular/core';
 import { Atividade } from 'src/app/core/atividade';
 import { Unidade } from 'src/app/core/unidade';
@@ -7,6 +9,8 @@ import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { PlanosAcao } from 'src/app/core/planos-acao';
 import { Projeto } from 'src/app/core/projeto';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Modulos } from 'src/app/core/modulos';
 
 @Component({
   selector: 'dados-atividade',
@@ -20,6 +24,7 @@ export class DadosAtividadeComponent implements OnInit {
 
   listaPlanosAcao: PlanosAcao[];
   projetos: Projeto[];
+  programas: Programa[];
   unidades: Unidade[];
 
   tipoHorario: any = [
@@ -32,26 +37,39 @@ export class DadosAtividadeComponent implements OnInit {
     { id: 'E', descricao: 'EXTERNA' },
   ];
 
+  mostrarCampos = false;
+
   constructor(
     private planosAcaoService: PlanosAcaoService,
     private projetoService: ProjetoService,
-    private unidadeService: UnidadeService
+    private programaService: ProgramaService,
+    private unidadeService: UnidadeService,
+    private activatedRoute: ActivatedRoute,
     ) { }
 
   ngOnInit() {
+    this.mostrarCampos = false;
 
-    this.planosAcaoService.getAll().subscribe((planosAcao: PlanosAcao[]) => {
-      this.listaPlanosAcao = planosAcao;
-    })
-
-    this.projetoService.getAll().subscribe((projetos: Projeto[]) => {
-      this.projetos = projetos;
-
-    })
     this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: Unidade[]) => {
       this.unidades = unidades;
-    })
+    });
 
+    if ( this.activatedRoute.snapshot.data.modulo === Modulos.OFICINA) {
+      this.mostrarCampos = true;
+
+      this.planosAcaoService.getAll().subscribe((planosAcao: PlanosAcao[]) => {
+        this.listaPlanosAcao = planosAcao;
+      });
+
+      this.projetoService.getAll().subscribe((projetos: Projeto[]) => {
+        this.projetos = projetos;
+
+      });
+
+      this.programaService.getAllProgramasIntituicaoLogada().subscribe((programas: Programa[]) => {
+        this.programas = programas;
+      });
+    }
 
   }
 

@@ -1,3 +1,4 @@
+import { Programa } from './programa';
 import { Material } from './material';
 import { ColaboradoresAtividade } from './colaboradores-atividade';
 import { Funcionario } from './funcionario';
@@ -33,6 +34,7 @@ export class Atividade {
 
     planosAcao: PlanosAcao;
     projeto: Projeto;
+    programa: Programa;
     unidade: Unidade;
 
     colaboradoresAtividade: ColaboradoresAtividade[];

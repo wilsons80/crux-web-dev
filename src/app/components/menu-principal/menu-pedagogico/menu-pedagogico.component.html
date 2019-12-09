@@ -17,6 +17,10 @@
         <sub-menu *ngIf="verificaAcesso(getModulos().TURMAS)" icone="chrome_reader_mode" titulo="Turmas" rota="turmas"
              toolTip="Turmas"></sub-menu>            
 
+        <!-- OFICINA -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().OFICINA)" icone="pages" titulo="Oficinas" rota="oficinas"
+             toolTip="Oficinas"></sub-menu>            
+
         <!-- ATIVIDADE ALUNO -->
         <sub-menu *ngIf="verificaAcesso(getModulos().ATIVIDADE_ALUNO)" icone="sports_handball" titulo="Alunos da Turma"
             rota="atividadealuno" toolTip="Alunos da Turma"></sub-menu>

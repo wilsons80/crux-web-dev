@@ -1,8 +1,18 @@
 <div class="painel-principal" style="padding: 10px;">
+
+    <div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="16px" fxFlexFill>
+        <button  mat-button (click)="copiar()" 
+                color="primary"
+                matTooltip="Importar dados de uma oficina já cadastrada">
+            <mat-icon>save_alt</mat-icon>
+            Importar oficina
+        </button>
+    </div>
+
     <mat-tab-group>
 
         <!-- DADOS OFICINA -->
-        <mat-tab label="DADOS DA OFICINA">
+        <mat-tab label="OFICINA">
             <form #formCadastroDadosAtividade="ngForm">
                 <dados-atividade [atividade]=oficina></dados-atividade>
             </form>

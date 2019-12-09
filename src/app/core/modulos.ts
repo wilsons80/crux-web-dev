@@ -74,4 +74,5 @@ export enum Modulos{
     , PROGRAMAS_PROJETOS                    = 'PROGRAMAS_PROJETOS'
     , NIVEIS_TURMAS                         = 'NIVEIS_TURMAS'
     , TURMAS                                = 'TURMAS'
+    , OFICINA                               = 'OFICINA'
 }

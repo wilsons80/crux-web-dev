@@ -4,6 +4,7 @@ import { Atividade } from 'src/app/core/atividade';
 import { Unidade } from 'src/app/core/unidade';
 import { PlanosAcao } from 'src/app/core/planos-acao';
 import { Projeto } from 'src/app/core/projeto';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'cadastrar-oficinas',
@@ -16,7 +17,8 @@ export class CadastrarOficinasComponent implements OnInit {
   oficina: Atividade = new Atividade();
 
   isAtualizar = false;
-  constructor() { }
+
+  constructor(private toastService: ToastService) { }
   
   ngOnInit(): void {
     this.oficina.unidade = new Unidade();
@@ -28,6 +30,12 @@ export class CadastrarOficinasComponent implements OnInit {
   atualizarOficina(oficina: Atividade) {
     this.isAtualizar = true;
     this.oficina = oficina;
+  }
+
+  copiar() {
+    let successful = true;
+    const msg = successful ? `Dados da oficina copiado com sucesso` : 'Erro ao copiar os dados da oficina.';
+    this.toastService.showAlerta(msg);
   }
 
 }
