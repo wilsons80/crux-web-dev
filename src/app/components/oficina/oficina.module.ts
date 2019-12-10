@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OficinaRoutingModule } from './oficina-routing.module';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
-import { OficinaComponent } from '../turmas/oficina/oficina.component';
+import { OficinaComponent } from './oficina.component';
 
 
 @NgModule({
