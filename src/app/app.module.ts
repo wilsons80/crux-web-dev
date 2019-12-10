@@ -1,3 +1,4 @@
+import { OficinaModule } from './components/oficina/oficina.module';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -194,7 +195,8 @@ registerLocaleData(localePt, 'pt-BR');
     OcorrenciaAlunoModule,
     TiposContratacoesModule,
     NiveisTurmasModule,
-    TurmasModule
+    TurmasModule,
+    OficinaModule
 
   ],
   providers: [
