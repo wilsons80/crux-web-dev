@@ -1,3 +1,4 @@
+import { Atividade } from 'src/app/core/atividade';
 import { Cargo } from 'src/app/core/cargo';
 import { CargosService } from './../../../../../services/cargos/cargos.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
@@ -14,7 +15,7 @@ import { ColaboradoresAtividade } from 'src/app/core/colaboradores-atividade';
 })
 export class CadastrarColaboradoresAtividadeComponent implements OnInit {
 
-  @Input() colaboradoresAtividade: ColaboradoresAtividade[];
+  @Input() oficina: Atividade;
 
   listaDeFuncionarios: Funcionario[] = [];
 
@@ -48,12 +49,17 @@ export class CadastrarColaboradoresAtividadeComponent implements OnInit {
   }
 
   adicionar() {
-    const funcionarioJaCadastrado = _.find(this.colaboradoresAtividade, (colaboradoresAtividade: ColaboradoresAtividade) => colaboradoresAtividade.funcionario.id === this.colaboradorAtividade.funcionario.id);
+    const funcionarioJaCadastrado = _.find(this.oficina.colaboradoresAtividade, (colaboradoresAtividade: ColaboradoresAtividade) => colaboradoresAtividade.funcionario.id === this.colaboradorAtividade.funcionario.id);
 
     if (_.isEmpty(funcionarioJaCadastrado)) {
       const colaboradorAtividade = new ColaboradoresAtividade();
       Object.assign(colaboradorAtividade, this.colaboradorAtividade);
-      this.colaboradoresAtividade.push(colaboradorAtividade);
+
+      if (!this.oficina.colaboradoresAtividade) {
+        this.oficina.colaboradoresAtividade = [];
+      }
+
+      this.oficina.colaboradoresAtividade.push(colaboradorAtividade);
       this.zerarCombos();
     } else {
       this.toastService.showAlerta("Funcionário já está adicionado a lista de colaboradores");
@@ -61,8 +67,8 @@ export class CadastrarColaboradoresAtividadeComponent implements OnInit {
   }
 
   atualizar() {
-    const index = this.colaboradoresAtividade.indexOf(this.colaboradoresAtividade.find(col => col.funcionario.id === this.colaboradorAtividade.funcionario.id));
-    this.colaboradoresAtividade.splice(index, 1, this.colaboradorAtividade);
+    const index = this.oficina.colaboradoresAtividade.indexOf(this.oficina.colaboradoresAtividade.find(col => col.funcionario.id === this.colaboradorAtividade.funcionario.id));
+    this.oficina.colaboradoresAtividade.splice(index, 1, this.colaboradorAtividade);
     this.isAtualizar = false;
     this.zerarCombos();
   }

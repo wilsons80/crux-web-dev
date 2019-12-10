@@ -7,8 +7,7 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <cadastrar-materiais #cadastrarMateriais 
-                             [materiaisAtividade]="oficina.materiaisAtividade">
+        <cadastrar-materiais #cadastrarMateriais [oficina]="oficina">
         </cadastrar-materiais>
     </mat-expansion-panel>
 
@@ -21,9 +20,9 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <listar-materiais #listarMateriais 
+        <listar-materiais #listarMateriais
                           (onAtualizarMaterial)="cadastrarMateriais.atualizarMaterial($event)"
-                          [materiaisAtividade]="oficina.materiaisAtividade" 
+                          [materiaisAtividade]="oficina.materiaisAtividade"
                           (onAdicionar)="onGetAdicionar($event)">
         </listar-materiais>
 

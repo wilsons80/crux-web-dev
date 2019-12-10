@@ -2,7 +2,6 @@ import { Atividade } from 'src/app/core/atividade';
 import { Material } from 'src/app/core/material';
 import { MateriaisAtividade } from 'src/app/core/materiais-atividade';
 import { Component, OnInit, Input } from '@angular/core';
-import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { MaterialService } from 'src/app/services/material/material.service';
 import * as _ from 'lodash';
 
@@ -13,7 +12,7 @@ import * as _ from 'lodash';
 })
 export class CadastrarMateriaisComponent implements OnInit {
 
-  @Input() materiaisAtividade: MateriaisAtividade[];
+  @Input() oficina: Atividade;
   materialAtividade: MateriaisAtividade = new MateriaisAtividade();
 
   listaDeMateriais: Material[] = [];
@@ -29,7 +28,6 @@ export class CadastrarMateriaisComponent implements OnInit {
   ];
 
   constructor(
-    private atividadeService: AtividadeService,
     private materialService: MaterialService
   ) { }
 
@@ -49,13 +47,21 @@ export class CadastrarMateriaisComponent implements OnInit {
     const materialAtividade = new MateriaisAtividade();
     Object.assign(materialAtividade, this.materialAtividade);
 
-    this.materiaisAtividade.push(materialAtividade);
+    if (!this.oficina.materiaisAtividade) {
+      this.oficina.materiaisAtividade = [];
+    }
+    this.oficina.materiaisAtividade.push(materialAtividade);
     this.zerarCombos();
   }
 
+
+  montarMaterial(idMaterial: number) {
+    this.materialAtividade.material = _.cloneDeep(_.find(this.listaDeMateriais, (a: Material) => a.id === idMaterial));
+  }
+
   atualizar() {
-    const index = this.materiaisAtividade.indexOf(this.materiaisAtividade.find(col => col.id === this.materialAtividade.id));
-    this.materiaisAtividade.splice(index, 1, this.materialAtividade);
+    const index = this.oficina.materiaisAtividade.indexOf(this.oficina.materiaisAtividade.find(col => col.id === this.materialAtividade.id));
+    this.oficina.materiaisAtividade.splice(index, 1, this.materialAtividade);
 
     this.isAtualizar = false;
     this.zerarCombos();

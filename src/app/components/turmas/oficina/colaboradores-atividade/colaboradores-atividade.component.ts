@@ -1,3 +1,4 @@
+import { Atividade } from 'src/app/core/atividade';
 import { Turmas } from 'src/app/core/turmas';
 import { ColaboradoresAtividade } from './../../../../core/colaboradores-atividade';
 import { Component, OnInit, Input } from '@angular/core';
@@ -9,7 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ColaboradoresAtividadeComponent implements OnInit {
 
-  @Input() turma: Turmas;
+  @Input() oficina: Atividade;
 
   openFormCadastro = false;
 
