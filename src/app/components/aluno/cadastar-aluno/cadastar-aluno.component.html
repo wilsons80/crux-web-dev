@@ -10,9 +10,10 @@
 
                 <dados-pessoais [pessoaFisica]="aluno.pessoaFisica"></dados-pessoais>
 
-                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                        Próximo
+                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                     fxFlexFill>
+                    <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                        <mat-icon>chevron_right</mat-icon>
                     </button>
                 </div>
             </form>
@@ -25,14 +26,16 @@
                 <academico [aluno]="aluno"></academico>
             </form>
 
-            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                    Próximo
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                  fxFlexFill>
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                    <mat-icon>chevron_right</mat-icon>
                 </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+                    <mat-icon>chevron_left</mat-icon>
                 </button>
             </div>
+
         </mat-step>
 
         <!-- ------------------ ESCOLARIDADE ------------------------ -->
@@ -44,14 +47,15 @@
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                    Próximo
+                  fxFlexFill>
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                    <mat-icon>chevron_right</mat-icon>
                 </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+                    <mat-icon>chevron_left</mat-icon>
                 </button>
             </div>
+
         </mat-step>
 
         <!-- ------------------ DOCUMENTOS ------------------------ -->
@@ -63,14 +67,15 @@
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                    Próximo
+                  fxFlexFill>
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                    <mat-icon>chevron_right</mat-icon>
                 </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+                    <mat-icon>chevron_left</mat-icon>
                 </button>
             </div>
+
         </mat-step>
 
         <!-- ------------------ VULNERABILIDADE ------------------------ -->
@@ -81,16 +86,17 @@
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                    Próximo
+                  fxFlexFill>
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                    <mat-icon>chevron_right</mat-icon>
                 </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+                    <mat-icon>chevron_left</mat-icon>
                 </button>
             </div>
-        </mat-step>  
-    
+
+        </mat-step>
+
 
         <!-- OUTRAS INFORMAÇOES -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutrasInformacoes">
@@ -100,11 +106,13 @@
                 <atendimento-apoio [pessoaFisica]="aluno.pessoaFisica"></atendimento-apoio>
             </form>
 
-            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
+            <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                  fxFlexFill>
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                    <mat-icon>chevron_right</mat-icon>
                 </button>
             </div>
+
         </mat-step>
 
     </mat-horizontal-stepper>
@@ -127,21 +135,21 @@
             fxFlex="20%"
             color="primary"
             [disabled]="formCadastroDadosPessoais.invalid || formCadastroEscolaridade.invalid || formCadastroDocumentos.invalid ||
-                        formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid || 
+                        formCadastroOutrasInformacoes.invalid || formCadastroAcademico.invalid ||
                         formCadastroVulnerabilidade.invalid"
             (click)="atualizar()">
             Atualizar
     </button>
 
-    <button *ngIf="mostrarBotaoLimpar()" 
-            mat-raised-button 
-            fxFlex="20%" 
+    <button *ngIf="mostrarBotaoLimpar()"
+            mat-raised-button
+            fxFlex="20%"
             (click)="limpar()">
             Limpar
     </button>
-    <button 
-            mat-raised-button 
-            fxFlex="20%" 
+    <button
+            mat-raised-button
+            fxFlex="20%"
             (click)="cancelar()">
             Cancelar
     </button>

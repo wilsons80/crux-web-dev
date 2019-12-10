@@ -37,10 +37,6 @@ export class CadastrarVulnerabilidadeAlunoComponent implements OnInit {
   }
 
   adicionar() {
-    Object.assign(this.vulnerabilidade.aluno, this.aluno);
-
-    delete this.vulnerabilidade.aluno.vulnerabilidades;
-
     this.aluno.vulnerabilidades.push(this.vulnerabilidade);
     this.initObjetos();
   }
@@ -49,8 +45,6 @@ export class CadastrarVulnerabilidadeAlunoComponent implements OnInit {
     this.vulnerabilidade = new VulnerabilidadesAluno();
     this.vulnerabilidade.situacoesVulnerabilidade = new SituacoesVulnerabilidade();
     this.vulnerabilidade.solucoes = new Solucoes();
-
-    this.vulnerabilidade.aluno = new Aluno();
   }
 
 

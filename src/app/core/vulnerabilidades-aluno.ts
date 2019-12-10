@@ -6,10 +6,10 @@ export class VulnerabilidadesAluno {
 	id: number;
 	dataIdentificacao: Date;
 	dataSolucao: Date;
-	
-	aluno: Aluno;
+  idAluno: number;
+
 	situacoesVulnerabilidade: SituacoesVulnerabilidade;
-    solucoes: Solucoes;
-    
-    usuarioAlteracao: number;
+  solucoes: Solucoes;
+
+  usuarioAlteracao: number;
 }
