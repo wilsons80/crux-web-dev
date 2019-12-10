@@ -65,6 +65,7 @@ export class ParceriasProjetoComponent implements OnInit {
 
     this.parceriasProjeto = new ParceriasProjeto();
     this.parceriasProjeto.empresa = new Empresa();
+    this.parceriasProjeto.materiaisProjeto = [];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -96,8 +97,6 @@ export class ParceriasProjetoComponent implements OnInit {
     Object.assign(parceriaProjetoSelecionado, this.parceriasProjeto);
 
     this.getObjetosCompletosParaLista(parceriaProjetoSelecionado);
-
-    
 
     this.listaParceiros.push(parceriaProjetoSelecionado);
     this.limpar();
@@ -134,9 +133,6 @@ export class ParceriasProjetoComponent implements OnInit {
   }
 
   atualizar() {
-    let parceiro: ParceriasProjeto = _.find(this.listaParceiros, (parceiro: ParceriasProjeto) => parceiro.id == this.parceriasProjeto.id);
-    parceiro = this.parceriasProjeto;
-    parceiro.id = null;
     this.limpar();
     this.openFormCadastro = false;
     this.isAtualizar = false;

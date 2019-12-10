@@ -7,11 +7,11 @@ import { CadastrarProjetoComponent } from './cadastrar-projeto/cadastrar-projeto
 import { ColaboradoresProjetoComponent } from './cadastrar-projeto/colaboradores-projeto/colaboradores-projeto.component';
 import { ComposicaoRhProjetoComponent } from './cadastrar-projeto/composicao-rh-projeto/composicao-rh-projeto.component';
 import { DadosProjetoComponent } from './cadastrar-projeto/dados-projeto/dados-projeto.component';
-import { MateriaisProjetoComponent } from './cadastrar-projeto/materiais-projeto/materiais-projeto.component';
 import { ParceriasProjetoComponent } from './cadastrar-projeto/parcerias-projeto/parcerias-projeto.component';
 import { ProjetoRoutingModule } from './projeto-routing.module';
 import { ProjetoComponent } from './projeto.component';
 import { DadosParceiroComponent } from './cadastrar-projeto/parcerias-projeto/dados-parceiro/dados-parceiro.component';
+import { MateriaisProjetoComponent } from './cadastrar-projeto/parcerias-projeto/materiais-projeto/materiais-projeto.component';
 
 
 

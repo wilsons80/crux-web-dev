@@ -16,12 +16,18 @@ export class FuncionarioService extends BaseService<Funcionario> {
   getByPessoaFisica(idPessoaFisica: number) {
     return this.http.get(Rotas.FUNCIONARIOS + 'pessoafisica/' + idPessoaFisica);
   }
-
+ 
   getPorIntituicao(idsUnidades: number[]) {
     let params = new HttpParams();
     params = params.append('ids', idsUnidades.join(', '));
     return this.http.get(Rotas.FUNCIONARIOS + 'porinstituicao',  { params: params });
   }
+
+
+  // @GetMapping(path = "/combo/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	// public FuncionarioTO getParaComboById(@PathVariable(name = "id") Long id) {
+	// 	return getCmd.getParaComboById(id);
+	// }
 
 }
 

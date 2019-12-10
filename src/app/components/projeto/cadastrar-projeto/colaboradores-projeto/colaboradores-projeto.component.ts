@@ -219,9 +219,8 @@ export class ColaboradoresProjetoComponent implements OnInit {
   }
 
   atualizar() {
-    let colaborador: ColaboradoresProjeto = _.find(this.listaColaboradoresProjeto, (colaborador: ColaboradoresProjeto) => colaborador.id == this.colaboradoresProjeto.id);
-    colaborador = this.colaboradoresProjeto;
-    colaborador.id = null;
+    // let colaborador: ColaboradoresProjeto = _.find(this.listaColaboradoresProjeto, (colaborador: ColaboradoresProjeto) => colaborador.id == this.colaboradoresProjeto.id);
+    // colaborador = this.colaboradoresProjeto;
     this.limpar();
     this.openFormCadastro = false;
     this.isAtualizar = false;
