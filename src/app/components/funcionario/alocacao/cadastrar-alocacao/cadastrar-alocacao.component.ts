@@ -79,8 +79,16 @@ export class CadastrarAlocacaoComponent implements OnInit {
   }
 
   carregarAlocacao(alocacao: AlocacaoFuncionario) {
-    this.tipoAlocacao = alocacao.programa || alocacao.projeto ? (alocacao.programa ? 'programa' : 'projeto') : null;
+    if (!alocacao.programa && !alocacao.projeto) {
+      this.tipoAlocacao = null;
+    } else {
+      this.tipoAlocacao = alocacao.programa || alocacao.projeto ? (alocacao.programa ? 'programa' : 'projeto') : null;
+    }
+
     this.alocacao = alocacao;
+
+    this.alocacao.projeto = this.alocacao.projeto || new Projeto();
+    this.alocacao.programa = this.alocacao.programa || new Programa();
   }
 
   habilitaBotao(formulario): boolean {
