@@ -6,8 +6,11 @@
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
                     <mat-form-field fxFlex="97%" fxFlexOffset="20px">
                         <mat-label>Selecione um material</mat-label>
-                        <mat-select [(ngModel)]="materialAtividade.material.id" name="material" [disabled]=isAtualizar
-                            required>
+                        <mat-select [(ngModel)]="materialAtividade.material.id"
+                                    name="material"
+                                    [disabled]=isAtualizar
+                                    (selectionChange)="montarMaterial($event.value)"
+                                    required>
                             <mat-option *ngFor="let d of listaDeMateriais" [value]="d.id">
                                 {{d.nome}}
                             </mat-option>
@@ -30,7 +33,7 @@
                         <input matInput maxlength="2" name="qtdMaterial" placeholder="Quantidade origem do material"
                             [(ngModel)]="materialAtividade.qtdMaterial">
                     </mat-form-field>
-                    
+
                     <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                         <input currencyMask matInput maxlength="50" name="valorMaterial"
                             placeholder="Valor do material:" [(ngModel)]="materialAtividade.valorMaterial"
@@ -64,32 +67,32 @@
 
 
                 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-                    <mat-form-field style="margin: 0 0 0 20px" 
-                                    fxFlexOffset="20px" 
-                                    fxFlex="45%" 
+                    <mat-form-field style="margin: 0 0 0 20px"
+                                    fxFlexOffset="20px"
+                                    fxFlex="45%"
                                     appearance="outline">
                         <mat-label>Observação</mat-label>
-                        <textarea #observacao matInput 
+                        <textarea #observacao matInput
                                   name="observacao"
-                                  [(ngModel)]="materialAtividade.observacao" 
+                                  [(ngModel)]="materialAtividade.observacao"
                                   cdkTextareaAutosize
-                                  #autosize="cdkTextareaAutosize" 
-                                  cdkAutosizeMinRows="3" 
+                                  #autosize="cdkTextareaAutosize"
+                                  cdkAutosizeMinRows="3"
                                   maxlength="2000"></textarea>
                         <mat-hint align="end">{{observacao.value.length}} / 200</mat-hint>
                     </mat-form-field>
 
-                    <mat-form-field style="margin: 0 0 0 20px" 
-                                    fxFlexOffset="20px" 
-                                    fxFlex="45%" 
+                    <mat-form-field style="margin: 0 0 0 20px"
+                                    fxFlexOffset="20px"
+                                    fxFlex="45%"
                                     appearance="outline">
                         <mat-label>Descrição da origem do material</mat-label>
-                        <textarea #descricaoOrigemMaterial matInput 
+                        <textarea #descricaoOrigemMaterial matInput
                                   name="descricaoOrigemMaterial"
-                                  [(ngModel)]="materialAtividade.descricaoOrigemMaterial" 
+                                  [(ngModel)]="materialAtividade.descricaoOrigemMaterial"
                                   cdkTextareaAutosize
-                                  #autosize="cdkTextareaAutosize" 
-                                  cdkAutosizeMinRows="3" 
+                                  #autosize="cdkTextareaAutosize"
+                                  cdkAutosizeMinRows="3"
                                   maxlength="2000"></textarea>
                         <mat-hint align="end">{{descricaoOrigemMaterial.value.length}} / 200</mat-hint>
                     </mat-form-field>
