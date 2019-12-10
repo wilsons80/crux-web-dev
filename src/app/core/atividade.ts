@@ -1,11 +1,10 @@
 import { Programa } from './programa';
-import { Material } from './material';
 import { ColaboradoresAtividade } from './colaboradores-atividade';
-import { Funcionario } from './funcionario';
 import { PlanosAcao } from './planos-acao';
 import { Projeto } from './projeto';
 import { Unidade } from './unidade';
 import { MateriaisAtividade } from './materiais-atividade';
+
 export class Atividade {
     id: number;
     descricao: string;

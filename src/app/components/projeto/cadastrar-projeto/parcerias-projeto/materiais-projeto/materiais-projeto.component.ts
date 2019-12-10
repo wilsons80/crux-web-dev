@@ -1,16 +1,14 @@
-import { MaterialService } from 'src/app/services/material/material.service';
-import { MateriaisProjeto } from './../../../../core/materiais-projeto';
-import { Component, OnInit, Input, ViewChild, SimpleChanges } from '@angular/core';
-import { ParceriasProjeto } from 'src/app/core/parcerias-projeto';
+import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { Acesso } from 'src/app/core/acesso';
-import { Empresa } from 'src/app/core/empresa';
-import { ToastService } from 'src/app/services/toast/toast.service';
 import { ActivatedRoute } from '@angular/router';
-import { EmpresaService } from 'src/app/services/empresa/empresa.service';
 import * as _ from 'lodash';
+import { Acesso } from 'src/app/core/acesso';
+import { MateriaisProjeto } from 'src/app/core/materiais-projeto';
 import { Material } from 'src/app/core/material';
+import { ParceriasProjeto } from 'src/app/core/parcerias-projeto';
 import { Projeto } from 'src/app/core/projeto';
+import { MaterialService } from 'src/app/services/material/material.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'materiais-projeto',
@@ -19,15 +17,14 @@ import { Projeto } from 'src/app/core/projeto';
 })
 export class MateriaisProjetoComponent implements OnInit {
 
-  @Input() projeto:Projeto = new Projeto();
-  @Input() listaMateriaisProjeto:MateriaisProjeto[];
+  @Input() listaMateriaisProjeto:MateriaisProjeto[] = [];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['parceiro', 'material','dataInicio','dataFim', 'acoes'];
+  displayedColumns: string[] = ['material','dataInicio','dataFim', 'valorMaterial','acoes'];
   dataSource: MatTableDataSource<MateriaisProjeto> = new MatTableDataSource();
 
   openFormCadastro = false;
@@ -60,8 +57,6 @@ export class MateriaisProjetoComponent implements OnInit {
   initObjetos() {
     this.materiaisProjeto = new MateriaisProjeto();
     this.materiaisProjeto.material = new Material();
-    this.materiaisProjeto.parceriasProjeto = new ParceriasProjeto();
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -88,7 +83,6 @@ export class MateriaisProjetoComponent implements OnInit {
   }
 
   getObjetosCompletosParaLista(materiaisProjetoSelecionado: MateriaisProjeto) {
-    materiaisProjetoSelecionado.parceriasProjeto = _.find(this.projeto.parceriasProjeto, (parceriasProjeto: ParceriasProjeto) => parceriasProjeto.id == materiaisProjetoSelecionado.parceriasProjeto.id);
     materiaisProjetoSelecionado.material = _.find(this.materiais, (material: Material) => material.id == materiaisProjetoSelecionado.material.id);
     
   }

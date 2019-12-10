@@ -22,10 +22,13 @@ import { MateriaisOficinaComponent } from './oficina/materiais-oficina/materiais
 import { CadastrarMateriaisComponent } from './oficina/materiais-oficina/cadastrar-materiais/cadastrar-materiais.component';
 import { ListarMateriaisComponent } from './oficina/materiais-oficina/listar-materiais/listar-materiais.component';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { CopiarDadosOficinaDialogComponent, CopiarDadosOficinaComponent } from '../popup/copiar-dados-oficina/copiar-dados-oficina.component';
 
 @NgModule({
-  declarations: [TurmasComponent, CadastrarTurmasComponent, 
-                 DadosTurmaComponent, ColaboradoresTurmaComponent, 
+  declarations: [TurmasComponent, 
+                 CadastrarTurmasComponent, 
+                 DadosTurmaComponent, 
+                 ColaboradoresTurmaComponent, 
                  OficinaComponent, 
                  CadastrarColaboradoresTurmaComponent, 
                  ListarColaboradoresTurmaComponent, 
@@ -37,7 +40,11 @@ import { NgxCurrencyModule } from 'ngx-currency';
                  ListarColaboradoresAtividadeComponent,
                  MateriaisOficinaComponent,
                  CadastrarMateriaisComponent,
-                 ListarMateriaisComponent],
+                 ListarMateriaisComponent,
+                 CopiarDadosOficinaComponent,
+                 CopiarDadosOficinaDialogComponent
+                ],
+  entryComponents: [CopiarDadosOficinaDialogComponent],
   imports: [
     CommonModule,
     TurmasRoutingModule,
@@ -46,6 +53,9 @@ import { NgxCurrencyModule } from 'ngx-currency';
     MatExpansionModule,
     MatTabsModule,
     NgxCurrencyModule
+  ],
+  exports: [
+    CopiarDadosOficinaDialogComponent
   ]
 })
 export class TurmasModule { }
