@@ -1,4 +1,3 @@
-import { OficinaModule } from './../../../../.history/src/app/components/oficina/oficina.module_20191210122038';
 import { DadosFuncionarioModule } from './../common/dados-funcionario/dados-funcionario.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,6 +22,7 @@ import { CadastrarMateriaisComponent } from './oficina/materiais-oficina/cadastr
 import { ListarMateriaisComponent } from './oficina/materiais-oficina/listar-materiais/listar-materiais.component';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { CopiarDadosOficinaDialogComponent, CopiarDadosOficinaComponent } from '../popup/copiar-dados-oficina/copiar-dados-oficina.component';
+import { OficinaModule } from '../oficina/oficina.module';
 
 @NgModule({
   declarations: [TurmasComponent,
