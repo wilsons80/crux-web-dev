@@ -10,48 +10,49 @@
     </a>
 </div>
 
-<div fxLayout="row" class="espaco" fxLayoutGap="20px" 
-     style="margin-top: 10px; margin-bottom: 10px" 
+<div fxLayout="row" class="espaco" fxLayoutGap="20px"
+     style="margin-top: 10px; margin-bottom: 10px"
      fxFlexFill>
-     
+
     <mat-form-field fxFlex="15%" fxFlexOffset="20px">
-         <input type="text" matInput 
-                [(ngModel)]="dadosEndereco.cep" 
-                name="cep" 
+         <input type="text" matInput
+                [(ngModel)]="dadosEndereco.cep"
+                name="cep"
                 placeholder="CEP"
                 (change)="onChangeCep()"
                 [textMask]="{mask: maskCep}"
                 pattern="^\d{2}\.?\d{3}-?\d{3}$" />
     </mat-form-field>
-    
+
     <mat-form-field fxFlex="85%">
-        <input #campoEndereco 
-                matInput maxlength="200" 
-                [(ngModel)]="dadosEndereco.endereco" 
+        <input #campoEndereco
+                matInput maxlength="200"
+                [(ngModel)]="dadosEndereco.endereco"
                 name="endereco"
-                placeholder="Endereço">
+                placeholder="Endereço"
+                required>
         <mat-hint align="end">{{campoEndereco.value.length}} / 200</mat-hint>
     </mat-form-field>
 
 </div>
 
-<div fxLayout="row" class="espaco" fxLayoutGap="20px" 
-     style="margin-top: 10px; margin-bottom: 10px" 
+<div fxLayout="row" class="espaco" fxLayoutGap="20px"
+     style="margin-top: 10px; margin-bottom: 10px"
      fxFlexFill>
 
      <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-        <input #campoCidade 
-               matInput maxlength="200" 
-               [(ngModel)]="dadosEndereco.cidade" 
+        <input #campoCidade
+               matInput maxlength="200"
+               [(ngModel)]="dadosEndereco.cidade"
                name="cidade"
                placeholder="Cidade">
         <mat-hint align="end">{{campoCidade.value.length}} / 200</mat-hint>
     </mat-form-field>
 
     <mat-form-field fxFlex="45%" style="padding-right: 20px">
-        <input #campoBairro 
-               matInput maxlength="200" 
-               [(ngModel)]="dadosEndereco.bairro" 
+        <input #campoBairro
+               matInput maxlength="200"
+               [(ngModel)]="dadosEndereco.bairro"
                name="bairro"
                placeholder="Bairro">
         <mat-hint align="end">{{campoBairro.value.length}} / 200</mat-hint>
@@ -64,7 +65,7 @@
                 {{e}}
             </mat-option>
         </mat-select>
-    </mat-form-field>    
+    </mat-form-field>
 
 </div>
 

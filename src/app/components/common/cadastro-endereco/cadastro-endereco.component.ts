@@ -3,11 +3,13 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EnderecoService } from 'src/app/services/endereco/endereco.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { of } from 'rxjs';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'cadastro-endereco',
   templateUrl: './cadastro-endereco.component.html',
-  styleUrls: ['./cadastro-endereco.component.css']
+  styleUrls: ['./cadastro-endereco.component.css'],
+  viewProviders:  [{ provide:  ControlContainer, useExisting:  NgForm }]
 })
 export class CadastroEnderecoComponent implements OnInit {
 

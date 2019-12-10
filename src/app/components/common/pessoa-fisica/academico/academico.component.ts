@@ -5,11 +5,13 @@ import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { CondicoesMoradia } from 'src/app/core/condicoes-moradia';
 import { NiveisTurmasService } from 'src/app/services/niveis-turmas/niveis-turmas.service';
 import { NiveisTurmas } from 'src/app/core/niveis-turmas';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'academico',
   templateUrl: './academico.component.html',
-  styleUrls: ['./academico.component.css']
+  styleUrls: ['./academico.component.css'],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class AcademicoComponent implements OnInit {
 
@@ -22,6 +24,8 @@ export class AcademicoComponent implements OnInit {
     {tipo: 'Sim', flag: 'S'},
     {tipo: 'Não', flag: 'N'}
   ];
+
+  isEditarMatricula = true;
 
   constructor(
     private unidadeService: UnidadeService,
@@ -41,6 +45,11 @@ export class AcademicoComponent implements OnInit {
       .subscribe((niveisTurmas: NiveisTurmas[]) => {
         this.niveisTurmas = niveisTurmas;
       });
+  }
+
+
+  editarMatricula() {
+    this.isEditarMatricula = !this.isEditarMatricula;
   }
 
 }

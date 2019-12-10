@@ -2,15 +2,26 @@
 <mat-toolbar class="titulopartes">Admissão</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-    <mat-form-field fxFlex="15%" fxFlexOffset="20px">
-        <input matInput 
-               maxlength="15" 
-               name="matricula" 
-               placeholder="Matrícula" 
-               disabled 
-               [(ngModel)]="aluno.matriculaAluno">
-    </mat-form-field>
-    
+    <div fxFlex="15%" fxFlexOffset="20px">
+      <mat-form-field fxFlex="90%">
+          <input matInput
+                 maxlength="15"
+                 name="matricula"
+                 placeholder="Matrícula"
+                 [disabled]="isEditarMatricula"
+                 [(ngModel)]="aluno.matriculaAluno">
+      </mat-form-field>
+
+      <div style="padding-top: 14px;">
+        <button  mat-icon-button
+                 (click)="editarMatricula()"
+                 matTooltip="Editar número da matricula"
+                 >
+           <mat-icon>create</mat-icon>
+        </button>
+      </div>
+    </div>
+
     <mat-form-field fxFlex= "50%">
       <mat-label>Selecione a Unidade</mat-label>
       <mat-select name="unidade" [(ngModel)]="aluno.unidade.idUnidade" required>
@@ -29,11 +40,11 @@
         </mat-select>
     </mat-form-field>
 </div>
-    
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>   
+
+<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
     <mat-form-field fxFlex="15%" fxFlexOffset="20px">
-        <input matInput name="dataDesligamento" [matDatepicker]="dataDesligamento" 
+        <input matInput name="dataDesligamento" [matDatepicker]="dataDesligamento"
                placeholder="Data de desligamento"
                [(ngModel)]="aluno.dataDesligamento">
         <mat-datepicker-toggle matSuffix [for]="dataDesligamento"></mat-datepicker-toggle>
@@ -41,7 +52,7 @@
     </mat-form-field>
 
     <mat-form-field fxFlex="15%">
-        <input matInput name="dataEntrada" [matDatepicker]="dataEntrada" 
+        <input matInput name="dataEntrada" [matDatepicker]="dataEntrada"
                placeholder="Data de entrada"
                [(ngModel)]="aluno.dataEntrada">
         <mat-datepicker-toggle matSuffix [for]="dataEntrada"></mat-datepicker-toggle>
@@ -203,3 +214,4 @@
 </div>
 
 
+<pre>{{aluno | json}}</pre>
