@@ -23,6 +23,7 @@ import { ListarMateriaisComponent } from './oficina/materiais-oficina/listar-mat
 import { NgxCurrencyModule } from 'ngx-currency';
 import { CopiarDadosOficinaDialogComponent, CopiarDadosOficinaComponent } from '../popup/copiar-dados-oficina/copiar-dados-oficina.component';
 import { OficinaModule } from '../oficina/oficina.module';
+import { OficinaComponent } from './oficina/oficina.component';
 
 @NgModule({
   declarations: [TurmasComponent,
@@ -41,7 +42,8 @@ import { OficinaModule } from '../oficina/oficina.module';
                  CadastrarMateriaisComponent,
                  ListarMateriaisComponent,
                  CopiarDadosOficinaComponent,
-                 CopiarDadosOficinaDialogComponent
+                 CopiarDadosOficinaDialogComponent,
+                 OficinaComponent
                 ],
   entryComponents: [CopiarDadosOficinaDialogComponent],
   imports: [
