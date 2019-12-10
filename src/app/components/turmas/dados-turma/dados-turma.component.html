@@ -9,7 +9,9 @@
     <mat-form-field fxFlexOffset="20px" fxFlex="30%">
         <mat-label>Niveis da turma</mat-label>
         <mat-select [(ngModel)]="turma.niveisTurma" name="nivelTurma">
-            <mat-option *ngFor="let u of niveisTurma" [value]="u.id">
+            <mat-option *ngFor="let u of niveisTurma"
+                        [value]="u.id"
+                        (selectionChange)=setNivelTurma($event.value)>
                 {{u.descricao}}
             </mat-option>
         </mat-select>
@@ -29,7 +31,9 @@
     <mat-form-field fxFlexOffset="20px" fxFlex="35%">
         <mat-label>Unidade</mat-label>
         <mat-select [(ngModel)]="turma.unidade.idUnidade" name="unidade" required>
-            <mat-option *ngFor="let u of unidades" [value]="u.idUnidade">
+            <mat-option *ngFor="let u of unidades"
+                        [value]="u.idUnidade"
+                        (selectionChange)=setUnidade($event.value)>
                 {{u.nomeUnidade}}
             </mat-option>
         </mat-select>
@@ -40,7 +44,8 @@
     <mat-form-field fxFlex="30%">
         <mat-label>Programa</mat-label>
         <mat-select [(ngModel)]="turma.programa.id" name="programa">
-            <mat-option *ngFor="let u of programas" [value]="u.id">
+            <mat-option *ngFor="let u of programas" [value]="u.id"
+                        (selectionChange)=setPrograma($event.value)>
                 {{u.nome}}
             </mat-option>
         </mat-select>
@@ -51,7 +56,8 @@
     <mat-form-field fxFlex="30%">
         <mat-label>Projeto</mat-label>
         <mat-select [(ngModel)]="turma.projeto.id" name="unidade">
-            <mat-option *ngFor="let u of projetos" [value]="u.id">
+            <mat-option *ngFor="let u of projetos" [value]="u.id"
+                       (selectionChange)=setProjeto($event.value)>
                 {{u.nome}}
             </mat-option>
         </mat-select>

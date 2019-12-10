@@ -9,6 +9,7 @@ import { NiveisTurmas } from 'src/app/core/niveis-turmas';
 import { Programa } from 'src/app/core/programa';
 import { Unidade } from 'src/app/core/unidade';
 import { ControlContainer, NgForm } from '@angular/forms';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'dados-turma',
@@ -71,4 +72,20 @@ export class DadosTurmaComponent implements OnInit {
 
   }
 
+  setNivelTurma(id: number){
+    this.turma.niveisTurma = _.cloneDeep(_.find(this.niveisTurma, (c: NiveisTurmas) => c.id === id));
+  }
+
+
+  setUnidade(id: number){
+    this.turma.unidade = _.cloneDeep(_.find(this.unidades, (c: Unidade) => c.idUnidade === id));
+  }
+
+  setProjeto(id: number){
+    this.turma.projeto = _.cloneDeep(_.find(this.projetos, (c: Projeto) => c.id === id));
+  }
+
+  setPrograma(id: number){
+    this.turma.programa = _.cloneDeep(_.find(this.programas, (c: Programa) => c.id === id));
+  }
 }
