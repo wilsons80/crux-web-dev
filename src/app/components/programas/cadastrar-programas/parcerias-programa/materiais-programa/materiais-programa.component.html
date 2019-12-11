@@ -12,7 +12,7 @@
                     <!-- MATERIAL -->
                     <mat-form-field fxFlex="30%" fxFlexOffset="20px">
                         <mat-label>Material:</mat-label>
-                        <mat-select [(ngModel)]="materiaisProjeto.material.id" name="material" required>
+                        <mat-select [(ngModel)]="materiaisPrograma.material.id" name="material" required>
                             <mat-option *ngFor="let e of materiais" [value]="e.id">
                                 {{e.nome}}
                             </mat-option>
@@ -22,21 +22,21 @@
 
                     <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                         <input matInput name="dtImplantacao" [matDatepicker]="dataInicio"
-                            placeholder="Data de início de alocação:" [(ngModel)]="materiaisProjeto.dataInicio">
+                            placeholder="Data de início de alocação:" [(ngModel)]="materiaisPrograma.dataInicio">
                         <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
                         <mat-datepicker #dataInicio></mat-datepicker>
                     </mat-form-field>
 
                     <mat-form-field fxFlex="15%">
                         <input matInput name="dtTermino" [matDatepicker]="dataTermino"
-                            placeholder="Data de fim de alocação:" [(ngModel)]="materiaisProjeto.dataFim">
+                            placeholder="Data de fim de alocação:" [(ngModel)]="materiaisPrograma.dataFim">
                         <mat-datepicker-toggle matSuffix [for]="dataTermino"></mat-datepicker-toggle>
                         <mat-datepicker #dataTermino></mat-datepicker>
                     </mat-form-field>
 
                     <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                         <input currencyMask matInput maxlength="50" name="valorMaterial"
-                            placeholder="Valor do material:" [(ngModel)]="materiaisProjeto.valorMaterial"
+                            placeholder="Valor do material:" [(ngModel)]="materiaisPrograma.vlMaterial"
                             [options]="{ prefix: '', thousands: '.', decimal: ',' }" />
                         <span matPrefix>R$&nbsp;</span>
                     </mat-form-field>
@@ -69,7 +69,7 @@
                 (closed)="openFormCadastro = true">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Lista de Materiais dos Parceiros ( {{listaMateriaisProjeto?.length}} )
+                        Lista de Materiais dos Parceiros ( {{listaMateriaisPrograma?.length}} )
                     </mat-panel-title>
                 </mat-expansion-panel-header>
 

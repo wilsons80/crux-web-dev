@@ -5,7 +5,7 @@
 
             <mat-form-field fxFlex="50%" style="margin-top: 80px;" fxFlexOffset="20px">
                 <mat-label>Parceiro:</mat-label>
-                <mat-select [(ngModel)]="parceriasProjeto.empresa.id" name="empresa" required>
+                <mat-select [(ngModel)]="parceriasPrograma.empresa.id" name="empresa" required>
                     <mat-option *ngFor="let e of empresas" [value]="e.id">
                         {{e.nomeRazaoSocial}}
                     </mat-option>
@@ -16,7 +16,7 @@
             <mat-form-field  style="margin-top: 20px;" fxFlex="50%" fxFlexOffset="20px" appearance="outline">
                 <mat-label>Tipo de Parceria:</mat-label>
                 <textarea #descricaoTipoParceria matInput name="descricaoTipoParceria"
-                    [(ngModel)]="parceriasProjeto.descricaoTipoParceria" cdkTextareaAutosize
+                    [(ngModel)]="parceriasPrograma.dsTipoParceria" cdkTextareaAutosize
                     #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" maxlength="50" required></textarea>
                 <mat-hint align="end">{{descricaoTipoParceria.value.length}} / 50</mat-hint>
             </mat-form-field>
@@ -26,22 +26,24 @@
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
             <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                 <input matInput name="dtImplantacao" [matDatepicker]="dataInicio" placeholder="Data de entrada:"
-                    [(ngModel)]="parceriasProjeto.dataInicio">
+                    [(ngModel)]="parceriasPrograma.dtInicioParceria">
                 <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
                 <mat-datepicker #dataInicio></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field fxFlex="15%">
                 <input matInput name="dtTermino" [matDatepicker]="dataTermino" placeholder="Data de saída:"
-                    [(ngModel)]="parceriasProjeto.dataFim">
+                    [(ngModel)]="parceriasPrograma.dtFimParceria">
                 <mat-datepicker-toggle matSuffix [for]="dataTermino"></mat-datepicker-toggle>
                 <mat-datepicker #dataTermino></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                 <input currencyMask matInput maxlength="50" name="valorParceria" placeholder="Valor da parceria:"
-                    [(ngModel)]="parceriasProjeto.valorParceria"
-                    [options]="{ prefix: '', thousands: '.', decimal: ',' }" />
+                    [(ngModel)]="parceriasPrograma.valorParceria"
+                    [options]="{ prefix: '', thousands: '.', decimal: ',' }" 
+                    precision=2
+                    />
                 <span matPrefix>R$&nbsp;</span>
             </mat-form-field>
         </div>

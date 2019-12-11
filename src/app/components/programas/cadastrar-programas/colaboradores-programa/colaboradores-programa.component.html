@@ -10,7 +10,7 @@
                     
                     <mat-form-field fxFlex="50%" fxFlexOffset="20px">
                         <mat-label>Funcionário:</mat-label>
-                        <mat-select [(ngModel)]="colaboradoresProjeto.funcionario.id" name="unidade" required>
+                        <mat-select [(ngModel)]="colaboradoresPrograma.funcionario.id" name="unidade" required>
                             <mat-option *ngFor="let m of funcionarios" [value]="m.id">
                                 {{m.pessoasFisica.nome}}
                             </mat-option>
@@ -20,7 +20,7 @@
 
                     <mat-form-field fxFlex="50%" fxFlexOffset="20px">
                         <mat-label>Cargo:</mat-label>
-                        <mat-select [(ngModel)]="colaboradoresProjeto.cargo.id" name="cargo" required (selectionChange)="verificaComposicaoCargo()">
+                        <mat-select [(ngModel)]="colaboradoresPrograma.cargo.id" name="cargo" required (selectionChange)="verificaComposicaoCargo()">
                             <mat-option *ngFor="let m of cargos" [value]="m.id">
                                 {{m.nome}}
                             </mat-option>
@@ -34,7 +34,7 @@
                     
                     <mat-form-field fxFlex="50%" fxFlexOffset="20px">
                         <mat-label>Tipo Contratação:</mat-label>
-                        <mat-select [(ngModel)]="colaboradoresProjeto.tiposContratacoes.id" name="tiposContratacoes">
+                        <mat-select [(ngModel)]="colaboradoresPrograma.tiposContratacoes.id" name="tiposContratacoes">
                             <mat-option *ngFor="let m of listaTiposContratacoes" [value]="m.id">
                                 {{m.descricaoTipoContratacao}}
                             </mat-option>
@@ -43,13 +43,13 @@
                     </mat-form-field>
                     
                         <mat-form-field fxFlex= "15%" fxFlexOffset="20px" >
-                                <input matInput name= "dtImplantacao" [matDatepicker]="dataInicio" placeholder="Data de entrada:" [(ngModel)]="colaboradoresProjeto.dataInicio" required>
+                                <input matInput name= "dtImplantacao" [matDatepicker]="dataInicio" placeholder="Data de entrada:" [(ngModel)]="colaboradoresPrograma.dataInicio" required>
                                 <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
                                 <mat-datepicker #dataInicio></mat-datepicker>
                          </mat-form-field>
             
                          <mat-form-field fxFlex= "15%">
-                                <input matInput name= "dtTermino" [matDatepicker]="dataTermino" placeholder="Data de saída:" [(ngModel)]="colaboradoresProjeto.dataFim">
+                                <input matInput name= "dtTermino" [matDatepicker]="dataTermino" placeholder="Data de saída:" [(ngModel)]="colaboradoresPrograma.dataFim">
                                 <mat-datepicker-toggle matSuffix [for]="dataTermino"></mat-datepicker-toggle>
                                 <mat-datepicker #dataTermino></mat-datepicker>
                          </mat-form-field>
@@ -80,7 +80,7 @@
                 (closed)="openFormCadastro = true">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        Lista de Colaboradores ( {{listaColaboradoresProjeto?.length}} )
+                        Lista de Colaboradores ( {{listaColaboradoresPrograma?.length}} )
                     </mat-panel-title>
                 </mat-expansion-panel-header>
     

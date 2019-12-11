@@ -154,8 +154,6 @@ export class ComposicaoRhProjetoComponent implements OnInit {
       this.toastService.showAlerta(`Para alterar para quantidade para ${composicaoRhProjeto.qtd} 
           é necessário retirar alguns colaboradores`)
     } else { 
-    // composicaoRhProjeto = this.composicaoRhProjeto;
-    // composicaoRhProjeto.id = null;
     this.limpar();
     this.openFormCadastro = false;
     this.isAtualizar = false;
