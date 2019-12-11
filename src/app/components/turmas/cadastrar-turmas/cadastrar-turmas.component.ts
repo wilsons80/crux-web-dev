@@ -51,6 +51,19 @@ export class CadastrarTurmasComponent implements OnInit {
       this.isAtualizar = true;
       this.turmaService.getById(id).subscribe((turma: Turmas) => {
         this.turma = turma;
+
+        if(!this.turma.programa) {
+          this.turma.programa = new Programa();
+        }
+        if(!this.turma.projeto) {
+          this.turma.projeto = new Projeto();
+        }
+        if(!this.turma.niveisTurma) {
+          this.turma.niveisTurma = new NiveisTurmas();
+        }
+        if(!this.turma.unidade) {
+          this.turma.unidade = new Unidade();
+        }
       });
     }
 
