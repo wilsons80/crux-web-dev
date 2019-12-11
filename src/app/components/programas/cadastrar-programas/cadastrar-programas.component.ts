@@ -9,6 +9,8 @@ import { ProgramaService } from 'src/app/services/programa/programa.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { Programa } from './../../../core/programa';
 import { FuncionarioService } from './../../../services/funcionario/funcionario.service';
+import {Iniciativa} from 'src/app/core/iniciativa';
+import {Projeto} from 'src/app/core/projeto';
 
 @Component({
   selector: 'app-cadastrar-programas',
@@ -65,6 +67,12 @@ export class CadastrarProgramasComponent implements OnInit {
     this.programa = new Programa();
     this.programa.objetivo = new Objetivo();
     this.programa.unidades = [];
+    this.programa.colaboradoresPrograma = [];
+    this.programa.parceriasPrograma = [];
+    this.programa.composicaoRhPrograma = [];
+    this.programa.materiaisPrograma = [];
+    this.programa.unidades = [];
+    
   }
 
   mostrarBotaoLimpar() {

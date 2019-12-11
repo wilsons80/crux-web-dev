@@ -1,6 +1,7 @@
 import { Cargo } from './cargo';
 import { Funcionario } from './funcionario';
 import { Programa } from './programa';
+import {TiposContratacoes} from 'src/app/core/tipos-contratacoes';
 
 export class ColaboradoresPrograma {
 	id: number;
@@ -9,5 +10,6 @@ export class ColaboradoresPrograma {
 	funcionario: Funcionario;
 	programa: Programa;
 	cargo: Cargo;
+	tiposContratacoes:TiposContratacoes
 	usuarioAlteracao: number;
 }
