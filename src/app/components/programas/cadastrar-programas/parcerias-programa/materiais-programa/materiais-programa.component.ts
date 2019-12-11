@@ -9,11 +9,13 @@ import { ParceriasPrograma } from 'src/app/core/parcerias-programa';
 import { Programa } from 'src/app/core/programa';
 import { MaterialService } from 'src/app/services/material/material.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import {ControlContainer, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'materiais-programa',
   templateUrl: './materiais-programa.component.html',
-  styleUrls: ['./materiais-programa.component.css']
+  styleUrls: ['./materiais-programa.component.css'],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
 export class MateriaisProgramaComponent implements OnInit {
 

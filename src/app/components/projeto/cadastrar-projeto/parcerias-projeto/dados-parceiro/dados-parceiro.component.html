@@ -41,7 +41,7 @@
             <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                 <input currencyMask matInput maxlength="50" name="valorParceria" placeholder="Valor da parceria:"
                     [(ngModel)]="parceriasProjeto.valorParceria"
-                    [options]="{ prefix: '', thousands: '.', decimal: '.' }" />
+                    [options]="{ prefix: '', thousands: '.', decimal: ',' }" />
                 <span matPrefix>R$&nbsp;</span>
             </mat-form-field>
         </div>

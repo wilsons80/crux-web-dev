@@ -33,7 +33,7 @@
                matInput maxlength="10" name="valorBolsaFamilia"
                placeholder="Valor bolsa familia:"
                [(ngModel)]="familiar.pessoasFisica.valorBolsaFamilia"
-               [options]="{ prefix: '', thousands: '.', decimal: '.' }" />
+               [options]="{ prefix: '', thousands: '.', decimal: ',' }" />
             <span matPrefix>R$&nbsp;</span>
     </mat-form-field>
 
@@ -42,7 +42,7 @@
              matInput maxlength="10" name="valorRenda"
              placeholder="Valor da renda:"
              [(ngModel)]="familiar.pessoasFisica.valorRenda"
-             [options]="{ prefix: '', thousands: '.', decimal: '.' }" />
+             [options]="{ prefix: '', thousands: '.', decimal: ',' }" />
           <span matPrefix>R$&nbsp;</span>
     </mat-form-field>
 </div>

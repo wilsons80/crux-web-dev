@@ -65,7 +65,7 @@
             <mat-form-field fxFlex="15%">
                 <input currencyMask name="salarioPretendido" placeholder="Salário Pretendido:" matInput
                     [(ngModel)]="funcionario.salarioPretendido"
-                    [options]="{ prefix: '', thousands: '.', decimal: '.' }" />
+                    [options]="{ prefix: '', thousands: '.', decimal: ',' }" />
                 <span matPrefix>R$&nbsp;</span>
             </mat-form-field>
         </div>
