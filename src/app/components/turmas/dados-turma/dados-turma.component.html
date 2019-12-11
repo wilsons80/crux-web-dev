@@ -8,7 +8,7 @@
 
     <mat-form-field fxFlexOffset="20px" fxFlex="30%">
         <mat-label>Niveis da turma</mat-label>
-        <mat-select [(ngModel)]="turma.niveisTurma" name="nivelTurma">
+        <mat-select [(ngModel)]="turma.niveisTurma.id" name="nivelTurma">
             <mat-option *ngFor="let u of niveisTurma"
                         [value]="u.id"
                         (selectionChange)=setNivelTurma($event.value)>
@@ -55,7 +55,7 @@
 
     <mat-form-field fxFlex="30%">
         <mat-label>Projeto</mat-label>
-        <mat-select [(ngModel)]="turma.projeto.id" name="unidade">
+        <mat-select [(ngModel)]="turma.projeto.id" name="projeto">
             <mat-option *ngFor="let u of projetos" [value]="u.id"
                        (selectionChange)=setProjeto($event.value)>
                 {{u.nome}}
@@ -72,7 +72,7 @@
 
     <mat-form-field fxFlex="20%" fxFlexOffset="20px">
         <input matInput name="dataInicioTurma" [matDatepicker]="dataInicioTurma" placeholder="Data de Início"
-            [(ngModel)]="turma.dataInicioTurma" required>
+            [(ngModel)]="turma.dataInicioTurma">
         <mat-datepicker-toggle matSuffix [for]="dataInicioTurma"></mat-datepicker-toggle>
         <mat-datepicker #dataInicioTurma></mat-datepicker>
     </mat-form-field>
@@ -116,7 +116,8 @@
 
     <mat-form-field fxFlex="20%" fxFlexOffset="20px">
         <input matInput name="dataPrevisaoInicio" [matDatepicker]="dataPrevisaoInicio"
-            placeholder="Data de Previsão de Início" [(ngModel)]="turma.dataPrevisaoInicio">
+            placeholder="Data de Previsão de Início" [(ngModel)]="turma.dataPrevisaoInicio"
+            required>
         <mat-datepicker-toggle matSuffix [for]="dataPrevisaoInicio"></mat-datepicker-toggle>
         <mat-datepicker #dataPrevisaoInicio></mat-datepicker>
     </mat-form-field>
