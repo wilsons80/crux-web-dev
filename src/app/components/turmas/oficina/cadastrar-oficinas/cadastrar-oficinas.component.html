@@ -39,7 +39,7 @@
 
     <button *ngIf="!isAtualizar" mat-raised-button name="botaoAdicionar" fxFlex="20%" color="primary"
             (click)="adicionar()">
-        Adicionar
+        Adicionar Oficina
     </button>
 
     <button *ngIf="isAtualizar" mat-raised-button name="botaoLimpar" fxFlex="20%" color="primary" (click)="cancelar()">
@@ -47,3 +47,5 @@
     </button>
 
 </div>
+
+<pre>{{oficina | json}}</pre>

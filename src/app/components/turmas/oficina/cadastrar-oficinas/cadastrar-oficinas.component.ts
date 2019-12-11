@@ -24,6 +24,8 @@ export class CadastrarOficinasComponent implements OnInit {
   constructor(private turmaService: TurmasService) { }
 
   ngOnInit(): void {
+    this.initObjeto();
+
     this.oficina.unidade = new Unidade();
     this.oficina.planosAcao = new PlanosAcao();
     this.oficina.projeto = new Projeto();

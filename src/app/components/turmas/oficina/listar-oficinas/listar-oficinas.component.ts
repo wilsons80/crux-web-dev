@@ -14,14 +14,14 @@ import * as _ from 'lodash';
 export class ListarOficinasComponent implements OnInit {
 
   @Input() oficinas: Atividade[];
-  @Output() onAtualizarColaborador = new EventEmitter();
+  @Output() onAtualizarOficina = new EventEmitter();
   @Output() onAdicionar = new EventEmitter();
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   mostrarTabela = false;
   msg: string;
-  
+
   displayedColumns: string[] = ['descricao', 'datainicio', 'datafim', 'maxparticipantes', 'projeto', 'planoacao', 'acoes'];
   dataSource: MatTableDataSource<Atividade> = new MatTableDataSource();
 
@@ -55,7 +55,7 @@ export class ListarOficinasComponent implements OnInit {
   }
 
   atualizar(oficina: Atividade) {
-    this.onAtualizarColaborador.emit(oficina);
+    this.onAtualizarOficina.emit(oficina);
     this.onAdicionar.emit(true);
   }
 

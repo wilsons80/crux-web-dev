@@ -38,9 +38,7 @@ export class CadastrarColaboradoresTurmaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.colaboradorTurma = new ColaboradoresTurma();
-    this.colaboradorTurma.cargo = new Cargo();
-    this.colaboradorTurma.funcionario = new Funcionario();
+    this.initObjeto();
 
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => this.listaDeFuncionarios = funcionarios);
     this.cargosService.getAll().subscribe((cargos: Cargo[]) => this.listaDeCargos = cargos)
@@ -48,6 +46,7 @@ export class CadastrarColaboradoresTurmaComponent implements OnInit {
 
 
   initObjeto() {
+    this.colaboradorTurma = new ColaboradoresTurma();
     this.colaboradorTurma.funcionario = new Funcionario();
     this.colaboradorTurma.funcionario.pessoasFisica = new PessoaFisica();
     this.colaboradorTurma.cargo = new Cargo();

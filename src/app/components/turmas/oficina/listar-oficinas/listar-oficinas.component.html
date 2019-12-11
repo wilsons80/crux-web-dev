@@ -24,7 +24,7 @@
         <th mat-header-cell *matHeaderCellDef> Projeto </th>
         <td mat-cell *matCellDef="let element"> {{element.projeto.descricao}} </td>
     </ng-container>
-    
+
     <ng-container matColumnDef="planoacao">
         <th mat-header-cell *matHeaderCellDef> Tipo Cargo </th>
         <td mat-cell *matCellDef="let element"> {{element.planosAcao.nome}} </td>
@@ -58,7 +58,7 @@
 
 <div fxLayout="row" *ngIf="perfilAcesso.insere" fxLayoutAlign="end center" fxLayoutGap="16px" style="padding-top: 30px">
     <div>
-        <button matTooltip="Adicionar nova vulnerabilidade" mat-fab color="primary" (click)="novo()">
+        <button matTooltip="Adicionar nova oficina" mat-fab color="primary" (click)="novo()">
             <mat-icon>add</mat-icon>
         </button>
     </div>
