@@ -47,7 +47,6 @@ export class ListarVulnerabilidadeAlunoComponent implements OnInit {
 
   atualizar(vulnerabilidade) {
     this.onVulnerabilidade.emit(vulnerabilidade);
-    this.onAdicionar.emit(true);
   }
 
   deletar(vulnerabilidade: any): void {
