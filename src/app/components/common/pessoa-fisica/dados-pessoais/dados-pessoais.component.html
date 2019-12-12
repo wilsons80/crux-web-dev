@@ -34,9 +34,14 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field fxFlex="20%">
-                    <input matInput maxlength="45" name="cor" placeholder="Cor:" [(ngModel)]="pessoaFisica.cor">
-                </mat-form-field>
+                <mat-form-field fxFlex="55%" fxFlexOffset="20px">
+                    <mat-label>Raça/Cor:</mat-label>
+                    <mat-select [(ngModel)]="pessoaFisica.raca" name="raca">
+                        <mat-option *ngFor="let m of racas" [value]="m">
+                            {{m}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>  
 
                 <mat-form-field fxFlex="20%">
                     <input matInput name="dataNascimento" [matDatepicker]="dataNascimento"
@@ -57,7 +62,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>  
-
+<!-- 
                 <mat-form-field fxFlex="20%" >
                     <mat-label>Cursando nível superior:</mat-label>
                     <mat-select [(ngModel)]="pessoaFisica.cursandoNivelSuperior" name="cursandoNivelSuperior">
@@ -65,13 +70,7 @@
                             {{m.tipo}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field>  
-
-                <mat-form-field fxFlex="75%">
-                    <input matInput maxlength="200" name="raca" placeholder="Raça: Brancos, Pardos, Negros, Indígenas e Amarelos" 
-                           [(ngModel)]="pessoaFisica.raca">
-                </mat-form-field>                
-    
+                </mat-form-field>   -->
             </div>
 
             <div fxLayout="row" fxLayoutGap="20px" fxFlexFill>
