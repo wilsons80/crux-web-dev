@@ -1,14 +1,13 @@
 import { Cbo } from './cbo';
-import { TipoCargo } from './tipo-cargo';
 
 export class Cargo {
 	id: number;
 	codigo: string;
 	nome: string;
-	tipoCargo: TipoCargo;
+	tipoCargo: string;
 	usuarioAlteracao: number;
 	cbo: Cbo;
-    descricaoPerfilProfissional: string;
-    descricaoResumoAtividades: string;
-    qtdHoras: number;
+  descricaoPerfilProfissional: string;
+  descricaoResumoAtividades: string;
+  qtdHoras: number;
 }

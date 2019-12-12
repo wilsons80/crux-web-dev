@@ -1,3 +1,4 @@
+import { TipoCargo } from 'src/app/core/tipo-cargo';
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { ColaboradoresTurma } from 'src/app/core/colaboradores-turma';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
@@ -20,6 +21,7 @@ export class ListarColaboradoresTurmaComponent implements OnInit {
 
   mostrarTabela = false;
   msg: string;
+  tipoCargo: TipoCargo = new TipoCargo();
 
   displayedColumns: string[] = ['nome', 'cargo', 'tipoCargo', 'acoes'];
   dataSource: MatTableDataSource<ColaboradoresTurma> = new MatTableDataSource();

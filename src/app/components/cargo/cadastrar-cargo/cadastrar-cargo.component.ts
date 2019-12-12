@@ -26,11 +26,7 @@ export class CadastrarCargoComponent implements OnInit {
 
   isAtualizar = false;
 
-  tiposCargo = [
-    {tipo: TipoCargo.ESTAGIARIO, descricao: 'ESTAGIÁRIO'},
-    {tipo: TipoCargo.FUNCIONARIO, descricao: 'FUNCIONÁRIO'},
-    {tipo: TipoCargo.VOLUNTARIO, descricao: 'VOLUNTÁRIO'},
-  ]
+  tiposCargo: TipoCargo = new TipoCargo();
 
   constructor(
     private cargoService: CargosService,

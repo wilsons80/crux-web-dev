@@ -1,3 +1,4 @@
+import { TipoCargo } from 'src/app/core/tipo-cargo';
 import { Component, OnInit, Output, EventEmitter, Input, ViewChild, SimpleChanges } from '@angular/core';
 import { Funcionario } from 'src/app/core/funcionario';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
@@ -22,6 +23,8 @@ export class ListarColaboradoresAtividadeComponent implements OnInit {
 
   mostrarTabela = false;
   msg: string;
+
+  tipoCargo: TipoCargo = new TipoCargo();
 
   displayedColumns: string[] = ['matricula', 'nome', 'cargo', 'tipoCargo', 'acoes'];
   dataSource: MatTableDataSource<ColaboradoresAtividade> = new MatTableDataSource();
