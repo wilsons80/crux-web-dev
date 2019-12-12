@@ -28,7 +28,7 @@ export class ListaResponsaveisComponent implements OnInit {
   dataSource: MatTableDataSource<ResponsaveisAluno> = new MatTableDataSource();
 
   perfilAcesso: Acesso;
-  
+
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -52,7 +52,6 @@ export class ListaResponsaveisComponent implements OnInit {
 
   atualizar(responsavel) {
     this.onResponsavel.emit(responsavel);
-    this.onAdicionar.emit(true);
   }
 
   deletar(responsavel: any): void {
