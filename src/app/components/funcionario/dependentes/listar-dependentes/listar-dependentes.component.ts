@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, Input, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, ViewChild, EventEmitter, SimpleChanges } from '@angular/core';
 import { Funcionario } from 'src/app/core/funcionario';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Dependentes } from 'src/app/core/dependentes';
 import { Acesso } from 'src/app/core/acesso';
 import { ActivatedRoute } from '@angular/router';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'listar-dependentes',
@@ -14,7 +15,7 @@ export class ListarDependentesComponent implements OnInit {
 
   @Output() onDependente = new EventEmitter();
   @Output() onAdicionar = new EventEmitter();
-  @Input() funcionario: Funcionario;
+  @Input() dependentes: Dependentes[];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -35,13 +36,19 @@ export class ListarDependentesComponent implements OnInit {
     this.carregarListaDependentes();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["dependentes"] && !_.isEmpty(changes["dependentes"].currentValue)) {
+      this.carregarListaDependentes();
+    }
+  }
+
   carregarListaDependentes() {
-    if (this.funcionario && this.funcionario.dependentes) {
-      if (!this.funcionario.dependentes || this.funcionario.dependentes.length === 0) {
+    if (this.dependentes) {
+      if (!this.dependentes || this.dependentes.length === 0) {
         this.mostrarTabela = false;
         this.msg = 'Nenhum dependente cadastrado.';
       } else {
-        this.dataSource.data = this.funcionario.dependentes ? this.funcionario.dependentes : [];
+        this.dataSource.data = this.dependentes ? this.dependentes : [];
         this.mostrarTabela = true;
       }
     }
@@ -49,13 +56,12 @@ export class ListarDependentesComponent implements OnInit {
 
   atualizar(dependente) {
     this.onDependente.emit(dependente);
-    this.onAdicionar.emit(true);
   }
 
   deletar(dependente: any): void {
-    const index = this.funcionario.dependentes.indexOf( this.funcionario.dependentes.find(d => d === dependente));
+    const index = this.dependentes.indexOf( this.dependentes.find(d => d === dependente));
     if (index >= 0) {
-      this.funcionario.dependentes.splice(index, 1);
+      this.dependentes.splice(index, 1);
       this.carregarListaDependentes();
     }
   }

@@ -70,14 +70,13 @@ export class ParceriasProjetoComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["listaParceiros"] && !_.isEmpty(changes["listaParceiros"].currentValue)) {
-      console.log("dasdas", changes);
       this.carregarLista();
     }
 
   }
 
   limpar() {
-    this.initObjetos(); 
+    this.initObjetos();
   }
 
   isJaAdicionada(): boolean {
@@ -104,7 +103,7 @@ export class ParceriasProjetoComponent implements OnInit {
 
   getObjetosCompletosParaLista(parceriaProjetoSelecionado: ParceriasProjeto) {
     parceriaProjetoSelecionado.empresa = _.find(this.empresas, (empresa: Empresa) => empresa.id == parceriaProjetoSelecionado.empresa.id);
-    
+
   }
 
 

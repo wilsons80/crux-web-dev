@@ -21,6 +21,7 @@ export class ColaboradoresTurmaComponent implements OnInit, AfterContentChecked 
   ngAfterContentChecked(): void {
     this.drc.detectChanges();
   }
+
   onGetAdicionar(evento) {
     this.openFormCadastro = evento;
   }
