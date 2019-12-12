@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { Familiares } from 'src/app/core/familiares';
 
 @Component({
@@ -6,16 +6,20 @@ import { Familiares } from 'src/app/core/familiares';
   templateUrl: './vulnerabilidade.component.html',
   styleUrls: ['./vulnerabilidade.component.css']
 })
-export class VulnerabilidadeComponent implements OnInit {
+export class VulnerabilidadeComponent implements OnInit, AfterContentChecked {
 
   @Input() familiar: Familiares;
 
   openFormCadastro = true;
 
-  constructor() {
+  constructor(protected drc: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterContentChecked(): void {
+    this.drc.detectChanges();
   }
 
   onGetAdicionar(evento) {

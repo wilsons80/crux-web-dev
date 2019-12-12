@@ -1,5 +1,5 @@
 import { Familiares } from 'src/app/core/familiares';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { FamiliarAlunoService } from 'src/app/services/familiar-aluno/familiar-aluno.service';
 import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcast-event.service';
 
@@ -8,19 +8,24 @@ import { BroadcastEventService } from 'src/app/services/broadcast-event/broadcas
   templateUrl: './responsavel.component.html',
   styleUrls: ['./responsavel.component.css']
 })
-export class ResponsavelComponent implements OnInit {
+export class ResponsavelComponent implements OnInit, AfterContentChecked {
 
   @Input() familiar: Familiares;
 
   mensagemResponsavelVigente: string = null;
   openFormCadastro = true;
 
-  constructor(private familiarAlunoService: FamiliarAlunoService) { }
+  constructor(private familiarAlunoService: FamiliarAlunoService,
+              protected drc: ChangeDetectorRef) { }
 
   ngOnInit() {
     BroadcastEventService.get('ON_RESPONSAVEL_VIGENTE_ALUNO').subscribe((idAluno: number) => {
       this.mostrarResponsavelVigente(idAluno);
     });
+  }
+
+  ngAfterContentChecked(): void {
+    this.drc.detectChanges();
   }
 
   onGetAdicionar(evento) {

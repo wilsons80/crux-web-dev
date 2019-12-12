@@ -46,7 +46,7 @@
                     <mat-form-field fxFlex="24%" fxFlexOffset="20px">
                         <mat-label>Tipo: </mat-label>
                         <mat-select name="tipoUnidades" [(ngModel)]="unidade.tipoUnidade">
-                            <mat-option *ngFor="let t of tiposUnidade" [value]="t.tipo">
+                            <mat-option *ngFor="let t of tiposUnidade.tipos" [value]="t.tipo">
                                 {{t.descricao}}
                             </mat-option>
                         </mat-select>
@@ -180,7 +180,7 @@
                     #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="4" maxlength="1000">
                       </textarea>
                 <mat-hint align="end">{{missao.value.length}} / 1000</mat-hint>
-            </mat-form-field> 
+            </mat-form-field>
 
 
 

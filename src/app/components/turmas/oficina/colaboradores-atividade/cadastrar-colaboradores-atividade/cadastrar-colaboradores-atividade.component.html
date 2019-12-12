@@ -7,7 +7,6 @@
                     <mat-form-field fxFlex="95%" fxFlexOffset="20px">
                         <mat-label>Selecione um funcionário</mat-label>
                         <mat-select [(ngModel)]="colaboradorAtividade.funcionario.id" name="funcionario"
-                                    [disabled]=isAtualizar
                                     (selectionChange)=mostrarDadosFuncionario($event.value)
                                     required>
                             <mat-option *ngFor="let d of listaDeFuncionarios" [value]="d.id">
@@ -68,7 +67,7 @@
      fxFlexFill>
 
         <button *ngIf="!isAtualizar" mat-raised-button name="botaoLimpar" fxFlex="20%" color="primary" (click)="zerarCombos()">
-            Limpar
+            Limpar Colaborador
         </button>
 
         <button *ngIf="!isAtualizar" mat-raised-button name="botaoAdicionar" fxFlex="20%" color="primary" [disabled]=formConsultar.invalid
@@ -77,13 +76,13 @@
         </button>
 
         <button *ngIf="isAtualizar" mat-raised-button name="botaoLimpar" fxFlex="20%" color="primary" (click)="cancelar()">
-            Cancelar
+            Cancelar Colaborador
         </button>
 
 
         <button *ngIf="isAtualizar" mat-raised-button name="botaoAdicionar" fxFlex="20%" color="primary"
             [disabled]=formConsultar.invalid (click)="atualizar()">
-            Atualizar
+            Atualizar Colaborador
         </button>
 
 </div>

@@ -36,8 +36,8 @@ export class ListarVulnerabilidadeComponent implements OnInit {
   }
 
   carregarLista() {
-    if (this.familiar && this.familiar.responsaveis) {
-      if (!this.familiar.responsaveis || this.familiar.responsaveis.length === 0) {
+    if (this.familiar && this.familiar.vulnerabilidades) {
+      if (!this.familiar.vulnerabilidades || this.familiar.vulnerabilidades.length === 0) {
         this.mostrarTabela = false;
         this.msg = 'Nenhuma vulnerabilidade cadastrada.';
       } else {
@@ -49,7 +49,6 @@ export class ListarVulnerabilidadeComponent implements OnInit {
 
   atualizar(vulnerabilidade) {
     this.onVulnerabilidade.emit(vulnerabilidade);
-    this.onAdicionar.emit(true);
   }
 
   deletar(vulnerabilidade: any): void {

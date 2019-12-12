@@ -1,9 +1,10 @@
 import { AlocacaoFuncionario } from './../../../../core/alocacao-funcionario';
 import { Funcionario } from 'src/app/core/funcionario';
-import { Component, OnInit, Output, Input, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ViewChild, SimpleChanges } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Acesso } from 'src/app/core/acesso';
 import { ActivatedRoute } from '@angular/router';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'listar-alocacao',
@@ -15,7 +16,7 @@ export class ListarAlocacaoComponent implements OnInit {
 
   @Output() onAlocacao = new EventEmitter();
   @Output() onAdicionar = new EventEmitter();
-  @Input() funcionario: Funcionario;
+  @Input() alocacoesFuncionario: AlocacaoFuncionario[];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -36,13 +37,19 @@ export class ListarAlocacaoComponent implements OnInit {
     this.carregarListaAlocacao();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["alocacoesFuncionario"] && !_.isEmpty(changes["alocacoesFuncionario"].currentValue)) {
+      this.carregarListaAlocacao();
+    }
+  }
+
   carregarListaAlocacao() {
-    if (this.funcionario && this.funcionario.alocacoesFuncionario) {
-      if (!this.funcionario.alocacoesFuncionario || this.funcionario.alocacoesFuncionario.length === 0) {
+    if (this.alocacoesFuncionario) {
+      if (!this.alocacoesFuncionario || this.alocacoesFuncionario.length === 0) {
         this.mostrarTabela = false;
         this.msg = 'Nenhum alocação cadastrada.';
       } else {
-        this.dataSource.data = this.funcionario.alocacoesFuncionario ? this.funcionario.alocacoesFuncionario : [];
+        this.dataSource.data = this.alocacoesFuncionario ? this.alocacoesFuncionario : [];
         this.mostrarTabela = true;
       }
     }
@@ -50,13 +57,12 @@ export class ListarAlocacaoComponent implements OnInit {
 
   atualizar(alocacao) {
     this.onAlocacao.emit(alocacao);
-    this.onAdicionar.emit(true);
   }
 
   deletar(alocacao: any): void {
-    const index = this.funcionario.alocacoesFuncionario.indexOf( this.funcionario.alocacoesFuncionario.find(aloc => aloc === alocacao));
+    const index = this.alocacoesFuncionario.indexOf( this.alocacoesFuncionario.find(aloc => aloc === alocacao));
     if (index >= 0) {
-      this.funcionario.alocacoesFuncionario.splice(index, 1);
+      this.alocacoesFuncionario.splice(index, 1);
       this.carregarListaAlocacao();
     }
   }

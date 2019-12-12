@@ -60,7 +60,6 @@ export class ParceriasProgramaComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["listaParceiros"] && !_.isEmpty(changes["listaParceiros"].currentValue)) {
-      console.log("dasdas", changes);
       this.carregarLista();
     }
 

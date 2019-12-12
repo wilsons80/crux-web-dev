@@ -48,8 +48,7 @@ export class CadastrarResponsavelComponent implements OnInit {
 
     const responsavelVigente = this.familiar.responsaveis.find(r => r.dataDesvinculacao === undefined || r.dataDesvinculacao === null);
     if (responsavelVigente && ( this.responsavel.dataDesvinculacao === undefined || this.responsavel.dataDesvinculacao === null ) ) {
-      this.toastService.showAlerta('Data de vigência está conflitando com a data do responsável: ' +
-                                                       responsavelVigente.familiar.pessoasFisica.nome);
+      this.toastService.showAlerta('Data de vigência está conflitando com a data de outro responsável.'); //responsavelVigente.familiar.pessoasFisica.nome);
       return false;
     }
 
@@ -71,7 +70,7 @@ export class CadastrarResponsavelComponent implements OnInit {
 
 
     // Valido com a data de vigência do outra familiar
-    if (this.responsavelVigente.familiar.id !== this.familiar.id) {
+    if (this.responsavelVigente && this.responsavelVigente.familiar.id !== this.familiar.id) {
       if (this.responsavel.dataVinculacao.getTime()  <= new Date(this.responsavelVigente.dataDesvinculacao).getTime()
          &&
          (
@@ -80,7 +79,7 @@ export class CadastrarResponsavelComponent implements OnInit {
            this.responsavel.dataDesvinculacao.getTime() >= new Date(this.responsavelVigente.dataVinculacao).getTime()
          )
       ) {
-        this.toastService.showAlerta('O responsável: ' + this.responsavelVigente.familiar.pessoasFisica.nome 
+        this.toastService.showAlerta('O responsável: ' + this.responsavelVigente.familiar.pessoasFisica.nome
                                                        + ' já está vigente nesse período.');
         return false;
       }

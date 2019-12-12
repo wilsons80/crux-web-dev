@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { Turmas } from 'src/app/core/turmas';
 
 @Component({
@@ -6,16 +6,20 @@ import { Turmas } from 'src/app/core/turmas';
   templateUrl: './colaboradores-turma.component.html',
   styleUrls: ['./colaboradores-turma.component.css']
 })
-export class ColaboradoresTurmaComponent implements OnInit {
+export class ColaboradoresTurmaComponent implements OnInit, AfterContentChecked {
 
   @Input() turma: Turmas;
 
   openFormCadastro = true;
 
-  constructor() {
+  constructor(protected drc: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterContentChecked(): void {
+    this.drc.detectChanges();
   }
 
   onGetAdicionar(evento) {

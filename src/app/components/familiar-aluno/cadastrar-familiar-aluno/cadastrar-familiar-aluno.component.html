@@ -4,7 +4,7 @@
 
 
 <!-- Dados da FAMILIA DO ALUNO -->
-<mat-toolbar class="subtitulo">Familia do Aluno ({{familiar.pessoasFisica.nome}})</mat-toolbar>
+<mat-toolbar class="subtitulo">Familia do Aluno {{familiar.pessoasFisica.nome ? familiar.pessoasFisica.nome.toLowerCase() : ''}}</mat-toolbar>
 <div class="painel-principal" style="padding: 10px;">
     <mat-horizontal-stepper #stepper style="background: transparent; padding: 10px">
 
@@ -57,7 +57,7 @@
                     voltar
                 </button>
             </div>
-        </mat-step>        
+        </mat-step>
 
         <!-- ------------------ ESCOLARIDADE ------------------------ -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
@@ -129,7 +129,7 @@
                     voltar
                 </button>
             </div>
-        </mat-step>  
+        </mat-step>
 
         <!-- OUTRAS INFORMAÇOES -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutrasInformacoes">

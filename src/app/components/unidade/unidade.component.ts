@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ControleMenuService } from 'src/app/services/controle-menu/controle-menu.service';
 import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.component';
 import { UploadFotoComponent } from '../upload-foto/upload-foto.component';
+import { TipoUnidade } from 'src/app/core/tipo-unidade';
 
 
 
@@ -16,7 +17,7 @@ import { UploadFotoComponent } from '../upload-foto/upload-foto.component';
   styleUrls: ['./unidade.component.css']
 })
 export class UnidadeComponent implements OnInit {
-  
+
 
  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -26,6 +27,7 @@ export class UnidadeComponent implements OnInit {
   msg: string;
 
   perfilAcesso: Acesso;
+  tipoUnidade: TipoUnidade = new TipoUnidade();
 
   displayedColumns: string[] = ['sigla', 'nome', 'tipo', 'acoes'];
   dataSource: MatTableDataSource<Unidade> = new MatTableDataSource();
@@ -81,7 +83,7 @@ export class UnidadeComponent implements OnInit {
       pergunta: `Certeza que deseja excluir a unidade?`,
       textoConfirma: 'SIM',
       textoCancela: 'NÃO'
-    }; 
+    };
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(confirma => {
@@ -107,14 +109,14 @@ export class UnidadeComponent implements OnInit {
 
   verificaMostrarTabela(unidades: Unidade[]) {
     if(!unidades ||unidades.length == 0) {
-      this.mostrarTabela = false; 
+      this.mostrarTabela = false;
       this.msg = "Nenhum indicador cadastrado."
     }else{
-      this.mostrarTabela = true; 
+      this.mostrarTabela = true;
     }
   }
 
-  
+
 
 }
 

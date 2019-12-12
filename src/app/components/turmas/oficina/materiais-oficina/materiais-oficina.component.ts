@@ -10,7 +10,7 @@ export class MateriaisOficinaComponent implements OnInit {
 
   @Input() oficina: Atividade;
 
-  openFormCadastro = true;
+  openFormCadastro = false;
 
   constructor() {
   }

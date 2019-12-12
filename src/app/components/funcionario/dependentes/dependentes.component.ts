@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { Funcionario } from 'src/app/core/funcionario';
 
 @Component({
@@ -6,15 +6,19 @@ import { Funcionario } from 'src/app/core/funcionario';
   templateUrl: './dependentes.component.html',
   styleUrls: ['./dependentes.component.css']
 })
-export class DependentesComponent implements OnInit {
+export class DependentesComponent implements OnInit, AfterContentChecked {
 
   @Input() funcionario: Funcionario;
-  
-  openFormCadastro = true;
 
-  constructor() { }
+  openFormCadastro = false;
+
+  constructor(protected drc: ChangeDetectorRef) { }
 
   ngOnInit() {
+  }
+
+  ngAfterContentChecked(): void {
+    this.drc.detectChanges();
   }
 
   onGetAdicionar(evento) {

@@ -22,11 +22,11 @@
                 Lista de Vulnerabilidades ( {{aluno.vulnerabilidades.length}} )
             </mat-panel-title>
         </mat-expansion-panel-header>
-        
+
         <listar-vulnerabilidade-aluno #listarVulnerabilidades
-                                      [aluno]="aluno"  
-                                      (onVulnerabilidade)="cadastrarVulnerabilidade.carregar($event)"
-                                      (onAdicionar)="onGetAdicionar($event)">
+                                      [aluno]="aluno"
+                                      (onVulnerabilidade)="onGetAdicionar($event); cadastrarVulnerabilidade.carregar($event)"
+                                      (onAdicionar)="onGetAdicionar($event); cadastrarVulnerabilidade.initObjetos()">
         </listar-vulnerabilidade-aluno>
 
     </mat-expansion-panel>

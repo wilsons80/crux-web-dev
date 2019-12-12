@@ -22,9 +22,9 @@
         </mat-expansion-panel-header>
 
         <listar-colaboradores-atividade #listarColaboradores
-                                        (onAtualizarColaborador)="cadastrarColaboradores.atualizarColaborador($event)"
                                         [colaboradoresAtividade]="oficina.colaboradoresAtividade"
-                                        (onAdicionar)="onGetAdicionar($event)">
+                                        (onAtualizarColaborador)="onGetAdicionar($event); cadastrarColaboradores.atualizarColaborador($event)"
+                                        (onAdicionar)="onGetAdicionar($event); cadastrarColaboradores.zerarCombos()">
         </listar-colaboradores-atividade>
 
     </mat-expansion-panel>

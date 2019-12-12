@@ -34,7 +34,7 @@
 
     <button *ngIf="!isAtualizar" mat-raised-button name="botaoLimpar" fxFlex="20%" color="primary"
         (click)="initObjeto()">
-        Limpar
+        Limpar Oficina
     </button>
 
     <button *ngIf="!isAtualizar" mat-raised-button name="botaoAdicionar" fxFlex="20%" color="primary"
@@ -43,9 +43,7 @@
     </button>
 
     <button *ngIf="isAtualizar" mat-raised-button name="botaoLimpar" fxFlex="20%" color="primary" (click)="cancelar()">
-        Cancelar
+        Cancelar Oficina
     </button>
 
 </div>
-
-<pre>{{oficina | json}}</pre>

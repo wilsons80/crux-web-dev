@@ -20,8 +20,9 @@
         </mat-expansion-panel-header>
 
         <listar-colaboradores-turma #listarColaboradores
-            (onAtualizarColaborador)="cadastrarColaboradores.atualizarColaborador($event)"
-            [colaboradoresTurma]="turma.colaboradores" (onAdicionar)="onGetAdicionar($event)">
+                                    [colaboradoresTurma]="turma.colaboradores"
+                                    (onAtualizarColaborador)="onGetAdicionar($event); cadastrarColaboradores.atualizarColaborador($event)"
+                                    (onAdicionar)="onGetAdicionar($event); cadastrarColaboradores.cancelar()">
         </listar-colaboradores-turma>
 
     </mat-expansion-panel>

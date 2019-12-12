@@ -9,7 +9,7 @@
     </mat-expansion-panel-header>
 
     <cadastrar-vulnerabilidade #cadastrarVulnerabilidade
-                              [familiar]="familiar">
+                               [familiar]="familiar">
     </cadastrar-vulnerabilidade>
   </mat-expansion-panel>
 
@@ -22,11 +22,11 @@
         Lista de Vulnerabilidades ( {{familiar.vulnerabilidades.length}} )
       </mat-panel-title>
     </mat-expansion-panel-header>
-    
+
     <listar-vulnerabilidade #listarVulnerabilidades
-                             [familiar]="familiar"  
-                             (onVulnerabilidade)="cadastrarVulnerabilidade.carregar($event)"
-                             (onAdicionar)="onGetAdicionar($event)">
+                             [familiar]="familiar"
+                             (onVulnerabilidade)="onGetAdicionar($event); cadastrarVulnerabilidade.carregar($event)"
+                             (onAdicionar)="onGetAdicionar($event); cadastrarVulnerabilidade.initObjetos()">
     </listar-vulnerabilidade>
 
   </mat-expansion-panel>

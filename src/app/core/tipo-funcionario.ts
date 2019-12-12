@@ -9,8 +9,13 @@ export class TipoFuncionario {
       ]
 
 
-     getTipo(tipo: string) {
+    getTipo(tipo: string) {
         const tipoFuncionario = this.tipos.find( d => d.tipo.includes(tipo));
         return tipoFuncionario ? tipoFuncionario : null;
-      }
+    }
+
+    getDescricao(tipo: string) {
+      const tipoFuncionario = this.getTipo(tipo);
+      return tipoFuncionario ? tipoFuncionario.descricao : '';
+    }
 }

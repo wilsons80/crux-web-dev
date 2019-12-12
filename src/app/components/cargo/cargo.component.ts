@@ -28,11 +28,8 @@ export class CargoComponent implements OnInit {
   displayedColumns: string[] = ['codigo', 'nome', 'tipoCargo','acoes'];
   dataSource: MatTableDataSource<Cargo> = new MatTableDataSource();
 
-  tiposCargo = [
-    {tipo: TipoCargo.ESTAGIARIO, descricao: 'ESTAGIÁRIO'},
-    {tipo: TipoCargo.FUNCIONARIO, descricao: 'FUNCIONÁRIO'},
-    {tipo: TipoCargo.VOLUNTARIO, descricao: 'VOLUNTÁRIO'},
-  ]
+
+  tiposCargo: TipoCargo = new TipoCargo();
 
   constructor(
     private cargoService: CargosService,
@@ -49,10 +46,7 @@ export class CargoComponent implements OnInit {
     this.getAll();
   }
 
-  getDescricaoTipoCargo(tipoCargo) {
-    const cargo = _.find(this.tiposCargo, {tipo: tipoCargo})
-    return cargo ? cargo.descricao : "";
-  }
+
   limpar() {
     this.mostrarTabela = false;
     this.cargo = new Cargo()

@@ -12,6 +12,7 @@ import { ArquivoUnidadeService } from './../../../services/arquivo/arquivo.servi
 import { ToastService } from './../../../services/toast/toast.service';
 import { Instituicao } from 'src/app/core/instituicao';
 import { InstituicaoService } from 'src/app/services/instituicao/instituicao.service';
+import { TipoUnidade } from 'src/app/core/tipo-unidade';
 
 @Component({
   selector: 'cadastrar-unidade',
@@ -39,10 +40,7 @@ export class CadastrarUnidadeComponent implements OnInit {
 
   unidades: any[];
 
-  tiposUnidade: any[] = [
-    { id: '1', tipo: 'M', descricao: 'MATRIZ' },
-    { id: '2', tipo: 'F', descricao: 'FILIAL' },
-  ]
+  tiposUnidade: TipoUnidade = new TipoUnidade();
 
   // MATRIZ(1, 'M'), FILIAL(2, 'F');
 

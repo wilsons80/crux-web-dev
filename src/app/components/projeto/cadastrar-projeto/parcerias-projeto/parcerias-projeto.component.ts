@@ -4,17 +4,7 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import { Acesso } from 'src/app/core/acesso';
-import { Cargo } from 'src/app/core/cargo';
-import { Funcionario } from 'src/app/core/funcionario';
-import { Projeto } from 'src/app/core/projeto';
-import { TiposContratacoes } from 'src/app/core/tipos-contratacoes';
-import { Unidade } from 'src/app/core/unidade';
-import { CargosService } from 'src/app/services/cargos/cargos.service';
-import { FuncionarioService } from 'src/app/services/funcionario/funcionario.service';
-import { ProjetoService } from 'src/app/services/projeto/projeto.service';
-import { TiposContratacoesService } from 'src/app/services/tipos-contratacoes/tipos-contratacoes.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { UnidadeSelecionadaService } from 'src/app/services/unidadeSelecionada/unidade-selecionada.service';
 import { ParceriasProjeto } from 'src/app/core/parcerias-projeto';
 import { Empresa } from 'src/app/core/empresa';
 
@@ -70,14 +60,13 @@ export class ParceriasProjetoComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["listaParceiros"] && !_.isEmpty(changes["listaParceiros"].currentValue)) {
-      console.log("dasdas", changes);
       this.carregarLista();
     }
 
   }
 
   limpar() {
-    this.initObjetos(); 
+    this.initObjetos();
   }
 
   isJaAdicionada(): boolean {
@@ -104,7 +93,7 @@ export class ParceriasProjetoComponent implements OnInit {
 
   getObjetosCompletosParaLista(parceriaProjetoSelecionado: ParceriasProjeto) {
     parceriaProjetoSelecionado.empresa = _.find(this.empresas, (empresa: Empresa) => empresa.id == parceriaProjetoSelecionado.empresa.id);
-    
+
   }
 
 

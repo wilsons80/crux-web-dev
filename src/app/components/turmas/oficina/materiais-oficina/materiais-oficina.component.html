@@ -21,9 +21,9 @@
         </mat-expansion-panel-header>
 
         <listar-materiais #listarMateriais
-                          (onAtualizarMaterial)="cadastrarMateriais.atualizarMaterial($event)"
                           [materiaisAtividade]="oficina.materiaisAtividade"
-                          (onAdicionar)="onGetAdicionar($event)">
+                          (onAtualizarMaterial)="onGetAdicionar($event); cadastrarMateriais.atualizarMaterial($event)"
+                          (onAdicionar)="onGetAdicionar($event); cadastrarMateriais.cancelar()">
         </listar-materiais>
 
     </mat-expansion-panel>

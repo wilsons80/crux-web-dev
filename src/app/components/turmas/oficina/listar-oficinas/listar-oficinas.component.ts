@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild, SimpleChanges } from '@angular/core';
 import { Atividade } from 'src/app/core/atividade';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Acesso } from 'src/app/core/acesso';
@@ -36,6 +36,13 @@ export class ListarOficinasComponent implements OnInit {
     this.carregarLista();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["oficinas"] && !_.isEmpty(changes["oficinas"].currentValue)) {
+      this.carregarLista();
+    }
+  }
+
+
   carregarLista() {
       if (_.isEmpty(this.oficinas)) {
         this.mostrarTabela = false;
@@ -56,7 +63,6 @@ export class ListarOficinasComponent implements OnInit {
 
   atualizar(oficina: Atividade) {
     this.onAtualizarOficina.emit(oficina);
-    this.onAdicionar.emit(true);
   }
 
   novo() {
