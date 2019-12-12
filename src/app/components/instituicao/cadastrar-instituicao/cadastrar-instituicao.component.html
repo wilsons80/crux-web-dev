@@ -54,14 +54,15 @@
 
         <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
+              
             <mat-form-field fxFlex="45%" fxFlexOffset="20px" appearance="outline">
-                <mat-label>Visão:</mat-label>
-                <textarea #visao matInput name="visao" [(ngModel)]="instituicao.visao"
+                <mat-label>Finalidades Estatutárias:</mat-label>
+                <textarea #finalidadesEstatutarias matInput name="finalidadesEstatutarias" [(ngModel)]="instituicao.finalidadesEstatutarias"
                     cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3"
                     maxlength="1000"></textarea>
-                <mat-hint align="end">{{visao.value.length}} / 1000</mat-hint>
+                <mat-hint align="end">{{finalidadesEstatutarias.value.length}} / 1000</mat-hint>
             </mat-form-field>
-           
+
             <mat-form-field fxFlex="45%" fxFlexOffset="20px" appearance="outline">
                 <mat-label>Missão:</mat-label>
                 <textarea #missao matInput name="missao" [(ngModel)]="instituicao.missao"
@@ -83,12 +84,13 @@
             </mat-form-field>
            
             <mat-form-field fxFlex="45%" fxFlexOffset="20px" appearance="outline">
-                <mat-label>Finalidades Estatutárias:</mat-label>
-                <textarea #finalidadesEstatutarias matInput name="finalidadesEstatutarias" [(ngModel)]="instituicao.finalidadesEstatutarias"
+                <mat-label>Visão:</mat-label>
+                <textarea #visao matInput name="visao" [(ngModel)]="instituicao.visao"
                     cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3"
                     maxlength="1000"></textarea>
-                <mat-hint align="end">{{finalidadesEstatutarias.value.length}} / 1000</mat-hint>
+                <mat-hint align="end">{{visao.value.length}} / 1000</mat-hint>
             </mat-form-field>
+           
 
         </div>
 
