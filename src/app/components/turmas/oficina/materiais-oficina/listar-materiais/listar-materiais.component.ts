@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, SimpleChanges } from '@angular/core';
 import { MateriaisAtividade } from 'src/app/core/materiais-atividade';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Acesso } from 'src/app/core/acesso';
@@ -36,6 +36,12 @@ export class ListarMateriaisComponent implements OnInit {
     this.carregarLista();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["materiaisAtividade"] && !_.isEmpty(changes["materiaisAtividade"].currentValue)) {
+      this.carregarLista();
+    }
+  }
+
   carregarLista() {
       if (_.isEmpty(this.materiaisAtividade)) {
         this.mostrarTabela = false;
@@ -56,7 +62,6 @@ export class ListarMateriaisComponent implements OnInit {
 
   atualizar(materialAtividade: MateriaisAtividade) {
     this.onAtualizarMaterial.emit(materialAtividade);
-    this.onAdicionar.emit(true);
   }
 
   novo() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, SimpleChanges } from '@angular/core';
 import { Funcionario } from 'src/app/core/funcionario';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { VulnerabilidadesFamiliar } from 'src/app/core/vulnerabilidades-familiar';
@@ -22,7 +22,7 @@ export class ListarColaboradoresAtividadeComponent implements OnInit {
 
   mostrarTabela = false;
   msg: string;
-  
+
   displayedColumns: string[] = ['matricula', 'nome', 'cargo', 'tipoCargo', 'acoes'];
   dataSource: MatTableDataSource<ColaboradoresAtividade> = new MatTableDataSource();
 
@@ -36,6 +36,13 @@ export class ListarColaboradoresAtividadeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.carregarLista();
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["colaboradoresAtividade"] && !_.isEmpty(changes["colaboradoresAtividade"].currentValue)) {
+      this.carregarLista();
+    }
+  }
+
 
   carregarLista() {
       if (_.isEmpty(this.colaboradoresAtividade)) {
@@ -57,7 +64,6 @@ export class ListarColaboradoresAtividadeComponent implements OnInit {
 
   atualizar(colaboradorAtividade:ColaboradoresAtividade) {
     this.onAtualizarColaborador.emit(colaboradorAtividade);
-    this.onAdicionar.emit(true);
   }
 
   novo() {

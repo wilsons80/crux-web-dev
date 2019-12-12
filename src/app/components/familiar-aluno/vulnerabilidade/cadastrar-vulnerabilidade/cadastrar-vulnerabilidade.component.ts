@@ -44,7 +44,6 @@ export class CadastrarVulnerabilidadeComponent implements OnInit {
     delete this.vulnerabilidade.familiar.vulnerabilidades;
 
     this.familiar.vulnerabilidades.push(this.vulnerabilidade);
-    this.initObjetos();
   }
 
   initObjetos() {

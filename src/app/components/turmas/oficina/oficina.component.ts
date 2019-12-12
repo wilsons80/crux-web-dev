@@ -1,5 +1,5 @@
 import { Turmas } from './../../../core/turmas';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterContentChecked, ChangeDetectorRef } from '@angular/core';
 import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
@@ -7,15 +7,20 @@ import { ToastService } from 'src/app/services/toast/toast.service';
   templateUrl: './oficina.component.html',
   styleUrls: ['./oficina.component.css']
 })
-export class OficinaComponent implements OnInit {
+export class OficinaComponent implements OnInit, AfterContentChecked {
 
   @Input() turma: Turmas;
 
   openFormCadastro = false;
 
-  constructor() { }
+  constructor(protected drc: ChangeDetectorRef) {
+  }
 
   ngOnInit() {
+  }
+
+  ngAfterContentChecked(): void {
+    this.drc.detectChanges();
   }
 
   onGetAdicionar(evento) {

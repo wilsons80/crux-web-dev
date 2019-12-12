@@ -55,7 +55,6 @@ export class ListarColaboradoresTurmaComponent implements OnInit {
 
   atualizar(colaboradorTurma: ColaboradoresTurma) {
     this.onAtualizarColaborador.emit(colaboradorTurma);
-    this.onAdicionar.emit(true);
   }
 
   novo() {

@@ -20,9 +20,9 @@
         </mat-expansion-panel-header>
 
         <listar-oficinas #listarOficinas
-                         (onAtualizarOficina)="cadastrarOficinas.atualizarOficina($event)"
                          [oficinas]="turma.oficinas"
-                         (onAdicionar)="onGetAdicionar($event)">
+                         (onAtualizarOficina)="onGetAdicionar($event); cadastrarOficinas.atualizarOficina($event)"
+                         (onAdicionar)="onGetAdicionar($event); cadastrarOficinas.initObjeto()">
         </listar-oficinas>
 
     </mat-expansion-panel>
