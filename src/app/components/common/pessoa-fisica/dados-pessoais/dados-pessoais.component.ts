@@ -32,6 +32,8 @@ export class DadosPessoaisComponent implements OnInit {
   ]
   
   racas: String[] =['AMARELO', 'BRANCO','INDÍGENA','NEGRO','PARDO']
+  
+  tipoSanguineo: String[] =['A+', 'A-','B+','AB+','AB-', 'O+', 'O-'];
 
   sexo: any[] =[
     {sigla:  'M', descricao:  'MASCULINO'},

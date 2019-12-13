@@ -8,19 +8,17 @@
 
         <div id="row_dados" fxFlex="85%" fxFlexFill>
 
-            <div fxLayout="row" fxLayoutGap="5px">
+            <div fxLayout="row" fxLayoutGap="20px">
                 <mat-form-field fxFlex="58%" fxFlexOffset="20px">
                     <input matInput maxlength="255" name="nome" placeholder="Nome Completo:"
                         [(ngModel)]="pessoaFisica.nome" required>
                 </mat-form-field>
 
-                <mat-form-field fxFlex="20%" fxFlexOffset="20px">
-                    <mat-label>Estado Civil:</mat-label>
-                    <mat-select [(ngModel)]="pessoaFisica.estadoCivil" name="estadoCivil">
-                        <mat-option *ngFor="let m of estadoCivil" [value]="m.tipo">
-                            {{m.tipo}}
-                        </mat-option>
-                    </mat-select>
+                <mat-form-field fxFlex="20%">
+                    <input matInput name="dataNascimento" [matDatepicker]="dataNascimento"
+                        placeholder="Data de Nascimento:" [(ngModel)]="pessoaFisica.dataNascimento">
+                    <mat-datepicker-toggle matSuffix [for]="dataNascimento"></mat-datepicker-toggle>
+                    <mat-datepicker #dataNascimento></mat-datepicker>
                 </mat-form-field>
             </div>
 
@@ -34,26 +32,59 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field fxFlex="55%" fxFlexOffset="20px">
+                <mat-form-field fxFlex="20%" fxFlexOffset="20px">
                     <mat-label>Raça/Cor:</mat-label>
                     <mat-select [(ngModel)]="pessoaFisica.raca" name="raca">
                         <mat-option *ngFor="let m of racas" [value]="m">
                             {{m}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field>  
+                </mat-form-field>
+            </div>
 
-                <mat-form-field fxFlex="20%">
-                    <input matInput name="dataNascimento" [matDatepicker]="dataNascimento"
-                        placeholder="Data de Nascimento:" [(ngModel)]="pessoaFisica.dataNascimento">
-                    <mat-datepicker-toggle matSuffix [for]="dataNascimento"></mat-datepicker-toggle>
-                    <mat-datepicker #dataNascimento></mat-datepicker>
+            <!-- ETAPA 1 - FILIAÇÃO -->
+            <mat-toolbar class="titulopartes">Filiação</mat-toolbar>
+            <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+
+                <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+                    <input matInput maxlength="200" name="nomeMae" placeholder="Nome da Mãe:"
+                        [(ngModel)]="pessoaFisica.nomeMae">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="45%" fxFlexOffset="20px">
+                    <input matInput maxlength="200" name="nomePai" placeholder="Nome do Pai:"
+                        [(ngModel)]="pessoaFisica.nomePai">
                 </mat-form-field>
 
             </div>
 
+            <mat-toolbar class="titulopartes">Outras Informações</mat-toolbar>
+
             <div fxLayout="row" fxLayoutGap="20px" fxFlexFill>
 
+                <mat-form-field fxFlex="20%" fxFlexOffset="20px">
+                    <mat-label>Estado Civil:</mat-label>
+                    <mat-select [(ngModel)]="pessoaFisica.estadoCivil" name="estadoCivil">
+                        <mat-option *ngFor="let m of estadoCivil" [value]="m.tipo">
+                            {{m.tipo}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field fxFlex="20%" fxFlexOffset="20px">
+                    <mat-label>Tipo de sangue:</mat-label>
+                    <mat-select [(ngModel)]="pessoaFisica.tipoSangue" name="raca">
+                        <mat-option *ngFor="let m of tipoSanguineo" [value]="m">
+                            {{m}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+            </div>
+            <!-- <div fxLayout="row" fxLayoutGap="20px" fxFlexFill> -->
+            <!-- 
                 <mat-form-field fxFlex="15%" fxFlexOffset="20px">
                     <mat-label>Possui deficiência:</mat-label>
                     <mat-select [(ngModel)]="pessoaFisica.ehDeficiente" name="ehDeficiente">
@@ -61,8 +92,8 @@
                             {{m.tipo}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field>  
-<!-- 
+                </mat-form-field>   -->
+            <!-- 
                 <mat-form-field fxFlex="20%" >
                     <mat-label>Cursando nível superior:</mat-label>
                     <mat-select [(ngModel)]="pessoaFisica.cursandoNivelSuperior" name="cursandoNivelSuperior">
@@ -71,9 +102,9 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>   -->
-            </div>
+            <!-- </div> -->
 
-            <div fxLayout="row" fxLayoutGap="20px" fxFlexFill>
+            <!-- <div fxLayout="row" fxLayoutGap="20px" fxFlexFill>
                 <mat-form-field fxFlex="45%" fxFlexOffset="20px">
                     <input matInput maxlength="200" name="descricaoDeficiencia" placeholder="Descrição da deficiência" 
                             [(ngModel)]="pessoaFisica.descricaoDeficiencia">
@@ -83,7 +114,7 @@
                     <input matInput maxlength="200" name="tipoSangue" placeholder="Descrição do tipo de sangue" 
                             [(ngModel)]="pessoaFisica.tipoSangue">
                 </mat-form-field>                
-            </div>
+            </div> -->
 
 
         </div>
@@ -98,21 +129,7 @@
         </div>
     </div>
 
-    <!-- ETAPA 1 - FILIAÇÃO -->
-    <mat-toolbar class="titulopartes">Filiação</mat-toolbar>
-    <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-        <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-            <input matInput maxlength="200" name="nomeMae" placeholder="Nome da Mãe:"
-                [(ngModel)]="pessoaFisica.nomeMae">
-        </mat-form-field>
-
-        <mat-form-field fxFlex="45%" fxFlexOffset="20px">
-            <input matInput maxlength="200" name="nomePai" placeholder="Nome do Pai:"
-                [(ngModel)]="pessoaFisica.nomePai">
-        </mat-form-field>
-
-    </div>
 
 
     <!-- ETAPA 1 - ENDEREÇO -->
@@ -144,7 +161,7 @@
  -->
         <mat-form-field fxFlex="20%">
             <input matInput [(ngModel)]="pessoaFisica.celular" name="celular" placeholder="Celular"
-                [textMask]="{mask: maskCelular}" required
+                [textMask]="{mask: maskCelular}"
                 pattern="^(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$">
         </mat-form-field>
 
@@ -152,8 +169,11 @@
             <input maxlength="100" matInput [(ngModel)]="pessoaFisica.email" type="email" name="email"
                 placeholder="Email:" email>
         </mat-form-field>
-        <!-- <mat-checkbox name="autorizaEmail" [(ngModel)]="pessoaFisica.autorizaEmail">Autorizo o recebimento de
-            emails.</mat-checkbox> -->
+        <div style="margin-top: 25px;">
+        <mat-checkbox  
+        name="autorizaEmail" [(ngModel)]="pessoaFisica.autorizaEmail">Autorizo o recebimento de
+            emails.</mat-checkbox>
+        </div>
     </div>
 
 </div>
