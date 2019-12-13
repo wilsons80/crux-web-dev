@@ -43,7 +43,7 @@
 
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
 
-    <mat-form-field fxFlex="15%">
+    <mat-form-field  fxFlexOffset="20px" fxFlex="15%">
         <input matInput name="dataEntrada" [matDatepicker]="dataEntrada"
                placeholder="Data de entrada"
                [(ngModel)]="aluno.dataEntrada">
@@ -59,15 +59,6 @@
       <mat-datepicker-toggle matSuffix [for]="dataDesligamento"></mat-datepicker-toggle>
       <mat-datepicker #dataDesligamento></mat-datepicker>
   </mat-form-field>
-
-    <mat-form-field fxFlex="20%" fxFlexOffset="20px">
-            <mat-label>Já atendido em outro órgão da rede</mat-label>
-            <mat-select [(ngModel)]="aluno.atendidoOrgaoRede" name="atendidoOrgaoRede">
-                <mat-option *ngFor="let m of sim_nao" [value]="m.flag">
-                    {{m.tipo}}
-                </mat-option>
-            </mat-select>
-    </mat-form-field>
 
 </div>
 
@@ -145,34 +136,6 @@
 
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
-            <mat-label>Problema saúde:</mat-label>
-            <textarea matInput #message
-                    name="descProblemaSaude"
-                    [(ngModel)]="aluno.descProblemaSaude"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    maxlength="200"
-                    ></textarea>
-      <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
-    </mat-form-field>
-
-    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
-            <mat-label>Medicamentos controlados:</mat-label>
-            <textarea matInput #message
-                    name="descMedicamentosControlados"
-                    [(ngModel)]="aluno.descMedicamentosControlados"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    maxlength="200"
-                    ></textarea>
-      <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
-    </mat-form-field>
-</div>
-
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
             <mat-label>Outras informações:</mat-label>
             <textarea matInput #message
                     name="descOutrasInformacoes"
@@ -185,23 +148,11 @@
       <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
     </mat-form-field>
 
-    <mat-form-field fxFlexOffset="20px" fxFlex= "50%" appearance="outline" >
-            <mat-label>Forma de ingresso:</mat-label>
-            <textarea matInput #message
-                    name="descFormaIngressoEntidade"
-                    [(ngModel)]="aluno.descFormaIngressoEntidade"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="2"
-                    maxlength="100"
-                    ></textarea>
-      <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
-    </mat-form-field>
 </div>
 
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
-            <mat-label>Obervação:</mat-label>
+            <mat-label>Observação:</mat-label>
             <textarea matInput #message
                     name="observacoes"
                     [(ngModel)]="aluno.observacoes"

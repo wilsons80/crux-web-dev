@@ -8,11 +8,12 @@
               <ng-template matStepLabel>DADOS USUARIO</ng-template>
               <dados-usuario [usuarioSistema]="usuarioSistema" [isAtualizar]="isAtualizar"></dados-usuario>
 
-              <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                  <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                      Próximo
-                  </button>
-              </div>
+              <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+              fxFlexFill>
+            <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
           </form>
       </mat-step>
 
@@ -22,11 +23,15 @@
                 <ng-template matStepLabel>DADOS PESSOAIS</ng-template>
                 <dados-pessoais [pessoaFisica]="usuarioSistema.pessoaFisica"></dados-pessoais>
 
-                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px" fxFlexFill>
-                    <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                        Próximo
-                    </button>
-                </div>
+                <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
+                fxFlexFill>
+              <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                  <mat-icon>chevron_right</mat-icon>
+              </button>
+              <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+                  <mat-icon>chevron_left</mat-icon>
+              </button>
+          </div>
             </form>
         </mat-step>
 
@@ -38,14 +43,14 @@
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                    Próximo
-                </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
-                </button>
-            </div>
+            fxFlexFill>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+              <mat-icon>chevron_right</mat-icon>
+          </button>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+              <mat-icon>chevron_left</mat-icon>
+          </button>
+      </div>
         </mat-step>
 
         <!-- ------------------ UNIDADES ------------------------ -->
@@ -56,14 +61,11 @@
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperNext>
-                    Próximo
-                </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
-                </button>
-            </div>
+            fxFlexFill>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+              <mat-icon>chevron_left</mat-icon>
+          </button>
+      </div>
         </mat-step>
 
 

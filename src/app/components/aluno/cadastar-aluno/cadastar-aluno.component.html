@@ -22,7 +22,7 @@
         <!--  ACADEMICO -->
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroAcademico">
             <form #formCadastroAcademico="ngForm">
-                <ng-template matStepLabel>ACADEMICO</ng-template>
+                <ng-template matStepLabel>ADMISSÃO</ng-template>
                 <academico [aluno]="aluno"></academico>
             </form>
 
@@ -42,8 +42,8 @@
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroEscolaridade">
             <form #formCadastroEscolaridade="ngForm">
                 <ng-template matStepLabel>ESCOLARIDADE</ng-template>
-
                 <escolaridade [pessoaFisica]="aluno.pessoaFisica"></escolaridade>
+                <escolar [pessoaFisica]="aluno.pessoaFisica"></escolar>
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
@@ -102,8 +102,8 @@
         <mat-step style="padding-bottom: 20px" [stepControl]="formCadastroOutrasInformacoes">
             <form #formCadastroOutrasInformacoes="ngForm">
                 <ng-template matStepLabel>OUTRAS INFORMAÇÕES</ng-template>
-                <escolar [pessoaFisica]="aluno.pessoaFisica"></escolar>
-                <atendimento-apoio [pessoaFisica]="aluno.pessoaFisica"></atendimento-apoio>
+
+                <atendimento-apoio [atendidoOrgaoRede]=aluno.atendidoOrgaoRede [pessoaFisica]="aluno.pessoaFisica"></atendimento-apoio>
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"

@@ -1,37 +1,3 @@
-<!-- MORADIA -->
-<mat-toolbar class="titulopartes">Moradia</mat-toolbar>
-<div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
-
-    <mat-form-field fxFlex="50%" fxFlexOffset="20px">
-        <mat-label>Condição da Moradia:</mat-label>
-        <mat-select [(ngModel)]="pessoaFisica.condicoesMoradia.id" name="condicaoMoradia">
-            <mat-option *ngFor="let m of condicoesMoradia" [value]="m.id">
-                {{m.descricao}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <mat-form-field fxFlex="50%">
-        <input matInput maxlength="200" name="condicaoMoradia" placeholder="Descrição da condição moradia:"
-                [(ngModel)]="pessoaFisica.condicaoMoradia">
-    </mat-form-field>
-
-</div>
-
-
-<!-- BENEFICIOS -->
-<mat-toolbar class="titulopartes">Benefícios</mat-toolbar>
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
-    <mat-form-field fxFlex="15%" fxFlexOffset="20px">
-        <input currencyMask
-               matInput maxlength="50" name="valorOutrosBenerficiosSoc"
-               placeholder="Valor de outros benefícios sociais:"
-               [(ngModel)]="pessoaFisica.valorOutrosBenerficiosSoc"
-               [options]="{ prefix: '', thousands: '.', decimal: ',' }" />
-            <span matPrefix>R$&nbsp;</span>
-    </mat-form-field>
-</div>
-
 <!-- ESCOLAR -->
 <mat-toolbar class="titulopartes">Escolar</mat-toolbar>
 <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
@@ -132,7 +98,7 @@
 
 </div>
 
-<div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
+<!-- <div fxLayout="row" fxLayoutGap="50px" style="margin-top: 10px; margin-bottom: 10px" fxFlexFill>
     <mat-form-field fxFlexOffset="20px" fxFlex= "100%" appearance="outline" >
             <mat-label>Observações:</mat-label>
             <textarea matInput #observacoes
@@ -145,4 +111,4 @@
                     ></textarea>
       <mat-hint align="end">{{observacoes.value.length}} / 200</mat-hint>
     </mat-form-field>
-</div>
+</div> -->

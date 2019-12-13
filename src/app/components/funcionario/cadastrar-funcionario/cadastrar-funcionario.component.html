@@ -11,12 +11,11 @@
                 <dados-pessoais [pessoaFisica]="funcionario.pessoasFisica"></dados-pessoais>
 
                 <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                    fxFlexFill>
-                    <button mat-raised-button name="botaoConfirmar" fxFlex="10%" color="primary"
-                         matStepperNext>
-                        Próximo
-                    </button>
-                </div>
+                fxFlexFill>
+              <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                  <mat-icon>chevron_right</mat-icon>
+              </button>
+          </div>
             </form>
         </mat-step>
 
@@ -29,13 +28,12 @@
 
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="10%" color="primary"
-                    matStepperNext>
-                    Próximo
+                  fxFlexFill>
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+                    <mat-icon>chevron_right</mat-icon>
                 </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="10%" color="primary" matStepperPrevious>
-                    voltar
+                <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+                    <mat-icon>chevron_left</mat-icon>
                 </button>
             </div>
         </mat-step>
@@ -50,16 +48,14 @@
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="10%" color="primary"
-                    matStepperNext>
-                    Próximo
-                </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="10%" color="primary"
-                    matStepperPrevious>
-                    voltar
-                </button>
-            </div>
+            fxFlexFill>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+              <mat-icon>chevron_right</mat-icon>
+          </button>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+              <mat-icon>chevron_left</mat-icon>
+          </button>
+      </div>
         </mat-step>
 
         <!------------------ DADOS PROFISSIONAIS ------------------------>
@@ -72,15 +68,14 @@
             </form>
 
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="10%" color="primary"
-                    matStepperNext>
-                    Próximo
-                </button>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="10%" color="primary" matStepperPrevious>
-                    voltar
-                </button>
-            </div>
+            fxFlexFill>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+              <mat-icon>chevron_right</mat-icon>
+          </button>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+              <mat-icon>chevron_left</mat-icon>
+          </button>
+      </div>
         </mat-step>
 
         <!--  FUNCIONAL -->
@@ -92,11 +87,14 @@
 
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
-                </button>
-            </div>
+            fxFlexFill>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+              <mat-icon>chevron_right</mat-icon>
+          </button>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+              <mat-icon>chevron_left</mat-icon>
+          </button>
+      </div>
         </mat-step>
 
         <!--  ALOCACAO -->
@@ -106,11 +104,14 @@
                 <alocacao [funcionario]="funcionario"></alocacao>
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
-                </button>
-            </div>
+            fxFlexFill>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperNext>
+              <mat-icon>chevron_right</mat-icon>
+          </button>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+              <mat-icon>chevron_left</mat-icon>
+          </button>
+      </div>
         </mat-step>   
         
         <!--  DEPENDENTES -->
@@ -120,11 +121,11 @@
                 <dependentes [funcionario]="funcionario"></dependentes>
             </form>
             <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"
-                fxFlexFill>
-                <button mat-raised-button name="botaoConfirmar" fxFlex="20%" color="primary" matStepperPrevious>
-                    voltar
-                </button>
-            </div>
+            fxFlexFill>
+          <button mat-mini-fab name="botaoConfirmar" color="primary" matStepperPrevious>
+              <mat-icon>chevron_left</mat-icon>
+          </button>
+      </div>
         </mat-step>          
        
     </mat-horizontal-stepper>
