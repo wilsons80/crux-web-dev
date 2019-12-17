@@ -36,6 +36,8 @@ export class Atividade {
     programa: Programa;
     unidade: Unidade;
 
+    idTurma: number;
+
     colaboradoresAtividade: ColaboradoresAtividade[];
     materiaisAtividade: MateriaisAtividade[];
 

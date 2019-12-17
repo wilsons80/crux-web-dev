@@ -62,6 +62,7 @@ export class CopiarDadosOficinaDialogComponent implements OnInit {
 
   copiarOficina() {
     if (this.oficinaSelecionada) {
+      this.oficinaSelecionada.id = null;
       Object.assign(this.oficina, this.oficinaSelecionada);
       this.toastService.showAlerta(`Dados da oficina copiado com sucesso`);
       this.dialogRef.close();

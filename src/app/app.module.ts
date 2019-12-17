@@ -84,6 +84,7 @@ import { UsuarioModule } from './components/usuario/usuario.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 import { MaterialModule } from './components/material/material.module';
+import { MatriculaModule } from './components/matricula/matricula.module';
 
 export const MY_FORMATS = {
   parse: {
@@ -196,8 +197,8 @@ registerLocaleData(localePt, 'pt-BR');
     TiposContratacoesModule,
     NiveisTurmasModule,
     TurmasModule,
-    OficinaModule
-
+    OficinaModule,
+    MatriculaModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },
