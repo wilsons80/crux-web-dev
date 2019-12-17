@@ -21,11 +21,11 @@
         <sub-menu *ngIf="verificaAcesso(getModulos().OFICINA)" icone="pages" titulo="Oficinas" rota="oficinas"
              toolTip="Oficinas"></sub-menu>            
 
-        <!-- MATRICULA "APAGAR ISSO" -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().ATIVIDADE_ALUNO)" icone="sports_handball" titulo="Alunos da Turma"
-            rota="atividadealuno" toolTip="Alunos da Turma"></sub-menu>
+        <!-- MATRICULA NA OFICINA -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().ATIVIDADE_ALUNO)" icone="sports_handball" titulo="Matrícula na Oficina"
+            rota="atividadealuno" toolTip="Matrícula na Oficina"></sub-menu>
 
-        <!-- MATRICULA -->
+        <!-- MATRICULA NA TURMA-->
         <sub-menu *ngIf="verificaAcesso(getModulos().MATRICULA)" icone="school" titulo="Matrícula de Alunos"
             rota="matriculas" toolTip="Matrícula de Alunos"></sub-menu>
 

@@ -1,4 +1,4 @@
-<mat-toolbar class="subtitulo">Alunos da Turma</mat-toolbar>
+<mat-toolbar class="subtitulo">Matricula do aluno na oficina</mat-toolbar>
 <div class="painel-principal" style="padding: 10px;">
     <div class="painel-consultar">
         <form #formConsultar="ngForm">
@@ -52,17 +52,17 @@
             </ng-container>
 
             <ng-container matColumnDef="atividade">
-                <th mat-header-cell *matHeaderCellDef> Atividade </th>
+                <th mat-header-cell *matHeaderCellDef> Oficina </th>
                 <td mat-cell *matCellDef="let element"> {{ element.atividade.descricao }} </td>
             </ng-container>
 
             <ng-container matColumnDef="dataInicioAtividade">
-                <th mat-header-cell *matHeaderCellDef> Data de início da atividade </th>
+                <th mat-header-cell *matHeaderCellDef> Data de início  </th>
                 <td mat-cell *matCellDef="let element"> {{element.dataInicioAtividade | dataSimples }} </td>
             </ng-container>
 
             <ng-container matColumnDef="dataCadastroAtividade">
-                <th mat-header-cell *matHeaderCellDef> Data de cadastro da atividade </th>
+                <th mat-header-cell *matHeaderCellDef> Data de cadastro </th>
                 <td mat-cell *matCellDef="let element"> {{element.dataCadastroAtividade | dataSimples }} </td>
             </ng-container>
 

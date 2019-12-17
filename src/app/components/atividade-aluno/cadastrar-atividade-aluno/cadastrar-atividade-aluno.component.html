@@ -1,4 +1,4 @@
-<mat-toolbar class="subtitulo">Alunos da Turma</mat-toolbar>
+<mat-toolbar class="subtitulo">Matrícula do aluno na oficina</mat-toolbar>
 
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
@@ -25,9 +25,9 @@
 
             <!-- ATIVIDADE-->
             <div fxLayout="column" fxFlex="45%">
-                <mat-toolbar class="titulopartes">Atividade</mat-toolbar>
+                <mat-toolbar class="titulopartes">Oficina</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
-                    <mat-label>Atividades:</mat-label>
+                    <mat-label>Oficinas:</mat-label>
                     <mat-select [(ngModel)]="atividadeAluno.atividade.id" 
                                 name="atividade" 
                                 (selectionChange)="mostrarDadosAtividade($event.value)"
@@ -36,27 +36,18 @@
                             {{i.descricao}}
                         </mat-option>
                     </mat-select>
-                    <mat-hint *ngIf="atividades?.length === 0" align="start">Nenhuma atividade cadastrada</mat-hint>
+                    <mat-hint *ngIf="atividades?.length === 0" align="start">Nenhuma oficina cadastrada</mat-hint>
                 </mat-form-field>
             </div>
         </div>
 
-        <div *ngIf="atividadeAluno.aluno.id">
-            <dados-aluno [aluno]="atividadeAluno.aluno"></dados-aluno>    
-        </div>
-       
-        <div *ngIf="atividadeAluno.atividade.id">
-            <dados-atividade [atividade]=atividadeAluno.atividade></dados-atividade>
-        </div>
-
         <!-- OUTRAS INFORMACOES-->
         <mat-toolbar class="titulopartes">Outras Informações</mat-toolbar>
-
         <div fxLayout="row">
             <mat-form-field style="margin: 0 0 0 20px" fxFlex="15%" >
                 <input style="margin-left: 20px" matInput name="dataInicioAtividade"
                        [matDatepicker]="dataInicioAtividade" 
-                       placeholder="Data Início da atividade:"
+                       placeholder="Data Início:"
                        [(ngModel)]="atividadeAluno.dataInicioAtividade"
                        required>
                 <mat-datepicker-toggle matSuffix [for]="dataInicioAtividade"></mat-datepicker-toggle>
@@ -83,6 +74,13 @@
 
         </div>
 
+        <div *ngIf="atividadeAluno.aluno.id">
+            <dados-aluno [aluno]="atividadeAluno.aluno"></dados-aluno>    
+        </div>
+               
+        <div *ngIf="atividadeAluno.atividade.id">
+            <dados-atividade [atividade]=atividadeAluno.atividade></dados-atividade>
+        </div>
 
         <!-- BOTOES -->
         <div dir="rtl" fxLayoutGap="20px" style="padding-top: 20px; padding-bottom: 10px; padding-right: 20px"

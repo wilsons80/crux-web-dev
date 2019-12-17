@@ -6,7 +6,7 @@ export enum Modulos{
     , ALUNO 							    = 'ALUNO'
     , ALUNO_TRABALHANDO					    = 'ALUNO_TRABALHANDO'
     , ATENDIMENTO 						    = 'ATENDIMENTO'
-    , ATIVIDADE_ALUNO 					    = 'ATIVIDADE_ALUNO'  // APAGAR ISSO
+    , ATIVIDADE_ALUNO 					    = 'ATIVIDADE_ALUNO'
     , MATRICULA                             = 'MATRICULA'
     , AVALIACAO_ALUNO  					    = 'AVALIACAO_ALUNO'
     , AVALIACAO_ATIVIDADE      			    = 'AVALIACAO_ATIVIDADE'

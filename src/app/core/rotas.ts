@@ -3,7 +3,7 @@ export enum Rotas {
     ALUNO_TRABALHANDO               = 'api/alunostrabalhando/',
     ALUNO                           = 'api/aluno/',
     ATENDIMENTO                     = 'api/atendimento/',
-    ATIVIDADE_ALUNO                 = 'api/atividadesaluno/', //APAGAR ISSO
+    ATIVIDADE_ALUNO                 = 'api/atividadesaluno/',
     MATRICULAS                      = 'api/matriculas/',
     ATIVIDADE                       = 'api/atividade/',
     AVALIACAO_ALUNO                 = 'api/avaliacaoaluno/',

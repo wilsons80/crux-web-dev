@@ -1,5 +1,5 @@
+import { AtividadeAluno } from 'src/app/core/atividade-aluno';
 import { Component, OnInit, Input } from '@angular/core';
-import { Atividade } from 'src/app/core/atividade';
 
 @Component({
   selector: 'dados-oficina',
@@ -8,7 +8,7 @@ import { Atividade } from 'src/app/core/atividade';
 })
 export class DadosOficinaComponent implements OnInit {
 
-  @Input() oficina: Atividade;
+  @Input() oficina: AtividadeAluno;
 
 
   pinDataInicio = Date.now();

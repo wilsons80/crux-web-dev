@@ -57,7 +57,7 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
     });
 
     this.atividadeService.getAll().subscribe((atividades: Atividade[]) => {
-      this.atividades = atividades;
+      this.atividades = atividades.filter(a => !a.idTurma);
     });
 
 
