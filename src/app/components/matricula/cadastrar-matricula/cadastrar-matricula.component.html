@@ -48,7 +48,7 @@
                         </mat-select-trigger>
                         <mat-option *ngFor="let i of matricula.turma.oficinas" [value]="i">{{i.descricao}}</mat-option>
                     </mat-select>
-                    <mat-hint *ngIf="atividades?.length === 0" align="start">Nenhuma oficina cadastrada</mat-hint>
+                    <mat-hint *ngIf="matricula.turma.oficinas?.length === 0" align="start">Nenhuma oficina cadastrada</mat-hint>
                 </mat-form-field>
             </div>
 

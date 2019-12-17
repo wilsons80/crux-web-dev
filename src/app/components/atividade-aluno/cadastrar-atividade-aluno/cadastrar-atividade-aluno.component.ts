@@ -91,7 +91,8 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
   }
 
   validarDatas(): boolean {
-    if (this.atividadeAluno.dataInicioAtividade.getTime() < new Date(this.atividadeAluno.atividade.dataInicio).getTime()) {
+    if (this.atividadeAluno.dataInicioAtividade &&
+        new Date(this.atividadeAluno.dataInicioAtividade).getTime() < new Date(this.atividadeAluno.atividade.dataInicio).getTime()) {
       this.toastService.showAlerta('A data de início informada não pode ser menor que a data de início da atividade selecionada.');
       return false;
     }
