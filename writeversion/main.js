@@ -16,4 +16,6 @@ execProcess.result("sh script.sh", function(err, response){
     }
 });
 
-
+/**
+ * para executar: node main.js
+ */
