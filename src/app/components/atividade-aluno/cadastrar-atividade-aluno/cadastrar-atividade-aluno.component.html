@@ -9,7 +9,9 @@
                 <span style="color: blue">
                     Onde deseja realizar a matrícula ?
                 </span>
-                <mat-radio-group [(ngModel)]="tipoOficina" name="tipoOficina" (change)="carregarOficinas($event)">
+                <mat-radio-group [(ngModel)]="tipoOficina" 
+                                 name="tipoOficina" 
+                                 (change)="carregarOficinas()">
                     <mat-radio-button value="T" style="padding-left: 30px;">Turma</mat-radio-button>
                     <mat-radio-button value="O" style="padding-left: 30px;">Oficina</mat-radio-button>
                 </mat-radio-group>
