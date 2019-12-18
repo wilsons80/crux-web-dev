@@ -22,7 +22,7 @@ export class ListarOficinasComponent implements OnInit {
   mostrarTabela = false;
   msg: string;
 
-  displayedColumns: string[] = ['descricao', 'datainicio', 'datafim', 'maxparticipantes', 'projeto', 'planoacao', 'acoes'];
+  displayedColumns: string[] = ['descricao', 'datainicio', 'datafim', 'maxparticipantes', 'projeto', 'acoes'];
   dataSource: MatTableDataSource<Atividade> = new MatTableDataSource();
 
   perfilAcesso: Acesso;

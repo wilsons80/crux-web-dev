@@ -198,7 +198,7 @@ registerLocaleData(localePt, 'pt-BR');
     NiveisTurmasModule,
     TurmasModule,
     OficinaModule,
-    MatriculaModule
+    MatriculaModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },
