@@ -7,7 +7,7 @@
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlexFill>
                 <mat-icon>search</mat-icon>
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
-                    <mat-label>Selecione um aluno</mat-label>
+                    <mat-label>Selecione um beneficiário</mat-label>
                     <mat-select [(ngModel)]="aluno" name="aluno">
                         <mat-option *ngFor="let d of alunos" [value]="d">
                             {{ d.matriculaAluno }} - {{ d.pessoaFisica.nome }}

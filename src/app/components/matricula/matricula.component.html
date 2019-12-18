@@ -33,7 +33,7 @@
 
                 <mat-form-field fxFlex="100%" fxFlexOffset="20px">
                     <mat-icon matPrefix>search</mat-icon>
-                    <mat-label fxFlexOffset="20px">Selecione um aluno</mat-label>
+                    <mat-label fxFlexOffset="20px">Selecione um beneficiário</mat-label>
                     <mat-select fxFlexOffset="20px" [(ngModel)]="aluno.id" name="aluno">
                         <mat-option *ngFor="let d of alunos" [value]="d.id">
                             {{d.pessoaFisica.nome}}
