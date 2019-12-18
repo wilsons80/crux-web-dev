@@ -1,3 +1,4 @@
+import { AtividadeAlunoService } from 'src/app/services/atividade-aluno/atividade-aluno.service';
 import { AtividadeAluno } from 'src/app/core/atividade-aluno';
 import { TurmasService } from './../../../services/turmas/turmas.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -39,6 +40,7 @@ export class CadastrarMatriculaComponent implements OnInit {
 
   constructor(
     private matriculasService: MatriculaService,
+    private atividadeAlunoService: AtividadeAlunoService,
     private turmasService: TurmasService,
     private alunoService: AlunoService,
     private activatedRoute: ActivatedRoute,
@@ -85,7 +87,7 @@ export class CadastrarMatriculaComponent implements OnInit {
   }
 
   cadastrar() {
-    //if (!this.validarDatas() ) { return; }
+    if (!this.validarDatas() ) { return; }
 
     this.matriculasService.cadastrar(this.matricula).subscribe(() => {
       this.router.navigate(['matriculas']);
@@ -93,38 +95,21 @@ export class CadastrarMatriculaComponent implements OnInit {
     });
   }
 
-  /*
   validarDatas(): boolean {
-    if (this.atividadeAluno.dataInicioAtividade.getTime() < new Date(this.atividadeAluno.atividade.dataInicio).getTime()) {
-      this.toastService.showAlerta('A data de início informada não pode ser menor que a data de início da atividade selecionada.');
-      return false;
+    let dataValida = true;
+
+    if (this.matricula.oficinas) {
+      this.matricula.oficinas.forEach(oficina => {
+        if (oficina.dataInicioAtividade &&
+            new Date(oficina.dataInicioAtividade).getTime() < new Date(this.matricula.dataInicio).getTime()) {
+           this.toastService.showAlerta('Oficina não pode ter data de início menor que a data de início da turma.');
+           dataValida = false;
+        }
+      });
     }
 
-    if (this.atividadeAluno.atividade.dataFim) {
-      if (this.atividadeAluno.dataInicioAtividade &&
-        this.atividadeAluno.dataInicioAtividade.getTime() > new Date(this.atividadeAluno.atividade.dataFim).getTime()) {
-        this.toastService.showAlerta('A data de início informada não pode ser menor que a data de início da atividade selecionada.');
-        return false;
-      }
-    }
-
-    if (this.atividadeAluno.atividade.dataFim &&
-        this.atividadeAluno.dataDesvinculacao &&
-        new Date(this.atividadeAluno.dataDesvinculacao).getTime() > new Date(this.atividadeAluno.atividade.dataFim).getTime()) {
-      this.toastService.showAlerta('A data de desvinculação informada não pode ser maior que a data de fim da atividade selecionada.');
-      return false;
-    }
-
-    if (this.atividadeAluno.dataDesvinculacao &&
-        new Date(this.atividadeAluno.dataDesvinculacao).getTime() < new Date(this.atividadeAluno.atividade.dataInicio).getTime()) {
-      this.toastService.showAlerta('A data de desvinculação informada não pode ser menor que a data de início da atividade selecionada.');
-      return false;
-    }
-
-    return true;
+    return dataValida;
   }
-  */
-
 
   limpar() {
     this.matricula = new AlunosTurma();
@@ -142,7 +127,7 @@ export class CadastrarMatriculaComponent implements OnInit {
 
 
   atualizar() {
-    //if (!this.validarDatas() ) { return; }
+    if (!this.validarDatas() ) { return; }
 
     this.matriculasService.alterar(this.matricula).subscribe(() => {
       this.router.navigate(['matriculas']);
@@ -166,6 +151,19 @@ export class CadastrarMatriculaComponent implements OnInit {
     nova.aluno = this.matricula.aluno;
     nova.atividade = new Atividade();
     this.matricula.oficinas.push(nova);
+  }
+
+  deletarOficina(oficina: AtividadeAluno) {
+    const index = this.matricula.oficinas.indexOf( this.matricula.oficinas.find(reg => reg === oficina));
+    if (index >= 0) {
+      this.matricula.oficinas.splice(index, 1);
+
+      if (oficina.id) {
+        this.atividadeAlunoService.excluir(oficina.id).subscribe(() => {
+          this.toastService.showSucesso('Oficina apagada com sucesso.');
+        });
+      }
+    }
   }
 
 }

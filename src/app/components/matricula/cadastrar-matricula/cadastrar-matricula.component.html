@@ -71,7 +71,10 @@
             <div fxLayout="column" fxFlex="100%">
 
                 <div fxLayout="column" fxFlex="100%" *ngFor="let o of matricula.oficinas">
-                    <dados-oficina [oficina]="o" [oficinas]="matricula.turma.oficinas"></dados-oficina>
+                    <dados-oficina [oficina]="o" 
+                                   [oficinas]="matricula.turma.oficinas"
+                                   [perfilAcesso]="perfilAcesso"
+                                   (onDeletar)="deletarOficina($event)"></dados-oficina>
                 </div>
             </div>
         </div>
@@ -110,10 +113,6 @@
 
         </div>
 
-
-
     </form>
 
 </div>
-
-<pre>{{matricula.oficinas.length}}</pre>
