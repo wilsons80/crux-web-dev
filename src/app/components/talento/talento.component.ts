@@ -42,12 +42,15 @@ export class TalentoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.limpar();
+
     this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
     this.dataSource.paginator = this.paginator;
     this.funcionarioService.getAll().subscribe((funcionarios: Funcionario[]) => {
       this.funcionarios = funcionarios;
-    })
+    });
 
+    this.consultar();
   }
 
 
@@ -62,7 +65,7 @@ export class TalentoComponent implements OnInit {
   consultar() {
     if (this.funcionario && this.funcionario.pessoasFisica && this.funcionario.pessoasFisica.id) {
       this.talentosService.getByIdPessoaFisica(this.funcionario.pessoasFisica.id).subscribe((talentos: Talento[]) => {
-        if (!talentos) {
+        if (!talentos || talentos.length === 0) {
           this.mostrarTabela = false;
           this.msg = 'Nenhum registro para a pesquisa selecionada'
         } else {
@@ -75,7 +78,7 @@ export class TalentoComponent implements OnInit {
         });
     } else {
       this.talentosService.getAll().subscribe((talentos: Talento[]) => {
-        if (!talentos) {
+        if (!talentos || talentos.length === 0) {
           this.mostrarTabela = false;
           this.msg = 'Nenhum registro para a pesquisa selecionada';
         } else {
