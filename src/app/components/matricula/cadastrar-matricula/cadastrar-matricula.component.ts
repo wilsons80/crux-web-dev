@@ -1,5 +1,6 @@
+import { AtividadeAluno } from 'src/app/core/atividade-aluno';
 import { TurmasService } from './../../../services/turmas/turmas.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Acesso } from 'src/app/core/acesso';
 import { Aluno } from 'src/app/core/aluno';
 import { Atividade } from 'src/app/core/atividade';
@@ -129,6 +130,7 @@ export class CadastrarMatriculaComponent implements OnInit {
     this.matricula = new AlunosTurma();
     this.matricula.aluno = new Aluno();
     this.matricula.turma = new Turmas();
+    this.matricula.oficinas = [];
     this.aluno = new Aluno();
     this.turma = new Turmas();
     this.localMatricula = null;
@@ -159,5 +161,11 @@ export class CadastrarMatriculaComponent implements OnInit {
     }
   }
 
+  novaMatricula() {
+    const nova: AtividadeAluno = new AtividadeAluno();
+    nova.aluno = this.matricula.aluno;
+    nova.atividade = new Atividade();
+    this.matricula.oficinas.push(nova);
+  }
 
 }

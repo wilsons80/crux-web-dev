@@ -1,7 +1,10 @@
 <mat-toolbar class="subtitulo">Matricula de aluno na turma</mat-toolbar>
-
 <div class="painel-principal" style="padding: 10px;">
     <form #formCadastro="ngForm">
+
+        <div *ngIf="matricula.aluno.id" style="padding-top: 20px;">
+            <dados-aluno [aluno]="matricula.aluno"></dados-aluno>
+        </div>        
 
         <div fxLayout="row" fxLayoutGap="50px" fxFlexFill>
 
@@ -11,7 +14,8 @@
                 <mat-form-field style="margin: 0 20px 20px 20px">
                     <mat-label>Alunos:</mat-label>
                     <mat-select [(ngModel)]="matricula.aluno.id" name="aluno"
-                        (selectionChange)="mostrarDadosAluno($event.value)" required>
+                                (selectionChange)="mostrarDadosAluno($event.value)" 
+                                required>
                         <mat-option *ngFor="let i of alunos" [value]="i.id">
                             {{i.pessoaFisica.nome}}
                         </mat-option>
@@ -25,7 +29,9 @@
                 <mat-toolbar class="titulopartes">Turma</mat-toolbar>
                 <mat-form-field style="margin: 0 20px 20px 20px">
                     <mat-label>Turmas:</mat-label>
-                    <mat-select [(ngModel)]="matricula.turma.id" name="turma" (selectionChange)="carregarDadosTurma()">
+                    <mat-select [(ngModel)]="matricula.turma.id" name="turma" 
+                                (selectionChange)="carregarDadosTurma()"
+                                required>
                         <mat-option *ngFor="let i of turmas" [value]="i.id">
                             {{i.descricao}}
                         </mat-option>
@@ -33,25 +39,7 @@
                     <mat-hint *ngIf="turmas?.length === 0" align="start">Nenhuma turma cadastrada</mat-hint>
                 </mat-form-field>
             </div>
-
-            <!-- OFICINA -->
-            <div fxLayout="column" fxFlex="45%">
-                <mat-toolbar class="titulopartes">Oficinas</mat-toolbar>
-                <mat-form-field style="margin: 0 20px 20px 20px">
-                    <mat-select placeholder="Oficinas:" name="atividade" [formControl]="oficinasSelecionadas" multiple>
-                        <mat-select-trigger>
-                            {{oficinasSelecionadas.value ? oficinasSelecionadas.value[0]?.descricao : ''}}
-                            <span *ngIf="oficinasSelecionadas.value?.length > 1">
-                                (+{{oficinasSelecionadas.value.length - 1}}
-                                {{oficinasSelecionadas.value?.length === 2 ? 'outro' : 'outros'}})
-                            </span>
-                        </mat-select-trigger>
-                        <mat-option *ngFor="let i of matricula.turma.oficinas" [value]="i">{{i.descricao}}</mat-option>
-                    </mat-select>
-                    <mat-hint *ngIf="matricula.turma.oficinas?.length === 0" align="start">Nenhuma oficina cadastrada</mat-hint>
-                </mat-form-field>
-            </div>
-
+            
         </div>
 
         <div fxLayout="row">
@@ -78,26 +66,26 @@
 
         </div>
 
-        <div fxLayout="row" *ngIf="oficinasSelecionadas.value?.length">
+        <mat-toolbar class="titulopartes">Oficinas matriculadas</mat-toolbar>
+        <div fxLayout="row" *ngIf="matricula.turma.oficinas?.length">
             <div fxLayout="column" fxFlex="100%">
-                <mat-toolbar class="titulopartes">Oficinas</mat-toolbar>
-        
-                <mat-accordion style="margin: 0 0 0 20px" fxFlex="95%">
-                    <mat-expansion-panel *ngFor="let o of oficinasSelecionadas.value">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                {{o.descricao}}
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <dados-oficina [oficina]="o"></dados-oficina>
-                    </mat-expansion-panel>
-                </mat-accordion>
+
+                <div fxLayout="column" fxFlex="100%" *ngFor="let o of matricula.oficinas">
+                    <dados-oficina [oficina]="o" [oficinas]="matricula.turma.oficinas"></dados-oficina>
+                </div>
             </div>
-        </div>        
-
-
-        <div *ngIf="matricula.aluno.id" style="padding-top: 20px;">
-            <dados-aluno [aluno]="matricula.aluno"></dados-aluno>
+        </div>
+        <div fxLayout="row" *ngIf="perfilAcesso.insere" 
+             fxLayoutAlign="end center" 
+             fxLayoutGap="16px"
+             style="padding-top: 10px">
+            <div>
+                <button matTooltip="Adicionar nova matricula" 
+                        mat-fab color="primary"
+                        (click)="novaMatricula()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
         </div>
 
 
@@ -127,3 +115,5 @@
     </form>
 
 </div>
+
+<pre>{{matricula.oficinas.length}}</pre>
