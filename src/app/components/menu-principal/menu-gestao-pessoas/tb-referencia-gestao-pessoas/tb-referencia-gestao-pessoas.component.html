@@ -30,5 +30,29 @@
                 <sub-menu  *ngIf="verificaAcesso(getModulos().ATRIBUTO_AVALIACAO_DESEMPENHO)" icone="spellcheck" titulo="Atributos da Avaliação de Desempenho" rota="home" toolTip="Atributos da Avaliação de Desempenho"></sub-menu>
             </div>
 
+            <!-- GRAUS INSTRUCAO -->
+            <div style="padding-left: 15px">
+                <sub-menu *ngIf="verificaAcesso(getModulos().GRAUS_INSTRUCAO)" icone="share" titulo="Grau de Instrução" rota="grausinstrucao" toolTip="Grau de Instrução"></sub-menu>
+            </div>
+
+            <!-- QUESTIONARIO -->
+            <div style="padding-left: 15px">
+                <sub-menu *ngIf="verificaAcesso(getModulos().QUESTIONARIO)" icone="assignment" titulo="Questionário" rota="questionario" toolTip="Questionário"></sub-menu>
+            </div>
+
+            <!-- TALENTO -->
+            <div style="padding-left: 15px">
+                <sub-menu *ngIf="verificaAcesso(getModulos().TALENTO)" icone="grade" titulo="Talento" rota="talento" toolTip="Talento"></sub-menu>
+            </div>
+
+            <!-- CURSO DE FORMACAO -->
+            <div style="padding-left: 15px">
+                <sub-menu *ngIf="verificaAcesso(getModulos().CURSO_FORMACAO)" icone="library_books" titulo="Curso de Formação" rota="cursoformacao" toolTip="Curso de Formação"></sub-menu>
+            </div>
+
+            <!-- ACAO COMPETENCIA -->
+            <div style="padding-left: 15px">
+                <sub-menu *ngIf="verificaAcesso(getModulos().ACAO_COMPETENCIA)" icone="directions_walk" titulo="Ações da Competência" rota="acaocompetencia" toolTip="Ações das competências do Talento do Funcionário"></sub-menu>
+            </div>            
         </div>
     </mat-nav-list>
