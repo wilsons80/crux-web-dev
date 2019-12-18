@@ -9,6 +9,8 @@ import { AtividadeService } from 'src/app/services/atividade/atividade.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { AlunoService } from './../../../services/aluno/aluno.service';
 import * as _ from 'lodash';
+import { TurmasService } from 'src/app/services/turmas/turmas.service';
+import { Turmas } from 'src/app/core/turmas';
 
 @Component({
   selector: 'app-cadastrar-atividade-aluno',
@@ -20,15 +22,19 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
   atividadeAluno: AtividadeAluno = new AtividadeAluno();
   alunos: Aluno[];
   atividades: Atividade[];
+  atividadesSemTurma: Atividade[];
+  turmas: Turmas[];
 
   perfilAcesso: Acesso;
   mostrarBotaoCadastrar = true;
   mostrarBotaoAtualizar = true;
 
   isAtualizar = false;
+  tipoOficina = null;
 
   constructor(
     private atividadeAlunoService: AtividadeAlunoService,
+    private turmaService: TurmasService,
     private alunoService: AlunoService,
     private atividadeService: AtividadeService,
     private activatedRoute: ActivatedRoute,
@@ -57,7 +63,13 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
     });
 
     this.atividadeService.getAll().subscribe((atividades: Atividade[]) => {
-      this.atividades = atividades.filter(a => !a.idTurma);
+      this.atividadesSemTurma = atividades.filter(a => !a.idTurma);
+      this.carregarOficinas();
+    });
+
+    this.turmaService.getAll().subscribe((turmas: Turmas[]) => {
+      this.turmas = turmas;
+      this.carregarOficinas();
     });
 
 
@@ -69,8 +81,16 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
       this.isAtualizar = true;
       this.atividadeAlunoService.getById(idAtividadeAluno).subscribe((atividadeAluno: AtividadeAluno) => {
         this.atividadeAluno = atividadeAluno;
+
+        if (this.atividadeAluno.atividade.idTurma) {
+          this.tipoOficina = 'T';
+        } else {
+          this.tipoOficina = 'O';
+        }
+        this.carregarOficinas();
       });
     }
+
   }
 
   mostrarBotaoLimpar() {
@@ -126,6 +146,7 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
     this.atividadeAluno = new AtividadeAluno();
     this.atividadeAluno.aluno = new Aluno();
     this.atividadeAluno.atividade = new Atividade();
+    this.tipoOficina = null;
   }
 
   cancelar() {
@@ -151,4 +172,23 @@ export class CadastrarAtividadeAlunoComponent implements OnInit {
     this.atividadeAluno.atividade = _.cloneDeep(_.find(this.atividades, (a: Atividade) => a.id === idAtividade));
   }
 
+  carregarOficinas() {
+    this.atividades = [];
+    if (this.isTurma() && this.atividadeAluno.atividade.idTurma && this.turmas) {
+      const turma = this.turmas.find(t => t.id === this.atividadeAluno.atividade.idTurma);
+      this.atividades = turma.oficinas;
+    }
+
+    if (this.isOficina()) {
+      this.atividades = this.atividadesSemTurma;
+    }
+  }
+
+  isTurma() {
+    return this.tipoOficina === 'T';
+  }
+
+  isOficina() {
+    return this.tipoOficina === 'O';
+  }
 }
