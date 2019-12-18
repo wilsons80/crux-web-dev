@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, AfterContentChecked } from '@angular/core';
 import { Atividade } from 'src/app/core/atividade';
 
 @Component({
@@ -6,16 +6,20 @@ import { Atividade } from 'src/app/core/atividade';
   templateUrl: './colaboradores-atividade.component.html',
   styleUrls: ['./colaboradores-atividade.component.css']
 })
-export class ColaboradoresAtividadeComponent implements OnInit {
+export class ColaboradoresAtividadeComponent implements OnInit, AfterContentChecked {
 
   @Input() oficina: Atividade;
 
   openFormCadastro = false;
 
-  constructor() {
+  constructor(protected drc: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterContentChecked(): void {
+    this.drc.detectChanges();
   }
 
   onGetAdicionar(evento) {

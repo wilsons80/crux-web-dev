@@ -11,6 +11,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Modulos } from 'src/app/core/modulos';
 import { Programa } from 'src/app/core/programa';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'dados-atividade',
@@ -71,6 +72,18 @@ export class DadosAtividadeComponent implements OnInit {
       });
     }
 
+  }
+
+  carregarPrograma(idPrograma: number) {
+    this.atividade.programa = _.cloneDeep(_.find(this.programas, (a: Programa) => a.id === idPrograma));
+  }
+
+  carregarProjeto(idProjeto: number) {
+    this.atividade.projeto = _.cloneDeep(_.find(this.projetos, (a: Projeto) => a.id === idProjeto));
+  }
+
+  carregarPlanoAcao(idPlanoAcao: number) {
+    this.atividade.planosAcao = _.cloneDeep(_.find(this.listaPlanosAcao, (a: PlanosAcao) => a.id === idPlanoAcao));
   }
 
 }
