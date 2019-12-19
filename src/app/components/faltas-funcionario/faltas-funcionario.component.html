@@ -1,4 +1,4 @@
-<mat-toolbar class="subtitulo">Faltas Funcionário</mat-toolbar>
+<mat-toolbar class="subtitulo">Controle de Frequência</mat-toolbar>
 <div class="painel-principal" style="padding: 10px;">
     <div class="painel-consultar">
         <form #formConsultar="ngForm">
@@ -45,8 +45,6 @@
                 <th mat-header-cell *matHeaderCellDef> Data da Falta: </th>
                 <td mat-cell *matCellDef="let element"> {{element.dataFaltaFuncionario | dataSimples}} </td>
             </ng-container>
-
-
 
             <ng-container matColumnDef="acoes">
                 <th mat-header-cell *matHeaderCellDef> Ações </th>

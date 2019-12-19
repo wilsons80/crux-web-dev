@@ -13,20 +13,23 @@
 
     <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
 
-      <!-- PERSPECTIVA-->
-      <sub-menu *ngIf="verificaAcesso(getModulos().PERSPECTIVA)" icone="pages" titulo="Perspectiva" rota="perspectiva" toolTip="Perspectiva"></sub-menu>
-
       <!-- OBJETIVOS -->
-      <sub-menu  *ngIf="verificaAcesso(getModulos().OBJETIVO)"  icone="my_location" titulo="Objetivos" rota="objetivo" toolTip="Objetivos"></sub-menu>
+      <sub-menu *ngIf="verificaAcesso(getModulos().OBJETIVO)"  icone="my_location" titulo="Objetivos" rota="objetivo" toolTip="Objetivos"></sub-menu>
 
       <!-- INDICADORES -->
       <sub-menu *ngIf="verificaAcesso(getModulos().INDICADORES)"  icone="trending_up" titulo="Indicadores" rota="indicadores" toolTip="Indicadores"></sub-menu>
 
       <!-- METAS -->
-      <sub-menu  *ngIf="verificaAcesso(getModulos().METAS)"  icone="account_tree" titulo="Metas" rota="metas" toolTip="Metas"></sub-menu>
+      <sub-menu *ngIf="verificaAcesso(getModulos().METAS)"  icone="account_tree" titulo="Metas" rota="metas" toolTip="Metas"></sub-menu>
+
+      <!-- PLANOS DE ACAO -->
+      <sub-menu  *ngIf="verificaAcesso(getModulos().PLANOS_ACAO)"  icone="list_alt" titulo="Planos de Ação" rota="planosacao" toolTip="Planos de Ação"></sub-menu>
 
       <!-- INICIATIVAS -->
       <sub-menu *ngIf="verificaAcesso(getModulos().INICIATIVAS)" icone="highlight" titulo="Iniciativas" rota="iniciativas" toolTip="Iniciativas"></sub-menu>
+
+      <!-- TABELAS REFERENCIA -->
+      <tb-referencia-estrategico></tb-referencia-estrategico>
 
     </div>
 </mat-nav-list>

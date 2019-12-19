@@ -15,11 +15,6 @@
     
         <div [hidden]="!isMostrarSubMenu" [@menuState]="currentState">
     
-            <!-- SOLUÇOES ATENDIMENTO -->
-            <div style="padding-left: 15px">
-                <sub-menu *ngIf="verificaAcesso(getModulos().SOLUCAO_ATENDIMENTO)" icone="insert_invitation" titulo="Soluções de Atendimentos" rota="solucaoatendimento" toolTip="Soluções de Atendimentos"></sub-menu>
-            </div>
-    
             <!-- SITUACAO VULNERABILIDADE-->
             <div style="padding-left: 15px">
                 <sub-menu *ngIf="verificaAcesso(getModulos().SITUACAO_VULNERABILIDADE)" icone="sentiment_dissatisfied" titulo="Situação de Vulnerabilidade" rota="situacaovulnerabilidade" toolTip="Situação de Vulnerabilidade"></sub-menu>
@@ -29,6 +24,11 @@
             <div style="padding-left: 15px">
                 <sub-menu *ngIf="verificaAcesso(getModulos().CONDICOES_MORADIA)" icone="museum" titulo="Condição de Moradia" rota="condicaomoradia" toolTip="Condição de Moradia"></sub-menu>
             </div>
+
+            <!-- SOLUÇOES ATENDIMENTO -->
+            <div style="padding-left: 15px">
+                <sub-menu *ngIf="verificaAcesso(getModulos().SOLUCAO_ATENDIMENTO)" icone="insert_invitation" titulo="Soluções de Atendimentos" rota="solucaoatendimento" toolTip="Soluções de Atendimentos"></sub-menu>
+            </div>            
     
         </div>
     </mat-nav-list>

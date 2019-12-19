@@ -18,6 +18,12 @@ import { TbReferenciaSecretariaComponent } from './menu-secretaria/tb-referencia
 import { TbReferenciaSapComponent } from './menu-sap/tb-referencia-sap/tb-referencia-sap.component';
 import { TbReferenciaOrganizacaoInternaComponent } from './menu-organizacao-interna/tb-referencia-organizacao-interna/tb-referencia-organizacao-interna.component';
 import { MenuProgramaProjetoComponent } from './menu-programa-projeto/menu-programa-projeto.component';
+import { TbReferenciaEstrategicoComponent } from './menu-estrategico/tb-referencia-estrategico/tb-referencia-estrategico.component';
+import { SubMenuGestaoDesempenhoComponent } from './menu-gestao-pessoas/sub-menu-gestao-desempenho/sub-menu-gestao-desempenho.component';
+import { MenuGestaoFinanceiraComponent } from './menu-gestao-financeira/menu-gestao-financeira.component';
+import { MenuAtendimentoMultidisciplinarComponent } from './menu-atendimento-multidisciplinar/menu-atendimento-multidisciplinar.component';
+import { SubMenuDiagnosticoMultidisciplinarComponent } from './menu-atendimento-multidisciplinar/sub-menu-diagnostico-multidisciplinar/sub-menu-diagnostico-multidisciplinar.component';
+import { SubMenuPlanejamentoAtividadesComponent } from './menu-atendimento-multidisciplinar/sub-menu-planejamento-atividades/sub-menu-planejamento-atividades.component';
 
 
 
@@ -37,6 +43,12 @@ import { MenuProgramaProjetoComponent } from './menu-programa-projeto/menu-progr
     TbReferenciaSapComponent,
     TbReferenciaOrganizacaoInternaComponent,
     MenuProgramaProjetoComponent,
+    TbReferenciaEstrategicoComponent,
+    SubMenuGestaoDesempenhoComponent,
+    MenuGestaoFinanceiraComponent,
+    MenuAtendimentoMultidisciplinarComponent,
+    SubMenuDiagnosticoMultidisciplinarComponent,
+    SubMenuPlanejamentoAtividadesComponent,
   ],
   imports: [
     CommonModule,
@@ -52,8 +64,7 @@ import { MenuProgramaProjetoComponent } from './menu-programa-projeto/menu-progr
     RouterModule,
     MatTooltipModule,
     TempoSessaoModule,
-    MatToolbarModule
-
+    MatToolbarModule,
   ],
   exports: [MenuPrincipalComponent]
 })

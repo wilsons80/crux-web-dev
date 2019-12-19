@@ -8,7 +8,7 @@ import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, Mat
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AcessoComponent } from './acesso.component';
-
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [ CadastrarAcessoComponent, AcessoComponent],
@@ -28,7 +28,8 @@ import { AcessoComponent } from './acesso.component';
     MatButtonModule,
     MatTableModule,
     MatTooltipModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    OrderModule
   ]
 })
 export class AcessoModule { }

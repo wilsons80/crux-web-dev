@@ -8,10 +8,13 @@ import { AcessoModuloResolver } from 'src/app/guards/acesso-modulo.resolve';
 import { Modulos } from 'src/app/core/modulos';
 
 
+const routes: Routes = [];
+/*
 const routes: Routes = [
   { path: 'participanteatendimento/cadastrar', component: CadastrarParticipanteAtendimentoComponent, canActivate: [AuthGuard], resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.PARTICIPANTE_ATENDIMENTO} },
   { path: 'participanteatendimento', component: ParticipanteAtendimentoComponent, canActivate: [AuthGuard], resolve: {perfilAcesso:AcessoModuloResolver}, data:{modulo:Modulos.PARTICIPANTE_ATENDIMENTO} },
 ];
+*/
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -52,5 +52,6 @@ export enum Rotas {
     NIVEIS_TURMAS                   = 'api/niveisturmas/',
     TURMAS                          = 'api/turmas/',
     MATERIAIS                       = 'api/materiais/',
-    OFICINA                         = 'api/oficinas/'
+    OFICINA                         = 'api/oficinas/',
+    PLANO_CARGO_SALARIO             = 'api/planoscargosalario/'
 }

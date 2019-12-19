@@ -19,11 +19,8 @@
         <!-- PROJETOS -->
         <sub-menu *ngIf="verificaAcesso(getModulos().PROJETO)"   icone="folder_open" titulo="Projetos" rota="projeto" toolTip="Projetos"></sub-menu>
 
-        <!-- PLANOS DE ACAO -->
-        <sub-menu  *ngIf="verificaAcesso(getModulos().PLANOS_ACAO)"  icone="list_alt" titulo="Planos de Ação" rota="planosacao" toolTip="Planos de Ação"></sub-menu>
-
-        <!-- PARCERIAS -->
-        <sub-menu *ngIf="verificaAcesso(getModulos().PARCERIAS)" icone="group_add" titulo="Parceiros" rota="empresa" toolTip="Parceiros"></sub-menu>
+        <!-- GESTAO DE PARCERIAS -->
+        <sub-menu *ngIf="verificaAcesso(getModulos().PARCERIAS)" icone="group_add" titulo="Gestão de Parcerias" rota="empresa" toolTip="Gestão de Parcerias"></sub-menu>
 
         <!-- PRESTACAO DE CONTAS -->
         <sub-menu *ngIf="verificaAcesso(getModulos().PRESTACAO_CONTAS)" icone="monetization_on" titulo="Prestação de contas" rota="prestacaocontas" toolTip="Prestação de contas"></sub-menu>

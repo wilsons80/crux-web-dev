@@ -23,23 +23,29 @@
         <!-- MENU ORGANIZACAO INTERNA -->
         <menu-organizacao-interna *ngIf="verificaAcesso(getModulos().ORGANIZACAO_INTERNA)"></menu-organizacao-interna>
 
-         <!-- PROGRAMAS E PROJETOS -->
-        <menu-programa-projeto *ngIf="verificaAcesso(getModulos().PROGRAMAS_PROJETOS)"></menu-programa-projeto>
-
         <!-- GESTAO DESEMPENHO -->
         <menu-estrategico *ngIf="verificaAcesso(getModulos().GESTAO_DESEMPENHO)"></menu-estrategico>
 
         <!-- GESTÃO DE PESSOAS -->
         <menu-gestao-pessoas *ngIf="verificaAcesso(getModulos().GESTAO_PESSOA)"></menu-gestao-pessoas>
 
+        <!-- PROGRAMAS E PROJETOS -->
+        <menu-programa-projeto *ngIf="verificaAcesso(getModulos().PROGRAMAS_PROJETOS)"></menu-programa-projeto>
+
         <!-- SECRETARIA -->
         <menu-secretaria *ngIf="verificaAcesso(getModulos().SECRETARIA)"></menu-secretaria>
 
-        <!-- SAP -->
+        <!-- SERVIÇO PSICOSOCIAL -->
         <menu-sap *ngIf="verificaAcesso(getModulos().SAP)"></menu-sap>
 
         <!-- PEDAGÓGICO -->
         <menu-pedagogico *ngIf="verificaAcesso(getModulos().PEDAGOGICO)"></menu-pedagogico>
+
+        <!-- GESTÃO FINANCEIRA -->
+        <menu-gestao-financeira *ngIf="verificaAcesso(getModulos().GESTAO_FINANCEIRA)"></menu-gestao-financeira>
+        
+        <!-- ATENDIMENTO MULTIDISCIPLINAR -->
+        <menu-atendimento-multidisciplinar *ngIf="verificaAcesso(getModulos().ATENDIMENTO_MULTIDISCIPLINAR)"></menu-atendimento-multidisciplinar>
 
         <mat-divider></mat-divider>
 

@@ -85,6 +85,9 @@ import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { getPortuguesePaginatorIntl } from './portuguese-paginator-intl/portuguese-paginator-intl.component';
 import { MaterialModule } from './components/material/material.module';
 import { MatriculaModule } from './components/matricula/matricula.module';
+import { PrestacaoContasModule } from './components/prestacao-contas/prestacao-contas.module';
+import { PlanoCargoSalarioComponent } from './components/plano-cargo-salario/plano-cargo-salario.component';
+import { PlanoCargoSalarioModule } from './components/plano-cargo-salario/plano-cargo-salario.module';
 
 export const MY_FORMATS = {
   parse: {
@@ -199,6 +202,8 @@ registerLocaleData(localePt, 'pt-BR');
     TurmasModule,
     OficinaModule,
     MatriculaModule,
+    PrestacaoContasModule,
+    PlanoCargoSalarioModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },
@@ -208,7 +213,6 @@ registerLocaleData(localePt, 'pt-BR');
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-
   ],
   bootstrap: [AppComponent]
 })
