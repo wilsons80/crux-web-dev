@@ -11,6 +11,8 @@ import { ConfirmDialogComponent } from '../common/confirm-dialog/confirm-dialog.
 import { UsuarioUnidadeService } from 'src/app/services/usuario-unidade/usuario-unidade.service';
 import { UsuariosUnidades } from 'src/app/core/usuarios-unidades';
 import { ModuloService } from 'src/app/services/modulo/modulo.service';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'grupo-modulo',
@@ -44,17 +46,20 @@ export class GrupoModuloComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.limpar();
+
     this.perfilAcesso =  this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     this.dataSource.paginator = this.paginator;
-    this.getAll();
+    this.consultar();
 
-    this.usuarioUnidadeService.getUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: UsuariosUnidades[]) => {
+    this.usuarioUnidadeService.getUnidadesUsuarioLogadoTemAcesso()
+    .subscribe((unidades: UsuariosUnidades[]) => {
       this.usuarioUnidades = unidades;
     });
 
     this.moduloService.getAll().subscribe((modulos: Modulo[]) => {
-      this.modulos = modulos;
+      this.modulos = modulos.filter(m => m.moduloPai);
     });
   }
 
@@ -70,30 +75,30 @@ export class GrupoModuloComponent implements OnInit {
     const idUnidadeBusca = this.usuarioUnidade.unidade ? this.usuarioUnidade.unidade.idUnidade : '';
     const idModuloBusca  = this.modulo ? this.modulo.id : '';
 
-    this.grupoModuloService.getAllByUnidadeAndModulo(idUnidadeBusca, idModuloBusca)
-    .subscribe((gruposModulos: GrupoModulo[]) => {
-      if (!gruposModulos) {
-        this.mostrarTabela = false;
-        this.msg = 'Nenhum registro para a pesquisa selecionada';
-      } else {
-        this.dataSource.data = gruposModulos ? gruposModulos : [];
-        this.mostrarTabela = true;
-      }
-    });
+    if (idUnidadeBusca || idModuloBusca) {
+      this.grupoModuloService.getAllByUnidadeAndModulo(idUnidadeBusca, idModuloBusca)
+      .subscribe((gruposModulos: GrupoModulo[]) => {
+        this.verificaMostrarTabela(gruposModulos);
+      });
+    } else {
+      this.grupoModuloService.getAll().subscribe((gruposModulos: GrupoModulo[]) => {
+        this.verificaMostrarTabela(gruposModulos);
+      });
+    }
   }
 
-  getAll() {
-    this.grupoModuloService.getAll().subscribe((gruposModulos: GrupoModulo[]) => {
-      this.dataSource.data = gruposModulos ? gruposModulos : [];
-      this.verificaMostrarTabela(gruposModulos);
-    });
-  }
 
   verificaMostrarTabela(gruposModulos: GrupoModulo[]) {
     if (!gruposModulos || gruposModulos.length === 0) {
       this.mostrarTabela = false;
-      this.msg = 'Nenhum usuário cadastrado.';
+      this.msg = 'Nenhum registro para a pesquisa selecionada';
     } else {
+
+      // Tira os módulos PAI
+      const filhos = _.filter(gruposModulos, g => g.modulo.moduloPai);
+      const dados: any = filhos.filter((f: any) => !filhos.find( (r: any) => r.modulo.moduloPai.id === f.modulo.id) );
+
+      this.dataSource.data = dados;
       this.mostrarTabela = true;
     }
   }

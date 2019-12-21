@@ -1,20 +1,18 @@
 import { PerfilAcessoService } from './../../../services/perfil-acesso/perfil-acesso.service';
 import { GrupoModulo } from './../../../core/grupo-modulo';
 import { Modulo } from 'src/app/core/modulo';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsuariosUnidades } from 'src/app/core/usuarios-unidades';
 import { PerfilAcesso } from 'src/app/core/perfil-acesso';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Acesso } from 'src/app/core/acesso';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { UsuarioUnidadeService } from 'src/app/services/usuario-unidade/usuario-unidade.service';
 import { GrupoModuloService } from 'src/app/services/grupo-modulo/grupo-modulo.service';
-import { UnidadeService } from 'src/app/services/unidade/unidade.service';
 import { ModuloService } from 'src/app/services/modulo/modulo.service';
 import { Unidade } from 'src/app/core/unidade';
-import { switchMap } from 'rxjs/operators';
 import { Location } from '@angular/common';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'cadastrar-grupo-modulo',
@@ -41,6 +39,10 @@ export class CadastrarGrupoModuloComponent implements OnInit {
 
   isAtualizar = false;
 
+  modulosSelecionados: Modulo[];
+  grupoModulosNovos: GrupoModulo[];
+  perfilAcessoSelecionado: PerfilAcesso = new PerfilAcesso();
+  unidadeSelecionada: Unidade = new Unidade();
 
   constructor(private grupoModuloService: GrupoModuloService,
               private activatedRoute: ActivatedRoute,
@@ -51,10 +53,11 @@ export class CadastrarGrupoModuloComponent implements OnInit {
               private perfilAcessoService: PerfilAcessoService,
               private router: Router,
   ) {
-    this.limpar();
   }
-
+  
   ngOnInit() {
+    this.limpar();
+
     this.acesso = this.activatedRoute.snapshot.data.perfilAcesso[0];
 
     if (!this.acesso.insere) {
@@ -65,33 +68,37 @@ export class CadastrarGrupoModuloComponent implements OnInit {
       this.mostrarBotaoAtualizar = false;
     }
 
-    this.usuarioUnidadeService.getUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: UsuariosUnidades[]) => {
-      this.unidades = unidades;
-    });
-
-    this.moduloService.getAll().subscribe((modulos: Modulo[]) => {
-      this.modulos = modulos;
-    });
 
     this.perfilAcessoService.getAll().subscribe((perfisAcesso: PerfilAcesso[]) => {
       this.perfisAcesso = perfisAcesso;
     });
 
-    let id: number;
-    id = this.activatedRoute.snapshot.queryParams.id ? this.activatedRoute.snapshot.queryParams.id : null;
+    const id = this.activatedRoute.snapshot.queryParams.id ? this.activatedRoute.snapshot.queryParams.id : null;
     if (id) {
+
       this.isAtualizar = true;
       this.grupoModuloService.getById(id).subscribe((grupoModulo: GrupoModulo) => {
         this.grupoModulo = grupoModulo;
 
         this.carregarGruposModulosDaUnidade();
       });
+
+    } else {
+
+      this.usuarioUnidadeService.getUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: UsuariosUnidades[]) => {
+        this.unidades = unidades;
+      });
+
+      this.moduloService.getAll().subscribe((modulos: Modulo[]) => {
+        this.modulos = modulos.filter(m => m.moduloPai);
+      });
+
     }
 
   }
 
   carregarGruposModulosDaUnidade() {
-    this.grupoModuloService.getAllByUnidade(this.grupoModulo.unidade.idUnidade).subscribe((grupoModulos: GrupoModulo[]) => {
+    this.grupoModuloService.getAllByUnidade(this.unidadeSelecionada.idUnidade).subscribe((grupoModulos: GrupoModulo[]) => {
       this.grupoModulos = grupoModulos;
     });
   }
@@ -101,6 +108,12 @@ export class CadastrarGrupoModuloComponent implements OnInit {
     this.grupoModulo.unidade = new Unidade();
     this.grupoModulo.modulo = new Modulo();
     this.grupoModulo.perfilAcesso = new PerfilAcesso();
+
+
+    this.modulosSelecionados = [];
+    this.grupoModulosNovos = [];
+    this.perfilAcessoSelecionado = new PerfilAcesso();
+    this.unidadeSelecionada = new Unidade();
   }
 
 
@@ -119,12 +132,10 @@ export class CadastrarGrupoModuloComponent implements OnInit {
 
   isJaAdicionada(): boolean {
     const grupoNovo = this.grupoModulos.find(grupo => grupo.modulo.id === this.grupoModulo.modulo.id
-                                              &&
-                                              grupo.unidade.idUnidade === this.grupoModulo.unidade.idUnidade
-                                              &&
-                                              grupo.perfilAcesso.id === this.grupoModulo.perfilAcesso.id 
-                                              &&
-                                              grupo.id !== this.grupoModulo.id);
+                                             &&
+                                             grupo.unidade.idUnidade === this.grupoModulo.unidade.idUnidade
+                                             &&
+                                             grupo.perfilAcesso.id === this.grupoModulo.perfilAcesso.id);
 
     return !!grupoNovo;
   }
@@ -154,4 +165,39 @@ export class CadastrarGrupoModuloComponent implements OnInit {
       this.toastService.showSucesso('Módulo atualizado com sucesso.');
     });
   }
+
+
+  addModulo() {
+    if (!this.grupoModulosNovos) {
+      this.grupoModulosNovos = [];
+    }
+
+    // Retira da lista os itens apagados
+    this.grupoModulosNovos = this.grupoModulosNovos.filter( gm => this.modulosSelecionados.find(m => m.id === gm.modulo.id ));
+
+    _.forEach(this.modulosSelecionados, moduloSelecionado => {
+      const grupoJaAdicionado = _.find(this.grupoModulosNovos, (gm: GrupoModulo) => {
+        return gm.unidade.idUnidade === this.unidadeSelecionada.idUnidade
+               &&
+               gm.modulo.id === moduloSelecionado.id
+               &&
+               gm.perfilAcesso.id === this.perfilAcessoSelecionado.id;
+      });
+
+      if (!grupoJaAdicionado) {
+        const grupoModuloNovo: GrupoModulo = new GrupoModulo();
+        grupoModuloNovo.unidade = new Unidade();
+        grupoModuloNovo.perfilAcesso = new PerfilAcesso();
+        grupoModuloNovo.modulo = new Modulo();
+
+        Object.assign(grupoModuloNovo.unidade, this.unidadeSelecionada);
+        Object.assign(grupoModuloNovo.perfilAcesso, this.perfilAcessoSelecionado);
+        Object.assign(grupoModuloNovo.modulo, moduloSelecionado);
+
+        this.grupoModulosNovos.push(grupoModuloNovo);
+      }
+    });
+
+  }
+  
 }

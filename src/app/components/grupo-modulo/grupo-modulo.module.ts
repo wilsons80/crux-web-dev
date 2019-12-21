@@ -6,10 +6,11 @@ import { MatExpansionModule } from '@angular/material';
 import { CadastrarGrupoModuloComponent } from './cadastrar-grupo-modulo/cadastrar-grupo-modulo.component';
 import { GrupoModuloComponent } from './grupo-modulo.component';
 import { MaterialCommonModule } from 'src/app/material-modules/material-common.module';
+import { FormularioGrupoModuloComponent } from './formulario-grupo-modulo/formulario-grupo-modulo.component';
 
 
 @NgModule({
-  declarations: [GrupoModuloComponent, CadastrarGrupoModuloComponent],
+  declarations: [GrupoModuloComponent, CadastrarGrupoModuloComponent, FormularioGrupoModuloComponent],
   imports: [
     CommonModule,
     GrupoModuloRoutingModule,
