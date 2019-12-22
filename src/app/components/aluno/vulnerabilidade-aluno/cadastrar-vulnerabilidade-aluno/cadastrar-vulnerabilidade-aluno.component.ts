@@ -31,7 +31,7 @@ export class CadastrarVulnerabilidadeAlunoComponent implements OnInit {
     });
 
     this.situacaoVulnerabilidadeService.getAll().subscribe((situacaoVulnerabilidades: SituacoesVulnerabilidade[]) => {
-      this.situacaoVulnerabilidades = situacaoVulnerabilidades;
+      this.situacaoVulnerabilidades = situacaoVulnerabilidades.filter(s => !s.sigiloso);
     });
 
   }
