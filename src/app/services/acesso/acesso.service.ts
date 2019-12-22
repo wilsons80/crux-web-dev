@@ -27,6 +27,10 @@ export class AcessoService {
     }});
   }
 
+  cadastrarAll(cadastroAcesso: CadastroAcesso[]){
+    return this.http.post(acessoRootPath + 'all' , cadastroAcesso);
+  }
+
   cadastrarAcesso(cadastroAcesso: CadastroAcesso){
     return this.http.post(acessoRootPath , cadastroAcesso);
   }
