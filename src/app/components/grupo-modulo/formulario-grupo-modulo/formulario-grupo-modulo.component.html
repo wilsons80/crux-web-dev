@@ -38,4 +38,9 @@
                required />
     </mat-form-field>
 
+    <button *ngIf="perfilAcesso.deleta"  
+             mat-button (click)="deletar()">
+        <mat-icon>delete</mat-icon>
+    </button>
+
 </div>

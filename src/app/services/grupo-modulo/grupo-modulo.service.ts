@@ -17,6 +17,9 @@ export class GrupoModuloService extends BaseService<GrupoModulo> {
     return this.http.get(`${Rotas.GRUPO_MODULO}unidade/${idUnidade}`);
   }
 
+  cadastrarAll(grupoModulosNovos: GrupoModulo[]) {
+    return this.http.post(`${ Rotas.GRUPO_MODULO}all`, grupoModulosNovos);
+  }
 
   getAllByUnidadeAndModulo(idUnidade: number|string, idModulo: number|string) {
     if (!idUnidade) { idUnidade = ''; }

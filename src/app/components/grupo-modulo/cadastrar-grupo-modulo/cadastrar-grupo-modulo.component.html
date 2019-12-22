@@ -52,11 +52,13 @@
                  
             </div>
 
-            <mat-toolbar class="subtitulo" *ngIf="modulosSelecionados.length > 0">Módulos selecionados</mat-toolbar>
-            <div *ngFor="let m of grupoModulosNovos">
+            <mat-toolbar class="subtitulo" *ngIf="grupoModulosNovos.length > 0">Módulos selecionados</mat-toolbar>
+            <div *ngFor="let m of grupoModulosNovos" style="padding-top: 15px">
 
-                <formulario-grupo-modulo [grupoModulo]="m"
-                                         [listaPerfilAcesso]="perfisAcesso">
+                <formulario-grupo-modulo [perfilAcesso]="acesso"
+                                         [grupoModulo]="m"
+                                         [listaPerfilAcesso]="perfisAcesso"
+                                         (onDeletar)="deletar($event)">
                 </formulario-grupo-modulo>
                 
             </div>

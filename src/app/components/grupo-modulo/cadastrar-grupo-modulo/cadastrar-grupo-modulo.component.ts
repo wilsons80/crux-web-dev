@@ -54,7 +54,7 @@ export class CadastrarGrupoModuloComponent implements OnInit {
               private router: Router,
   ) {
   }
-  
+
   ngOnInit() {
     this.limpar();
 
@@ -79,6 +79,7 @@ export class CadastrarGrupoModuloComponent implements OnInit {
       this.isAtualizar = true;
       this.grupoModuloService.getById(id).subscribe((grupoModulo: GrupoModulo) => {
         this.grupoModulo = grupoModulo;
+        this.unidadeSelecionada = this.grupoModulo.unidade;
 
         this.carregarGruposModulosDaUnidade();
       });
@@ -130,26 +131,27 @@ export class CadastrarGrupoModuloComponent implements OnInit {
     return true;
   }
 
-  isJaAdicionada(): boolean {
-    const grupoNovo = this.grupoModulos.find(grupo => grupo.modulo.id === this.grupoModulo.modulo.id
-                                             &&
-                                             grupo.unidade.idUnidade === this.grupoModulo.unidade.idUnidade
-                                             &&
-                                             grupo.perfilAcesso.id === this.grupoModulo.perfilAcesso.id);
-
-    return !!grupoNovo;
-  }
 
 
   cadastrar() {
-    if (this.isJaAdicionada()) {
-      this.toastService.showAlerta('Módulo já está cadastrado nessa unidade');
-      return;
-    }
 
-    this.grupoModuloService.cadastrar(this.grupoModulo).subscribe(() => {
+    let jaCadastrado = false;
+
+    this.grupoModulosNovos.forEach(gm => {
+      this.grupoModulo.unidade = gm.unidade;
+      this.grupoModulo.modulo = gm.modulo;
+      this.grupoModulo.perfilAcesso = gm.perfilAcesso;
+
+      if (this.isJaAdicionada()) {
+        this.toastService.showAlerta(`Módulo '${gm.modulo.descricao}' já está cadastrado com essa permssão.`);
+        jaCadastrado = true;
+      }
+    });
+    if (jaCadastrado) { return; }
+
+    this.grupoModuloService.cadastrarAll(this.grupoModulosNovos).subscribe(() => {
       this.location.back();
-      this.toastService.showSucesso('Módulo cadastrado com sucesso.');
+      this.toastService.showSucesso('Módulos cadastrados com sucesso.');
     });
   }
 
@@ -166,11 +168,37 @@ export class CadastrarGrupoModuloComponent implements OnInit {
     });
   }
 
+  isJaAdicionada(): boolean {
+    const grupoNovo = this.grupoModulos.find(grupo => grupo.modulo.id === this.grupoModulo.modulo.id
+                                             &&
+                                             grupo.unidade.idUnidade === this.grupoModulo.unidade.idUnidade
+                                             &&
+                                             grupo.perfilAcesso.id === this.grupoModulo.perfilAcesso.id);
+
+    return !!grupoNovo;
+  }
+
 
   addModulo() {
     if (!this.grupoModulosNovos) {
       this.grupoModulosNovos = [];
     }
+
+    let jaCadastrado = false;
+    // Valida se algum grupo selecionado já está cadastrado no BD.
+    this.modulosSelecionados.forEach(modulo => {
+      this.grupoModulo.unidade = this.unidadeSelecionada;
+      this.grupoModulo.modulo = modulo;
+      this.grupoModulo.perfilAcesso = this.perfilAcessoSelecionado;
+
+      if (this.isJaAdicionada()) {
+        this.toastService.showAlerta(`Módulo '${modulo.descricao}' já está cadastrado nessa unidade`);
+        jaCadastrado = true;
+      }
+    });
+
+    if (jaCadastrado) {return;}
+
 
     // Retira da lista os itens apagados
     this.grupoModulosNovos = this.grupoModulosNovos.filter( gm => this.modulosSelecionados.find(m => m.id === gm.modulo.id ));
@@ -199,5 +227,18 @@ export class CadastrarGrupoModuloComponent implements OnInit {
     });
 
   }
-  
+
+  deletar(grupoModulo: GrupoModulo) {
+    const index = this.grupoModulosNovos.indexOf( this.grupoModulosNovos.find(d => d === grupoModulo));
+    if (index >= 0) {
+      this.grupoModulosNovos.splice(index, 1);
+    }
+
+    const indexModulo = this.modulosSelecionados.indexOf( this.modulosSelecionados.find(d => d === grupoModulo.modulo));
+    if (index >= 0) {
+      this.modulosSelecionados.splice(indexModulo, 1);
+    }
+
+  }
+
 }

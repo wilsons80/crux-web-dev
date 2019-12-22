@@ -1,5 +1,5 @@
 import { GrupoModulo } from './../../../core/grupo-modulo';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 import * as _ from 'lodash';
 import { PerfilAcesso } from 'src/app/core/perfil-acesso';
@@ -17,8 +17,11 @@ export class FormularioGrupoModuloComponent implements OnInit {
   pinModulo = Date.now();
   pinPerfilAcesso = Date.now();
 
+  @Input() perfilAcesso: PerfilAcesso;
   @Input() grupoModulo: GrupoModulo;
   @Input() listaPerfilAcesso: PerfilAcesso[];
+  @Output() onDeletar = new EventEmitter();
+
 
   constructor() { }
 
@@ -27,6 +30,10 @@ export class FormularioGrupoModuloComponent implements OnInit {
 
   getPerfilAcesso(idPerfilAcesso) {
     this.grupoModulo.perfilAcesso = _.find(this.listaPerfilAcesso, p => p.id === idPerfilAcesso);
+  }
+
+  deletar() {
+    this.onDeletar.emit(this.grupoModulo);
   }
 
 }
