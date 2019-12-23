@@ -108,7 +108,7 @@
         <mat-label>Selecione a Unidade</mat-label>
         <mat-select name="unidade" 
                     [(ngModel)]="funcionario.unidade.idUnidade" 
-                    [required]="!funcionario.empresaFuncionario.id">
+                    required>
             <mat-option *ngFor="let u of unidades" [value]="u.idUnidade">
                 {{u.nomeUnidade}}
             </mat-option>

@@ -70,7 +70,7 @@ export class FuncionalComponent implements OnInit {
       this.funcionarios = funcionarios;
     });
 
-    this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: Unidade[])=> {
+    this.unidadeService.getAllByInstituicaoDaUnidadeLogada().subscribe((unidades: Unidade[])=> {
       this.unidades = unidades;
     });
 
