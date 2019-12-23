@@ -30,7 +30,7 @@
                 [(ngModel)]="dadosEndereco.endereco"
                 name="endereco"
                 placeholder="Endereço"
-                required>
+                [required]="obrigatorio">
         <mat-hint align="end">{{campoEndereco.value.length}} / 200</mat-hint>
     </mat-form-field>
 

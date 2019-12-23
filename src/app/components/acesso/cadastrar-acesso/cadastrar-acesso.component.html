@@ -43,7 +43,7 @@
                                 [disabled]="!cadastroAcesso.idUnidade"
                                 required>
                         <mat-select-trigger>
-                            {{grupoModuloSelecionados ? grupoModuloSelecionados[0]?.descricao: ''}}
+                            {{grupoModuloSelecionados ? grupoModuloSelecionados[0]?.modulo.descricao: ''}}
                             <span *ngIf="grupoModuloSelecionados?.length > 1">
                                 (+{{grupoModuloSelecionados.length - 1}} {{grupoModuloSelecionados?.length === 2 ? 'outro' : 'outros'}})
                             </span>
