@@ -13,6 +13,8 @@ import { ToastService } from './../../../services/toast/toast.service';
 import { Instituicao } from 'src/app/core/instituicao';
 import { InstituicaoService } from 'src/app/services/instituicao/instituicao.service';
 import { TipoUnidade } from 'src/app/core/tipo-unidade';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'cadastrar-unidade',
@@ -192,4 +194,8 @@ export class CadastrarUnidadeComponent implements OnInit {
     return true;
   }
 
+
+  carregarInstituicao(idInstituicao: number) {
+    this.unidade.instituicao = _.cloneDeep(_.find(this.instituicoes, (d: Instituicao) => d.id === idInstituicao));
+  }
 }

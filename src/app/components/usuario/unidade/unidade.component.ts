@@ -26,7 +26,7 @@ export class UnidadeComponent implements OnInit {
   msg: string;
 
   displayedColumns: string[] = ['siglaUnidade', 'nomeUnidade', 'nomeFantasia', 'cnpj', 'acoes'];
-  dataSource: MatTableDataSource<UsuariosUnidades> = new MatTableDataSource();
+  dataSource: MatTableDataSource<Unidade> = new MatTableDataSource();
 
   openFormCadastro = true;
 
@@ -37,7 +37,7 @@ export class UnidadeComponent implements OnInit {
   isAtualizar = false;
 
   unidadesComboCadastro: any[];
-  unidade: UsuariosUnidades = new UsuariosUnidades();
+  unidade: Unidade = new Unidade();
 
   constructor(private usuarioSistemaService: UsuarioSistemaService,
               private activatedRoute: ActivatedRoute,
@@ -64,14 +64,14 @@ export class UnidadeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.carregarLista();
 
-    this.usuarioUnidadeService.getUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: any[]) => {
+    this.unidadeService.getAllByInstituicaoDaUnidadeLogada().subscribe((unidades: any[]) => {
       this.unidadesComboCadastro = unidades;
     });
 
   }
 
   limpar() {
-    this.unidade = new UsuariosUnidades();
+    this.unidade = new Unidade();
   }
 
   cancelar() {
@@ -90,7 +90,7 @@ export class UnidadeComponent implements OnInit {
 
   isUnidadeJaAdicionada(): boolean {
     const unidadeAdicionada = this.usuarioSistema.unidades.
-                                             find( (u: any) => u.unidade.idUnidade === this.unidade.unidade.idUnidade);
+                                             find( (u: any) => u.unidade.idUnidade === this.unidade.idUnidade);
 
     return !!unidadeAdicionada;
   }
@@ -103,20 +103,21 @@ export class UnidadeComponent implements OnInit {
     }
 
     const unidadeAdicionada = new UsuariosUnidades();
-    Object.assign(unidadeAdicionada, this.unidade);
+    //Object.assign(unidadeAdicionada, this.usuarioSistema);
 
 
     unidadeAdicionada.id = null;
     unidadeAdicionada.usuarioSistema = new UsuarioSistema();
     unidadeAdicionada.usuarioSistema.id = this.usuarioSistema.id;
+    unidadeAdicionada.unidade = this.unidade;
     unidadeAdicionada.usuarioSistema.pessoaFisica = this.usuarioSistema.pessoaFisica;
 
     this.usuarioSistema.unidades.push(unidadeAdicionada);
     this.limpar();
   }
 
-  deletar(unidade: UsuariosUnidades): void {
-    const index = this.usuarioSistema.unidades.indexOf( this.usuarioSistema.unidades.find(uni => uni === unidade));
+  deletar(unidade: Unidade): void {
+    const index = this.usuarioSistema.unidades.indexOf( this.usuarioSistema.unidades.find(uni => uni.unidade === unidade));
     if (index >= 0) {
       this.usuarioSistema.unidades.splice(index, 1);
       this.carregarLista();
@@ -134,7 +135,7 @@ export class UnidadeComponent implements OnInit {
           this.mostrarTabela = false;
           this.msg = 'Nenhum responsável cadastrado.';
         } else {
-          this.dataSource.data = this.usuarioSistema.unidades ? this.usuarioSistema.unidades : [];
+          this.dataSource.data = this.usuarioSistema.unidades ? this.usuarioSistema.unidades.map(u => u.unidade) : [];
           this.mostrarTabela = true;
         }
     }

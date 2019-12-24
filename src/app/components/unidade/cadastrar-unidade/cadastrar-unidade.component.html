@@ -78,7 +78,9 @@
         <div fxLayout="row" fxLayoutGap="20px" class="espaco" style="margin-top: 10px; margin-bottom: 20px" fxFlexFill>
             <mat-form-field fxFlex="95%" fxFlexOffset="20px">
                 <mat-label>Instiuição</mat-label>
-                <mat-select [(ngModel)]="unidade.instituicao.id" name="instituicao">
+                <mat-select [(ngModel)]="unidade.instituicao.id" 
+                            name="instituicao"
+                            (selectionChange)="carregarInstituicao($event.value)">
                     <mat-option *ngFor="let m of instituicoes" [value]="m.id">
                         {{m.nome}}
                     </mat-option>

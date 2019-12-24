@@ -100,7 +100,7 @@ export class UnidadeComponent implements OnInit {
   }
 
   getAll() {
-    this.unidadeService.getAllUnidadesUsuarioLogadoTemAcesso().subscribe((unidades: Unidade[]) => {
+    this.unidadeService.getAllByInstituicaoDaUnidadeLogada().subscribe((unidades: Unidade[]) => {
       this.unidades = unidades;
       this.dataSource.data = unidades ? unidades : [];
       this.verificaMostrarTabela(unidades);
